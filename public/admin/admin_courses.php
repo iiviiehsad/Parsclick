@@ -1,0 +1,175 @@
+<?php require_once("../../includes/initialize.php"); ?>
+<?php $session->confirm_admin_logged_in(); ?>
+<?php $filename = basename(__FILE__); ?>
+<?php find_selected_course(); ?>
+<?php include_layout_template("admin_header.php"); ?>
+<?php include("../_/components/php/admin_nav.php"); ?>
+
+<?php echo output_message($message); ?>
+	<section class="main col-sm-12 col-md-8 col-lg-8">
+		<article>
+			<?php if($current_category && $current_course) { ?>
+				<h2><i class="fa fa-film"></i> تنظیم درس</h2>
+				<dl class="dl-horizontal">
+					<dt>اسم درس:</dt>
+					<dd><?php echo htmlentities(ucwords($current_course->name)); ?></dd>
+					<dt>محل:</dt>
+					<dd><?php echo $current_course->position; ?></dd>
+					<dt>نمایان:</dt>
+					<dd><?php echo $current_course->visible == 1 ? '<span class="text-success">بله</span>' : '<span class="text-danger">خیر</span>'; ?></dd>
+					<dt>نویسنده:</dt>
+					<dd><?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)->full_name()) : '-'; ?></dd>
+					<?php if(!empty($current_course->content)) { ?>
+						<dt>توضیحات:</dt>
+						<dd>
+							<small><?php echo htmlentities(ucfirst($current_course->content)); ?></small>
+						</dd>
+					<?php } ?>
+					<dt>لینک ها:</dt>
+					<dd>
+						<!-----------------------------------------------EDIT------------------------------------------>
+						<a class="btn btn-primary arial" href="edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" title="Edit Course">
+							<span class="glyphicon glyphicon-pencil"></span>
+						</a>
+						<!---------------------------------------------FILE LINK--------------------------------------->
+						<?php if(!empty($current_course->file_link)) { ?>
+							<a class="btn btn-primary arial" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" title="لینک فایل تمرینی">
+								<span class="glyphicon glyphicon-file"></span>
+							</a>
+						<?php } ?>
+						<!---------------------------------------------COMMENTS---------------------------------------->
+						<a class="btn btn-primary arial" href="admin_comments.php?course=<?php echo urlencode($current_course->id); ?>" title="نظرات">
+							<?php echo count($current_course->comments()); ?>
+							<span class="glyphicon glyphicon-comment"></span>
+						</a>
+					</dd>
+					<dt>فایل های تمرینی:</dt>
+					<dd>
+						<?php if(File::num_files_for_course($current_course->id) != 0) { ?>
+							<?php $files = File::find_files_for_course($current_course->id); ?>
+							<?php foreach($files as $file) { ?>
+								<div class="btn-group">
+									<a class="btn btn-primary edit" href="../files/<?php echo urldecode($file->name); ?>">
+										<?php echo htmlentities($file->name); ?>
+									</a>
+									<a class="btn btn-danger edit" href="delete_file.php?id=<?php echo urlencode($file->id); ?>" onclick="return confirm('آیا مطمئن به حذف این فایل هستید؟')">
+										<span class="glyphicon glyphicon-trash"></span>
+									</a>
+								</div>
+							<?php } ?>
+						<?php } else { ?>
+							فایل تمرینی نداریم
+						<?php } ?>
+					</dd>
+				</dl>
+				<!--------------------------------------------VIDEOS--------------------------------------------------->
+				<?php
+				if(isset($current_course->youtubePlaylist)) {
+					$googleapi  = "https://www.googleapis.com/youtube/v3/playlistItems";
+					$playListID = $current_course->youtubePlaylist;
+					if(!isset($_GET['nextPageToken']) || !isset($_GET['prevPageToken'])) {
+						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI;
+					}
+					if(isset($_GET['nextPageToken'])) {
+						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . "&pageToken=" . $_GET['nextPageToken'];
+					}
+					if(isset($_GET['prevPageToken'])) {
+						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . "&pageToken=" . $_GET['prevPageToken'];
+					}
+					// check to see if the url exists
+					$file_headers = get_headers($url);
+					if($file_headers[0] != 'HTTP/1.0 404 Not Found') {
+						//get the playlist from JSON file
+						$content = file_get_contents($url);
+						// decode the JSON file
+						$json = json_decode($content, TRUE);
+						//var_dump($json);
+						if($json['pageInfo']['totalResults'] > 0) { ?>
+							<div class="alert alert-success">
+								<h3><i class="fa fa-video-camera"></i> ویدیوهای این درس</h3>
+								<div class="table-responsive">
+									<table class="table table-condensed table-hover">
+										<tbody>
+										<?php foreach($json['items'] as $item): ?>
+											<tr>
+												<td>
+													<a href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; ?>?hl=fa-ir&theme=light&showinfo=0&autoplay=true"
+													   title="Click to play" target="_blank" onclick="videoPlayer(this); return false;">
+														<?php echo $item['snippet']['title']; ?>
+													</a>
+												</td>
+											</tr>
+										<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="clearfix center">
+								<?php
+								if(isset($json["nextPageToken"])) { ?>
+									<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json["nextPageToken"]; ?>">
+										<span class="arial">&lt;</span> صفحه بعدی
+									</a>
+								<?php }
+								if(isset($json["prevPageToken"])) { ?>
+									<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json["prevPageToken"]; ?>">
+										صفحه قبلی <span class="arial">&gt;</span>
+									</a>
+								<?php } ?>
+							</div>
+						<?php } ?>
+					<?php } else { ?>
+						<div class='alert'><i class='fa fa-exclamation-triangle'></i>
+							پلی لیست پیدا نشد و آدرس اینترنتی چیزی را بر نمی گرداند!
+						</div>
+					<?php } ?>
+				<?php } ?>
+			<?php } elseif($current_category) { ?>
+				<h2><i class="fa fa-list-alt"></i>&nbsp;تنظیم موضوع</h2>
+				<dl class="dl-horizontal">
+					<dt>اسم موضوع:</dt>
+					<dd><?php echo htmlentities(ucwords($current_category->name)); ?></dd>
+					<dt>محل:</dt>
+					<dd><?php echo $current_category->position; ?></dd>
+					<dt>نمایان:</dt>
+					<dd><?php echo $current_category->visible == 1 ? 'بله' : 'خیر'; ?></dd>
+					<dt>&nbsp;</dt>
+					<dd>
+						<a title="Edit Category" class="btn btn-primary" href="edit_category.php?category=<?php echo urlencode($current_category->id); ?>">
+							<span class="glyphicon glyphicon-pencil"></span>
+						</a>
+					</dd>
+				</dl>
+				<hr/>
+				<div>
+					<h2><i class="fa fa-film"></i>&nbsp;درس ها در این موضوع</h2>
+					<ul>
+						<?php
+						$category_courses = Course::find_courses_for_category($current_category->id, FALSE);
+						foreach($category_courses as $course) {
+							echo "<li class='list-group-item-text'>";
+							$safe_course_id = urlencode($course->id);
+							echo "<a href='admin_courses.php?category=" . $current_category->id . "&course={$safe_course_id}'>";
+							if(empty($course->name)) {
+								echo "(اسم درس وجود ندارد)";
+							}
+							echo htmlentities(ucwords($course->name));
+							echo "</a>";
+							echo "</li>";
+						} ?>
+					</ul>
+				</div>
+
+			<?php } else { ?>
+				<h2>لطفا یک درس یا یک موضوع انتخاب کنید.</h2>
+			<?php } ?>
+		</article>
+	</section>
+	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
+		<aside>
+			<h2>موضوعات و دروس</h2>
+			<a class="btn btn-success pull-left arial" href="new_category.php" title="Add New Category"><span class="glyphicon glyphicon-plus"></span></a>
+			<?php echo admin_courses($current_category, $current_course); ?>
+		</aside>
+	</section>
+<?php include_layout_template("admin_footer.php"); ?>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>پارس کلیک - Parsclick</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+	<link rel="stylesheet" href="_/css/bootstrap.css" media="screen">
+	<link rel="stylesheet" href="_/css/bootstrap-rtl.min.css" media="screen">
+	<link rel="stylesheet" href="_/css/font-awesome.min.css">
+	<link rel="stylesheet" href="_/css/mystyles.css" media="screen">
+	<style type="text/css">
+		body, .container { background : #2D2D2D; }
+		h1, h2, h3, h4, h5, h6 { color : #FF8000; text-shadow : none; }
+		.template { padding : 40px 15px; text-align : center; }
+		.actions { margin-top : 15px; margin-bottom : 15px; }
+		.actions .btn { margin-right : 10px; }
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<section class="col col-md-12">
+			<article class="template">
+				<section id="branding">
+					<img src="images/misc/parsclick-logo.png" alt="Logo for Parsclick">
+				</section>
+				<h1>این سایت در دست تعمیر است.</h1>
+				<h4>دوستان این سایت فعلا در دست تغییر و تعمیر است. لطفا بعداً بر گردید.</h4>
+				<h4>کی برمی گردیم؟</h4>
+				<h2 id="my-countdown">
+				</h2>
+				<div class="actions">
+					<a href="mailto:info@parsclick.net" class="btn btn-primary btn-lg"><i class="fa fa-envelope"></i>
+						با پشتیبانی تماس بگیرید
+					</a>
+				</div>
+			</article>
+		</section>
+	</div>
+</div>
+<script src="_/js/bootstrap.js"></script>
+<script src="_/js/jquery.countdown.min.js"></script>
+<script src="_/js/myscript.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() { //TODO: Add YOUR DATE BELOW
+		$("#my-countdown").countdown("2015/09/01", function(event) {
+			$(this).text(
+				event.strftime('%-m ماه %-d روز %-H ساعت %-M دقیقه %-S ثانیه')
+			);
+		});
+	});
+</script>
+</body>
+</html>

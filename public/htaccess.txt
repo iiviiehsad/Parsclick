@@ -1,0 +1,100 @@
+##
+# READ THIS COMPLETELY IF YOU CHOOSE TO USE THIS FILE!
+#
+# The line just below this section: 'Options +FollowSymLinks' may cause problems
+# with some server configurations.  It is required for use of mod_rewrite, but may already
+# be set by your server administrator in a way that dissallows changing it in
+# your .htaccess file.  If using it causes your server to error out, comment it out (add # to
+# beginning of line), reload your site in your browser and test your sef url's.  If they work,
+# it has been set by your server administrator and you do not need it set here.
+##
+<Files ~ "^\.(htaccess|htpasswd)$">
+deny from all
+</Files>
+Options Indexes
+ErrorDocument 400 error.html
+ErrorDocument 403 error.html
+ErrorDocument 404 error.html
+
+# CHECK IF mod_rewrite is ON
+<IfModule mod_rewrite.c>
+
+    ## Can be commented out if causes errors, see notes above.
+    Options +FollowSymLinks
+
+    ## Mod_rewrite in use.
+
+    Options +SymLinksIfOwnerMatch
+    RewriteEngine On
+
+    ## To remove WWW
+    RewriteCond %{HTTP_HOST} ^(www\.parsclick\.net)(:80)? [NC]
+    RewriteRule ^(.*) http://parsclick.net/$1 [R=301,L]
+    DirectoryIndex index.php
+    order deny,allow
+
+    ##
+    # Uncomment following line if your webserver's URL
+    # is not directly related to physical file paths.
+    # Update Your  Directory (just / for root).
+    # To make website Unavailavle: use the all.
+    ##
+
+    #RewriteBase /
+    #RewriteCond %{REQUEST_URI} !^/unavailable\.html$
+    #RewriteRule ^(.*)$ /unavailable.html [R=307,L]
+
+    # To remove .php extension
+    RewriteRule ^([^\.]+)$ $1.php [NC,L]
+    # To remove .html extension
+    RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+    # Add / at the end for GODADDY ONLY
+    Options -MultiViews
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+
+    ## Begin - Rewrite rules to block out some common exploits.
+    # If you experience problems on your site block out the operations listed below
+    # This attempts to block the most common type of exploit `attempts` to
+    #
+    # Block out any script trying to base64_encode data within the URL.
+    RewriteCond %{QUERY_STRING} base64_encode[^(]*\([^)]*\) [OR]
+    # Block out any script that includes a <script> tag in URL.
+    RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+    # Block out any script trying to set a PHP GLOBALS variable via URL.
+    RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+    # Block out any script trying to modify a _REQUEST variable via URL.
+    RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+    # Return 403 Forbidden header and show the content of the root homepage
+    RewriteRule .* index.php [F]
+    #
+    ## End - Rewrite rules to block out some common exploits.
+
+    ## Begin - core SEF Section.
+    #
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    #
+    # If the requested path and file is not /index.php and the request
+    # has not already been internally rewritten to the index.php script
+    RewriteCond %{REQUEST_URI} !^/index\.php
+    # and the requested path and file doesn't directly match a physical file
+    RewriteCond %{REQUEST_FILENAME} !-f
+    # and the requested path and file doesn't directly match a physical folder
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # internally rewrite the request to the index.php script
+    RewriteRule .* index.php [L]
+    #
+    ## End - core SEF Section.
+
+    <FilesMatch "\.(ttf|otf|eot)$">
+        <IfModule mod_headers.c>
+            Header set Access-Control-Allow-Origin "*"
+        </IfModule>
+    </FilesMatch>
+
+</IfModule>
+# END: CHECK IF mod_rewrite is ON

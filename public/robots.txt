@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /videos/
+Disallow: /files/
+Disallow: /_/
+
+Sitemap: http://www.parsclick.net/TODO: ADD SITEMAP

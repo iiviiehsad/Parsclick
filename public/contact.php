@@ -1,0 +1,116 @@
+<?php require_once("../includes/initialize.php"); ?>
+<?php require_once("../includes/Recaptcha/autoload.php"); ?>
+<?php $filename = basename(__FILE__); ?>
+<?php $title = "پارس کلیک - تماس با ما"; ?>
+<?php
+$errors  = "";
+$message = "";
+// reCAPTCHA supported 40+ languages listed here: https://developers.google.com/recaptcha/docs/language
+$lang = 'fa';
+if(isset($_POST["submit"])) {
+	if(empty(RECAPTCHASITEKEY) || empty(RECAPTCHASECRETKEY)) {
+		$errors = "کدهای تایید Recaptcha API خالی هستند. لطفا مدیر سایت را در جریان بگذارید.";
+	} elseif(isset($_POST['g-recaptcha-response'])) {
+		$recaptcha = new \ReCaptcha\ReCaptcha(RECAPTCHASECRETKEY);
+		$resp      = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+		if($resp->isSuccess()) {
+			$mail = new PHPMailer();
+			$mail->IsSMTP();
+			$mail->IsHTML(TRUE);
+			$mail->CharSet    = 'UTF-8';
+			$mail->Host       = SMTP;
+			$mail->SMTPSecure = TLS;
+			$mail->Port       = PORT;
+			$mail->SMTPAuth   = TRUE;
+			$mail->Username   = EMAILUSER;
+			$mail->Password   = EMAILPASS;
+			$mail->FromName   = $_POST["name"];
+			$mail->From       = EMAILUSER;
+			$mail->Subject    = "پرس و جو از " . $_POST["name"];
+			$mail->AddAddress("persian.loyal@yahoo.com", "Do not reply" . DOMAIN);
+			$mail->Body = <<<EMAILBODY
+<body style="direction:rtl;text-align:right;float:right;font-family:Tahoma;background-color:#F0F0F0;">
+
+<h2>پیام جدید از طرف وب سایت پارس کلیک به این مضمون دریافت شد:</h2>
+
+<p style="font-size:15px;"><br/>
+اسم: {$_POST["name"]}<br/>
+ایمیل: {$_POST["email"]}<br/></p><br/>
+<h3>پیام:</h3>
+
+	<p>{$_POST["message"]}</p>
+
+<hr />
+EMAILBODY;
+			$result     = $mail->Send();
+			if($result) {
+				$message = "با تشکر، پیام شما فرستاده شد.";
+			} else {
+				$errors = "خطا در فرستادن پیام!";
+			}
+		} else {
+			foreach($resp->getErrorCodes() as $code) {
+				$errors = "لطفا ثابت کنید ربات نیستید!   کد خطا: {$code}";
+			}
+		}
+	} // end: elseif(isset($_POST['g-recaptcha-response']))
+} else {
+} // end: if(isset($_POST["submit"]))
+?>
+<?php include_layout_template("header.php"); ?>
+<?php include "_/components/php/nav.php"; ?>
+<?php echo output_message($message, $errors); ?>
+	<section class="main col-sm-12 col-md-8 col-lg-8">
+		<article>
+			<h2>تماس با ما</h2>
+
+			<form action="contact.php" method="POST" role="form">
+				<fieldset>
+					<legend>لطفا از فرم زیر برای تماس با ما استفاده کنید.</legend>
+					<div class="form-group">
+						<label for="name">اسم کامل</label>
+						<input type="text" name="name" class="form-control" id="name" placeholder="لطفا اسم خود را اینجا وارد کنید" required>
+					</div>
+					<br/>
+					<div class="form-group">
+						<label for="email">ایمیل</label>
+						<input type="text" name="email" class="form-control arial edit" id="email" placeholder="email" required>
+					</div>
+					<br/>
+					<div class="form-group">
+						<label for="message">پیغام</label>
+						<textarea class="form-control" name="message" id="message" rows="10" placeholder="لطفا پیام کوتاه خود را اینجا وارد کنید" required></textarea>
+					</div>
+					<br/>
+					<!--Recaptcha-->
+					<div class="g-recaptcha" data-sitekey="<?php echo RECAPTCHASITEKEY; ?>"></div>
+					<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>"></script>
+					<!--End of Recaptcha-->
+					<div class="form-group">
+						<button type="submit" name="submit" class="btn btn-primary">بفرست</button>
+					</div>
+				</fieldset>
+			</form>
+		</article>
+	</section>
+	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
+		<aside>
+			<h2><i class="fa fa-info-circle"></i> اطلاعات</h2>
+			<div class="alert">
+				لطفا از این فرم برای تماس با من استفاده کنید. سعی می کنم به اکثریت جواب بدم اگر جوابی نگرفتید به
+				خاطردلایلی هست که تو صفحه <a href="faq.php" title="FAQ">سوالات شما</a> مطرح شده.
+			</div>
+			<div class="alert">
+				لطفا این رو به خاطر بسپارید ما تعداد ایمیل بالایی دریافت میکنیم اما ایمیل ها همه به نوبت خوانده خواهند
+				شد و به مرور زمان جواب داده خواهند شد. برخی از ویدئوهای ما از منابع متعددی تهیه شده مثل سایتهای آموزشی و
+				کتابها، اما همه ی اونها دونه دونه وقت گذاشته شده وساخته شده و اکثر اونها با برنامه ریزی طولانی مدت ساخته
+				شده. بنابراین اگر موضوع تماس شما این هست که به ما منبع یادآوری کنید، وقت خودتون و ما رو تلف نکنید.
+			</div>
+			<div class="alert">
+				لطفا سعی کنید مختصر و مفید پیام دهید. ایمیل ها اگر بیشتر از ۲ هفته جواب داده نشد یعنی شما سوالی پرسیدید
+				که یا جوابش یا دلیل جواب ندادن ما در صفحه ی <a href="faq.php" title="FAQ">سوالات شما</a> داده شده.
+			</div>
+			ممنون از همگی
+		</aside>
+	</section>
+<?php include_layout_template("footer.php"); ?>

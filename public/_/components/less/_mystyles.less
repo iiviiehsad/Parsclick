@@ -1,0 +1,456 @@
+//my colours
+@parsclick : #FF8000;
+@darkblack : #303030;
+@purple    : #415B76;
+@yellow    : #F4D313;
+@beige     : #F5F5DC;
+@green     : #00CDA0;
+@pink      : #E74C3C;
+@red       : #BA83D4;
+// Member Jumbotron colours
+@color1    : #373600;
+@color2    : #37002D;
+@color3    : #370001;
+@color4    : #000337;
+@color5    : #073700;
+
+@font-face {
+	font-family : "yekan";
+	src         : url(../fonts/Yekan/BYekan.eot);
+	src         : url(../fonts/Yekan/BYekan.woff) format("woff"),
+	url(../fonts/Yekan/BYekan.eot?#iefix) format("embedded-opentype"),
+	url(../fonts/Yekan/BYekan.ttf) format("truetype");
+	font-weight : normal;
+	font-style  : normal;
+}
+
+@headlineFontFamily: "yekan", Tahoma, Verdana;
+@copyFontFamily: "yekan", Tahoma, Verdana;
+@englishFontFamily: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+@editFontFamily: Tahoma, "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+
+::selection {
+	color      : #000;
+	background : @yellow;
+}
+
+.arial { font-family : @englishFontFamily; }
+
+.yekan { font-family : @copyFontFamily; }
+
+.edit {
+	font-family : @editFontFamily;
+	direction   : ltr;
+	text-align  : left;
+	float       : left;
+}
+
+body {
+	background  : @purple;
+	margin-top  : 30px;
+	font-family : @copyFontFamily;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family : @headlineFontFamily;
+	color       : @purple;
+	text-shadow : 1px 1px 7px #7D7D7D;
+}
+
+code, pre {
+	direction  : ltr;
+	text-align : left;
+	float      : left;
+}
+
+p {
+	font-family : @copyFontFamily;
+	font-size   : 14px;
+	line-height : 1.4em;
+	color       : @darkblack;
+	padding     : 0 2%;
+}
+
+ol > li > ul > li { margin-right : 20px; }
+
+ol { margin-right : 20px; }
+
+aside {
+	h2 {
+		font-size     : 1.8em;
+		color         : @pink;
+		border-bottom : 1px dotted @purple;
+	}
+}
+
+textarea {
+	resize  : vertical;
+	padding : 15px !important;
+}
+
+legend { font-family : @copyFontFamily; }
+
+hr {
+	margin : 22px 0;
+	border : 1px solid @purple;
+}
+
+dd {
+	@media (max-width : 767px) {
+		float : left;
+	}
+}
+
+.dl-horizontal dd {
+	@media (max-width : 767px) {
+		margin-left : 0;
+	}
+}
+
+.lead {
+	margin-top    : 15px;
+	margin-bottom : 5px;
+}
+
+.list-group-item-text {
+	margin-right : 20px;
+}
+
+.list-group-item li {
+	margin-right : 20px;
+}
+
+a:hover, a:focus {
+	color           : @pink;
+	text-decoration : none;
+	transition      : color 0.5s ease;
+}
+
+.container {
+	background            : @beige;
+	-webkit-border-radius : 0 60px 0 0;
+	-moz-border-radius    : 0 60px 0 0;
+	border-radius         : 0 60px 0 0;
+
+	@media (max-width : 767px) {
+		-webkit-border-radius : 0 30px 0 0;
+		-moz-border-radius    : 0 30px 0 0;
+		border-radius         : 0 30px 0 0;
+	}
+}
+
+.main {
+	background        : @beige;
+	min-height        : 400px;
+	-webkit-animation : fadeIn 2s;
+	-moz-animation    : fadeIn 2s;
+	-o-animation      : fadeIn 2s;
+	animation         : fadeIn 2s;
+}
+
+.navbar {
+	margin-bottom : 0;
+	border-radius : 0;
+}
+
+.navbar-toggle {
+	position         : absolute;
+	top              : 2px;
+	right            : 2px;
+	padding          : 5px 10px;
+	background-color : @purple;
+	border           : 1px solid #DDD;
+	border-radius    : 4px;
+}
+
+.navbar-toggle:hover, .navbar-toggle:focus { background-color : @beige; }
+
+.carousel { margin-bottom : 0; }
+
+.carousel-caption > * { color : @green; }
+
+.main > article { margin : 5% 5%; }
+
+.sidebar > aside {
+	padding : 5%;
+
+	@media (max-width : 767px) {
+		padding : 5%;
+	}
+}
+
+#branding {
+	img {
+		margin    : 20px 25px 5px 0;
+		max-width : 450px;
+		@media (max-width : 767px) {
+			margin : 20px 10px 5px 0;
+			width  : 90%;
+		}
+	}
+}
+
+a.visited:visited { color : transparent; }
+
+.accordion-heading {
+	background    : @purple;
+	border-radius : 5px;
+	a {
+		color : white;
+	}
+}
+
+.about {
+	article {
+		margin  : 0;
+		padding : 0;
+	}
+
+	h2 {
+		padding       : 0;
+		border-bottom : 1px dotted @purple;
+	}
+
+	h3 {
+		color     : @pink;
+		padding   : 0;
+		margin    : 5px;
+		font-size : 1.5em;
+	}
+}
+
+.nav-tabs {
+	li a { color : @purple; }
+
+	li.active a { background : @beige; }
+
+	li a:hover { background : @pink; color : white; }
+}
+
+.nav-tabs li.active {
+	a {
+		color       : @pink;
+		font-weight : bold;
+	}
+}
+
+.tab-content {
+	h3, h4 { margin : 0; padding : 0; }
+
+	h3 { color : @pink; line-height : 1em }
+
+	p { padding : 0; padding-top : 10px; }
+}
+
+.photogrid img {
+	width  : 96px;
+	margin : 0 5px 5px 0;
+	cursor : pointer;
+
+	@media (max-width : 990px) {
+		width : 64px;
+	}
+}
+
+ul.breadcrumb a:hover { color : @pink; }
+
+footer {
+	ul.breadcrumb {
+		background            : @purple;
+		margin                : 0 auto;
+		-webkit-border-radius : 0;
+		-moz-border-radius    : 0;
+		border-radius         : 0;
+		color                 : white;
+		font-size             : 13px;
+		a > i:hover {
+			color               : @yellow;
+			transition-duration : 1s;
+		}
+		i { color : white; }
+		li { text-shadow : none;
+			a { color : white; }
+		}
+	}
+}
+
+.navbar .nav > li > .dropdown-menu { top : 30px; }
+
+.scrollspy .nav {
+	background : @purple;
+	margin-top : 20px;
+
+	@media (max-width : 979px) {
+		width     : 15%;
+		max-width : 120px;
+	}
+
+	@media (min-width : 980px) {
+	(max-width: 1199) {
+		width     : 13%;
+		min-width : 120px;
+	}
+
+		@media (min-width : 1200px) {
+			width     : 13%;
+			max-width : 180px;
+		}
+	}
+	li {
+		padding       : 0;
+		margin        : 0;
+		border-bottom : 1px solid darken(@purple, 10%);
+		border-top    : 1px solid lighten(@purple, 10%);
+
+		a {
+			color        : white;
+			text-indent  : -20px;
+			padding-left : 30px;
+		}
+
+		a:hover {
+			background : @yellow;
+			color      : black;
+			transition : background, color 0.5s ease;
+		}
+	}
+
+	li.active { background : @pink; }
+
+	li:first-child { border-top : none; }
+
+	li:last-child { border-bottom : none; }
+}
+
+.breadcrumb > li:after {
+	display : inline-block;
+	content : "";
+	padding : 0 5px;
+	color   : #CCC;
+}
+
+// change the jumbotron font size
+.jumbotron h1 {
+	font-size : 50px;
+	color     : @beige;
+}
+
+// Jumbotron Style
+.jumbotron {
+	padding          : 30px;
+	margin           : 1px;
+	margin-bottom    : 30px;
+	font-size        : 24px;
+	font-weight      : 200;
+	line-height      : 2.14285714;
+	color            : inherit;
+	background-color : @darkblack;
+	p {
+		color     : @beige;
+		font-size : 75%;
+	}
+}
+
+.table-responsive {
+	width                      : 100%;
+	margin-bottom              : 15px;
+	overflow-y                 : hidden;
+	overflow-x                 : scroll;
+	-ms-overflow-style         : -ms-autohiding-scrollbar;
+	-webkit-overflow-scrolling : touch;
+}
+
+.center {
+	text-align : center;
+	margin     : auto;
+	display    : block;
+	width      : 100%;
+	height     : 100%;
+}
+
+.btn { margin : 1% 0; }
+
+.selected {
+	font-weight : bold;
+	color       : @pink !important;
+}
+
+.range-wrap { overflow : hidden; }
+
+.glyphicon-user:before { display : block; }
+
+form.addtoplaylist, form.removefromplaylist { display : inline; }
+
+.input-group-addon:first-child { border-right : 1px solid #CCC; }
+
+.input-group input:last-child, .input-group-addon:last-child, .input-group-btn:first-child > .btn:not(:first-child), .input-group-btn:last-child > .btn, .input-group-btn:last-child > .dropdown-toggle {
+	border-bottom-right-radius : 0;
+	border-top-right-radius    : 0;
+	border-bottom-left-radius  : 4px;
+	border-top-left-radius     : 4px;
+}
+
+.dl-horizontal dt { float : right; }
+
+.bgvideo {
+	min-width  : 100%;
+	min-height : 100%;
+	width      : auto;
+	height     : auto;
+}
+
+// FACEBOOK COMMENTS
+.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
+	min-width : 100% !important;
+	width     : 100% !important;
+}
+
+.share-buttons {
+	opacity             : .6;
+	transition-duration : 1s;
+}
+
+.share-buttons:hover {
+	opacity             : 1;
+	transition-duration : 1s;
+}
+
+// COLOR ANIMATION USING CSS3
+.play {
+	-webkit-animation : box 10s infinite alternate;
+	-moz-animation    : box 10s infinite alternate;
+	-o-animation      : box 10s infinite alternate;
+	animation         : box 10s infinite alternate;
+}
+
+@-webkit-keyframes box {
+	0% { background-color : @color1; }
+	25% { background-color : @color2; }
+	50% { background-color : @color3; }
+	75% { background-color : @color4; }
+	100% { background-color : @color5; }
+}
+
+@-moz-keyframes box {
+	0% { background-color : @color1; }
+	25% { background-color : @color2; }
+	50% { background-color : @color3; }
+	75% { background-color : @color4; }
+	100% { background-color : @color5; }
+}
+
+@-o-keyframes box {
+	0% { background-color : @color1; }
+	25% { background-color : @color2; }
+	50% { background-color : @color3; }
+	75% { background-color : @color4; }
+	100% { background-color : @color5; }
+}
+
+@keyframes box {
+	0% { background-color : @color1; }
+	25% { background-color : @color2; }
+	50% { background-color : @color3; }
+	75% { background-color : @color4; }
+	100% { background-color : @color5; }
+}
