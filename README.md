@@ -18,21 +18,3 @@ How To Install
 System's Details
 ===================
 Although registration is available but here there are administrators details:
-
-Detail | Credential
------------- | -------------
-Member Login Page Credentials
-Member Username | amir
-Member Password | 1234-asdf
-Administrators Login Credentials
-Super-admin Username | admin
-Super-admin Password | 1234-asdf
-Author Username | author
-Author Password | 1234-asdf
-Editor Username | editor
-Editor Password | 1234-asdf
-Publisher Username | publisher
-Publisher Password | 1234-asdf
-Payment Test Card Number | 4242424242424242
-Payment Card Expiry Date | 12/2015 (Any Past Date)
-Payment Card CVC Number | 123 (Any 3 digit Number)
