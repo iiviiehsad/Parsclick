@@ -20,10 +20,10 @@
 		          browser in order to pay via Stripe.
 		</noscript>
 		<input
-			class="btn btn-info btn-small"
+			class="btn btn-success btn-small"
 			id="stripe"
 			type="submit"
-			value="پرداخت"
+			value="پرداخت کنید"
 			data-key="<?php echo PUBLICKEY; ?>"
 			data-image="https://s3.amazonaws.com/stripe-uploads/acct_14MqiV4eawdZ9ohBmerchant-icon-1435675807377-Logo-Small.png"
 			data-name="parsclick.net"
@@ -58,12 +58,13 @@
 		</script>
 	</form>
 	<h2><i class="fa fa-cc-paypal fa-lg"></i> کمک مالی</h2>
-	<p>اگر پی پل برای شما راحت تر است از دگمه ی زیر استفاده کنید</p>
+	<p>اگر پی پل برای شما راحت تر است از دگمه ی زیر استفاده کنید. خیلی ممنون از مرام و معرفت شما و ساپورت کردن کانال
+	   خودتون که متعلق به خود شماست.</p>
 
 	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 		<input type="hidden" name="cmd" value="_s-xclick">
 		<input type="hidden" name="hosted_button_id" value="9JWBPDDR598FN">
-		<input type="submit" name="submit" class="btn btn-info btn-small" value="پرداخت">
+		<input type="submit" name="submit" class="btn btn-success btn-small" value="پرداخت کنید">
 		<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
 	</form>
 </aside>
