@@ -3,11 +3,10 @@
 <?php $title = "پارس کلیک - قسمت اعضا"; ?>
 <?php $session->confirm_logged_in(); ?>
 <?php $member = Member::find_by_id($session->id); ?>
-<?php $errors = ""; ?>
 <?php $member->check_status(); ?>
 <?php include_layout_template("header.php"); ?>
 <?php include("_/components/php/member_nav.php"); ?>
-<?php echo output_message($message, $errors); ?>
+<?php echo output_message($message); ?>
 <div class="jumbotron hidden-sm wow fadeIn play">
 	<h1>خوش آمدید <?php echo ucwords(strtolower($member->full_name())); ?></h1>
 	<p>

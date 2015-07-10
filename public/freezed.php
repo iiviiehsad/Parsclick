@@ -20,7 +20,6 @@ if(isset($_POST["resend_email"])) {
 		.jumbotron {
 			padding       : 50px;
 			margin        : 0.1%;
-			margin-bottom : 0.1%;
 			font-size     : 24px;
 			font-weight   : 200;
 			line-height   : 2.14285714;

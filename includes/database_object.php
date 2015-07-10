@@ -46,6 +46,12 @@ class DatabaseObject {
 		return !empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
+	public static function find_by_token($token = "") {
+		global $database;
+		$result_array = self::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE token = '" . $database->escape_value($token) . "' LIMIT 1");
+		return !empty($result_array) ? array_shift($result_array) : FALSE;
+	}
+
 	public static function count_all() {
 		global $database;
 		$sql        = "SELECT COUNT(*) FROM " . static::$table_name;
@@ -169,12 +175,6 @@ class DatabaseObject {
 	public function delete_reset_token($username) {
 		$token = NULL;
 		return $this->set_user_reset_token($username, $token);
-	}
-
-	public static function find_by_token($token = "") {
-		global $database;
-		$result_array = self::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE token = '" . $database->escape_value($token) . "' LIMIT 1");
-		return !empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
 	function email_reset_token($username) {

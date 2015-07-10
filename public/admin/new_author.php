@@ -4,16 +4,18 @@
 <?php
 if(isset($_POST['submit'])) {
 	$author             = new Author();
-	$author->id         = (int) "";
+	$author->id         = (int)"";
 	$author->username   = trim(strtolower($_POST["username"]));
 	$author->password   = $author->password_encrypt($_POST["password"]);
 	$author->first_name = trim(ucwords(strtolower($_POST["first_name"])));
 	$author->last_name  = trim(ucwords(strtolower($_POST["last_name"])));
 	$author->email      = trim(strtolower($_POST["email"]));
-	$author->status     = (int) $_POST["status"];
+	$author->status     = (int)$_POST["status"];
+	$author->token      = md5(uniqid(rand()));
 	$result             = $author->create();
 	if($result) { // Success
 		$session->message("نویسنده با اسم کاربری " . strtoupper($author->username) . " ساخته شد.");
+		$author->email_confirmation_details($author->username);
 		redirect_to("author_list.php");
 	} else { // Failure
 		$session->message("نویسنده ساخته نشد!");
@@ -35,35 +37,35 @@ if(isset($_POST['submit'])) {
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="username">* اسم کاربری</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 arial" type="text" name="username" id="username" placeholder="Username" required/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" placeholder="Username" required/>
 						</div>
 					</section>
 					<!--password-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="password">* پسورد</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="password" name="password" id="password" placeholder="Password" required/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="Password" required/>
 						</div>
 					</section>
 					<!--first_name-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="first_name">نام</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="first_name" id="first_name" placeholder="First Name"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="first_name" id="first_name" placeholder="نام"/>
 						</div>
 					</section>
 					<!--last_name-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name">نام خانوادگی</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name" placeholder="Last Name"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name" placeholder="نام خانوادگی"/>
 						</div>
 					</section>
 					<!--email-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="email">ایمیل</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 arial" type="email" name="email" id="email" placeholder="Email"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="email" name="email" id="email" placeholder="Email"/>
 						</div>
 					</section>
 					<!--status-->
@@ -71,10 +73,13 @@ if(isset($_POST['submit'])) {
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="status">* فعال</label>
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="status" id="inlineRadioNo" value="0" required/> بله
+								<input type="radio" name="status" id="inlineRadioNo" value="1" required/> بله
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
-								<input type="radio" name="status" id="inlineRadioYes" value="1" required/> خیر
+								<input type="radio" name="status" id="inlineRadioYes" value="0" required/> خیر
+							</label>
+							<label class="radio-inline" for="inlineRadioYes">
+								<input type="radio" name="status" id="inlineRadioYes" value="2" required/> مسدود
 							</label>
 						</div>
 					</section>
