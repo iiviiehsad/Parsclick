@@ -69,10 +69,3 @@ atlassian-ide-plugin.xml
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
-
-# Created by https://www.gitignore.io
-
-### CodeKit ###
-# General CodeKit files to ignore
-config.codekit
-/min

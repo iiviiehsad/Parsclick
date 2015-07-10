@@ -4,9 +4,9 @@
 	<title><?php global $title; echo isset($title) ? $title : "پارس کلیک - آموزش کامپیوتر - رایگان"; ?></title>
 	<meta charset="UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<meta name="description" content="کاملترین سایت آموزش ویدئویی رایگان کامپیوتر، وب، برنامه نویسی، مدیریت محتوا،
-	 علم فنی کامپیوتر، طراحی وب، نرم افزار، آدوبی، دیتابیس، اپل، گوگل، مایکروسافت و بیشتر"/>
-	<meta name="keywords" content="آموزش، کامپیوتر، برنامه نویسی، وب، طراحی، ویرایش، جاوا، روبی، پایتون، پی‌اچ‌پی، سی‌اس‌اس، اچ‌تی‌ام‌ال، جاوااسکریپت، گیت، آیفون، اندروید، وردپرس، جوملا، دروپال، بوتسترپ، جی‌کوئری، ای‌جکس، آدوبی"/>
+	<meta name="description" content="کاملترین سایت آموزش ویدئویی رایگان کامپیوتر, وب, برنامه نویسی, مدیریت محتوا,
+	 علم فنی کامپیوتر, طراحی وب, نرم افزار, آدوبی, دیتابیس, اپل, گوگل, مایکروسافت و بیشتر"/>
+	<meta name="keywords" content="آموزش, کامپیوتر, برنامه نویسی, وب, طراحی, ویرایش, جاوا, روبی, پایتون, پی‌اچ‌پی, سی‌اس‌اس, اچ‌تی‌ام‌ال, جاوااسکریپت, گیت, آیفون, اندروید, وردپرس, جوملا, دروپال, بوتسترپ, جی‌کوئری, ای‌جکس, آدوبی"/>
 	<meta name="copyright" content="ParsClick.net">
 	<meta name="language" content="fa-IR"/>
 	<meta name="geo.region" content="IR"/>
@@ -18,8 +18,8 @@
 	<meta property="og:title" content="پارس کلیک - آموزش کامپیوتر"/>
 	<meta property="og:type" content="article"/>
 	<meta property="og:image" content="images/misc/logo.png"/>
-	<meta property="og:description" content="کاملترین سایت آموزش ویدئویی رایگان کامپیوتر، وب، برنامه نویسی، مدیریت محتوا،
-	 علم فنی کامپیوتر، طراحی وب، نرم افزار، آدوبی، دیتابیس، اپل، گوگل، مایکروسافت و بیشتر"/>
+	<meta property="og:description" content="کاملترین سایت آموزش ویدئویی رایگان کامپیوتر, وب, برنامه نویسی, مدیریت محتوا,
+	 علم فنی کامپیوتر, طراحی وب, نرم افزار, آدوبی, دیتابیس, اپل, گوگل, مایکروسافت و بیشتر"/>
 	<!--CSS Styles-->
 	<link rel="shortcut icon" type="image/png" href="images/favicon.png">
 	<link rel="stylesheet" href="_/css/bootstrap.css" media="screen">
