@@ -154,7 +154,8 @@ class Author extends DatabaseObject {
 				 چرا که ساخت درس حساب یوتیوب، و پلی لیست یا لیست پخش می خواهد، بعلاوه ی آنها فایل های تمرینی هم بهتد است تهیه کنید.
 				  بنابراین فعلا فقط مقاله نویسی کنید. اگر دسترسی به یوتیوب برای شما آسان است و کانال یوتیوب دارید و
 				  مهمتر از همه اینکه دقیقا می توانید ازسیستم استفاده کنید پس می توانید درس هم بسازید.</li>
-				<li>در آخر اینکه حتما این ویدئو را تماشا کنید که همه چیز در مورد نویسندگی برای پارس کلیک را توضیح داده است: <a href="http://youtu.be/G0TY36VCODc" target="_blank">http://youtu.be/G0TY36VCODc</a></li>
+				<li>در آخر اینکه حتما این ویدئو را تماشا کنید که همه چیز در مورد نویسندگی برای پارس کلیک را توضیح داده است:
+				<a href="https://www.youtube.com/embed/G0TY36VCODc?modestbranding=1&rel=0&showinfo=0&controls=0&hl=fa-ir" target="_blank">https://www.youtube.com/embed/G0TY36VCODc?showinfo=0&theme=light</a></li>
 				</ul>
 				<br/><br/><br/>
 				<hr/>

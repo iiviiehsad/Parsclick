@@ -41,6 +41,7 @@ if($_POST) {
 		}
 	}
 } else {
+	// Saving fields in case of an error to prevent user to type them again:
 	$_POST["username"]   = "";
 	$_POST["email"]      = "";
 	$_POST["first_name"] = "";

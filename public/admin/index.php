@@ -45,5 +45,10 @@ if(isset($_POST["submit"])) {
 		<?php include "../_/components/php/admin_login.php"; ?>
 	</section><!-- main -->
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
+		<aside>
+			<h2>نویسندگی در پارس کلیک </h2>
+			<iframe src="https://www.youtube.com/embed/G0TY36VCODc?modestbranding=1&rel=0&showinfo=0&controls=0&hl=fa-ir" style="width: 100%; height: 197px;" frameborder="0" allowfullscreen></iframe>
+			<p>برای بزرگ کردن ویدئو روی ویدئو دابل کلیک، ۲ بار کلیک کنید.</p>
+		</aside>
 	</section><!-- sidebar -->
 <?php include_layout_template("admin_footer.php"); ?>
