@@ -77,8 +77,8 @@ if(isset($_POST["submit_file"])) {
 
 							<form enctype="multipart/form-data" action="author_courses.php?category=<?php echo urldecode($current_category->id); ?>&course=<?php echo urldecode($current_course->id); ?>" method="POST" class="form-horizontal fileForm" role="form">
 								<section class="row">
-									<label style="cursor:pointer;" class="control-label" for="single_file">
-										برای آپلود فایل اینجا را کلیک کنید
+									<label style="cursor:pointer;" class="control-label btn btn-small btn-info" for="single_file">
+										برای انتخاب فایل اینجا را کلیک کنید
 									</label>
 									<div class="controls">
 										<input name="MAX_FILE_SIZE" value="<?php echo $file_max_file_size; ?>" type="hidden"/>
