@@ -1,6 +1,7 @@
 <?php require_once("../includes/initialize.php"); ?>
 <?php $filename = basename(__FILE__); ?>
 <?php $errors = "";
+
 if($_POST) {
 	//validations
 	if(!has_presence($_POST["username"]) || !has_presence($_POST["password"])) {
@@ -11,6 +12,8 @@ if($_POST) {
 		$errors = "پسورد باید خراقل ۶ حروف یا بیشتر باشد! (هیچ مبلغی کم نشد)";
 	} elseif(!has_format_matching($_POST["password"], '/[^A-Za-z0-9]/')) {
 		$errors = "حداقل از یک حرف مخصوص استفاده کنید! (هیچ مبلغی کم نشد)";
+	} elseif(Member::find_by_username(trim($_POST["username"]))) {
+		$errors = "اسم کاربری موجود نیست! لطفا از اسم کاربری دیگری استفاده کنید.";
 	} else {
 		global $database;
 		$member                  = new Member();
@@ -38,6 +41,13 @@ if($_POST) {
 		}
 	}
 } else {
+	$_POST["username"]   = "";
+	$_POST["email"]      = "";
+	$_POST["first_name"] = "";
+	$_POST["last_name"]  = "";
+	$_POST["address"]    = "";
+	$_POST["post_code"]  = "";
+	$_POST["phone"]      = "";
 }
 ?>
 <?php include("../includes/layouts/header.php"); ?>

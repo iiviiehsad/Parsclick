@@ -288,7 +288,7 @@ EMAILBODY;
 			$mail->Password   = EMAILPASS;
 			$mail->FromName   = "do-not-reply@parsclick.net";
 			$mail->From       = EMAILUSER;
-			$mail->Subject    = "به پارس کلیک خوش آمدید.";
+			$mail->Subject    = "به پارس کلیک خوش آمدید";
 			$mail->Body       = <<<EMAILBODY
 			<body style="background-color:#F5F5DC;direction:rtl;font-family:Tahoma;">
 				<h1>جناب {$this->full_name()}،</h1>
