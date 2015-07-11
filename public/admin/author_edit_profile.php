@@ -74,9 +74,9 @@ if(isset($_POST['submit'])) {
 				<section class="row">
 					<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="photo">عکس پروفایل</label>
 					<div class="controls">
-						<input type="hidden" name="MAX_FILE_SIZE" value="5000000">
+						<input type="hidden" name="MAX_FILE_SIZE" value="100000">
 						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="file" name="photo" id="photo"
-						<br/><span>اندازه: ۵ مگابایت</span>
+						<br/><span>اندازه: ۱۰۰ کیلوبایت</span>
 					</div>
 				</section>
 				<section class="row">
