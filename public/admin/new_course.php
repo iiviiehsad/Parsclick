@@ -110,7 +110,7 @@ if(isset($_POST['submit'])) {
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>
-			<h2>توضیحات و دروس</h2>
+			<h2>موضوعات و دروس</h2>
 			<?php echo author_courses($current_category, $current_course); ?>
 		</aside>
 	</section>
