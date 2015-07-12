@@ -19,14 +19,14 @@
 					<dd><?php echo $current_article->visible == 1 ? 'بله' : 'خیر'; ?></dd>
 					<dt>نویسنده:</dt>
 					<dd><?php echo isset($current_article->author_id) ? htmlentities(Author::find_by_id($current_article->author_id)->full_name()) : '- '; ?></dd>
-					<dt>مطالب:</dt>
-					<dd><?php echo nl2br(strip_tags($current_article->content, '<h1><h2><h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?></dd>
-					<dt>&nbsp;</dt>
+					<dt>ویرایش:</dt>
 					<dd>
-						<a class="btn btn-primary" href="edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
+						<a class="btn btn-primary btn-small arial" href="edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
 							<span class="glyphicon glyphicon-pencil"></span>
 						</a>
 					</dd>
+					<dt>مطالب:</dt>
+					<dd><?php echo nl2br(strip_tags($current_article->content, '<h1><h2><h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?></dd>
 				</dl>
 			<?php } elseif($current_subject) { ?>
 				<h2><i class="fa fa-list-alt"></i> تنظیم موضوع </h2>

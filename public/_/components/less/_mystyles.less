@@ -57,10 +57,28 @@ h1, h2, h3, h4, h5, h6 {
 	text-shadow : 1px 1px 7px #7D7D7D;
 }
 
-code, pre {
+code {
+	display    : inline-block;
 	direction  : ltr;
 	text-align : left;
-	float      : left;
+}
+
+pre {
+	direction        : ltr;
+	float            : left;
+	text-align       : left;
+	overflow         : auto;
+	width            : 100%;
+	line-height      : 1;
+	display          : block;
+	margin           : 0 0 11px;
+	padding          : 10.5px;
+	font-size        : 13px;
+	word-break       : break-all;
+	word-wrap        : break-word;
+	border           : 1px solid #CCC;
+	border-radius    : 4px;
+	background-color : #F5F5F5;
 }
 
 p {
