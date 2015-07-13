@@ -9,7 +9,7 @@ $message = "";
 $lang = 'fa';
 if(isset($_POST["submit"])) {
 	if(empty(RECAPTCHASITEKEY) || empty(RECAPTCHASECRETKEY)) {
-		$errors = "کدهای تایید Recaptcha API خالی هستند. لطفا مدیر سایت را در جریان بگذارید.";
+		$errors = "کدهای تایید reCaptcha API خالی هستند. لطفا مدیر سایت را در جریان بگذارید.";
 	} elseif(isset($_POST['g-recaptcha-response'])) {
 		$recaptcha = new \ReCaptcha\ReCaptcha(RECAPTCHASECRETKEY);
 		$resp      = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
@@ -76,16 +76,16 @@ EMAILBODY;
 						<label for="email">ایمیل</label>
 						<input type="text" name="email" class="form-control arial edit" id="email" placeholder="email" required>
 					</div>
-					<br/>
+					<br/><br/><br/>
 					<div class="form-group">
 						<label for="message">پیغام</label>
-						<textarea class="form-control" name="message" id="message" rows="10" placeholder="لطفا پیام کوتاه خود را اینجا وارد کنید" required></textarea>
+						<textarea class="form-control" name="message" id="message" rows="9" placeholder="لطفا پیام کوتاه خود را اینجا وارد کنید" required></textarea>
 					</div>
 					<br/>
-					<!--Recaptcha-->
+					<!--reCaptcha-->
 					<div class="g-recaptcha" data-sitekey="<?php echo RECAPTCHASITEKEY; ?>"></div>
 					<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>"></script>
-					<!--End of Recaptcha-->
+					<!--End of reCaptcha-->
 					<div class="form-group">
 						<button type="submit" name="submit" class="btn btn-primary">بفرست</button>
 					</div>
@@ -96,19 +96,19 @@ EMAILBODY;
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>
 			<h2><i class="fa fa-info-circle"></i> اطلاعات</h2>
-			<div class="alert">
+			<div class="alert alert-success">
 				لطفا از این فرم برای تماس با من استفاده کنید. سعی می کنم به اکثریت جواب بدم اگر جوابی نگرفتید به
 				خاطردلایلی هست که تو صفحه <a href="faq.php" title="FAQ">سوالات شما</a> مطرح شده.
 			</div>
-			<div class="alert">
+			<div class="alert alert-success">
+				لطفا سعی کنید مختصر و مفید پیام دهید. ایمیل ها اگر بیشتر از ۲ هفته جواب داده نشد یعنی شما سوالی پرسیدید
+				که یا جوابش یا دلیل جواب ندادن ما در صفحه ی <a href="faq.php" title="FAQ">سوالات شما</a> داده شده.
+			</div>
+			<div class="alert alert-success">
 				لطفا این رو به خاطر بسپارید ما تعداد ایمیل بالایی دریافت میکنیم اما ایمیل ها همه به نوبت خوانده خواهند
 				شد و به مرور زمان جواب داده خواهند شد. برخی از ویدئوهای ما از منابع متعددی تهیه شده مثل سایتهای آموزشی و
 				کتابها، اما همه ی اونها دونه دونه وقت گذاشته شده وساخته شده و اکثر اونها با برنامه ریزی طولانی مدت ساخته
 				شده. بنابراین اگر موضوع تماس شما این هست که به ما منبع یادآوری کنید، وقت خودتون و ما رو تلف نکنید.
-			</div>
-			<div class="alert">
-				لطفا سعی کنید مختصر و مفید پیام دهید. ایمیل ها اگر بیشتر از ۲ هفته جواب داده نشد یعنی شما سوالی پرسیدید
-				که یا جوابش یا دلیل جواب ندادن ما در صفحه ی <a href="faq.php" title="FAQ">سوالات شما</a> داده شده.
 			</div>
 			ممنون از همگی
 		</aside>
