@@ -54,7 +54,7 @@ if(isset($current_course->author_id)) {
 				<!----------------------------------------------------------------------------------------------------->
 				<h4>
 					<i class="fa fa-file"></i> فایل های تمرینی:
-					<?php if(empty($current_course->file_link) || File::num_files_for_course($current_course->id) == 0) {
+					<?php if(empty($current_course->file_link) && File::num_files_for_course($current_course->id) == 0) {
 						echo "<span class='text-danger'>این درس فایل تمرینی ندارد.</span>";
 					} ?>
 				</h4>
