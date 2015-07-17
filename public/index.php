@@ -12,6 +12,7 @@
 	<aside>
 		<h2>به اشتراک بگذارید</h2>
 		<?php include "_/components/php/aside-share.php"; ?>
+
 	</aside>
 </section><!-- sidebar -->
 <?php include_layout_template("footer.php"); ?>
