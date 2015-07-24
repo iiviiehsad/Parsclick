@@ -7,7 +7,7 @@
 		</a>
 		<!--Twitter -->
 		<a href="https://twitter.com/intent/tweet?source=<?php echo DOMAIN . $_SERVER['REQUEST_URI']; ?>&amp;text=<?php echo DOMAIN . $_SERVER['REQUEST_URI']; ?>&amp;via=AmirHassanAzimi&amp;name=Parsclick&amp;hashtags=Parsclick"
-		   target="_blank" title="اشتراک گذاری در توییتر" data-toggle="tooltip" data-placement="bottom">
+		   target="_blank" onclick="shareButton(this); return false;" title="اشتراک گذاری در توییتر" data-toggle="tooltip" data-placement="bottom">
 			<i class="fa fa-twitter-square fa-2x"></i>
 		</a>
 		<!--Google+ -->

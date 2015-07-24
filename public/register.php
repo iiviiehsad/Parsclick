@@ -47,6 +47,7 @@ if($_POST) {
 	$_POST["first_name"] = "";
 	$_POST["last_name"]  = "";
 	$_POST["address"]    = "";
+	$_POST["city"]       = "";
 	$_POST["post_code"]  = "";
 	$_POST["phone"]      = "";
 }
