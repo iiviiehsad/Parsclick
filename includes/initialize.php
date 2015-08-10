@@ -35,6 +35,10 @@ defined('MAXRESULTS') ? null : define('MAXRESULTS', "50");
 defined('RECAPTCHASITEKEY') ? null : define('RECAPTCHASITEKEY', "6Leb2fYSAAAAAFp7bkpkNmvuvaOA9phcJN7LoQ7J");
 defined('RECAPTCHASECRETKEY') ? null : define('RECAPTCHASECRETKEY', "6Leb2fYSAAAAABU1lHHAc0PcRLRKcs9StJxFXQPE");
 
+// YouTube and Udemy
+defined('YOUTUBE') ? null : define('YOUTUBE', "https://www.youtube.com/user/PersianComputers/");
+defined('UDEMY') ? null : define('UDEMY', "https://www.udemy.com/u/amirhassanazimi/");
+
 // load config file first
 require_once(LIB_PATH . DS . 'config.php');
 
