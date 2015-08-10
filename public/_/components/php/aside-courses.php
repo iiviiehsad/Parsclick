@@ -1,6 +1,8 @@
 <aside>
 	<h2>برخی از آموزش های ویدیویی</h2>
 	<div class="modalphotos photogrid clearfix center">
+		<img class="img-thumbnail" src="images/courses/Laravel-tn.jpg" alt="لاراول"/>
+		<img class="img-thumbnail" src="images/courses/RSpec-tn.jpg" alt="چارچوب تست روبی"/>
 		<img class="img-thumbnail" src="images/courses/RoR-tn.jpg" alt="روبی آن ریلز"/>
 		<img class="img-thumbnail" src="images/courses/Django-tn.jpg" alt="جنگو"/>
 		<img class="img-thumbnail" src="images/courses/Ruby-tn.jpg" alt="روبی"/>
