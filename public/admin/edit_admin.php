@@ -11,7 +11,7 @@ if(!$admin) {
 if(isset($_POST['submit'])) {
 	$admin->id       = (int)$_GET["id"];
 	$admin->username = strtolower($_POST["username"]);
-	if($yourself === $admin && !empty($_POST["password"])) {
+	if($yourself == $admin && !empty($_POST["password"])) {
 		// if this is true means this is your profile
 		// and you can change your password
 		$admin->password = $admin->password_encrypt($_POST["password"]);
