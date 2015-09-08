@@ -25,10 +25,10 @@
 					<tbody>
 					<?php foreach($admin_set as $admin): ?>
 						<tr>
-							<td><?php echo htmlentities($admin->username); ?></td>
+							<td class="arial"><?php echo htmlentities($admin->username); ?></td>
 							<td><?php echo htmlentities(ucfirst(strtolower($admin->first_name))); ?></td>
 							<td><?php echo htmlentities(ucfirst(strtolower($admin->last_name))); ?></td>
-							<td>
+							<td class="arial">
 								<small><?php echo htmlentities(strtolower($admin->email)); ?></small>
 							</td>
 							<td>

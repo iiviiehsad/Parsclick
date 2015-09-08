@@ -90,7 +90,7 @@ $comments    = Comment::find_by_sql($sql);
 				<dt>موضوع:</dt>
 				<dd><?php echo htmlentities(Category::find_by_id($current_course->category_id)->name); ?></dd>
 				<dt>نویسنده:</dt>
-				<dd><?php echo htmlentities(Author::find_by_id($current_course->category_id)->full_name()); ?></dd>
+				<dd><?php echo htmlentities(Author::find_by_id($current_course->author_id)->full_name()); ?></dd>
 			</dl>
 			<div class="alert alert-info">
 				<i class="fa fa-info-circle"></i>

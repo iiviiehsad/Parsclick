@@ -24,10 +24,10 @@
 					<tbody>
 					<?php foreach($author_set as $author): ?>
 						<tr>
-							<td><?php echo htmlentities($author->username); ?></td>
+							<td class="arial"><?php echo htmlentities($author->username); ?></td>
 							<td><?php echo htmlentities(ucfirst(strtolower($author->first_name))); ?></td>
 							<td><?php echo htmlentities(ucfirst(strtolower($author->last_name))); ?></td>
-							<td>
+							<td class="arial">
 								<small><?php echo htmlentities(strtolower($author->email)); ?></small>
 							</td>
 							<td>
