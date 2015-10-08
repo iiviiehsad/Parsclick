@@ -45,9 +45,12 @@ if(isset($_POST["submit"])) {
 
 			<form class="form-horizontal" action="reset_password.php?token=<?php echo urldecode($token); ?>" method="POST" accept-charset="utf-8">
 				<fieldset>
-					<legend>پسورد جدید را قرار دهید <span class="pull-left wow infinite flash" data-wow-duration="3s" id="confirmMessage"></span></legend>
+					<legend>پسورد جدید را قرار دهید
+						<span class="pull-left wow infinite flash" data-wow-duration="3s" id="confirmMessage"></span>
+					</legend>
 					<section class="row">
-						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="password">پسورد جدید</label>
+						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="password">پسورد
+						                                                                                 جدید</label>
 						<div class="controls">
 							<div class="input-group">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
@@ -56,7 +59,8 @@ if(isset($_POST["submit"])) {
 						</div>
 					</section>
 					<section class="row">
-						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="confirm_pass">تایید پسورد جدید</label>
+						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="confirm_pass">تایید پسورد
+						                                                                                     جدید</label>
 						<div class="controls">
 							<div class="input-group">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
