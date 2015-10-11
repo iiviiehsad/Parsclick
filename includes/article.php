@@ -81,7 +81,7 @@ class Article extends DatabaseObject {
 		if($public) {
 			$sql .= " AND visible = 1 ";
 		}
-		$sql .= " ORDER BY position ASC";
+		$sql .= " ORDER BY position DESC";
 		return static::find_by_sql($sql);
 	}
 
