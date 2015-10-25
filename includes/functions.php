@@ -539,7 +539,7 @@ function public_courses() {
 			$output .= htmlentities("موضوع اسم ندارد");
 		}
 		$output .= "</div>";
-		$course_set = Course::find_courses_for_category($category->id, FALSE);
+		$course_set = Course::find_courses_for_category($category->id, TRUE);
 		$output .= "<ul>";
 		foreach($course_set as $course) {
 			$output .= "<li>";
