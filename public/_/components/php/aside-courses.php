@@ -1,6 +1,10 @@
 <aside>
 	<h2>برخی از آموزش های ویدیویی</h2>
 	<div class="modalphotos photogrid clearfix center">
+		<img class="img-thumbnail" src="images/courses/PostgreSQL-tn.jpg" alt="پستگرس کیو ال دیتابیس"/>
+		<img class="img-thumbnail" src="images/courses/MySQL-tn.jpg" alt="مای اس کیو ال دیتابیس"/>
+		<img class="img-thumbnail" src="images/courses/PHPUnit-tn.jpg" alt="پی اچ پی یونیت تست"/>
+		<img class="img-thumbnail" src="images/courses/CoffeeScript-tn.jpg" alt="کافی اسکریپت"/>
 		<img class="img-thumbnail" src="images/courses/Laravel-tn.jpg" alt="لاراول"/>
 		<img class="img-thumbnail" src="images/courses/RSpec-tn.jpg" alt="چارچوب تست روبی"/>
 		<img class="img-thumbnail" src="images/courses/RoR-tn.jpg" alt="روبی آن ریلز"/>
