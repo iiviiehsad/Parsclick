@@ -303,7 +303,7 @@ function member_articles($subject_array, $article_array) {
 		$output .= "<a href='member_articles.php?subject=";
 		$output .= urlencode($subject->id) . "'";
 		if($subject_array && $subject->id == $subject_array->id) {
-			$output .= " class='selected'";
+			$output .= " style='font-size:25px;' ";
 		}
 		$output .= ">";
 		if(!empty($subject->name)) {
@@ -485,7 +485,7 @@ function member_courses($category_array, $course_array) {
 		$output .= "<a href='member_courses.php?category=";
 		$output .= urlencode($category->id) . "'";
 		if($category_array && $category->id == $category_array->id) {
-			$output .= " class='selected'";
+			$output .= " style='font-size:25px;' ";
 		}
 		$output .= ">";
 		if(!empty($category->name)) {
