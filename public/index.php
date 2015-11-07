@@ -7,7 +7,7 @@
 	<?php include("_/components/php/article-intro.php"); ?>
 </section><!-- main -->
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
-	<?php include("_/components/php/aside-vido-promo.php"); ?>
+	<?php include("_/components/php/aside-video-promo.php"); ?>
 	<?php include("_/components/php/aside-register.php"); ?>
 	<aside>
 		<h2>به اشتراک بگذارید</h2>
