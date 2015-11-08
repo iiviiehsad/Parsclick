@@ -8,5 +8,8 @@
 </section><!-- main -->
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<?php include "_/components/php/socialmedia.php" ?>
+	<div class="center">
+		<img src="images/others/All.png" alt="Programming Languages" />
+	</div>
 </section><!-- sidebar -->
 <?php include_layout_template("footer.php"); ?>
