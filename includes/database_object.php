@@ -152,7 +152,7 @@ class DatabaseObject {
 		// after calling $user->delete().
 	}
 
-	public function reset_token() {
+	private function reset_token() {
 		return md5(uniqid(rand()));
 	}
 
@@ -177,7 +177,7 @@ class DatabaseObject {
 		return $this->set_user_reset_token($username, $token);
 	}
 
-	function email_reset_token($username) {
+	public function email_reset_token($username) {
 		$user      = self::find_by_username($username);
 		$site_root = DOMAIN;
 		if($user && isset($user->token)) {
@@ -218,5 +218,4 @@ EMAILBODY;
 		}
 	}
 }
-
 ?>
