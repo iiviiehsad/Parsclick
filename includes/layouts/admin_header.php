@@ -14,10 +14,7 @@
 	<meta name="ICBM" content="32.427908, 53.688046"/>
 	<meta name="image" content="../images/misc/admin-area.png"/>
 	<link rel="shortcut icon" type="image/png" href="../images/favicon.png">
-	<link rel="stylesheet" href="../_/css/bootstrap.css" media="screen">
-	<link rel="stylesheet" href="../_/css/bootstrap-rtl.min.css" media="screen">
-	<link rel="stylesheet" href="../_/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../_/css/mystyles.css" media="screen">
+	<link rel="stylesheet" href="../_/css/all.css" media="screen">
 </head>
 <body>
 <section class="container"><!-- container -->

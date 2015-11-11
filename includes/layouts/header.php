@@ -22,10 +22,7 @@
 	 علم فنی کامپیوتر, طراحی وب, نرم افزار, آدوبی, دیتابیس, اپل, گوگل, مایکروسافت و بیشتر"/>
 	<!--CSS Styles-->
 	<link rel="shortcut icon" type="image/png" href="images/favicon.png">
-	<link rel="stylesheet" href="_/css/bootstrap.css" media="screen">
-	<link rel="stylesheet" href="_/css/bootstrap-rtl.min.css" media="screen">
-	<link rel="stylesheet" href="_/css/font-awesome.min.css">
-	<link rel="stylesheet" href="_/css/mystyles.css" media="screen">
+	<link rel="stylesheet" href="_/css/all.css" media="screen">
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>

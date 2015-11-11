@@ -10,8 +10,7 @@
 	</footer><!-- footer -->
 </section><!-- footer container -->
 </section><!-- container -->
-<script src="../_/js/bootstrap.js"></script>
-<script src="../_/js/myscript.js"></script>
+<script src="../_/js/all.js"></script>
 <?php active(); ?>
 </body>
 </html>
