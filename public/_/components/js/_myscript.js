@@ -183,18 +183,18 @@ function shareButton(url) {
 //var bgvideo = document.getElementById('bgvideo');
 
 //FUNCTIONS FOR LIVE INPUT VALIDATION -----------------------------------------------------------------------
-var username = document.getElementById('username');
-var pass1 = document.getElementById('password');
-var pass2 = document.getElementById('confirm_pass');
-var firstname = document.getElementById('first_name');
-var lastname = document.getElementById('last_name');
-var email = document.getElementById('email');
-var message = document.getElementById('confirmMessage');
-var goodColor = "#C8FAC8";
-var badColor = "#FAC8C8";
-var mBadColor = "#B94A48";
+var username      = document.getElementById('username');
+var pass1         = document.getElementById('password');
+var pass2         = document.getElementById('confirm_pass');
+var firstname     = document.getElementById('first_name');
+var lastname      = document.getElementById('last_name');
+var email         = document.getElementById('email');
+var message       = document.getElementById('confirmMessage');
+var goodColor     = "#C8FAC8";
+var badColor      = "#FAC8C8";
+var mBadColor     = "#B94A48";
 var usernameregex = /[^a-zA-Z0-9_.]/;
-var passregex = /[^A-Za-z0-9]/;
+var passregex     = /[^A-Za-z0-9]/;
 
 function checkUser() {
 	if(usernameregex.test(username.value)) {

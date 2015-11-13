@@ -5,16 +5,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" type="image/png" href="images/favicon.png">
-	<link rel="stylesheet" href="_/css/bootstrap.css" media="screen">
-	<link rel="stylesheet" href="_/css/bootstrap-rtl.min.css" media="screen">
-	<link rel="stylesheet" href="_/css/font-awesome.min.css">
-	<link rel="stylesheet" href="_/css/mystyles.css" media="screen">
+	<link rel="stylesheet" href="_/css/all.css" media="screen">
 	<style type="text/css">
 		body, .container { background : #2D2D2D; }
 		h1, h2, h3, h4, h5, h6 { color : #FF8000; text-shadow : none; }
 		.template { padding : 40px 15px; text-align : center; }
 		.actions { margin-top : 15px; margin-bottom : 15px; }
 		.actions .btn { margin-right : 10px; }
+		a { color: #FF8000; text-decoration: none; }
+		a:hover { color: #FFC000; }
 	</style>
 </head>
 <body>
@@ -39,12 +38,11 @@
 		</section>
 	</div>
 </div>
-<script src="_/js/bootstrap.js"></script>
+<script src="_/js/all.js"></script>
 <script src="_/js/jquery.countdown.min.js"></script>
-<script src="_/js/myscript.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() { //TODO: Add YOUR DATE BELOW
-		$("#my-countdown").countdown("2015/09/01", function(event) {
+		$("#my-countdown").countdown("2016/01/01", function(event) {
 			$(this).text(
 				event.strftime('%-m ماه %-d روز %-H ساعت %-M دقیقه %-S ثانیه')
 			);

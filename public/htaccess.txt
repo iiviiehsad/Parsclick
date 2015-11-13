@@ -19,20 +19,6 @@ ErrorDocument 404 error.html
 # CHECK IF mod_rewrite is ON
 <IfModule mod_rewrite.c>
 
-    ## Can be commented out if causes errors, see notes above.
-    Options +FollowSymLinks
-
-    ## Mod_rewrite in use.
-
-    Options +SymLinksIfOwnerMatch
-    RewriteEngine On
-
-    ## To remove WWW
-    RewriteCond %{HTTP_HOST} ^(www\.parsclick\.net)(:80)? [NC]
-    RewriteRule ^(.*) http://parsclick.net/$1 [R=301,L]
-    DirectoryIndex index.php
-    order deny,allow
-
     ##
     # Uncomment following line if your webserver's URL
     # is not directly related to physical file paths.
@@ -44,11 +30,21 @@ ErrorDocument 404 error.html
     #RewriteCond %{REQUEST_URI} !^/unavailable\.html$
     #RewriteRule ^(.*)$ /unavailable.html [R=307,L]
 
+    ## Can be commented out if causes errors, see notes above.
+    Options +FollowSymLinks
+    ## Mod_rewrite in use.
+    Options +SymLinksIfOwnerMatch
+    RewriteEngine On
+
+    ## To remove WWW
+    RewriteCond %{HTTP_HOST} ^(www\.parsclick\.net)(:80)? [NC]
+    RewriteRule ^(.*) http://parsclick.net/$1 [R=301,L]
+    DirectoryIndex index.php
+    order deny,allow
     # To remove .php extension
     RewriteRule ^([^\.]+)$ $1.php [NC,L]
     # To remove .html extension
     RewriteRule ^([^\.]+)$ $1.html [NC,L]
-
     # Add / at the end for GODADDY ONLY
     Options -MultiViews
     RewriteEngine On

@@ -30,7 +30,7 @@ if(isset($current_course->author_id)) {
 					نظرات <?php echo "<span class='badge'>" . Comment::count_comments_for_course($current_course->id) . "</span>"; ?>
 				</a>
 				&nbsp;
-				<!----------------------------------------------------------------------------------------------------->
+				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php if(!Playlist::num_courses_for_playlist($current_course->id)) { ?>
 					<form action="add_to_playlist.php" method="POST" class="addtoplaylist">
 						<input type="hidden" name="course" value="<?php echo $current_course->id; ?>">
@@ -49,9 +49,9 @@ if(isset($current_course->author_id)) {
 					</form>
 					&nbsp;
 				<?php } //else num_courses_for_playlist?>
-				<!----------------------------------------------------------------------------------------------------->
+				
 				<p><?php echo nl2br(htmlentities($current_course->content)); ?></p>
-				<!----------------------------------------------------------------------------------------------------->
+				<!-- ------------------------------------------------------------------------------------------------- -->
 				<h4>
 					<i class="fa fa-file"></i> فایل های تمرینی:
 					<?php if(empty($current_course->file_link) && File::num_files_for_course($current_course->id) == 0) {
@@ -63,7 +63,7 @@ if(isset($current_course->author_id)) {
 						لینک خارجی
 					</a>
 				<?php } ?>
-				<!----------------------------------------------------------------------------------------------------->
+				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php if(File::num_files_for_course($current_course->id) > 0) { ?>
 					<?php $files = File::find_files_for_course($current_course->id); ?>
 					<?php foreach($files as $file) { ?>
@@ -72,7 +72,7 @@ if(isset($current_course->author_id)) {
 						</a>
 					<?php } //foreach file ?>
 				<?php } //num_files_for_course ?>
-				<!----------------------------------------------------------------------------------------------------->
+				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php if(isset($current_course->youtubePlaylist)) {
 					$googleapi  = "https://www.googleapis.com/youtube/v3/playlistItems";
 					$playListID = $current_course->youtubePlaylist;

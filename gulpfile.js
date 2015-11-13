@@ -3,7 +3,7 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
   // mix.sass('app.scss' , "new_direcroty")
   // mix.less('app.less' , "new_direcroty")
-  mix.less(['bootstrap.less', '_mystyles.less'], "_/components/css")
+  mix.less(['bootstrap.less', '_mystyles.less'], "public/_/components/css")
     .styles([
       'app.css',
       'bootstrap-rtl.min.css',
@@ -24,6 +24,7 @@ elixir(function(mix) {
 			'scrollspy.js',
 			'tab.js',
 			'wow.min.js',
+			// 'jquery.countdown.min.js',
       '_myscript.js'
     ])
     // TDD: type `gulp tdd` in command line to track your test 
