@@ -1,6 +1,7 @@
 <aside>
 	<h2>برخی از آموزش های ویدیویی</h2>
 	<div class="modalphotos photogrid clearfix center">
+		<img class="img-thumbnail" src="images/courses/SQLite3-tn.jpg" alt="اس کیو ال لایت"/>
 		<img class="img-thumbnail" src="images/courses/PostgreSQL-tn.jpg" alt="پستگرس کیو ال دیتابیس"/>
 		<img class="img-thumbnail" src="images/courses/MySQL-tn.jpg" alt="مای اس کیو ال دیتابیس"/>
 		<img class="img-thumbnail" src="images/courses/PHPUnit-tn.jpg" alt="پی اچ پی یونیت تست"/>
