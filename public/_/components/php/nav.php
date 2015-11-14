@@ -10,7 +10,7 @@
 	<section class="navbar">
 		<ul class="nav navbar-nav">
 			<li><a href="index.php"><i class="fa fa-home fa-lg"></i> خانه</a></li>
-			<li><a href="about.php"><i class="fa fa-globe fa-lg"></i> درباره ما</a></li>
+			<!-- <li><a href="about.php"><i class="fa fa-globe fa-lg"></i> درباره ما</a></li> -->
 			<li><a href="courses.php"><i class="fa fa-film fa-lg"></i> درس ها</a></li>
 			<li><a href="faq.php"><i class="fa fa-question fa-lg"></i> سوالات شما</a></li>
 			<li><a href="help.php"><i class="fa fa-money fa-lg"></i> کمک به ما</a></li>

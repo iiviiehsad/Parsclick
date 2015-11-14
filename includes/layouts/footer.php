@@ -3,12 +3,15 @@
 	<footer class="row">
 		<nav class="col-lg-12">
 			<ul class="breadcrumb">
+				<li><a href="/">خانه</a></li>
 				<li><a href="about.php">درباره ما</a></li>
 				<li><a href="privacypolicy.php">شرایط و ضوابط</a></li>
 				<li><a href="courses.php">درس ها</a></li>
 				<li><a href="faq.php">سوالات شما</a></li>
 				<li><a href="help.php">کمک به سایت</a></li>
 				<li><a href="contact.php">تماس با ما</a></li>
+				<li><a href="login.php">ورود</a></li>
+				<li><a href="register.php">ثبت نام</a></li>
 				<li class="pull-left hidden-sm arial">Copyright &copy; <?php echo strftime("%Y", time()); ?> Parsclick&nbsp;&nbsp;&nbsp;</li>
 			</ul><!-- breadcrumb -->
 			<ul class="breadcrumb">

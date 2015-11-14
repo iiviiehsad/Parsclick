@@ -1,0 +1,11 @@
+{
+    "name": "amir/parsclick",
+    "description": "Parsclick application",
+    "authors": [
+        {
+            "name": "Amir Azimi",
+            "email": "hazz.azimi@gmail.com"
+        }
+    ],
+    "require": {}
+}
