@@ -41,13 +41,13 @@ if(isset($_POST["submit_file"])) {
 						ویرایش
 					</a>
 				<?php } ?>
-				<!---------------------------------------------FILE LINK----------------------------------------------->
+				<!-- -------------------------------------------FILE LINK--------------------------------------------- -->
 				<?php if(!empty($current_course->file_link)) { ?>
 					<a class="btn btn-primary btn-small" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" title="لینک فایل تمرینی">
 						لینک فایل تمرینی
 					</a>
 				<?php } ?>
-				<!---------------------------------------------FILES--------------------------------------------------->
+				<!-- -------------------------------------------FILES------------------------------------------------- -->
 				<?php if(File::num_files_for_course($current_course->id) > 0) { ?>
 					<?php $files = File::find_files_for_course($current_course->id); ?>
 					<?php foreach($files as $file): ?>
@@ -64,12 +64,12 @@ if(isset($_POST["submit_file"])) {
 						<?php } ?>
 					<?php endforeach; ?>
 				<?php } ?>
-				<!----------------------------------------------Content------------------------------------------------>
+				<!-- --------------------------------------------Content---------------------------------------------- -->
 				<?php if(!empty($current_course->content)) { ?>
 					<h5>توضیحات:</h5>
 					<p><?php echo nl2br(htmlentities($current_course->content)); ?></p>
 				<?php } ?>
-				<!----------------------------------Check to see if there is any file---------------------------------->
+				<!-- --------------------------------Check to see if there is any file-------------------------------- -->
 				<?php if(File::num_files_for_course($current_course->id) == 0) { ?>
 					<?php if(check_ownership($current_course->author_id, $session->id)) { ?>
 						<div class="alert alert-info">
@@ -97,7 +97,7 @@ if(isset($_POST["submit_file"])) {
 						</div>
 					<?php } ?>
 				<?php } ?>
-				<!--------------------------------------------VIDEOS--------------------------------------------------->
+				<!-- ------------------------------------------VIDEOS------------------------------------------------- -->
 				<?php
 				if(isset($current_course->youtubePlaylist)) {
 					$googleapi  = "https://www.googleapis.com/youtube/v3/playlistItems";
