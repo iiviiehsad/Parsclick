@@ -57,12 +57,12 @@ if(isset($_POST['submit'])) {
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled '; ?>
-									<?php if($current_course->visible == 0) echo "checked";
+									<?php if($current_article->visible == 0) echo "checked";
 									?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled '; ?>
-									<?php if($current_course->visible == 1) echo "checked";
+									<?php if($current_article->visible == 1) echo "checked";
 									?> > بله
 							</label>
 						</div>

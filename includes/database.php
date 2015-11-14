@@ -118,10 +118,6 @@ class MySQLDatabase {
 	}
 }
 
-$database = new MySQLDatabase();
-// Reference the $database to $db so we can use $db or $database anyone we want
-$db =& $database;
-
 /**
  * Class PostgresSQLDatabase is created to use PostgresSQL database and has only functions related to PostgresSQL
  */
@@ -236,8 +232,8 @@ class PostgresSQLDatabase {
 	}
 }
 
-//$database = new MySQLDatabase();
-$database = new PostgresSQLDatabase();
+$database = new MySQLDatabase();
+//$database = new PostgresSQLDatabase();
 
 // Reference the $database to $db so we can use $db or $database anyone we want
 $db =& $database;
