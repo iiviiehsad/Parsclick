@@ -18,7 +18,7 @@ if(isset($_POST['submit'])) {
 	$course->youtubePlaylist = $_POST["youtubePlaylist"];
 	$course->file_link       = $_POST["file_link"];
 	$course->position        = (int)$_POST["position"];
-	$course->visible         = 0;
+	$course->visible         = $_POST["visible"];
 	$course->content         = $_POST["description"];
 	$result                  = $course->create();
 	if($result) { // Success
@@ -82,10 +82,10 @@ if(isset($_POST['submit'])) {
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="visible">نشر شد</label>
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="visible" id="inlineRadioNo" disabled checked/>خیر
+								<input type="radio" name="visible" id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled'; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="visible" id="inlineRadioNo" disabled/>بله
+								<input type="radio" name="visible" id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled'; ?> > بله
 							</label>
 						</div>
 					</section>

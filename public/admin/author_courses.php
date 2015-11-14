@@ -33,7 +33,8 @@ if(isset($_POST["submit_file"])) {
 					<?php echo htmlentities(ucwords($current_course->name)); ?>
 				</h1>
 				<h4 class="text-success">
-					نویسنده: <?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)->full_name()) : '-'; ?>
+					نویسنده:
+					<?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)->full_name()) : '-'; ?>
 				</h4>
 				<?php if(check_ownership($current_course->author_id, $session->id)) { ?>
 					<a class="btn btn-small btn-primary" href="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" title="ویرایش">

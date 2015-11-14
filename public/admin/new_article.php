@@ -16,7 +16,7 @@ if(isset($_POST['submit'])) {
 	$article->author_id  = $author->id;
 	$article->name       = $_POST["article_name"];
 	$article->position   = (int)$_POST["position"];
-	$article->visible    = (int)0;
+	$article->visible    = (int)$_POST["visible"];
 	$article->content    = $_POST["content"];
 	$result              = $article->create();
 	if($result) { // Success
@@ -59,10 +59,10 @@ if(isset($_POST['submit'])) {
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="visible">نشر شد</label>
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="visible" id="inlineRadioNo" disabled checked/>خیر
+								<input type="radio" name="visible" id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled'; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="visible" id="inlineRadioNo" disabled/>بله
+								<input type="radio" name="visible" id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled'; ?> > بله
 							</label>
 						</div>
 					</section>

@@ -15,6 +15,7 @@ if(isset($_POST['submit'])) {
 	$current_article->subject_id = $current_subject->id;
 	$current_article->name       = $_POST["article_name"];
 	$current_article->content    = $_POST["content"];
+	$current_article->visible    = $_POST["visible"];
 	$result                      = $current_article->save();
 	if($result) { // Success
 		$session->message("مقاله بروزرسانی شد.");
@@ -55,15 +56,13 @@ if(isset($_POST['submit'])) {
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="visible">نشر شد</label>
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="visible" id="inlineRadioNo" disabled
-									<?php if($current_article->visible == 0)
-										echo "checked";
+								<input type="radio" name="visible" id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled '; ?>
+									<?php if($current_course->visible == 0) echo "checked";
 									?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
-								<input type="radio" name="visible" id="inlineRadioYes" disabled
-									<?php if($current_article->visible == 1)
-										echo "checked";
+								<input type="radio" name="visible" id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled '; ?>
+									<?php if($current_course->visible == 1) echo "checked";
 									?> > بله
 							</label>
 						</div>

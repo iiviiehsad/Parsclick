@@ -17,7 +17,9 @@
 					<?php echo htmlentities(ucwords($current_article->name)); ?>
 				</h1>
 				<h4 class="text-success">
-					نویسنده: <?php echo htmlentities(Author::find_by_id($current_article->author_id)->full_name()); ?></h4>
+					نویسنده:
+					<?php echo isset($current_article->author_id) ? htmlentities(Author::find_by_id($current_article->author_id)->full_name()) : "-"; ?>
+				</h4>
 				<?php if(check_ownership($current_article->author_id, $session->id)) { ?>&nbsp;
 					<a class="btn btn-primary btn-small" href="author_edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
 						ویرایش
