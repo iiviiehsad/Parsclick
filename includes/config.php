@@ -23,4 +23,3 @@ defined('PG_PORT')   ? NULL : define("PG_PORT"  , "5432");
 defined('PG_USER')   ? NULL : define("PG_USER"  , "hassan");
 defined('PG_PASS')   ? NULL : define("PG_PASS"  , "azimi");
 defined('PG_NAME')   ? NULL : define("PG_NAME"  , "Parsclick");
-?>

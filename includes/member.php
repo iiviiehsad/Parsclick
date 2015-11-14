@@ -321,4 +321,3 @@ EMAILBODY;
 		}
 	}
 } // END of CLASS
-?>

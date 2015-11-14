@@ -7,7 +7,7 @@
 <?php include_layout_template("header.php"); ?>
 <?php include("_/components/php/member_nav.php"); ?>
 <?php echo output_message($message); ?>
-<div class="jumbotron hidden-sm wow fadeIn play">
+<div class="jumbotron hidden-sm wow fadeIn member-jumbotron">
 	<h1>خوش آمدید <?php echo ucwords(strtolower($member->full_name())); ?></h1>
 	<p>
 		با تشکر از ملحق شدن به ما اگر اشکالی در این سیستم پیدا کردید، مدیر را در جریان بگذارید.<br/>

@@ -7333,6 +7333,7 @@ footer ul.breadcrumb li a {
   font-size: 24px;
   font-weight: 200;
   line-height: 2.14285714;
+  border-radius: 0;
   color: inherit;
   background-color: #303030;
 }
@@ -7407,9 +7408,23 @@ form.removefromplaylist {
   opacity: 1;
   transition-duration: 1s;
 }
-.play {
-  -webkit-animation: box 10s infinite alternate;
-  animation: box 10s infinite alternate;
+.admin-jumbotron {
+  background: url('../../images/others/admin.jpg') no-repeat;
+  background-size: 100% 100%;
+  background-size: cover;
+  text-shadow: black 0.3em 0.3em 0.3em;
+}
+.author-jumbotron {
+  background: url('../../images/others/author.jpg') no-repeat;
+  background-size: 100% 100%;
+  background-size: cover;
+  text-shadow: black 0.3em 0.3em 0.3em;
+}
+.member-jumbotron {
+  background: url('../../images/others/member.jpg') no-repeat;
+  background-size: 100% 100%;
+  background-size: cover;
+  text-shadow: black 0.3em 0.3em 0.3em;
 }
 @-webkit-keyframes box {
   0% {

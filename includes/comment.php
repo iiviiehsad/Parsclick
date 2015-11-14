@@ -60,5 +60,3 @@ class Comment extends DatabaseObject {
 		return self::find_by_sql($sql);
 	}
 }
-
-?>

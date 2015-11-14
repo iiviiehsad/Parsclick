@@ -5,7 +5,7 @@
 <?php include("../_/components/php/admin_nav.php"); ?>
 <?php $admin = Admin::find_by_id($session->id); ?>
 
-<div class="jumbotron">
+<div class="jumbotron hidden-sm wow fadeIn admin-jumbotron">
 	<h1>خوش آمدید <?php echo $admin->full_name(); ?></h1>
 	<p>به عنوان مدیر ارشد سایت شما قادر به هر کاری در این سیستم هستید.</p>
 </div>

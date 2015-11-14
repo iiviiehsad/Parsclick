@@ -237,5 +237,3 @@ $database = new MySQLDatabase();
 
 // Reference the $database to $db so we can use $db or $database anyone we want
 $db =& $database;
-?>
-?>

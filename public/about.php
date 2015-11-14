@@ -1,4 +1,4 @@
-<?php require_once("../includes/initialize.php");?>
+<?php require_once("../includes/initialize.php"); ?>
 <?php $filename = basename(__FILE__); ?>
 <?php $title = "پارس کلیک - درباره ما"; ?>
 <?php include_layout_template("header.php"); ?>

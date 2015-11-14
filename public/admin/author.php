@@ -6,7 +6,7 @@
 <?php include_layout_template("admin_header.php"); ?>
 <?php include("../_/components/php/author_nav.php"); ?>
 <?php echo output_message($message); ?>
-<div class="jumbotron">
+<div class="jumbotron hidden-sm wow fadeIn author-jumbotron">
 	<h1>خوش آمدید نویسنده: <?php echo $author->full_name(); ?></h1>
 	<p>به عنوان نویسنده شما قادر به درست کردن مقاله و درس هستید. شما همینطور قادر به تغییر مقالات و دروس خود هستید.</p>
 </div>

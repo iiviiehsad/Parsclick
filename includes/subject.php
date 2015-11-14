@@ -43,4 +43,3 @@ class Subject extends DatabaseObject {
 		return !empty($subject_set) ? array_shift($subject_set) : FALSE;
 	}
 }
-?>

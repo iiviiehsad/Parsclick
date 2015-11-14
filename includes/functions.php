@@ -664,5 +664,3 @@ function active() {
 		echo "<script>$(\"a:contains('تماس با ما')\").parent().addClass('active');</script>";
 	}
 }
-
-?>

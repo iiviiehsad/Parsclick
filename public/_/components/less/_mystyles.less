@@ -361,6 +361,7 @@ footer {
 	font-size        : 24px;
 	font-weight      : 200;
 	line-height      : 2.14285714;
+	border-radius    : 0;
 	color            : inherit;
 	background-color : @darkblack;
 	p {
@@ -432,12 +433,38 @@ form.addtoplaylist, form.removefromplaylist { display : inline; }
 	transition-duration : 1s;
 }
 
-// COLOR ANIMATION USING CSS3
-.play {
-	-webkit-animation : box 10s infinite alternate;
-	-moz-animation    : box 10s infinite alternate;
-	-o-animation      : box 10s infinite alternate;
-	animation         : box 10s infinite alternate;
+.admin-jumbotron {
+	background              : url('../../images/others/admin.jpg') no-repeat;
+	-webkit-background-size : 100% 100%;
+	-moz-background-size    : 100% 100%;
+	-o-background-size      : 100% 100%;
+	background-size         : 100% 100%;
+	background-size         : cover;
+	text-shadow             : black 0.3em 0.3em 0.3em;
+}
+
+.author-jumbotron {
+	background              : url('../../images/others/author.jpg') no-repeat;
+	-webkit-background-size : 100% 100%;
+	-moz-background-size    : 100% 100%;
+	-o-background-size      : 100% 100%;
+	background-size         : 100% 100%;
+	background-size         : cover;
+	text-shadow             : black 0.3em 0.3em 0.3em;
+}
+
+.member-jumbotron {
+	//-webkit-animation : box 10s infinite alternate;
+	//-moz-animation    : box 10s infinite alternate;
+	//-o-animation      : box 10s infinite alternate;
+	//animation         : box 10s infinite alternate;
+	background              : url('../../images/others/member.jpg') no-repeat;
+	-webkit-background-size : 100% 100%;
+	-moz-background-size    : 100% 100%;
+	-o-background-size      : 100% 100%;
+	background-size         : 100% 100%;
+	background-size         : cover;
+	text-shadow             : black 0.3em 0.3em 0.3em;
 }
 
 @-webkit-keyframes box {

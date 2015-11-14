@@ -108,5 +108,3 @@ class Article extends DatabaseObject {
 		return !empty($article_set) ? array_shift($article_set) : FALSE;
 	}
 }
-
-?>

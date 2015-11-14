@@ -142,5 +142,3 @@ class Course extends DatabaseObject {
 		return Comment::find_comments_for_course($this->id);
 	}
 }
-
-?>

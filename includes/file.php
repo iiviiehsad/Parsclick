@@ -215,5 +215,3 @@ class File extends DatabaseObject {
 		}
 	}
 }
-
-?>

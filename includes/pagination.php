@@ -64,5 +64,3 @@ class pagination {
 		return $this->next_page() <= $this->total_page() ? TRUE : FALSE;
 	}
 }
-
-?>
