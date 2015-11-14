@@ -7,9 +7,12 @@
 	<?php include "_/components/php/aboutus.php" ?>
 </section><!-- main -->
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
-	<?php include "_/components/php/socialmedia.php" ?>
-	<div class="center">
-		<img src="images/others/All.png" alt="Programming Languages" />
-	</div>
+	<aside class="socialmedia">
+		<?php include "_/components/php/aside-twitter.php" ?>
+		<?php include "_/components/php/aside-news.php" ?>
+		<div class="center">
+			<img src="images/others/All.png" alt="Programming Languages" />
+		</div><!-- center -->
+	</aside><!-- socialmedia -->
 </section><!-- sidebar -->
 <?php include_layout_template("footer.php"); ?>
