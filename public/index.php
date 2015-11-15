@@ -11,9 +11,9 @@
 	<?php include("_/components/php/aside-video-promo.php"); ?>
 	<?php include("_/components/php/aside-register.php"); ?>
 	<aside>
-		<?php include "_/components/php/aside-news.php" ?>
+		<?php include("_/components/php/aside-news.php"); ?>
 		<h2>به اشتراک بگذارید</h2>
-		<?php include "_/components/php/aside-share.php"; ?>
+		<?php include("_/components/php/aside-share.php"); ?>
 	</aside>
 </section><!-- sidebar -->
 <?php include_layout_template("footer.php"); ?>

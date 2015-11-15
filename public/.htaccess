@@ -9,7 +9,7 @@
 # it has been set by your server administrator and you do not need it set here.
 ##
 <Files ~ "^\.(htaccess|htpasswd)$">
-deny from all
+	deny from all
 </Files>
 Options Indexes
 ErrorDocument 400 error.html
@@ -39,7 +39,7 @@ ErrorDocument 404 error.html
     ## To remove WWW
     RewriteCond %{HTTP_HOST} ^(www\.parsclick\.net)(:80)? [NC]
     RewriteRule ^(.*) http://parsclick.net/$1 [R=301,L]
-    DirectoryIndex index.php
+    DirectoryIndex index.php index.html
     order deny,allow
     # To remove .php extension
     RewriteRule ^([^\.]+)$ $1.php [NC,L]
@@ -94,3 +94,10 @@ ErrorDocument 404 error.html
 
 </IfModule>
 # END: CHECK IF mod_rewrite is ON
+
+
+# Uncomment to use Username: amirhassanazimi and Password: 1234-asdf for the site
+#AuthType Basic
+#AuthName "Access to Parsclick"
+#AuthUserFile /Users/hasan_azimi0/Sites/Parsclick/public/.htpasswd
+#Require valid-user

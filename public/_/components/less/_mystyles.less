@@ -466,6 +466,20 @@ form.addtoplaylist, form.removefromplaylist { display : inline; }
 	background-size         : cover;
 	text-shadow             : black 0.3em 0.3em 0.3em;
 }
+// DISQUS commenting to hide the logo
+#disqus_thread {
+	position : relative;
+}
+
+#disqus_thread:after {
+	content    : "";
+	display    : block;
+	height     : 55px;
+	width      : 100%;
+	position   : absolute;
+	bottom     : 0;
+	background : @beige;
+}
 
 //@-webkit-keyframes box {
 //	0% { background-color : @color1; }

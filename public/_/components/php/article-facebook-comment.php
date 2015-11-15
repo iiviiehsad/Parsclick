@@ -1,4 +1,4 @@
-<aside id="comments">
+<article id="comments">
 	<h2>نظرات</h2>
 	<div id="fb-root"></div>
 	<script>
@@ -12,4 +12,4 @@
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
 	<div class="fb-comments" data-href="<?php echo DOMAIN . $_SERVER['REQUEST_URI']; ?>" data-numposts="3" data-width="100%" data-order-by="reverse_time" data-colorscheme="light"></div>
-</aside>
+</article>
