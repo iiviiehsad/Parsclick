@@ -1,5 +1,8 @@
 $(function() {
 
+	//SLIDE UO MESSAGES AFTER 5 SECONDS
+	$('div.alert').delay(5000).slideUp();
+
 	//ACTIVATE COURSE TABS
 	var hash = window.location.hash;
 	hash && $('ul.nav a[href="' + hash + '"]').tab('show');
@@ -303,9 +306,9 @@ function checkEmail() {
 
 //WOW ------------------------------------------------------------------------------------------------------------------
 wow = new WOW({
-	              animateClass: 'animated',
-	              offset      : 100
-              });
+	animateClass: 'animated',
+	offset: 100
+});
 //data-wow-delay="2s"
 //data-wow-offset="300"
 //data-wow-duration="4s"

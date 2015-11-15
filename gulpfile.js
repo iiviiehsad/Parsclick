@@ -3,13 +3,16 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
   // mix.sass('app.scss' , "new_direcroty")
   // mix.less('app.less' , "new_direcroty")
-  mix.less(['bootstrap.less', '_mystyles.less'], "public/_/components/css")
-    .styles([
+	mix.less([
+		         'bootstrap.less',
+		         'bootstrap-rtl.min.less',
+		         '_mystyles.less'
+	         ], "public/_/components/css")
+	   .styles([
       'app.css',
-      'bootstrap-rtl.min.css',
       'font-awesome.min.css'
     ])
-    .scripts([
+	   .scripts([
       'jquery.js',
 			'affix.js',
 			'transition.js',
