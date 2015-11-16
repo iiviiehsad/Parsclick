@@ -27,16 +27,21 @@ ErrorDocument 500 error.html
     ## To first page to index in a directory
     DirectoryIndex index.php index.html
 
-    # browser requests PHP
+    ## Redirect PHP to only file name (doesn't work for login)
     # RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.php
     # RewriteRule ^(.*)\.php$ $1 [L,QSA,R=301]
 
-		# PHP hiding rule
+		## Remove index from URL TODO try
+    # RewriteCond %{THE_REQUEST} ^.*/index
+    # RewriteRule ^(.*)index$ /$1 [R=301,L]
+
+		## PHP hiding rule
 		RewriteCond %{REQUEST_FILENAME} !-d
 		RewriteCond %{REQUEST_FILENAME} !-f
 		RewriteCond %{REQUEST_FILENAME}\.php -f
     RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L,NC]
 
+		## HTML hiding rule
 		RewriteCond %{REQUEST_FILENAME} !-d
 		RewriteCond %{REQUEST_FILENAME} !-f
 		RewriteCond %{REQUEST_FILENAME}\.html -f
@@ -45,12 +50,6 @@ ErrorDocument 500 error.html
     ## TODO: To make website Unavailable
     # RewriteCond %{REQUEST_URI} !^/unavailable\.html$
     # RewriteRule ^(.*)$ /unavailable.html [R=307,L]
-
-    ## TODO: Try and see if it work
-    # RewriteRule ^/([^/]+)/([^/]+)/? /member_articles.php?subject=$1&article=$2 [QSA]
-    # RewriteRule ^/([^/]+)/([^/]+)/? /member_courses.php?category=$1&course=$2 [QSA]
-		#	RewriteRule ^subject/([^/]+)/article/([^/]+) /member_articles.php?subject=$1&article=$2 [NC]
-		#	RewriteRule ^category/([^/]+)/course/([^/]+) /member_courses.php?category=$1&course=$2 [NC]
 
     ## Begin - Rewrite rules to block out some common exploits.
     RewriteCond %{QUERY_STRING} base64_encode[^(]*\([^)]*\) [OR]
@@ -75,7 +74,7 @@ ErrorDocument 500 error.html
 
 #AuthType Basic
 #AuthName "Access to Parsclick"
-#AuthUserFile /Users/hasan_azimi0/Sites/Parsclick/public/.htpasswd
+#AuthUserFile /.htpasswd
 #Require valid-user
 
 ###################################################################################

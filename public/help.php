@@ -7,17 +7,18 @@ $errors = "";
 \Stripe\Stripe::setApiKey(SECRETKEY);
 if(isset($_POST['stripeToken'])) {
 	try {
-		\Stripe\Charge::create(array(
-			                       "amount"      => 1000,
-			                       "currency"    => "gbp",
-			                       "source"      => $_POST['stripeToken'],
-			                       "description" => "کمک به پارس کلیک"
-		                       ));
+		\Stripe\Charge::create(
+				array(
+						"amount"      => 1000,
+						"currency"    => "gbp",
+						"source"      => $_POST['stripeToken'],
+						"description" => "کمک به پارس کلیک"
+				));
 	} catch(\Stripe\Error\Card $e) {
 		$errors = $e->getMessage();
 	}
 	$session->message("خیلی متشکریم از کمک شما.");
-	redirect_to("help.php");
+	redirect_to("help");
 }
 ?>
 <?php include_layout_template("header.php"); ?>
@@ -26,10 +27,6 @@ if(isset($_POST['stripeToken'])) {
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2>کمک به ما</h2>
-			<p>بهترین کمکی که میتونید به شخص بنده بکنید این هست که ما دنبال وب هاستی هستم که حداقل یک ترا بایت به ما فضا
-			   بده که ما بتونیم ویدیو هامون رو اونجا آپلود کنیم. وب هاستی که داخل ایران نباشه، سرعتش خوب باشه و CPU و
-			   RAM و Bandwidth کافی برای کاربران این وب سایت فراهم کند. اگر صاحب وب هاست هستید که به خودتون تعلق داره با
-			   ما تماس بگیرید تا ما تحقیق کنیم ببینیم که چطور می تونیم به وب هاست شما اعتماد کنیم.</p>
 
 			<h3>دنبال نویسنده می گردیم.</h3>
 			<p>دنبال چند نویسنده برای سایت و صفحه فیسبوک میگردم. کسانی که میتوانند اخبار تکنولوژی و کامپیوتر رو پیدا کنند، یا

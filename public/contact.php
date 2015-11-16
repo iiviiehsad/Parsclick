@@ -64,7 +64,7 @@ EMAILBODY;
 		<article>
 			<h2>تماس با ما</h2>
 
-			<form action="contact.php" method="POST" role="form">
+			<form action="contact" method="POST" role="form">
 				<fieldset>
 					<legend>لطفا از فرم زیر برای تماس با ما استفاده کنید.</legend>
 					<div class="form-group">
@@ -96,15 +96,15 @@ EMAILBODY;
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>
 			<h2><i class="fa fa-info-circle"></i> اطلاعات</h2>
-			<div class="alert alert-success">
+			<div class="well">
 				لطفا از این فرم برای تماس با من استفاده کنید. سعی می کنم به اکثریت جواب بدم اگر جوابی نگرفتید به
-				خاطردلایلی هست که تو صفحه <a href="faq.php" title="FAQ">سوالات شما</a> مطرح شده.
+				خاطردلایلی هست که تو صفحه <a href="faq" title="FAQ">سوالات شما</a> مطرح شده.
 			</div>
-			<div class="alert alert-success">
+			<div class="well">
 				لطفا سعی کنید مختصر و مفید پیام دهید. ایمیل ها اگر بیشتر از ۲ هفته جواب داده نشد یعنی شما سوالی پرسیدید
-				که یا جوابش یا دلیل جواب ندادن ما در صفحه ی <a href="faq.php" title="FAQ">سوالات شما</a> داده شده.
+				که یا جوابش یا دلیل جواب ندادن ما در صفحه ی <a href="faq" title="FAQ">سوالات شما</a> داده شده.
 			</div>
-			<div class="alert alert-success">
+			<div class="well">
 				لطفا این رو به خاطر بسپارید ما تعداد ایمیل بالایی دریافت میکنیم اما ایمیل ها همه به نوبت خوانده خواهند
 				شد و به مرور زمان جواب داده خواهند شد. برخی از ویدئوهای ما از منابع متعددی تهیه شده مثل سایتهای آموزشی و
 				کتابها، اما همه ی اونها دونه دونه وقت گذاشته شده وساخته شده و اکثر اونها با برنامه ریزی طولانی مدت ساخته
