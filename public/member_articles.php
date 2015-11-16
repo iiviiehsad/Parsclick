@@ -30,7 +30,7 @@ if(isset($current_article->author_id)) { // find the author for the article
 				<p><?php echo nl2br(strip_tags($current_article->content, '<h1><h2><h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?></p>
 				<!-- FACEBOOK COMMENTS -->
 				<hr/>
-				<?php include("_/components/php/aside-facebook.php"); ?>
+				<?php include("_/components/php/article-facebook-comment.php"); ?>
 			<?php } else { ?>
 				<?php include_once("_/components/php/member_article_info.php"); ?>
 			<?php } ?>
