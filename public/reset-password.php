@@ -6,7 +6,7 @@ $token = $_GET['token'];
 $user = Member::find_by_token($token);
 if(!$user || !$token) {
 	// Token wasn't sent or didn't match a user.
-	redirect_to('forgot.php');
+	redirect_to('forgot');
 }
 $errors = "";
 if(isset($_POST["submit"])) {
@@ -25,9 +25,9 @@ if(isset($_POST["submit"])) {
 		$result                = $user->update();
 		if($result) {
 			$user->delete_reset_token($user->username);
-			$session->message("متشکریم! پسورد با موفقیت عوض شد. شما الآن قادر به ورود هستید.");
+			$session->message("پسورد با موفقیت عوض شد. شما الآن داخل سیستم هستید.");
 			$session->login($user);
-			redirect_to("member.php");
+			redirect_to("member");
 		} else {
 			$errors = "متاسفانه نتوانستیم پسورد بروزرسانی کنیم!";
 		}
@@ -43,7 +43,7 @@ if(isset($_POST["submit"])) {
 			<p class="text-success">پسورد باید حداقل شش حروف یا بیشتر باشد.</p>
 			<p class="text-success">پسورد باید حداقل شامل یک حرفی باشد که نه حروف و نه عدد باشد مثل: (!@£$%^&*-+)</p>
 
-			<form class="form-horizontal" action="reset_password.php?token=<?php echo urldecode($token); ?>" method="POST" accept-charset="utf-8">
+			<form class="form-horizontal" action="reset-password?token=<?php echo urldecode($token); ?>" method="POST" accept-charset="utf-8">
 				<fieldset>
 					<legend>پسورد جدید را قرار دهید
 						<span class="pull-left wow infinite flash" data-wow-duration="3s" id="confirmMessage"></span>
@@ -54,7 +54,7 @@ if(isset($_POST["submit"])) {
 						<div class="controls">
 							<div class="input-group">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-								<input onkeyup="checkPass();" class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="password" name="password" id="password" autofocus placeholder="New Password" required pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
+								<input onkeyup="checkPass();" class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" autofocus placeholder="New Password" required pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
 							</div>
 						</div>
 					</section>
@@ -64,14 +64,14 @@ if(isset($_POST["submit"])) {
 						<div class="controls">
 							<div class="input-group">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-								<input onkeyup="checkConfirmPass();" class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="password" name="password_confirm" id="confirm_pass" placeholder="Confirm New Password" required pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
+								<input onkeyup="checkConfirmPass();" class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password_confirm" id="confirm_pass" placeholder="Confirm New Password" required pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
 							</div>
 						</div>
 					</section>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit"></label>
 						<div class="controls">
-							<a href="login.php" class="btn btn-danger">لغو</a>
+							<a href="login" class="btn btn-danger">لغو</a>
 							<button class="btn btn-primary" name="submit" id="submit" type="submit">برو
 							</button>
 						</div>

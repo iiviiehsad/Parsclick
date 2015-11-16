@@ -1,7 +1,7 @@
 <?php require_once("../includes/initialize.php"); ?>
 <?php $session->confirm_logged_in(); ?>
 <?php $member = Member::find_by_id($session->id);
-if($member->status == 0) {redirect_to("freezed.php");} ?>
+if($member->status == 0) {redirect_to("freezed");} ?>
 <?php include("../includes/layouts/header.php"); ?>
 	<style type="text/css">
 		.jumbotron {
@@ -16,7 +16,7 @@ if($member->status == 0) {redirect_to("freezed.php");} ?>
 	</style>
 	<header class="clearfix">
 		<section id="branding">
-			<a href="index.php"><img src="images/misc/logo.png" alt="Logo for Parsclick"></a>
+			<a href="/"><img src="images/misc/logo.png" alt="Logo for Parsclick"></a>
 		</section>
 	</header>
 	<div class="jumbotron">

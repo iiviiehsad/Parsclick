@@ -37,7 +37,7 @@ if(isset($_POST["submit"])) {
 			<h2><i class="fa fa-user"></i> یادآوری اسم کاربری </h2>
 			<br/>
 
-			<form class="form-horizontal" action="forgot_username.php" method="POST" accept-charset="utf-8">
+			<form class="form-horizontal" action="forgot-username" method="POST" accept-charset="utf-8">
 				<fieldset>
 					<legend>ایمیل شما چیست؟</legend>
 					<section class="row">
@@ -52,7 +52,7 @@ if(isset($_POST["submit"])) {
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit"></label>
 						<div class="controls">
-							<a href="forgot.php" class="btn btn-danger">لغو</a>
+							<a href="forgot" class="btn btn-danger">لغو</a>
 							<button class="btn btn-primary" name="submit" id="submit" type="submit">فرستادن</button>
 						</div>
 					</section>

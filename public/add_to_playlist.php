@@ -5,7 +5,7 @@ $member->check_status();
 $course_id = $_POST["course"];
 if(empty($course_id)) {
 	$session->message("شناسه درس پیدا نشد!");
-	redirect_to("member_courses.php");
+	redirect_to("member-courses");
 }
 $playlist            = new Playlist();
 $playlist->id        = (int)'';

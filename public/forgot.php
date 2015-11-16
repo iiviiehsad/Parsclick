@@ -37,7 +37,7 @@ if(isset($_POST["submit"])) {
 			<h2><i class="fa fa-key"></i> بازیافت پسورد </h2>
 			<br/>
 
-			<form class="form-horizontal" action="forgot.php" method="POST" accept-charset="utf-8">
+			<form class="form-horizontal" action="forgot" method="POST" accept-charset="utf-8">
 				<fieldset>
 					<legend>اسم کاربری شما چیست؟</legend>
 					<section class="row">
@@ -54,12 +54,12 @@ if(isset($_POST["submit"])) {
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit"></label>
 						<div class="controls">
-							<a href="login.php" class="btn btn-danger">لغو</a>
+							<a href="login" class="btn btn-danger">لغو</a>
 							<button class="btn btn-primary" name="submit" id="submit" type="submit">فرستادن</button>
 						</div>
 					</section>
 					<section class="row">
-						<a href="forgot_username.php" class="col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+						<a href="forgot-username" class="col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
 							اسم کاربری یادتون نیست؟
 						</a>
 					</section>

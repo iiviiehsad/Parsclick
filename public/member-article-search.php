@@ -9,7 +9,7 @@ if(isset($_GET["q"]) && !empty($_GET["q"]) && $_GET["q"] != " ") {
 	$article_set = Article::search($_GET["q"]);
 } else { // this is a $_GET request
 	$session->message("شما چیزی جستجو نکردید.");
-	redirect_to("member_articles.php");
+	redirect_to("member-articles");
 }
 ?>
 <?php include_layout_template("header.php"); ?>
@@ -30,7 +30,7 @@ if(isset($_GET["q"]) && !empty($_GET["q"]) && $_GET["q"] != " ") {
 						<?php foreach($article_set as $article): ?>
 							<tr>
 								<td>
-									<a href="member_articles.php?subject=<?php echo urldecode($article->subject_id); ?>&article=<?php echo urldecode($article->id); ?>">
+									<a href="member-articles?subject=<?php echo urldecode($article->subject_id); ?>&article=<?php echo urldecode($article->id); ?>">
 										<?php echo htmlentities($article->name); ?>
 										&nbsp;توسط <?php echo isset($article->author_id) ? htmlentities(Author::find_by_id($article->author_id)->full_name()) : '-'; ?>
 									</a>
@@ -45,13 +45,13 @@ if(isset($_GET["q"]) && !empty($_GET["q"]) && $_GET["q"] != " ") {
 				</div>
 			<?php } else {
 				$session->message("نتیجه ای پیدا نشد. لطفا دوباره بگردید.");
-				redirect_to("member_articles.php");
+				redirect_to("member-articles");
 			} ?>
 		</article>
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>
-			<form class="form-inline" action="member_article_search.php" method="get">
+			<form class="form-inline" action="member-article-search" method="get">
 				<div class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
 					<input type="search" name="q" class="form-control" size="40" maxlength="50" placeholder="جستجوی مقالات"/>

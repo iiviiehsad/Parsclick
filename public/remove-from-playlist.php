@@ -10,7 +10,7 @@ if(isset($_GET["course"])) {
 }
 if(empty($course_id)) {
 	$session->message("شناسه درس پیدا نشد!");
-	redirect_to("member_courses.php");
+	redirect_to("member-courses");
 }
 $playlist = Playlist::find_by_id($course_id);
 $result   = $playlist->delete();

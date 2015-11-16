@@ -25,7 +25,7 @@ if(isset($_POST['submit'])) {
 	if($result) {
 		// Success
 		$session->message("شما پروفیل خود را بروز رساندید.");
-		redirect_to("member_profile.php");
+		redirect_to("member-profile");
 	} else {
 		// Failure
 		$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
@@ -111,7 +111,7 @@ if(isset($_POST['submit'])) {
 				<section class="row">
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="submit">&nbsp;</label>
 					<div class="controls">
-						<a class="btn btn-danger" href="member_profile.php">لغو</a>
+						<a class="btn btn-danger" href="member-profile">لغو</a>
 						<button class="btn btn-success" name="submit" id="submit" type="submit">فرستادن</button>
 					</div>
 				</section>
@@ -139,7 +139,7 @@ if(isset($_POST['submit'])) {
 			</small>
 		<?php } else { ?>
 			<img class="img-responsive img-thumbnail center" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($member->photo); ?>">
-			<a class="btn btn-default btn-small center" href="remove_photo.php?id=<?php echo urlencode($member->id); ?>" onclick="return confirm('آیا مطمئن به حذف عکس پروفایل خود هستید؟')">
+			<a class="btn btn-default btn-small center" href="remove-photo.php?id=<?php echo urlencode($member->id); ?>" onclick="return confirm('آیا مطمئن به حذف عکس پروفایل خود هستید؟')">
 				<span class="glyphicon glyphicon-trash"></span> حذف عکس
 			</a>
 		<?php } ?>

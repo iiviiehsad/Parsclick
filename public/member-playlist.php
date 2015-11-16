@@ -23,11 +23,11 @@ $playlist_set = Playlist::find_playlist_for_member($member->id);
 			<?php foreach($playlist_set as $playlist): ?>
 				<?php $course = Course::find_by_id($playlist->course_id); ?>
 				<li class="list-group-item">
-					<a href="member_courses.php?category=<?php echo urldecode($course->category_id); ?>&course=<?php echo urldecode($course->id); ?>">
+					<a href="member-courses?category=<?php echo urldecode($course->category_id); ?>&course=<?php echo urldecode($course->id); ?>">
 						<i class="fa fa-play-circle fa-lg"></i>&nbsp;&nbsp;&nbsp;
 						<?php echo htmlentities($course->name); ?>
 					</a>
-					<a href="remove_from_playlist.php?course=<?php echo urldecode($playlist->id); ?>" class="pull-left">
+					<a href="remove-from-playlist?course=<?php echo urldecode($playlist->id); ?>" class="pull-left">
 						<span class="glyphicon glyphicon-remove"></span>
 					</a>
 				</li>

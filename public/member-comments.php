@@ -7,7 +7,7 @@ find_selected_course(TRUE);
 $errors    = "";
 if(!$current_course) {
 	$session->message("شناسه درسی پیدا نشد!");
-	redirect_to("member_courses.php");
+	redirect_to("member-courses");
 }
 if(isset($_POST["submit"])) {
 	$member_id   = (int)$member->id;
@@ -15,7 +15,7 @@ if(isset($_POST["submit"])) {
 	$new_comment = Comment::make($member_id, $current_course->id, $body);
 	if($new_comment && $new_comment->create()) {
 		$session->message("نظر شما با موفقیت فرستاده شد.");
-		redirect_to("member_comments.php?course={$current_course->id}");
+		redirect_to("member-comments?course={$current_course->id}");
 	} else {
 		$errors = "خطا در فرستادن نظر!";
 	}
@@ -49,7 +49,7 @@ $comments    = Comment::find_by_sql($sql);
 						<span class="badge"><?php echo htmlentities($_member->first_name); ?></span>
 						<span class="badge arial"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
 						<?php if($comment->member_id === $session->id) { ?>
-							<a href="member_delete_comment.php?id=<?php echo urldecode($comment->id); ?>" class="badge">
+							<a href="member-delete-comment?id=<?php echo urldecode($comment->id); ?>" class="badge">
 								<i class="fa fa-trash-o"></i>
 							</a>
 						<?php } ?>
@@ -62,7 +62,7 @@ $comments    = Comment::find_by_sql($sql);
 					<ul class="pagination">
 						<?php if($pagination->has_previous_page()) { ?>
 							<li>
-								<a href="member_comments.php?course=<?php echo urldecode($current_course->id) ?>&page=<?php echo urldecode($pagination->previous_page()); ?>" aria-label="Previous">
+								<a href="member-comments?course=<?php echo urldecode($current_course->id) ?>&page=<?php echo urldecode($pagination->previous_page()); ?>" aria-label="Previous">
 									<span aria-hidden="true">قبلی</span>
 								</a>
 							</li>
@@ -74,13 +74,13 @@ $comments    = Comment::find_by_sql($sql);
 								</li>
 							<?php } else { ?>
 								<li>
-									<a href="member_comments.php?course=<?php echo urldecode($current_course->id); ?>&page=<?php echo urldecode($i); ?>"><?php echo $i; ?></a>
+									<a href="member-comments?course=<?php echo urldecode($current_course->id); ?>&page=<?php echo urldecode($i); ?>"><?php echo $i; ?></a>
 								</li>
 							<?php } ?>
 						<?php } ?>
 						<?php if($pagination->has_next_page()) { ?>
 							<li>
-								<a href="member_comments.php?course=<?php echo urldecode($current_course->id) ?>&page=<?php echo urldecode($pagination->next_page()); ?>" aria-label="Next">
+								<a href="member-comments?course=<?php echo urldecode($current_course->id) ?>&page=<?php echo urldecode($pagination->next_page()); ?>" aria-label="Next">
 									<span aria-hidden="true">بعدی</span>
 								</a>
 							</li>
@@ -94,7 +94,7 @@ $comments    = Comment::find_by_sql($sql);
 			<br/>
 			<fieldset>
 				<legend><i class="fa fa-comments-o"></i> فرم نظر</legend>
-				<form class="form-horizontal" action="member_comments.php?course=<?php echo urlencode($current_course->id); ?>" method="post" role="form">
+				<form class="form-horizontal" action="member-comments?course=<?php echo urlencode($current_course->id); ?>" method="post" role="form">
 					<!--content-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
@@ -111,7 +111,7 @@ $comments    = Comment::find_by_sql($sql);
 					<!--buttons-->
 					<section class="row">
 						<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-							<a class="btn btn-danger" href="member_courses.php?">لغو</a>
+							<a class="btn btn-danger" href="member-courses">لغو</a>
 							<button class="btn btn-success" name="submit" id="submit" type="submit">
 								فرستادن
 							</button>

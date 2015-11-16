@@ -1,7 +1,7 @@
 <?php require_once("../includes/initialize.php"); ?>
 <?php $session->confirm_logged_in(); ?>
 <?php $member = Member::find_by_id($session->id);
-if($member->status == 2) {redirect_to("blocked.php");}
+if($member->status == 2) {redirect_to("blocked");}
 $errors       = "";
 if(isset($_POST["resend_email"])) {
 	$member->create_reset_token($member->username);
@@ -29,7 +29,7 @@ if(isset($_POST["resend_email"])) {
 	</style>
 	<header class="clearfix">
 		<section id="branding">
-			<a href="index.php"><img src="images/misc/logo.png" alt="Logo for Parsclick"></a>
+			<a href="/"><img src="images/misc/logo.png" alt="Logo for Parsclick"></a>
 		</section>
 	</header>
 <?php echo output_message($message, $errors); ?>
@@ -41,7 +41,7 @@ if(isset($_POST["resend_email"])) {
 			<li>لینک به ایمیل شما فرستاده شده اما شما ایمیل را پیدا نکردید.</li>
 			<li>شما اسپم ایمیل خود را برای دریافت ایمیل چک نکردید.</li>
 		</ul>
-		<form action="freezed.php" method="POST">
+		<form action="freezed" method="POST">
 			<p>
 				<a class="btn btn-danger btn-large" href="logout.php" role="button">خروج</a>
 				<button type="submit" class="btn btn-success btn-large" name="resend_email" role="button">

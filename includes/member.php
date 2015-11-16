@@ -2,25 +2,26 @@
 // If it's going to need the database, then it's
 // probably smart to require it before we start.
 require_once(LIB_PATH . DS . 'database.php');
+
 class Member extends DatabaseObject {
 
 	// Really important: array and properties MUST be exactly the same name as db columns
 	protected static $table_name = "members";
 	protected static $db_fields  = array(
-		'id',
-		'username',
-		'hashed_password',
-		'first_name',
-		'last_name',
-		'gender',
-		'address',
-		'city',
-		'post_code',
-		'phone',
-		'email',
-		'photo',
-		'status',
-		'token'
+			'id',
+			'username',
+			'hashed_password',
+			'first_name',
+			'last_name',
+			'gender',
+			'address',
+			'city',
+			'post_code',
+			'phone',
+			'email',
+			'photo',
+			'status',
+			'token'
 	);
 	public           $id;
 	public           $username;
@@ -66,7 +67,7 @@ class Member extends DatabaseObject {
 		$sql .= "OR phone LIKE '%{$database->escape_value($search)}%' ";
 		$sql .= "OR email LIKE '%{$database->escape_value($search)}%' ";
 		$result_set = self::find_by_sql($sql);
-		return !empty($result_set) ? $result_set : NULL;
+		return ! empty($result_set) ? $result_set : NULL;
 	}
 
 	/**
@@ -144,9 +145,9 @@ class Member extends DatabaseObject {
 	 */
 	public function check_status() {
 		if($this->status == 0) {
-			redirect_to("freezed.php");
+			redirect_to("freezed");
 		} elseif($this->status == 2) {
-			redirect_to("blocked.php");
+			redirect_to("blocked");
 		}
 	}
 
@@ -199,7 +200,7 @@ class Member extends DatabaseObject {
 			از لینک زیر برای عوض کردن پسورد خود استفاده کنید:</h3>
 			<br /><br />
 			<p style="margin:auto;padding:5px;direction:ltr;">
-			http://{$site_root}/reset_password.php?token={$user->token}
+			http://{$site_root}/reset-password?token={$user->token}
 			</p>
 			<br /><br />
 			<h3 style="color: green;">یادآوری مهم: اگر شما این درخواست را نکردید هول نکنید, هیچ اقدامی لازم نیست انجام دهید. پسورد شما بدون کلیک کردن به لینک بالا قابل تغییر نخواهد بود.</h3>
@@ -295,7 +296,7 @@ EMAILBODY;
 				<br/><br/>
 				<h3>عضویت شما ساخته شد و قبل از اینکه از سیستم استفاده کنید از لینک زیر برای تایید کردن ایمیل خود استفاده کنید:<br/><br/>
 				<p style="direction:ltr;margin:auto;padding:5px;">
-					http://{$site_root}/confirm_email.php?token={$user->token}
+					http://{$site_root}/confirm-email?token={$user->token}
 				</p>
 				</h3>
 				<p>خوب یک خوش آمد و استقبال گرم را از طرف بچه های پارس کلیک بپذیرید و ممنونیم که ما را انتخاب کردید.<br />

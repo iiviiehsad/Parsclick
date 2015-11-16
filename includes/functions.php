@@ -300,7 +300,7 @@ function member_articles($subject_array, $article_array) {
 	foreach($subject_set as $subject) {
 		$output .= "<li class='list-group-item'>";
 		$output .= "<span class='badge'>" . Article::count_articles_for_subject($subject->id, TRUE) . "</span>";
-		$output .= "<a href='member_articles.php?subject=";
+		$output .= "<a href='member-articles?subject=";
 		$output .= urlencode($subject->id) . "'";
 		if($subject_array && $subject->id == $subject_array->id) {
 			$output .= " style='font-size:25px;' ";
@@ -309,7 +309,7 @@ function member_articles($subject_array, $article_array) {
 		if(!empty($subject->name)) {
 			$output .= htmlentities(ucwords($subject->name));
 		} else {
-			$output .= htmlentities("(no subject title)");
+			$output .= htmlentities("(موضوع اسم ندارد!)");
 		}
 		$output .= "</a>";
 		if($subject_array && $article_array) {
@@ -318,7 +318,7 @@ function member_articles($subject_array, $article_array) {
 				$output .= "<ul>";
 				foreach($article_set as $article) {
 					$output .= "<li>";
-					$output .= "<a href='member_articles.php?subject=";
+					$output .= "<a href='member-articles?subject=";
 					$output .= urlencode($subject->id) . "&article=";
 					$output .= urlencode($article->id) . "'";
 					if($article_array && $article->id == $article_array->id) {
@@ -328,7 +328,7 @@ function member_articles($subject_array, $article_array) {
 					if(!empty($article->name)) {
 						$output .= htmlentities(ucwords($article->name));
 					} else {
-						$output .= htmlentities("(no article title)");
+						$output .= htmlentities("(مقاله اسم ندارد!)");
 					}
 					$output .= "</a></li>";
 				}
@@ -482,7 +482,7 @@ function member_courses($category_array, $course_array) {
 	foreach($category_set as $category) {
 		$output .= "<li class='list-group-item'>";
 		$output .= "<span class='badge'>" . Course::count_courses_for_category($category->id, TRUE) . "</span>";
-		$output .= "<a href='member_courses.php?category=";
+		$output .= "<a href='member-courses?category=";
 		$output .= urlencode($category->id) . "'";
 		if($category_array && $category->id == $category_array->id) {
 			$output .= " style='font-size:25px;' ";
@@ -491,7 +491,7 @@ function member_courses($category_array, $course_array) {
 		if(!empty($category->name)) {
 			$output .= htmlentities(ucwords($category->name));
 		} else {
-			$output .= htmlentities("(no category title)");
+			$output .= htmlentities("(موضوع اسم ندارد!)");
 		}
 		$output .= "</a>";
 		if($category_array && $course_array) {
@@ -500,7 +500,7 @@ function member_courses($category_array, $course_array) {
 				$output .= "<ul>";
 				foreach($course_set as $course) {
 					$output .= "<li>";
-					$output .= "<a href='member_courses.php?category=";
+					$output .= "<a href='member-courses?category=";
 					$output .= urlencode($category->id) . "&course=";
 					$output .= urlencode($course->id) . "'";
 					if($course_array && $course->id == $course_array->id) {
@@ -510,7 +510,7 @@ function member_courses($category_array, $course_array) {
 					if(!empty($course->name)) {
 						$output .= htmlentities(ucwords($course->name));
 					} else {
-						$output .= htmlentities("(no article title)");
+						$output .= htmlentities("(درس اسم ندارد!)");
 					}
 					$output .= "</a></li>";
 				}
@@ -644,18 +644,20 @@ function active() {
 		echo "<script>$(\"a:contains('سوالات شما')\").parent().addClass('active');</script>";
 	} elseif($filename == "help.php") {
 		echo "<script>$(\"a:contains('کمک به ما')\").parent().addClass('active');</script>";
-	} elseif(($filename == "login.php") || ($filename == "register.php") || ($filename == "forgot.php") || ($filename == "reset_password.php") || ($filename == "forgot_username.php")
+	} elseif(($filename == "login.php") || ($filename == "register.php") || ($filename == "forgot.php") ||
+	         ($filename == "reset-password.php") || ($filename == "forgot-username.php")
 	) {
 		echo "<script>$(\"a:contains('ورود')\").parent().addClass('active');</script>";
 	} elseif(($filename == "admin_courses.php") || ($filename == "admin_articles.php") || ($filename == "new_subject.php") || ($filename == "author_articles.php") || ($filename == "author_courses.php") || ($filename == "new_courses.php") || ($filename == "edit_courses.php") || ($filename == "new_article.php") || ($filename == "edit_article.php") || ($filename == "author_edit_article.php") || ($filename == "new_course.php") || ($filename == "author_edit_course.php") || ($filename == "author_add_video.php") || ($filename == "author_edit_video_description.php") || ($filename == "edit_video_description.php") || ($filename == "admin_comments.php") || ($filename == "edit_course.php")
 	) {
 		echo "<script>$(\"a:contains('محتوی')\").parent().addClass('active');</script>";
-	} elseif(($filename == "member_profile.php") || ($filename == "member_edit_profile.php") || ($filename == "author_profile.php") || ($filename == "author_edit_profile.php")
+	} elseif(($filename == "member-profile.php") || ($filename == "member-edit-profile.php") ||
+	         ($filename == "author_profile.php") || ($filename == "author_edit_profile.php")
 	) {
 		echo "<script>$(\"a:contains('حساب کاربری')\").parent().addClass('active');</script>";
-	} elseif(($filename == "member_courses.php") || ($filename == "member_articles.php")) {
+	} elseif(($filename == "member-courses.php") || ($filename == "member-articles.php")) {
 		echo "<script>$(\"a:contains('محتوی')\").parent().addClass('active');</script>";
-	} elseif($filename == "member_playlist.php") {
+	} elseif($filename == "member-playlist.php") {
 		echo "<script>$(\"a:contains('لیست پخش')\").parent().addClass('active');</script>";
 	} elseif(($filename == "member_list.php") || ($filename == "edit_member.php") || ($filename == "new_member.php")) {
 		echo "<script>$(\"a:contains('لیست اعضا')\").parent().addClass('active');</script>";

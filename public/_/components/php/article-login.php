@@ -39,8 +39,8 @@
 			</section>
 			<!-- row -->
 			<section class="row">
-				<a href="forgot.php" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-4">پسورد یادتون نیست؟</a><br/>
-				<a href="register.php" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-4">ثبت نام</a>
+				<a href="forgot" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-4">پسورد یادتون نیست؟</a><br/>
+				<a href="register" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-4">ثبت نام</a>
 			</section>
 			<!--row-->
 		</fieldset>

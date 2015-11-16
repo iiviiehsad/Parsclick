@@ -1,7 +1,7 @@
 <?php require_once("../includes/initialize.php"); ?>
 <?php if($session->is_logged_in()) {
 	$session->message("شما داخل سایت شدید. به منظور ثبت نام لطفا خارج شوید،");
-	redirect_to("member.php");
+	redirect_to("member");
 } ?>
 <?php $filename = basename(__FILE__); ?>
 <?php $errors = "";
@@ -39,7 +39,7 @@ if($_POST) {
 		if($result) {
 			$session->message("با تشکر! ثبت نام موفقیت آمیز بود خیلی مهم هست که آدرس ایمیل خودتون رو درست وارد کرده باشید و این آدرس بروز باشه. اگر این آدرس درست نیست, شما قادر به فعال کردن عضویت خود نخواهید بود. در ایمیل خود دنبال ایمیل پارس کلیک بگردید و اگر پیدا نکردید داخل اسپم ایمیل ها را چک کنید. روی لینک کلیک کنید تا عضویت شما فعال شود.");
 			$member->email_confirmation_details($member->username);
-			redirect_to("login.php");
+			redirect_to("login");
 		} else {
 			$errors = "ثبت نام موفق نبود. اشتباهی مانع از انجام ثبت نام شما شد!";
 		}

@@ -26,13 +26,13 @@ if(isset($current_course->author_id)) {
 						echo $author->full_name();
 					} ?>
 				</h4>
-				<a class="btn btn-primary pull-right" href="member_comments.php?course=<?php echo urldecode($current_course->id); ?>"><i class="fa fa-comments fa-lg"></i>
+				<a class="btn btn-primary pull-right" href="member-comments?course=<?php echo urldecode($current_course->id); ?>"><i class="fa fa-comments fa-lg"></i>
 					نظرات <?php echo "<span class='badge'>" . Comment::count_comments_for_course($current_course->id) . "</span>"; ?>
 				</a>
 				&nbsp;
 				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php if(!Playlist::num_courses_for_playlist($current_course->id)) { ?>
-					<form action="add_to_playlist.php" method="POST" class="addtoplaylist">
+					<form action="add-to-playlist" method="POST" class="addtoplaylist">
 						<input type="hidden" name="course" value="<?php echo $current_course->id; ?>">
 						<button id="btn" type="submit" class="btn btn-info">
 							<i class="fa fa-plus-circle"></i> اضافه به لیست پخش
@@ -41,7 +41,7 @@ if(isset($current_course->author_id)) {
 				<?php } else { ?>
 					<?php $playlist_set = Playlist::find_playlist_for_course($current_course->id); ?>
 					&nbsp;
-					<form action="remove_from_playlist.php" method="POST" class="removefromplaylist">
+					<form action="remove-from-playlist" method="POST" class="removefromplaylist">
 						<input type="hidden" name="course" value="<?php echo array_shift($playlist_set)->id; ?>">
 						<button id="btn" type="submit" class="btn btn-danger">
 							<i class="fa fa-minus-circle"></i> حذف از لیست پخش
@@ -146,7 +146,7 @@ if(isset($current_course->author_id)) {
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>
-			<form class="form-inline" action="member_course_search.php" method="GET">
+			<form class="form-inline" action="member-course-search" method="GET">
 				<div class="input-group">
 					<span class="input-group-addon"><span class="edit glyphicon glyphicon-search"></span></span>
 					<input type="search" name="q" class="form-control" size="30" maxlength="50" placeholder="جستجوی درس"/>

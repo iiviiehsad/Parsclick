@@ -1,6 +1,6 @@
 <?php require_once("../includes/initialize.php");
 if($session->is_logged_in()) {
-	redirect_to("member.php");
+	redirect_to("member");
 }
 $filename = basename(__FILE__);
 $title = "پارس کلیک - ورود به سایت";
@@ -12,7 +12,7 @@ if(isset($_POST["submit"])) { // if form submitted
 		$found_user = Member::authenticate($username, $password);
 		if($found_user) {
 			$session->login($found_user);
-			redirect_to("member.php");
+			redirect_to("member");
 		} else {
 			$errors = "اسم کاربری یا پسورد درست نیست!";
 		}

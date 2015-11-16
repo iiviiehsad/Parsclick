@@ -110,7 +110,7 @@ if(isset($_POST['submit'])) {
 		<?php } else { ?>
 			<img class="img-responsive img-thumbnail" height="200" width="200" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 			<br/>
-			<a class="btn btn-default btn-small" href="remove_photo.php?id=<?php echo urlencode($author->id); ?>" onclick="return confirm('آیا مطمئن به حذف کردن عکس پروفایل خود هستید؟')">
+			<a class="btn btn-default btn-small" href="remove-photo?id=<?php echo urlencode($author->id); ?>" onclick="return confirm('آیا مطمئن به حذف کردن عکس پروفایل خود هستید؟')">
 				حذف عکس پروفایل
 			</a>
 		<?php } ?>
