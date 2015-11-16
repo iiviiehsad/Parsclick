@@ -1,6 +1,67 @@
 <?php
 
 /**
+ * @param $class_name String will get the class name for each PHP class and finds the file name associate to it
+ */
+function __autoload($class_name) {
+	$class_name = strtolower($class_name);
+	$path       = LIB_PATH . DS . $class_name . "php";
+	if(file_exists($path)) {
+		require_once($path);
+	} else {
+		die("The file {$class_name}.php could not be found!");
+	}
+}
+
+/**
+ * @param null $location is by default NULL which will redirect the article to a particular location
+ */
+function redirect_to($location = NULL) {
+	if($location != NULL) {
+		header("Location: " . $location);
+		exit;
+	}
+}
+
+/**
+ * @param string $message string shows the messages
+ * @param string $errors  string shows the errors
+ * @return string
+ */
+function output_message($message = "", $errors = "") {
+	if(! empty($message)) {
+		$output = "<div class='alert alert-success alert-dismissible' role='alert'>";
+		$output .= "<button type='button' class='close' data-dismiss='alert'>";
+		$output .= "<span aria-hidden='true'>&times;</span>";
+		$output .= "<span class='sr-only'></span>";
+		$output .= "</button>";
+		$output .= "<i class='fa fa-check-circle-o fa-fw fa-lg'></i> ";
+		$output .= "<strong>" . htmlentities($message) . "</strong>";
+		$output .= "</div>";
+		return $output;
+	} elseif(! empty($errors)) {
+		$output = "<div class='animated flash alert alert-danger alert-dismissible' role='alert'>";
+		$output .= "<button type='button' class='close' data-dismiss='alert'>";
+		$output .= "<span aria-hidden='true'>&times;</span>";
+		$output .= "<span class='sr-only'></span>";
+		$output .= "</button>";
+		$output .= "<i class='fa fa-times-circle-o fa-fw fa-lg'></i> ";
+		$output .= "<strong>" . htmlentities($errors) . "</strong>";
+		$output .= "</div>";
+		return $output;
+	} else {
+		return "";
+	}
+}
+
+/**
+ * @param string $template will replace the associate layout for footer or header inside includes folder
+ */
+function include_layout_template($template = "") {
+	include(LIB_PATH . DS . 'layouts' . DS . $template);
+}
+
+/**
  * validate value has presence
  * @param $value        string uses trim() so empty spaces don't count
  *                      use === to avoid false positives
@@ -94,67 +155,6 @@ function strip_zeros_from_date($marked_string = "") {
 	$no_zeros       = str_replace('*0', '', $marked_string);
 	$cleaned_string = str_replace('*', '', $no_zeros);
 	return $cleaned_string;
-}
-
-/**
- * @param null $location is by default NULL which will redirect the article to a particular location
- */
-function redirect_to($location = NULL) {
-	if($location != NULL) {
-		header("Location: " . $location);
-		exit;
-	}
-}
-
-/**
- * @param string $message string shows the messages
- * @param string $errors  string shows the errors
- * @return string
- */
-function output_message($message = "", $errors = "") {
-	if(!empty($message)) {
-		$output = "<div class='animated flash alert alert-success alert-dismissible' role='alert'>";
-		$output .= "<button type='button' class='close' data-dismiss='alert'>";
-		$output .= "<span aria-hidden='true'>&times;</span>";
-		$output .= "<span class='sr-only'></span>";
-		$output .= "</button>";
-		$output .= "<i class='fa fa-check-circle-o fa-fw fa-lg'></i> ";
-		$output .= "<strong>" . htmlentities($message) . "</strong>";
-		$output .= "</div>";
-		return $output;
-	} elseif(!empty($errors)) {
-		$output = "<div class='animated flash alert alert-danger alert-dismissible' role='alert'>";
-		$output .= "<button type='button' class='close' data-dismiss='alert'>";
-		$output .= "<span aria-hidden='true'>&times;</span>";
-		$output .= "<span class='sr-only'></span>";
-		$output .= "</button>";
-		$output .= "<i class='fa fa-times-circle-o fa-fw fa-lg'></i> ";
-		$output .= "<strong>" . htmlentities($errors) . "</strong>";
-		$output .= "</div>";
-		return $output;
-	} else {
-		return "";
-	}
-}
-
-/**
- * @param $class_name String will get the class name for each PHP class and finds the file name associate to it
- */
-function __autoload($class_name) {
-	$class_name = strtolower($class_name);
-	$path       = LIB_PATH . DS . $class_name . "php";
-	if(file_exists($path)) {
-		require_once($path);
-	} else {
-		die("The file {$class_name}.php could not be found!");
-	}
-}
-
-/**
- * @param string $template will replace the associate layout for footer or header inside includes folder
- */
-function include_layout_template($template = "") {
-	include(LIB_PATH . DS . 'layouts' . DS . $template);
 }
 
 /**
@@ -543,7 +543,9 @@ function public_courses() {
 		$output .= "<ul>";
 		foreach($course_set as $course) {
 			$output .= "<li>";
-			$output .= "<a href='login.php'>";
+			$output .= "<a target='_blank' data-toggle='tooltip' data-placement='left' title='برو به یوتیوب' href='https://www.youtube.com/playlist?list=";
+			$output .= $course->youtubePlaylist;
+			$output .= "'>";
 			if(!empty($course->name)) {
 				$output .= htmlentities(ucwords($course->name));
 			} else {
