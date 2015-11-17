@@ -61,6 +61,53 @@ function include_layout_template($template = "") {
 }
 
 /**
+ * @param string $marked_string is the marked string and the date you need to pas in which first removes the marked
+ *                              zeros, then removes any remaining marks.
+ * @return mixed the clean date output
+ */
+function strip_zeros_from_date($marked_string = "") {
+	$no_zeros       = str_replace('*0', '', $marked_string);
+	$cleaned_string = str_replace('*', '', $no_zeros);
+	return $cleaned_string;
+}
+
+/**
+ * @param string $datetime will get the date and time as a simple text
+ * @return string ready format to insert into MySQL
+ */
+function datetime_to_text($datetime = "") {
+	$unixdatetime = strtotime($datetime);
+	return strftime("%B %d, %Y at %I:%M %p", $unixdatetime);
+}
+
+/**
+ * @param $size integer parameter getting the size as bytes
+ * @return string format for size
+ */
+function check_size($size) {
+	if($size > 1024000) {
+		return round($size / 1024000) . " MB";
+	} elseif($size > 1024) {
+		return round($size / 1024) . " KB";
+	} else {
+		return $size . " bytes";
+	}
+}
+
+/**
+ * @param        $string string text to truncate
+ * @param        $length integer length to truncate from the string
+ * @param string $dots   string default (...) to show immediately after the string
+ * @return string from 0 character to length and ... after it
+ */
+function truncate($string, $length, $dots = " (برای ادامه کلیک کنید ...) ") {
+	return (strlen($string) > $length) ? substr($string, 0, $length - strlen($dots)) . $dots : $string;
+}
+
+/******************************************************************************************************/
+/*                                    SECURITY FUNCTIONS                                              */
+/******************************************************************************************************/
+/**
  * @return bool TRUE if request is GET and FALSE otherwise
  */
 function request_is_get() {
@@ -160,24 +207,22 @@ function has_exclusion_from($value, $set = []) {
 }
 
 /**
- * @param string $marked_string is the marked string and the date you need to pas in which first removes the marked
- *                              zeros, then removes any remaining marks.
- * @return mixed the clean date output
+ * This function will simply check if the parameters given are identical or not
+ * @param $id         integer to compare
+ * @param $session_id integer to compare
+ * @return bool return TRUE if two values are identical
  */
-function strip_zeros_from_date($marked_string = "") {
-	$no_zeros       = str_replace('*0', '', $marked_string);
-	$cleaned_string = str_replace('*', '', $no_zeros);
-	return $cleaned_string;
+function check_ownership($id, $session_id) {
+	if($id === $session_id) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
 }
 
-/**
- * @param string $datetime will get the date and time as a simple text
- * @return string ready format to insert into MySQL
- */
-function datetime_to_text($datetime = "") {
-	$unixdatetime = strtotime($datetime);
-	return strftime("%B %d, %Y at %I:%M %p", $unixdatetime);
-}
+/******************************************************************************************************/
+/*                                       MEMBER'S FUNCTIONS                                           */
+/******************************************************************************************************/
 
 /**
  * @param        $action  string represents the login or logout action for each user
@@ -197,60 +242,6 @@ function log_action($action, $message = "") {
 	} else {
 		echo "Could not open log file for writing";
 	}
-}
-
-/**
- * @param $salt string gets the salt to add to the @param $string
- * @param $string $string string gets the text
- * @return string encrypts the string
- */
-function encrypt_string($salt, $string) {
-	// Configuration (must match decryption)
-	$cipher_type = MCRYPT_RIJNDAEL_256;
-	$cipher_mode = MCRYPT_MODE_CBC;
-	// Using initialization vector adds more security
-	$iv_size = mcrypt_get_iv_size($cipher_type, $cipher_mode);
-	$iv      = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-	$encrypted_string = mcrypt_encrypt($cipher_type, $salt, $string, $cipher_mode, $iv);
-	// Return initialization vector + encrypted string
-	// We'll need the $iv when decoding.
-	return $iv . $encrypted_string;
-}
-
-/**
- * @param $salt string gets the salt to add to the @param $string
- * @param $iv_with_string string initialization vector
- * @return string decrypts the string
- */
-function decrypt_string($salt, $iv_with_string) {
-	// Configuration (must match encryption)
-	$cipher_type = MCRYPT_RIJNDAEL_256;
-	$cipher_mode = MCRYPT_MODE_CBC;
-	// Extract the initialization vector from the encrypted string.
-	// The $iv comes before encrypted string and has fixed size.
-	$iv_size          = mcrypt_get_iv_size($cipher_type, $cipher_mode);
-	$iv               = substr($iv_with_string, 0, $iv_size);
-	$encrypted_string = substr($iv_with_string, $iv_size);
-	$string = mcrypt_decrypt($cipher_type, $salt, $encrypted_string, $cipher_mode, $iv);
-	return $string;
-}
-
-/**
- * @param $salt string gets the salt to add to the @param $string
- * @param $string string gets the text
- * @return string encode after encryption to ensure encrypted characters are savable
- */
-function encrypt_string_and_encode($salt, $string) {
-	return base64_encode(encrypt_string($salt, $string));
-}
-
-/**
- * @param $salt string gets the salt to add it to the @param $string
- * @param $string string gets the text
- * @return string and decodes before decryption
- */
-function decrypt_string_and_decode($salt, $string) {
-	return decrypt_string($salt, base64_decode($string));
 }
 
 /**
@@ -678,44 +669,6 @@ function find_selected_course($public = FALSE) {
 }
 
 /**
- * This function will simply check if the parameters given are identical or not
- * @param $id         integer to compare
- * @param $session_id integer to compare
- * @return bool return TRUE if two values are identical
- */
-function check_ownership($id, $session_id) {
-	if($id === $session_id) {
-		return TRUE;
-	} else {
-		return FALSE;
-	}
-}
-
-/**
- * @param $size integer parameter getting the size as bytes
- * @return string format for size
- */
-function check_size($size) {
-	if($size > 1024000) {
-		return round($size / 1024000) . " MB";
-	} elseif($size > 1024) {
-		return round($size / 1024) . " KB";
-	} else {
-		return $size . " bytes";
-	}
-}
-
-/**
- * @param        $string string text to truncate
- * @param        $length integer length to truncate from the string
- * @param string $dots   string default (...) to show immediately after the string
- * @return string from 0 character to length and ... after it
- */
-function truncate($string, $length, $dots = " (برای ادامه کلیک کنید ...) ") {
-	return (strlen($string) > $length) ? substr($string, 0, $length - strlen($dots)) . $dots : $string;
-}
-
-/**
  * This function adds the active class by jQuery for the navbar by checking the file name.
  * There is <?php $filename = basename(__FILE__); ?> on top of every PHP file which finds the file name and based on
  * that name jQuery adds the active class for the particular menu.
@@ -766,5 +719,96 @@ function active() {
 		echo "<script>$(\"a:contains('لیست کارکنان')\").parent().addClass('active');</script>";
 	} elseif(($filename == "contact.php")) {
 		echo "<script>$(\"a:contains('تماس با ما')\").parent().addClass('active');</script>";
+	}
+}
+
+/******************************************************************************************************/
+/*                                       COOKIE FUNCTIONS                                             */
+/******************************************************************************************************/
+
+/**
+ * @param $salt   string gets the salt to add to the @param $string
+ * @param $string $string string gets the text
+ * @return string encrypts the string
+ */
+function encrypt_string($salt, $string) {
+	// Configuration (must match decryption)
+	$cipher_type = MCRYPT_RIJNDAEL_256;
+	$cipher_mode = MCRYPT_MODE_CBC;
+	// Using initialization vector adds more security
+	$iv_size          = mcrypt_get_iv_size($cipher_type, $cipher_mode);
+	$iv               = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+	$encrypted_string = mcrypt_encrypt($cipher_type, $salt, $string, $cipher_mode, $iv);
+	// Return initialization vector + encrypted string
+	// We'll need the $iv when decoding.
+	return $iv . $encrypted_string;
+}
+
+/**
+ * @param $salt           string gets the salt to add to the @param $string
+ * @param $iv_with_string string initialization vector
+ * @return string decrypts the string
+ */
+function decrypt_string($salt, $iv_with_string) {
+	// Configuration (must match encryption)
+	$cipher_type = MCRYPT_RIJNDAEL_256;
+	$cipher_mode = MCRYPT_MODE_CBC;
+	// Extract the initialization vector from the encrypted string.
+	// The $iv comes before encrypted string and has fixed size.
+	$iv_size          = mcrypt_get_iv_size($cipher_type, $cipher_mode);
+	$iv               = substr($iv_with_string, 0, $iv_size);
+	$encrypted_string = substr($iv_with_string, $iv_size);
+	$string           = mcrypt_decrypt($cipher_type, $salt, $encrypted_string, $cipher_mode, $iv);
+	return $string;
+}
+
+/**
+ * @param $salt   string gets the salt to add to the @param $string
+ * @param $string string gets the text
+ * @return string encode after encryption to ensure encrypted characters are savable
+ */
+function encrypt_string_and_encode($salt, $string) {
+	return base64_encode(encrypt_string($salt, $string));
+}
+
+/**
+ * @param $salt   string gets the salt to add it to the @param $string
+ * @param $string string gets the text
+ * @return string and decodes before decryption
+ */
+function decrypt_string_and_decode($salt, $string) {
+	return decrypt_string($salt, base64_decode($string));
+}
+
+/**
+ * @param $string string gets the cookie or any text
+ * @return string signs cookie or any string by applying hashing algorithm and salting
+ */
+function sign_string($string) {
+	// Using $salt makes it hard to guess how $checksum is generated
+	// Caution: changing salt will invalidate all signed strings
+	$salt     = "Simple salt";
+	$checksum = sha1($string . $salt); // Any hash algorithm would work
+	// return the string with the checksum at the end
+	return $string . '--' . $checksum;
+}
+
+/**
+ * @param $signed_string string gets the cookie or any signed string signed by @function sign_string
+ * @return bool TRUE if new signed string equals to the signed string and FALSE if otherwise
+ */
+function signed_string_is_valid($signed_string) {
+	$array = explode('--', $signed_string);
+	if(count($array) != 2) {
+		// string is malformed or not signed
+		return FALSE;
+	}
+	// Sign the string portion again. Should create same
+	// checksum and therefore the same signed string.
+	$new_signed_string = sign_string($array[0]);
+	if($new_signed_string == $signed_string) {
+		return TRUE;
+	} else {
+		return FALSE;
 	}
 }
