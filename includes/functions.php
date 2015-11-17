@@ -61,6 +61,20 @@ function include_layout_template($template = "") {
 }
 
 /**
+ * @return bool TRUE if request is GET and FALSE otherwise
+ */
+function request_is_get() {
+	return $_SERVER['REQUEST_METHOD'] === 'GET';
+}
+
+/**
+ * @return bool TRUE if request is POST and FALSE otherwise
+ */
+function request_is_post() {
+	return $_SERVER['REQUEST_METHOD'] === 'POST';
+}
+
+/**
  * validate value has presence
  * @param $value        string uses trim() so empty spaces don't count
  *                      use === to avoid false positives
@@ -257,8 +271,9 @@ function author_articles($subject_array, $article_array) {
 		$output .= "<div class='lead'>";
 		$output .= "<a href='author_articles.php?subject=";
 		$output .= urlencode($subject->id) . "'";
-		if($subject_array && $subject->id == $subject_array->id)
+		if($subject_array && $subject->id == $subject_array->id) {
 			$output .= " class='selected'";
+		}
 		$output .= ">";
 		if(!empty($subject->name)) {
 			$output .= htmlentities(ucwords($subject->name));
@@ -274,8 +289,9 @@ function author_articles($subject_array, $article_array) {
 			$output .= "<a href='author_articles.php?subject=";
 			$output .= urlencode($subject->id) . "&article=";
 			$output .= $article->id . "'";
-			if($article_array && $article->id == $article_array->id)
+			if($article_array && $article->id == $article_array->id) {
 				$output .= " class='selected'";
+			}
 			$output .= ">";
 			if(!empty($article->name)) {
 				$output .= htmlentities(ucwords($article->name));
@@ -449,8 +465,9 @@ function author_courses($category_array, $course_array) {
 		$output .= "<div class='lead'>";
 		$output .= "<a href='author_courses.php?category=";
 		$output .= urlencode($category->id) . "'";
-		if($category_array && $category->id == $category_array->id)
+		if($category_array && $category->id == $category_array->id) {
 			$output .= " class='selected'";
+		}
 		$output .= ">";
 		if(!empty($category->name)) {
 			$output .= htmlentities(ucwords($category->name));
@@ -466,8 +483,9 @@ function author_courses($category_array, $course_array) {
 			$output .= "<a href='author_courses.php?category=";
 			$output .= urlencode($category->id) . "&course=";
 			$output .= $course->id . "'";
-			if($course_array && $course->id == $course_array->id)
+			if($course_array && $course->id == $course_array->id) {
 				$output .= " class='selected'";
+			}
 			$output .= ">";
 			if(!empty($course->name)) {
 				$output .= htmlentities(ucwords($course->name));
