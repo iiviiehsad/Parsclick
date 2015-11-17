@@ -5,7 +5,7 @@
 	   بتوانید از ویدیو ها و مقالات استفاده کنید. اگر پسورد یا اسم کاربری فراموشتان شده روی لینک مورد نظر کلیک کنید تا
 	   با استفاده از ایمیل شما اسم کاربری یا پسورد شما از نو باز نشانده شود.</p>
 
-	<form class="login form-horizontal" action="login.php" method="post">
+	<form class="login form-horizontal" action="login" method="post">
 		<fieldset id="login">
 			<legend><i class="fa fa-unlock-alt fa-lg"></i> ورود به سیستم</legend>
 			<section class="row">

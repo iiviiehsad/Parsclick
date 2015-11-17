@@ -111,7 +111,7 @@
 		<section class="row">
 			<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="submit"></label>
 			<div class="controls">
-				<a href="login.php" class="btn btn-danger">لغو کردن</a>
+				<a href="login" class="btn btn-danger">لغو کردن</a>
 				<button class="btn btn-primary" name="submit" type="submit">ثبت نام</button>
 			</div><!-- controls -->
 		</section><!-- row -->

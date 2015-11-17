@@ -18,7 +18,9 @@ if(isset($_POST['submit'])) {
 	$member->post_code  = trim($_POST["post_code"]);
 	$member->phone      = trim($_POST["phone"]);
 	$member->email      = trim($_POST["email"]);
-	if(isset($_FILES["photo"]["tmp_name"]) && ($_FILES["photo"]["tmp_name"]) !== NULL && !empty($_FILES["photo"]["tmp_name"])) {
+	if(isset($_FILES["photo"]["tmp_name"]) && ($_FILES["photo"]["tmp_name"]) !== NULL &&
+	   !empty($_FILES["photo"]["tmp_name"])
+	) {
 		$member->photo = file_get_contents($_FILES["photo"]["tmp_name"]);
 	}
 	$result = $member->save();
@@ -49,13 +51,13 @@ if(isset($_POST['submit'])) {
 				<section class="row">
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="username"> اسم کاربری &nbsp;</label>
 					<div class="controls">
-						<input class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="username" id="username" placeholder="Username" required value="<?php echo htmlentities($member->username); ?>"/>
+						<input onblur="checkUser();" onkeyup="checkUser();" class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" placeholder="Username (حروف انگلیسی)" required value="<?php echo htmlentities($member->username); ?>"/>
 					</div>
 				</section>
 				<section class="row">
-					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="password"> پسورد &nbsp;</label>
+					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="password"> پسورد جدید&nbsp;</label>
 					<div class="controls">
-						<input onblur="checkPass();" onkeyup="checkPass();" class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8" type="password" name="password" id="password" placeholder="New password" value="" pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
+						<input onblur="checkPass();" onkeyup="checkPass();" class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="New password" value="" pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
 					</div>
 				</section>
 				<section class="row">
@@ -101,7 +103,8 @@ if(isset($_POST['submit'])) {
 					</div>
 				</section>
 				<section class="row">
-					<label style="cursor:pointer;" class="col-sm-4 col-md-4 col-lg-4 control-label" for="photo"> عکس پروفایل &nbsp;</label>
+					<label style="cursor:pointer;" class="col-sm-4 col-md-4 col-lg-4 control-label" for="photo"> عکس پروفایل
+					                                                                                             &nbsp;</label>
 					<div class="controls">
 						<input type="hidden" name="MAX_FILE_SIZE" value="100000">
 						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="file" name="photo" id="photo"
@@ -125,30 +128,33 @@ if(isset($_POST['submit'])) {
 		<?php if(empty($member->photo)) { ?>
 			<span class="glyphicon glyphicon-user center" style="font-size: 150px; margin: 0; padding: 0;"></span>
 			<span class="text-muted center">عکس موجود نیست</span>
-			<hr/>
-			<small class="text-muted center">
-				برای آپلود کردن عکس در پروفال به آخر این صفحه روید و روی دگمه ی مورد نظر کلیک کنید و عکسی مربع داخل
-				کامپیوتر خود انتخاب کنید که بیشتر ار ۱۰۰ کیلو بایت نباشد. آپلود عکس برای پروفایل خود ضروری نیست امـــا
-				باعث این خواهد شد که مدیران سایت شما را به چهره بشناسند.
-			</small>
-			<hr/>
-			<small class="text-muted center">
-				لطفا ایمیل خود را بروز نگه دارید چرا که تمامی اطلاعات، خبرنامه، بازیافت پسورد یا اسم کاربری و شناسه
-				کاربری و پرداختی شما همه به ایمیلی که وارد کردید رابطه دارند. مسئولیت اشتباه وارد کردن ایمیل به عهده
-				خودتان است
-			</small>
+			<h2><i class="fa fa-info-circle"></i> اطلاعات</h2>
+			<div class="well center">
+				<small>
+					اگر مایل به تغییر پسورد نیستید، لطفا پسورد را خالی بگذارید اما اگر مایل به تغییر پسورد قبلی به پسورد جدید
+					هستید، لطفا پسورد جدید خود را داخل قسمت پسورد وارد نمایید تا پسورد عوض شود.
+				</small>
+			</div>
+			<div class="well center">
+				<small>
+					برای آپلود کردن عکس، روی عکس پروفایل کلیک کنید و عکسی مربع داخل کامپیوتر خود انتخاب کنید که بیشتر ار ۱۰۰
+					کیلو بایت نباشد. آپلود عکس برای پروفایل خود ضروری نیست امـــا باعث این خواهد شد که مدیران سایت شما را به
+					چهره بشناسند.
+				</small>
+			</div>
+			<div class="well center">
+				<small>
+					لطفا ایمیل خود را بروز نگه دارید چرا که تمامی اطلاعات، خبرنامه، بازیافت پسورد یا اسم کاربری و شناسه
+					کاربری و پرداختی شما همه به ایمیلی که وارد کردید رابطه دارند. مسئولیت اشتباه وارد کردن ایمیل به عهده
+					خودتان است
+				</small>
+			</div>
 		<?php } else { ?>
 			<img class="img-responsive img-thumbnail center" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($member->photo); ?>">
-			<a class="btn btn-default btn-small center" href="remove-photo.php?id=<?php echo urlencode($member->id); ?>" onclick="return confirm('آیا مطمئن به حذف عکس پروفایل خود هستید؟')">
+			<a class="btn btn-default btn-small center" href="remove-photo" onclick="return confirm('آیا مطمئن به حذف عکس پروفایل خود هستید؟')">
 				<span class="glyphicon glyphicon-trash"></span> حذف عکس
 			</a>
 		<?php } ?>
-		<hr/>
-		توضیحی در مورد پسورد: <br/>
-		<small class="text-muted">
-			اگر مایل به تغییر پسورد نیستید، لطفا پسورد را خالی بگذارید اما اگر مایل به تغییر پسورد قبلی به پسورد جدید
-			هستید، لطفا پسورد جدید خود را داخل قسمت پسورد وارد نمایید تا پسورد عوض شود.
-		</small>
 	</aside>
 </section>
 <?php include_layout_template("footer.php"); ?>

@@ -20,20 +20,20 @@ ErrorDocument 500 error.html
     RewriteEngine On
     RewriteBase /Parsclick/public/
     ## To remove WWW
-    # RewriteCond %{HTTP_HOST} ^(www\.parsclick\.net)(:80)? [NC]
-    # RewriteRule ^(.*) http://parsclick.net/$1 [R=301,NC,L]
+    #RewriteCond %{HTTP_HOST} ^(www\.parsclick\.net)(:80)? [NC]
+    #RewriteRule ^(.*) http://parsclick.net/$1 [R=301,NC,L]
     RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
     RewriteRule ^(.*)$ http://%1/$1 [R=301,NC,L]
     ## To first page to index in a directory
     DirectoryIndex index.php index.html
 
     ## Redirect PHP to only file name (doesn't work for login)
-    # RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.php
-    # RewriteRule ^(.*)\.php$ $1 [L,QSA,R=301]
+    #RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.php
+    #RewriteRule ^(.*)\.php$ $1 [L,QSA,R=301]
 
 		## Remove index from URL TODO try
-    # RewriteCond %{THE_REQUEST} ^.*/index
-    # RewriteRule ^(.*)index$ /$1 [R=301,L]
+    #RewriteCond %{THE_REQUEST} ^.*/index
+    #RewriteRule ^(.*)index$ /$1 [R=301,L]
 
 		## PHP hiding rule
 		RewriteCond %{REQUEST_FILENAME} !-d
@@ -48,8 +48,8 @@ ErrorDocument 500 error.html
     RewriteRule !.*\.html$ %{REQUEST_FILENAME}.html [QSA,L,NC]
 
     ## TODO: To make website Unavailable
-    # RewriteCond %{REQUEST_URI} !^/unavailable\.html$
-    # RewriteRule ^(.*)$ /unavailable.html [R=307,L]
+    #RewriteCond %{REQUEST_URI} !^/unavailable\.html$
+    #RewriteRule ^(.*)$ /unavailable.html [R=307,L]
 
     ## Begin - Rewrite rules to block out some common exploits.
     RewriteCond %{QUERY_STRING} base64_encode[^(]*\([^)]*\) [OR]
@@ -78,33 +78,36 @@ ErrorDocument 500 error.html
 #Require valid-user
 
 ###################################################################################
-#                                   PHP INI
+#                                   PHP INI                                       #
 ###################################################################################
-### For boolean values, use php_flag followed by the name
-### of the configuration directive and on or off.
+
+# TODO: stop revealing php information
+#php_flag expose_php off   #only php.inni
+#ServerSignature Off       #only httpd.conf
+#ServerTokens Prod         #only httpd.conf
 
 #php_flag session.auto_start off
 #php_flag session.use_cookies on
 #php_flag session.use_only_cookies on
 #php_flag session.use_trans_sid off
 
-### Comment out the following line for PHP < 5.5.2
-#php_flag session.use_strict_mode on
+# TODO: comment out for PHP < 5.5.2
+php_flag session.use_strict_mode on
 
-### For non-boolean values, use php_value followed by the
-# name of the directive and the value. Set the value to
-# none to clear the value set in php.ini or httpd.conf.
-# Enclose path names and values that contain punctuation
-### in quotes.
-
-#php_value session.name ParsclickSession
+# TODO: letters and numbers for session name
+php_value session.name PARSCLICKSESSION
 #php_value session.cache_limiter nocache
 
 ### Cookie settings
+# TODO: add your domain for better security
 #php_value session.cookie_domain ''
+# TODO: specify path for storing cookies
 #php_value session.cookie_path '/parsclick'
 #php_value session.cookie_lifetime 0
-#php_flag session.cookie_httponly on
+# TODO: sessions only can be accessible via http request
+php_flag session.cookie_httponly on
+
+# TODO: comment out for https://
 #php_flag session.cookie_secure off
 
 #php_value session.gc_maxlifetime 1440

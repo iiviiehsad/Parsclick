@@ -33,7 +33,7 @@
 			<dd class="arial"><?php echo !empty($member->email) ? htmlentities(strtolower($member->email)) : "-"; ?></dd>
 			<dt>&nbsp;</dt>
 			<dd>
-				<a href="member-edit-profile?id=<?php echo urlencode($member->id); ?>" class="btn btn-primary">
+				<a href="member-edit-profile" class="btn btn-primary">
 					ویرایش
 				</a>
 			</dd>
@@ -55,7 +55,7 @@
 		<?php } ?>
 		<h2>حذف عضویت</h2>
 		<p>با کلیلک روی این دگمه حساب کاربری شما به کلی حذف خواهد شد. بنابراین مواظب باشید اگر می خواهید روی این دگمه کلیک کنید.</p>
-		<a class="btn btn-danger btn-small pull-left" href="member-permanent-deletion?id=<?php echo urldecode($member->id); ?>" role="button" onclick="return confirm('آیا مطمئن هستید که می خواهید حق اشتراک شما ابدا پاک شود؟')">
+		<a class="btn btn-danger btn-small pull-left" href="member-permanent-deletion" role="button" onclick="return confirm('آیا مطمئن هستید که می خواهید حق اشتراک شما ابدا پاک شود؟')">
 			<i class="fa fa-exclamation-triangle fa-lg"></i>
 			حق اشتراک را بکلی پاک کن
 		</a>

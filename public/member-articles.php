@@ -1,6 +1,6 @@
 <?php require_once("../includes/initialize.php");
 $filename = basename(__FILE__);
-$title = "پارس کلیک - مقالات";
+$title    = "پارس کلیک - مقالات";
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
@@ -9,7 +9,6 @@ if(isset($current_article->author_id)) { // find the author for the article
 	$author = Author::find_by_id($current_article->author_id);
 }
 ?>
-
 <?php include_layout_template("header.php"); ?>
 <?php include("_/components/php/member_nav.php"); ?>
 <?php echo output_message($message); ?>
@@ -27,10 +26,11 @@ if(isset($current_article->author_id)) { // find the author for the article
 						echo $author->full_name();
 					} ?>
 				</h4>
-				<p><?php echo nl2br(strip_tags($current_article->content, '<h1><h2><h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?></p>
-				<!-- FACEBOOK COMMENTS -->
+				<p><?php echo nl2br(strip_tags($current_article->content,
+				                               '<h1><h2><h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?></p>
+				<!--  COMMENTS -->
 				<hr/>
-				<?php include("_/components/php/article-facebook-comment.php"); ?>
+				<?php include("_/components/php/article-disqus-comment.php"); ?>
 			<?php } else { ?>
 				<?php include_once("_/components/php/member_article_info.php"); ?>
 			<?php } ?>

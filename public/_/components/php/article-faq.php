@@ -78,5 +78,5 @@
 	                        فعلا سروی با این قدرت را گوگل و آمازون با قیمت 200$ در ماه فراهم می کنند! آیا حاضرید ما ویدیو ها رو جایی به غیر از یوتیوب قرار دهیم و شما مبلغی مثل ۵ دلار در ماه به ما
 	                       پرداخت کنید؟ نظر شما چیست؟</p>
 	<?php include "_/components/php/aside-share.php"; ?>
-	<?php include("article-facebook-comment.php"); ?>
+	<?php include("article-disqus-comment.php"); ?>
 </article>

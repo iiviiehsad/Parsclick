@@ -6,13 +6,12 @@ $member = Member::find_by_id($session->id);
 $member->check_status();
 $playlist_set = Playlist::find_playlist_for_member($member->id);
 ?>
-
 <?php include_layout_template("header.php"); ?>
 <?php include("_/components/php/member_nav.php"); ?>
 <?php echo output_message($message); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article class="member_profile">
-		<h1><i class="fa fa-floppy-o fa-lg"></i> لیست پخش <?php if(!$playlist_set) echo "خالی است."; ?></h1>
+		<h1><i class="fa fa-floppy-o fa-lg"></i> لیست پخش <?php if(!$playlist_set) { echo "خالی است."; } ?></h1>
 		<?php if($playlist_set) { ?>
 			<span class='badge'>تعداد <?php echo Playlist::count_all(); ?> درس داخل لیست پخش شماست.</span>
 		<?php } else { ?>
