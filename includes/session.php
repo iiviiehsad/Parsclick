@@ -148,6 +148,16 @@ class Session {
 		return TRUE;
 	}
 
+	public function request_is_same_domain() {
+		if(!isset($_SERVER['HTTP_REFERER'])) {
+			return FALSE;
+		} else {
+			$referer_host = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
+			$server_host  = $_SERVER['HTTP_HOST'];
+			return ($referer_host == $server_host) ? TRUE : FALSE;
+		}
+	}
+
 	private function check_login() {
 		if(isset($_SESSION['id'])) {
 			$this->id        = $_SESSION['id'];

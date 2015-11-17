@@ -10,7 +10,7 @@ $username = "";
 $password = "";
 $errors   = "";
 if(isset($_POST["submit"])) {
-	if(request_is_post()) {
+	if(request_is_post() && $session->request_is_same_domain()) {
 		if($session->csrf_token_is_valid() && $session->csrf_token_is_recent()) {
 			$username = trim($_POST["username"]);
 			$password = trim($_POST["password"]);
