@@ -1,7 +1,8 @@
-<?php require_once("../includes/initialize.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $title = "پارس کلیک - لیست پخش اعضا"; ?>
-<?php $session->confirm_logged_in();
+<?php
+require_once("../includes/initialize.php");
+$filename = basename(__FILE__);
+$title    = "پارس کلیک - لیست پخش اعضا";
+$session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
 $playlist_set = Playlist::find_playlist_for_member($member->id);

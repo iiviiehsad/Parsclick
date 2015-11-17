@@ -7,6 +7,7 @@
 @green     : #00CDA0;
 @pink      : #E74C3C;
 @red       : #BA83D4;
+@shadow    : #9B9B9B;
 // Member Jumbotron colours
 @color1    : #373600;
 @color2    : #37002D;
@@ -54,7 +55,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	font-family : @headlineFontFamily;
 	color       : @purple;
-	text-shadow : 1px 1px 7px #7D7D7D;
+	text-shadow : 1px 1px 10px @shadow;
 }
 
 code {
@@ -466,6 +467,7 @@ form.addtoplaylist, form.removefromplaylist { display : inline; }
 	background-size         : cover;
 	text-shadow             : black 0.3em 0.3em 0.3em;
 }
+
 // DISQUS commenting to hide the logo
 #disqus_thread {
 	position : relative;

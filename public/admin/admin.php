@@ -42,7 +42,7 @@
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<aside class="admin_menu">
 		<h2><i class="fa fa-bullseye"></i> مشاهده فایل ثبت</h2>
-		<div class="alert alert-info">
+		<div class="well">
 			<i class="fa fa-info-circle fa-lg"></i> <strong>فایل ثبت چیست؟</strong>
 			<br/>
 			فایل ثبت به شما اجازه مشاهده <b>تمام کارهای مدیران</b> اعم از <b>زمان و تاریخ</b> آخرین باری که مدیر مورد

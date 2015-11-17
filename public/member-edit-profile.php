@@ -1,10 +1,10 @@
-<?php require_once("../includes/initialize.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $title = "پارس کلیک - ویرایش حساب کاربری"; ?>
-<?php $session->confirm_logged_in(); ?>
-<?php $member = Member::find_by_id($session->id); ?>
-<?php $member->check_status(); ?>
 <?php
+require_once("../includes/initialize.php");
+$filename = basename(__FILE__);
+$title    = "پارس کلیک - ویرایش حساب کاربری";
+$session->confirm_logged_in();
+$member = Member::find_by_id($session->id);
+$member->check_status();
 if(isset($_POST['submit'])) {
 	$member->id       = $session->id;
 	$member->username = trim($_POST["username"]);

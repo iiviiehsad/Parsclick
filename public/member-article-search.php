@@ -1,8 +1,9 @@
-<?php require_once("../includes/initialize.php"); ?>
-<?php $session->confirm_logged_in(); ?>
-<?php $filename = basename(__FILE__);
-$title = "پارس کلیک - جستجوی مقالات";
-$member         = Member::find_by_id($session->id);
+<?php
+require_once("../includes/initialize.php");
+$session->confirm_logged_in();
+$filename = basename(__FILE__);
+$title    = "پارس کلیک - جستجوی مقالات";
+$member   = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_article(TRUE);
 if(isset($_GET["q"]) && !empty($_GET["q"]) && $_GET["q"] != " ") {
@@ -61,5 +62,4 @@ if(isset($_GET["q"]) && !empty($_GET["q"]) && $_GET["q"] != " ") {
 			<?php echo member_articles($current_subject, $current_article); ?>
 		</aside>
 	</section>
-
 <?php include_layout_template("footer.php"); ?>

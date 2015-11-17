@@ -1,9 +1,11 @@
-<?php require_once("../includes/initialize.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $title = "پارس کلیک - قسمت اعضا"; ?>
-<?php $session->confirm_logged_in(); ?>
-<?php $member = Member::find_by_id($session->id); ?>
-<?php $member->check_status(); ?>
+<?php
+require_once("../includes/initialize.php");
+$filename = basename(__FILE__);
+$title    = "پارس کلیک - قسمت اعضا";
+$session->confirm_logged_in();
+$member = Member::find_by_id($session->id);
+$member->check_status();
+?>
 <?php include_layout_template("header.php"); ?>
 <?php include("_/components/php/member_nav.php"); ?>
 <?php echo output_message($message); ?>
@@ -47,17 +49,14 @@
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<aside>
-		<h2>محتوای کتابخانه</h2>
+		<h2><i class="fa fa-book"></i> محتوای کتابخانه</h2>
 		<i class="pull-right fa fa-film fa-5x text-danger"></i>
 		<p>برای دیدن درس های ویدیویی لطفا روی دگمه ی زیر کلیک کنید
 			<br/><a class="btn btn-small btn-danger" href="member-courses">دیدن درس ها</a></p>
-		<hr class="wow bounceInRight"/>
+		<hr/>
 		<i class="pull-right fa fa-newspaper-o fa-5x text-danger"></i>
 		<p>برای دیدن مقالات علمی لطفا روی دگمه ی زیر کلیک کنید
 			<br/><a class="btn btn-small btn-danger" href="member-articles">دیدن مقالات</a></p>
-		<hr class="wow bounceInRight"/>
 	</aside>
 </section>
-
-
 <?php include_layout_template("footer.php"); ?>

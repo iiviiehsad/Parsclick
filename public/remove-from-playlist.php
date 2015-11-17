@@ -24,4 +24,3 @@ if($result) {
 if(isset($database)) {
 	$database->close_connection();
 }
-?>

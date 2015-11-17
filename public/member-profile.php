@@ -1,10 +1,11 @@
-<?php require_once("../includes/initialize.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $title = "پارس کلیک - حساب کاربری"; ?>
-<?php $session->confirm_logged_in(); ?>
-<?php $member = Member::find_by_id($session->id); ?>
-<?php $member->check_status(); ?>
-<?php $errors = "";
+<?php
+require_once("../includes/initialize.php");
+$filename = basename(__FILE__);
+$title    = "پارس کلیک - حساب کاربری";
+$session->confirm_logged_in();
+$member = Member::find_by_id($session->id);
+$member->check_status();
+$errors = "";
 ?>
 <?php include_layout_template("header.php"); ?>
 <?php include("_/components/php/member_nav.php"); ?>
@@ -54,7 +55,8 @@
 			<img class="img-responsive img-thumbnail center" width="200" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($member->photo); ?>">
 		<?php } ?>
 		<h2>حذف عضویت</h2>
-		<p>با کلیلک روی این دگمه حساب کاربری شما به کلی حذف خواهد شد. بنابراین مواظب باشید اگر می خواهید روی این دگمه کلیک کنید.</p>
+		<p>با کلیلک روی این دگمه حساب کاربری شما به کلی حذف خواهد شد. بنابراین مواظب باشید اگر می خواهید روی این دگمه کلیک
+		   کنید.</p>
 		<a class="btn btn-danger btn-small pull-left" href="member-permanent-deletion" role="button" onclick="return confirm('آیا مطمئن هستید که می خواهید حق اشتراک شما ابدا پاک شود؟')">
 			<i class="fa fa-exclamation-triangle fa-lg"></i>
 			حق اشتراک را بکلی پاک کن

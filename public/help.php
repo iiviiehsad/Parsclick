@@ -1,22 +1,19 @@
-<?php require_once("../includes/initialize.php"); ?>
-<?php require_once("../includes/Stripe/vendor/autoload.php") ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $title = "پارس کلیک - کمک به ما"; ?>
 <?php
-$errors = "";
+require_once("../includes/initialize.php");
+require_once("../includes/Stripe/vendor/autoload.php");
+$filename = basename(__FILE__);
+$title    = "پارس کلیک - کمک به ما";
+$errors   = "";
 \Stripe\Stripe::setApiKey(SECRETKEY);
 if(isset($_POST['stripeToken'])) {
 	try {
-		\Stripe\Charge::create(
-				array(
-						"amount"      => 1000,
-						"currency"    => "gbp",
-						"source"      => $_POST['stripeToken'],
-						"description" => "کمک به پارس کلیک"
-				));
-	} catch(\Stripe\Error\Card $e) {
-		$errors = $e->getMessage();
-	}
+		\Stripe\Charge::create(array(
+				                       "amount"      => 1000,
+				                       "currency"    => "gbp",
+				                       "source"      => $_POST['stripeToken'],
+				                       "description" => "کمک به پارس کلیک"
+		                       ));
+	} catch(\Stripe\Error\Card $e) { $errors = $e->getMessage(); }
 	$session->message("خیلی متشکریم از کمک شما.");
 	redirect_to("help");
 }

@@ -67,7 +67,7 @@ class Member extends DatabaseObject {
 		$sql .= "OR phone LIKE '%{$database->escape_value($search)}%' ";
 		$sql .= "OR email LIKE '%{$database->escape_value($search)}%' ";
 		$result_set = self::find_by_sql($sql);
-		return ! empty($result_set) ? $result_set : NULL;
+		return !empty($result_set) ? $result_set : NULL;
 	}
 
 	/**
@@ -126,8 +126,6 @@ class Member extends DatabaseObject {
 	public static function authenticate($username = "", $password = "") {
 		$user = self::find_by_username($username);
 		if($user) {
-			// Newer version PHP v5.5+
-			// password_verify($password, $user->hashed_password);
 			if(self::password_check($password, $user->hashed_password)) {
 				return $user;
 			} else {

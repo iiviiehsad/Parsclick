@@ -1,7 +1,7 @@
-<?php require_once("../includes/initialize.php");
-$filename = basename(__FILE__); ?>
 <?php
-$errors = "";
+require_once("../includes/initialize.php");
+$filename = basename(__FILE__);
+$errors   = "";
 if(isset($_POST["submit"])) {
 	$email = strtolower($_POST['email']);
 	if(has_presence($email)) {

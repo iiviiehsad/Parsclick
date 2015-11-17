@@ -1,4 +1,5 @@
-<?php require_once("../includes/initialize.php");
+<?php
+require_once("../includes/initialize.php");
 $filename = basename(__FILE__);
 $title    = "پارس کلیک - مقالات";
 $session->confirm_logged_in();

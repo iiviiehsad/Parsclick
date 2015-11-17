@@ -1,10 +1,10 @@
-<?php require_once("../includes/initialize.php"); ?>
-<?php require_once("../includes/Recaptcha/autoload.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $title = "پارس کلیک - تماس با ما"; ?>
 <?php
-$errors  = "";
-$message = "";
+require_once("../includes/initialize.php");
+require_once("../includes/Recaptcha/autoload.php");
+$filename = basename(__FILE__);
+$title    = "پارس کلیک - تماس با ما";
+$errors   = "";
+$message  = "";
 // reCAPTCHA supported 40+ languages listed here: https://developers.google.com/recaptcha/docs/language
 $lang = 'fa';
 if(isset($_POST["submit"])) {

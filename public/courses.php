@@ -1,7 +1,9 @@
-<?php require_once("../includes/initialize.php"); ?>
-<?php if($session->is_logged_in()) {redirect_to("member.php");} ?>
-<?php $title = "پارس کلیک - درس ها و ویدئو ها"; ?>
-<?php $filename = basename(__FILE__); ?>
+<?php
+require_once("../includes/initialize.php");
+if($session->is_logged_in()) { redirect_to("member.php"); }
+$title    = "پارس کلیک - درس ها و ویدئو ها";
+$filename = basename(__FILE__);
+?>
 <?php include_layout_template("header.php"); ?>
 <?php include("_/components/php/nav.php"); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">

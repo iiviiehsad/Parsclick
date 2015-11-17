@@ -1,6 +1,6 @@
-<?php require_once("../includes/initialize.php");
-$filename = basename(__FILE__); ?>
 <?php
+require_once("../includes/initialize.php");
+$filename = basename(__FILE__);
 if(isset($_POST["submit"])) {
 	$username = $_POST['username'];
 	if(has_presence($username)) {

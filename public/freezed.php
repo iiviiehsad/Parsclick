@@ -1,8 +1,9 @@
-<?php require_once("../includes/initialize.php"); ?>
-<?php $session->confirm_logged_in(); ?>
-<?php $member = Member::find_by_id($session->id);
-if($member->status == 2) {redirect_to("blocked");}
-$errors       = "";
+<?php
+require_once("../includes/initialize.php");
+$session->confirm_logged_in();
+$member = Member::find_by_id($session->id);
+if($member->status == 2) { redirect_to("blocked"); }
+$errors = "";
 if(isset($_POST["resend_email"])) {
 	$member->create_reset_token($member->username);
 	$result = $member->email_confirmation_details($member->username);
@@ -18,13 +19,13 @@ if(isset($_POST["resend_email"])) {
 <?php include("../includes/layouts/header.php"); ?>
 	<style type="text/css">
 		.jumbotron {
-			padding       : 50px;
-			margin        : 0.1%;
-			font-size     : 24px;
-			font-weight   : 200;
-			line-height   : 2.14285714;
-			color         : inherit;
-			border        : 3px solid #475C98;
+			padding     : 50px;
+			margin      : 0.1%;
+			font-size   : 24px;
+			font-weight : 200;
+			line-height : 2.14285714;
+			color       : inherit;
+			border      : 3px solid #475C98;
 		}
 	</style>
 	<header class="clearfix">

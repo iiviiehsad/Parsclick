@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @param $class_name String will get the class name for each PHP class and finds the file name associate to it
  */
@@ -29,7 +28,7 @@ function redirect_to($location = NULL) {
  * @return string
  */
 function output_message($message = "", $errors = "") {
-	if(! empty($message)) {
+	if(!empty($message)) {
 		$output = "<div class='alert alert-success alert-dismissible' role='alert'>";
 		$output .= "<button type='button' class='close' data-dismiss='alert'>";
 		$output .= "<span aria-hidden='true'>&times;</span>";
@@ -39,7 +38,7 @@ function output_message($message = "", $errors = "") {
 		$output .= "<strong>" . htmlentities($message) . "</strong>";
 		$output .= "</div>";
 		return $output;
-	} elseif(! empty($errors)) {
+	} elseif(!empty($errors)) {
 		$output = "<div class='animated flash alert alert-danger alert-dismissible' role='alert'>";
 		$output .= "<button type='button' class='close' data-dismiss='alert'>";
 		$output .= "<span aria-hidden='true'>&times;</span>";
@@ -175,7 +174,7 @@ function log_action($action, $message = "") {
 	$new     = file_exists($logfile) ? FALSE : TRUE;
 	if($handle = fopen($logfile, 'a')) { //appends
 		$timestamp = datetime_to_text(strftime("%Y-%m-%d %H:%M:%S", time()));
-		$content   = "{$timestamp} | {$action}: {$message}\n";
+		$content   = "{$timestamp} | {$action}: {$message}" . PHP_EOL;
 		fwrite($handle, $content);
 		fclose($handle);
 		if($new) {
@@ -258,10 +257,14 @@ function author_articles($subject_array, $article_array) {
 		$output .= "<div class='lead'>";
 		$output .= "<a href='author_articles.php?subject=";
 		$output .= urlencode($subject->id) . "'";
-		if($subject_array && $subject->id == $subject_array->id) $output .= " class='selected'";
+		if($subject_array && $subject->id == $subject_array->id)
+			$output .= " class='selected'";
 		$output .= ">";
-		if(!empty($subject->name)) $output .= htmlentities(ucwords($subject->name)); else
+		if(!empty($subject->name)) {
+			$output .= htmlentities(ucwords($subject->name));
+		} else {
 			$output .= htmlentities("(موضوع اسم ندارد)");
+		}
 		$output .= "</a>";
 		$output .= "</div>";
 		$article_set = Article::find_articles_for_subject($subject->id, FALSE);
@@ -271,13 +274,19 @@ function author_articles($subject_array, $article_array) {
 			$output .= "<a href='author_articles.php?subject=";
 			$output .= urlencode($subject->id) . "&article=";
 			$output .= $article->id . "'";
-			if($article_array && $article->id == $article_array->id) $output .= " class='selected'";
+			if($article_array && $article->id == $article_array->id)
+				$output .= " class='selected'";
 			$output .= ">";
-			if(!empty($article->name)) $output .= htmlentities(ucwords($article->name)); else
+			if(!empty($article->name)) {
+				$output .= htmlentities(ucwords($article->name));
+			} else {
 				$output .= htmlentities("(مقاله اسم ندارد)");
+			}
 			$output .= "</a>";
 			if(!$article->visible) //if visibility is FALSE
+			{
 				$output .= " <i class='text-danger fa fa-eye-slash'></i>";
+			}
 			$output .= "</li>";
 		endforeach;
 		$output .= "</ul></li>";
@@ -440,10 +449,14 @@ function author_courses($category_array, $course_array) {
 		$output .= "<div class='lead'>";
 		$output .= "<a href='author_courses.php?category=";
 		$output .= urlencode($category->id) . "'";
-		if($category_array && $category->id == $category_array->id) $output .= " class='selected'";
+		if($category_array && $category->id == $category_array->id)
+			$output .= " class='selected'";
 		$output .= ">";
-		if(!empty($category->name)) $output .= htmlentities(ucwords($category->name)); else
+		if(!empty($category->name)) {
+			$output .= htmlentities(ucwords($category->name));
+		} else {
 			$output .= htmlentities("(no category title)");
+		}
 		$output .= "</a>";
 		$output .= "</div>";
 		$course_set = Course::find_courses_for_category($category->id, FALSE);
@@ -453,13 +466,19 @@ function author_courses($category_array, $course_array) {
 			$output .= "<a href='author_courses.php?category=";
 			$output .= urlencode($category->id) . "&course=";
 			$output .= $course->id . "'";
-			if($course_array && $course->id == $course_array->id) $output .= " class='selected'";
+			if($course_array && $course->id == $course_array->id)
+				$output .= " class='selected'";
 			$output .= ">";
-			if(!empty($course->name)) $output .= htmlentities(ucwords($course->name)); else
+			if(!empty($course->name)) {
+				$output .= htmlentities(ucwords($course->name));
+			} else {
 				$output .= htmlentities("(no course title)");
+			}
 			$output .= "</a>";
 			if(!$course->visible) //if visibility is FALSE
+			{
 				$output .= "&nbsp;<i class='text-danger fa fa-eye-slash'></i>";
+			}
 			$output .= "</li>";
 		endforeach;
 		$output .= "</ul></li>";
@@ -631,7 +650,8 @@ function truncate($string, $length, $dots = " (برای ادامه کلیک کن
  */
 function active() {
 	global $filename;
-	if(($filename == "index.php") || ($filename == "member.php") || ($filename == "admin.php") || ($filename == "author.php")
+	if(($filename == "index.php") || ($filename == "member.php") || ($filename == "admin.php") ||
+	   ($filename == "author.php")
 	) {
 		echo "<script>$(\"a:contains('خانه')\").parent().addClass('active');</script>";
 	} elseif($filename == "authors.php") {
@@ -648,7 +668,14 @@ function active() {
 	         ($filename == "reset-password.php") || ($filename == "forgot-username.php")
 	) {
 		echo "<script>$(\"a:contains('ورود')\").parent().addClass('active');</script>";
-	} elseif(($filename == "admin_courses.php") || ($filename == "admin_articles.php") || ($filename == "new_subject.php") || ($filename == "author_articles.php") || ($filename == "author_courses.php") || ($filename == "new_courses.php") || ($filename == "edit_courses.php") || ($filename == "new_article.php") || ($filename == "edit_article.php") || ($filename == "author_edit_article.php") || ($filename == "new_course.php") || ($filename == "author_edit_course.php") || ($filename == "author_add_video.php") || ($filename == "author_edit_video_description.php") || ($filename == "edit_video_description.php") || ($filename == "admin_comments.php") || ($filename == "edit_course.php")
+	} elseif(($filename == "admin_courses.php") || ($filename == "admin_articles.php") ||
+	         ($filename == "new_subject.php") || ($filename == "author_articles.php") ||
+	         ($filename == "author_courses.php") || ($filename == "new_courses.php") ||
+	         ($filename == "edit_courses.php") || ($filename == "new_article.php") || ($filename == "edit_article.php") ||
+	         ($filename == "author_edit_article.php") || ($filename == "new_course.php") ||
+	         ($filename == "author_edit_course.php") || ($filename == "author_add_video.php") ||
+	         ($filename == "author_edit_video_description.php") || ($filename == "edit_video_description.php") ||
+	         ($filename == "admin_comments.php") || ($filename == "edit_course.php")
 	) {
 		echo "<script>$(\"a:contains('محتوی')\").parent().addClass('active');</script>";
 	} elseif(($filename == "member-profile.php") || ($filename == "member-edit-profile.php") ||
@@ -661,7 +688,8 @@ function active() {
 		echo "<script>$(\"a:contains('لیست پخش')\").parent().addClass('active');</script>";
 	} elseif(($filename == "member_list.php") || ($filename == "edit_member.php") || ($filename == "new_member.php")) {
 		echo "<script>$(\"a:contains('لیست اعضا')\").parent().addClass('active');</script>";
-	} elseif(($filename == "admin_list.php") || ($filename == "author_list.php") || ($filename == "new_admin.php") || ($filename == "new_author.php") || ($filename == "edit_admin.php") || ($filename == "edit_author.php")
+	} elseif(($filename == "admin_list.php") || ($filename == "author_list.php") || ($filename == "new_admin.php") ||
+	         ($filename == "new_author.php") || ($filename == "edit_admin.php") || ($filename == "edit_author.php")
 	) {
 		echo "<script>$(\"a:contains('لیست کارکنان')\").parent().addClass('active');</script>";
 	} elseif(($filename == "contact.php")) {

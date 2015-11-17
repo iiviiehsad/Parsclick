@@ -1,11 +1,11 @@
-<?php require_once("../includes/initialize.php"); ?>
-<?php if($session->is_logged_in()) {
+<?php
+require_once("../includes/initialize.php");
+if($session->is_logged_in()) {
 	$session->message("شما داخل سایت شدید. به منظور ثبت نام لطفا خارج شوید،");
 	redirect_to("member");
-} ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $errors = "";
-
+}
+$filename = basename(__FILE__);
+$errors   = "";
 if($_POST) {
 	//validations
 	if(!has_presence($_POST["username"]) || !has_presence($_POST["password"])) {

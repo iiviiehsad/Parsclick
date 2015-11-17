@@ -1,6 +1,8 @@
-<?php require_once("../includes/initialize.php"); ?>
-<?php if($session->is_logged_in()) {redirect_to("member.php");} ?>
-<?php $filename = basename(__FILE__); ?>
+<?php
+require_once("../includes/initialize.php");
+if($session->is_logged_in()) { redirect_to("member.php"); }
+$filename = basename(__FILE__);
+?>
 <?php include_layout_template("header.php"); ?>
 <?php include("_/components/php/nav.php"); ?>
 <?php include("_/components/php/snippet-carousel.php"); ?>

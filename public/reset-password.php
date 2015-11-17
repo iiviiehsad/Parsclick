@@ -1,10 +1,9 @@
 <?php require_once("../includes/initialize.php");
-$filename = basename(__FILE__); ?>
-<?php
-$token = $_GET['token'];
+$filename = basename(__FILE__);
+$token    = $_GET['token'];
 // Confirm that the token sent is valid
 $user = Member::find_by_token($token);
-if(!$user || !$token) {
+if(!$token || !$user) {
 	// Token wasn't sent or didn't match a user.
 	redirect_to('forgot');
 }
