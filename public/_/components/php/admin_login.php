@@ -34,6 +34,7 @@
 					</label>
 				</div><!-- controls -->
 			</section><!-- row -->
+			<?php echo $session->csrf_token_tag(); ?>
 			<section class="row">
 				<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit"></label>
 				<div class="controls">

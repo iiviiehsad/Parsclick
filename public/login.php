@@ -1,27 +1,38 @@
 <?php
 require_once("../includes/initialize.php");
-if($session->is_logged_in()) { redirect_to("member"); }
+if($session->is_logged_in()) {
+	redirect_to("member");
+}
 $filename = basename(__FILE__);
 $title    = "پارس کلیک - ورود به سایت";
+$username = "";
+$password = "";
+$errors   = "";
 if(isset($_POST["submit"])) { // if form submitted
-	$username = trim($_POST["username"]);
-	$password = trim($_POST["password"]);
-	if(has_presence($username) && has_presence($password)) {
-		// check the database to see if username or password exist
-		$found_user = Member::authenticate($username, $password);
-		if($found_user) {
-			$session->login($found_user);
-			redirect_to("member");
+	if(request_is_post()) {
+		if($session->csrf_token_is_valid() && $session->csrf_token_is_recent()) {
+			$username = trim($_POST["username"]);
+			$password = trim($_POST["password"]);
+			if(has_presence($username) && has_presence($password)) {
+				// check the database to see if username or password exist
+				$found_user = Member::authenticate($username, $password);
+				if($found_user) {
+					$session->login($found_user);
+					redirect_to("member");
+				} else {
+					$errors = "اسم کاربری یا پسورد درست نیست!";
+				}
+			} else {
+				$errors = "اسم کاربری یا پسورد خالی نمی توانند باشند.!";
+			}
 		} else {
-			$errors = "اسم کاربری یا پسورد درست نیست!";
+			$errors = "شناسه CSRF معتبر نیست!";
+			$session->die_on_csrf_token_failure();
 		}
 	} else {
-		$errors = "اسم کاربری یا پسورد خالی نمی توانند باشند.!";
+		$errors = "درخواست معتبر نیست!";
 	}
 } else { // form has not been submitted
-	$username = "";
-	$password = "";
-	$errors   = "";
 }
 ?>
 <?php include_layout_template("header.php"); ?>

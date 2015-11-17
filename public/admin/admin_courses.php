@@ -85,7 +85,7 @@
 						$json = json_decode($content, TRUE);
 						//var_dump($json);
 						if($json['pageInfo']['totalResults'] > 0) { ?>
-							<div class="alert alert-success">
+							<div class="alert">
 								<h3><i class="fa fa-video-camera"></i> ویدیوهای این درس</h3>
 								<div class="table-responsive">
 									<table class="table table-condensed table-hover">

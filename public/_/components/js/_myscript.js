@@ -1,7 +1,7 @@
 $(function() {
 
 	//SLIDE UO MESSAGES AFTER 5 SECONDS
-	$('div.alert').delay(5000).slideUp();
+	$('div.alert-dismissible').delay(5000).slideUp();
 
 	//ACTIVATE COURSE TABS
 	var hash = window.location.hash;

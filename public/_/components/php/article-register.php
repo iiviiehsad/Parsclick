@@ -7,7 +7,7 @@
 		<span class="text-success"><i class="fa fa-info-circle fa-lg"></i> قبل از ثبت نام شرایط و ضوابط را مطالعه کنید.
 	</p>
 
-	<form class="registration form-horizontal" action="register.php" method="POST" id="payment-form">
+	<form class="registration form-horizontal" action="register" method="POST" id="payment-form">
 		<fieldset>
 			<legend><i class="fa fa-credit-card fa-lg"></i> ثبت نام
 				<small><span class="pull-left wow flash infinite" data-wow-duration="2s" id="confirmMessage"></span>
@@ -56,7 +56,7 @@
 			</section><!-- row -->
 
 		</fieldset>
-		<br/>
+		<?php echo $session->csrf_token_tag(); ?> <br/>
 		<fieldset>
 			<legend><i class="fa fa-archive fa-lg"></i> جزئیات اختیاری </legend>
 			<section class="row">
@@ -103,7 +103,7 @@
 		<section class="row">
 			<div class="pull-left text-danger checkbox col-xs-8 col-sm-8 col-md-8 col-lg-8">
 				<label class="col-xs-8 col-sm-7 col-md-6 col-lg-5">
-					<input type="checkbox" required><a href="privacypolicy.php" target="_blank" title="شرایط و ضوابط">شرایط را قبول دارم *</a>
+					<input type="checkbox" required><a href="privacypolicy" target="_blank" title="شرایط و ضوابط">شرایط را قبول دارم *</a>
 				</label>
 			</div><!-- checkbox -->
 		</section><!-- row -->

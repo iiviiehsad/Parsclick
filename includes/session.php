@@ -114,12 +114,6 @@ class Session {
 		}
 	}
 
-	public function die_on_csrf_token_failure() {
-		if(!$this->csrf_token_is_valid()) {
-			die("CSRF token validation failed.");
-		}
-	}
-
 	public function csrf_token_is_recent() {
 		$max_elapsed = 60 * 60 * 24; // 1 day
 		if(isset($_SESSION['csrf_token_time'])) {
@@ -128,6 +122,12 @@ class Session {
 		} else {
 			$this->destroy_csrf_token();
 			return FALSE;
+		}
+	}
+
+	public function die_on_csrf_token_failure() {
+		if(!$this->csrf_token_is_valid()) {
+			die("CSRF token validation failed.");
 		}
 	}
 
@@ -188,7 +188,6 @@ class Session {
 		}
 		return $allowed_array;
 	}
-
 }
 
 $session = new Session();

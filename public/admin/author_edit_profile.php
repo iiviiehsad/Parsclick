@@ -15,7 +15,9 @@ if(isset($_POST['submit'])) {
 	$author->first_name = trim($_POST["first_name"]);
 	$author->last_name  = trim($_POST["last_name"]);
 	$author->email      = trim($_POST["email"]);
-	if(isset($_FILES["photo"]["tmp_name"]) && ($_FILES["photo"]["tmp_name"]) !== NULL && !empty($_FILES["photo"]["tmp_name"])) {
+	if(isset($_FILES["photo"]["tmp_name"]) && ($_FILES["photo"]["tmp_name"]) !== NULL &&
+	   !empty($_FILES["photo"]["tmp_name"])
+	) {
 		$author->photo = file_get_contents($_FILES["photo"]["tmp_name"]);
 	}
 	$result = $author->save();
@@ -99,18 +101,19 @@ if(isset($_POST['submit'])) {
 		<?php if(empty($author->photo)) { ?>
 			<span class="glyphicon glyphicon-user center" style="font-size: 150px; margin: 0; padding: 0;"></span>
 			<span class="text-muted center">عکس پروفایل موجود نیست</span>
-			<hr/>
-			<small class="text-muted center">
-				برای آپلود کردن عکس پروفایل به پایین صفحه بروید و روی قسمت عکس پروفایل کلیک کنید و فیلی نهایتا به اندازه
-				ی ۵ مگابایت یا کمتر آپلود کنید. لطفا توجه داشته باشید که عکس پروفایل شما همراه با مقالات و دروسی که می
-				سازید کنار نام شما دیده خواهد شد. بنابراین دقت در انتخاب عکستان داشته باشید. عکس مورد نظر باید صورت شما
-				را نمایان نشان دهد. عکس های نا مناسب یا عکس هایی که به شما متعلق نیست باعث معوق شدن ناگهانی حساب شما
-				خواهد شد.
-			</small>
+			<div class="well center">
+				<small>
+					برای آپلود کردن عکس پروفایل به پایین صفحه بروید و روی قسمت عکس پروفایل کلیک کنید و فیلی نهایتا به اندازه
+					ی ۵ مگابایت یا کمتر آپلود کنید. لطفا توجه داشته باشید که عکس پروفایل شما همراه با مقالات و دروسی که می
+					سازید کنار نام شما دیده خواهد شد. بنابراین دقت در انتخاب عکستان داشته باشید. عکس مورد نظر باید صورت شما
+					را نمایان نشان دهد. عکس های نا مناسب یا عکس هایی که به شما متعلق نیست باعث معوق شدن ناگهانی حساب شما
+					خواهد شد.
+				</small>
+			</div>
 		<?php } else { ?>
 			<img class="img-responsive img-thumbnail" height="200" width="200" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 			<br/>
-			<a class="btn btn-default btn-small" href="remove-photo?id=<?php echo urlencode($author->id); ?>" onclick="return confirm('آیا مطمئن به حذف کردن عکس پروفایل خود هستید؟')">
+			<a class="btn btn-default btn-small" href="author_remove_photo.php" onclick="return confirm('آیا مطمئن به حذف کردن عکس پروفایل خود هستید؟')">
 				حذف عکس پروفایل
 			</a>
 		<?php } ?>

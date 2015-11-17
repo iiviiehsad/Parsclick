@@ -11,7 +11,7 @@
 		<article>
 			<h2><i class="fa fa-users"></i> لیست مدیران ارشد</h2>
 			<br/>
-			<div class="table-responsive alert alert-success">
+			<div class="table-responsive">
 				<table class="table table-hover table-responsive table-condensed">
 					<thead>
 					<tr>

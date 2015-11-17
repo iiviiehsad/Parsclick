@@ -1,6 +1,6 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $session->confirm_author_logged_in(); ?>
 <?php
+require_once("../../includes/initialize.php");
+$session->confirm_author_logged_in();
 if(empty($_GET['id'])) {
 	$session->message("هیچ فایلی پیدا نشد!");
 	redirect_to($_SERVER["HTTP_REFERER"]);
@@ -13,7 +13,6 @@ if($file && $file->destroy()) {
 	$session->message("فایل {$file->description} حذف نشد!");
 	redirect_to($_SERVER["HTTP_REFERER"]);
 }
-?>
-<?php if(isset($database)) {
+if(isset($database)) {
 	$database->close_connection();
-} ?>
+}
