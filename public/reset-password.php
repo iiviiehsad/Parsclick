@@ -24,9 +24,9 @@ if(isset($_POST["submit"])) {
 		$result                = $user->update();
 		if($result) {
 			$user->delete_reset_token($user->username);
-			$session->message("پسورد با موفقیت عوض شد. شما الآن داخل سیستم هستید.");
-			$session->login($user);
-			redirect_to("member");
+			$session->message("پسورد با موفقیت عوض شد.");
+			//$session->login($user);
+			redirect_to("login");
 		} else {
 			$errors = "متاسفانه نتوانستیم پسورد بروزرسانی کنیم!";
 		}

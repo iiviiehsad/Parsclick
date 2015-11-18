@@ -1,90 +1,63 @@
-##
-# READ THIS COMPLETELY IF YOU CHOOSE TO USE THIS FILE!
-#
-# The line just below this section: 'Options +FollowSymLinks' may cause problems
-# with some server configurations.  It is required for use of mod_rewrite, but may already
-# be set by your server administrator in a way that dissallows changing it in
-# your .htaccess file.  If using it causes your server to error out, comment it out (add # to
-# beginning of line), reload your site in your browser and test your sef url's.  If they work,
-# it has been set by your server administrator and you do not need it set here.
-##
+##################################################################################
 <Files ~ "^\.(htaccess|htpasswd)$">
-deny from all
+	deny from all
 </Files>
-Options Indexes
+
 ErrorDocument 400 error.html
 ErrorDocument 403 error.html
 ErrorDocument 404 error.html
+ErrorDocument 500 error.html
 
-# CHECK IF mod_rewrite is ON
+### CHECK IF mod_rewrite is ON
 <IfModule mod_rewrite.c>
 
-    ##
-    # Uncomment following line if your webserver's URL
-    # is not directly related to physical file paths.
-    # Update Your  Directory (just / for root).
-    # To make website Unavailavle: use the all.
-    ##
+		IndexIgnore *
+		Options +FollowSymlinks
+    Options +SymLinksIfOwnerMatch
+		Options -Indexes
+		Options -MultiViews
+		## Mode Rewrite in use
+    RewriteEngine On
+    RewriteBase /
+    ## To remove WWW
+    #RewriteCond %{HTTP_HOST} ^(www\.parsclick\.net)(:80)? [NC]
+    #RewriteRule ^(.*) http://parsclick.net/$1 [R=301,NC,L]
+    RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
+    RewriteRule ^(.*)$ http://%1/$1 [R=301,NC,L]
+    ## To first page to index in a directory
+    DirectoryIndex index.php index.html
 
-    #RewriteBase /
+    ## Redirect PHP to only file name (doesn't work for login)
+    #RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.php
+    #RewriteRule ^(.*)\.php$ $1 [L,QSA,R=301]
+
+		## Remove index from URL TODO try
+    #RewriteCond %{THE_REQUEST} ^.*/index
+    #RewriteRule ^(.*)index$ /$1 [R=301,L]
+
+		## PHP hiding rule
+		RewriteCond %{REQUEST_FILENAME} !-d
+		RewriteCond %{REQUEST_FILENAME} !-f
+		RewriteCond %{REQUEST_FILENAME}\.php -f
+    RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L,NC]
+
+		## HTML hiding rule
+		RewriteCond %{REQUEST_FILENAME} !-d
+		RewriteCond %{REQUEST_FILENAME} !-f
+		RewriteCond %{REQUEST_FILENAME}\.html -f
+    RewriteRule !.*\.html$ %{REQUEST_FILENAME}.html [QSA,L,NC]
+
+    ## TODO: To make website Unavailable
     #RewriteCond %{REQUEST_URI} !^/unavailable\.html$
     #RewriteRule ^(.*)$ /unavailable.html [R=307,L]
 
-    ## Can be commented out if causes errors, see notes above.
-    Options +FollowSymLinks
-    ## Mod_rewrite in use.
-    Options +SymLinksIfOwnerMatch
-    RewriteEngine On
-
-    ## To remove WWW
-    RewriteCond %{HTTP_HOST} ^(www\.parsclick\.net)(:80)? [NC]
-    RewriteRule ^(.*) http://parsclick.net/$1 [R=301,L]
-    DirectoryIndex index.php
-    order deny,allow
-    # To remove .php extension
-    RewriteRule ^([^\.]+)$ $1.php [NC,L]
-    # To remove .html extension
-    RewriteRule ^([^\.]+)$ $1.html [NC,L]
-    # Add / at the end for GODADDY ONLY
-    Options -MultiViews
-    RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^([^\.]+)$ $1.php [NC,L]
-
-
     ## Begin - Rewrite rules to block out some common exploits.
-    # If you experience problems on your site block out the operations listed below
-    # This attempts to block the most common type of exploit `attempts` to
-    #
-    # Block out any script trying to base64_encode data within the URL.
     RewriteCond %{QUERY_STRING} base64_encode[^(]*\([^)]*\) [OR]
-    # Block out any script that includes a <script> tag in URL.
     RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
-    # Block out any script trying to set a PHP GLOBALS variable via URL.
     RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
-    # Block out any script trying to modify a _REQUEST variable via URL.
     RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
-    # Return 403 Forbidden header and show the content of the root homepage
     RewriteRule .* index.php [F]
-    #
     ## End - Rewrite rules to block out some common exploits.
-
-    ## Begin - core SEF Section.
-    #
-    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-    #
-    # If the requested path and file is not /index.php and the request
-    # has not already been internally rewritten to the index.php script
-    RewriteCond %{REQUEST_URI} !^/index\.php
-    # and the requested path and file doesn't directly match a physical file
-    RewriteCond %{REQUEST_FILENAME} !-f
-    # and the requested path and file doesn't directly match a physical folder
-    RewriteCond %{REQUEST_FILENAME} !-d
-    # internally rewrite the request to the index.php script
-    RewriteRule .* index.php [L]
-    #
-    ## End - core SEF Section.
 
     <FilesMatch "\.(ttf|otf|eot)$">
         <IfModule mod_headers.c>
@@ -94,3 +67,49 @@ ErrorDocument 404 error.html
 
 </IfModule>
 # END: CHECK IF mod_rewrite is ON
+
+##################################################################################
+# Uncomment to use Username: amirhassanazimi and Password: 1234-asdf for the site
+##################################################################################
+
+#AuthType Basic
+#AuthName "Access to Parsclick"
+#AuthUserFile /.htpasswd
+#Require valid-user
+
+###################################################################################
+#                                   PHP INI                                       #
+###################################################################################
+
+# TODO: stop revealing php information
+#php_flag expose_php off   #only php.inni
+#ServerSignature Off       #only httpd.conf
+#ServerTokens Prod         #only httpd.conf
+
+#php_flag session.auto_start off
+#php_flag session.use_cookies on
+#php_flag session.use_only_cookies on
+#php_flag session.use_trans_sid off
+
+# TODO: comment out for PHP < 5.5.2
+php_flag session.use_strict_mode on
+
+# TODO: letters and numbers for session name
+php_value session.name PARSCLICKSESSION
+#php_value session.cache_limiter nocache
+
+### Cookie settings
+# TODO: add your domain for better security
+#php_value session.cookie_domain ''
+# TODO: specify path for storing cookies
+#php_value session.cookie_path '/parsclick'
+php_value session.cookie_lifetime 0
+# TODO: sessions only can be accessible via http request
+php_flag session.cookie_httponly on
+
+# TODO: comment out for https://
+#php_flag session.cookie_secure off
+
+#php_value session.gc_maxlifetime 1440
+#php_value session.gc_probability 1
+#php_value session.gc_divisor 100

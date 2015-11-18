@@ -9,7 +9,7 @@
 
 	<form class="registration form-horizontal" action="register" method="POST" id="payment-form">
 		<fieldset>
-			<legend><i class="fa fa-credit-card fa-lg"></i> ثبت نام
+			<legend><i class="fa fa-credit-card fa-lg"></i> جزئیات ضروری
 				<small><span class="pull-left wow flash infinite" data-wow-duration="2s" id="confirmMessage"></span>
 				</small>
 			</legend>
