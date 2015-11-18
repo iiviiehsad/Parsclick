@@ -1,7 +1,7 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $session->confirm_admin_logged_in(); ?>
 <?php
+require_once("../../includes/initialize.php");
+$filename = basename(__FILE__);
+$session->confirm_admin_logged_in();
 $errors = "";
 if(isset($_POST['submit'])) {
 	$member                  = new Member();
@@ -26,10 +26,11 @@ if(isset($_POST['submit'])) {
 		$errors = "Member creation failed.";
 	}
 } else {
-} ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/admin_nav.php"); ?>
-<?php echo output_message($message, $errors); ?>
+}
+include_layout_template("admin_header.php");
+include("../_/components/php/admin_nav.php");
+echo output_message($message, $errors);
+?>
 	<section class="main col-sm-12 col-md-8 col-xs-12 col-sm-8 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-plus-square"></i> عضو جدید </h2>

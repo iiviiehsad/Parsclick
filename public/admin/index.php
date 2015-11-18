@@ -55,8 +55,8 @@ if(isset($_POST["submit"])) {
 	}
 } else { // form has not been submitted
 }
+include_layout_template("admin_header.php");
 ?>
-<?php include_layout_template("admin_header.php"); ?>
 	<header class="clearfix">
 		<section id="branding">
 			<a href="index.php"><img src="../images/misc/admin-area.png" alt="Logo for Admin Area"></a>
@@ -65,7 +65,7 @@ if(isset($_POST["submit"])) {
 	<hr/>
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
-		<?php include "../_/components/php/admin_login.php"; ?>
+		<?php include("../_/components/php/admin_login.php"); ?>
 	</section><!-- main -->
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>

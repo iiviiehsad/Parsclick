@@ -1,6 +1,6 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $session->confirm_admin_logged_in(); ?>
 <?php
+require_once("../../includes/initialize.php");
+$session->confirm_admin_logged_in();
 if(empty($_GET['id'])) {
 	$session->message("شناسه فایل پیدا نشد!");
 	redirect_to($_SERVER["HTTP_REFERER"]);
@@ -13,7 +13,4 @@ if($file && $file->destroy()) {
 	$session->message("فایل {$file->description} حذف نشد!");
 	redirect_to($_SERVER["HTTP_REFERER"]);
 }
-?>
-<?php if(isset($database)) {
-	$database->close_connection();
-} ?>
+if(isset($database)) { $database->close_connection(); }

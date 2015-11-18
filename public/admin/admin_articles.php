@@ -1,11 +1,11 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $session->confirm_admin_logged_in(); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php find_selected_article(); ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/admin_nav.php"); ?>
-
-<?php echo output_message($message); ?>
+<?php require_once("../../includes/initialize.php");
+$session->confirm_admin_logged_in();
+$filename = basename(__FILE__);
+find_selected_article();
+include_layout_template("admin_header.php");
+include("../_/components/php/admin_nav.php");
+echo output_message($message);
+?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<?php if($current_subject && $current_article) { ?>

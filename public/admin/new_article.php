@@ -1,9 +1,10 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $session->confirm_author_logged_in(); ?>
-<?php $author = Author::find_by_id($session->id); ?>
-<?php $author->check_status(); ?>
-<?php find_selected_article();
+<?php
+require_once("../../includes/initialize.php");
+$filename = basename(__FILE__);
+$session->confirm_author_logged_in();
+$author = Author::find_by_id($session->id);
+$author->check_status();
+find_selected_article();
 if(!$current_subject) {
 	redirect_to("author_articles.php");
 }
@@ -26,10 +27,10 @@ if(isset($_POST['submit'])) {
 		$errors = "مقاله شاخته نشد!";
 	}
 } else {
-} ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/author_nav.php"); ?>
-<?php echo output_message($message, $errors); ?>
+}
+include_layout_template("admin_header.php");
+include("../_/components/php/author_nav.php");
+echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-newspaper-o"></i> مقاله جدید</h2>
@@ -59,10 +60,12 @@ if(isset($_POST['submit'])) {
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="visible">نشر شد</label>
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="visible" id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled'; ?> > خیر
+								<input type="radio" name="visible" id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled'; ?> >
+								خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="visible" id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled'; ?> > بله
+								<input type="radio" name="visible" id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled'; ?> >
+								بله
 							</label>
 						</div>
 					</section>
@@ -70,7 +73,7 @@ if(isset($_POST['submit'])) {
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="content">مطالب</label>
 						<div class="controls">
-							<textarea class="col-xs-12 col-sm-8 col-md-8 col-lg-8" name="content" id="content" rows="10" required></textarea>
+							<textarea class="col-xs-12 col-sm-8 col-md-8 col-lg-8" name="content" id="content" rows="30" required></textarea>
 						</div>
 					</section>
 					<!--buttons-->

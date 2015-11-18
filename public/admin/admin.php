@@ -1,10 +1,10 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $session->confirm_admin_logged_in(); ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/admin_nav.php"); ?>
-<?php $admin = Admin::find_by_id($session->id); ?>
-
+<?php require_once("../../includes/initialize.php");
+$filename = basename(__FILE__);
+$session->confirm_admin_logged_in();
+include_layout_template("admin_header.php");
+include("../_/components/php/admin_nav.php");
+$admin = Admin::find_by_id($session->id);
+?>
 <div class="jumbotron hidden-sm wow fadeIn admin-jumbotron">
 	<h1>خوش آمدید <?php echo $admin->full_name(); ?></h1>
 	<p>به عنوان مدیر ارشد سایت شما قادر به هر کاری در این سیستم هستید.</p>

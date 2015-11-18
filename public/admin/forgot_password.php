@@ -1,10 +1,11 @@
-<?php require_once("../../includes/initialize.php");
+<?php
+require_once("../../includes/initialize.php");
 $errors = "";
 if(isset($_POST["submit"])) {
 	$username = $_POST['username'];
 	if(has_presence($username)) {
-		$admin     = Admin::find_by_username($username);
-		$author    = Author::find_by_username($username);
+		$admin  = Admin::find_by_username($username);
+		$author = Author::find_by_username($username);
 		if($admin) {
 			$admin->create_reset_token($username);
 			$email = $admin->email_reset_token($username);

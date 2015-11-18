@@ -1,34 +1,33 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $session->confirm_admin_logged_in(); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $author = Author::find_by_id($_GET["id"]) ?>
 <?php
+require_once("../../includes/initialize.php");
+$session->confirm_admin_logged_in();
+$filename = basename(__FILE__);
+$author   = Author::find_by_id($_GET["id"]);
+$errors   = "";
 if(!$author) {
 	$session->message("نویسنده پیدا نشد!");
 	redirect_to("author_list.php");
 }
 if(isset($_POST['submit'])) {
-	$author->id         = (int) $_GET["id"];
-	$author->username   = strtolower($_POST["username"]); //$author->hashed_password = $author->password_encrypt($_POST["password"]);
+	$author->id         = (int)$_GET["id"];
+	$author->username   = strtolower($_POST["username"]);
 	$author->first_name = ucwords(strtolower($_POST["first_name"]));
 	$author->last_name  = ucwords(strtolower($_POST["last_name"]));
 	$author->email      = strtolower($_POST["email"]);
-	$author->status     = (int) $_POST["status"]; //$author->photo;
+	$author->status     = (int)$_POST["status"];
 	$result             = $author->save();
 	if($result) { // Success
 		$session->message("نویسنده بروزرسانی شد.");
 		redirect_to("author_list.php");
 	} else { // Failure
 		$errors = "نتوانستیم نویسنده را بروزرسانی کنیم یا اینکه شما چیزی عوض نکردید.";
-		//redirect_to("author_list.php");
 	}
 } else {
-	$errors = "";
 }
+ include_layout_template("admin_header.php");
+ include("../_/components/php/admin_nav.php");
+ echo output_message($message, $errors);
 ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/admin_nav.php"); ?>
-<?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-pencil-square-o"></i> ویرایش نویسنده</h2>
@@ -76,13 +75,13 @@ if(isset($_POST['submit'])) {
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="status">فعال</label>
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="status" id="inlineRadioNo" value="0" <?php if($author->status == 0) {echo "checked";} ?> /> خیر
+								<input type="radio" name="status" id="inlineRadioNo" value="0" <?php if($author->status == 0) { echo "checked"; } ?> /> خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
-								<input type="radio" name="status" id="inlineRadioYes" value="1" <?php if($author->status == 1) {echo "checked";} ?> /> بله
+								<input type="radio" name="status" id="inlineRadioYes" value="1" <?php if($author->status == 1) { echo "checked"; } ?> /> بله
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
-								<input type="radio" name="status" id="inlineRadioYes" value="2" <?php if($author->status == 2) {echo "checked";} ?> /> مسدود
+								<input type="radio" name="status" id="inlineRadioYes" value="2" <?php if($author->status == 2) { echo "checked"; } ?> /> مسدود
 							</label>
 						</div>
 					</section>

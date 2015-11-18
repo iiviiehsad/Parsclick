@@ -1,11 +1,11 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $session->confirm_author_logged_in(); ?>
-<?php $author = Author::find_by_id($session->id); ?>
-<?php $author->check_status(); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php find_selected_course(); ?>
-<?php include_layout_template("admin_header.php"); ?>
 <?php
+require_once("../../includes/initialize.php");
+$session->confirm_author_logged_in();
+$author = Author::find_by_id($session->id);
+$author->check_status();
+$filename = basename(__FILE__);
+find_selected_course();
+include_layout_template("admin_header.php");
 $file_max_file_size = File::$max_file_size; // 500MB
 $errors             = "";
 if(isset($_POST["submit_file"])) {
@@ -21,9 +21,9 @@ if(isset($_POST["submit_file"])) {
 		$errors = join(" ", $file->errors);
 	}
 }
+include("../_/components/php/author_nav.php");
+echo output_message($message, $errors);
 ?>
-<?php include("../_/components/php/author_nav.php"); ?>
-<?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<?php if($current_category && $current_course) { ?>

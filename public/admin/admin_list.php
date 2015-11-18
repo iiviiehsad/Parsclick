@@ -1,12 +1,13 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $session->confirm_admin_logged_in(); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $admin_set = Admin::find_all(); ?>
-<?php $yourself = Admin::find_by_id($session->id); ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/admin_nav.php"); ?>
-
-<?php echo output_message($message); ?>
+<?php
+require_once("../../includes/initialize.php");
+$session->confirm_admin_logged_in();
+$filename  = basename(__FILE__);
+$admin_set = Admin::find_all();
+$yourself  = Admin::find_by_id($session->id);
+include_layout_template("admin_header.php");
+include("../_/components/php/admin_nav.php");
+echo output_message($message);
+?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-users"></i> لیست مدیران ارشد</h2>

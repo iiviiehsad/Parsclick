@@ -1,4 +1,5 @@
-<?php require_once("../../includes/initialize.php");
+<?php
+require_once("../../includes/initialize.php");
 $session->confirm_admin_logged_in();
 if(empty($_GET["id"])) {
 	$session->message("شناسه عضویت پیدا نشد!");
@@ -13,7 +14,4 @@ if($result) {
 	$session->message("عضو حذف نشد!");
 	redirect_to("member_list.php");
 }
-if(isset($database)) {
-	$database->close_connection();
-}
-?>
+if(isset($database)) { $database->close_connection(); }

@@ -1,13 +1,13 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $session->confirm_author_logged_in(); ?>
-<?php $author = Author::find_by_id($session->id); ?>
-<?php $author->check_status(); ?>
-<?php $author = Author::find_by_id($session->id); ?>
-<?php $author->check_status(); ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/author_nav.php"); ?>
-<?php echo output_message($message); ?>
+<?php
+require_once("../../includes/initialize.php");
+$filename = basename(__FILE__);
+$session->confirm_author_logged_in();
+$author = Author::find_by_id($session->id);
+$author->check_status();
+include_layout_template("admin_header.php");
+include("../_/components/php/author_nav.php");
+echo output_message($message);
+?>
 <section class="main col-sm-12 col-md-9 col-lg-9">
 	<article>
 		<h2><i class="fa fa-user"></i> پروفایل <?php echo ucwords(strtolower($author->full_name())); ?></h2>
@@ -25,7 +25,7 @@
 			<dt>وضعیت:</dt>
 			<dd><?php echo htmlentities($author->status == 1) ?  "فعال" : "معوق"; ?></dd>
 			<dt>&nbsp;</dt>
-			<dd><a href="author_edit_profile.php?id=<?php echo urlencode($author->id); ?>" class="btn btn-success"><i class="fa fa-pencil-square-o"></i> ویرایش</a></dd>
+			<dd><a href="author_edit_profile.php" class="btn btn-success"><i class="fa fa-pencil-square-o"></i> ویرایش</a></dd>
 		</dl>
 	</article>
 </section>

@@ -1,11 +1,13 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $session->confirm_author_logged_in(); ?>
-<?php $author = Author::find_by_id($session->id); ?>
-<?php $author->check_status(); ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/author_nav.php"); ?>
-<?php echo output_message($message); ?>
+<?php
+require_once("../../includes/initialize.php");
+$filename = basename(__FILE__);
+$session->confirm_author_logged_in();
+$author = Author::find_by_id($session->id);
+$author->check_status();
+include_layout_template("admin_header.php");
+include("../_/components/php/author_nav.php");
+echo output_message($message);
+?>
 <div class="jumbotron hidden-sm wow fadeIn author-jumbotron">
 	<h1>خوش آمدید نویسنده: <?php echo $author->full_name(); ?></h1>
 	<p>به عنوان نویسنده شما قادر به درست کردن مقاله و درس هستید. شما همینطور قادر به تغییر مقالات و دروس خود هستید.</p>

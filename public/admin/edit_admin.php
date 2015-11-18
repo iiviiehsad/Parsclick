@@ -1,9 +1,10 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $session->confirm_admin_logged_in(); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $yourself = Admin::find_by_id($session->id); ?>
-<?php $admin = Admin::find_by_id($_GET["id"]); ?>
 <?php
+require_once("../../includes/initialize.php");
+$session->confirm_admin_logged_in();
+$filename = basename(__FILE__);
+$yourself = Admin::find_by_id($session->id);
+$admin = Admin::find_by_id($_GET["id"]);
+$errors = "";
 if(!$admin) {
 	$session->message("مدیر پیدا نشد!");
 	redirect_to("admin_list.php");
@@ -25,15 +26,13 @@ if(isset($_POST['submit'])) {
 		redirect_to("admin_list.php");
 	} else {
 		$errors = "نتوانستیم مدیر را بروزرسانی کنیم یا اینکه شما چیزی عوض نکردید.";
-		//redirect_to("admin_list.php");
 	}
 } else {
-	$errors = "";
 }
+ include_layout_template("admin_header.php");
+ include("../_/components/php/admin_nav.php");
+ echo output_message($message, $errors);
 ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/admin_nav.php"); ?>
-<?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-pencil-square-o"></i> ویرایش مدیر</h2>
@@ -99,11 +98,13 @@ if(isset($_POST['submit'])) {
 		<aside>
 			<h2>عوض کردن پسورد</h2>
 			<p>اسم شما <?php echo $yourself->full_name(); ?> است.</p>
-			<?php if($yourself->id == $admin->id) {
+			<?php
+			if($yourself->id == $admin->id) {
 				echo "<p class='text-success'>شما قادر به عوض کردن پسورد هستید چون این اطلاعات خودتان است. لطفا هیچ چیزی را خالی نگذارید.</p>";
 			} else {
 				echo "<p class='text-danger'>شما قادر به عوض کردن پسورد نیستید چون این اطلاعات شما نیست!</p>";
-			} ?>
+			}
+			?>
 		</aside>
 	</section>
 <?php include_layout_template("admin_footer.php"); ?>

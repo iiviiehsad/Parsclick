@@ -1,7 +1,7 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $session->confirm_admin_logged_in(); ?>
 <?php
+require_once("../../includes/initialize.php");
+$filename = basename(__FILE__);
+$session->confirm_admin_logged_in();
 if(isset($_POST['submit'])) {
 	$author             = new Author();
 	$author->id         = (int)"";
@@ -22,10 +22,10 @@ if(isset($_POST['submit'])) {
 		redirect_to("author_list.php");
 	}
 } else {
-} ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/admin_nav.php"); ?>
-<?php echo output_message($message); ?>
+}
+include_layout_template("admin_header.php");
+include("../_/components/php/admin_nav.php");
+echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-plus-square"></i> نویسنده جدید</h2>

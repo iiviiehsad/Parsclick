@@ -1,7 +1,9 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $session->confirm_author_logged_in(); ?>
-<?php $author = Author::find_by_id($session->id); ?>
-<?php include_layout_template("admin_header.php"); ?>
+<?php
+require_once("../../includes/initialize.php");
+$session->confirm_author_logged_in();
+$author = Author::find_by_id($session->id);
+include_layout_template("admin_header.php");
+?>
 <header class="clearfix">
 	<section id="branding">
 		<a href="index.php"><img src="../images/misc/admin-area.png" alt="Logo for Parsclick"></a>

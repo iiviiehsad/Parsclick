@@ -1,8 +1,8 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $session->confirm_admin_logged_in(); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php find_selected_course(); ?>
 <?php
+require_once("../../includes/initialize.php");
+$session->confirm_admin_logged_in();
+$filename = basename(__FILE__);
+find_selected_course();
 if(!$current_course) {
 	$session->message("هیچ درسی پیدا نشد!");
 	redirect_to("admin_courses.php");
@@ -14,11 +14,10 @@ $total_count = Comment::count_comments_for_course($current_course->id);
 $pagination  = new pagination($page, $per_page, $total_count);
 $sql         = "SELECT * FROM comments WHERE course_id = {$current_course->id} LIMIT {$per_page} OFFSET {$pagination->offset()}";
 $comments    = Comment::find_by_sql($sql);
+include_layout_template("admin_header.php");
+include("../_/components/php/admin_nav.php");
+echo output_message($message);
 ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/admin_nav.php"); ?>
-
-<?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-6 col-lg-6">
 		<article>
 			<h3><i class="fa fa-comments fa-lg"></i> نظرات</h3>
@@ -71,7 +70,7 @@ $comments    = Comment::find_by_sql($sql);
 						<?php } // end: if($pagination->has_next_page()) ?>
 					</ul>
 				</nav>
-			<?php } // end pagination?>
+			<?php } // end pagination ?>
 			<?php if(empty($comments)) { ?>
 				<h3><span class="label label-default">نظری نیست</span></h3>
 			<?php } ?>

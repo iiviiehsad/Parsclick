@@ -1,13 +1,14 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $session->confirm_admin_logged_in(); ?>
-<?php find_selected_article();
+<?php
+require_once("../../includes/initialize.php");
+$filename = basename(__FILE__);
+$session->confirm_admin_logged_in();
+find_selected_article();
 if(isset($_POST['submit'])) {
 	$subject           = new Subject();
-	$subject->id       = (int) "";
+	$subject->id       = (int)'';
 	$subject->name     = ucwords(strtolower($_POST["subject_name"]));
-	$subject->position = (int) $_POST["position"];
-	$subject->visible  = (int) $_POST["visible"];
+	$subject->position = (int)$_POST["position"];
+	$subject->visible  = (int)$_POST["visible"];
 	$result            = $subject->create();
 	if($result) { // Success
 		$session->message("موضوع درست شد");
@@ -17,10 +18,10 @@ if(isset($_POST['submit'])) {
 		redirect_to("new_subject.php");
 	}
 } else {
-} ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/admin_nav.php"); ?>
-<?php echo output_message($message); ?>
+}
+include_layout_template("admin_header.php");
+include("../_/components/php/admin_nav.php");
+echo output_message($message); ?>
 	<section class="main col-xs-12 col-sm-8 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-list-alt"></i> ساخت موضوع جدید </h2>

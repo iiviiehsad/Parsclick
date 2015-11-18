@@ -1,13 +1,10 @@
 <?php require_once("../../includes/initialize.php");
-$token = $_GET['token'];
+$token  = $_GET['token'];
 $errors = "";
 // Confirm that the token sent is valid
-$admin     = Admin::find_by_token($token);
-$author    = Author::find_by_token($token);
-if(!$token) { // if there is no token in the url
-	// Token wasn't sent or didn't match a user.
-	redirect_to('forgot_password.php');
-}
+$admin  = Admin::find_by_token($token);
+$author = Author::find_by_token($token);
+if(!$token) { redirect_to('forgot_password.php'); }
 if(isset($_POST["submit"])) {
 	$password         = $_POST['password'];
 	$password_confirm = $_POST['password_confirm'];
@@ -48,8 +45,8 @@ if(isset($_POST["submit"])) {
 	}
 } else { // end: if(isset($_POST["submit"]))
 }
+include_layout_template("admin_header.php");
 ?>
-<?php include_layout_template("admin_header.php"); ?>
 	<header class="clearfix">
 		<section id="branding">
 			<a href="index.php"><img src="../images/misc/admin-area.png" alt="Logo for Admin Area"></a>
@@ -65,7 +62,8 @@ if(isset($_POST["submit"])) {
 
 			<form class="form-horizontal" action="reset_password.php?token=<?php echo urldecode($token); ?>" method="POST" accept-charset="utf-8">
 				<fieldset>
-					<legend>پسورد جدید را قرار دهید <span class="pull-left wow infinite flash" data-wow-duration="3s" id="confirmMessage"></span></legend>
+					<legend>پسورد جدید را قرار دهید
+						<span class="pull-left wow infinite flash" data-wow-duration="3s" id="confirmMessage"></span></legend>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="password">پسورد جدید</label>
 						<div class="controls">
@@ -76,7 +74,8 @@ if(isset($_POST["submit"])) {
 						</div>
 					</section>
 					<section class="row">
-						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="confirm_pass">تایید پسورد جدید</label>
+						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="confirm_pass">تایید پسورد
+						                                                                                     جدید</label>
 						<div class="controls">
 							<div class="input-group">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>

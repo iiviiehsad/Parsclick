@@ -1,14 +1,15 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $session->confirm_admin_logged_in(); ?>
-<?php find_selected_course();
+<?php
+require_once("../../includes/initialize.php");
+$filename = basename(__FILE__);
+$session->confirm_admin_logged_in();
+find_selected_course();
 if(isset($_POST['submit'])) {
 	$category           = new Category();
-	$category->id       = (int) "";
+	$category->id       = (int)"";
 	$category->name     = ucwords(strtolower($_POST["category_name"]));
-	$category->position = (int) $_POST["position"];
-	$category->visible  = (int) $_POST["visible"];
-	$result            = $category->create();
+	$category->position = (int)$_POST["position"];
+	$category->visible  = (int)$_POST["visible"];
+	$result             = $category->create();
 	if($result) { // Success
 		$session->message("موضوع درست شد.");
 		redirect_to("admin_courses.php");
@@ -17,10 +18,11 @@ if(isset($_POST['submit'])) {
 		redirect_to("new_category.php");
 	}
 } else {
-} ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/admin_nav.php"); ?>
-<?php echo output_message($message); ?>
+}
+include_layout_template("admin_header.php");
+include("../_/components/php/admin_nav.php");
+echo output_message($message);
+?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-list-alt"></i> ساخت موضوع جدید</h2>
@@ -40,9 +42,11 @@ if(isset($_POST['submit'])) {
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8" name="position" id="position">
 								<option disabled value="">انتخاب کنید</option>
-								<?php for($count = 1; $count <= (Category::num_rows() + 1); $count++) {
+								<?php
+								for($count = 1; $count <= (Category::num_rows() + 1); $count++) {
 									echo "<option value='{$count}'>{$count}</option>";
-								} ?>
+								}
+								?>
 							</select>
 						</div>
 					</section>
@@ -71,7 +75,6 @@ if(isset($_POST['submit'])) {
 			</form>
 		</article>
 	</section>
-
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>
 			<h2>موضوعات و دروس</h2>

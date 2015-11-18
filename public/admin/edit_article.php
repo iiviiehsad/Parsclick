@@ -1,7 +1,9 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $session->confirm_admin_logged_in(); ?>
-<?php find_selected_article();
+<?php
+require_once("../../includes/initialize.php");
+$filename = basename(__FILE__);
+$session->confirm_admin_logged_in();
+find_selected_article();
+$errors = "";
 if(!$current_article || !$current_subject) {
 	redirect_to("author_articles.php");
 }
@@ -20,11 +22,11 @@ if(isset($_POST['submit'])) {
 		//redirect_to("admin_articles.php?subject=" . $current_subject->id . "&article=" . $current_article->id);
 	}
 } else {
-	$errors = "";
-} ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/admin_nav.php"); ?>
-<?php echo output_message($message, $errors); ?>
+}
+include_layout_template("admin_header.php");
+include("../_/components/php/admin_nav.php");
+echo output_message($message, $errors);
+?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-pencil-square-o"></i> ویرایش مقاله</h2>

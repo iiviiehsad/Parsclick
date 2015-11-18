@@ -5,7 +5,6 @@ if(empty($_GET["id"])) {
 	$session->message("شناسه نظر پیدا نشد!");
 	redirect_to("comments.php");
 }
-
 $comment = Comment::find_by_id($_GET["id"]);
 if($comment && $comment->delete()) {
 	$session->message("نظر حذف شد.");
@@ -14,7 +13,4 @@ if($comment && $comment->delete()) {
 	$session->message("نظر حذف نشد!");
 	redirect_to("list_comments.php");
 }
-if(isset($database)) {
-	$database->close_connection();
-}
-?>
+if(isset($database)) { $database->close_connection(); }

@@ -1,10 +1,12 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $session->confirm_admin_logged_in(); ?>
-<?php find_selected_course();
+<?php
+require_once("../../includes/initialize.php");
+$filename = basename(__FILE__);
+$session->confirm_admin_logged_in();
+find_selected_course();
 if(!$current_course || !$current_category) {
 	redirect_to("author_courses.php");
 }
+$errors = "";
 if(isset($_POST['submit'])) {
 	$course                  = Course::find_by_id($current_course->id, FALSE);
 	$course->name            = ucfirst($_POST["course_name"]);
@@ -21,11 +23,11 @@ if(isset($_POST['submit'])) {
 		$errors = "درس بروزرسانی نشد!";
 	}
 } else {
-	$errors = "";
-} ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/admin_nav.php"); ?>
-<?php echo output_message($message, $errors); ?>
+}
+include_layout_template("admin_header.php");
+include("../_/components/php/admin_nav.php");
+echo output_message($message, $errors);
+?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-pencil-square-o"></i> ویرایش درس</h2>
@@ -87,13 +89,11 @@ if(isset($_POST['submit'])) {
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" value="0"
-									<?php if($current_course->visible == 0) echo "checked";
-									?> > خیر
+									<?php if($current_course->visible == 0) { echo "checked"; } ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" value="1"
-									<?php if($current_course->visible == 1) echo "checked";
-									?> > بله
+									<?php if($current_course->visible == 1) { echo "checked"; } ?> > بله
 							</label>
 						</div>
 					</section>

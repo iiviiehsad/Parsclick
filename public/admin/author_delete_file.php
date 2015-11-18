@@ -13,6 +13,4 @@ if($file && $file->destroy()) {
 	$session->message("فایل {$file->description} حذف نشد!");
 	redirect_to($_SERVER["HTTP_REFERER"]);
 }
-if(isset($database)) {
-	$database->close_connection();
-}
+if(isset($database)) { $database->close_connection(); }

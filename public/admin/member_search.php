@@ -1,18 +1,16 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $session->confirm_admin_logged_in(); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php
+<?php require_once("../../includes/initialize.php");
+$session->confirm_admin_logged_in();
+$filename = basename(__FILE__);
 if(isset($_GET["q"]) && !empty($_GET["q"]) && $_GET["q"] != " ") {
 	$member_set = Member::search($_GET["q"]);
 } else { // this is a $_GET request
 	$session->message("چیزی جستجو نکردید.");
 	redirect_to("member_list.php");
 }
+include_layout_template("admin_header.php");
+include("../_/components/php/admin_nav.php");
+echo output_message($message);
 ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/admin_nav.php"); ?>
-
-<?php echo output_message($message); ?>
 	<section class="main">
 		<article>
 			<?php if(!empty($member_set)) { ?>
@@ -23,7 +21,7 @@ if(isset($_GET["q"]) && !empty($_GET["q"]) && $_GET["q"] != " ") {
 						<tr>
 							<th>اسم کاربری</th>
 							<th>نام</th>
-							<th>نام  خانوادگی</th>
+							<th>نام خانوادگی</th>
 							<th>جنس</th>
 							<th>آدرس</th>
 							<th>تلفن</th>
@@ -57,5 +55,4 @@ if(isset($_GET["q"]) && !empty($_GET["q"]) && $_GET["q"] != " ") {
 				redirect_to("member_list.php");
 			} ?></article>
 	</section>
-
 <?php include_layout_template("admin_footer.php"); ?>

@@ -1,9 +1,8 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $session->confirm_author_logged_in(); ?>
-<?php $author = Author::find_by_id($session->id);
-if($author->status == 2) {
-	redirect_to("deactivated.php");
-}
+<?php
+require_once("../../includes/initialize.php");
+$session->confirm_author_logged_in();
+$author = Author::find_by_id($session->id);
+if($author->status == 2) { redirect_to("deactivated.php"); }
 $errors = "";
 if(isset($_POST["resend_email"])) {
 	$author->create_reset_token($author->username);
@@ -33,8 +32,8 @@ if(isset($_POST["resend_email"])) {
 	}
 } else {
 }
+include_layout_template("admin_header.php");
 ?>
-<?php include_layout_template("admin_header.php"); ?>
 	<style type="text/css">
 		.jumbotron {
 			padding     : 50px;

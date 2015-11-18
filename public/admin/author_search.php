@@ -1,18 +1,17 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $session->confirm_admin_logged_in(); ?>
-<?php $filename = basename(__FILE__); ?>
 <?php
+require_once("../../includes/initialize.php");
+$session->confirm_admin_logged_in();
+$filename = basename(__FILE__);
 if(isset($_GET["q"]) && !empty($_GET["q"]) && $_GET["q"] != " ") {
 	$author_set = Author::search($_GET["q"]);
 } else { // this is a $_GET request
 	$session->message("شما چیزی جستجو نکردید!");
 	redirect_to("author_list.php");
 }
+include_layout_template("admin_header.php");
+include("../_/components/php/admin_nav.php");
+echo output_message($message);
 ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/admin_nav.php"); ?>
-
-<?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<?php if(!empty($author_set)) { ?>

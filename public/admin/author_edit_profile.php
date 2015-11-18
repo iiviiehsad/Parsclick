@@ -1,11 +1,9 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $filename = basename(__FILE__); ?>
-<?php $session->confirm_author_logged_in(); ?>
-<?php $author = Author::find_by_id($session->id); ?>
-<?php $author->check_status(); ?>
-<?php $author = Author::find_by_id($session->id); ?>
-<?php $author->check_status(); ?>
 <?php
+require_once("../../includes/initialize.php");
+$filename = basename(__FILE__);
+$session->confirm_author_logged_in();
+$author = Author::find_by_id($session->id);
+$author->check_status();
 $errors             = "";
 $MAX_FILE_SIZE      = 100000;
 $allowed_mime_types = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg'];
@@ -43,20 +41,21 @@ if(isset($_POST['submit'])) {
 				$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
 			}
 		}
-	}
-	$result = $author->save();
-	if($result) {
-		$session->message("شما پروفیل خود را بروز رساندید.");
-		redirect_to("author_profile.php");
 	} else {
-		$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
+		$result = $author->save();
+		if($result) {
+			$session->message("شما پروفیل خود را بروز رساندید.");
+			redirect_to("author_profile.php");
+		} else {
+			$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
+		}
 	}
 } else {
 } // end: if (isset($_POST['submit']))
+include_layout_template("admin_header.php");
+include("../_/components/php/author_nav.php");
+echo output_message($message, $errors);
 ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include("../_/components/php/author_nav.php"); ?>
-<?php echo output_message($message, $errors); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
 		<h2><i class="fa fa-pencil-square-o"></i> ویرایش پروفایل</h2>
@@ -100,8 +99,8 @@ if(isset($_POST['submit'])) {
 						<label style="cursor:pointer;" class="control-label btn btn-small btn-primary" for="photo">
 							آپلود عکس
 						</label>
-						<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $MAX_FILE_SIZE; ?>" />
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="file" name="photo" id="photo" accept="image/*" />
+						<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $MAX_FILE_SIZE; ?>"/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="file" name="photo" id="photo" accept="image/*"/>
 						&nbsp;&nbsp;&nbsp;<span>اندازه: ۱۰۰ کیلوبایت</span>
 					</div>
 				</section>
