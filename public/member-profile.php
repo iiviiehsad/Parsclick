@@ -57,9 +57,9 @@ $errors = "";
 		<h2>حذف عضویت</h2>
 		<p>با کلیلک روی این دگمه حساب کاربری شما به کلی حذف خواهد شد. بنابراین مواظب باشید اگر می خواهید روی این دگمه کلیک
 		   کنید.</p>
-		<a class="btn btn-danger btn-small pull-left" href="member-permanent-deletion" role="button" onclick="return confirm('آیا مطمئن هستید که می خواهید حق اشتراک شما ابدا پاک شود؟')">
-			<i class="fa fa-exclamation-triangle fa-lg"></i>
-			حق اشتراک را بکلی پاک کن
+		<a class="btn label label-danger" href="member-permanent-deletion" role="button" onclick="return confirm('آیا مطمئن هستید که می خواهید حق اشتراک شما ابدا پاک شود؟\nبا این کار شما از پایگاه داده ها یه کلی حذف خواهید شد و بی هیچ پیامی به صفحه ورود خواهید رفت!')">
+			<i class="fa fa-exclamation-triangle"></i>
+			حق اشتراک را بکلی پاک کن!
 		</a>
 	</aside>
 </section>

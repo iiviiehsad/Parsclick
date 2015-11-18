@@ -210,7 +210,6 @@ class Session {
 		return $allowed_array;
 	}
 
-	// Does the request IP match the stored value?
 	private function request_ip_matches_session() {
 		// return false if either value is not set
 		if(!isset($_SESSION['ip']) || !isset($_SERVER['REMOTE_ADDR'])) {
@@ -223,7 +222,6 @@ class Session {
 		}
 	}
 
-	// Does the request user agent match the stored value?
 	private function request_user_agent_matches_session() {
 		// return false if either value is not set
 		if(!isset($_SESSION['user_agent']) || !isset($_SERVER['HTTP_USER_AGENT'])) {
@@ -236,7 +234,6 @@ class Session {
 		}
 	}
 
-	// Has too much time passed since the last login?
 	private function last_login_is_recent() {
 		$max_elapsed = 60 * 60 * 24; // 1 day
 		// return false if value is not set
@@ -250,7 +247,6 @@ class Session {
 		}
 	}
 
-	// Should the session be considered valid?
 	private function is_session_valid() {
 		$check_ip         = TRUE;
 		$check_user_agent = TRUE;

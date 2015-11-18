@@ -220,10 +220,47 @@ function check_ownership($id, $session_id) {
 	}
 }
 
+/**
+ * @param $file string gets the file name
+ * @return mixed of file extensions
+ */
+function file_extension($file) {
+	$path_parts = pathinfo($file);
+	return $path_parts['extension'];
+}
+
+/**
+ * @param $file string gets the file name
+ * @return bool TRUE if file contains PHP in it and FALSE otherwise
+ */
+function file_contains_php($file) {
+	$contents = file_get_contents($file);
+	$position = strpos($contents, '<?php');
+	return $position !== FALSE;
+}
+
+/**
+ * @param $error_integer integer gets the file error number
+ * @return mixed of errors descriptions
+ */
+function file_upload_error($error_integer) {
+	$upload_errors = [
+		// http://php.net/manual/en/features.file-upload.errors.php
+		UPLOAD_ERR_OK         => "خطایی نیست.",
+		UPLOAD_ERR_INI_SIZE   => "فایل بزرگتر از تنظیمات پی اچ پی است!",
+		UPLOAD_ERR_FORM_SIZE  => "اندازه فایل بزرگ است!",
+		UPLOAD_ERR_PARTIAL    => "فایل نصفه آپلود شد!",
+		UPLOAD_ERR_NO_FILE    => "هیچ فایلی انتخاب نشد!",
+		UPLOAD_ERR_NO_TMP_DIR => "پوشه موقت موجود نیست!",
+		UPLOAD_ERR_CANT_WRITE => "نمیشه روی دیسک نوشت!",
+		UPLOAD_ERR_EXTENSION  => "آپلود فایل بخاطر نوع آن متوقف شد!"
+	];
+	return $upload_errors[$error_integer];
+}
+
 /******************************************************************************************************/
 /*                                       MEMBER'S FUNCTIONS                                           */
 /******************************************************************************************************/
-
 /**
  * @param        $action  string represents the login or logout action for each user
  * @param string $message represent the message for every user
@@ -725,7 +762,6 @@ function active() {
 /******************************************************************************************************/
 /*                                       COOKIE FUNCTIONS                                             */
 /******************************************************************************************************/
-
 /**
  * @param $salt   string gets the salt to add to the @param $string
  * @param $string $string string gets the text

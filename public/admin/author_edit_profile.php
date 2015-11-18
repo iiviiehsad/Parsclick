@@ -6,6 +6,10 @@
 <?php $author = Author::find_by_id($session->id); ?>
 <?php $author->check_status(); ?>
 <?php
+$errors             = "";
+$MAX_FILE_SIZE      = 100000;
+$allowed_mime_types = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg'];
+$allowed_extensions = ['png', 'gif', 'jpg', 'jpeg'];
 if(isset($_POST['submit'])) {
 	$author->id       = $session->id;
 	$author->username = trim($_POST["username"]);
@@ -15,22 +19,39 @@ if(isset($_POST['submit'])) {
 	$author->first_name = trim($_POST["first_name"]);
 	$author->last_name  = trim($_POST["last_name"]);
 	$author->email      = trim($_POST["email"]);
-	if(isset($_FILES["photo"]["tmp_name"]) && ($_FILES["photo"]["tmp_name"]) !== NULL &&
-	   !empty($_FILES["photo"]["tmp_name"])
-	) {
-		$author->photo = file_get_contents($_FILES["photo"]["tmp_name"]);
+	if($_FILES["photo"]['name']) {
+		$file_extension = file_extension($_FILES["photo"]['name']);
+		if($_FILES["photo"]['error'] > 0) {
+			$errors = "خطا: " . file_upload_error($_FILES["photo"]['error']);
+		} elseif(!is_uploaded_file($_FILES["photo"]["tmp_name"])) {
+			$errors = "مرجع فایل شامل فایلی که بتازگی آپلود کردید نیست!";
+		} elseif($_FILES["photo"]["size"] > $MAX_FILE_SIZE) {
+			$errors = "اندازه فایل بزرگ است!";
+		} elseif(!in_array($_FILES["photo"]["type"], $allowed_mime_types)) {
+			$errors = "فایل عکس نیست!";
+		} elseif(!in_array($file_extension, $allowed_extensions)) {
+			$errors = "فایل عکس نیست!";
+		} elseif(file_contains_php($_FILES["photo"]["tmp_name"])) {
+			$errors = "فایل دارای پی اچ پی است!";
+		} else {
+			$author->photo = file_get_contents($_FILES["photo"]["tmp_name"]);
+			$result        = $author->save();
+			if($result) {
+				$session->message("شما پروفیل خود را بروز رساندید.");
+				redirect_to("author_profile.php");
+			} else {
+				$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
+			}
+		}
 	}
 	$result = $author->save();
 	if($result) {
-		// Success
-		$session->message("پروفایل شما بروزرسانی شد.");
+		$session->message("شما پروفیل خود را بروز رساندید.");
 		redirect_to("author_profile.php");
 	} else {
-		// Failure
-		$errors = "پروفایل شما بروزرسانی نشد!";
+		$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
 	}
 } else {
-	$errors = "";
 } // end: if (isset($_POST['submit']))
 ?>
 <?php include_layout_template("admin_header.php"); ?>
@@ -79,7 +100,7 @@ if(isset($_POST['submit'])) {
 						<label style="cursor:pointer;" class="control-label btn btn-small btn-primary" for="photo">
 							آپلود عکس
 						</label>
-						<input type="hidden" name="MAX_FILE_SIZE" value="100000">
+						<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $MAX_FILE_SIZE; ?>">
 						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="file" name="photo" id="photo">
 						&nbsp;&nbsp;&nbsp;<span>اندازه: ۱۰۰ کیلوبایت</span>
 					</div>
@@ -101,15 +122,6 @@ if(isset($_POST['submit'])) {
 		<?php if(empty($author->photo)) { ?>
 			<span class="glyphicon glyphicon-user center" style="font-size: 150px; margin: 0; padding: 0;"></span>
 			<span class="text-muted center">عکس پروفایل موجود نیست</span>
-			<div class="well center">
-				<small>
-					برای آپلود کردن عکس پروفایل به پایین صفحه بروید و روی قسمت عکس پروفایل کلیک کنید و فیلی نهایتا به اندازه
-					ی ۵ مگابایت یا کمتر آپلود کنید. لطفا توجه داشته باشید که عکس پروفایل شما همراه با مقالات و دروسی که می
-					سازید کنار نام شما دیده خواهد شد. بنابراین دقت در انتخاب عکستان داشته باشید. عکس مورد نظر باید صورت شما
-					را نمایان نشان دهد. عکس های نا مناسب یا عکس هایی که به شما متعلق نیست باعث معوق شدن ناگهانی حساب شما
-					خواهد شد.
-				</small>
-			</div>
 		<?php } else { ?>
 			<img class="img-responsive img-thumbnail" height="200" width="200" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 			<br/>
@@ -117,6 +129,15 @@ if(isset($_POST['submit'])) {
 				حذف عکس پروفایل
 			</a>
 		<?php } ?>
+		<div class="well center">
+			<small>
+				برای آپلود کردن عکس پروفایل به پایین صفحه بروید و روی قسمت عکس پروفایل کلیک کنید و فیلی نهایتا به اندازه
+				ی ۵ مگابایت یا کمتر آپلود کنید. لطفا توجه داشته باشید که عکس پروفایل شما همراه با مقالات و دروسی که می
+				سازید کنار نام شما دیده خواهد شد. بنابراین دقت در انتخاب عکستان داشته باشید. عکس مورد نظر باید صورت شما
+				را نمایان نشان دهد. عکس های نا مناسب یا عکس هایی که به شما متعلق نیست باعث معوق شدن ناگهانی حساب شما
+				خواهد شد.
+			</small>
+		</div>
 	</aside>
 </section>
 <?php include_layout_template("admin_footer.php"); ?>
