@@ -30,7 +30,7 @@ class FailedLogins extends DatabaseObject {
 		return TRUE;
 	}
 
-	public function clear_failed_logins($username) {
+	public static function clear_failed_logins($username) {
 		$failed_login = self::find_by_username($username);
 		if($failed_login) {
 			$failed_login->count     = 0;
@@ -40,7 +40,7 @@ class FailedLogins extends DatabaseObject {
 		return TRUE;
 	}
 
-	public function throttle_failed_logins($username) {
+	public static function throttle_failed_logins($username) {
 		$throttle_at      = 3;
 		$delay_in_minutes = 1;
 		$delay            = 60 * $delay_in_minutes;

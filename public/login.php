@@ -14,8 +14,7 @@ if(isset($_POST["submit"])) { // if form submitted
 			$username = trim($_POST["username"]);
 			$password = trim($_POST["password"]);
 			if(has_presence($username) && has_presence($password)) {
-				$failed_login   = new FailedLogins();
-				$throttle_delay = $failed_login->throttle_failed_logins($username);
+				$throttle_delay = FailedLogins::throttle_failed_logins($username);
 				if($throttle_delay > 0) {
 					$errors = "حساب کابری قفل شده. باید {$throttle_delay} دقیقه صبر کنید و بعد دوباره سعی کنید.";
 				} else {
@@ -23,11 +22,12 @@ if(isset($_POST["submit"])) { // if form submitted
 					$found_user = Member::authenticate($username, $password);
 					if($found_user) {
 						$session->login($found_user);
-						$failed_login->clear_failed_logins($username);
+						FailedLogins::clear_failed_logins($username);
 						redirect_to("member");
 					} else {
 						$errors = "اسم کاربری یا پسورد درست نیست!";
-						$failed_login->record_failed_login($username);
+						$failed = new FailedLogins();
+						$failed->record_failed_login($username);
 					}
 				}
 			} else {
