@@ -103,7 +103,7 @@ php_value session.name PARSCLICKSESSION
 #php_value session.cookie_domain ''
 # TODO: specify path for storing cookies
 #php_value session.cookie_path '/parsclick'
-#php_value session.cookie_lifetime 0
+php_value session.cookie_lifetime 0
 # TODO: sessions only can be accessible via http request
 php_flag session.cookie_httponly on
 

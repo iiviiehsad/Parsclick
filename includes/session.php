@@ -36,7 +36,7 @@ class Session {
 	}
 
 	public function confirm_logged_in() {
-		if(!$this->is_logged_in()) {
+		if(!$this->is_logged_in() || !$this->is_session_valid()) {
 			$this->logout();
 			redirect_to("login");
 		}
@@ -47,7 +47,7 @@ class Session {
 	}
 
 	public function confirm_admin_logged_in() {
-		if(!$this->is_admin_logged_in()) {
+		if(!$this->is_admin_logged_in() || !$this->is_session_valid()) {
 			$this->logout();
 			redirect_to("index.php");
 		}
@@ -58,31 +58,42 @@ class Session {
 	}
 
 	public function confirm_author_logged_in() {
-		if(!$this->is_author_logged_in()) {
+		if(!$this->is_author_logged_in() || !$this->is_session_valid()) {
 			$this->logout();
 			redirect_to("index.php");
 		}
 	}
 
 	public function login($member) {
-		// database should find member based on username/password
 		if($member) {
-			$this->id        = $_SESSION['id'] = $member->id;
-			$this->logged_in = TRUE;
+			session_regenerate_id();
+			$this->id               = $_SESSION['id'] = $member->id;
+			$this->logged_in        = TRUE;
+			$_SESSION['ip']         = $_SERVER['REMOTE_ADDR'];
+			$_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+			$_SESSION['last_login'] = time();
 		}
 	}
 
 	public function admin_login($admin) {
 		if($admin) {
-			$this->id              = $_SESSION['admin_id'] = $admin->id;
-			$this->admin_logged_in = TRUE;
+			session_regenerate_id();
+			$this->id               = $_SESSION['admin_id'] = $admin->id;
+			$this->admin_logged_in  = TRUE;
+			$_SESSION['ip']         = $_SERVER['REMOTE_ADDR'];
+			$_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+			$_SESSION['last_login'] = time();
 		}
 	}
 
 	public function author_login($author) {
 		if($author) {
+			session_regenerate_id();
 			$this->id               = $_SESSION['author_id'] = $author->id;
 			$this->author_logged_in = TRUE;
+			$_SESSION['ip']         = $_SERVER['REMOTE_ADDR'];
+			$_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+			$_SESSION['last_login'] = time();
 		}
 	}
 
@@ -198,6 +209,64 @@ class Session {
 		}
 		return $allowed_array;
 	}
+
+	// Does the request IP match the stored value?
+	private function request_ip_matches_session() {
+		// return false if either value is not set
+		if(!isset($_SESSION['ip']) || !isset($_SERVER['REMOTE_ADDR'])) {
+			return FALSE;
+		}
+		if($_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	// Does the request user agent match the stored value?
+	private function request_user_agent_matches_session() {
+		// return false if either value is not set
+		if(!isset($_SESSION['user_agent']) || !isset($_SERVER['HTTP_USER_AGENT'])) {
+			return FALSE;
+		}
+		if($_SESSION['user_agent'] === $_SERVER['HTTP_USER_AGENT']) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	// Has too much time passed since the last login?
+	private function last_login_is_recent() {
+		$max_elapsed = 60 * 60 * 24; // 1 day
+		// return false if value is not set
+		if(!isset($_SESSION['last_login'])) {
+			return FALSE;
+		}
+		if(($_SESSION['last_login'] + $max_elapsed) >= time()) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	// Should the session be considered valid?
+	private function is_session_valid() {
+		$check_ip         = TRUE;
+		$check_user_agent = TRUE;
+		$check_last_login = TRUE;
+		if($check_ip && !$this->request_ip_matches_session()) {
+			return FALSE;
+		}
+		if($check_user_agent && !$this->request_user_agent_matches_session()) {
+			return FALSE;
+		}
+		if($check_last_login && !$this->last_login_is_recent()) {
+			return FALSE;
+		}
+		return TRUE;
+	}
+
 }
 
 $session = new Session();
