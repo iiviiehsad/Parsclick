@@ -20,9 +20,7 @@ class DatabaseObject {
 
 	public static function find_by_id($id = 0) {
 		global $database;
-		$result_array =
-				static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE id=" . $database->escape_value($id) .
-				                    " LIMIT 1");
+		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE id=" . $database->escape_value($id) . " LIMIT 1");
 		return !empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
@@ -44,15 +42,13 @@ class DatabaseObject {
 
 	public static function find_by_email($email = "") {
 		global $database;
-		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE email = '" .
-		                                    $database->escape_value($email) . "' LIMIT 1");
+		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE email = '" . $database->escape_value($email) . "' LIMIT 1");
 		return !empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
 	public static function find_by_token($token = "") {
 		global $database;
-		$result_array = self::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE token = '" .
-		                                  $database->escape_value($token) . "' LIMIT 1");
+		$result_array = self::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE token = '" . $database->escape_value($token) . "' LIMIT 1");
 		return !empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
@@ -148,12 +144,6 @@ class DatabaseObject {
 		$sql .= " LIMIT 1";
 		$database->query($sql);
 		return ($database->affected_rows() == 1) ? TRUE : FALSE;
-		// NB: After deleting, the instance of User still
-		// exists, even though the database entry does not.
-		// This can be useful, as in:
-		//   echo $member->first_name . " was deleted";
-		// but, for example, we can 't call $user->update()
-		// after calling $user->delete().
 	}
 
 	private function reset_token() {
