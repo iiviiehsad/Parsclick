@@ -18,19 +18,33 @@ if(isset($_POST["submit"])) {
 			if(isset($_POST["type"])) {
 				$type = trim($_POST["type"]);
 			}
-			$found_admin  = Admin::authenticate($username, $password);
-			$found_author = Author::authenticate($username, $password);
-			// TRY TO LOGIN
-			if($found_admin && ($type === "admin")) { //find the super admin 1st
-				$session->admin_login($found_admin);
-				log_action("Login", "<span class='alert-danger'>" . ucfirst($found_admin->username) . "</span> logged in.");
-				redirect_to("admin.php");
-			} elseif($found_author && ($type === "author")) { // find the authors 2nd
-				$session->author_login($found_author);
-				log_action("Login", "<span class='alert-success'>" . ucfirst($found_author->username) . "</span> logged in.");
-				redirect_to("author.php");
+			if(has_presence($username) && has_presence($password) && has_presence($type)) {
+				$throttle_delay = FailedLogins::throttle_failed_logins($username);
+				if($throttle_delay > 0) {
+					$errors = "حساب کابری قفل شده. باید {$throttle_delay} دقیقه صبر کنید و بعد دوباره سعی کنید.";
+				} else {
+					$found_admin  = Admin::authenticate($username, $password);
+					$found_author = Author::authenticate($username, $password);
+					// TRY TO LOGIN
+					if($found_admin && ($type === "admin")) { //find the super admin 1st
+						$session->admin_login($found_admin);
+						log_action("Login", "<span class='alert-danger'>" . ucfirst($found_admin->username) . "</span> logged in.");
+						FailedLogins::clear_failed_logins($username);
+						redirect_to("admin.php");
+					} elseif($found_author && ($type === "author")) { // find the authors 2nd
+						$session->author_login($found_author);
+						log_action("Login",
+						           "<span class='alert-success'>" . ucfirst($found_author->username) . "</span> logged in.");
+						FailedLogins::clear_failed_logins($username);
+						redirect_to("author.php");
+					} else {
+						$errors = "اسم کاربری و یا پسورد اشتباه است!";
+						$failed = new FailedLogins();
+						$failed->record_failed_login($username);
+					}
+				}
 			} else {
-				$errors = "اسم کاربری و یا پسورد اشتباه است!";
+				$errors = "اسم کاربری، پسورد یا نوع خالی هستند.";
 			}
 		} else {
 			$errors = "شناسه CSRF معتبر نیست!";

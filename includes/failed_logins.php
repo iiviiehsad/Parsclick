@@ -41,8 +41,8 @@ class FailedLogins extends DatabaseObject {
 	}
 
 	public static function throttle_failed_logins($username) {
-		$throttle_at      = 3;
-		$delay_in_minutes = 1;
+		$throttle_at      = 20;
+		$delay_in_minutes = 60;
 		$delay            = 60 * $delay_in_minutes;
 		$failed_login     = self::find_by_username($username);
 		// Once failure count is over $throttle_at value,

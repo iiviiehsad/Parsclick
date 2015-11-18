@@ -1,11 +1,1 @@
-November 18, 2015 at 12:08 AM | Logs Cleared By User: <span class='badge' style='float:right;'>حسن عظیمی</span>
-November 18, 2015 at 01:06 AM | Login: <span class='alert-danger'>Hazz</span> logged in.
-November 18, 2015 at 01:12 AM | Login: <span class='alert-danger'>Hazz</span> logged in.
-November 18, 2015 at 01:12 AM | Login: <span class='alert-success'>Amirhassanazimi</span> logged in.
-November 18, 2015 at 01:24 AM | Login: <span class='alert-success'>Amirhassanazimi</span> logged in.
-November 18, 2015 at 01:29 AM | Login: <span class='alert-danger'>Hazz</span> logged in.
-November 18, 2015 at 01:32 AM | Login: <span class='alert-success'>Amirhassanazimi</span> logged in.
-November 18, 2015 at 01:33 AM | Login: <span class='alert-danger'>Hazz</span> logged in.
-November 18, 2015 at 01:34 AM | Login: <span class='alert-success'>Amirhassanazimi</span> logged in.
-November 18, 2015 at 01:38 AM | Login: <span class='alert-danger'>Hazz</span> logged in.
-November 18, 2015 at 02:33 AM | Login: <span class='alert-success'>Amirhassanazimi</span> logged in.
+November 18, 2015 at 09:28 PM | Logs Cleared By User: <span class='badge' style='float:right;'>حسن عظیمی</span>
