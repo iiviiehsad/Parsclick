@@ -10,10 +10,11 @@
 <div class="jumbotron">
 	<h1>جناب <?php echo ucwords(strtolower($author->full_name())); ?></h1>
 	<p>متاسفانه به علتی حساب شما از دسترسی به این سایت محدود شده.</p>
-	<p>لطفا با مدیر ارشد وب سایت تماس بگیرید.</p>
+	<p>این علت ممکن هست در رابطه با عدم همکاری با نقض قوانین سایت یا علتی دیگر باشد.</p>
+	<p>لطفا با مدیر ارشد وب سایت تماس بگیرید و هنگام تماس شناسه کاربری را ذکر کنید.</p>
 	<p>
 		<a class="btn btn-danger btn-large" href="logout.php" role="button">خروج</a>
-		<a href="mailto:<?php echo EMAILUSER; ?>" class="btn btn-success btn-large" role="button">
+		<a href="../contact" class="btn btn-success btn-large" role="button">
 			تماس با مدیر سایت
 		</a>
 	</p>

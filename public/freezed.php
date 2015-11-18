@@ -7,21 +7,13 @@ if($member->status == 2) {
 }
 $errors = "";
 if(isset($_POST["resend_email"])) {
-	if(request_is_post() && $session->request_is_same_domain()) {
-		if($session->csrf_token_is_valid() && $session->csrf_token_is_recent()) {
-			$member->create_reset_token($member->username);
-			$result = $member->email_confirmation_details($member->username);
-			if($result) {
-				$session->message("ایمیل برای فعال کردن عضویت دوباره فرستاده شد. لطفا ایمیل خود را چک کنید و از اینجا خارج شوید.");
-				redirect_to("freezed.php");
-			} else {
-				$errors = "نتوانستیم ایمیل بفرستیم! لطفا بعدا سعی کنید یا با مدیر سایت تماس بگیرید.";
-			}
-		} else {
-			$errors = "شناسه CSRF معتبر نیست!";
-		}
+	$member->create_reset_token($member->username);
+	$result = $member->email_confirmation_details($member->username);
+	if($result) {
+		$session->message("ایمیل برای فعال کردن عضویت دوباره فرستاده شد. لطفا ایمیل خود را چک کنید و از اینجا خارج شوید.");
+		redirect_to("freezed");
 	} else {
-		$errors = "درخواست معتبر نیست!";
+		$errors = "نتوانستیم ایمیل بفرستیم! لطفا بعدا سعی کنید یا با مدیر سایت تماس بگیرید.";
 	}
 } elseif(isset($_POST["update_email"])) {
 	if(request_is_post() && $session->request_is_same_domain()) {
@@ -70,7 +62,6 @@ if(isset($_POST["resend_email"])) {
 		</ul>
 		<form action="freezed" method="POST">
 			<a class="btn btn-danger btn-large" href="logout.php" role="button">خروج</a>
-			<?php echo $session->csrf_token_tag(); ?>
 			<button type="submit" class="btn btn-success btn-large" name="resend_email" role="button">
 				دوباره ایمیل رابفرست
 			</button>
