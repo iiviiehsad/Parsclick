@@ -11,7 +11,8 @@
 		<fieldset>
 			<legend><i class="fa fa-credit-card fa-lg"></i> ثبت نام
 				<small><span class="pull-left wow flash infinite" data-wow-duration="2s" id="confirmMessage"></span>
-				</small></legend>
+				</small>
+			</legend>
 
 			<section class="row">
 				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="username">اسم کاربری * &nbsp;</label>
