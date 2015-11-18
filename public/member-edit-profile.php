@@ -132,7 +132,7 @@ if(isset($_POST['submit'])) {
 							آپلود عکس
 						</label>
 						<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $MAX_FILE_SIZE; ?>">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="file" name="photo" id="photo"
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="file" name="photo" id="photo" accept="image/*" />
 						<span>اندازه: ۱۰۰ کیلو بایت</span>
 					</div>
 				</section>

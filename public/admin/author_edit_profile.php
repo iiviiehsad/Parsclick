@@ -100,8 +100,8 @@ if(isset($_POST['submit'])) {
 						<label style="cursor:pointer;" class="control-label btn btn-small btn-primary" for="photo">
 							آپلود عکس
 						</label>
-						<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $MAX_FILE_SIZE; ?>">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="file" name="photo" id="photo">
+						<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $MAX_FILE_SIZE; ?>" />
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="file" name="photo" id="photo" accept="image/*" />
 						&nbsp;&nbsp;&nbsp;<span>اندازه: ۱۰۰ کیلوبایت</span>
 					</div>
 				</section>
