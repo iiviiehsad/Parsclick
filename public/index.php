@@ -8,11 +8,11 @@ $filename = basename(__FILE__);
 <?php include("_/components/php/snippet-carousel.php"); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<?php include("_/components/php/article-intro.php"); ?>
+	<?php include("_/components/php/article-facebook-comment.php"); ?>
 </section><!-- main -->
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<?php include("_/components/php/aside-video-promo.php"); ?>
 	<?php include("_/components/php/aside-register.php"); ?>
-	<?php include("_/components/php/article-facebook-comment.php"); ?>
 	<aside>
 		<?php include("_/components/php/aside-news.php"); ?>
 		<h2>به اشتراک بگذارید</h2>
