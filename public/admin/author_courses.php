@@ -127,8 +127,11 @@ echo output_message($message, $errors);
 										<?php foreach($json['items'] as $item): ?>
 											<tr>
 												<td>
-													<a href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; ?>?hl=fa-ir&theme=light&showinfo=0&autoplay=true"
-													   title="Click to play" target="_blank" onclick="videoPlayer(this); return false;">
+													<!--<a href="https://www.youtube.com/embed/--><?php //echo $item['snippet']['resourceId']['videoId']; ?><!--?hl=fa-ir&theme=light&showinfo=0&autoplay=true"-->
+													<!--   title="Click to play" target="_blank" onclick="videoPlayer(this); return false;">-->
+													<!--	--><?php //echo $item['snippet']['title']; ?>
+													<!--</a>-->
+													<a class="visited" href="http://www.youtube.com/watch?v=<?php echo $item['snippet']['resourceId']['videoId']; ?>" title="Click to play">
 														<?php echo $item['snippet']['title']; ?>
 													</a>
 												</td>
@@ -216,4 +219,14 @@ echo output_message($message, $errors);
 			<?php echo author_courses($current_category, $current_course); ?>
 		</aside>
 	</section>
+	<!-- Video / Generic Modal -->
+	<div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<!-- content dynamically inserted -->
+				</div>
+			</div>
+		</div>
+	</div>
 <?php include_layout_template("admin_footer.php"); ?>

@@ -35,7 +35,7 @@ if(isset($current_course->author_id)) {
 					<form action="add-to-playlist" method="POST" class="addtoplaylist">
 						<input type="hidden" name="course" value="<?php echo $current_course->id; ?>">
 						<button id="btn" type="submit" class="btn btn-info">
-							<i class="fa fa-plus-circle"></i> اضافه به لیست پخش
+							<i class="fa fa-plus-circle"></i> اضافه به لیست
 						</button>
 					</form>
 				<?php } else { ?>
@@ -44,12 +44,12 @@ if(isset($current_course->author_id)) {
 					<form action="remove-from-playlist" method="POST" class="removefromplaylist">
 						<input type="hidden" name="course" value="<?php echo array_shift($playlist_set)->id; ?>">
 						<button id="btn" type="submit" class="btn btn-danger">
-							<i class="fa fa-minus-circle"></i> حذف از لیست پخش
+							<i class="fa fa-minus-circle"></i> حذف از لیست
 						</button>
 					</form>
 					&nbsp;
 				<?php } //else num_courses_for_playlist?>
-				
+
 				<p><?php echo nl2br(htmlentities($current_course->content)); ?></p>
 				<!-- ------------------------------------------------------------------------------------------------- -->
 				<h4>
@@ -108,8 +108,11 @@ if(isset($current_course->author_id)) {
 										<?php foreach($json['items'] as $item): ?>
 											<tr>
 												<td>
-													<a class="visited" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; ?>?hl=fa-ir&theme=light&showinfo=0&autoplay=1"
-													   title="Click to play" target="_blank" onclick="videoPlayer(this); return false;">
+													<!--<a class="visited" href="https://www.youtube.com/embed/--><?php //echo $item['snippet']['resourceId']['videoId']; ?><!--?hl=fa-ir&theme=light&showinfo=0&autoplay=1"-->
+													<!--   title="Click to play" target="_blank" onclick="videoPlayer(this); return false;">-->
+													<?php //echo $item['snippet']['title']; ?>
+													<!--</a>-->
+													<a class="visited" href="http://www.youtube.com/watch?v=<?php echo $item['snippet']['resourceId']['videoId']; ?>" title="Click to play">
 														<?php echo $item['snippet']['title']; ?>
 													</a>
 												</td>
@@ -156,5 +159,14 @@ if(isset($current_course->author_id)) {
 			<?php echo member_courses($current_category, $current_course); ?>
 		</aside>
 	</section>
-
+	<!-- Video / Generic Modal -->
+	<div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<!-- content dynamically inserted -->
+				</div>
+			</div>
+		</div>
+	</div>
 <?php include_layout_template("footer.php"); ?>

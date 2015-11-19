@@ -22,11 +22,12 @@ elixir(function(mix) {
 			'carousel.js',
 			'collapse.js',
 			'dropdown.js',
-			'modal.js',
 			'popover.js',
 			'scrollspy.js',
+			'modal.js',
 			'tab.js',
 			'wow.min.js',
+      'jqueryparser.js',
 			// 'jquery.countdown.min.js',
       '_myscript.js'
     ])
