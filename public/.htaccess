@@ -1,63 +1,51 @@
-##################################################################################
 <Files ~ "^\.(htaccess|htpasswd)$">
 	deny from all
 </Files>
+ErrorDocument 400 /error.html
+ErrorDocument 403 /error.html
+ErrorDocument 404 /error.html
+ErrorDocument 500 /error.html
 
-ErrorDocument 400 error.html
-ErrorDocument 403 error.html
-ErrorDocument 404 error.html
-ErrorDocument 500 error.html
-
-### CHECK IF mod_rewrite is ON
 <IfModule mod_rewrite.c>
 
-		IndexIgnore *
-		Options +FollowSymlinks
+    IndexIgnore *
+    Options +FollowSymlinks
     Options +SymLinksIfOwnerMatch
-		Options -Indexes
-		Options -MultiViews
-		## Mode Rewrite in use
+    Options -Indexes
+    Options -MultiViews
+
     RewriteEngine On
     RewriteBase /Parsclick/public
-    ## TODO remove WWW try or remove
-    #RewriteCond %{HTTP_HOST} ^(www\.parsclick\.net)(:80)? [NC]
-    #RewriteRule ^(.*) http://parsclick.net/$1 [R=301,NC,L]
+
     RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
     RewriteRule ^(.*)$ http://%1/$1 [R=301,NC,L]
-    ## To first page to index in a directory
+    
+    ## TODO: To make website Unavailable
+    # RewriteCond %{REQUEST_URI} !\.(css|jpg|png|gif|bmp|js|min|svg|eot|ttf|woff|woff2|otf|ico)  [NC]
+    # RewriteCond %{REQUEST_URI} !unavailable\.html  [NC]
+    # RewriteRule .*   /unavailable.html [R=302,L]
+
     DirectoryIndex index.php index.html
 
-    ## Redirect PHP to only file name (doesn't work for login)
-    #RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.php
-    #RewriteRule ^(.*)\.php$ $1 [L,QSA,R=301]
-
-		## Remove index from URL TODO try this on server
+    ## Remove index from URL TODO try this on server
     #RewriteCond %{THE_REQUEST} ^.*/index
-    #RewriteRule ^(.*)index$ /$1 [R=301,L]
+    #RewriteRule ^(.*)index$ /$1 [R=307,L]
 
-		## PHP hiding rule
-		RewriteCond %{REQUEST_FILENAME} !-d
-		RewriteCond %{REQUEST_FILENAME} !-f
-		RewriteCond %{REQUEST_FILENAME}\.php -f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME}\.php -f
     RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L,NC]
 
-		## HTML hiding rule
-		RewriteCond %{REQUEST_FILENAME} !-d
-		RewriteCond %{REQUEST_FILENAME} !-f
-		RewriteCond %{REQUEST_FILENAME}\.html -f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME}\.html -f
     RewriteRule !.*\.html$ %{REQUEST_FILENAME}.html [QSA,L,NC]
 
-    ## TODO: To make website Unavailable
-    #RewriteCond %{REQUEST_URI} !^/unavailable\.html$
-    #RewriteRule ^(.*)$ /unavailable.html [R=307,L]
-
-    ## Begin - Rewrite rules to block out some common exploits.
     RewriteCond %{QUERY_STRING} base64_encode[^(]*\([^)]*\) [OR]
     RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
     RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
     RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
     RewriteRule .* index.php [F]
-    ## End - Rewrite rules to block out some common exploits.
 
     <FilesMatch "\.(ttf|otf|eot)$">
         <IfModule mod_headers.c>
@@ -92,10 +80,10 @@ ErrorDocument 500 error.html
 #php_flag session.use_trans_sid off
 
 ## comment out for PHP < 5.5.2
-php_flag session.use_strict_mode on
+# php_flag session.use_strict_mode on
 
 ## letters and numbers for session name
-php_value session.name PARSCLICKSESSION
+# php_value session.name PARSCLICKSESSION
 #php_value session.cache_limiter nocache
 
 ### Cookie settings
@@ -103,9 +91,9 @@ php_value session.name PARSCLICKSESSION
 #php_value session.cookie_domain ''
 ## specify path for storing cookies
 #php_value session.cookie_path '/parsclick'
-php_value session.cookie_lifetime 0
+# php_value session.cookie_lifetime 0
 ## sessions only can be accessible via http request
-php_flag session.cookie_httponly on
+# php_flag session.cookie_httponly on
 
 # TODO: comment out for https://
 #php_flag session.cookie_secure off

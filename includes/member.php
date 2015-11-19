@@ -235,7 +235,7 @@ EMAILBODY;
 			$mail->SMTPAuth   = TRUE;
 			$mail->Username   = EMAILUSER;
 			$mail->Password   = EMAILPASS;
-			$mail->FromName   = "do-not-reply@parsclick.net";
+			$mail->FromName   = "parsclick.net";
 			$mail->From       = EMAILUSER;
 			$mail->Subject    = "Username Reminder Request";
 			$mail->Body       = <<<EMAILBODY
@@ -283,7 +283,7 @@ EMAILBODY;
 			$mail->SMTPAuth   = TRUE;
 			$mail->Username   = EMAILUSER;
 			$mail->Password   = EMAILPASS;
-			$mail->FromName   = "do-not-reply@parsclick.net";
+			$mail->FromName   = "parsclick.net";
 			$mail->From       = EMAILUSER;
 			$mail->Subject    = "به پارس کلیک خوش آمدید";
 			$mail->Body       = <<<EMAILBODY

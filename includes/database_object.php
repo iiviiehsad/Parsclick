@@ -185,7 +185,7 @@ class DatabaseObject {
 			$mail->SMTPAuth   = TRUE;
 			$mail->Username   = EMAILUSER;
 			$mail->Password   = EMAILPASS;
-			$mail->FromName   = "Administrators In OTL";
+			$mail->FromName   = "Parsclick.net";
 			$mail->From       = EMAILUSER;
 			$mail->AddAddress($this->email, "Reset Password");
 			$mail->Subject = "Reset Password Request";
@@ -206,7 +206,6 @@ class DatabaseObject {
 			</body>
 EMAILBODY;
 			return $mail->Send();
-			//return TRUE;
 		} else {
 			return FALSE;
 		}

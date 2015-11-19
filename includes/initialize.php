@@ -14,11 +14,11 @@ defined('LIB_PATH') ? null : define('LIB_PATH', SITE_ROOT . DS . 'includes');
 
 // Email Details
 // TODO: Change based on email configuration
-defined('SMTP') ? null : define('SMTP', "smtp.gmail.com");
-defined('PORT') ? null : define('PORT', 587);
-defined('EMAILUSER') ? null : define('EMAILUSER', "hasan0azimi@gmail.com");
-defined('EMAILPASS') ? null : define('EMAILPASS', "1365*1986HA");
-defined('TLS') ? null : define('TLS', "tls");
+defined('SMTP') ? null : define('SMTP', "n1plcpnl0045.prod.ams1.secureserver.net");
+defined('PORT') ? null : define('PORT', 465);
+defined('EMAILUSER') ? null : define('EMAILUSER', "do-not-reply@parsclick.net");
+defined('EMAILPASS') ? null : define('EMAILPASS', "1365@1986Ha");
+defined('TLS') ? null : define('TLS', "ssl");
 
 // Stripe keys
 // TODO: Change based on stripe live keys
