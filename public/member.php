@@ -21,7 +21,7 @@ $member->check_status();
 	<article class="member_profile">
 		<h2>
 			<span class="hidden-sm">قابلیت های شما:</span>
-			<span class="visible-sm"><?php echo "Welcome " . ucwords(strtolower($member->full_name())); ?></span>
+			<span class="visible-sm"><?php echo "خوش آمدید  " . ucwords(strtolower($member->full_name())); ?></span>
 		</h2>
 
 		<h3><a href="member-articles"><i class="fa fa-film"></i> دنبال کردن درس ها</a></h3>
