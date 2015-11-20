@@ -19,10 +19,18 @@
 	font-style  : normal;
 }
 
-@headlineFontFamily: "yekan", Tahoma, Verdana;
-@copyFontFamily: "yekan", Tahoma, Verdana;
+@font-face {
+	font-family : "bbcnassim";
+	src         : url(../fonts/Yekan/BBCNassim.otf) format("opentype"),
+	url(../fonts/BBcNassim/BBCNassim.ttf) format("truetype");
+	font-weight : normal;
+	font-style  : normal;
+}
+
+@headlineFontFamily: "yekan", "bbcnassim", Tahoma, Verdana;
+@copyFontFamily: "yekan", "bbcnassim", Tahoma, Verdana;
 @englishFontFamily: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
-@editFontFamily: Tahoma, "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+@editFontFamily: "bbcnassim", Tahoma, "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
 
 ::selection {
 	color      : #000;
