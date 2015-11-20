@@ -27,7 +27,7 @@ elixir(function(mix) {
 			'modal.js',
 			'tab.js',
 			'wow.min.js',
-      'jqueryparser.js',
+      'youtubeplayer.js',
 			// 'jquery.countdown.min.js',
       '_myscript.js'
     ])

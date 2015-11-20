@@ -95,7 +95,6 @@ if(isset($current_course->author_id)) {
 						//var_dump($json);
 						if($json['pageInfo']['totalResults'] > 0) {
 							?>
-							<hr/>
 							<article class="videos">
 								<div class="table-responsive">
 									<table class="table table-condensed table-hover">
@@ -108,12 +107,9 @@ if(isset($current_course->author_id)) {
 										<?php foreach($json['items'] as $item): ?>
 											<tr>
 												<td>
-													<!--<a class="visited" href="https://www.youtube.com/embed/--><?php //echo $item['snippet']['resourceId']['videoId']; ?><!--?hl=fa-ir&theme=light&showinfo=0&autoplay=1"-->
-													<!--   title="Click to play" target="_blank" onclick="videoPlayer(this); return false;">-->
-													<?php //echo $item['snippet']['title']; ?>
-													<!--</a>-->
-													<a class="visited" href="http://www.youtube.com/watch?v=<?php echo $item['snippet']['resourceId']['videoId']; ?>" title="Click to play">
-														<?php echo $item['snippet']['title']; ?>
+													<a class="youtube visited" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
+													   title="Click to play">
+													<?php echo $item['snippet']['title']; ?>
 													</a>
 												</td>
 											</tr>

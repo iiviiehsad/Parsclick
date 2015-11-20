@@ -3,6 +3,9 @@ $(function() {
 	//SLIDE UO MESSAGES AFTER 5 SECONDS
 	$('div.alert-dismissible').delay(5000).slideUp();
 
+	// YOUTUBE INIT VIDEO PLAY
+	$(".youtube").YouTubeModal({width:640, height:360});
+
 	//ACTIVATE COURSE TABS
 	var hash = window.location.hash;
 	hash && $('ul.nav a[href="' + hash + '"]').tab('show');
