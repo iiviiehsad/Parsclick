@@ -35,7 +35,7 @@ if(isset($_POST['submit'])) {
 			$author->photo = file_get_contents($_FILES["photo"]["tmp_name"]);
 			$result        = $author->save();
 			if($result) {
-				$session->message("شما پروفیل خود را بروز رساندید.");
+				$session->message("پروفایل بروزرسانی شد.");
 				redirect_to("author_profile.php");
 			} else {
 				$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
@@ -44,7 +44,7 @@ if(isset($_POST['submit'])) {
 	} else {
 		$result = $author->save();
 		if($result) {
-			$session->message("شما پروفیل خود را بروز رساندید.");
+			$session->message("پروفایل بروزرسانی شد.");
 			redirect_to("author_profile.php");
 		} else {
 			$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";

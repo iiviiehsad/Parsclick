@@ -17,6 +17,8 @@ if(isset($_POST['submit'])) {
 	}
 	$member->first_name = trim($_POST["first_name"]);
 	$member->last_name  = trim($_POST["last_name"]);
+	$member->last_name  = trim($_POST["last_name"]);
+	$member->gender     = trim($_POST["gender"]);
 	$member->address    = trim($_POST["address"]);
 	$member->city       = trim($_POST["city"]);
 	$member->post_code  = trim($_POST["post_code"]);
@@ -40,7 +42,7 @@ if(isset($_POST['submit'])) {
 			$member->photo = file_get_contents($_FILES["photo"]["tmp_name"]);
 			$result        = $member->save();
 			if($result) {
-				$session->message("شما پروفیل خود را بروز رساندید.");
+				$session->message("پروفایل بروزرسانی شد.");
 				redirect_to("member-profile");
 			} else {
 				$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
@@ -49,7 +51,7 @@ if(isset($_POST['submit'])) {
 	} else {
 		$result = $member->save();
 		if($result) {
-			$session->message("شما پروفیل خود را بروز رساندید.");
+			$session->message("پروفایل بروزرسانی شد.");
 			redirect_to("member-profile");
 		} else {
 			$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
@@ -95,6 +97,25 @@ if(isset($_POST['submit'])) {
 					</div>
 				</section>
 				<section class="row">
+					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="gender"> جنس &nbsp;</label>
+					<div class="controls">
+						<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8" name="gender" id="gender">
+							<?php echo htmlentities($member->gender); ?>
+							<?php if($member->gender === "مرد") { ?>
+								<option value="مرد">مرد</option>
+								<option value="زن">زن</option>
+							<?php } elseif($member->gender === "زن") { ?>
+								<option value="زن">زن</option>
+								<option value="مرد">مرد</option>
+							<?php } else { ?>
+								<option disabled value="">لطفا برگزینید</option>
+								<option value="مرد">مرد</option>
+								<option value="زن">مرد</option>
+							<?php } ?>
+						</select>
+					</div>
+				</section>
+				<section class="row">
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="address"> آدرس &nbsp;</label>
 					<div class="controls">
 						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="address" id="address" placeholder="آدرس" value="<?php echo htmlentities($member->address); ?>"/>
@@ -125,14 +146,13 @@ if(isset($_POST['submit'])) {
 					</div>
 				</section>
 				<section class="row">
-					<label style="cursor:pointer;" class="col-sm-4 col-md-4 col-lg-4 control-label" for="photo"> عکس
-					                                                                                             پروفایل&nbsp;</label>
+					<label style="cursor:pointer;" class="col-sm-4 col-md-4 col-lg-4 control-label" for="photo"> عکس پروفایل&nbsp;</label>
 					<div class="controls">
 						<label class="control-label btn btn-small btn-primary" for="photo">
 							آپلود عکس
 						</label>
 						<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $MAX_FILE_SIZE; ?>">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="file" name="photo" id="photo" accept="image/*" />
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="file" name="photo" id="photo" accept="image/*"/>
 						<span>اندازه: ۱۰۰ کیلو بایت</span>
 					</div>
 				</section>

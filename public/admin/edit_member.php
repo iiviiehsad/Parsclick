@@ -76,7 +76,7 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8" name="gender" id="gender">
 								<?php echo htmlentities($member->gender); ?>
-								<?php if($member->gender === "Male") { ?>
+								<?php if($member->gender === "مرد") { ?>
 									<option value="مرد">مرد</option>
 									<option value="زن">زن</option>
 								<?php } elseif($member->gender === "زن") { ?>
