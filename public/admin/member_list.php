@@ -12,7 +12,7 @@ echo output_message($message);
 			<form class="form-inline" action="member_search.php" method="GET">
 				<div class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-					<input type="search" name="q" class="form-control" size="40" maxlength="50" placeholder="جستجوی اعضا"/>
+					<input type="text" name="q" class="form-control" size="40" maxlength="50" placeholder="جستجوی اعضا"/>
 				</div>
 			</form>
 		</aside>
@@ -24,7 +24,7 @@ echo output_message($message);
 	</section>
 	<section class="main col col-lg-12">
 		<article>
-			<h2><i class="fa fa-users"></i> لیست اعضا </h2>
+			<h2><i class="fa fa-users"></i> لیست اعضا <span class="badge"><?php echo count($member_set); ?></span></h2>
 			<br/>
 			<div class="table-responsive">
 				<table class="table table-hover table-condensed">
@@ -56,9 +56,11 @@ echo output_message($message);
 								<small><?php echo htmlentities($member->gender); ?></small>
 							</td>
 							<td>
-								<small><?php echo htmlentities(ucwords(strtolower($member->address))); ?> <br/>
+								<small>
+									<?php echo htmlentities(ucwords(strtolower($member->address))); ?> <br/>
 									<?php echo htmlentities(ucwords(strtolower($member->city))); ?> <br/>
-									<?php echo htmlentities(strtoupper($member->post_code)); ?></small>
+									<?php echo htmlentities(strtoupper($member->post_code)); ?>
+								</small>
 							</td>
 							<td>
 								<small><?php echo htmlentities($member->phone); ?></small>

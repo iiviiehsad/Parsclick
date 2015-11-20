@@ -53,6 +53,7 @@ echo output_message($message);
 			<?php } else {
 				$session->message("چیزی پیدا نشد! دوباره سعی کنید.");
 				redirect_to("member_list.php");
-			} ?></article>
+			} ?>
+		</article>
 	</section>
 <?php include_layout_template("admin_footer.php"); ?>

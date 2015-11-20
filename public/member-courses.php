@@ -148,7 +148,7 @@ if(isset($current_course->author_id)) {
 			<form class="form-inline" action="member-course-search" method="GET">
 				<div class="input-group">
 					<span class="input-group-addon"><span class="edit glyphicon glyphicon-search"></span></span>
-					<input type="search" name="q" class="form-control" size="30" maxlength="50" placeholder="جستجوی درس"/>
+					<input type="text" name="q" class="form-control" size="30" maxlength="50" placeholder="جستجوی درس"/>
 				</div>
 			</form>
 			<h2>موضوعات و دروس</h2>

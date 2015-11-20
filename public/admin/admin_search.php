@@ -53,7 +53,7 @@ echo output_message($message);
 			<form class="form-inline" action="admin_search.php" method="GET">
 				<div class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-					<input type="search" name="q" class="form-control" size="40" maxlength="50" placeholder="جستجوی مدیر ارشد"/>
+					<input type="text" name="q" class="form-control" size="40" maxlength="50" placeholder="جستجوی مدیر ارشد"/>
 				</div>
 			</form>
 			<h2>
