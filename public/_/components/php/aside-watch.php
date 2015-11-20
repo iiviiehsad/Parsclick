@@ -9,7 +9,7 @@
 	<a href="register" class="btn btn-danger wow zoomIn">ثبت نام کنید</a>
 
 	<h2>دانلود دروس در یودمی</h2>
-	<img class="img-rounded pull-left" width="120" src="http://3.bp.blogspot.com/-6PfgkrsfJ2w/Ve77tvlfPcI/AAAAAAAABMM/U86JAhyBxS0/s1600/dribble800x600.gif" alt="Udemy">
+	<img class="img-rounded pull-left" style="margin-right: 5px;" width="120" src="http://3.bp.blogspot.com/-6PfgkrsfJ2w/Ve77tvlfPcI/AAAAAAAABMM/U86JAhyBxS0/s1600/dribble800x600.gif" alt="Udemy">
 	<p>اگر قصد دانلود کردن ویدیوهای خاصی را دارید لطفا به سایت
 		<a href="<?php echo UDEMY; ?>" target="_blank" title="Amir Hassan Azimi Udemy">یودمی</a> ما
 	   روید و از آنجا دانلود کنید.</p>
