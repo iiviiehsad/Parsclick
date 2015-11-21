@@ -46,12 +46,6 @@ ErrorDocument 500 /500
     RewriteCond %{REQUEST_FILENAME}\.html -f
     RewriteRule !.*\.html$ %{REQUEST_FILENAME}.html [QSA,L,NC]
 
-    # Show the logo for 404 page
-		RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
-		RewriteRule \.(gif|jpe?g|png|bmp) images/misc/logo.$1 [NC]
-		RewriteRule \.css _/css/all.css [NC]
-		RewriteRule \.(svg|eot|ttf|woff|woff2|otf) _/fonts/Yekan/Yekan.$1 [NC,L]
-
     RewriteCond %{QUERY_STRING} base64_encode[^(]*\([^)]*\) [OR]
     RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
     RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
