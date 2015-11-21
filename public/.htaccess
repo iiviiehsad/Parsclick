@@ -1,10 +1,10 @@
 <Files ~ "^\.(htaccess|htpasswd)$">
 	deny from all
 </Files>
-ErrorDocument 400 /error.html
-ErrorDocument 403 /error.html
-ErrorDocument 404 /error.html
-ErrorDocument 500 /error.html
+ErrorDocument 400 /400
+ErrorDocument 403 /403
+ErrorDocument 404 /404
+ErrorDocument 500 /500
 
 <IfModule mod_rewrite.c>
 
@@ -17,9 +17,13 @@ ErrorDocument 500 /error.html
     RewriteEngine On
     RewriteBase /Parsclick/public
 
-    RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
-    RewriteRule ^(.*)$ http://%1/$1 [R=301,NC,L]
-    
+    ## TODO: Remove WWW
+    # RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
+    # RewriteRule ^(.*)$ http://%1/$1 [R=301,NC,L]
+    ## TODO: Force WWW
+    # RewriteCond %{HTTP_HOST} !^www\. [NC]
+		# RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L,NC]
+
     ## TODO: To make website Unavailable
     # RewriteCond %{REQUEST_URI} !\.(css|jpg|png|gif|bmp|js|min|svg|eot|ttf|woff|woff2|otf|ico)  [NC]
     # RewriteCond %{REQUEST_URI} !unavailable\.html  [NC]
@@ -27,9 +31,10 @@ ErrorDocument 500 /error.html
 
     DirectoryIndex index.php index.html
 
-    ## Remove index from URL TODO try this on server
-    #RewriteCond %{THE_REQUEST} ^.*/index
-    #RewriteRule ^(.*)index$ /$1 [R=307,L]
+    ## Remove index from URL TODO: uncomment
+    # RewriteCond %{THE_REQUEST} ^.*/index [OR]
+    # RewriteCond %{THE_REQUEST} ^.*/index.php
+    # RewriteRule ^(.*)index(\.php)?$ /$1 [R=307,L]
 
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
@@ -40,6 +45,12 @@ ErrorDocument 500 /error.html
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME}\.html -f
     RewriteRule !.*\.html$ %{REQUEST_FILENAME}.html [QSA,L,NC]
+
+    # Show the logo for 404 page
+		RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
+		RewriteRule \.(gif|jpe?g|png|bmp) images/misc/logo.$1 [NC]
+		RewriteRule \.css _/css/all.css [NC]
+		RewriteRule \.(svg|eot|ttf|woff|woff2|otf) _/fonts/Yekan/Yekan.$1 [NC,L]
 
     RewriteCond %{QUERY_STRING} base64_encode[^(]*\([^)]*\) [OR]
     RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
