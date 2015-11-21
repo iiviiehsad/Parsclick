@@ -40,10 +40,6 @@
 		                      که یاد میگیرم به اشتراک بگذارم تا نه تنها خودم بلکه دیگران هم از آنها استفاده کنند پس
 		                      تصمیم گرفتم که امتحان کنم. نرم افزاری را انتخاب کردم و آن را با گرفتن چند ویدئو تست کردم.
 		                      بعد کانال یا شبکه ای در یوتیوب به اسم "PersianComputers" تاسیس کردم. اسمی نه چندان بد!</p>
-		<div class="pull-right hidden-sm">
-			<script src="https://apis.google.com/js/platform.js"></script>
-			<div class="g-ytsubscribe" data-channelid="UCW0ojdh94N5-bFiidIepdDg" data-layout="full" data-count="default"></div>
-		</div>
 		<p class="media-body">به هر حال، در حال حاضر تعداد دوستانی که عضو این کانال شدند زیاد نیست چون چیز زیادی از
 		                      ساختن این کانال نگذشته ولی فهمیدم که به نظر مردم این ویدئو ها خیلی مفید واقع شده. خیلی
 		                      خوشحال شدم که بعضی از کاربران زیر ویدئوها نظر می نویسند و یا لایک می زنند و حتی عضو شبکه
@@ -73,10 +69,6 @@
 		                      کنم چون من استودیویی ندارم. کمبود وقت و هزینه دست من را واقعا بسته ولی هیچوقت از کمک دریغ
 		                      نکرده و نخواهم کرد. با اینحال سعی کردم وبسایتی بسازم که خیلی وقت برای به روز کردن لینک ها
 		                      صرف میکند و همینطور ویدئوهایی بهتر از قبل درست کنم.</p>
-		<div class="pull-right hidden-sm">
-			<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffacebook.com%2Fpersiantc&amp;width=220&amp;height=80&amp;colorscheme=light&amp;layout=standard&amp;action=like&amp;show_faces=true&amp;send=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:220px; height:80px;" allowtransparency="true"></iframe>
-			<br/>
-		</div>
 		<p class="media-body">همونطور که قبلا گفتم تحصیل چیزی نیست که باید برایش هزینه ای پرداخت شود. میلیونها انسان
 		                      سراسر دنیا هستند که پول، وقت و امکانات یادگیری ندارند ولی خیلی دوست دارند یاد بگیرند.
 		                      امیدوارم که بتوانم آن وضعیت را عوض کنم، وضعیتی را که خودم هم شاملش می شوم. همینطوری که به
