@@ -7,20 +7,28 @@
 	<meta name="description" content="کاملترین سایت آموزش ویدئویی رایگان کامپیوتر, وب, برنامه نویسی, مدیریت محتوا,
 	 علم فنی کامپیوتر, طراحی وب, نرم افزار, آدوبی, دیتابیس, اپل, گوگل, مایکروسافت و بیشتر"/>
 	<meta name="keywords" content="آموزش, کامپیوتر, برنامه نویسی, وب, طراحی, ویرایش, جاوا, روبی, پایتون, پی‌اچ‌پی, سی‌اس‌اس, اچ‌تی‌ام‌ال, جاوااسکریپت, گیت, آیفون, اندروید, وردپرس, جوملا, دروپال, بوتسترپ, جی‌کوئری, ای‌جکس, آدوبی"/>
-	<meta name="copyright" content="ParsClick.net">
+	<meta name="copyright" content="parsclick.net">
+	<meta name="author" content="Amir Hassan Azimi" />
+	<meta name="application-name" content="Parsclick" />
 	<meta name="language" content="fa-IR"/>
 	<meta name="geo.region" content="IR"/>
 	<meta name="geo.position" content="32.427908;53.688046"/>
 	<meta name="ICBM" content="32.427908, 53.688046"/>
 	<meta name="image" content="images/misc/logo.png"/>
 	<link rel="alternate" href="<?php echo DOMAIN; ?>" hreflang="fa-IR" />
-	<!--Facebook OG Tags-->
+	<!--Facebook Tags-->
 	<meta property="og:url" content="<?php echo DOMAIN . $_SERVER['REQUEST_URI']; ?>"/>
 	<meta property="og:title" content="<?php global $title; echo isset($title) ? $title : "پارس کلیک - آموزش کامپیوتر - رایگان"; ?>"/>
 	<meta property="og:type" content="article"/>
-	<meta property="og:image" content="<?php echo DOMAIN . DS . 'images/favicon.png'; ?>"/>
+	<meta property="og:image" content="<?php echo DOMAIN . DS . 'images/parsclick-logo.png'; ?>"/>
 	<meta property="og:description" content="کاملترین سایت آموزش ویدئویی رایگان کامپیوتر, وب, برنامه نویسی, مدیریت محتوا,
 	 علم فنی کامپیوتر, طراحی وب, نرم افزار, آدوبی, دیتابیس, اپل, گوگل, مایکروسافت و بیشتر"/>
+	<!--Twitter Tags-->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="<?php global $title; echo isset($title) ? $title : "پارس کلیک - آموزش کامپیوتر - رایگان"; ?>" />
+	<meta name="twitter:description" content="کاملترین سایت آموزش ویدئویی رایگان کامپیوتر, وب, برنامه نویسی, مدیریت محتوا,
+	 علم فنی کامپیوتر, طراحی وب, نرم افزار, آدوبی, دیتابیس, اپل, گوگل, مایکروسافت و بیشتر"/>
+	<meta name="twitter:image" content="<?php echo DOMAIN . DS . 'images/parsclick-logo.png'; ?>" />
 	<!--CSS Styles-->
 	<link rel="shortcut icon" type="image/png" href="images/favicon.png">
 	<link rel="stylesheet" href="_/css/all.css" media="screen">
