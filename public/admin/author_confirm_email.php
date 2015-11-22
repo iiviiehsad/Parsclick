@@ -7,7 +7,7 @@ $user->status = 1;
 $result       = $user->update();
 if($result) {
 	$user->delete_reset_token($user->username);
-	$session->message("متشکریم! ایمیل شما تایید شد. شما الآن وارد شدید.");
+	$session->message("متشکریم! ایمیل شما تایید شد. شما الآن وارد شدید. لطفا پسوردتان را عوض کنید.");
 	$session->author_login($user);
 	redirect_to("author.php");
 } else {

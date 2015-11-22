@@ -33,8 +33,7 @@ if(isset($_POST["submit"])) {
 						redirect_to("admin.php");
 					} elseif($found_author && ($type === "author")) { // find the authors 2nd
 						$session->author_login($found_author);
-						log_action("Login",
-						           "<span class='alert-success'>" . ucfirst($found_author->username) . "</span> logged in.");
+						log_action("Login", "<span class='alert-success'>" . ucfirst($found_author->username) . "</span> logged in.");
 						FailedLogins::clear_failed_logins($username);
 						redirect_to("author.php");
 					} else {
