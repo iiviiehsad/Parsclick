@@ -53,7 +53,7 @@ $comments    = Comment::find_by_sql($sql);
 								<i class="fa fa-trash-o"></i>
 							</a>
 						<?php } ?>
-						<p style="margin-top:4px;"><?php echo strip_tags($comment->body, '<strong><em><p>'); ?></p>
+						<p style="margin-top:4px;"><?php echo strip_tags($comment->body, '<strong><em><p><pre><code>'); ?></p>
 					</div>
 				</section>
 			<?php } // end foreach comments ?>
@@ -105,7 +105,7 @@ $comments    = Comment::find_by_sql($sql);
 							<?php } ?>
 						</label>
 						<div class="controls">
-							<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" rows="7" required placeholder=" نظرتان را اینجا وارد کنید و این تگ ها هم قابل استفاده اند <strong><em><p>"></textarea>
+							<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" rows="7" required placeholder=" نظرتان را اینجا وارد کنید و این تگ ها هم قابل استفاده اند <strong><pre><code><em><p>"></textarea>
 						</div>
 					</section>
 					<!--buttons-->
