@@ -13,10 +13,10 @@
 	font-family : "yekan";
 	src         : url(../fonts/Yekan/Yekan.eot);
 	src         : url(../fonts/Yekan/Yekan.eot?#iefix) format("embedded-opentype"),
-								url(../fonts/Yekan/Yekan.woff) format("woff"),
-								url(../fonts/Yekan/Yekan.ttf) format("truetype"),
-								url(../fonts/Yekan/YekanBold.ttf) format("truetype"),
-								url(../fonts/Yekan/Yekan.svg#BYekan) format("svg");
+	url(../fonts/Yekan/Yekan.woff) format("woff"),
+	url(../fonts/Yekan/Yekan.ttf) format("truetype"),
+	url(../fonts/Yekan/YekanBold.ttf) format("truetype"),
+	url(../fonts/Yekan/Yekan.svg#BYekan) format("svg");
 	font-weight : normal;
 	font-style  : normal;
 }
@@ -24,13 +24,13 @@
 @font-face {
 	font-family : "bbcnassim";
 	src         : url(../fonts/BBCFont/BBCNassim.ttf) format("truetype"),
-								url(../fonts/BBCFont/BBCNassim.otf) format("opentype");
+	url(../fonts/BBCFont/BBCNassim.otf) format("opentype");
 	font-weight : normal;
 	font-style  : normal;
 }
 
 @headlineFontFamily : "yekan", "bbcnassim", Tahoma, Verdana, Arial, sans-serif;
-@copyFontFamily     : "yekan","Helvetica Neue", Helvetica, Tahoma, Verdana, Arial, sans-serif;
+@copyFontFamily     : "yekan", "Helvetica Neue", Helvetica, Tahoma, Verdana, Arial, sans-serif;
 @englishFontFamily  : "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
 @editFontFamily     : "bbcnassim", "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
 
@@ -97,12 +97,13 @@ p {
 }
 
 input, select, textarea {
-	font-family: "bbcnassim", Tahoma, Verdana;
+	font-family : "bbcnassim", Tahoma, Verdana;
 }
 
-ol > li > ul > li { margin-right : 20px; }
-
-ol { margin-right : 20px; }
+ul {
+	list-style : square inside;
+	margin-top : 5px;
+}
 
 aside {
 	h2 {
@@ -200,7 +201,12 @@ a:hover, a:focus {
 
 .carousel-caption > * { color : @parsclick; }
 
-.main > article { margin : 5% 5%; }
+.main > article {
+	margin : 5% 5%;
+	ol, ul {
+		margin-right : 30px;
+	}
+}
 
 .sidebar > aside {
 	padding : 5%;
@@ -279,7 +285,7 @@ a.visited:visited { color : transparent; }
 
 	h3 { color : @pink; line-height : 1em }
 
-	p { padding : 0; padding-top : 10px; 	text-align : justify; }
+	p { padding : 0; padding-top : 10px; text-align : justify; }
 }
 
 .photogrid img {

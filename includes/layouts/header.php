@@ -15,12 +15,14 @@
 	<meta name="geo.position" content="32.427908;53.688046"/>
 	<meta name="ICBM" content="32.427908, 53.688046"/>
 	<meta name="image" content="images/misc/logo.png"/>
-	<link rel="alternate" href="<?php echo DOMAIN; ?>" hreflang="fa-IR" />
+	<link rel="alternate" href="/" hreflang="fa-IR" />
 	<!--Facebook Tags-->
 	<meta property="og:url" content="<?php echo DOMAIN . $_SERVER['REQUEST_URI']; ?>"/>
 	<meta property="og:title" content="<?php global $title; echo isset($title) ? $title : "پارس کلیک - آموزش کامپیوتر - رایگان"; ?>"/>
 	<meta property="og:type" content="article"/>
 	<meta property="og:image" content="<?php echo DOMAIN . DS . 'images/parsclick-logo.png'; ?>"/>
+	<meta property="article:author" content="https://www.facebook.com/amirhazz" />
+	<meta property="og:locale" content="fa_IR" />
 	<meta property="og:description" content="کاملترین سایت آموزش ویدئویی رایگان کامپیوتر, وب, برنامه نویسی, مدیریت محتوا,
 	 علم فنی کامپیوتر, طراحی وب, نرم افزار, آدوبی, دیتابیس, اپل, گوگل, مایکروسافت و بیشتر"/>
 	<!--Twitter Tags-->

@@ -56,7 +56,7 @@ $comments    = Comment::find_by_sql($sql);
 						<p style="margin-top:4px;"><?php echo strip_tags($comment->body, '<strong><em><p>'); ?></p>
 					</div>
 				</section>
-			<?php } // end foreach comments?>
+			<?php } // end foreach comments ?>
 			<?php if($pagination->total_page() > 1) { ?>
 				<nav class="clearfix center">
 					<ul class="pagination">
