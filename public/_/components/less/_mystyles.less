@@ -15,6 +15,7 @@
 	src         : url(../fonts/Yekan/Yekan.eot?#iefix) format("embedded-opentype"),
 								url(../fonts/Yekan/Yekan.woff) format("woff"),
 								url(../fonts/Yekan/Yekan.ttf) format("truetype"),
+								url(../fonts/Yekan/YekanBold.ttf) format("truetype"),
 								url(../fonts/Yekan/Yekan.svg#BYekan) format("svg");
 	font-weight : normal;
 	font-style  : normal;
@@ -22,16 +23,16 @@
 
 @font-face {
 	font-family : "bbcnassim";
-	src         : url(../fonts/BBcNassim/BBCNassim.otf) format("opentype"),
-	url(../fonts/BBcNassim/BBCNassim.ttf) format("truetype");
+	src         : url(../fonts/BBCFont/BBCNassim.ttf) format("truetype"),
+								url(../fonts/BBCFont/BBCNassim.otf) format("opentype");
 	font-weight : normal;
 	font-style  : normal;
 }
 
-@headlineFontFamily: "yekan", "bbcnassim", Tahoma, Verdana;
-@copyFontFamily: "yekan", "bbcnassim", Tahoma, Verdana;
-@englishFontFamily: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
-@editFontFamily: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+@headlineFontFamily : "yekan", "bbcnassim", Tahoma, Verdana, Arial, sans-serif;
+@copyFontFamily     : "yekan","Helvetica Neue", Helvetica, Tahoma, Verdana, Arial, sans-serif;
+@englishFontFamily  : "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+@editFontFamily     : "bbcnassim", "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
 
 ::selection {
 	color      : #000;
@@ -53,7 +54,6 @@ body {
 	background  : @purple;
 	margin-top  : 30px;
 	font-family : @copyFontFamily;
-	text-align  : justify;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -93,6 +93,11 @@ p {
 	line-height : 1.5em;
 	color       : @darkblack;
 	padding     : 0 2%;
+	text-align  : justify;
+}
+
+input, select, textarea {
+	font-family: "bbcnassim", Tahoma, Verdana;
 }
 
 ol > li > ul > li { margin-right : 20px; }
@@ -193,7 +198,7 @@ a:hover, a:focus {
 
 .carousel { margin-bottom : 0; }
 
-.carousel-caption > * { color : @green; }
+.carousel-caption > * { color : @parsclick; }
 
 .main > article { margin : 5% 5%; }
 
@@ -274,7 +279,7 @@ a.visited:visited { color : transparent; }
 
 	h3 { color : @pink; line-height : 1em }
 
-	p { padding : 0; padding-top : 10px; }
+	p { padding : 0; padding-top : 10px; 	text-align : justify; }
 }
 
 .photogrid img {

@@ -89,7 +89,7 @@ $comments    = Comment::find_by_sql($sql);
 				</nav>
 			<?php } // end pagination?>
 			<?php if(empty($comments)) { ?>
-				<h3><span class="label label-default">نظری وجود ندارد</span></h3>
+				<h3><span class="badge">نظری وجود ندارد</span></h3>
 			<?php } ?>
 			<br/>
 			<fieldset>
