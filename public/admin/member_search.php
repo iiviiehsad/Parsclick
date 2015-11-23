@@ -1,8 +1,9 @@
 <?php require_once("../../includes/initialize.php");
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
-if(isset($_GET["q"]) && !empty($_GET["q"]) && $_GET["q"] != " ") {
-	$member_set = Member::search($_GET["q"]);
+$search_query = trim($_GET["q"]);
+if(isset($search_query) && !empty($search_query)) {
+	$member_set = Member::search($search_query);
 } else { // this is a $_GET request
 	$session->message("چیزی جستجو نکردید.");
 	redirect_to("member_list.php");
@@ -50,10 +51,11 @@ echo output_message($message);
 						</tbody>
 					</table>
 				</div>
-			<?php } else {
-				$session->message("چیزی پیدا نشد! دوباره سعی کنید.");
-				redirect_to("member_list.php");
-			} ?>
+			<?php } else { ?>
+				<h3 class="center">برای <?php echo $search_query; ?></h3>
+				<h1 class="center">چیزی پیدا نشد!</h1>
+				<h1><i class="center fa fa-frown-o fa-5x"></i></h1>
+			<?php } ?>
 		</article>
 	</section>
 <?php include_layout_template("admin_footer.php"); ?>

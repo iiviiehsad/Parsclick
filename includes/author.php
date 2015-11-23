@@ -100,7 +100,7 @@ class Author extends DatabaseObject {
 	 */
 	public function remove_photo() {
 		global $database;
-		$sql = "UPDATE " . static::$table_name . " SET ";
+		$sql = "UPDATE " . self::$table_name . " SET ";
 		$sql .= " photo = NULL ";
 		$sql .= " WHERE id=" . $database->escape_value($this->id);
 		$database->query($sql);

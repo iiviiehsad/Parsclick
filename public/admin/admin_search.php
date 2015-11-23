@@ -2,8 +2,9 @@
 require_once("../../includes/initialize.php");
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
-if(isset($_GET["q"]) && !empty($_GET["q"]) && $_GET["q"] != " ") {
-	$admin_set = Admin::search($_GET["q"]);
+$search_query = trim($_GET["q"]);
+if(isset($search_query) && !empty($search_query)) {
+	$admin_set = Admin::search($search_query);
 } else {
 	$session->message("شما چیزی جستجو نکردید!");
 	redirect_to("admin_list.php");
@@ -43,10 +44,12 @@ echo output_message($message);
 						</tbody>
 					</table>
 				</div>
-			<?php } else {
-				$session->message("چیزی پیدا نشد! دوباره سعی کنید.");
-				redirect_to("admin_list.php");
-			} ?></article>
+			<?php } else { ?>
+				<h3 class="center">برای <?php echo $search_query; ?></h3>
+				<h1 class="center">چیزی پیدا نشد!</h1>
+				<h1><i class="center fa fa-frown-o fa-5x"></i></h1>
+			<?php } ?>
+		</article>
 	</section>
 	<section class=" sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>

@@ -13,6 +13,10 @@ class FailedLogins extends DatabaseObject {
 	public           $count;
 	public           $last_time;
 
+	/**
+	 * @param $username string gets from user input
+	 * @return bool TRUE if failed record is either created or updated and FALSE otherwise
+	 */
 	public function record_failed_login($username) {
 		global $database;
 		$failed_login = self::find_by_username($username);
@@ -30,6 +34,10 @@ class FailedLogins extends DatabaseObject {
 		return TRUE;
 	}
 
+	/**
+	 * @param $username string gets from user input
+	 * @return bool TRUE if failed record is cleared and FALSE otherwise
+	 */
 	public static function clear_failed_logins($username) {
 		$failed_login = self::find_by_username($username);
 		if($failed_login) {
@@ -40,6 +48,10 @@ class FailedLogins extends DatabaseObject {
 		return TRUE;
 	}
 
+	/**
+	 * @param $username string gets from user input
+	 * @return float|int number of minutes user needs to wait and re-enter credentials again
+	 */
 	public static function throttle_failed_logins($username) {
 		$throttle_at      = 20;
 		$delay_in_minutes = 60;

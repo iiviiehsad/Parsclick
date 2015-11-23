@@ -18,7 +18,7 @@ class Playlist extends DatabaseObject {
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;
 		$sql .= " WHERE course_id = " . $database->escape_value($course_id);
-		return static::find_by_sql($sql);
+		return self::find_by_sql($sql);
 	}
 
 	/**
@@ -57,6 +57,6 @@ class Playlist extends DatabaseObject {
 		$sql .= " FROM " . self::$table_name;
 		$sql .= " WHERE member_id = " . $database->escape_value($member_id);
 		$sql .= " ORDER BY course_id";
-		return static::find_by_sql($sql);
+		return self::find_by_sql($sql);
 	}
 }

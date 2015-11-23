@@ -12,9 +12,10 @@ $member->check_status();
 <div class="jumbotron hidden-sm wow fadeIn member-jumbotron">
 	<h1>خوش آمدید <?php echo ucwords(strtolower($member->full_name())); ?></h1>
 	<p>
-		با تشکر از ملحق شدن به ما اگر اشکالی در این سیستم پیدا کردید، مدیر را در جریان بگذارید.<br/>
 		شما دسترسی به یکی از بزرگترین کتابخانه ویدئویی رایگان پارسی زبانان را دارید. لطفا از دوستان خود دعوت کنید که به ما
-		بپیوندند.
+		 بپیوندند. <br /><br />
+	 جدیدترین درس: <?php echo Course::find_newest_course() ? Course::find_newest_course()->name : 'درسی پیدا نشد!'; ?> <br />
+		جدیدترین مقاله:  <?php echo Article::find_newest_article() ? Article::find_newest_article()->name : 'مقاله ای پیدا نشد!'; ?> <br />
 	</p>
 </div>
 <section class="main col-sm-12 col-md-8 col-lg-8">

@@ -6,8 +6,9 @@ $title    = "پارس کلیک - جستجوی مقالات";
 $member   = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_article(TRUE);
-if(isset($_GET["q"]) && !empty($_GET["q"]) && $_GET["q"] != " ") {
-	$article_set = Article::search($_GET["q"]);
+$search_query = trim($_GET['q']);
+if(isset($search_query) && !empty($search_query)) {
+	$article_set = Article::search($search_query);
 } else { // this is a $_GET request
 	$session->message("شما چیزی جستجو نکردید.");
 	redirect_to("member-articles");
@@ -18,8 +19,8 @@ if(isset($_GET["q"]) && !empty($_GET["q"]) && $_GET["q"] != " ") {
 <?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<h2>نتیجه جستجو</h2>
 			<?php if(!empty($article_set)) { ?>
+				<h2>نتیجه جستجو</h2>
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
@@ -44,10 +45,11 @@ if(isset($_GET["q"]) && !empty($_GET["q"]) && $_GET["q"] != " ") {
 						</tbody>
 					</table>
 				</div>
-			<?php } else {
-				$session->message("نتیجه ای پیدا نشد. لطفا دوباره بگردید.");
-				redirect_to("member-articles");
-			} ?>
+			<?php } else { ?>
+				<h3 class="center">برای <?php echo $search_query; ?></h3>
+				<h1 class="center">چیزی پیدا نشد!</h1>
+				<h1><i class="center fa fa-frown-o fa-4x"></i></h1>
+			<?php } ?>
 		</article>
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">

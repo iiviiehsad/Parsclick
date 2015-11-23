@@ -1,5 +1,4 @@
 <?php
-
 require_once(LIB_PATH . DS . 'database.php');
 
 /**
@@ -9,15 +8,15 @@ class Course extends DatabaseObject {
 
 	protected static $table_name = "courses";
 	protected static $db_fields  = array(
-		'id',
-		'category_id',
-		'author_id',
-		'name',
-		'youtubePlaylist',
-		'file_link',
-		'position',
-		'visible',
-		'content'
+			'id',
+			'category_id',
+			'author_id',
+			'name',
+			'youtubePlaylist',
+			'file_link',
+			'position',
+			'visible',
+			'content'
 	);
 	public           $id;
 	public           $category_id;
@@ -43,7 +42,7 @@ class Course extends DatabaseObject {
 			$sql .= " AND visible = 1 ";
 		}
 		$sql .= " LIMIT 1";
-		$course_set = static::find_by_sql($sql);
+		$course_set = self::find_by_sql($sql);
 		return !empty($course_set) ? array_shift($course_set) : FALSE;
 	}
 
@@ -58,7 +57,7 @@ class Course extends DatabaseObject {
 			$sql .= " WHERE visible = 1 ";
 		}
 		$sql .= " ORDER BY position DESC ";
-		return static::find_by_sql($sql);
+		return self::find_by_sql($sql);
 	}
 
 	/**
@@ -84,7 +83,7 @@ class Course extends DatabaseObject {
 	 */
 	public static function count_courses_for_category($category_id = 0, $public = TRUE) {
 		global $database;
-		$sql = "SELECT COUNT(*) FROM " . static::$table_name;
+		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
 		$sql .= " WHERE category_id = " . $category_id;
 		if($public) {
 			$sql .= " AND visible = 1 ";
@@ -108,7 +107,7 @@ class Course extends DatabaseObject {
 			$sql .= " AND visible = 1 ";
 		}
 		$sql .= " ORDER BY position DESC";
-		return static::find_by_sql($sql);
+		return self::find_by_sql($sql);
 	}
 
 	/**
@@ -140,5 +139,19 @@ class Course extends DatabaseObject {
 	 */
 	public function comments() {
 		return Comment::find_comments_for_course($this->id);
+	}
+
+	/**
+	 * @param bool|TRUE $public sets TRUE if subject is visible and FALSE if subject is not visible
+	 * @return bool|mixed newest course
+	 */
+	public static function find_newest_course($public = TRUE) {
+		$sql = "SELECT * FROM " . self::$table_name;
+		if($public) {
+			$sql .= " WHERE visible = 1 ";
+		}
+		$sql .= " ORDER BY id DESC LIMIT 1";
+		$course_set = self::find_by_sql($sql);
+		return !empty($course_set) ? array_shift($course_set) : FALSE;
 	}
 }

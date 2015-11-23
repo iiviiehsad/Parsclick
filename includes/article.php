@@ -23,7 +23,7 @@ class Article extends DatabaseObject {
 	 */
 	public static function count_articles_for_subject($subject_id = 0, $public = TRUE) {
 		global $database;
-		$sql = "SELECT COUNT(*) FROM " . static::$table_name;
+		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
 		$sql .= " WHERE subject_id = " . $subject_id;
 		if($public) {
 			$sql .= " AND visible = 1 ";
@@ -63,7 +63,7 @@ class Article extends DatabaseObject {
 			$sql .= " AND visible = 1 ";
 		}
 		$sql .= " LIMIT 1";
-		$article_set = static::find_by_sql($sql);
+		$article_set = self::find_by_sql($sql);
 		return !empty($article_set) ? array_shift($article_set) : FALSE;
 	}
 
@@ -81,7 +81,7 @@ class Article extends DatabaseObject {
 			$sql .= " AND visible = 1 ";
 		}
 		$sql .= " ORDER BY position DESC";
-		return static::find_by_sql($sql);
+		return self::find_by_sql($sql);
 	}
 
 	/**
@@ -105,5 +105,19 @@ class Article extends DatabaseObject {
 	public static function find_default_article_for_subject($subject_id = 0) {
 		$article_set = self::find_articles_for_subject($subject_id);
 		return !empty($article_set) ? array_shift($article_set) : FALSE;
+	}
+
+	/**
+	 * @param bool|TRUE $public sets TRUE if subject is visible and FALSE if subject is not visible
+	 * @return bool|mixed newest article
+	 */
+	public static function find_newest_article($public = TRUE) {
+		$sql = "SELECT * FROM " . self::$table_name;
+		if($public) {
+			$sql .= " WHERE visible = 1 ";
+		}
+		$sql .= " ORDER BY id DESC LIMIT 1";
+		$course_set = self::find_by_sql($sql);
+		return !empty($course_set) ? array_shift($course_set) : FALSE;
 	}
 }

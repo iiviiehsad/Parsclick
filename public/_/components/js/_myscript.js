@@ -1,10 +1,10 @@
-$(function() {
+$(function () {
 
 	//SLIDE UO MESSAGES AFTER 5 SECONDS
 	$('div.alert-dismissible').delay(5000).slideUp();
 
 	// YOUTUBE INIT VIDEO PLAY
-	$(".youtube").YouTubeModal({width:640, height:360});
+	$(".youtube").YouTubeModal({width: 640, height: 360});
 
 	//ACTIVATE COURSE TABS
 	var hash = window.location.hash;
@@ -15,9 +15,9 @@ $(function() {
 	 it targets the ul navigation and li drop-down
 	 and uses the jQuery hover() function to do that.
 	 */
-	$('ul.nav li.dropdown').hover(function() {
+	$('ul.nav li.dropdown').hover(function () {
 		$('.dropdown-menu', this).fadeIn();
-	}, function() {
+	}, function () {
 		$('.dropdown-menu', this).fadeOut('fast');
 	}); //HOVER
 
@@ -25,7 +25,7 @@ $(function() {
 	$("[data-toggle='tooltip']").tooltip({animation: true});
 
 	//SHOW MODALS
-	$('.modalphotos img').on('click', function() {
+	$('.modalphotos img').on('click', function () {
 		$('#modal').modal({show: true});
 
 		var mysrc = this.src.substr(0, this.src.length - 7) + '.jpg';
@@ -34,7 +34,7 @@ $(function() {
 		$('#modalimage').css('margin', "auto");
 		$('#modalimage').css('border-radius', "10px");
 		$('#modalimage').attr('src', mysrc);
-		$('#modalimage').on('click', function() {
+		$('#modalimage').on('click', function () {
 			$('#modal').modal('hide');
 		}); //HIDE MODAL
 	}); //SHOW MODAL
@@ -54,25 +54,25 @@ $(function() {
 	//}).show();
 
 	// ADDING COURSE TO PLAYLIST USING AJAX ----------------------------------------------------------------------------------
-	$('form.addtoplaylist').on('submit', function() {
+	$('form.addtoplaylist').on('submit', function () {
 		var that = $(this),
-		    url = that.attr('action'),
-		    type = that.attr('method'),
-		    data = {},
-		    btn = $("#btn");
+				url = that.attr('action'),
+				type = that.attr('method'),
+				data = {},
+				btn = $("#btn");
 		btn.prop('disabled', true);
-		that.find('[name]').each(function() {
+		that.find('[name]').each(function () {
 			var that = $(this),
-			    name = that.attr('name'),
-			    value = that.val();
+					name = that.attr('name'),
+					value = that.val();
 			data[name] = value;
 
 		});
 		$.ajax({
-			       url    : url,
-			       type   : type,
-			       data   : data,
-			       success: function(html) {
+			       url: url,
+			       type: type,
+			       data: data,
+			       success: function (html) {
 				       $('form.addtoplaylist').html('<a href="#" class="btn btn-info disabled"><i class="fa fa-check"></i> به لیست پخش اضافه شد</a>')
 			       }
 		       });
@@ -80,25 +80,25 @@ $(function() {
 	});
 
 	// REMOVING COURSE FROM PLAYLIST USING AJAX ------------------------------------------------------------------------------
-	$('form.removefromplaylist').on('submit', function() {
+	$('form.removefromplaylist').on('submit', function () {
 		var that = $(this),
-		    url = that.attr('action'),
-		    type = that.attr('method'),
-		    data = {},
-		    btn = $("#btn");
+				url = that.attr('action'),
+				type = that.attr('method'),
+				data = {},
+				btn = $("#btn");
 		btn.prop('disabled', true);
-		that.find('[name]').each(function() {
+		that.find('[name]').each(function () {
 			var that = $(this),
-			    name = that.attr('name'),
-			    value = that.val();
+					name = that.attr('name'),
+					value = that.val();
 			data[name] = value;
 
 		});
 		$.ajax({
-			       url    : url,
-			       type   : type,
-			       data   : data,
-			       success: function(html) {
+			       url: url,
+			       type: type,
+			       data: data,
+			       success: function (html) {
 				       $('form.removefromplaylist').html('<a href="#" class="btn btn-danger disabled"><i class="fa fa-check"></i> از لیست پخش حذف شد</a>')
 			       }
 		       });
@@ -128,13 +128,13 @@ $(function() {
 		var video = document.getElementById('mainVideo');
 		if(video) {
 			video.addEventListener(
-				'play',
-				function() {
-					video.play();
-				},
-				false);
+					'play',
+					function () {
+						video.play();
+					},
+					false);
 
-			video.onclick = function() {
+			video.onclick = function () {
 				if(video.paused) {
 					video.play();
 				} else {
@@ -145,7 +145,7 @@ $(function() {
 	}
 
 	//SMOOTH SCROLLING ------------------------------------------------------------------------------------------------
-	$('a[href*=#]:not([href=#myCarousel])').click(function() {
+	$('a[href*=#]:not([href=#myCarousel])').click(function () {
 		if(location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
 			var target = $(this.hash);
 			target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
@@ -157,17 +157,17 @@ $(function() {
 	});
 
 	// AJAX FOR UPLOAD VIDEO BUTTON
-	$('form.uploadForm').on('submit', function() {
+	$('form.uploadForm').on('submit', function () {
 		var $btn = $('#upladSubmit').button('loading');
-		setTimeout(function() {
+		setTimeout(function () {
 			$btn.button('reset');
 		}, 86400000); //1000*60*60*24*1 (1 day)
 	});
 
 	// AJAX FOR UPLOAD FILE BUTTON
-	$('form.fileForm').on('submit', function() {
+	$('form.fileForm').on('submit', function () {
 		var $btn = $('#fileSubmit').button('loading');
-		setTimeout(function() {
+		setTimeout(function () {
 			$btn.button('reset');
 		}, 86400000); //1000*60*60*24*1 (1 day)
 	});
@@ -189,18 +189,18 @@ function shareButton(url) {
 //var bgvideo = document.getElementById('bgvideo');
 
 //FUNCTIONS FOR LIVE INPUT VALIDATION -----------------------------------------------------------------------
-var username      = document.getElementById('username');
-var pass1         = document.getElementById('password');
-var pass2         = document.getElementById('confirm_pass');
-var firstname     = document.getElementById('first_name');
-var lastname      = document.getElementById('last_name');
-var email         = document.getElementById('email');
-var message       = document.getElementById('confirmMessage');
-var goodColor     = "#C8FAC8";
-var badColor      = "#FAC8C8";
-var mBadColor     = "#B94A48";
+var username = document.getElementById('username');
+var pass1 = document.getElementById('password');
+var pass2 = document.getElementById('confirm_pass');
+var firstname = document.getElementById('first_name');
+var lastname = document.getElementById('last_name');
+var email = document.getElementById('email');
+var message = document.getElementById('confirmMessage');
+var goodColor = "#C8FAC8";
+var badColor = "#FAC8C8";
+var mBadColor = "#B94A48";
 var usernameregex = /[^a-zA-Z0-9_.]/;
-var passregex     = /[^A-Za-z0-9]/;
+var passregex = /[^A-Za-z0-9]/;
 
 function checkUser() {
 	if(usernameregex.test(username.value)) {
@@ -318,3 +318,4 @@ wow = new WOW({
 //data-wow-iteration="infinite"
 wow.init();
 //----------------------------------------------------------------------------------------------------------------------
+

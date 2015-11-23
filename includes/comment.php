@@ -21,8 +21,8 @@ class Comment extends DatabaseObject {
 	 */
 	public static function count_comments_for_course($course_id = 0) {
 		global $database;
-		$sql = "SELECT COUNT(*) FROM " . static::$table_name;
-		$sql .= " WHERE course_id = " . $course_id;
+		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
+		$sql .= " WHERE course_id = " . $database->escape_value($course_id);
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
 		return array_shift($row);

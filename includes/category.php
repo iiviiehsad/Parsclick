@@ -25,7 +25,7 @@ class Category extends DatabaseObject {
 			$sql .= " WHERE visible = 1 ";
 		}
 		$sql .= " ORDER BY position ASC ";
-		return static::find_by_sql($sql);
+		return self::find_by_sql($sql);
 	}
 
 	/**
@@ -42,7 +42,7 @@ class Category extends DatabaseObject {
 			$sql .= " AND visible = 1 ";
 		}
 		$sql .= " LIMIT 1";
-		$category_set = static::find_by_sql($sql);
+		$category_set = self::find_by_sql($sql);
 		return !empty($category_set) ? array_shift($category_set) : FALSE;
 	}
 }

@@ -64,7 +64,7 @@ class File extends DatabaseObject {
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;
 		$sql .= " WHERE course_id = " . $database->escape_value($course_id);
-		return static::find_by_sql($sql);
+		return self::find_by_sql($sql);
 	}
 
 	/**
