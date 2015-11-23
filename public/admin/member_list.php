@@ -24,7 +24,7 @@ echo output_message($message);
 	</section>
 	<section class="main col col-lg-12">
 		<article>
-			<h2><i class="fa fa-users"></i> لیست اعضا <span class="badge"><?php echo count($member_set); ?></span></h2>
+			<h2><i class="fa fa-users"></i> لیست اعضا <span class="badge arial"><?php echo count($member_set); ?></span></h2>
 			<br/>
 			<div class="table-responsive">
 				<table class="table table-hover table-condensed">
