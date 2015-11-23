@@ -515,6 +515,11 @@ function admin_courses($category_array, $course_array) {
 			if($course_array && $course->id == $course_array->id) {
 				$output .= " class='selected'";
 			}
+			if(Comment::count_comments_for_course($course->id) > 0) {
+				$output .= "data-toggle='tooltip' data-placement='left' title='";
+				$output .= Comment::count_comments_for_course($course->id) . " دیدگاه";
+				$output .= "'";
+			}
 			$output .= ">";
 			if(!empty($course->name)) {
 				$output .= htmlentities(ucwords($course->name));
@@ -567,6 +572,11 @@ function author_courses($category_array, $course_array) {
 			$output .= $course->id . "'";
 			if($course_array && $course->id == $course_array->id) {
 				$output .= " class='selected'";
+			}
+			if(Comment::count_comments_for_course($course->id) > 0) {
+				$output .= "data-toggle='tooltip' data-placement='left' title='";
+				$output .= Comment::count_comments_for_course($course->id) . " دیدگاه";
+				$output .= "'";
 			}
 			$output .= ">";
 			if(!empty($course->name)) {
@@ -624,6 +634,11 @@ function member_courses($category_array, $course_array) {
 					$output .= urlencode($course->id) . "'";
 					if($course_array && $course->id == $course_array->id) {
 						$output .= " class='selected'";
+					}
+					if(Comment::count_comments_for_course($course->id) > 0) {
+						$output .= "data-toggle='tooltip' data-placement='left' title='";
+						$output .= Comment::count_comments_for_course($course->id) . " دیدگاه";
+						$output .= "'";
 					}
 					$output .= ">";
 					if(!empty($course->name)) {

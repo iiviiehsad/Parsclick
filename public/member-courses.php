@@ -26,7 +26,7 @@ if(isset($current_course->author_id)) {
 						echo $author->full_name();
 					} ?>
 				</h4>
-				<a class="btn btn-primary pull-right" href="member-comments?course=<?php echo urldecode($current_course->id); ?>"><i class="fa fa-comments fa-lg"></i>
+				<a class="btn btn-primary pull-right" href="member-comments?course=<?php echo urldecode($current_course->id); ?>" data-toggle="tooltip" data-placement="bottom" title="سوالات و نظرات"><i class="fa fa-comments fa-lg"></i>
 					نظرات <?php echo "<span class='badge'>" . Comment::count_comments_for_course($current_course->id) . "</span>"; ?>
 				</a>
 				&nbsp;
@@ -35,7 +35,7 @@ if(isset($current_course->author_id)) {
 				<?php if(!$playlist_set) { ?>
 					<form action="add-to-playlist" method="POST" class="addtoplaylist">
 						<input type="hidden" name="course" value="<?php echo $current_course->id; ?>">
-						<button id="btn" type="submit" class="btn btn-info">
+						<button id="btn" type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="left" title="اضافه به لیست پخش">
 							<i class="fa fa-plus-circle"></i> اضافه به لیست
 						</button>
 					</form>
@@ -43,7 +43,7 @@ if(isset($current_course->author_id)) {
 					&nbsp;
 					<form action="remove-from-playlist" method="POST" class="removefromplaylist">
 						<input type="hidden" name="playlist" value="<?php echo $playlist_set->id; ?>">
-						<button id="btn" type="submit" class="btn btn-danger">
+						<button id="btn" type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="left" title="حذف از لیست پخش">
 							<i class="fa fa-minus-circle"></i> حذف از لیست
 						</button>
 					</form>
@@ -58,7 +58,7 @@ if(isset($current_course->author_id)) {
 					} ?>
 				</h4>
 				<?php if(!empty($current_course->file_link)) { ?>
-					<a class="btn btn-primary btn-small" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" title="لینک فایل تمرینی">
+					<a class="btn btn-primary btn-small" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" data-toggle="tooltip" data-placement="left" title="لینک فایل تمرینی">
 						لینک خارجی
 					</a>
 				<?php } ?>
@@ -92,8 +92,7 @@ if(isset($current_course->author_id)) {
 						// decode the JSON file
 						$json = json_decode($content, TRUE);
 						//var_dump($json);
-						if($json['pageInfo']['totalResults'] > 0) {
-							?>
+						if($json['pageInfo']['totalResults'] > 0) { ?>
 							<article class="videos">
 								<div class="table-responsive">
 									<table class="table table-condensed table-hover">
@@ -147,7 +146,7 @@ if(isset($current_course->author_id)) {
 			<form class="form-inline" action="member-course-search" method="GET">
 				<div class="input-group">
 					<span class="input-group-addon"><span class="edit glyphicon glyphicon-search"></span></span>
-					<input type="text" name="q" class="form-control" size="30" maxlength="50" placeholder="جستجوی درس"/>
+					<input type="text" name="q" class="form-control" size="30" maxlength="50" data-toggle="tooltip" data-placement="top" title="جستجو کنید و اینتر بزنید" placeholder="جستجوی درس"/>
 				</div>
 			</form>
 			<h2>موضوعات و دروس</h2>
