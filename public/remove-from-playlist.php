@@ -2,17 +2,12 @@
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
-if(isset($_POST["course"])) {
-	$course_id = $_POST["course"];
+$playlist_id = $_POST["playlist"];
+if(!$playlist_id) {
+	$session->message("شناسه لیست پیدا نشد!");
+	redirect_to($_SERVER["HTTP_REFERER"]);
 }
-if(isset($_GET["course"])) {
-	$course_id = $_GET["course"];
-}
-if(empty($course_id)) {
-	$session->message("شناسه درس پیدا نشد!");
-	redirect_to("member-courses");
-}
-$playlist = Playlist::find_by_id($course_id);
+$playlist = Playlist::find_by_id($playlist_id);
 $result   = $playlist->delete();
 if($result) {
 	$session->message("درس با موفقیت آمیز از لیست پخش حذف شد.");

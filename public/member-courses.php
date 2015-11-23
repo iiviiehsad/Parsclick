@@ -31,7 +31,8 @@ if(isset($current_course->author_id)) {
 				</a>
 				&nbsp;
 				<!-- ------------------------------------------------------------------------------------------------- -->
-				<?php if(!Playlist::num_courses_for_playlist($current_course->id)) { ?>
+				<?php $playlist_set = Playlist::courses_playlist_for_member($current_course->id, $member->id); ?>
+				<?php if(!$playlist_set) { ?>
 					<form action="add-to-playlist" method="POST" class="addtoplaylist">
 						<input type="hidden" name="course" value="<?php echo $current_course->id; ?>">
 						<button id="btn" type="submit" class="btn btn-info">
@@ -39,17 +40,15 @@ if(isset($current_course->author_id)) {
 						</button>
 					</form>
 				<?php } else { ?>
-					<?php $playlist_set = Playlist::find_playlist_for_course($current_course->id); ?>
 					&nbsp;
 					<form action="remove-from-playlist" method="POST" class="removefromplaylist">
-						<input type="hidden" name="course" value="<?php echo array_shift($playlist_set)->id; ?>">
+						<input type="hidden" name="playlist" value="<?php echo $playlist_set->id; ?>">
 						<button id="btn" type="submit" class="btn btn-danger">
 							<i class="fa fa-minus-circle"></i> حذف از لیست
 						</button>
 					</form>
 					&nbsp;
-				<?php } //else num_courses_for_playlist?>
-
+				<?php } ?>
 				<p><?php echo nl2br(htmlentities($current_course->content)); ?></p>
 				<!-- ------------------------------------------------------------------------------------------------- -->
 				<h4>
