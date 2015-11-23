@@ -44,13 +44,13 @@ echo output_message($message);
 					<?php foreach($member_set as $member): ?>
 						<tr class="
 					<?php if($member->status == 0) {
-							echo "alert alert-warning";
+							echo "warning";
 						} elseif($member->status == 1) {
-							echo "alert alert-success";
+							echo "success";
 						} elseif($member->status == 2) {
-							echo "alert alert-danger";
+							echo "danger";
 						} else {
-							echo "alert alert-primary";
+							echo "";
 						} ?>">
 							<td class="arial">
 								<small><?php echo htmlentities($member->username); ?></small>
