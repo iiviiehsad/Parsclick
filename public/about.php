@@ -11,7 +11,6 @@ $title    = "پارس کلیک - درباره ما";
 	<section class="sidebar col-sm-12 col-md-3 col-lg-3">
 		<aside class="socialmedia">
 			<?php include "_/components/php/aside-twitter.php" ?>
-			<?php include "_/components/php/aside-news.php" ?>
 			<div class="center">
 				<img src="images/others/All.png" alt="Programming Languages"/>
 			</div><!-- center -->

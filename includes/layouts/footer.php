@@ -22,7 +22,6 @@
 				<a target="_blank" href="https://plus.google.com/+PersianComputers/posts"><i title="Google+" class="fa fa-google-plus-square fa-3x"></i></a>&nbsp;&nbsp;
 				<a target="_blank" href="https://www.linkedin.com/in/hass0azimi"><i title="LinkedIn" class="fa fa-linkedin-square fa-3x"></i></a>&nbsp;&nbsp;
 				<a target="_blank" href="https://github.com/hassanazimi"><i title="GitHub" class="fa fa-github-square fa-3x"></i></a>&nbsp;&nbsp;
-				<a target="_blank" href="http://feeds.feedburner.com/parsclick/HGms"><i title="RSS" class="fa fa-rss-square fa-3x"></i></a>&nbsp;&nbsp;
 				<i title="American Express" class="pull-left fa fa-cc-amex fa-3x hidden-sm"></i>
 				<i title="Visa" class="pull-left fa fa-cc-visa fa-3x hidden-sm"></i>
 				<i title="Master Card" class="pull-left fa fa-cc-mastercard fa-3x hidden-sm"></i>
