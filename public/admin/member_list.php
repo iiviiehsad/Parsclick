@@ -42,7 +42,16 @@ echo output_message($message);
 					</thead>
 					<tbody>
 					<?php foreach($member_set as $member): ?>
-						<tr>
+						<tr class="
+					<?php if($member->status == 0) {
+							echo "alert alert-warning";
+						} elseif($member->status == 1) {
+							echo "alert alert-success";
+						} elseif($member->status == 2) {
+							echo "alert alert-danger";
+						} else {
+							echo "alert alert-primary";
+						} ?>">
 							<td class="arial">
 								<small><?php echo htmlentities($member->username); ?></small>
 							</td>
