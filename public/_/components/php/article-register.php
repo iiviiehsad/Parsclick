@@ -102,12 +102,24 @@
 		</fieldset>
 
 		<section class="row">
-			<div class="pull-left text-danger checkbox col-xs-8 col-sm-8 col-md-8 col-lg-8">
-				<label class="col-xs-8 col-sm-7 col-md-6 col-lg-5">
-					<input type="checkbox" required><a href="privacypolicy" target="_blank" title="شرایط و ضوابط">شرایط را قبول دارم *</a>
+			<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="post_code"></label>
+			<div class="checkbox">
+			<label class="col-xs-5 col-sm-4 col-md-4 col-lg-3" for="terms">
+					<input type="checkbox" required id="terms">
+				  <a href="privacypolicy" target="_blank" title="شرایط و ضوابط">شرایط را قبول دارم *</a>
 				</label>
 			</div><!-- checkbox -->
 		</section><!-- row -->
+
+		<!--Start of reCaptcha-->
+		<section class="row">
+			<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="phone"></label>
+			<div class="controls">
+					<div class="g-recaptcha col-xs-8 col-sm-8 col-md-8 col-lg-8" data-sitekey="<?php echo RECAPTCHASITEKEY; ?>"></div>
+					<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>"></script>
+			</div><!-- controls -->
+		</section><!-- row -->
+		<!--End of reCaptcha-->
 
 		<section class="row">
 			<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="submit"></label>
