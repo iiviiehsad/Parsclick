@@ -27,8 +27,8 @@ if(isset($current_article->author_id)) { // find the author for the article
 						echo $author->full_name();
 					} ?>
 				</h4>
-				<p><?php echo nl2br(strip_tags($current_article->content, '<h1><h2><h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?></p>
-				<!--  COMMENTS -->
+				<?php echo nl2br(strip_tags($current_article->content, '<h1><h2><h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?>
+					<!--  COMMENTS -->
 				<hr/>
 				<?php include("_/components/php/article-disqus-comment.php"); ?>
 			<?php } else { ?>

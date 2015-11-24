@@ -2,9 +2,10 @@
 require_once("../includes/initialize.php");
 require_once("../includes/Recaptcha/autoload.php");
 $filename = basename(__FILE__);
-$title    = "پارس کلیک - تماس با ما";
-$errors   = "";
-$message  = "";
+if($session->is_logged_in()) { $member = Member::find_by_id($session->id); }
+$title   = "پارس کلیک - تماس با ما";
+$errors  = "";
+$message = "";
 // reCAPTCHA supported 40+ languages listed here: https://developers.google.com/recaptcha/docs/language
 $lang = 'fa';
 if(isset($_POST["submit"])) {
@@ -69,12 +70,14 @@ EMAILBODY;
 					<legend>لطفا از فرم زیر برای تماس با ما استفاده کنید.</legend>
 					<div class="form-group">
 						<label for="name">اسم کامل</label>
-						<input type="text" name="name" class="form-control" id="name" placeholder="لطفا اسم خود را اینجا وارد کنید" required>
+						<input type="text" name="name" class="form-control" id="name" placeholder="لطفا اسم خود را اینجا وارد کنید" required
+						       value="<?php echo $session->is_logged_in() ? $member->full_name() : ''; ?>"/>
 					</div>
 					<br/>
 					<div class="form-group">
 						<label for="email">ایمیل</label>
-						<input type="text" name="email" class="form-control arial edit" id="email" placeholder="email" required>
+						<input type="text" name="email" class="form-control arial edit" id="email" placeholder="email" required
+						       value="<?php echo $session->is_logged_in() ? $member->email : ''; ?>"/>
 					</div>
 					<br/><br/><br/>
 					<div class="form-group">

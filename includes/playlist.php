@@ -36,4 +36,17 @@ class Playlist extends DatabaseObject {
 		$sql .= " ORDER BY course_id";
 		return self::find_by_sql($sql);
 	}
+
+	/**
+	 * @param $member_id int gets the members ID
+	 * @return mixed number of playlist for every member
+	 */
+	public static function count_playlist_for_member($member_id) {
+		global $database;
+		$sql        = "SELECT COUNT(*) FROM " . self::$table_name . " WHERE member_id = " . $member_id;
+		$result_set = $database->query($sql);
+		$row        = $database->fetch_assoc($result_set);
+		return array_shift($row);
+	}
+
 }

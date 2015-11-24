@@ -100,7 +100,7 @@
 	}
 
 	function getYouTubePlayer(URL, width, height) {
-		return ['<iframe title="YouTube video player" width="', width, '" height="', height, '" ',
+		return ['<iframe class="embed-responsive-item" title="YouTube video player" width="', width, '" height="', height, '" ',
 		        'style="margin:0; padding:0; box-sizing:border-box; border:0; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; margin:', (margin - 1), 'px;" ',
 		        'src="', URL, '" frameborder="0" allowfullscreen seamless></iframe>'
 		].join('');
