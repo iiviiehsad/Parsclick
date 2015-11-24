@@ -45,11 +45,8 @@ $errors = "";
 	<aside>
 		<h2>عکس پروفایل</h2>
 		<?php if(empty($member->photo)) { ?>
-			<div class="well">
+			<div class="">
 				<span class="glyphicon glyphicon-user center" style="font-size: 150px;"></span>
-				<a class="btn btn-success center" href="member-edit-profile">
-					آپلود عکس
-				</a>
 			</div>
 		<?php } else { ?>
 			<img class="img-responsive img-thumbnail center" width="200" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($member->photo); ?>">
@@ -57,7 +54,7 @@ $errors = "";
 		<h2>حذف عضویت</h2>
 		<p>با کلیلک روی این دگمه حساب کاربری شما به کلی حذف خواهد شد. بنابراین مواظب باشید اگر می خواهید روی این دگمه کلیک
 		   کنید.</p>
-		<a class="btn label label-danger" href="member-permanent-deletion" role="button" onclick="return confirm('آیا مطمئن هستید که می خواهید حق اشتراک شما ابدا پاک شود؟\nبا این کار شما از پایگاه داده ها یه کلی حذف خواهید شد و بی هیچ پیامی به صفحه ورود خواهید رفت!')">
+		<a class="btn btn-small btn-danger" href="member-permanent-deletion" role="button" onclick="return confirm('آیا مطمئن هستید که می خواهید حق اشتراک شما ابدا پاک شود؟\nبا این کار شما از پایگاه داده ها یه کلی حذف خواهید شد و بی هیچ پیامی به صفحه ورود خواهید رفت!')">
 			<i class="fa fa-exclamation-triangle"></i>
 			حق اشتراک را بکلی پاک کن!
 		</a>
