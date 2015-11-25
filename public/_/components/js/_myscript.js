@@ -27,7 +27,6 @@ $(function () {
 	//SHOW MODALS
 	$('.modalphotos img').on('click', function () {
 		$('#modal').modal({show: true});
-
 		var mysrc = this.src.substr(0, this.src.length - 7) + '.jpg';
 		$('#modalimage').css('width', "80%");
 		$('#modalimage').css('display', "block");
@@ -106,43 +105,43 @@ $(function () {
 	});
 
 	// FUNCTION FOR MEMBER'S VIDEO --------------------------------------------------------------------------------------
-	var videos = document.querySelectorAll(".videoThumbnail");
-	for(var i = 0; i < videos.length; i++) {
-		videos[i].addEventListener('click', clickHandler, false);
-	}
-	function clickHandler(e) {
-		var mainVideo = document.getElementById("mainVideo");
-		if(!isChrome || !isSafari) {
-			mainVideo.src = e.target.currentSrc;
-		} else {
-			mainVideo.src = e.srcElement.currentSrc;
-		}
-	}
+	//var videos = document.querySelectorAll(".videoThumbnail");
+	//for(var i = 0; i < videos.length; i++) {
+	//	videos[i].addEventListener('click', clickHandler, false);
+	//}
+	//function clickHandler(e) {
+	//	var mainVideo = document.getElementById("mainVideo");
+	//	if(!isChrome || !isSafari) {
+	//		mainVideo.src = e.target.currentSrc;
+	//	} else {
+	//		mainVideo.src = e.srcElement.currentSrc;
+	//	}
+	//}
 
 	//FINDING THE BROWSERS NAME -----------------------------------------------------------------------------------------
-	var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-	var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
-
-	//TO PLAY OR PAUSE VIDEO MANUALLY BY CLICKING ON THE VIDEO ----------------------------------------------------
-	if(isChrome || isSafari) {
-		var video = document.getElementById('mainVideo');
-		if(video) {
-			video.addEventListener(
-					'play',
-					function () {
-						video.play();
-					},
-					false);
-
-			video.onclick = function () {
-				if(video.paused) {
-					video.play();
-				} else {
-					video.pause();
-				}
-			};
-		}
-	}
+	//var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+	//var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+	//
+	////TO PLAY OR PAUSE VIDEO MANUALLY BY CLICKING ON THE VIDEO ----------------------------------------------------
+	//if(isChrome || isSafari) {
+	//	var video = document.getElementById('mainVideo');
+	//	if(video) {
+	//		video.addEventListener(
+	//				'play',
+	//				function () {
+	//					video.play();
+	//				},
+	//				false);
+	//
+	//		video.onclick = function () {
+	//			if(video.paused) {
+	//				video.play();
+	//			} else {
+	//				video.pause();
+	//			}
+	//		};
+	//	}
+	//}
 
 	//SMOOTH SCROLLING ------------------------------------------------------------------------------------------------
 	$('a[href*=#]:not([href=#myCarousel])').click(function () {

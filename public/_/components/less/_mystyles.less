@@ -199,7 +199,37 @@ a:hover, a:focus {
 
 .carousel { margin-bottom : 0; }
 
-.carousel-caption > * { color : @parsclick; }
+.carousel-caption > * { color : @beige; }
+
+// Uncomment for carousel fade in
+.carousel-fade {
+	.carousel-inner {
+		.item {
+			transition-property : opacity;
+		}
+		.item,
+		.active.left,
+		.active.right {
+			opacity : 0;
+		}
+		.active,
+		.next.left,
+		.prev.right {
+			opacity : 1;
+		}
+		.next,
+		.prev,
+		.active.left,
+		.active.right {
+			left      : 0;
+			transform : translate3d(0, 0, 0);
+		}
+	}
+	.carousel-control {
+		z-index : 2;
+	}
+}
+// End: Uncomment for carousel fade in
 
 .main > article {
 	margin     : 5% 5%;

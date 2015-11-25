@@ -40,7 +40,7 @@ if(isset($current_article->author_id)) { // find the author for the article
 		<aside class="members_menu">
 			<form class="form-inline" action="member-article-search" method="GET">
 				<div class="input-group">
-					<span class="input-group-addon"><span class="edit glyphicon glyphicon-search"></span></span>
+					<span class="input-group-addon"><span class="arial glyphicon glyphicon-search"></span></span>
 					<input type="text" name="q" class="form-control" size="30" maxlength="50" data-toggle="tooltip" data-placement="top" title="جستجو کنید و اینتر بزنید" placeholder="جستجوی مقالات"/>
 				</div>
 			</form>

@@ -19,7 +19,7 @@ if(isset($current_course->author_id)) {
 				<h4>
 					<?php if(isset($author)) {
 						if(empty($author->photo)) { ?>
-							<i class="fa fa-user fa-lg"></i>
+							<i class="fa fa-user fa-2x"></i>
 						<?php } else { ?>
 							<img style="width:50px;height:50px;" class="img-responsive img-rounded" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
 						<?php }
@@ -51,15 +51,12 @@ if(isset($current_course->author_id)) {
 				<?php } ?>
 				<p><?php echo nl2br(htmlentities($current_course->content)); ?></p>
 				<!-- ------------------------------------------------------------------------------------------------- -->
-				<h4>
-					<i class="fa fa-files-o fa-2x"></i> فایل های تمرینی:
-					<?php if(empty($current_course->file_link) && File::num_files_for_course($current_course->id) == 0) {
-						echo "<span class='text-danger'>این درس فایل تمرینی ندارد.</span>";
-					} ?>
-				</h4>
+				<?php if(empty($current_course->file_link) && File::num_files_for_course($current_course->id) == 0) {
+					echo "<h4 class='text-danger'>این درس فایل تمرینی ندارد.</h4>";
+				} ?>
 				<?php if(!empty($current_course->file_link)) { ?>
-					<a class="btn btn-primary btn-small" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" data-toggle="tooltip" data-placement="left" title="لینک فایل تمرینی">
-						لینک خارجی
+					<a class="btn btn-primary" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" data-toggle="tooltip" data-placement="left" title="دانلود کنید">
+						<i class="fa fa-files-o fa-lg"></i>&nbsp; دانلود فایل های تمرینی
 					</a>
 				<?php } ?>
 				<!-- ------------------------------------------------------------------------------------------------- -->
@@ -145,7 +142,7 @@ if(isset($current_course->author_id)) {
 		<aside>
 			<form class="form-inline" action="member-course-search" method="GET">
 				<div class="input-group">
-					<span class="input-group-addon"><span class="edit glyphicon glyphicon-search"></span></span>
+					<span class="input-group-addon"><span class="arial glyphicon glyphicon-search"></span></span>
 					<input type="text" name="q" class="form-control" size="30" maxlength="50" data-toggle="tooltip" data-placement="top" title="جستجو کنید و اینتر بزنید" placeholder="جستجوی درس"/>
 				</div>
 			</form>
