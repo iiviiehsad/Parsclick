@@ -1,6 +1,6 @@
 <header class="clearfix">
 	<section id="branding">
-		<a href="/"><img src="images/misc/logo.png" alt="Logo for Online Training Library"></a>
+		<a href="/"><img src="images/misc/logo.png" alt="Logo for Parsclick"></a>
 	</section>
 	<!-- branding -->
 	<section class="navbar">

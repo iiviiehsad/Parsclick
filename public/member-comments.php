@@ -41,7 +41,7 @@ $comments    = Comment::find_by_sql($sql);
 				<section class="media">
 					<?php $_member = Member::find_by_id($comment->member_id); ?>
 					<?php if(empty($_member->photo)) { ?>
-						<i style="font-size:50px;" class="fa fa-user pull-right"></i>
+						<i style="font-size:50px;" class="fa <?php echo $_member->id == 100 ? 'fa-users' : 'fa-user'; ?> pull-right"></i>
 					<?php } else { ?>
 						<img style="width:50px;height:50px;" class="img-responsive img-rounded pull-right" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($_member->photo); ?>"/>
 					<?php } ?>
@@ -111,7 +111,7 @@ $comments    = Comment::find_by_sql($sql);
 					<!--buttons-->
 					<section class="row">
 						<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-							<a class="btn btn-danger" href="member-courses">لغو</a>
+							<a class="btn btn-danger" href="member-courses?category=<?php echo urldecode($current_course->category_id); ?>&course=<?php echo urldecode($current_course->id); ?>">لغو</a>
 							<button class="btn btn-success" name="submit" id="submit" type="submit">
 								فرستادن
 							</button>
@@ -123,7 +123,7 @@ $comments    = Comment::find_by_sql($sql);
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside class="members_menu">
-			<h2>موضوعات</h2>
+			<h2>موضوعات و دروس</h2>
 			<?php echo member_courses($current_category, $current_course); ?>
 		</aside>
 	</section>

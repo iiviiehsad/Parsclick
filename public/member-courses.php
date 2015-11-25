@@ -26,7 +26,7 @@ if(isset($current_course->author_id)) {
 						echo $author->full_name();
 					} ?>
 				</h4>
-				<a class="btn btn-primary pull-right" href="member-comments?course=<?php echo urldecode($current_course->id); ?>" data-toggle="tooltip" data-placement="bottom" title="سوالات و نظرات"><i class="fa fa-comments fa-lg"></i>
+				<a class="btn btn-primary pull-right" href="member-comments?category=<?php echo urldecode($current_course->category_id); ?>&course=<?php echo urldecode($current_course->id); ?>" data-toggle="tooltip" data-placement="bottom" title="سوالات و نظرات"><i class="fa fa-comments fa-lg"></i>
 					نظرات <?php echo "<span class='badge'>" . Comment::count_comments_for_course($current_course->id) . "</span>"; ?>
 				</a>
 				&nbsp;
@@ -52,7 +52,7 @@ if(isset($current_course->author_id)) {
 				<p><?php echo nl2br(htmlentities($current_course->content)); ?></p>
 				<!-- ------------------------------------------------------------------------------------------------- -->
 				<h4>
-					<i class="fa fa-file"></i> فایل های تمرینی:
+					<i class="fa fa-files-o fa-2x"></i> فایل های تمرینی:
 					<?php if(empty($current_course->file_link) && File::num_files_for_course($current_course->id) == 0) {
 						echo "<span class='text-danger'>این درس فایل تمرینی ندارد.</span>";
 					} ?>
@@ -98,7 +98,7 @@ if(isset($current_course->author_id)) {
 									<table class="table table-condensed table-hover">
 										<thead>
 										<tr>
-											<h3><i class="fa fa-video-camera"></i> ویدیوهای این درس</h3>
+											<h3><i class="fa fa-video-camera fa-lg"></i> ویدیوهای این درس</h3>
 										</tr>
 										</thead>
 										<tbody>
@@ -107,7 +107,7 @@ if(isset($current_course->author_id)) {
 												<td>
 													<a class="youtube visited" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
 													   title="Click to play">
-													<?php echo $item['snippet']['title']; ?>
+														<?php echo $item['snippet']['title']; ?>
 													</a>
 												</td>
 											</tr>
