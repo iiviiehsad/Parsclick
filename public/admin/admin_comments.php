@@ -33,7 +33,7 @@ echo output_message($message);
 						<span class="badge">
 							<span class="yekan"><?php echo htmlentities($_member->full_name()); ?></span>
 							<?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
-						<a class="badge" href="admin_delete_comment.php?id=<?php echo urldecode($comment->id); ?>">
+						<a class="badge" href="admin_delete_comment.php?id=<?php echo urlencode($comment->id); ?>">
 							<span class="glyphicon glyphicon-remove"></span>
 						</a>
 						<p style="margin-top:5px;"><?php echo strip_tags($comment->body, '<strong><em><p>'); ?></p>
@@ -45,7 +45,7 @@ echo output_message($message);
 					<ul class="pagination">
 						<?php if($pagination->has_previous_page()) { ?>
 							<li>
-								<a href="admin_comments.php?course=<?php echo urldecode($current_course->id) ?>&page=<?php echo urldecode($pagination->previous_page()); ?>" aria-label="Previous">
+								<a href="admin_comments.php?course=<?php echo urlencode($current_course->id) ?>&page=<?php echo urlencode($pagination->previous_page()); ?>" aria-label="Previous">
 									<span aria-hidden="true">قبلی</span>
 								</a>
 							</li>
@@ -57,13 +57,13 @@ echo output_message($message);
 								</li>
 							<?php } else { ?>
 								<li>
-									<a href="admin_comments.php?course=<?php echo urldecode($current_course->id); ?>&page=<?php echo urldecode($i); ?>"><?php echo $i; ?></a>
+									<a href="admin_comments.php?course=<?php echo urlencode($current_course->id); ?>&page=<?php echo urlencode($i); ?>"><?php echo $i; ?></a>
 								</li>
 							<?php } ?>
 						<?php } ?>
 						<?php if($pagination->has_next_page()) { ?>
 							<li>
-								<a href="admin_comments.php?course=<?php echo urldecode($current_course->id) ?>&page=<?php echo urldecode($pagination->next_page()); ?>" aria-label="Next">
+								<a href="admin_comments.php?course=<?php echo urlencode($current_course->id) ?>&page=<?php echo urlencode($pagination->next_page()); ?>" aria-label="Next">
 									<span aria-hidden="true">بعدی</span>
 								</a>
 							</li>

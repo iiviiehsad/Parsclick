@@ -73,7 +73,7 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit">&nbsp;</label>
 						<div class="controls">
-							<a class="btn btn-danger" href="admin_articles.php?subject=<?php echo urldecode($current_subject->id); ?>">لغو</a>
+							<a class="btn btn-danger" href="admin_articles.php?subject=<?php echo urlencode($current_subject->id); ?>">لغو</a>
 							<a class="btn btn-info" href="delete_subject.php?subject=<?php echo urlencode($current_subject->id); ?>" onclick="return confirm('Are you sure?');">
 								حذف
 							</a>

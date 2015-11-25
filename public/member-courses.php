@@ -26,7 +26,7 @@ if(isset($current_course->author_id)) {
 						echo $author->full_name();
 					} ?>
 				</h4>
-				<a class="btn btn-primary pull-right" href="member-comments?category=<?php echo urldecode($current_course->category_id); ?>&course=<?php echo urldecode($current_course->id); ?>" data-toggle="tooltip" data-placement="bottom" title="سوالات و نظرات"><i class="fa fa-comments fa-lg"></i>
+				<a class="btn btn-primary pull-right" href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" data-placement="bottom" title="سوالات و نظرات"><i class="fa fa-comments fa-lg"></i>
 					نظرات <?php echo "<span class='badge'>" . Comment::count_comments_for_course($current_course->id) . "</span>"; ?>
 				</a>
 				&nbsp;
@@ -66,8 +66,8 @@ if(isset($current_course->author_id)) {
 				<?php if(File::num_files_for_course($current_course->id) > 0) { ?>
 					<?php $files = File::find_files_for_course($current_course->id); ?>
 					<?php foreach($files as $file) { ?>
-						<a class="btn btn-primary btn-small arial" href="../<?php echo urldecode($file->file_path()); ?>">
-							<?php echo htmlentities($file->name); ?>
+						<a class="btn btn-primary btn-small" href="<?php echo urlencode($file->file_path()); ?>">
+							<?php echo htmlentities($file->description); ?>
 						</a>
 					<?php } //foreach file ?>
 				<?php } //num_files_for_course ?>

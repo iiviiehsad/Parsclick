@@ -50,7 +50,7 @@ echo output_message($message);
 							<?php $files = File::find_files_for_course($current_course->id); ?>
 							<?php foreach($files as $file) { ?>
 								<div class="btn-group">
-									<a class="btn btn-primary edit" href="../files/<?php echo urldecode($file->name); ?>">
+									<a class="btn btn-primary edit" href="../files/<?php echo urlencode($file->name); ?>">
 										<?php echo htmlentities($file->name); ?>
 									</a>
 									<a class="btn btn-danger edit" href="delete_file.php?id=<?php echo urlencode($file->id); ?>" onclick="return confirm('آیا مطمئن به حذف این فایل هستید؟')">

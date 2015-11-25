@@ -49,7 +49,7 @@ $comments    = Comment::find_by_sql($sql);
 						<span class="badge"><?php echo htmlentities($_member->first_name); ?></span>
 						<span class="badge arial"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
 						<?php if($comment->member_id === $session->id) { ?>
-							<a href="member-delete-comment?id=<?php echo urldecode($comment->id); ?>" class="badge">
+							<a href="member-delete-comment?id=<?php echo urlencode($comment->id); ?>" class="badge">
 								<i class="fa fa-trash-o"></i>
 							</a>
 						<?php } ?>
@@ -62,7 +62,7 @@ $comments    = Comment::find_by_sql($sql);
 					<ul class="pagination">
 						<?php if($pagination->has_previous_page()) { ?>
 							<li>
-								<a href="member-comments?course=<?php echo urldecode($current_course->id) ?>&page=<?php echo urldecode($pagination->previous_page()); ?>" aria-label="Previous">
+								<a href="member-comments?course=<?php echo urlencode($current_course->id) ?>&page=<?php echo urlencode($pagination->previous_page()); ?>" aria-label="Previous">
 									<span aria-hidden="true">قبلی</span>
 								</a>
 							</li>
@@ -74,13 +74,13 @@ $comments    = Comment::find_by_sql($sql);
 								</li>
 							<?php } else { ?>
 								<li>
-									<a href="member-comments?course=<?php echo urldecode($current_course->id); ?>&page=<?php echo urldecode($i); ?>"><?php echo $i; ?></a>
+									<a href="member-comments?course=<?php echo urlencode($current_course->id); ?>&page=<?php echo urlencode($i); ?>"><?php echo $i; ?></a>
 								</li>
 							<?php } ?>
 						<?php } ?>
 						<?php if($pagination->has_next_page()) { ?>
 							<li>
-								<a href="member-comments?course=<?php echo urldecode($current_course->id) ?>&page=<?php echo urldecode($pagination->next_page()); ?>" aria-label="Next">
+								<a href="member-comments?course=<?php echo urlencode($current_course->id) ?>&page=<?php echo urlencode($pagination->next_page()); ?>" aria-label="Next">
 									<span aria-hidden="true">بعدی</span>
 								</a>
 							</li>
@@ -111,7 +111,7 @@ $comments    = Comment::find_by_sql($sql);
 					<!--buttons-->
 					<section class="row">
 						<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-							<a class="btn btn-danger" href="member-courses?category=<?php echo urldecode($current_course->category_id); ?>&course=<?php echo urldecode($current_course->id); ?>">لغو</a>
+							<a class="btn btn-danger" href="member-courses?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>">لغو</a>
 							<button class="btn btn-success" name="submit" id="submit" type="submit">
 								فرستادن
 							</button>

@@ -31,7 +31,7 @@ if(isset($search_query) && !empty($search_query)) {
 						<?php foreach($course_set as $course): ?>
 							<tr>
 								<td>
-									<a href="member-courses?category=<?php echo urldecode($course->category_id); ?>&course=<?php echo urldecode($course->id); ?>">
+									<a href="member-courses?category=<?php echo urlencode($course->category_id); ?>&course=<?php echo urlencode($course->id); ?>">
 										<?php echo htmlentities($course->name); ?>
 									&nbsp;	توسط <?php echo htmlentities(Author::find_by_id($course->author_id)->full_name()); ?>
 									</a>

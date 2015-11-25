@@ -1,5 +1,4 @@
 <?php
-
 require_once(LIB_PATH . DS . 'database.php');
 
 /**
@@ -28,18 +27,18 @@ class File extends DatabaseObject {
 	public           $description;
 	private          $temp_path;
 	public           $errors         = array();
-	protected        $upload_dir     = "public/files";
+	protected        $upload_dir     = "files";
 	public static    $max_file_size  = 524200000; //500MB
 	protected        $permittedTypes = array('application/zip');
 	protected        $upload_errors  = array(
-		UPLOAD_ERR_OK         => "خطایی نیست.",
-		UPLOAD_ERR_INI_SIZE   => "بزرگتر از upload_max_filesize.",
-		UPLOAD_ERR_FORM_SIZE  => "بزرگتر از MAX_FILE_SIZE.",
-		UPLOAD_ERR_PARTIAL    => "مقداری از فایل آپلود شد.",
-		UPLOAD_ERR_NO_FILE    => "فایلی نیست.",
-		UPLOAD_ERR_NO_TMP_DIR => "پوشه موقت نیست.",
-		UPLOAD_ERR_CANT_WRITE => "قادر به نوشتن روی دیسک نیست.",
-		UPLOAD_ERR_EXTENSION  => "آپلود فایل بخاطر فرمت فایل جلوگیری شد."
+			UPLOAD_ERR_OK         => "خطایی نیست.",
+			UPLOAD_ERR_INI_SIZE   => "بزرگتر از upload_max_filesize.",
+			UPLOAD_ERR_FORM_SIZE  => "بزرگتر از MAX_FILE_SIZE.",
+			UPLOAD_ERR_PARTIAL    => "مقداری از فایل آپلود شد.",
+			UPLOAD_ERR_NO_FILE    => "فایلی نیست.",
+			UPLOAD_ERR_NO_TMP_DIR => "پوشه موقت نیست.",
+			UPLOAD_ERR_CANT_WRITE => "قادر به نوشتن روی دیسک نیست.",
+			UPLOAD_ERR_EXTENSION  => "آپلود فایل بخاطر فرمت فایل جلوگیری شد."
 	);
 
 	/**
@@ -156,7 +155,7 @@ class File extends DatabaseObject {
 			$this->errors[] = "خطا! اندازه فایل بیش از حد بزرگ است.";
 			return FALSE;
 		}
-		$target_path = SITE_ROOT . DS . $this->upload_dir . DS . $this->name;
+		$target_path = SITE_ROOT . DS . 'public_html' . DS . $this->upload_dir . DS . $this->name;
 		if(!is_uploaded_file($this->temp_path)) {
 			$this->errors[] = "خطا! فایل {$this->name} همان فایلی نیست که از قبل آپلود شده.";
 			return FALSE;
@@ -185,7 +184,7 @@ class File extends DatabaseObject {
 	 */
 	public function destroy() {
 		if($this->delete()) {
-			$target_path = SITE_ROOT . DS . $this->file_path();
+			$target_path = SITE_ROOT . DS . 'public_html' . DS . $this->file_path();
 			return unlink($target_path) ? TRUE : FALSE;
 		} else {
 			return FALSE;

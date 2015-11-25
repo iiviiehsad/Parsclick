@@ -16,7 +16,7 @@ if(isset($_POST["submit_file"])) {
 	$file->attach_file($_FILES["single_file"]);
 	if($file->save()) {
 		$session->message("فایل {$file->description} با موفقیت آپلود شد.");
-		redirect_to("author_courses.php?category=" . urldecode($current_category->id) . "&course=" . urldecode($current_course->id));
+		redirect_to("author_courses.php?category=" . urlencode($current_category->id) . "&course=" . urlencode($current_course->id));
 	} else {
 		$errors = join(" ", $file->errors);
 	}
@@ -53,12 +53,12 @@ echo output_message($message, $errors);
 					<?php foreach($files as $file): ?>
 						<?php if(check_ownership($current_course->author_id, $session->id)) { ?>
 							<div class="btn-group">
-								<a class="btn btn-primary btn-small edit" href="../files/<?php echo urldecode($file->name); ?>"><span class="glyphicon glyphicon-file"></span>&nbsp;<?php echo htmlentities($file->name); ?>
+								<a class="btn btn-primary btn-small edit" href="../files/<?php echo urlencode($file->name); ?>"><span class="glyphicon glyphicon-file"></span>&nbsp;<?php echo htmlentities($file->name); ?>
 								</a>
-								<a class="btn btn-danger btn-small edit" href="author_delete_file.php?id=<?php echo urlencode($file->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید این فایل حذف شود؟')"><span class="glyphicon glyphicon-trash"></span></a>
+								<a class="btn btn-danger btn-small" href="author_delete_file.php?id=<?php echo urlencode($file->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید این فایل حذف شود؟')"><span class="glyphicon glyphicon-trash"></span></a>
 							</div>
 						<?php } else { ?>
-							<a class="btn btn-small btn-success" href="../<?php echo urldecode($file->name); ?>">
+							<a class="btn btn-small btn-success" href="../<?php echo urlencode($file->name); ?>">
 								<?php echo htmlentities($file->name); ?>
 							</a>
 						<?php } ?>
@@ -75,7 +75,7 @@ echo output_message($message, $errors);
 						<div class="alert alert-info">
 							<h3><i class="fa fa-upload"></i> آپلود فایل تمرینی زیپ</h3>
 
-							<form enctype="multipart/form-data" action="author_courses.php?category=<?php echo urldecode($current_category->id); ?>&course=<?php echo urldecode($current_course->id); ?>" method="POST" class="form-horizontal fileForm" role="form">
+							<form enctype="multipart/form-data" action="author_courses.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" method="POST" class="form-horizontal fileForm" role="form">
 								<section class="row">
 									<label style="cursor:pointer;" class="control-label btn btn-small btn-info" for="single_file">
 										برای انتخاب فایل اینجا را کلیک کنید
@@ -174,7 +174,7 @@ echo output_message($message, $errors);
 					foreach($category_courses as $course):
 						echo "<li class='list-group-item-text'>";
 						$safe_course_id = urlencode($course->id);
-						echo "<a href='author_courses.php?category=" . urldecode($current_category->id) . "&course={$safe_course_id}'>";
+						echo "<a href='author_courses.php?category=" . urlencode($current_category->id) . "&course={$safe_course_id}'>";
 						if(empty($course->name)) {
 							echo "(نام درس موجود نیست)";
 						}

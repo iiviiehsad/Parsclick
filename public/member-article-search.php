@@ -32,7 +32,7 @@ if(isset($search_query) && !empty($search_query)) {
 						<?php foreach($article_set as $article): ?>
 							<tr>
 								<td>
-									<a href="member-articles?subject=<?php echo urldecode($article->subject_id); ?>&article=<?php echo urldecode($article->id); ?>">
+									<a href="member-articles?subject=<?php echo urlencode($article->subject_id); ?>&article=<?php echo urlencode($article->id); ?>">
 										<?php echo htmlentities($article->name); ?>
 										&nbsp;توسط <?php echo isset($article->author_id) ? htmlentities(Author::find_by_id($article->author_id)->full_name()) : '-'; ?>
 									</a>

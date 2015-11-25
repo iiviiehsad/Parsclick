@@ -60,7 +60,7 @@ include_layout_template("admin_header.php");
 			<p class="text-success">پسورد باید حداقل شش حروف یا بیشتر باشد.</p>
 			<p class="text-success">پسورد باید حداقل شامل یک حرفی باشد که نه حروف و نه عدد باشد مثل: (!@£$%^&*-+)</p>
 
-			<form class="form-horizontal" action="reset_password.php?token=<?php echo urldecode($token); ?>" method="POST" accept-charset="utf-8">
+			<form class="form-horizontal" action="reset_password.php?token=<?php echo urlencode($token); ?>" method="POST" accept-charset="utf-8">
 				<fieldset>
 					<legend>پسورد جدید را قرار دهید
 						<span class="pull-left wow infinite flash" data-wow-duration="3s" id="confirmMessage"></span></legend>

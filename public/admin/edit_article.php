@@ -85,7 +85,7 @@ echo output_message($message, $errors);
 					<!--buttons-->
 					<section class="row">
 						<div class="controls col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
-							<a class="btn btn-danger" href="admin_articles.php?subject=<?php echo urldecode($current_subject->id) ?>&article=<?php echo urldecode($current_article->id) ?>">لغو</a>
+							<a class="btn btn-danger" href="admin_articles.php?subject=<?php echo urlencode($current_subject->id) ?>&article=<?php echo urlencode($current_article->id) ?>">لغو</a>
 							<a class="btn btn-info" href="delete_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>" onclick="return confirm('مطمئن هستید؟')">
 								حذف
 							</a>
