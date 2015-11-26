@@ -2,7 +2,7 @@
 @parsclick : #FF8000;
 @darkblack : #303030;
 @purple    : #415B76;
-@yellow    : #F4D313;
+@yellow    : #FFD700;
 @beige     : #F5F5DC;
 @green     : #00CDA0;
 @pink      : #E74C3C;
@@ -70,6 +70,10 @@ code {
 }
 
 pre {
+	white-space      : pre-wrap; /* css-3 */
+	white-space      : -moz-pre-wrap; /* Mozilla, since 1999 */
+	white-space      : -pre-wrap; /* Opera 4-6 */
+	white-space      : -o-pre-wrap; /* Opera 7 */
 	direction        : ltr;
 	float            : left;
 	text-align       : left;
@@ -82,9 +86,11 @@ pre {
 	font-size        : 13px;
 	word-break       : break-all;
 	word-wrap        : break-word;
-	border           : 1px solid #CCC;
+	border           : none;
 	border-radius    : 4px;
-	background-color : #F5F5F5;
+	//background-color : #F5F5F5;
+	background-color : @darkblack;
+	color            : @yellow;
 }
 
 p {
@@ -229,6 +235,7 @@ a:hover, a:focus {
 		z-index : 2;
 	}
 }
+
 // End: Uncomment for carousel fade in
 
 .main > article {

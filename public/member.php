@@ -13,15 +13,25 @@ $member->check_status();
 	<h1>خوش آمدید <?php echo ucwords(strtolower($member->full_name())); ?></h1>
 	<p>
 		شما دسترسی به یکی از بزرگترین کتابخانه ویدئویی رایگان پارسی زبانان را دارید. لطفا از دوستان خود دعوت کنید که به ما
-		 بپیوندند. <br /><br />
-	 جدیدترین درس: <?php echo Course::find_newest_course() ? Course::find_newest_course()->name : 'درسی پیدا نشد!'; ?> <br />
-		جدیدترین مقاله:  <?php echo Article::find_newest_article() ? Article::find_newest_article()->name : 'مقاله ای پیدا نشد!'; ?> <br />
+		بپیوندند. <br/><br/>
+		<?php if(Course::find_newest_course()) { ?>
+			<span class="text-success">جدیدترین درس:</span>
+			&nbsp;
+			<a class="text-success" title='کلیک کنید' data-toggle="tooltip" data-placement="left" href="member-courses?category=<?php echo Course::find_newest_course()->category_id; ?>&course=<?php echo Course::find_newest_course()->id; ?>">
+				<?php echo Course::find_newest_course()->name; ?> </a>
+		<?php } ?>
+		<br/>
+		<?php if(Article::find_newest_article()) { ?>
+			<span class="text-success">جدیدترین مقاله:</span>
+			&nbsp;
+			<a class="text-success" title='کلیک کنید' data-toggle="tooltip" data-placement="left" href="member-articles?subject=<?php echo Article::find_newest_article()->subject_id; ?>&article=<?php echo Article::find_newest_article()->id; ?>">
+				<?php echo Article::find_newest_article()->name; ?> </a>
+		<?php } ?>
 	</p>
 </div>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article class="member_profile">
 		<h2>
-			<span class="hidden-sm">قابلیت های شما:</span>
 			<span class="visible-sm"><?php echo "خوش آمدید  " . ucwords(strtolower($member->full_name())); ?></span>
 		</h2>
 

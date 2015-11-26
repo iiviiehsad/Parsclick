@@ -11,12 +11,11 @@ $filename = basename(__FILE__);
 	<?php include("_/components/php/article-facebook-comment.php"); ?>
 </section><!-- main -->
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
-	<?php include_once("_/components/php/google-search.php"); ?>
+	<?php include("_/components/php/google-search.php"); ?>
 	<?php include("_/components/php/aside-video-promo.php"); ?>
 	<?php include("_/components/php/aside-register.php"); ?>
 	<aside>
 		<?php include("_/components/php/aside-news.php"); ?>
-		<h2>به اشتراک بگذارید</h2>
 		<?php include("_/components/php/aside-share.php"); ?>
 	</aside>
 </section><!-- sidebar -->
