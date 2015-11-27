@@ -7,7 +7,7 @@ if($session->is_logged_in()) {
 }
 $filename = basename(__FILE__);
 $errors   = "";
-$lang = 'fa';
+$lang     = 'fa';
 if($_POST) {
 	if(empty(RECAPTCHASITEKEY) || empty(RECAPTCHASECRETKEY)) {
 		$errors = "کدهای تایید reCaptcha API خالی هستند. لطفا مدیر سایت را در جریان بگذارید.";
@@ -27,6 +27,8 @@ if($_POST) {
 					$errors = "حداقل از یک حرف مخصوص استفاده کنید! (هیچ مبلغی کم نشد)";
 				} elseif(Member::find_by_username(trim($_POST["username"]))) {
 					$errors = "اسم کاربری موجود نیست! لطفا از اسم کاربری دیگری استفاده کنید.";
+				} elseif(Member::find_by_email(trim($_POST["email"]))) {
+					$errors = "این ایمیل قبلا ثبت شده، لطفااگر جزئیات یادتان نیست آنها را بازیافت کنید.";
 				} else {
 					global $database;
 					$member                  = new Member();
