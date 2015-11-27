@@ -53,7 +53,8 @@ $comments    = Comment::find_by_sql($sql);
 								<i class="fa fa-trash-o"></i>
 							</a>
 						<?php } ?>
-						<p style="margin-top:4px;"><?php echo strip_tags($comment->body, '<strong><em><p><pre>'); ?></p>
+						<br />
+						<?php echo strip_tags($comment->body, '<strong><em><p><pre>'); ?>
 					</div>
 				</section>
 			<?php } // end foreach comments ?>

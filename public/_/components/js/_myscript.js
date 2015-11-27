@@ -72,13 +72,13 @@ $(function () {
 			       type: type,
 			       data: data,
 			       success: function (html) {
-				       $('form.addtoplaylist').html('<a href="#" class="btn btn-info disabled"><i class="fa fa-check"></i> به لیست پخش اضافه شد</a>')
+				       $('form.addtoplaylist').replaceWith('<a href="#" class="btn btn-info disabled"><i class="fa fa-check"></i> به لیست پخش اضافه شد</a>');
 			       }
 		       });
 		return false;
 	});
 
-	// REMOVING COURSE FROM PLAYLIST USING AJAX ------------------------------------------------------------------------------
+	// REMOVING COURSE FROM PLAYLIST USING AJAX --------------------------------------------------------------------------
 	$('form.removefromplaylist').on('submit', function () {
 		var that = $(this),
 				url = that.attr('action'),
@@ -98,13 +98,13 @@ $(function () {
 			       type: type,
 			       data: data,
 			       success: function (html) {
-				       $('form.removefromplaylist').html('<a href="#" class="btn btn-danger disabled"><i class="fa fa-check"></i> از لیست پخش حذف شد</a>')
+				       $('form.removefromplaylist').replaceWith('<a href="#" class="btn btn-danger disabled"><i class="fa fa-check"></i> از لیست پخش حذف شد</a>');
 			       }
 		       });
 		return false;
 	});
 
-	// FUNCTION FOR MEMBER'S VIDEO --------------------------------------------------------------------------------------
+	// FUNCTION FOR MEMBER'S VIDEO ---------------------------------------------------------------------------------------
 	//var videos = document.querySelectorAll(".videoThumbnail");
 	//for(var i = 0; i < videos.length; i++) {
 	//	videos[i].addEventListener('click', clickHandler, false);
@@ -118,11 +118,11 @@ $(function () {
 	//	}
 	//}
 
-	//FINDING THE BROWSERS NAME -----------------------------------------------------------------------------------------
+	//FINDING THE BROWSERS NAME ------------------------------------------------------------------------------------------
 	//var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 	//var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
 	//
-	////TO PLAY OR PAUSE VIDEO MANUALLY BY CLICKING ON THE VIDEO ----------------------------------------------------
+	////TO PLAY OR PAUSE VIDEO MANUALLY BY CLICKING ON THE VIDEO ---------------------------------------------------------
 	//if(isChrome || isSafari) {
 	//	var video = document.getElementById('mainVideo');
 	//	if(video) {
@@ -143,7 +143,7 @@ $(function () {
 	//	}
 	//}
 
-	//SMOOTH SCROLLING ------------------------------------------------------------------------------------------------
+	//SMOOTH SCROLLING ---------------------------------------------------------------------------------------------------
 	$('a[href*=#]:not([href=#myCarousel])').click(function () {
 		if(location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
 			var target = $(this.hash);
@@ -187,7 +187,7 @@ function shareButton(url) {
 
 //var bgvideo = document.getElementById('bgvideo');
 
-//FUNCTIONS FOR LIVE INPUT VALIDATION -----------------------------------------------------------------------
+//FUNCTIONS FOR LIVE INPUT VALIDATION ----------------------------------------------------------------------------------
 var username = document.getElementById('username');
 var pass1 = document.getElementById('password');
 var pass2 = document.getElementById('confirm_pass');
@@ -307,14 +307,11 @@ function checkEmail() {
 }
 
 //WOW ------------------------------------------------------------------------------------------------------------------
-wow = new WOW({
-	animateClass: 'animated',
-	offset: 100
-});
+wow = new WOW({animateClass: 'animated', offset: 100});
+wow.init();
 //data-wow-delay="2s"
 //data-wow-offset="300"
 //data-wow-duration="4s"
 //data-wow-iteration="infinite"
-wow.init();
 //----------------------------------------------------------------------------------------------------------------------
 
