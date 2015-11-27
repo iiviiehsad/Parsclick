@@ -15,7 +15,7 @@ if(isset($_POST["submit"])) {
 	$new_comment = Comment::make($member_id, $current_course->id, $body);
 	if($new_comment && $new_comment->create()) {
 		$session->message("نظر شما با موفقیت فرستاده شد.");
-		redirect_to("member-comments?course={$current_course->id}");
+		redirect_to("member-comments?category={$current_course->category_id}&course={$current_course->id}");
 	} else {
 		$errors = "خطا در فرستادن نظر!";
 	}
@@ -49,7 +49,7 @@ $comments    = Comment::find_by_sql($sql);
 						<span class="badge"><?php echo htmlentities($_member->first_name); ?></span>
 						<span class="badge arial"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
 						<?php if($comment->member_id === $session->id) { ?>
-							<a href="member-delete-comment?id=<?php echo urlencode($comment->id); ?>" class="badge">
+							<a href="member-delete-comment?id=<?php echo urlencode($comment->id); ?>" class="badge" onclick="return confirm('آیا مطمئن هستید؟')">
 								<i class="fa fa-trash-o"></i>
 							</a>
 						<?php } ?>
