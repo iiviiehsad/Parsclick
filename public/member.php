@@ -14,18 +14,20 @@ $member->check_status();
 	<p>
 		شما دسترسی به یکی از بزرگترین کتابخانه ویدئویی رایگان پارسی زبانان را دارید. لطفا از دوستان خود دعوت کنید که به ما
 		بپیوندند. <br/><br/>
-		<?php if(Course::find_newest_course()) { ?>
-			<span class="text-success">جدیدترین درس:</span>
+		<?php if($newest_course = Course::find_newest_course()) { ?>
+			<span>جدیدترین درس:</span>
 			&nbsp;
-			<a class="text-success" title='کلیک کنید' data-toggle="tooltip" data-placement="left" href="member-courses?category=<?php echo Course::find_newest_course()->category_id; ?>&course=<?php echo Course::find_newest_course()->id; ?>">
-				<?php echo Course::find_newest_course()->name; ?> </a>
+			<a style="color: #FF8000;" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
+			   href="member-courses?category=<?php echo $newest_course->category_id; ?>&course=<?php echo $newest_course->id; ?>">
+				<?php echo $newest_course->name . " توسط "  . Author::find_by_id($newest_course->author_id)->full_name(); ?> </a>
 		<?php } ?>
 		<br/>
-		<?php if(Article::find_newest_article()) { ?>
-			<span class="text-success">جدیدترین مقاله:</span>
+		<?php if($newest_article = Article::find_newest_article()) { ?>
+			<span>جدیدترین مقاله:</span>
 			&nbsp;
-			<a class="text-success" title='کلیک کنید' data-toggle="tooltip" data-placement="left" href="member-articles?subject=<?php echo Article::find_newest_article()->subject_id; ?>&article=<?php echo Article::find_newest_article()->id; ?>">
-				<?php echo Article::find_newest_article()->name; ?> </a>
+			<a style="color: #FF8000;" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
+			   href="member-articles?subject=<?php echo $newest_article->subject_id; ?>&article=<?php echo $newest_article->id; ?>">
+				<?php echo $newest_article->name . " توسط "  . Author::find_by_id($newest_article->author_id)->full_name(); ?> </a>
 		<?php } ?>
 	</p>
 </div>
