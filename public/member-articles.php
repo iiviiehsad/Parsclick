@@ -14,23 +14,31 @@ if(isset($current_article->author_id)) { // find the author for the article
 <?php include("_/components/php/member_nav.php"); ?>
 <?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
-		<article class="member_profile">
+		<article id="member_article">
 			<?php if($current_subject && $current_article) { ?>
-				<h2><?php echo htmlentities($current_article->name); ?></h2>
-				<h4 class="text-success">
-					<?php if(isset($author)) {
-						if(empty($author->photo)) { ?>
-							<i class="fa fa-user fa-lg"></i>
-						<?php } else { ?>
-							<img style="width:50px;height:50px;" class="img-responsive img-rounded" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
-						<?php }
-						echo $author->full_name();
-					} ?>
-				</h4>
-				<?php echo nl2br(strip_tags($current_article->content, '<h1><h2><h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?>
-					<!--  COMMENTS -->
-				<hr/>
-				<?php include("_/components/php/article-disqus-comment.php"); ?>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h5 class="text-success">
+							<?php if(isset($author)) {
+								if(empty($author->photo)) { ?>
+									<i class="fa fa-user fa-lg"></i>&nbsp;
+								<?php } else { ?>
+									<img style="width:50px;height:50px;" class="img-responsive img-rounded" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
+								<?php }
+								echo "توسط: " . $author->full_name();
+							} ?>
+						</h5>
+						<h3 class="panel-title">
+							<?php echo htmlentities($current_article->name); ?>
+						</h3>
+					</div>
+					<div class="panel-body">
+						<?php echo nl2br(strip_tags($current_article->content, '<h1><h2><h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?>
+					</div>
+					<div class="panel-footer">
+						<?php include("_/components/php/article-disqus-comment.php"); ?>
+					</div>
+				</div>
 			<?php } else { ?>
 				<?php include_once("_/components/php/member_article_info.php"); ?>
 			<?php } ?>

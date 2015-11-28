@@ -53,7 +53,7 @@ class FailedLogins extends DatabaseObject {
 	 * @return float|int number of minutes user needs to wait and re-enter credentials again
 	 */
 	public static function throttle_failed_logins($username) {
-		$throttle_at      = 20;
+		$throttle_at      = 5;
 		$delay_in_minutes = 60;
 		$delay            = 60 * $delay_in_minutes;
 		$failed_login     = self::find_by_username($username);

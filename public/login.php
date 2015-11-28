@@ -6,7 +6,6 @@ if($session->is_logged_in()) {
 $filename = basename(__FILE__);
 $title    = "پارس کلیک - ورود به سایت";
 $username = "";
-$password = "";
 $errors   = "";
 if(isset($_POST["submit"])) { // if form submitted
 	if(request_is_post() && $session->request_is_same_domain()) {
