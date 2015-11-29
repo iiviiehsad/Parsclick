@@ -152,8 +152,8 @@ echo output_message($message, $errors);
 								<?php } ?>
 							</div>
 						<?php } else { ?>
-							<div class='alert'><i class='fa fa-exclamation-triangle'></i>
-								پلی لیست پیدا نشد و آدرس اینترنتی چیزی را بر نمی گرداند!
+							<div class='alert alert-danger'><i class='fa fa-exclamation-triangle'></i>
+								پلی لیست پیدا نشد، آدرس اینترنتی چیزی را بر نمی گرداند یا سِرور شلوغ است! لطفا بعدا بر گردید... 
 							</div>
 						<?php } ?>
 					<?php } ?>

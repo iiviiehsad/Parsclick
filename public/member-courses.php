@@ -128,8 +128,8 @@ if(isset($current_course->author_id)) {
 							</div>
 						<?php } ?>
 					<?php } else { ?>
-						<div class='alert'><i class='fa fa-exclamation-triangle'></i>
-							ویدئویی در این پلی لیست پیدا نشد و آدرس اینترنتی چیزی را بر نمی گرداند!
+						<div class='alert alert-danger'><i class='fa fa-exclamation-triangle'></i>
+							پلی لیست پیدا نشد، آدرس اینترنتی چیزی را بر نمی گرداند یا سِرور شلوغ است! لطفا بعدا بر گردید... 
 						</div>
 					<?php } ?>
 				<?php } ?>

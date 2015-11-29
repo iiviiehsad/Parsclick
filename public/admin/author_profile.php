@@ -33,11 +33,8 @@ echo output_message($message);
 	<aside class="members_menu">
 		<h2><i class="fa fa-picture-o"></i> عکس پروفایل</h2>
 		<?php if(empty($author->photo)) { ?>
-			<div class="well">
+			<div>
 				<span class="glyphicon glyphicon-user center" style="font-size: 150px;"></span>
-				<a class="btn btn-success center" href="author_edit_profile.php">
-					<i class="fa fa-upload"></i> آپلود عکس
-				</a>
 			</div>
 		<?php } else { ?>
 			<img class="img-responsive img-thumbnail" height="200" width="200" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">

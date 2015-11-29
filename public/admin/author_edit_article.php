@@ -5,10 +5,11 @@ $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 find_selected_article();
+$errors = "";
 if(!$current_article || !$current_subject) {
 	redirect_to("author_articles.php");
 	// check to see the article belong to this author in order to edit
-} elseif($current_article->author_id !== $session->id) {
+} elseif(!check_ownership($current_article->author_id, $session->id)) {
 	$session->message("شما اجازه تغییر این مقاله را ندارید!");
 	redirect_to("author_articles.php");
 }
@@ -25,7 +26,6 @@ if(isset($_POST['submit'])) {
 		$errors = "مقاله بروزرسانی نشد!";
 	}
 } else {
-	$errors = "";
 }
 include_layout_template("admin_header.php");
 include("../_/components/php/author_nav.php");

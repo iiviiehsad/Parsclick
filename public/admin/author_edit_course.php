@@ -1,4 +1,5 @@
-<?php require_once("../../includes/initialize.php");
+<?php
+require_once("../../includes/initialize.php");
 $filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
@@ -8,7 +9,7 @@ $errors = "";
 if(!$current_course || !$current_category) {
 	redirect_to("author_courses.php");
 	// check to see the course belong to this author in order to edit
-} elseif($current_course->author_id !== $session->id) {
+} elseif(!check_ownership($current_course->author_id, $session->id)) {
 	$session->message("شما قادر به تغییر این درس نیستید");
 	redirect_to("author_courses.php");
 }
