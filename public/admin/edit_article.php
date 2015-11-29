@@ -47,9 +47,9 @@ echo output_message($message, $errors);
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8" name="position" id="position">
 								<option value="" disabled> انتخاب کنید</option>
 								<?php
-								$page_set   = Article::num_articles_for_subject($current_article->subject_id, FALSE);
+								$page_set   = Article::num_articles_for_subject($current_article->subject_id);
 								for($count = 1; $count <= $page_set; $count++) {
-									echo "<option value=\"{$count}\"";
+									echo "<option value='{$count}'";
 									if($current_article->position == $count) {
 										echo " selected";
 									}

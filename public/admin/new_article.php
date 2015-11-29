@@ -50,7 +50,7 @@ echo output_message($message, $errors); ?>
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8" name="position" id="position">
 								<?php $page_count = Article::num_articles_for_subject($current_subject->id);
-								echo "<option selected value=" . $page_count++ . ">" . $page_count++ . "</option>";
+								echo "<option selected value=" . ++$page_count . ">" . $page_count . "</option>";
 								?>
 							</select>
 						</div>

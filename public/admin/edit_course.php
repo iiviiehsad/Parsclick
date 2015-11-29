@@ -70,9 +70,8 @@ echo output_message($message, $errors);
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8" name="position" id="position">
 								<option value="" disabled>انتخاب کنید</option>
 								<?php
-								$page_set   = Course::find_courses_for_category($current_course->category_id, FALSE);
-								$page_count = Course::count_all($page_set);
-								for($count = 1; $count <= $page_count; $count++) {
+								$page_set   = Course::num_courses_for_category($current_course->category_id);
+								for($count = 1; $count <= $page_set; $count++) {
 									echo "<option value='{$count}'";
 									if($current_course->position == $count) {
 										echo " selected";
