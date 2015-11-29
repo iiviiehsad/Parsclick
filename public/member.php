@@ -13,21 +13,23 @@ $member->check_status();
 	<h1>خوش آمدید <?php echo ucwords(strtolower($member->full_name())); ?></h1>
 	<p>
 		شما دسترسی به یکی از بزرگترین کتابخانه ویدئویی رایگان پارسی زبانان را دارید. لطفا از دوستان خود دعوت کنید که به ما
-		بپیوندند. <br/><br/>
+		بپیوندند.
+	</p>
+	<p>
 		<?php if($newest_course = Course::find_newest_course()) { ?>
-			<span>جدیدترین درس:</span>
-			&nbsp;
+			<span>جدیدترین درس:</span>&nbsp;
 			<a style="color: #FF8000;" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
 			   href="member-courses?category=<?php echo $newest_course->category_id; ?>&course=<?php echo $newest_course->id; ?>">
-				<?php echo $newest_course->name . " توسط "  . Author::find_by_id($newest_course->author_id)->full_name(); ?> </a>
+				<?php echo $newest_course->name; ?> </a>&nbsp;
+			<?php //echo " توسط "  . Author::find_by_id($newest_course->author_id)->full_name(); ?>
 		<?php } ?>
 		<br/>
 		<?php if($newest_article = Article::find_newest_article()) { ?>
-			<span>جدیدترین مقاله:</span>
-			&nbsp;
+			<span>جدیدترین مقاله:</span>&nbsp;
 			<a style="color: #FF8000;" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
 			   href="member-articles?subject=<?php echo $newest_article->subject_id; ?>&article=<?php echo $newest_article->id; ?>">
-				<?php echo $newest_article->name . " توسط "  . Author::find_by_id($newest_article->author_id)->full_name(); ?> </a>
+				<?php echo $newest_article->name; ?> </a>&nbsp;
+			<?php //echo " توسط "  . Author::find_by_id($newest_article->author_id)->full_name(); ?>
 		<?php } ?>
 	</p>
 </div>
