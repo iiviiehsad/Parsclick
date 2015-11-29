@@ -6,6 +6,8 @@ $(function () {
 	// YOUTUBE INIT VIDEO PLAY
 	$(".youtube").YouTubeModal({width: 640, height: 360});
 
+	$('.collapse').collapse();
+
 	//ACTIVATE COURSE TABS
 	var hash = window.location.hash;
 	hash && $('ul.nav a[href="' + hash + '"]').tab('show');

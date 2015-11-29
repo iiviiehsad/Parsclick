@@ -8,7 +8,6 @@ $filename = basename(__FILE__);
 <?php include("_/components/php/nav.php"); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
-		<?php find_selected_course(); ?>
 		<?php echo public_courses(); ?>
 	</article>
 </section><!-- main -->

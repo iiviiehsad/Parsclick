@@ -662,17 +662,17 @@ function member_courses($category_array, $course_array) {
  * @return string categories as an HTML ordered list along with courses as an HTML unordered list
  */
 function public_courses() {
-	$output       = "<ol>";
+	$output       = "<ol class='list-unstyled'>";
 	$category_set = Category::find_all(TRUE);
 	foreach($category_set as $category) {
 		$output .= "<li>";
-		$output .= "<div class='lead'>";
+		$output .= "<h3>";
 		if(!empty($category->name)) {
 			$output .= htmlentities(ucwords($category->name));
 		} else {
 			$output .= htmlentities("موضوع اسم ندارد");
 		}
-		$output .= "</div>";
+		$output .= "</h3>";
 		$course_set = Course::find_courses_for_category($category->id, TRUE);
 		$output .= "<ul>";
 		foreach($course_set as $course) {
