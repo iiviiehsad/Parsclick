@@ -1,4 +1,5 @@
-<?php require_once("../includes/initialize.php");
+<?php
+require_once("../includes/initialize.php");
 $filename = basename(__FILE__);
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
@@ -30,7 +31,6 @@ $pagination  = new pagination($page, $per_page, $total_count);
 $sql         = "SELECT * FROM comments WHERE course_id = {$current_course->id} LIMIT {$per_page} OFFSET {$pagination->offset()}";
 $comments    = Comment::find_by_sql($sql);
 ?>
-
 <?php include_layout_template("header.php"); ?>
 <?php include("_/components/php/member_nav.php"); ?>
 <?php echo output_message($message, $errors); ?>

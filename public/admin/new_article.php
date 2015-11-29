@@ -19,6 +19,7 @@ if(isset($_POST['submit'])) {
 	$article->position   = (int)$_POST["position"];
 	$article->visible    = (int)$_POST["visible"];
 	$article->content    = $_POST["content"];
+	$article->created_at = strftime("%Y-%m-%d %H:%M:%S", time());
 	$result              = $article->create();
 	if($result) { // Success
 		$session->message("مقاله ساخته شد.");

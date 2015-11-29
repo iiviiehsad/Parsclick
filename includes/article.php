@@ -7,7 +7,7 @@ require_once(LIB_PATH . DS . 'database.php');
 class Article extends DatabaseObject {
 
 	protected static $table_name = "articles";
-	protected static $db_fields  = array('id', 'subject_id', 'author_id', 'name', 'position', 'visible', 'content');
+	protected static $db_fields  = array('id', 'subject_id', 'author_id', 'name', 'position', 'visible', 'content', 'created_at');
 	public           $id;
 	public           $subject_id;
 	public           $author_id;
@@ -15,6 +15,7 @@ class Article extends DatabaseObject {
 	public           $position;
 	public           $visible;
 	public           $content;
+	public           $created_at;
 
 	/**
 	 * @param int  $subject_id gets the subject ID

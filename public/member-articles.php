@@ -28,6 +28,7 @@ if(isset($current_article->author_id)) { // find the author for the article
 								echo "توسط: " . $author->full_name();
 							} ?>
 						</h5>
+						<h5 class="text-success"><i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?></h5>
 						<h3 class="panel-title">
 							<?php echo htmlentities($current_article->name); ?>
 						</h3>
