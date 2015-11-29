@@ -49,6 +49,7 @@ if(isset($current_course->author_id)) {
 					</form>
 					&nbsp;
 				<?php } ?>
+				<br/><br/>
 				<p><?php echo nl2br(htmlentities($current_course->content)); ?></p>
 				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php if(empty($current_course->file_link) && File::num_files_for_course($current_course->id) == 0) {

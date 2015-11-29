@@ -1,5 +1,4 @@
 <?php
-
 require_once(LIB_PATH . DS . 'database.php');
 
 /**
@@ -31,7 +30,7 @@ class Comment extends DatabaseObject {
 	/**
 	 * @param        $member_id int gets the member ID
 	 * @param        $course_id int gets the course ID
-	 * @param string $body gets the message body
+	 * @param string $body      gets the message body
 	 * @return bool|\Comment TRUE if comment inserted into database and FALSE if not
 	 */
 	public static function make($member_id, $course_id, $body = "") {
@@ -57,6 +56,17 @@ class Comment extends DatabaseObject {
 		$sql = "SELECT * FROM " . self::$table_name;
 		$sql .= " WHERE course_id=" . $database->escape_value($course_id);
 		$sql .= " ORDER BY created DESC";
+		return self::find_by_sql($sql);
+	}
+
+	/**
+	 * @param int $course_id gets the course related ID
+	 * @param int $limit limits comments per page
+	 * @param int $offset the pagination offset
+	 * @return array of comments in each page
+	 */
+	public static function find_comments($course_id = 0, $limit = 0, $offset = 0) {
+		$sql = "SELECT * FROM " . self::$table_name . " WHERE course_id = {$course_id} LIMIT {$limit} OFFSET {$offset}";
 		return self::find_by_sql($sql);
 	}
 }

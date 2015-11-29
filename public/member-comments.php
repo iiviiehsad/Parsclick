@@ -28,8 +28,7 @@ $page        = !empty($_GET["page"]) ? (int)$_GET["page"] : 1;
 $per_page    = 5;
 $total_count = Comment::count_comments_for_course($current_course->id);
 $pagination  = new pagination($page, $per_page, $total_count);
-$sql         = "SELECT * FROM comments WHERE course_id = {$current_course->id} LIMIT {$per_page} OFFSET {$pagination->offset()}";
-$comments    = Comment::find_by_sql($sql);
+$comments    = Comment::find_comments($current_course->id, $per_page, $pagination->offset());
 ?>
 <?php include_layout_template("header.php"); ?>
 <?php include("_/components/php/member_nav.php"); ?>
@@ -41,7 +40,7 @@ $comments    = Comment::find_by_sql($sql);
 				<section class="media">
 					<?php $_member = Member::find_by_id($comment->member_id); ?>
 					<?php if(empty($_member->photo)) { ?>
-						<i style="font-size:50px;" class="fa <?php echo $_member->id == 100 ? 'fa-users' : 'fa-user'; ?> pull-right"></i>
+						<i style="font-size:50px;" class="fa fa-user <?php echo $_member->id == 100 ? 'text-success' : ''; ?> pull-right"></i>
 					<?php } else { ?>
 						<img style="width:50px;height:50px;" class="img-responsive img-rounded pull-right" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($_member->photo); ?>"/>
 					<?php } ?>
