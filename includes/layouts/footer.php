@@ -7,6 +7,7 @@
 				<li><a href="about">درباره ما</a></li>
 				<li><a href="privacypolicy">شرایط و ضوابط</a></li>
 				<li><a href="courses">درس ها</a></li>
+				<li><a href="articles">مقاله ها</a></li>
 				<li><a href="faq">سوالات شما</a></li>
 				<li><a href="help">کمک به سایت</a></li>
 				<li><a href="contact">تماس با ما</a></li>
