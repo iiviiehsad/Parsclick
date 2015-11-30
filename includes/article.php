@@ -7,7 +7,16 @@ require_once(LIB_PATH . DS . 'database.php');
 class Article extends DatabaseObject {
 
 	protected static $table_name = "articles";
-	protected static $db_fields  = array('id', 'subject_id', 'author_id', 'name', 'position', 'visible', 'content', 'created_at');
+	protected static $db_fields  = array(
+			'id',
+			'subject_id',
+			'author_id',
+			'name',
+			'position',
+			'visible',
+			'content',
+			'created_at'
+	);
 	public           $id;
 	public           $subject_id;
 	public           $author_id;
@@ -16,6 +25,7 @@ class Article extends DatabaseObject {
 	public           $visible;
 	public           $content;
 	public           $created_at;
+	public           $time;
 
 	/**
 	 * @param int  $subject_id gets the subject ID
@@ -120,5 +130,17 @@ class Article extends DatabaseObject {
 		$sql .= " ORDER BY id DESC LIMIT 1";
 		$course_set = self::find_by_sql($sql);
 		return !empty($course_set) ? array_shift($course_set) : FALSE;
+	}
+
+	/**
+	 * @return bool TRUE if article is new and FALSE if old
+	 */
+	public function find_new_articles() {
+		$this->time = 60 * 60 * 24 * 7 * 2; // 2 weeks
+		if(strtotime($this->created_at) + $this->time > time()) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
 	}
 }

@@ -421,7 +421,7 @@ function member_articles($subject_array, $article_array) {
 		$output .= "</a>";
 		if($subject_array && $article_array) {
 			if($subject_array->id == $subject->id || $article_array->subject_id == $subject->id) {
-				$article_set = Article::find_articles_for_subject($subject->id);
+				$article_set = Article::find_articles_for_subject($subject->id, TRUE);
 				$output .= "<ul>";
 				foreach($article_set as $article) {
 					$output .= "<li>";
@@ -436,6 +436,9 @@ function member_articles($subject_array, $article_array) {
 						$output .= htmlentities(ucwords($article->name));
 					} else {
 						$output .= htmlentities("(مقاله اسم ندارد!)");
+					}
+					if($article->find_new_articles()) {
+						$output .= "&nbsp;<kbd>تازه</kbd>";
 					}
 					$output .= "</a></li>";
 				}
@@ -694,6 +697,43 @@ function public_courses() {
 }
 
 /**
+ * Function for public to show the subjects and articles
+ * @return string subject as an HTML ordered list along with courses as an HTML unordered list
+ */
+function public_articles() {
+	$output      = "<ol class='list-unstyled'>";
+	$subject_set = Subject::find_all(TRUE);
+	foreach($subject_set as $subject) {
+		$output .= "<li>";
+		$output .= "<h3>";
+		if(!empty($subject->name)) {
+			$output .= htmlentities(ucwords($subject->name));
+		} else {
+			$output .= htmlentities("موضوع اسم ندارد");
+		}
+		$output .= "</h3>";
+		$article_set = Article::find_articles_for_subject($subject->id, TRUE);
+		$output .= "<ul>";
+		foreach($article_set as $article) {
+			$output .= "<li>";
+			$output .= "<a data-toggle='tooltip' data-placement='left' title='وارد شوید' href='login'>";
+			if(!empty($article->name)) {
+				$output .= htmlentities(ucwords($article->name));
+			} else {
+				$output .= htmlentities("مقاله اسم ندارد");
+			}
+			if($article->find_new_articles()) {
+				$output .= "&nbsp;<kbd>تازه</kbd>";
+			}
+			$output .= "</a></li>";
+		}
+		$output .= "</ul></li>";
+	}
+	$output .= "</ol>";
+	return $output;
+}
+
+/**
  * Finds all courses for categories
  * @param bool $public is a condition to select the first course (the default one) for every category upon clicking on
  *                     categories and by default is equals to FALSE.
@@ -737,6 +777,8 @@ function active() {
 		echo "<script>$(\"a:contains('درباره ما')\").parent().addClass('active');</script>";
 	} elseif($filename == "courses.php") {
 		echo "<script>$(\"a:contains('درس ها')\").parent().addClass('active');</script>";
+	} elseif($filename == "articles.php") {
+		echo "<script>$(\"a:contains('مقالات')\").parent().addClass('active');</script>";
 	} elseif($filename == "faq.php") {
 		echo "<script>$(\"a:contains('سوالات شما')\").parent().addClass('active');</script>";
 	} elseif($filename == "help.php") {

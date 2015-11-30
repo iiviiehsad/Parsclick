@@ -34,7 +34,7 @@ if(isset($current_article->author_id)) { // find the author for the article
 						</h3>
 					</div>
 					<div class="panel-body">
-						<?php echo nl2br(strip_tags($current_article->content, '<h1><h2><h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?>
+						<?php echo nl2br(strip_tags($current_article->content, '<h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?>
 					</div>
 					<div class="panel-footer">
 						<?php include("_/components/php/article-disqus-comment.php"); ?>
