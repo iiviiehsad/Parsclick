@@ -22,7 +22,7 @@ $errors = "";
 			<dd><?php echo htmlentities(ucfirst($member->last_name)); ?></dd>
 			<dt>جنس:</dt>
 			<dd><?php echo !empty($member->gender) ? htmlentities(ucfirst($member->gender)) : "-"; ?></dd>
-			<dt>آدرس:</dt>
+			<dt>کشور:</dt>
 			<dd><?php echo !empty($member->address) ? htmlentities(ucfirst($member->address)) : "-"; ?></dd>
 			<dt>شهر:</dt>
 			<dd><?php echo !empty($member->city) ? htmlentities(ucfirst($member->city)) : "-"; ?></dd>

@@ -73,9 +73,9 @@
 			</section><!-- row -->
 
 			<section class="row">
-				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="address">آدرس &nbsp;</label>
+				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="address">کشور &nbsp;</label>
 				<div class="controls">
-					<input class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" name="address" id="address"  placeholder="آدرس" value="<?php echo $_POST["address"]; ?>"/>
+					<input class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" name="address" id="address"  placeholder="کشور" value="<?php echo $_POST["address"]; ?>"/>
 				</div><!-- controls -->
 			</section><!-- row -->
 
