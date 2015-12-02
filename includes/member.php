@@ -317,4 +317,5 @@ EMAILBODY;
 			return FALSE;
 		}
 	}
+
 } // END of CLASS

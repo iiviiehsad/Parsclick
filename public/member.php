@@ -13,17 +13,14 @@ $newest_article = Article::find_newest_article();
 <?php echo output_message($message); ?>
 <div class="jumbotron hidden-sm wow fadeIn member-jumbotron">
 	<h1>خوش آمدید <?php echo ucwords(strtolower($member->full_name())); ?></h1>
-	<p>
-		شما دسترسی به یکی از بزرگترین کتابخانه ویدئویی رایگان پارسی زبانان را دارید. لطفا از دوستان خود دعوت کنید که به ما
-		بپیوندند.
-	</p>
+	<p>شما دسترسی به یکی از بزرگترین کتابخانه ویدئویی رایگان پارسی زبانان را دارید. لطفا از دوستان خود دعوت کنید که به ما
+		بپیوندند.</p>
 	<p>
 		<?php if($newest_course) { ?>
 			<span>جدیدترین درس:</span>&nbsp;
 			<a style="color: #FF8000;" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
 			   href="member-courses?category=<?php echo $newest_course->category_id; ?>&course=<?php echo $newest_course->id; ?>">
 				<?php echo $newest_course->name; ?> </a>&nbsp;
-			<?php //echo " توسط "  . Author::find_by_id($newest_course->author_id)->full_name(); ?>
 		<?php } ?>
 		<br/>
 		<?php if($newest_article) { ?>
@@ -31,7 +28,6 @@ $newest_article = Article::find_newest_article();
 			<a style="color: #FF8000;" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
 			   href="member-articles?subject=<?php echo $newest_article->subject_id; ?>&article=<?php echo $newest_article->id; ?>">
 				<?php echo $newest_article->name; ?> </a>&nbsp;
-			<?php //echo " توسط "  . Author::find_by_id($newest_article->author_id)->full_name(); ?>
 		<?php } ?>
 	</p>
 </div>
@@ -51,10 +47,11 @@ $newest_article = Article::find_newest_article();
 		<h5 class="text-success">
 			<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($newest_article->created_at)); ?>
 		</h5>
-		<h3><?php echo htmlentities($newest_article->name); ?></h3>
-		<?php echo truncate(nl2br(strip_tags($newest_article->content, '<h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')),
-		                    1000, "...<a class='text-danger' href='member-articles?subject={$newest_article->subject_id}&article={$newest_article->id}'>&nbsp;<strong><i>برای ادامه کلیک کنید</i></strong></a>"); ?>
 
+		<h3><?php echo htmlentities($newest_article->name); ?></h3>
+		<?php echo truncate(nl2br(strip_tags($newest_article->content,
+		                                     '<h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')), 1000,
+		                    "...<a class='text-danger' href='member-articles?subject={$newest_article->subject_id}&article={$newest_article->id}'>&nbsp;<strong><i>برای ادامه کلیک کنید</i></strong></a>"); ?>
 	</article>
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">

@@ -5,7 +5,8 @@ $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_course(TRUE);
-$errors    = "";
+$errors = "";
+$body   = "";
 if(!$current_course) {
 	$session->message("شناسه درسی پیدا نشد!");
 	redirect_to("member-courses");
@@ -16,12 +17,11 @@ if(isset($_POST["submit"])) {
 	$new_comment = Comment::make($member_id, $current_course->id, $body);
 	if($new_comment && $new_comment->create()) {
 		$session->message("نظر شما با موفقیت فرستاده شد.");
-		redirect_to("member-comments?category={$current_course->category_id}&course={$current_course->id}");
+		redirect_to($_SERVER['HTTP_REFERER']);
 	} else {
 		$errors = "خطا در فرستادن نظر!";
 	}
 } else {
-	$body = "";
 }
 // Pagination
 $page        = !empty($_GET["page"]) ? (int)$_GET["page"] : 1;
@@ -52,7 +52,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 								<i class="fa fa-trash-o"></i>
 							</a>
 						<?php } ?>
-						<br />
+						<br/>
 						<?php echo strip_tags($comment->body, '<strong><em><p><pre>'); ?>
 					</div>
 				</section>
@@ -62,7 +62,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 					<ul class="pagination">
 						<?php if($pagination->has_previous_page()) { ?>
 							<li>
-								<a href="member-comments?course=<?php echo urlencode($current_course->id) ?>&page=<?php echo urlencode($pagination->previous_page()); ?>" aria-label="Previous">
+								<a href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>&page=<?php echo urlencode($pagination->previous_page()); ?>" aria-label="Previous">
 									<span aria-hidden="true">قبلی</span>
 								</a>
 							</li>
@@ -74,13 +74,13 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 								</li>
 							<?php } else { ?>
 								<li>
-									<a href="member-comments?course=<?php echo urlencode($current_course->id); ?>&page=<?php echo urlencode($i); ?>"><?php echo $i; ?></a>
+									<a href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>&page=<?php echo urlencode($i); ?>"><?php echo $i; ?></a>
 								</li>
 							<?php } ?>
 						<?php } ?>
 						<?php if($pagination->has_next_page()) { ?>
 							<li>
-								<a href="member-comments?course=<?php echo urlencode($current_course->id) ?>&page=<?php echo urlencode($pagination->next_page()); ?>" aria-label="Next">
+								<a href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id) ?>&page=<?php echo urlencode($pagination->next_page()); ?>" aria-label="Next">
 									<span aria-hidden="true">بعدی</span>
 								</a>
 							</li>
@@ -127,5 +127,4 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 			<?php echo member_courses($current_category, $current_course); ?>
 		</aside>
 	</section>
-
 <?php include_layout_template("footer.php"); ?>

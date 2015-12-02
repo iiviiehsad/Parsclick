@@ -13,9 +13,9 @@ if(!$comment || !$course) {
 }
 if($comment->delete()) {
 	$session->message("نظر حذف شد.");
-	redirect_to("member-comments?category={$course->category_id}&course={$course->id}");
+	redirect_to($_SERVER['HTTP_REFERER']);
 } else {
 	$session->message("نظر حذف نشد!");
-	redirect_to("member-comments?category={$course->category_id}&course={$course->id}");
+	redirect_to($_SERVER['HTTP_REFERER']);
 }
 if(isset($database)) { $database->close_connection(); }
