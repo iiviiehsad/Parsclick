@@ -2,7 +2,8 @@
 /**
  * @param $class_name String will get the class name for each PHP class and finds the file name associate to it
  */
-function __autoload($class_name) {
+function __autoload($class_name)
+{
 	$class_name = strtolower($class_name);
 	$path       = LIB_PATH . DS . $class_name . "php";
 	if(file_exists($path)) {
@@ -15,7 +16,8 @@ function __autoload($class_name) {
 /**
  * @param null $location is by default NULL which will redirect the article to a particular location
  */
-function redirect_to($location = NULL) {
+function redirect_to($location = NULL)
+{
 	if($location != NULL) {
 		header("Location: " . $location);
 		exit;
@@ -27,7 +29,8 @@ function redirect_to($location = NULL) {
  * @param string $errors  string shows the errors
  * @return string
  */
-function output_message($message = "", $errors = "") {
+function output_message($message = "", $errors = "")
+{
 	if(!empty($message)) {
 		$output = "<div class='alert alert-success alert-dismissible' role='alert'>";
 		$output .= "<button type='button' class='close' data-dismiss='alert'>";
@@ -56,7 +59,8 @@ function output_message($message = "", $errors = "") {
 /**
  * @param string $template will replace the associate layout for footer or header inside includes folder
  */
-function include_layout_template($template = "") {
+function include_layout_template($template = "")
+{
 	include(LIB_PATH . DS . 'layouts' . DS . $template);
 }
 
@@ -65,7 +69,8 @@ function include_layout_template($template = "") {
  *                              zeros, then removes any remaining marks.
  * @return mixed the clean date output
  */
-function strip_zeros_from_date($marked_string = "") {
+function strip_zeros_from_date($marked_string = "")
+{
 	$no_zeros       = str_replace('*0', '', $marked_string);
 	$cleaned_string = str_replace('*', '', $no_zeros);
 	return $cleaned_string;
@@ -75,7 +80,8 @@ function strip_zeros_from_date($marked_string = "") {
  * @param string $datetime will get the date and time as a simple text
  * @return string ready format to insert into MySQL
  */
-function datetime_to_text($datetime = "") {
+function datetime_to_text($datetime = "")
+{
 	$unixdatetime = strtotime($datetime);
 	return strftime("%B %d, %Y at %I:%M %p", $unixdatetime);
 }
@@ -84,7 +90,8 @@ function datetime_to_text($datetime = "") {
  * @param $size integer parameter getting the size as bytes
  * @return string format for size
  */
-function check_size($size) {
+function check_size($size)
+{
 	if($size > 1024000) {
 		return round($size / 1024000) . " MB";
 	} elseif($size > 1024) {
@@ -100,7 +107,8 @@ function check_size($size) {
  * @param string $dots   string default (...) to show immediately after the string
  * @return string from 0 character to length and ... after it
  */
-function truncate($string, $length, $dots = " (برای ادامه کلیک کنید ...) ") {
+function truncate($string, $length, $dots = " (برای ادامه کلیک کنید ...) ")
+{
 	return (strlen($string) > $length) ? substr($string, 0, $length - strlen($dots)) . $dots : $string;
 }
 
@@ -110,14 +118,16 @@ function truncate($string, $length, $dots = " (برای ادامه کلیک کن
 /**
  * @return bool TRUE if request is GET and FALSE otherwise
  */
-function request_is_get() {
+function request_is_get()
+{
 	return $_SERVER['REQUEST_METHOD'] === 'GET';
 }
 
 /**
  * @return bool TRUE if request is POST and FALSE otherwise
  */
-function request_is_post() {
+function request_is_post()
+{
 	return $_SERVER['REQUEST_METHOD'] === 'POST';
 }
 
@@ -128,7 +138,8 @@ function request_is_post() {
  *                      empty() would consider "0" to be empty
  * @return bool true or false
  */
-function has_presence($value) {
+function has_presence($value)
+{
 	$trimmed_value = trim($value);
 	return isset($trimmed_value) && $trimmed_value !== "";
 }
@@ -140,7 +151,8 @@ function has_presence($value) {
  *                       has_length($first_name, ['exact' => 20])
  *                       has_length($first_name, ['min' => 5, 'max' => 100])
  */
-function has_length($value, $options = []) {
+function has_length($value, $options = [])
+{
 	if(isset($options['max']) && (strlen($value) > (int)$options['max'])) {
 		return FALSE;
 	}
@@ -164,7 +176,8 @@ function has_length($value, $options = []) {
  *                      (Use \A and \Z, not ^ and $ which allow line returns.)
  * @return int
  */
-function has_format_matching($value, $regex = '//') {
+function has_format_matching($value, $regex = '//')
+{
 	return preg_match($regex, $value);
 }
 
@@ -173,7 +186,8 @@ function has_format_matching($value, $regex = '//') {
  * @param array $options : max, min
  * @return bool has_number($items_to_order, ['min' => 1, 'max' => 5])
  */
-function has_number($value, $options = []) {
+function has_number($value, $options = [])
+{
 	if(!is_numeric($value)) {
 		return FALSE;
 	}
@@ -192,7 +206,8 @@ function has_number($value, $options = []) {
  * @param array $set
  * @return bool
  */
-function has_inclusion_in($value, $set = []) {
+function has_inclusion_in($value, $set = [])
+{
 	return in_array($value, $set);
 }
 
@@ -202,7 +217,8 @@ function has_inclusion_in($value, $set = []) {
  * @param array $set
  * @return bool
  */
-function has_exclusion_from($value, $set = []) {
+function has_exclusion_from($value, $set = [])
+{
 	return !in_array($value, $set);
 }
 
@@ -212,7 +228,8 @@ function has_exclusion_from($value, $set = []) {
  * @param $session_id integer to compare
  * @return bool return TRUE if two values are identical
  */
-function check_ownership($id, $session_id) {
+function check_ownership($id, $session_id)
+{
 	if($id === $session_id) {
 		return TRUE;
 	} else {
@@ -224,7 +241,8 @@ function check_ownership($id, $session_id) {
  * @param $file string gets the file name
  * @return mixed of file extensions
  */
-function file_extension($file) {
+function file_extension($file)
+{
 	$path_parts = pathinfo($file);
 	return $path_parts['extension'];
 }
@@ -233,7 +251,8 @@ function file_extension($file) {
  * @param $file string gets the file name
  * @return bool TRUE if file contains PHP in it and FALSE otherwise
  */
-function file_contains_php($file) {
+function file_contains_php($file)
+{
 	$contents = file_get_contents($file);
 	$position = strpos($contents, '<?php');
 	return $position !== FALSE;
@@ -243,7 +262,8 @@ function file_contains_php($file) {
  * @param $error_integer integer gets the file error number
  * @return mixed of errors descriptions
  */
-function file_upload_error($error_integer) {
+function file_upload_error($error_integer)
+{
 	$upload_errors = [
 		// http://php.net/manual/en/features.file-upload.errors.php
 		UPLOAD_ERR_OK         => "خطایی نیست.",
@@ -265,7 +285,8 @@ function file_upload_error($error_integer) {
  * @param        $action  string represents the login or logout action for each user
  * @param string $message represent the message for every user
  */
-function log_action($action, $message = "") {
+function log_action($action, $message = "")
+{
 	$logfile = SITE_ROOT . DS . 'logs' . DS . 'log.txt';
 	$new     = file_exists($logfile) ? FALSE : TRUE;
 	if($handle = fopen($logfile, 'a')) { //appends
@@ -287,7 +308,8 @@ function log_action($action, $message = "") {
  * @param $article_array array gets the article ID form URL and return it as an array
  * @return string subjects as an HTML ordered list along with articles as an HTML unordered list
  */
-function admin_articles($subject_array, $article_array) {
+function admin_articles($subject_array, $article_array)
+{
 	$output      = "<ol>";
 	$subject_set = Subject::find_all(FALSE);
 	foreach($subject_set as $subject) {
@@ -345,7 +367,8 @@ function admin_articles($subject_array, $article_array) {
  * @param $article_array array gets the article ID form URL and return it as an array
  * @return string subjects as an HTML ordered list along with articles as an HTML unordered list
  */
-function author_articles($subject_array, $article_array) {
+function author_articles($subject_array, $article_array)
+{
 	$output      = "<ol>";
 	$subject_set = Subject::find_all(TRUE);
 	foreach($subject_set as $subject):
@@ -401,7 +424,8 @@ function author_articles($subject_array, $article_array) {
  * @param $article_array array gets the article ID form URL and return it as an array
  * @return string subjects as an HTML ordered list along with articles as an HTML unordered list
  */
-function member_articles($subject_array, $article_array) {
+function member_articles($subject_array, $article_array)
+{
 	$output      = "<ul class='list-group'>";
 	$subject_set = Subject::find_all(TRUE);
 	foreach($subject_set as $subject) {
@@ -456,7 +480,8 @@ function member_articles($subject_array, $article_array) {
  * @param bool $public is a condition to select the first article (the default one) for every subject upon clicking on
  *                     subjects and by default is equals to FALSE.
  */
-function find_selected_article($public = FALSE) {
+function find_selected_article($public = FALSE)
+{
 	global $current_subject;
 	global $current_article;
 	if(isset($_GET["subject"]) && isset($_GET["article"])) {
@@ -484,7 +509,8 @@ function find_selected_article($public = FALSE) {
  * @param $course_array   array gets the article ID form URL and return it as an array
  * @return string categories as an HTML ordered list along with courses as an HTML unordered list
  */
-function admin_courses($category_array, $course_array) {
+function admin_courses($category_array, $course_array)
+{
 	$output       = "<ol>";
 	$category_set = Category::find_all(FALSE);
 	foreach($category_set as $category) {
@@ -547,7 +573,8 @@ function admin_courses($category_array, $course_array) {
  * @param $course_array   array gets the course ID form URL and return it as an array
  * @return string categories as an HTML ordered list along with courses as an HTML unordered list
  */
-function author_courses($category_array, $course_array) {
+function author_courses($category_array, $course_array)
+{
 	$output       = "<ol>";
 	$category_set = Category::find_all(TRUE);
 	foreach($category_set as $category):
@@ -608,7 +635,8 @@ function author_courses($category_array, $course_array) {
  * @param $course_array   array gets the course ID form URL and return it as an array
  * @return string categories as an HTML ordered list along with courses as an HTML unordered list
  */
-function member_courses($category_array, $course_array) {
+function member_courses($category_array, $course_array)
+{
 	$output       = "<ul class='list-group'>";
 	$category_set = Category::find_all(TRUE);
 	foreach($category_set as $category) {
@@ -661,10 +689,72 @@ function member_courses($category_array, $course_array) {
 }
 
 /**
+ * Function for members to show the categories and courses. The difference between this function with administrators
+ * functions are instead of all courses to be open for every categories, the members actually have to click on
+ * categories in order for courses to be open underneath categories and this happens once for every category.
+ * @param $category_array array gets the category ID form URL and return it as an array
+ * @param $course_array   array gets the course ID form URL and return it as an array
+ * @return string categories as an HTML ordered list along with courses as an HTML unordered list
+ */
+function member_comments_for_course($category_array, $course_array)
+{
+	$output       = "<ul class='list-group'>";
+	$category_set = Category::find_all(TRUE);
+	foreach($category_set as $category) {
+		$output .= "<li class='list-group-item'>";
+		$output .= "<span class='badge'>" . Course::count_courses_for_category($category->id, TRUE) . "</span>";
+		$output .= "<a href='member-comments?category=";
+		$output .= urlencode($category->id) . "'";
+		if($category_array && $category->id == $category_array->id) {
+			$output .= " style='font-size:25px;' ";
+		}
+		$output .= ">";
+		if(!empty($category->name)) {
+			$output .= htmlentities(ucwords($category->name));
+		} else {
+			$output .= htmlentities("(موضوع اسم ندارد!)");
+		}
+		$output .= "</a>";
+		if($category_array && $course_array) {
+			if($category_array->id == $category->id || $course_array->category_id == $category->id) {
+				$course_set = Course::find_courses_for_category($category->id);
+				$output .= "<ul>";
+				foreach($course_set as $course) {
+					$output .= "<li>";
+					$output .= "<a href='member-comments?category=";
+					$output .= urlencode($category->id) . "&course=";
+					$output .= urlencode($course->id) . "'";
+					if($course_array && $course->id == $course_array->id) {
+						$output .= " class='selected'";
+					}
+					if(Comment::count_comments_for_course($course->id) > 0) {
+						$output .= "data-toggle='tooltip' data-placement='left' title='";
+						$output .= Comment::count_comments_for_course($course->id) . " دیدگاه";
+						$output .= "'";
+					}
+					$output .= ">";
+					if(!empty($course->name)) {
+						$output .= htmlentities(ucwords($course->name));
+					} else {
+						$output .= htmlentities("(درس اسم ندارد!)");
+					}
+					$output .= "</a></li>";
+				}
+				$output .= "</ul>";
+			}
+		}
+		$output .= "</li>";
+	}
+	$output .= "</ul>";
+	return $output;
+}
+
+/**
  * Function for public to show the categories and courses
  * @return string categories as an HTML ordered list along with courses as an HTML unordered list
  */
-function public_courses() {
+function public_courses()
+{
 	$output       = "<ol class='list-unstyled'>";
 	$category_set = Category::find_all(TRUE);
 	foreach($category_set as $category) {
@@ -700,7 +790,8 @@ function public_courses() {
  * Function for public to show the subjects and articles
  * @return string subject as an HTML ordered list along with courses as an HTML unordered list
  */
-function public_articles() {
+function public_articles()
+{
 	$output      = "<ol class='list-unstyled'>";
 	$subject_set = Subject::find_all(TRUE);
 	foreach($subject_set as $subject) {
@@ -738,7 +829,8 @@ function public_articles() {
  * @param bool $public is a condition to select the first course (the default one) for every category upon clicking on
  *                     categories and by default is equals to FALSE.
  */
-function find_selected_course($public = FALSE) {
+function find_selected_course($public = FALSE)
+{
 	global $current_category;
 	global $current_course;
 	if(isset($_GET["category"]) && isset($_GET["course"])) {
@@ -765,7 +857,8 @@ function find_selected_course($public = FALSE) {
  * There is <?php $filename = basename(__FILE__); ?> on top of every PHP file which finds the file name and based on
  * that name jQuery adds the active class for the particular menu.
  */
-function active() {
+function active()
+{
 	global $filename;
 	if(($filename == "index.php") || ($filename == "member.php") || ($filename == "admin.php") ||
 	   ($filename == "author.php")
@@ -824,7 +917,8 @@ function active() {
  * @param $string $string string gets the text
  * @return string encrypts the string
  */
-function encrypt_string($salt, $string) {
+function encrypt_string($salt, $string)
+{
 	// Configuration (must match decryption)
 	$cipher_type = MCRYPT_RIJNDAEL_256;
 	$cipher_mode = MCRYPT_MODE_CBC;
@@ -842,7 +936,8 @@ function encrypt_string($salt, $string) {
  * @param $iv_with_string string initialization vector
  * @return string decrypts the string
  */
-function decrypt_string($salt, $iv_with_string) {
+function decrypt_string($salt, $iv_with_string)
+{
 	// Configuration (must match encryption)
 	$cipher_type = MCRYPT_RIJNDAEL_256;
 	$cipher_mode = MCRYPT_MODE_CBC;
@@ -860,7 +955,8 @@ function decrypt_string($salt, $iv_with_string) {
  * @param $string string gets the text
  * @return string encode after encryption to ensure encrypted characters are savable
  */
-function encrypt_string_and_encode($salt, $string) {
+function encrypt_string_and_encode($salt, $string)
+{
 	return base64_encode(encrypt_string($salt, $string));
 }
 
@@ -869,7 +965,8 @@ function encrypt_string_and_encode($salt, $string) {
  * @param $string string gets the text
  * @return string and decodes before decryption
  */
-function decrypt_string_and_decode($salt, $string) {
+function decrypt_string_and_decode($salt, $string)
+{
 	return decrypt_string($salt, base64_decode($string));
 }
 
@@ -877,7 +974,8 @@ function decrypt_string_and_decode($salt, $string) {
  * @param $string string gets the cookie or any text
  * @return string signs cookie or any string by applying hashing algorithm and salting
  */
-function sign_string($string) {
+function sign_string($string)
+{
 	// Using $salt makes it hard to guess how $checksum is generated
 	// Caution: changing salt will invalidate all signed strings
 	$salt     = "Simple salt";
@@ -890,7 +988,8 @@ function sign_string($string) {
  * @param $signed_string string gets the cookie or any signed string signed by @function sign_string
  * @return bool TRUE if new signed string equals to the signed string and FALSE if otherwise
  */
-function signed_string_is_valid($signed_string) {
+function signed_string_is_valid($signed_string)
+{
 	$array = explode('--', $signed_string);
 	if(count($array) != 2) {
 		// string is malformed or not signed

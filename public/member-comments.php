@@ -35,7 +35,10 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<h3><i class="fa fa-comments fa-lg"></i> نظرات بر <?php echo htmlentities($current_course->name); ?></h3>
+			<h3><i class="fa fa-comments fa-lg"></i> نظرات بر
+				<a href="member-courses?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>"
+				   data-toggle="tooltip" title="برگردید به درس"><?php echo htmlentities($current_course->name); ?></a>
+			</h3>
 			<?php foreach($comments as $comment) { ?>
 				<section class="media">
 					<?php $_member = Member::find_by_id($comment->member_id); ?>
@@ -63,7 +66,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 						<?php if($pagination->has_previous_page()) { ?>
 							<li>
 								<a href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>&page=<?php echo urlencode($pagination->previous_page()); ?>" aria-label="Previous">
-									<span aria-hidden="true">قبلی</span>
+									<span aria-hidden="true"> &lt;&lt; </span>
 								</a>
 							</li>
 						<?php } // end: if($pagination->has_previous_page()) ?>
@@ -81,7 +84,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 						<?php if($pagination->has_next_page()) { ?>
 							<li>
 								<a href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id) ?>&page=<?php echo urlencode($pagination->next_page()); ?>" aria-label="Next">
-									<span aria-hidden="true">بعدی</span>
+									<span aria-hidden="true"> &gt;&gt; </span>
 								</a>
 							</li>
 						<?php } // end: if($pagination->has_next_page()) ?>
@@ -123,8 +126,9 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside class="members_menu">
-			<h2>موضوعات و دروس</h2>
-			<?php echo member_courses($current_category, $current_course); ?>
+			<hgt
+			;&gtها و نظرات</h2>
+			<?php echo member_comments_for_course($current_category, $current_course); ?>
 		</aside>
 	</section>
 <?php include_layout_template("footer.php"); ?>

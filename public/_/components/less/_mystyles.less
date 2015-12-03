@@ -2,7 +2,7 @@
 @parsclick : #FF8000;
 @darkblack : #303030;
 @purple    : #415B76;
-@yellow    : #FFD700;
+@yellow    : #F0C832;
 @beige     : #F5F5DC;
 @green     : #00CDA0;
 @pink      : #E74C3C;
@@ -13,10 +13,10 @@
 	font-family : "yekan";
 	src         : url(../fonts/Yekan/Yekan.eot);
 	src         : url(../fonts/Yekan/Yekan.eot?#iefix) format("embedded-opentype"),
-	url(../fonts/Yekan/Yekan.woff) format("woff"),
-	url(../fonts/Yekan/Yekan.ttf) format("truetype"),
-	url(../fonts/Yekan/YekanBold.ttf) format("truetype"),
-	url(../fonts/Yekan/Yekan.svg#BYekan) format("svg");
+								url(../fonts/Yekan/Yekan.woff) format("woff"),
+								url(../fonts/Yekan/Yekan.ttf) format("truetype"),
+								url(../fonts/Yekan/YekanBold.ttf) format("truetype"),
+								url(../fonts/Yekan/Yekan.svg#BYekan) format("svg");
 	font-weight : normal;
 	font-style  : normal;
 }
@@ -24,7 +24,7 @@
 @font-face {
 	font-family : "bbcnassim";
 	src         : url(../fonts/BBCFont/BBCNassim.ttf) format("truetype"),
-	url(../fonts/BBCFont/BBCNassim.otf) format("opentype");
+								url(../fonts/BBCFont/BBCNassim.otf) format("opentype");
 	font-weight : normal;
 	font-style  : normal;
 }
@@ -35,7 +35,7 @@
 @editFontFamily     : "bbcnassim", "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
 
 ::selection {
-	color      : #000;
+	color      : @darkblack;
 	background : @yellow;
 }
 
@@ -269,8 +269,6 @@ a:hover, a:focus {
 	}
 }
 
-a.visited:visited { color : transparent; }
-
 .modal.fade.in { direction : ltr; }
 
 @media screen and (min-width : 768px) {
@@ -421,7 +419,7 @@ footer {
 	li:last-child { border-bottom : none; }
 }
 
-.pagination { border-left: 1px solid #ccc; }
+.pagination { border-left : 1px solid #CCC; }
 
 .breadcrumb > li:after {
 	display : inline-block;

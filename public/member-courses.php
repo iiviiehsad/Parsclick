@@ -103,7 +103,7 @@ if(isset($current_course->author_id)) {
 										<?php foreach($json['items'] as $item): ?>
 											<tr>
 												<td>
-													<a class="youtube visited" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
+													<a class="youtube" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
 													   title="Click to play">
 														<?php echo $item['snippet']['title']; ?>
 													</a>
