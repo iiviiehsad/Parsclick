@@ -12,7 +12,9 @@ $errors = "";
 <?php echo output_message($message, $errors); ?>
 <section class="main col-sm-12 col-md-9 col-lg-9">
 	<article>
-		<h2><i class="fa fa-user"></i> حساب کاربری <?php echo ucwords(strtolower($member->full_name())); ?></h2>
+		<h2>
+			<!--<img class="img-thumbnail text-center" src="http://gravatar.com/avatar/--><?php //echo md5($member->email); ?><!--" alt="--><?php //echo $member->email; ?><!--">-->
+			حساب کاربری <?php echo ucwords(strtolower($member->full_name())); ?></h2>
 		<dl class="dl-horizontal">
 			<dt>اسم کاربری:</dt>
 			<dd class="arial"><?php echo htmlentities($member->username); ?></dd>
@@ -34,9 +36,7 @@ $errors = "";
 			<dd class="arial"><?php echo !empty($member->email) ? htmlentities(strtolower($member->email)) : "-"; ?></dd>
 			<dt>&nbsp;</dt>
 			<dd>
-				<a href="member-edit-profile" class="btn btn-primary">
-					ویرایش
-				</a>
+				<a href="member-edit-profile" class="btn btn-primary">ویرایش</a>
 			</dd>
 		</dl>
 	</article>

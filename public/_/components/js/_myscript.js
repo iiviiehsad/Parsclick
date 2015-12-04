@@ -1,10 +1,10 @@
-$(function () {
+$(function() {
 
 	//SLIDE UO MESSAGES AFTER 5 SECONDS
 	$('div.alert-dismissible').delay(5000).slideUp();
 
 	// YOUTUBE INIT VIDEO PLAY
-	$(".youtube").YouTubeModal({width: 640, height: 360});
+	$(".youtube").YouTubeModal({width : 640, height : 360});
 
 	$('.collapse').collapse();
 
@@ -17,31 +17,31 @@ $(function () {
 	 it targets the ul navigation and li drop-down
 	 and uses the jQuery hover() function to do that.
 	 */
-	$('ul.nav li.dropdown').hover(function () {
+	$('ul.nav li.dropdown').hover(function() {
 		$('.dropdown-menu', this).fadeIn();
-	}, function () {
+	}, function() {
 		$('.dropdown-menu', this).fadeOut('fast');
 	}); //HOVER
 
 	//SHOW TOOLTIPS
-	$("[data-toggle='tooltip']").tooltip({animation: true});
+	$("[data-toggle='tooltip']").tooltip({animation : true});
 
 	//SHOW MODALS
-	$('.modalphotos img').on('click', function () {
-		$('#modal').modal({show: true});
+	$('.modalphotos img').on('click', function() {
+		$('#modal').modal({show : true});
 		var mysrc = this.src.substr(0, this.src.length - 7) + '.jpg';
 		$('#modalimage').css('width', "80%");
 		$('#modalimage').css('display', "block");
 		$('#modalimage').css('margin', "auto");
 		$('#modalimage').css('border-radius', "10px");
 		$('#modalimage').attr('src', mysrc);
-		$('#modalimage').on('click', function () {
+		$('#modalimage').on('click', function() {
 			$('#modal').modal('hide');
 		}); //HIDE MODAL
 	}); //SHOW MODAL
 
 	// INPUT FILE STYLE
-	var wrapper = $('<label/>').css({height: 0, width: 0, 'overflow': 'hidden'});
+	var wrapper = $('<label/>').css({height : 0, width : 0, 'overflow' : 'hidden'});
 	$(':file').wrap(wrapper);
 	//var fileInput = $(':file').wrap(wrapper);
 
@@ -55,53 +55,37 @@ $(function () {
 	//}).show();
 
 	// ADDING COURSE TO PLAYLIST USING AJAX ----------------------------------------------------------------------------------
-	$('form.addtoplaylist').on('submit', function () {
-		var that = $(this),
-				url = that.attr('action'),
-				type = that.attr('method'),
-				data = {},
-				btn = $("#btn");
+	$('form.addtoplaylist').on('submit', function() {
+		var that = $(this), url = that.attr('action'), type = that.attr('method'), data = {}, btn = $("#btn");
 		btn.prop('disabled', true);
-		that.find('[name]').each(function () {
-			var that = $(this),
-					name = that.attr('name'),
-					value = that.val();
+		that.find('[name]').each(function() {
+			var that   = $(this), name = that.attr('name'), value = that.val();
 			data[name] = value;
 
 		});
 		$.ajax({
-			       url: url,
-			       type: type,
-			       data: data,
-			       success: function (html) {
-				       $('form.addtoplaylist').replaceWith('<a href="#" class="btn btn-info disabled"><i class="fa fa-check"></i> به لیست پخش اضافه شد</a>');
-			       }
+			       url : url, type : type, data : data, success : function(html) {
+				$('form.addtoplaylist')
+						.replaceWith('<a href="#" class="btn btn-info disabled"><i class="fa fa-check"></i> به لیست پخش اضافه شد</a>');
+			}
 		       });
 		return false;
 	});
 
 	// REMOVING COURSE FROM PLAYLIST USING AJAX --------------------------------------------------------------------------
-	$('form.removefromplaylist').on('submit', function () {
-		var that = $(this),
-				url = that.attr('action'),
-				type = that.attr('method'),
-				data = {},
-				btn = $("#btn");
+	$('form.removefromplaylist').on('submit', function() {
+		var that = $(this), url = that.attr('action'), type = that.attr('method'), data = {}, btn = $("#btn");
 		btn.prop('disabled', true);
-		that.find('[name]').each(function () {
-			var that = $(this),
-					name = that.attr('name'),
-					value = that.val();
+		that.find('[name]').each(function() {
+			var that   = $(this), name = that.attr('name'), value = that.val();
 			data[name] = value;
 
 		});
 		$.ajax({
-			       url: url,
-			       type: type,
-			       data: data,
-			       success: function (html) {
-				       $('form.removefromplaylist').replaceWith('<a href="#" class="btn btn-danger disabled"><i class="fa fa-check"></i> از لیست پخش حذف شد</a>');
-			       }
+			       url : url, type : type, data : data, success : function(html) {
+				$('form.removefromplaylist')
+						.replaceWith('<a href="#" class="btn btn-danger disabled"><i class="fa fa-check"></i> از لیست پخش حذف شد</a>');
+			}
 		       });
 		return false;
 	});
@@ -146,34 +130,34 @@ $(function () {
 	//}
 
 	//SMOOTH SCROLLING ---------------------------------------------------------------------------------------------------
-	$('a[href*=#]:not([href=#myCarousel])').click(function () {
+	$('a[href*=#]:not([href=#myCarousel])').click(function() {
 		if(location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
 			var target = $(this.hash);
-			target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+			target     = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
 			if(target.length) {
-				$('html,body').animate({scrollTop: target.offset().top}, 1000);
+				$('html,body').animate({scrollTop : target.offset().top}, 1000);
 				return false;
 			}
 		}
 	});
 
 	// AJAX FOR UPLOAD VIDEO BUTTON
-	$('form.uploadForm').on('submit', function () {
+	$('form.uploadForm').on('submit', function() {
 		var $btn = $('#upladSubmit').button('loading');
-		setTimeout(function () {
+		setTimeout(function() {
 			$btn.button('reset');
 		}, 86400000); //1000*60*60*24*1 (1 day)
 	});
 
 	// AJAX FOR UPLOAD FILE BUTTON
-	$('form.fileForm').on('submit', function () {
+	$('form.fileForm').on('submit', function() {
 		var $btn = $('#fileSubmit').button('loading');
-		setTimeout(function () {
+		setTimeout(function() {
 			$btn.button('reset');
 		}, 86400000); //1000*60*60*24*1 (1 day)
 	});
 
-}); //jQuery IS LOADED
+})(); //jQuery IS LOADED -----------------------------------------------------------------------------------------------
 
 function videoPlayer(url) {
 	var x = screen.width / 2 - 700 / 2;
@@ -190,106 +174,106 @@ function shareButton(url) {
 //var bgvideo = document.getElementById('bgvideo');
 
 //FUNCTIONS FOR LIVE INPUT VALIDATION ----------------------------------------------------------------------------------
-var username = document.getElementById('username');
-var pass1 = document.getElementById('password');
-var pass2 = document.getElementById('confirm_pass');
-var firstname = document.getElementById('first_name');
-var lastname = document.getElementById('last_name');
-var email = document.getElementById('email');
-var message = document.getElementById('confirmMessage');
-var goodColor = "#C8FAC8";
-var badColor = "#FAC8C8";
-var mBadColor = "#B94A48";
+var username      = document.getElementById('username');
+var pass1         = document.getElementById('password');
+var pass2         = document.getElementById('confirm_pass');
+var firstname     = document.getElementById('first_name');
+var lastname      = document.getElementById('last_name');
+var email         = document.getElementById('email');
+var message       = document.getElementById('confirmMessage');
+var goodColor     = "#C8FAC8";
+var badColor      = "#FAC8C8";
+var mBadColor     = "#B94A48";
 var usernameregex = /[^a-zA-Z0-9_.]/;
-var passregex = /[^A-Za-z0-9]/;
+var passregex     = /[^A-Za-z0-9]/;
 
 function checkUser() {
 	if(usernameregex.test(username.value)) {
 		username.style.backgroundColor = badColor;
-		message.style.color = mBadColor;
-		message.innerHTML = "اسم کاربری نباید دارای حروف مخصوص باشد";
+		message.style.color            = mBadColor;
+		message.innerHTML              = "اسم کاربری نباید دارای حروف مخصوص باشد";
 		return false;
 	} else if(username.value.indexOf(' ') >= 0) {
 		username.style.backgroundColor = badColor;
-		message.style.color = mBadColor;
-		message.innerHTML = "در اسم کاربری نباید فاصله بکار رود";
+		message.style.color            = mBadColor;
+		message.innerHTML              = "در اسم کاربری نباید فاصله بکار رود";
 		return false;
 	} else if(username.value == '' || username.value == null) {
 		username.style.backgroundColor = badColor;
-		message.style.color = mBadColor;
-		message.innerHTML = "اسم کاربری نباید خالی بماند";
+		message.style.color            = mBadColor;
+		message.innerHTML              = "اسم کاربری نباید خالی بماند";
 		return false;
 	} else {
 		username.style.backgroundColor = goodColor;
-		message.style.color = goodColor;
-		message.innerHTML = "";
+		message.style.color            = goodColor;
+		message.innerHTML              = "";
 		return true;
 	}
 }
 function checkfirstname() {
 	if(firstname.value == '' || firstname.value == null || firstname.value == ' ') {
 		firstname.style.backgroundColor = badColor;
-		message.style.color = mBadColor;
-		message.innerHTML = "نام نباید خالی بماند";
+		message.style.color             = mBadColor;
+		message.innerHTML               = "نام نباید خالی بماند";
 		return false;
 	} else {
 		firstname.style.backgroundColor = goodColor;
-		message.style.color = goodColor;
-		message.innerHTML = "";
+		message.style.color             = goodColor;
+		message.innerHTML               = "";
 		return true;
 	}
 }
 function checklastname() {
 	if(lastname.value == '' || lastname.value == null || lastname.value == ' ') {
 		lastname.style.backgroundColor = badColor;
-		message.style.color = mBadColor;
-		message.innerHTML = "نام خانوادگی نباید خالی بماند";
+		message.style.color            = mBadColor;
+		message.innerHTML              = "نام خانوادگی نباید خالی بماند";
 		return false;
 	} else {
 		lastname.style.backgroundColor = goodColor;
-		message.style.color = goodColor;
-		message.innerHTML = "";
+		message.style.color            = goodColor;
+		message.innerHTML              = "";
 		return true;
 	}
 }
 function checkPass() {
 	if(pass1.value.length < 6) {
 		pass1.style.backgroundColor = badColor;
-		message.style.color = mBadColor;
-		message.innerHTML = "پسورد کمتر از ۶ کاراکتر است";
+		message.style.color         = mBadColor;
+		message.innerHTML           = "پسورد کمتر از ۶ کاراکتر است";
 		return false;
 	} else if(!passregex.test(pass1.value)) {
 		pass1.style.backgroundColor = badColor;
-		message.style.color = mBadColor;
-		message.innerHTML = "پسورد دارای حروف مخصوص نیست";
+		message.style.color         = mBadColor;
+		message.innerHTML           = "پسورد دارای حروف مخصوص نیست";
 		return false;
 	} else {
 		pass1.style.backgroundColor = goodColor;
-		message.style.color = goodColor;
-		message.innerHTML = "";
+		message.style.color         = goodColor;
+		message.innerHTML           = "";
 		return true;
 	}
 }
 function checkConfirmPass() {
 	if(pass2.value.length < 6) {
 		pass2.style.backgroundColor = badColor;
-		message.style.color = mBadColor;
-		message.innerHTML = "پسورد کمتر از ۶ کاراکتر است";
+		message.style.color         = mBadColor;
+		message.innerHTML           = "پسورد کمتر از ۶ کاراکتر است";
 		return false;
 	} else if(!passregex.test(pass2.value)) {
 		pass2.style.backgroundColor = badColor;
-		message.style.color = mBadColor;
-		message.innerHTML = "پسوردها دارای حروف مخصوص نیستند";
+		message.style.color         = mBadColor;
+		message.innerHTML           = "پسوردها دارای حروف مخصوص نیستند";
 		return false;
 	} else if(pass1.value !== pass2.value) {
 		pass2.style.backgroundColor = badColor;
-		message.style.color = mBadColor;
-		message.innerHTML = "پسوردها مطابقت ندارند";
+		message.style.color         = mBadColor;
+		message.innerHTML           = "پسوردها مطابقت ندارند";
 		return false;
 	} else {
 		pass2.style.backgroundColor = goodColor;
-		message.style.color = goodColor;
-		message.innerHTML = "";
+		message.style.color         = goodColor;
+		message.innerHTML           = "";
 		return true;
 	}
 }
@@ -297,19 +281,19 @@ function checkEmail() {
 	var regExp = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i;
 	if(regExp.test(email.value) == false) {
 		email.style.backgroundColor = badColor;
-		message.style.color = mBadColor;
-		message.innerHTML = "ایمیل معتبر نیست";
+		message.style.color         = mBadColor;
+		message.innerHTML           = "ایمیل معتبر نیست";
 		return false;
 	} else {
 		email.style.backgroundColor = goodColor;
-		message.style.color = goodColor;
-		message.innerHTML = "";
+		message.style.color         = goodColor;
+		message.innerHTML           = "";
 		return true;
 	}
 }
 
 //WOW ------------------------------------------------------------------------------------------------------------------
-wow = new WOW({animateClass: 'animated', offset: 100});
+wow = new WOW({animateClass : 'animated', offset : 100});
 wow.init();
 //data-wow-delay="2s"
 //data-wow-offset="300"

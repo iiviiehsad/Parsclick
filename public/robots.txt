@@ -4,4 +4,4 @@ Disallow: /videos/
 Disallow: /files/
 Disallow: /_/
 
-Sitemap: http://www.parsclick.net/TODO: ADD SITEMAP
+Sitemap: http://www.parsclick.net/sitemap.xml
