@@ -29,6 +29,14 @@ class Author extends DatabaseObject {
 	public           $token;
 
 	/**
+	 * Finds active authors
+	 * @return array
+	 */
+	public static function find_active_authors() {
+		return self::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE status = 1");
+	}
+
+	/**
 	 * @return string containing first_name and last_name joined with an empty space
 	 */
 	public function full_name() {

@@ -28,8 +28,7 @@ echo output_message($message);
 						ویرایش
 					</a>
 				<?php } ?>
-				<p><?php echo nl2br(strip_tags($current_article->content,
-				                               '<h1><h2><h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?></p>
+				<p><?php echo nl2br(strip_tags($current_article->content, '<h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?></p>
 			<?php } elseif($current_subject) { ?>
 				<?php if(!$current_subject->visible) redirect_to("author_articles.php"); ?>
 				<h2>
