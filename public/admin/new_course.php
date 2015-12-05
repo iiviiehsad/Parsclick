@@ -19,7 +19,7 @@ if(isset($_POST['submit'])) {
 	$course->youtubePlaylist = $_POST["youtubePlaylist"];
 	$course->file_link       = $_POST["file_link"];
 	$course->position        = (int)$_POST["position"];
-	$course->visible         = $_POST["visible"];
+	$course->visible         = (int)$_POST["visible"];
 	$course->content         = $_POST["description"];
 	$result                  = $course->create();
 	if($result) { // Success

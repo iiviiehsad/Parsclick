@@ -35,9 +35,7 @@
 	<h4>تعداد نویسندگان: <span class="badge arial"><?php echo count(Author::find_active_authors()); ?></span></h4>
 	<?php $authors = Author::find_active_authors(); ?>
 	<ol>
-		<?php foreach($authors as $author) {
-			echo "<li> {$author->full_name()} </li>";
-		 } ?>
+		<?php foreach($authors as $author) { echo "<li> {$author->full_name()} </li>"; } ?>
 	</ol>
 	<h4>شما هم می تونید اینجا مقاله بنویسید، چطوری؟</h4>
 	<p>اگر مقالاتی در آرشیو خود دارید و نویسنده ی خوبی هستید با ما تماس بگیرید. شما به عنوان نویسنده ثبت نام خواهید شد و
