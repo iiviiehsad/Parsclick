@@ -26,7 +26,7 @@ echo output_message($message);
 					<?php foreach($author_set as $author): ?>
 						<tr>
 							<td class="arial">
-								<img class="img-rounded" src="http://gravatar.com/avatar/<?php echo md5($author->email); ?>?s=30" alt="<?php echo $author->email; ?>">
+								<img class="img-circle" src="http://gravatar.com/avatar/<?php echo md5($author->email); ?>?s=30" alt="<?php echo $author->email; ?>">
 								<?php echo htmlentities($author->username); ?>
 							</td>
 							<td><?php echo htmlentities(ucfirst(strtolower($author->first_name))); ?></td>
