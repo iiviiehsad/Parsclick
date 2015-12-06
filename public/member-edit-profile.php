@@ -24,31 +24,31 @@ if(isset($_POST['submit'])) {
 	$member->post_code  = trim($_POST["post_code"]);
 	$member->phone      = trim($_POST["phone"]);
 	$member->email      = trim($_POST["email"]);
-	//if(!empty($_FILES["photo"]["name"])) {
-	//	$file_extension = file_extension($_FILES["photo"]['name']);
-	//	if($_FILES["photo"]['error'] > 0) {
-	//		$errors = "خطا: " . file_upload_error($_FILES["photo"]['error']);
-	//	} elseif(!is_uploaded_file($_FILES["photo"]["tmp_name"])) {
-	//		$errors = "مرجع فایل شامل فایلی که بتازگی آپلود کردید نیست!";
-	//	} elseif($_FILES["photo"]["size"] > $MAX_FILE_SIZE) {
-	//		$errors = "اندازه فایل بزرگ است!";
-	//	} elseif(!in_array($_FILES["photo"]["type"], $allowed_mime_types)) {
-	//		$errors = "فایل عکس نیست!";
-	//	} elseif(!in_array($file_extension, $allowed_extensions)) {
-	//		$errors = "فایل عکس نیست!";
-	//	} elseif(file_contains_php($_FILES["photo"]["tmp_name"])) {
-	//		$errors = "فایل دارای پی اچ پی است!";
-	//	} else {
-	//		$member->photo = file_get_contents($_FILES["photo"]["tmp_name"]);
-	//		$result        = $member->save();
-	//		if($result) {
-	//			$session->message("پروفایل بروزرسانی شد.");
-	//			redirect_to("member-profile");
-	//		} else {
-	//			$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
-	//		}
-	//	}
-	//} else {
+	/*if(!empty($_FILES["photo"]["name"])) {
+		$file_extension = file_extension($_FILES["photo"]['name']);
+		if($_FILES["photo"]['error'] > 0) {
+			$errors = "خطا: " . file_upload_error($_FILES["photo"]['error']);
+		} elseif(!is_uploaded_file($_FILES["photo"]["tmp_name"])) {
+			$errors = "مرجع فایل شامل فایلی که بتازگی آپلود کردید نیست!";
+		} elseif($_FILES["photo"]["size"] > $MAX_FILE_SIZE) {
+			$errors = "اندازه فایل بزرگ است!";
+		} elseif(!in_array($_FILES["photo"]["type"], $allowed_mime_types)) {
+			$errors = "فایل عکس نیست!";
+		} elseif(!in_array($file_extension, $allowed_extensions)) {
+			$errors = "فایل عکس نیست!";
+		} elseif(file_contains_php($_FILES["photo"]["tmp_name"])) {
+			$errors = "فایل دارای پی اچ پی است!";
+		} else {
+			$member->photo = file_get_contents($_FILES["photo"]["tmp_name"]);
+			$result        = $member->save();
+			if($result) {
+				$session->message("پروفایل بروزرسانی شد.");
+				redirect_to("member-profile");
+			} else {
+				$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
+			}
+		}
+	} else {*/
 	$result = $member->save();
 	if($result) {
 		$session->message("پروفایل بروزرسانی شد.");
@@ -56,7 +56,7 @@ if(isset($_POST['submit'])) {
 	} else {
 		$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
 	}
-	//}
+	/*}*/
 } else {
 }
 ?>
@@ -170,16 +170,16 @@ if(isset($_POST['submit'])) {
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<aside class="members_menu">
 		<h2><i class="fa fa-picture-o"></i> آواتار</h2>
-		<?php //if(empty($member->photo)) { ?>
-		<!--	<span class="glyphicon glyphicon-user center" style="font-size: 150px; margin: 0; padding: 0;"></span>-->
-		<!--	<span class="text-muted center">عکس موجود نیست</span>-->
-		<?php //} else { ?>
-		<!--	<img class="img-responsive img-thumbnail center" alt="Profile Picture" src="data:image/jpeg;base64,-->
-		<?php //echo base64_encode($member->photo); ?><!--">-->
-		<!--	<a class="btn btn-default btn-small center" href="remove-photo" onclick="return confirm('آیا مطمئن به حذف عکس پروفایل خود هستید؟')">-->
-		<!--		<span class="glyphicon glyphicon-trash"></span> حذف عکس-->
-		<!--	</a>-->
-		<?php //} ?>
+		<?php /*if(empty($member->photo)) { */?><!--
+			<span class="glyphicon glyphicon-user center" style="font-size: 150px; margin: 0; padding: 0;"></span>
+			<span class="text-muted center">عکس موجود نیست</span>
+		<?php /*} else { */?>
+			<img class="img-responsive img-thumbnail center" alt="Profile Picture" src="data:image/jpeg;base64,
+		<?php /*echo base64_encode($member->photo); */?>">
+			<a class="btn btn-default btn-small center" href="remove-photo" onclick="return confirm('آیا مطمئن به حذف عکس پروفایل خود هستید؟')">
+				<span class="glyphicon glyphicon-trash"></span> حذف عکس
+			</a>-->
+		<?php /*} */?>
 		<img class="img-thumbnail center" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=300&d=https://laracasts.com/images/default-gravatar-pic.png" alt="<?php echo $member->email; ?>">
 
 		<h2><i class="fa fa-info-circle"></i> اطلاعات</h2>

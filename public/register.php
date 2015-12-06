@@ -43,12 +43,11 @@ if($_POST) {
 					$member->post_code       = trim(strtoupper($_POST["post_code"]));
 					$member->phone           = trim($_POST["phone"]);
 					$member->email           = trim(strtolower($_POST["email"]));
-					$member->photo           = NULL;
 					$member->status          = 0;
 					$member->token           = md5(uniqid(rand()));
 					$result                  = $member->create();
 					if($result) {
-						$session->message("با تشکر! ثبت نام موفقیت آمیز بود خیلی مهم هست که آدرس ایمیل خودتون رو درست وارد کرده باشید و این آدرس بروز باشه. اگر این آدرس درست نیست, همین الآن درستش کنید.");
+						$session->message("با تشکر! ثبت نام موفقیت آمیز بود. لطفا ایمیل خود را چک کنید و تایید کنید.");
 						$member->email_confirmation_details($member->username);
 						redirect_to("login");
 					} else {

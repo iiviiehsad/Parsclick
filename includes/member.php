@@ -17,7 +17,6 @@ class Member extends DatabaseObject {
 			'post_code',
 			'phone',
 			'email',
-			'photo',
 			'status',
 			'token'
 	);
@@ -32,7 +31,6 @@ class Member extends DatabaseObject {
 	public           $post_code;
 	public           $phone;
 	public           $email;
-	public           $photo;
 	public           $status;
 	public           $token;
 	public           $customer;
@@ -145,21 +143,6 @@ class Member extends DatabaseObject {
 		} elseif($this->status == 2) {
 			redirect_to("blocked");
 		}
-	}
-
-	/**
-	 * This method removes the member's profile picture which is stored as a BLOB data type in the database by updating
-	 * this column and setting it's value to NULL. The method will return TRUE if it is successful and FALSE if
-	 * otherwise.
-	 * @return bool
-	 */
-	public function remove_photo() {
-		global $database;
-		$sql = "UPDATE " . self::$table_name . " SET ";
-		$sql .= " photo = NULL ";
-		$sql .= " WHERE id=" . $database->escape_value($this->id);
-		$database->query($sql);
-		return ($database->affected_rows() == 1) ? TRUE : FALSE;
 	}
 
 	/**
