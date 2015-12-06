@@ -30,6 +30,7 @@ echo output_message($message);
 				<table class="table table-hover table-condensed">
 					<thead>
 					<tr>
+						<th></th>
 						<th>اسم کاربری</th>
 						<th>نام</th>
 						<th>نام خانوادگی</th>
@@ -52,6 +53,7 @@ echo output_message($message);
 						} else {
 							echo "";
 						} ?>">
+							<td><img class="img-rounded" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=30" alt="<?php echo $member->email; ?>"></td>
 							<td class="arial">
 								<small><?php echo htmlentities($member->username); ?></small>
 							</td>

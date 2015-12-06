@@ -32,3 +32,5 @@ November 29, 2015 at 09:37 PM | Login: <span class='alert-success'>Amirhassanazi
 November 29, 2015 at 09:49 PM | Login: <span class='alert-danger'>Hazz</span> logged in.
 December 05, 2015 at 07:42 PM | Login: <span class='alert-danger'>Hazz</span> logged in.
 December 05, 2015 at 07:43 PM | Login: <span class='alert-success'>Amirchi</span> logged in.
+December 06, 2015 at 08:15 PM | Login: <span class='alert-success'>Amirhassanazimi</span> logged in.
+December 06, 2015 at 08:22 PM | Login: <span class='alert-danger'>Hazz</span> logged in.

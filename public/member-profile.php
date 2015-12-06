@@ -13,7 +13,6 @@ $errors = "";
 <section class="main col-sm-12 col-md-9 col-lg-9">
 	<article>
 		<h2>
-			<!--<img class="img-thumbnail text-center" src="http://gravatar.com/avatar/--><?php //echo md5($member->email); ?><!--" alt="--><?php //echo $member->email; ?><!--">-->
 			حساب کاربری <?php echo ucwords(strtolower($member->full_name())); ?></h2>
 		<dl class="dl-horizontal">
 			<dt>اسم کاربری:</dt>

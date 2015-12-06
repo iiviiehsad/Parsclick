@@ -12,6 +12,7 @@ $newest_article = Article::find_newest_article();
 <?php include("_/components/php/member_nav.php"); ?>
 <?php echo output_message($message); ?>
 <div class="jumbotron hidden-sm wow fadeIn member-jumbotron">
+	<img class="pull-left img-rounded" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>" alt="<?php echo $member->email; ?>">
 	<h1>خوش آمدید <?php echo ucwords(strtolower($member->full_name())); ?></h1>
 	<p>شما دسترسی به یکی از بزرگترین کتابخانه ویدئویی رایگان پارسی زبانان را دارید. لطفا از دوستان خود دعوت کنید که به ما
 		بپیوندند.</p>
@@ -49,8 +50,7 @@ $newest_article = Article::find_newest_article();
 		</h5>
 
 		<h3><?php echo htmlentities($newest_article->name); ?></h3>
-		<?php echo truncate(nl2br(strip_tags($newest_article->content,
-		                                     '<h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')), 1000,
+		<?php echo truncate(nl2br(strip_tags($newest_article->content, '<h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')), 1000,
 		                    "...<a class='text-danger' href='member-articles?subject={$newest_article->subject_id}&article={$newest_article->id}'>&nbsp;<strong><i>برای ادامه کلیک کنید</i></strong></a>"); ?>
 	</article>
 </section>

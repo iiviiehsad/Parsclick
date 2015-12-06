@@ -82,7 +82,7 @@ echo output_message($message, $errors);
 									</label>
 									<div class="controls">
 										<input name="MAX_FILE_SIZE" value="<?php echo $file_max_file_size; ?>" type="hidden"/>
-										<input type="file" name="single_file" class="form-control" id="single_file"/>
+										<input type="file" name="single_file" class="form-control" id="single_file" accept="application/zip"/>
 									</div>
 									<div class="input-group col-xs-11 col-sm-11 col-md-11 col-lg-11">
 										<input type="text" name="description" class="form-control input-small" placeholder="توضیح خیلی مختصر برای این فایل" maxlength="255" required/>
