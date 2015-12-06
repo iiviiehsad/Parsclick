@@ -5,10 +5,10 @@ $title    = "پارس کلیک - ویرایش حساب کاربری";
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
-$MAX_FILE_SIZE      = 100000;
-$allowed_mime_types = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg'];
-$allowed_extensions = ['png', 'gif', 'jpg', 'jpeg'];
-$errors             = "";
+//$MAX_FILE_SIZE      = 100000;
+//$allowed_mime_types = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg'];
+//$allowed_extensions = ['png', 'gif', 'jpg', 'jpeg'];
+$errors = "";
 if(isset($_POST['submit'])) {
 	$member->id       = $session->id;
 	$member->username = trim($_POST["username"]);
@@ -24,39 +24,39 @@ if(isset($_POST['submit'])) {
 	$member->post_code  = trim($_POST["post_code"]);
 	$member->phone      = trim($_POST["phone"]);
 	$member->email      = trim($_POST["email"]);
-	if(!empty($_FILES["photo"]["name"])) {
-		$file_extension = file_extension($_FILES["photo"]['name']);
-		if($_FILES["photo"]['error'] > 0) {
-			$errors = "خطا: " . file_upload_error($_FILES["photo"]['error']);
-		} elseif(!is_uploaded_file($_FILES["photo"]["tmp_name"])) {
-			$errors = "مرجع فایل شامل فایلی که بتازگی آپلود کردید نیست!";
-		} elseif($_FILES["photo"]["size"] > $MAX_FILE_SIZE) {
-			$errors = "اندازه فایل بزرگ است!";
-		} elseif(!in_array($_FILES["photo"]["type"], $allowed_mime_types)) {
-			$errors = "فایل عکس نیست!";
-		} elseif(!in_array($file_extension, $allowed_extensions)) {
-			$errors = "فایل عکس نیست!";
-		} elseif(file_contains_php($_FILES["photo"]["tmp_name"])) {
-			$errors = "فایل دارای پی اچ پی است!";
-		} else {
-			$member->photo = file_get_contents($_FILES["photo"]["tmp_name"]);
-			$result        = $member->save();
-			if($result) {
-				$session->message("پروفایل بروزرسانی شد.");
-				redirect_to("member-profile");
-			} else {
-				$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
-			}
-		}
+	//if(!empty($_FILES["photo"]["name"])) {
+	//	$file_extension = file_extension($_FILES["photo"]['name']);
+	//	if($_FILES["photo"]['error'] > 0) {
+	//		$errors = "خطا: " . file_upload_error($_FILES["photo"]['error']);
+	//	} elseif(!is_uploaded_file($_FILES["photo"]["tmp_name"])) {
+	//		$errors = "مرجع فایل شامل فایلی که بتازگی آپلود کردید نیست!";
+	//	} elseif($_FILES["photo"]["size"] > $MAX_FILE_SIZE) {
+	//		$errors = "اندازه فایل بزرگ است!";
+	//	} elseif(!in_array($_FILES["photo"]["type"], $allowed_mime_types)) {
+	//		$errors = "فایل عکس نیست!";
+	//	} elseif(!in_array($file_extension, $allowed_extensions)) {
+	//		$errors = "فایل عکس نیست!";
+	//	} elseif(file_contains_php($_FILES["photo"]["tmp_name"])) {
+	//		$errors = "فایل دارای پی اچ پی است!";
+	//	} else {
+	//		$member->photo = file_get_contents($_FILES["photo"]["tmp_name"]);
+	//		$result        = $member->save();
+	//		if($result) {
+	//			$session->message("پروفایل بروزرسانی شد.");
+	//			redirect_to("member-profile");
+	//		} else {
+	//			$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
+	//		}
+	//	}
+	//} else {
+	$result = $member->save();
+	if($result) {
+		$session->message("پروفایل بروزرسانی شد.");
+		redirect_to("member-profile");
 	} else {
-		$result = $member->save();
-		if($result) {
-			$session->message("پروفایل بروزرسانی شد.");
-			redirect_to("member-profile");
-		} else {
-			$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
-		}
+		$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
 	}
+	//}
 } else {
 }
 ?>
@@ -67,7 +67,7 @@ if(isset($_POST['submit'])) {
 	<article>
 		<h2><i class="fa fa-pencil-square-o"></i> ویرایش پروفایل </h2>
 
-		<form class="registration form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+		<form class="registration form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
 			<fieldset id="login">
 				<legend><i class="fa fa-user"></i> <?php echo ucwords(strtolower($member->full_name())); ?>
 					<span class="pull-left wow flash infinite" data-wow-duration="3s" id="confirmMessage"></span>
@@ -145,17 +145,17 @@ if(isset($_POST['submit'])) {
 						<input onblur="checkEmail();" onkeyup="checkEmail();" class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8" type="email" name="email" id="email" placeholder="Email" required value="<?php echo htmlentities($member->email); ?>" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"/>
 					</div>
 				</section>
-				<section class="row">
-					<label style="cursor:pointer;" class="col-sm-4 col-md-4 col-lg-4 control-label" for="photo"> عکس پروفایل&nbsp;</label>
-					<div class="controls">
-						<label class="control-label btn btn-small btn-primary" for="photo">
-							آپلود عکس
-						</label>
-						<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $MAX_FILE_SIZE; ?>">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="file" name="photo" id="photo" accept="image/*"/>
-						<span>اندازه: ۱۰۰ کیلو بایت</span>
-					</div>
-				</section>
+				<!--<section class="row">-->
+				<!--	<label style="cursor:pointer;" class="col-sm-4 col-md-4 col-lg-4 control-label" for="photo"> عکس پروفایل&nbsp;</label>-->
+				<!--	<div class="controls">-->
+				<!--		<label class="control-label btn btn-small btn-primary" for="photo">-->
+				<!--			آپلود عکس-->
+				<!--		</label>-->
+				<!--		<input type="hidden" name="MAX_FILE_SIZE" value="--><?php //echo $MAX_FILE_SIZE; ?><!--">-->
+				<!--		<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="file" name="photo" id="photo" accept="image/*"/>-->
+				<!--		<span>اندازه: ۱۰۰ کیلو بایت</span>-->
+				<!--	</div>-->
+				<!--</section>-->
 				<section class="row">
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="submit">&nbsp;</label>
 					<div class="controls">
@@ -169,31 +169,27 @@ if(isset($_POST['submit'])) {
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<aside class="members_menu">
-		<h2><i class="fa fa-picture-o"></i> عکس پروفایل </h2>
-		<?php if(empty($member->photo)) { ?>
-			<span class="glyphicon glyphicon-user center" style="font-size: 150px; margin: 0; padding: 0;"></span>
-			<span class="text-muted center">عکس موجود نیست</span>
-		<?php } else { ?>
-			<img class="img-responsive img-thumbnail center" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($member->photo); ?>">
-			<a class="btn btn-default btn-small center" href="remove-photo" onclick="return confirm('آیا مطمئن به حذف عکس پروفایل خود هستید؟')">
-				<span class="glyphicon glyphicon-trash"></span> حذف عکس
-			</a>
-		<?php } ?>
+		<h2><i class="fa fa-picture-o"></i> آواتار</h2>
+		<?php //if(empty($member->photo)) { ?>
+		<!--	<span class="glyphicon glyphicon-user center" style="font-size: 150px; margin: 0; padding: 0;"></span>-->
+		<!--	<span class="text-muted center">عکس موجود نیست</span>-->
+		<?php //} else { ?>
+		<!--	<img class="img-responsive img-thumbnail center" alt="Profile Picture" src="data:image/jpeg;base64,-->
+		<?php //echo base64_encode($member->photo); ?><!--">-->
+		<!--	<a class="btn btn-default btn-small center" href="remove-photo" onclick="return confirm('آیا مطمئن به حذف عکس پروفایل خود هستید؟')">-->
+		<!--		<span class="glyphicon glyphicon-trash"></span> حذف عکس-->
+		<!--	</a>-->
+		<?php //} ?>
+		<img class="img-thumbnail center" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=300&d=https://laracasts.com/images/default-gravatar-pic.png" alt="<?php echo $member->email; ?>">
+
 		<h2><i class="fa fa-info-circle"></i> اطلاعات</h2>
-		<div class="well center">
+		<div class="alert alert-info">
 			<small>
 				اگر مایل به تغییر پسورد نیستید، لطفا پسورد را خالی بگذارید اما اگر مایل به تغییر پسورد قبلی به پسورد جدید
 				هستید، لطفا پسورد جدید خود را داخل قسمت پسورد وارد نمایید تا پسورد عوض شود.
 			</small>
 		</div>
-		<div class="well center">
-			<small>
-				برای آپلود کردن عکس، روی عکس پروفایل کلیک کنید و عکسی مربع داخل کامپیوتر خود انتخاب کنید که بیشتر ار ۱۰۰
-				کیلو بایت نباشد. آپلود عکس برای پروفایل خود ضروری نیست امـــا باعث این خواهد شد که مدیران سایت شما را به
-				چهره بشناسند.
-			</small>
-		</div>
-		<div class="well center">
+		<div class="alert alert-info">
 			<small>
 				لطفا ایمیل خود را بروز نگه دارید چرا که تمامی اطلاعات، خبرنامه، بازیافت پسورد یا اسم کاربری و شناسه
 				کاربری و پرداختی شما همه به ایمیلی که وارد کردید رابطه دارند. مسئولیت اشتباه وارد کردن ایمیل به عهده

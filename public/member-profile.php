@@ -34,22 +34,32 @@ $errors = "";
 			<dt>ایمیل:</dt>
 			<dd class="arial"><?php echo !empty($member->email) ? htmlentities(strtolower($member->email)) : "-"; ?></dd>
 			<dt>&nbsp;</dt>
+			<dd><a href="member-edit-profile" class="btn btn-primary">ویرایش</a></dd>
+			<dt>&nbsp;</dt>
 			<dd>
-				<a href="member-edit-profile" class="btn btn-primary">ویرایش</a>
+				<div class="alert alert-info">
+					<i class="fa fa-info-circle fa-lg"></i> بچه ها اگر آواتار یا عکس پروفایل ندارید
+					<a target="_blank" data-toggle="tooltip" title="آپلود کنید" href="http://fa.gravatar.com/">اینجا رو کلیک کنید</a>
+					                                                         تا آپلود کنید. اگر می دونید گراواتار چیه که خیلی هم عالی ولی اگر نمیدونید خوب گراواتار جایی
+					                                                         هست که شما عکسی یا آواتاری از خودتون آپلود می کنید فقط برای یکبار اما تمام جاهای دیگه و سایت
+					                                                         ها از این عکس که مربوط به ایمیل آدرسی هست که شما ثبت نام کردید ازش استفاده می کنند.
+				</div>
 			</dd>
 		</dl>
 	</article>
 </section>
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside>
-		<h2>عکس پروفایل</h2>
-		<?php if(empty($member->photo)) { ?>
-			<div class="">
-				<span class="glyphicon glyphicon-user center" style="font-size: 150px;"></span>
-			</div>
-		<?php } else { ?>
-			<img class="img-responsive img-thumbnail center" width="200" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($member->photo); ?>">
-		<?php } ?>
+		<h2>آواتار</h2>
+		<?php //if(empty($member->photo)) { ?>
+		<!--	<div class="">-->
+		<!--		<span class="glyphicon glyphicon-user center" style="font-size: 150px;"></span>-->
+		<!--	</div>-->
+		<?php //} else { ?>
+		<!--	<img class="img-responsive img-thumbnail center" width="200" alt="Profile Picture" src="data:image/jpeg;base64,-->
+		<?php //echo base64_encode($member->photo); ?><!--">-->
+		<?php //} ?>
+		<img class="img-thumbnail" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=300&d=https://laracasts.com/images/default-gravatar-pic.png" alt="<?php echo $member->email; ?>">
 		<h2>حذف عضویت</h2>
 		<p>با کلیلک روی این دگمه حساب کاربری شما به کلی حذف خواهد شد. بنابراین مواظب باشید اگر می خواهید روی این دگمه کلیک
 		   کنید.</p>

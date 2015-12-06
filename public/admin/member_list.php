@@ -53,7 +53,7 @@ echo output_message($message);
 						} else {
 							echo "";
 						} ?>">
-							<td><img class="img-rounded" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=30" alt="<?php echo $member->email; ?>"></td>
+							<td><img class="img-circle" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=30" alt="<?php echo $member->email; ?>"></td>
 							<td class="arial">
 								<small><?php echo htmlentities($member->username); ?></small>
 							</td>

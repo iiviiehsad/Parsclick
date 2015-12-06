@@ -42,17 +42,13 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 			<?php foreach($comments as $comment) { ?>
 				<section class="media">
 					<?php $_member = Member::find_by_id($comment->member_id); ?>
-					<?php if(empty($_member->photo)) { ?>
-						<i style="font-size:50px;" class="fa fa-user <?php echo $_member->id == 100 ? 'text-success' : ''; ?> pull-right"></i>
-					<?php } else { ?>
-						<img style="width:50px;height:50px;" class="img-responsive img-rounded pull-right" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($_member->photo); ?>"/>
-					<?php } ?>
+					<img class="img-circle pull-right" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50" alt="<?php echo $_member->email; ?>">
 					<div class="media-body">
 						<span class="badge"><?php echo htmlentities($_member->first_name); ?></span>
 						<span class="badge arial"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
 						<?php if($comment->member_id === $session->id) { ?>
-							<a href="member-delete-comment?id=<?php echo urlencode($comment->id); ?>" class="badge" onclick="return confirm('آیا مطمئن هستید؟')">
-								<i class="fa fa-trash-o"></i>
+							<a href="member-delete-comment?id=<?php echo urlencode($comment->id); ?>" class="badge label-danger" onclick="return confirm('آیا مطمئن هستید؟')">
+								<i class="fa fa-times"></i>
 							</a>
 						<?php } ?>
 						<br/>
@@ -84,7 +80,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 						<?php if($pagination->has_next_page()) { ?>
 							<li>
 								<a href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id) ?>&page=<?php echo urlencode($pagination->next_page()); ?>" aria-label="Next">
-									<span aria-hidden="true"> &gt;&gt; </span>
+									<span aria-hidden="true">&gt;&gt;</span>
 								</a>
 							</li>
 						<?php } // end: if($pagination->has_next_page()) ?>
@@ -92,7 +88,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 				</nav>
 			<?php } // end pagination?>
 			<?php if(empty($comments)) { ?>
-				<h3><span class="badge">نظری وجود ندارد</span></h3>
+				<h3><span class="badge">نظری وجود ندارد. اولین نفری باشید که نظر می دهید.</span></h3>
 			<?php } ?>
 			<br/>
 			<fieldset>
@@ -101,11 +97,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 					<!--content-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
-							<?php if(empty($member->photo)) { ?>
-								<i style="font-size:50px;margin-right:25px;" class="fa fa-user pull-right"></i>
-							<?php } else { ?>
-								<img style="width:50px;height:50px;margin-right:25px;" class="img-responsive img-rounded pull-right" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($member->photo); ?>">
-							<?php } ?>
+							<img class="img-circle pull-left" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=100" alt="<?php echo $_member->email; ?>">
 						</label>
 						<div class="controls">
 							<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" rows="7" required placeholder=" نظرتان را اینجا وارد کنید و این تگ ها هم قابل استفاده اند <strong><pre><code><em><p>"></textarea>
@@ -116,7 +108,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 						<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
 							<a class="btn btn-danger" href="member-courses?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>">لغو</a>
 							<button class="btn btn-success" name="submit" id="submit" type="submit">
-								فرستادن
+								بفرست
 							</button>
 						</div>
 					</section>
@@ -126,8 +118,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside class="members_menu">
-			<hgt
-			;&gtها و نظرات</h2>
+			<h2>درس ها و نظرات</h2>
 			<?php echo member_comments_for_course($current_category, $current_course); ?>
 		</aside>
 	</section>

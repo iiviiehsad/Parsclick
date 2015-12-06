@@ -29,7 +29,7 @@ echo output_message($message);
 							<span class="yekan"><?php echo htmlentities($_member->full_name()); ?></span>
 							<?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
 						<a class="badge label-danger" href="admin_delete_comment.php?id=<?php echo urlencode($comment->id); ?>">
-							<span class="glyphicon glyphicon-remove"></span>
+							<i class="fa fa-times"></i>
 						</a>
 						<p><?php echo strip_tags($comment->body, '<strong><em><p><pre>'); ?></p>
 					</div>
@@ -78,9 +78,7 @@ echo output_message($message);
 				<dt>اسم درس:</dt>
 				<dd><?php echo htmlentities($current_course->name); ?></dd>
 				<dt>توضیحات:</dt>
-				<dd>
-					<small><?php echo htmlentities($current_course->content); ?></small>
-				</dd>
+				<dd><small><?php echo htmlentities($current_course->content); ?></small></dd>
 				<dt>موضوع:</dt>
 				<dd><?php echo htmlentities(Category::find_by_id($current_course->category_id)->name); ?></dd>
 				<dt>نویسنده:</dt>

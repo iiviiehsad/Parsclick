@@ -12,7 +12,7 @@ $newest_article = Article::find_newest_article();
 <?php include("_/components/php/member_nav.php"); ?>
 <?php echo output_message($message); ?>
 <div class="jumbotron hidden-sm wow fadeIn member-jumbotron">
-	<img class="pull-left img-rounded" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>" alt="<?php echo $member->email; ?>">
+	<img class="pull-left img-circle" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=150" alt="<?php echo $member->email; ?>">
 	<h1>خوش آمدید <?php echo ucwords(strtolower($member->full_name())); ?></h1>
 	<p>شما دسترسی به یکی از بزرگترین کتابخانه ویدئویی رایگان پارسی زبانان را دارید. لطفا از دوستان خود دعوت کنید که به ما
 		بپیوندند.</p>
