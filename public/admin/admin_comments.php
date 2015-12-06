@@ -23,19 +23,15 @@ echo output_message($message);
 			<?php foreach($comments as $comment) { ?>
 				<section class="media">
 					<?php $_member = Member::find_by_id($comment->member_id); ?>
-					<?php if(empty($_member->photo)) { ?>
-						<span style="font-size:45px;" class="glyphicon glyphicon-user pull-right"></span>
-					<?php } else { ?>
-						<img style="width:60px;height:50px;" class="img-responsive img-rounded pull-right" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($_member->photo); ?>">
-					<?php } ?>
+					<img class="img-rounded pull-right" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50" alt="<?php echo $_member->email; ?>">
 					<div class="media-body arial">
 						<span class="badge">
 							<span class="yekan"><?php echo htmlentities($_member->full_name()); ?></span>
 							<?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
-						<a class="badge" href="admin_delete_comment.php?id=<?php echo urlencode($comment->id); ?>">
+						<a class="badge label-danger" href="admin_delete_comment.php?id=<?php echo urlencode($comment->id); ?>">
 							<span class="glyphicon glyphicon-remove"></span>
 						</a>
-						<p style="margin-top:5px;"><?php echo strip_tags($comment->body, '<strong><em><p>'); ?></p>
+						<p><?php echo strip_tags($comment->body, '<strong><em><p><pre>'); ?></p>
 					</div>
 				</section>
 			<?php } // end foreach comments ?>
