@@ -26,7 +26,10 @@ echo output_message($message);
 					<tbody>
 					<?php foreach($admin_set as $admin): ?>
 						<tr>
-							<td class="arial"><?php echo htmlentities($admin->username); ?></td>
+							<td class="arial">
+								<img class="img-rounded" src="http://gravatar.com/avatar/<?php echo md5($admin->email); ?>?s=30" alt="<?php echo $admin->email; ?>">
+								<?php echo htmlentities($admin->username); ?>
+							</td>
 							<td><?php echo htmlentities(ucfirst(strtolower($admin->first_name))); ?></td>
 							<td><?php echo htmlentities(ucfirst(strtolower($admin->last_name))); ?></td>
 							<td class="arial">

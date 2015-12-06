@@ -30,7 +30,7 @@ echo output_message($message);
 				<table class="table table-hover table-condensed">
 					<thead>
 					<tr>
-						<th></th>
+						<th>آواتار</th>
 						<th>اسم کاربری</th>
 						<th>نام</th>
 						<th>نام خانوادگی</th>
