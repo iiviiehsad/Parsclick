@@ -861,7 +861,8 @@ function active()
 {
 	global $filename;
 	if(($filename == "index.php") || ($filename == "member.php") || ($filename == "admin.php") ||
-	   ($filename == "author.php")) {
+	   ($filename == "author.php")
+	) {
 		echo "<script>$(\"a:contains('خانه')\").parent().addClass('active');</script>";
 	} elseif($filename == "authors.php") {
 		echo "<script>$(\"a:contains('نویسندگان')\").parent().addClass('active');</script>";

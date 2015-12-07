@@ -10,7 +10,7 @@
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book fa-lg"></i> محتوی <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-					<li><a tabindex="-1" href="member-courses"><i class="fa fa-film fa-lg"></i> درس ها</a></li>
+					<li><a tabindex="-1" href="member-courses"><i class="fa fa-film fa-lg"></i> دروس</a></li>
 					<li><a tabindex="-1" href="member-articles"><i class="fa fa-newspaper-o fa-lg"></i> مقالات</a></li>
 				</ul>
 			</li>
