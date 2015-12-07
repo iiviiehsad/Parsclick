@@ -34,9 +34,9 @@ include_layout_template("admin_header.php");
 include("../_/components/php/admin_nav.php");
 echo output_message($message, $errors);
 ?>
-	<section class="main col-sm-12 col-md-8 col-xs-12 col-sm-8 col-md-8 col-lg-8">
+	<section class="main col-xs-12 col-sm-12 col-md-9 col-lg-9">
 		<article>
-			<h2><i class="fa fa-pencil-square-o"></i> ویرایش عضویت </h2>
+			<h2><i class="fa fa-pencil-square"></i> ویرایش عضویت </h2>
 
 			<form class="form-horizontal" action="edit_member.php?id=<?php echo urlencode($member->id); ?>" method="post" role="form">
 				<fieldset>
@@ -160,17 +160,10 @@ echo output_message($message, $errors);
 			</form>
 		</article>
 	</section>
-	<section class="sidebar col-sm-12 col-md-4 col-xs-12 col-sm-4 col-md-4 col-lg-4">
+	<section class="sidebar col-xs-12 col-sm-12 col-md-3 col-lg-3">
 		<aside>
-			<h2>عکس پروفایل</h2>
-			<?php if(empty($member->photo)) { ?>
-				<span class="fa-stack center" style="font-size: 800%;">
-				  <i class="fa fa-square-o fa-stack-2x"></i>
-				  <i class="fa fa-user fa-stack-1x"></i>
-				</span>
-			<?php } else { ?>
-				<img class="img-responsive img-thumbnail" height="200" width="200" alt="عکس پروفایل" src="data:image/jpeg;base64,<?php echo base64_encode($member->photo); ?>">
-			<?php } ?>
+			<h2>آواتار</h2>
+			<img class="img-circle center" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=300&d=<?php echo 'http://' . DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->email; ?>">
 		</aside>
 	</section>
 <?php include_layout_template("admin_footer.php"); ?>

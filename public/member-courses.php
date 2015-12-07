@@ -18,16 +18,11 @@ if(isset($current_course->author_id)) {
 				<h1><?php echo htmlentities($current_course->name); ?></h1>
 				<h4>
 					<?php if(isset($author)) {
-						if(empty($author->photo)) { ?>
-							<i class="fa fa-user fa-2x"></i>
-						<?php } else { ?>
-							<img style="width:50px;height:50px;" class="img-responsive img-rounded" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
-						<?php }
 						echo $author->full_name();
 					} ?>
 				</h4>
 				<a class="btn btn-primary pull-right" href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" data-placement="bottom" title="سوالات و نظرات"><i class="fa fa-comments fa-lg"></i>
-					نظرات <?php echo "<span class='badge'>" . Comment::count_comments_for_course($current_course->id) . "</span>"; ?>
+					نظرات <?php echo "<span class='label label-danger label-as-badge'>" . Comment::count_comments_for_course($current_course->id) . "</span>"; ?>
 				</a>
 				&nbsp;
 				<!-- ------------------------------------------------------------------------------------------------- -->

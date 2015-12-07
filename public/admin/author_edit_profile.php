@@ -56,13 +56,13 @@ include_layout_template("admin_header.php");
 include("../_/components/php/author_nav.php");
 echo output_message($message, $errors);
 ?>
-<section class="main col-sm-12 col-md-8 col-lg-8">
+<section class="main col-sm-12 col-md-9 col-lg-9">
 	<article>
-		<h2><i class="fa fa-pencil-square-o"></i> ویرایش پروفایل</h2>
+		<h2>ویرایش پروفایل</h2>
 
-		<form class="registration form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+		<form class="registration form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
 			<fieldset id="login">
-				<legend><i class="fa fa-user"></i> <?php echo ucwords(strtolower($author->full_name())); ?></legend>
+				<legend><?php echo ucwords(strtolower($author->full_name())); ?></legend>
 				<section class="row">
 					<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="username">اسم کاربری</label>
 					<div class="controls">
@@ -101,7 +101,7 @@ echo output_message($message, $errors);
 						</label>
 						<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $MAX_FILE_SIZE; ?>"/>
 						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="file" name="photo" id="photo" accept="image/*"/>
-						&nbsp;&nbsp;&nbsp;<span>اندازه: ۱۰۰ کیلوبایت</span>
+						&nbsp;&nbsp;&nbsp;<small>اندازه: ۱۰۰ کیلوبایت</small>
 					</div>
 				</section>
 				<section class="row">
@@ -115,14 +115,14 @@ echo output_message($message, $errors);
 		</form>
 	</article>
 </section>
-<section class="sidebar col-sm-12 col-md-4 col-lg-4">
+<section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside class="members_menu">
-		<h2><i class="fa fa-picture-o"></i> عکس پروفایل</h2>
+		<h2>آواتار</h2>
 		<?php if(empty($author->photo)) { ?>
 			<span class="glyphicon glyphicon-user center" style="font-size: 150px; margin: 0; padding: 0;"></span>
 			<span class="text-muted center">عکس پروفایل موجود نیست</span>
 		<?php } else { ?>
-			<img class="img-responsive img-thumbnail center" height="200" width="200" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
+			<img class="img-responsive img-thumbnail center" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 			<br/>
 			<a class="btn btn-default btn-small center" href="author_remove_photo.php" onclick="return confirm('آیا مطمئن به حذف کردن عکس پروفایل خود هستید؟')">
 				حذف عکس پروفایل

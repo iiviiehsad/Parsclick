@@ -12,16 +12,16 @@ echo output_message($message);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<?php if($current_subject && $current_article) { ?>
+					<?php $_author = Author::find_by_id($current_article->author_id); ?>
 				<h1>
-					<?php echo $current_article->visible ==
-					           1 ? '<i class="fa fa-eye"></i>' : '<i class="text-danger fa fa-eye-slash"></i>'; ?>
-					&nbsp;
+					<?php echo $current_article->visible == 1 ? '<i class="fa fa-eye"></i>' : '<i class="text-danger fa fa-eye-slash"></i>'; ?>
 					<?php echo htmlentities(ucwords($current_article->name)); ?>
 				</h1>
 				<h4 class="text-success">
-					نویسنده:
-					<?php echo isset($current_article->author_id) ? htmlentities(Author::find_by_id($current_article->author_id)
-					                                                                   ->full_name()) : "-"; ?>
+					<?php if(!empty($_author->photo)) { ?>
+						<img class="img-circle" width="50" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($_author->photo); ?>">
+					<?php } ?>
+					<?php echo isset($current_article->author_id) ? htmlentities($_author->full_name()) : "-"; ?>
 				</h4>
 				<?php if(check_ownership($current_article->author_id, $session->id)) { ?>&nbsp;
 					<a class="btn btn-primary btn-small" href="author_edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">

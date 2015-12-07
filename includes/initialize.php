@@ -8,7 +8,8 @@ defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 defined('SITE_ROOT') ? null : define("SITE_ROOT", dirname(dirname(__FILE__)));
 //	define('SITE_ROOT', DS . 'Users' . DS . 'hasan_azimi0' . DS . 'Sites' . DS . 'OnlineLibrarySystem');
 // TODO: Change this after getting a domain if needed and possibly adding http:// before it
-defined('DOMAIN') ? null : define('DOMAIN', $_SERVER['HTTP_HOST']);
+//defined('DOMAIN') ? null : define('DOMAIN', $_SERVER['HTTP_HOST']);
+defined('DOMAIN') ? null : define('DOMAIN', 'www.parsclick.net');
 
 defined('LIB_PATH') ? null : define('LIB_PATH', SITE_ROOT . DS . 'includes');
 

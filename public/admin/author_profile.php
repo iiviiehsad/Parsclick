@@ -10,7 +10,7 @@ echo output_message($message);
 ?>
 <section class="main col-sm-12 col-md-9 col-lg-9">
 	<article>
-		<h2><i class="fa fa-user"></i> پروفایل <?php echo ucwords(strtolower($author->full_name())); ?></h2>
+		<h2>اطلاعات نویسنده <?php echo ucwords(strtolower($author->full_name())); ?></h2>
 		<dl class="dl-horizontal">
 			<dt>اسم کاربری:</dt>
 			<dd class="arial"><?php echo htmlentities($author->username); ?></dd>
@@ -25,19 +25,19 @@ echo output_message($message);
 			<dt>وضعیت:</dt>
 			<dd><?php echo htmlentities($author->status == 1) ?  "فعال" : "معوق"; ?></dd>
 			<dt>&nbsp;</dt>
-			<dd><a href="author_edit_profile.php" class="btn btn-success"><i class="fa fa-pencil-square-o"></i> ویرایش</a></dd>
+			<dd><a href="author_edit_profile.php" class="btn btn-primary"> ویرایش</a></dd>
 		</dl>
 	</article>
 </section>
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside class="members_menu">
-		<h2><i class="fa fa-picture-o"></i> عکس پروفایل</h2>
+		<h2>آواتار</h2>
 		<?php if(empty($author->photo)) { ?>
 			<div>
 				<span class="glyphicon glyphicon-user center" style="font-size: 150px;"></span>
 			</div>
 		<?php } else { ?>
-			<img class="img-responsive img-thumbnail" height="200" width="200" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
+			<img class="img-circle" height="200" width="200" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 		<?php } ?>
 	</aside>
 </section>

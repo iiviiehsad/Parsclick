@@ -249,6 +249,9 @@ a:hover, a:focus {
 	ol, ul {
 		margin-right : 30px;
 	}
+	h1, h2, h3 {
+		text-align : right;
+	}
 }
 
 #member_article {
@@ -426,6 +429,12 @@ footer {
 
 .pagination { border-left : 1px solid #CCC; }
 
+.label-as-badge {
+	display       : inline-block;
+	min-width     : 10px;
+	border-radius : 1em;
+}
+
 .breadcrumb > li:after {
 	display : inline-block;
 	content : "";
@@ -465,10 +474,9 @@ footer {
 }
 
 .center {
-	text-align : center;
 	margin     : auto;
-	display    : block;
-	width      : 100% !important;
+	text-align : center;
+	display    : inherit;
 }
 
 .btn { margin : 1% 0; }

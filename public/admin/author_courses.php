@@ -29,11 +29,9 @@ echo output_message($message, $errors);
 			<?php if($current_category && $current_course) { ?>
 				<h1>
 					<?php echo $current_course->visible == 1 ? '<i class="fa fa-eye"></i>' : '<i class="text-danger fa fa-eye-slash"></i>'; ?>
-					&nbsp;
 					<?php echo htmlentities(ucwords($current_course->name)); ?>
 				</h1>
 				<h4 class="text-success">
-					نویسنده:
 					<?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)->full_name()) : '-'; ?>
 				</h4>
 				<?php if(check_ownership($current_course->author_id, $session->id)) { ?>

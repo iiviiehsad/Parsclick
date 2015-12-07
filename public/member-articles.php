@@ -23,7 +23,7 @@ if(isset($current_article->author_id)) { // find the author for the article
 								if(empty($author->photo)) { ?>
 									<i class="fa fa-user fa-lg"></i>&nbsp;
 								<?php } else { ?>
-									<img style="width:50px;height:50px;" class="img-responsive img-rounded" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
+									<img style="width:50px;height:50px;" class="img-responsive img-circle" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
 								<?php }
 								echo "توسط: " . $author->full_name();
 							} ?>

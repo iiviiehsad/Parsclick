@@ -51,15 +51,7 @@ $errors = "";
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside>
 		<h2>آواتار</h2>
-		<?php //if(empty($member->photo)) { ?>
-		<!--	<div class="">-->
-		<!--		<span class="glyphicon glyphicon-user center" style="font-size: 150px;"></span>-->
-		<!--	</div>-->
-		<?php //} else { ?>
-		<!--	<img class="img-responsive img-thumbnail center" width="200" alt="Profile Picture" src="data:image/jpeg;base64,-->
-		<?php //echo base64_encode($member->photo); ?><!--">-->
-		<?php //} ?>
-		<img class="img-thumbnail" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=300&d=https://laracasts.com/images/default-gravatar-pic.png" alt="<?php echo $member->email; ?>">
+		<img class="img-thumbnail center" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=200&d=<?php echo DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->email; ?>">
 		<h2>حذف عضویت</h2>
 		<p>با کلیلک روی این دگمه حساب کاربری شما به کلی حذف خواهد شد. بنابراین مواظب باشید اگر می خواهید روی این دگمه کلیک
 		   کنید.</p>

@@ -33,7 +33,7 @@ if(isset($_POST['submit'])) {
  include("../_/components/php/admin_nav.php");
  echo output_message($message, $errors);
 ?>
-	<section class="main col-sm-12 col-md-8 col-lg-8">
+	<section class="main col-sm-12 col-md-9 col-lg-9">
 		<article>
 			<h2><i class="fa fa-pencil-square-o"></i> ویرایش مدیر</h2>
 
@@ -94,7 +94,7 @@ if(isset($_POST['submit'])) {
 			</form>
 		</article>
 	</section>
-	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
+	<section class="sidebar col-sm-12 col-md-3 col-lg-3">
 		<aside>
 			<h2>عوض کردن پسورد</h2>
 			<p>اسم شما <?php echo $yourself->full_name(); ?> است.</p>

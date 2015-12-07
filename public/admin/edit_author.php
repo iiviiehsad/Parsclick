@@ -28,9 +28,9 @@ if(isset($_POST['submit'])) {
  include("../_/components/php/admin_nav.php");
  echo output_message($message, $errors);
 ?>
-	<section class="main col-sm-12 col-md-8 col-lg-8">
+	<section class="main col-sm-12 col-md-9 col-lg-9">
 		<article>
-			<h2><i class="fa fa-pencil-square-o"></i> ویرایش نویسنده</h2>
+			<h2><i class="fa fa-pencil-square"></i> ویرایش نویسنده</h2>
 
 			<form class="form-horizontal" action="edit_author.php?id=<?php echo urlencode($author->id); ?>" method="post" role="form">
 				<fieldset>
@@ -102,13 +102,13 @@ if(isset($_POST['submit'])) {
 			</form>
 		</article>
 	</section>
-	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
+	<section class="sidebar col-sm-12 col-md-3 col-lg-3">
 		<aside>
-			<h2>عکس پروفایل</h2>
+			<h2>آواتار</h2>
 			<?php if(empty($author->photo)) { ?>
 				<p class="text-muted center">عکس پروفایل موجود نیست.</p>
 			<?php } else { ?>
-				<img class="img-responsive img-thumbnail" style="height: 200px; width: 200px;" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
+				<img class="img-thumbnail center" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 			<?php } ?>
 		</aside>
 	</section>
