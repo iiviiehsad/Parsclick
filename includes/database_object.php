@@ -48,7 +48,7 @@ class DatabaseObject {
 
 	public static function find_by_token($token = "") {
 		global $database;
-		$result_array = self::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE token = '" . $database->escape_value($token) . "' LIMIT 1");
+		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE token = '" . $database->escape_value($token) . "' LIMIT 1");
 		return !empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
@@ -151,7 +151,7 @@ class DatabaseObject {
 	}
 
 	public function set_user_reset_token($username, $token_value) {
-		$user = self::find_by_username($username);
+		$user = static::find_by_username($username);
 		if($user) {
 			$user->token = $token_value;
 			$user->update();
@@ -172,7 +172,7 @@ class DatabaseObject {
 	}
 
 	public function email_reset_token($username) {
-		$user      = self::find_by_username($username);
+		$user      = static::find_by_username($username);
 		$site_root = DOMAIN;
 		if($user && isset($user->token)) {
 			$mail = new PHPMailer();

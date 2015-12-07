@@ -861,17 +861,12 @@ function active()
 {
 	global $filename;
 	if(($filename == "index.php") || ($filename == "member.php") || ($filename == "admin.php") ||
-	   ($filename == "author.php")
-	) {
+	   ($filename == "author.php")) {
 		echo "<script>$(\"a:contains('خانه')\").parent().addClass('active');</script>";
 	} elseif($filename == "authors.php") {
 		echo "<script>$(\"a:contains('نویسندگان')\").parent().addClass('active');</script>";
 	} elseif($filename == "about.php") {
 		echo "<script>$(\"a:contains('درباره ما')\").parent().addClass('active');</script>";
-	} elseif($filename == "courses.php") {
-		echo "<script>$(\"a:contains('درس ها')\").parent().addClass('active');</script>";
-	} elseif($filename == "articles.php") {
-		echo "<script>$(\"a:contains('مقالات')\").parent().addClass('active');</script>";
 	} elseif($filename == "faq.php") {
 		echo "<script>$(\"a:contains('سوالات شما')\").parent().addClass('active');</script>";
 	} elseif($filename == "help.php") {
@@ -887,15 +882,23 @@ function active()
 	         ($filename == "author_edit_article.php") || ($filename == "new_course.php") ||
 	         ($filename == "author_edit_course.php") || ($filename == "author_add_video.php") ||
 	         ($filename == "author_edit_video_description.php") || ($filename == "edit_video_description.php") ||
-	         ($filename == "admin_comments.php") || ($filename == "edit_course.php")
+	         ($filename == "admin_comments.php") || ($filename == "edit_course.php") || ($filename == "courses.php") ||
+	         ($filename == "articles.php") || ($filename == "member-courses.php") || ($filename == "member-articles.php")
 	) {
 		echo "<script>$(\"a:contains('محتوی')\").parent().addClass('active');</script>";
+		if(($filename == "courses.php") || ($filename == "member-courses.php") || ($filename == "admin_courses.php") ||
+		   ($filename == "author_courses.php")
+		) {
+			echo "<script>$(\"a:contains('دروس')\").parent().addClass('active');</script>";
+		} elseif(($filename == "articles.php") || ($filename == "admin_articles.php") ||
+		         ($filename == "author_articles.php") || ($filename == "member-articles.php")
+		) {
+			echo "<script>$(\"a:contains('مقالات')\").parent().addClass('active');</script>";
+		}
 	} elseif(($filename == "member-profile.php") || ($filename == "member-edit-profile.php") ||
 	         ($filename == "author_profile.php") || ($filename == "author_edit_profile.php")
 	) {
 		echo "<script>$(\"a:contains('حساب کاربری')\").parent().addClass('active');</script>";
-	} elseif(($filename == "member-courses.php") || ($filename == "member-articles.php")) {
-		echo "<script>$(\"a:contains('محتوی')\").parent().addClass('active');</script>";
 	} elseif($filename == "member-playlist.php") {
 		echo "<script>$(\"a:contains('لیست پخش')\").parent().addClass('active');</script>";
 	} elseif(($filename == "member_list.php") || ($filename == "edit_member.php") || ($filename == "new_member.php")) {

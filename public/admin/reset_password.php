@@ -69,17 +69,16 @@ include_layout_template("admin_header.php");
 						<div class="controls">
 							<div class="input-group">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-								<input onkeyup="checkPass();" class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="password" name="password" id="password" autofocus placeholder="New Password" required pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
+								<input onkeyup="checkPass();" class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" autofocus placeholder="New Password" required pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
 							</div>
 						</div>
 					</section>
 					<section class="row">
-						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="confirm_pass">تایید پسورد
-						                                                                                     جدید</label>
+						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="confirm_pass">تایید پسوردجدید</label>
 						<div class="controls">
 							<div class="input-group">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-								<input onkeyup="checkConfirmPass();" class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="password" name="password_confirm" id="confirm_pass" placeholder="Confirm New Password" required pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
+								<input onkeyup="checkConfirmPass();" class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password_confirm" id="confirm_pass" placeholder="Confirm New Password" required pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
 							</div>
 						</div>
 					</section>
@@ -87,7 +86,7 @@ include_layout_template("admin_header.php");
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit"></label>
 						<div class="controls">
 							<a href="index.php" class="btn btn-danger">لغو</a>
-							<button class="btn btn-primary" name="submit" id="submit" type="submit">برو
+							<button class="btn btn-primary" name="submit" id="submit" type="submit">عوض کن
 							</button>
 						</div>
 					</section>

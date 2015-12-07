@@ -14,27 +14,27 @@ $admin = Admin::find_by_id($session->id);
 		<h2>کارهایی که می توانید انجام دهید:</h2>
 		<br/><br/>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow bounceInUp">
-			<a href="member_list.php" title="Member List">
-				<i style="height:100px; font-size: 500%;" class="center fa fa-users fa-fw"></i>
-				<h4 class="center">اداره اعضا</h4>
+			<a href="member_list.php" title="اداره اعضا" data-toggle="tooltip">
+				<i style="height:100px; font-size: 500%;" class="fa fa-users fa-fw"></i><br>
+				<h4>اداره اعضا</h4>
 			</a>
 		</div>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow bounceInUp" data-wow-delay=".3s">
-			<a href="admin_articles.php" title="Articles">
-				<i style="height:100px; font-size: 500%;" class="center fa fa-newspaper-o fa-fw"></i>
-				<h4 class="center">اداره مقالات</h4>
+			<a href="admin_articles.php" title="اداره مقالات" data-toggle="tooltip">
+				<i style="height:100px; font-size: 500%;" class="fa fa-newspaper-o fa-fw"></i><br>
+				<h4>اداره مقالات</h4>
 			</a>
 		</div>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow bounceInUp" data-wow-delay=".6s">
-			<a href="admin_courses.php" title="Courses">
-				<i style="height:100px; font-size: 500%;" class="center fa fa-film fa-fw"></i>
-				<h4 class="center">اداره دروس</h4>
+			<a href="admin_courses.php" title="اداره دروس" data-toggle="tooltip">
+				<i style="height:100px; font-size: 500%;" class="fa fa-film fa-fw"></i><br>
+				<h4>اداره دروس</h4>
 			</a>
 		</div>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow bounceInUp" data-wow-delay=".9s">
-			<a href="admin_list.php" title="Admin List">
-				<i style="height:100px; font-size: 500%;" class="center fa fa-users fa-fw"></i>
-				<h4 class="center">اداره مدیران</h4>
+			<a href="admin_list.php" title="اداره مدیران" data-toggle="tooltip">
+				<i style="height:100px; font-size: 500%;" class="fa fa-users fa-fw"></i><br>
+				<h4>اداره مدیران</h4>
 			</a>
 		</div>
 	</article>
