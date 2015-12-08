@@ -10,7 +10,7 @@ $allowed_mime_types = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg'];
 $allowed_extensions = ['png', 'gif', 'jpg', 'jpeg'];
 if(isset($_POST['submit'])) {
 	$author->id       = $session->id;
-	$author->username = trim($_POST["username"]);
+	//$author->username = trim($_POST["username"]);
 	if(!empty($_POST["password"])) {
 		$author->password = $author->password_encrypt(trim($_POST["password"]));
 	}
@@ -66,7 +66,7 @@ echo output_message($message, $errors);
 				<section class="row">
 					<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="username">اسم کاربری</label>
 					<div class="controls">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" placeholder="Username" required value="<?php echo htmlentities($author->username); ?>"/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" placeholder="Username" disabled required value="<?php echo htmlentities($author->username); ?>"/>
 					</div>
 				</section>
 				<section class="row">
@@ -116,17 +116,18 @@ echo output_message($message, $errors);
 	</article>
 </section>
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
-	<aside class="members_menu">
+	<aside>
 		<h2>آواتار</h2>
 		<?php if(empty($author->photo)) { ?>
 			<span class="glyphicon glyphicon-user center" style="font-size: 150px; margin: 0; padding: 0;"></span>
 			<span class="text-muted center">عکس پروفایل موجود نیست</span>
 		<?php } else { ?>
 			<img class="img-thumbnail center" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
-			<br/>
-			<a class="btn btn-default btn-small center" href="author_remove_photo.php" onclick="return confirm('آیا مطمئن به حذف کردن عکس پروفایل خود هستید؟')">
-				حذف عکس پروفایل
-			</a>
+			<div class="center">
+				<a class="btn btn-default btn-small" href="author_remove_photo.php" onclick="return confirm('آیا مطمئن به حذف کردن عکس پروفایل خود هستید؟')">
+					حذف آواتار
+				</a>
+			</div>
 		<?php } ?>
 	</aside>
 </section>

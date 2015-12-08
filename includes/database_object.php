@@ -34,8 +34,10 @@ class DatabaseObject {
 	public static function find_by_username($username = "")
 	{
 		global $database;
-		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE username = '" .
-		                                    $database->escape_value($username) . "' LIMIT 1");
+		$result_array = static::find_by_sql(
+				"SELECT * FROM " . static::$table_name . " WHERE username = '" .
+				$database->escape_value($username) . "' LIMIT 1"
+		);
 		return !empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 

@@ -22,7 +22,7 @@ if($_POST) {
 				} elseif($_POST["password"] !== $_POST["confirm_pass"]) {
 					$errors = "پسورد ها مطابقت ندارند!";
 				} elseif(!has_length($_POST["password"], ['min' => 6])) {
-					$errors = "پسورد باید خراقل ۶ حروف یا بیشتر باشد!";
+					$errors = "پسورد باید حداقل ۶ حروف یا بیشتر باشد!";
 				} elseif(!has_format_matching($_POST["password"], '/[^A-Za-z0-9]/')) {
 					$errors = "حداقل از یک حرف مخصوص استفاده کنید!";
 				} elseif(Member::find_by_username(trim($_POST["username"]))) {

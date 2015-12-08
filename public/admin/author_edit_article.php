@@ -17,8 +17,8 @@ if(isset($_POST['submit'])) {
 	$current_article->subject_id = $current_subject->id;
 	$current_article->name       = $_POST["article_name"];
 	$current_article->content    = $_POST["content"];
-	$current_article->visible    = $_POST["visible"];
-	$result                      = $current_article->save();
+	if($author->id == 1) { $current_article->visible = $_POST["visible"]; }
+	$result = $current_article->save();
 	if($result) { // Success
 		$session->message("مقاله بروزرسانی شد.");
 		redirect_to("author_articles.php?subject=" . $current_subject->id . "&article=" . $current_article->id);
@@ -37,7 +37,8 @@ echo output_message($message, $errors);
 
 			<form class="form-horizontal" action="author_edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id) ?>" method="post" role="form">
 				<fieldset id="login">
-					<legend><i class="fa fa-newspaper-o"></i> <?php echo htmlentities(ucfirst($current_article->name)); ?></legend>
+					<legend><i class="fa fa-newspaper-o"></i> <?php echo htmlentities(ucfirst($current_article->name)); ?>
+					</legend>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="article_name">اسم مقاله</label>
 						<div class="controls">

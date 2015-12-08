@@ -33,11 +33,12 @@ class Member extends DatabaseObject {
 	public           $status;
 	public           $token;
 	public           $customer;
-
+	
 	/**
 	 * @return string jones the first name and last name with an space
 	 */
-	public function full_name() {
+	public function full_name()
+	{
 		if(isset($this->first_name) && isset($this->last_name)) {
 			return $this->first_name . " " . $this->last_name;
 		} else {
@@ -49,7 +50,8 @@ class Member extends DatabaseObject {
 	 * @param string $search gets the search query
 	 * @return array|null the result
 	 */
-	public static function search($search = "") {
+	public static function search($search = "")
+	{
 		global $database;
 		$sql = "SELECT * FROM " . self::$table_name . " WHERE ";
 		$sql .= "username LIKE '%{$database->escape_value($search)}%' ";
@@ -70,7 +72,8 @@ class Member extends DatabaseObject {
 	 * @param $password string gets the password from the user
 	 * @return string encrypts the password using Blowfish
 	 */
-	public function password_encrypt($password) {
+	public function password_encrypt($password)
+	{
 		// Newer version PHP v5.5+
 		// password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
 		$hash_format     = "$2y$10$";   // Tells PHP to use Blowfish with a "cost" of 10
@@ -85,7 +88,8 @@ class Member extends DatabaseObject {
 	 * @param $length int length of salt
 	 * @return string the salt
 	 */
-	private function generate_salt($length) {
+	private function generate_salt($length)
+	{
 		// Not 100% unique, not 100% random, but good enough for a salt
 		// MD5 returns 32 characters
 		$unique_random_string = md5(uniqid(mt_rand(), TRUE));
@@ -103,7 +107,8 @@ class Member extends DatabaseObject {
 	 * @param $existing_hash string has the existing hash
 	 * @return bool TRUE if existing hash matches the password and FALSE if not
 	 */
-	private static function password_check($password, $existing_hash) {
+	private static function password_check($password, $existing_hash)
+	{
 		// existing hash contains format and salt at start
 		$hash = crypt($password, $existing_hash);
 		if($hash === $existing_hash) {
@@ -118,7 +123,8 @@ class Member extends DatabaseObject {
 	 * @param string $password gets the password
 	 * @return bool|mixed TRUE if matches and FALSE if not
 	 */
-	public static function authenticate($username = "", $password = "") {
+	public static function authenticate($username = "", $password = "")
+	{
 		$user = self::find_by_username($username);
 		if($user) {
 			if(self::password_check($password, $user->hashed_password)) {
@@ -136,7 +142,8 @@ class Member extends DatabaseObject {
 	 * (BOOLEAN) is 0 or FALSE or 1 or TRUE. If the status is not TRUE then member will be redirected to the specific
 	 * page to prevent the member from using the system.
 	 */
-	public function check_status() {
+	public function check_status()
+	{
 		if($this->status == 0) {
 			redirect_to("freezed");
 		} elseif($this->status == 2) {
@@ -152,7 +159,8 @@ class Member extends DatabaseObject {
 	 * @throws \Exception
 	 * @throws \phpMailerException
 	 */
-	public function email_reset_token($username) {
+	public function email_reset_token($username)
+	{
 		$user      = self::find_by_username($username);
 		$site_root = DOMAIN;
 		if($user && isset($user->token)) {
@@ -202,7 +210,8 @@ EMAILBODY;
 	 * @throws \Exception
 	 * @throws \phpMailerException
 	 */
-	public function email_username($email) {
+	public function email_username($email)
+	{
 		$user      = self::find_by_email($email);
 		$site_root = DOMAIN;
 		if($user && isset($user->token)) {
@@ -250,7 +259,8 @@ EMAILBODY;
 	 * @throws \Exception
 	 * @throws \phpmailerException
 	 */
-	public function email_confirmation_details($username) {
+	public function email_confirmation_details($username)
+	{
 		$user      = self::find_by_username($username);
 		$site_root = DOMAIN;
 		if($user && isset($user->token)) {

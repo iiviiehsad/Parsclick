@@ -8,9 +8,15 @@ $member->check_status();
 $errors = "";
 if(isset($_POST['submit'])) {
 	$member->id       = $session->id;
-	$member->username = trim($_POST["username"]);
+	//$member->username = trim($_POST["username"]);
 	if(!empty($_POST["password"])) {
-		$member->hashed_password = $member->password_encrypt(trim($_POST["password"]));
+		if(!has_length($_POST["password"], ['min' => 6])) {
+			$errors = "پسورد باید حداقل ۶ حروف یا بیشتر باشد!";
+		} elseif(!has_format_matching($_POST["password"], '/[^A-Za-z0-9]/')) {
+			$errors = "حداقل از یک حرف مخصوص استفاده کنید!";
+		} else {
+			$member->hashed_password = $member->password_encrypt(trim($_POST["password"]));
+		}
 	}
 	$member->first_name = trim($_POST["first_name"]);
 	$member->last_name  = trim($_POST["last_name"]);
@@ -26,7 +32,7 @@ if(isset($_POST['submit'])) {
 		$session->message("پروفایل بروزرسانی شد.");
 		redirect_to("member-profile");
 	} else {
-		$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
+		$errors = "بروزرسانی پروفایل موفقیت آمیز نبود یا چیزی اصلا تغییر داده نشد!";
 	}
 } else {
 }
@@ -46,7 +52,7 @@ if(isset($_POST['submit'])) {
 				<section class="row">
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="username"> اسم کاربری &nbsp;</label>
 					<div class="controls">
-						<input onblur="checkUser();" onkeyup="checkUser();" class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" placeholder="Username (حروف انگلیسی)" required value="<?php echo htmlentities($member->username); ?>"/>
+						<input onblur="checkUser();" onkeyup="checkUser();" class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" placeholder="Username" disabled required value="<?php echo htmlentities($member->username); ?>"/>
 					</div>
 				</section>
 				<section class="row">
@@ -130,7 +136,9 @@ if(isset($_POST['submit'])) {
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside class="members_menu">
 		<h2><i class="fa fa-picture-o"></i> آواتار</h2>
-		<img class="img-thumbnail center" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=250&d=<?php echo DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->email; ?>">
+		<img class="img-thumbnail center" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=250&d=<?php echo DOMAIN .
+		                                                                                                                        DS .
+		                                                                                                                        'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->email; ?>">
 
 		<h2><i class="fa fa-info-circle"></i> اطلاعات</h2>
 		<div class="alert alert-info">
