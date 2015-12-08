@@ -4,9 +4,18 @@
 		<!--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
 	</ol>
 	<section class="carousel-inner" role="listbox">
-		<div class="item"><img src="images/carousel/hands.jpg" alt="Parsclick"></div>
+		<div class="item"><img src="images/carousel/hands.jpg" alt="Parsclick">
+			<div class="carousel-caption">
+				<h3>عضو شوید و ببینید این همه سروصدا برای چیست!</h3>
+			</div>
+		</div>
 		<div class="item"><img src="images/carousel/busylibrary.jpg" alt="Parsclick"></div>
-		<div class="item"><img src="images/carousel/laptop.jpg" alt="Parsclick"></div>
+		<div class="item">
+			<img src="images/carousel/laptop.jpg" alt="Parsclick">
+			<div class="carousel-caption">
+				<h3>زیبایی در سادگی است</h3>
+			</div>
+		</div>
 		<div class="item"><img src="images/carousel/spreadsheet.jpg" alt="Parsclick"></div>
 		<div class="item active">
 			<img src="images/carousel/library.jpg" alt="Parsclick">

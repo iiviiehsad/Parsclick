@@ -8,9 +8,9 @@
 	<section class="navbar">
 		<ul class="nav navbar-nav">
 			<li><a href="author.php"><i class="fa fa-home fa-lg"></i> خانه</a></li>
-			<li><a href="author_profile.php"><i class="fa fa-pencil-square-o fa-lg"></i> حساب کاربری</a></li>
+			<li><a href="author_profile.php"><i class="fa fa-pencil-square fa-lg"></i> حساب کاربری</a></li>
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-th-list fa-lg"></i> محتوی <span class="caret"><!--dropdown arrow--></span></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-th-list fa-lg"></i> محتوی <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 					<li><a tabindex="-1" href="author_courses.php"><i class="fa fa-film fa-lg"></i> دروس</a></li>
 					<li><a tabindex="-1" href="author_articles.php"><i class="fa fa-newspaper-o fa-lg"></i> مقالات</a></li>
