@@ -1,13 +1,9 @@
-<?php
-require_once(LIB_PATH . DS . 'database.php');
+<?php require_once(LIB_PATH . DS . 'database.php');
 
-/**
- * Class Course inherits from DatabaseObject Class to work with courses database table
- */
 class Course extends DatabaseObject {
 
 	protected static $table_name = "courses";
-	protected static $db_fields  = array(
+	protected static $db_fields  = [
 			'id',
 			'category_id',
 			'author_id',
@@ -17,7 +13,7 @@ class Course extends DatabaseObject {
 			'position',
 			'visible',
 			'content'
-	);
+	];
 	public           $id;
 	public           $category_id;
 	public           $author_id;
@@ -33,7 +29,8 @@ class Course extends DatabaseObject {
 	 * @param bool $public    TRUE is default and will display the hidden and FALSE will not display the hidden
 	 * @return bool|mixed set of courses
 	 */
-	public static function find_by_id($course_id = 0, $public = TRUE) {
+	public static function find_by_id($course_id = 0, $public = TRUE)
+	{
 		global $database;
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;
@@ -50,7 +47,8 @@ class Course extends DatabaseObject {
 	 * @param bool $public TRUE is default and will display the hidden and FALSE will not display the hidden
 	 * @return array of courses
 	 */
-	public static function find_all($public = TRUE) {
+	public static function find_all($public = TRUE)
+	{
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;
 		if($public) {
@@ -65,7 +63,8 @@ class Course extends DatabaseObject {
 	 * @param bool   $public TRUE is default and will display the hidden and FALSE will not display the hidden
 	 * @return array|null result
 	 */
-	public static function search($search = "", $public = TRUE) {
+	public static function search($search = "", $public = TRUE)
+	{
 		global $database;
 		$sql = "SELECT * FROM " . self::$table_name . " WHERE ";
 		$sql .= "name LIKE '%{$database->escape_value($search)}%'";
@@ -81,7 +80,8 @@ class Course extends DatabaseObject {
 	 * @param bool $public      TRUE is default and will display the hidden and FALSE will not display the hidden
 	 * @return mixed number of courses for the category
 	 */
-	public static function count_courses_for_category($category_id = 0, $public = TRUE) {
+	public static function count_courses_for_category($category_id = 0, $public = TRUE)
+	{
 		global $database;
 		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
 		$sql .= " WHERE category_id = " . $category_id;
@@ -98,7 +98,8 @@ class Course extends DatabaseObject {
 	 * @param bool $public      TRUE is default and will display the hidden and FALSE will not display the hidden
 	 * @return array of courses
 	 */
-	public static function find_courses_for_category($category_id = 0, $public = TRUE) {
+	public static function find_courses_for_category($category_id = 0, $public = TRUE)
+	{
 		global $database;
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;
@@ -114,7 +115,8 @@ class Course extends DatabaseObject {
 	 * @param int $category_id gets the category ID
 	 * @return int number of courses for category ID given
 	 */
-	public static function num_courses_for_category($category_id = 0) {
+	public static function num_courses_for_category($category_id = 0)
+	{
 		global $database;
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;
@@ -128,7 +130,8 @@ class Course extends DatabaseObject {
 	 * @param int $category_id gets the category ID
 	 * @return bool|mixed set of articles
 	 */
-	public static function find_default_course_for_category($category_id = 0) {
+	public static function find_default_course_for_category($category_id = 0)
+	{
 		$article_set = self::find_courses_for_category($category_id);
 		return !empty($article_set) ? array_shift($article_set) : FALSE;
 	}
@@ -137,7 +140,8 @@ class Course extends DatabaseObject {
 	 * Finds the comments for the course by using the function find_comments_for_course
 	 * @return array of comments for the course
 	 */
-	public function comments() {
+	public function comments()
+	{
 		return Comment::find_comments_for_course($this->id);
 	}
 
@@ -145,7 +149,8 @@ class Course extends DatabaseObject {
 	 * @param bool|TRUE $public sets TRUE if subject is visible and FALSE if subject is not visible
 	 * @return bool|mixed newest course
 	 */
-	public static function find_newest_course($public = TRUE) {
+	public static function find_newest_course($public = TRUE)
+	{
 		$sql = "SELECT * FROM " . self::$table_name;
 		if($public) {
 			$sql .= " WHERE visible = 1 ";

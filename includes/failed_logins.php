@@ -1,13 +1,9 @@
-<?php
-require_once(LIB_PATH . DS . 'database.php');
+<?php require_once(LIB_PATH . DS . 'database.php');
 
-/**
- * Class FailedLogins needs PHP v5.4+
- */
 class FailedLogins extends DatabaseObject {
 
 	protected static $table_name = "failed_logins";
-	protected static $db_fields  = array('id', 'username', 'count', 'last_time');
+	protected static $db_fields  = ['id', 'username', 'count', 'last_time'];
 	public           $id;
 	public           $username;
 	public           $count;
@@ -17,7 +13,8 @@ class FailedLogins extends DatabaseObject {
 	 * @param $username string gets from user input
 	 * @return bool TRUE if failed record is either created or updated and FALSE otherwise
 	 */
-	public function record_failed_login($username) {
+	public function record_failed_login($username)
+	{
 		global $database;
 		$failed_login = self::find_by_username($username);
 		if(!$failed_login) {
@@ -38,7 +35,8 @@ class FailedLogins extends DatabaseObject {
 	 * @param $username string gets from user input
 	 * @return bool TRUE if failed record is cleared and FALSE otherwise
 	 */
-	public static function clear_failed_logins($username) {
+	public static function clear_failed_logins($username)
+	{
 		$failed_login = self::find_by_username($username);
 		if($failed_login) {
 			$failed_login->count     = 0;
@@ -52,7 +50,8 @@ class FailedLogins extends DatabaseObject {
 	 * @param $username string gets from user input
 	 * @return float|int number of minutes user needs to wait and re-enter credentials again
 	 */
-	public static function throttle_failed_logins($username) {
+	public static function throttle_failed_logins($username)
+	{
 		$throttle_at      = 5;
 		$delay_in_minutes = 60;
 		$delay            = 60 * $delay_in_minutes;

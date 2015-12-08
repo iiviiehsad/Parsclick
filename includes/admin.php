@@ -1,13 +1,9 @@
-<?php
-require_once(LIB_PATH . DS . 'database.php');
+<?php require_once(LIB_PATH . DS . 'database.php');
 
-/**
- * Class Admin inherits from DatabaseObject Class to work with super_admin database table
- */
 class Admin extends DatabaseObject {
 
 	protected static $table_name = "super_admin";
-	protected static $db_fields  = array('id', 'username', 'password', 'first_name', 'last_name', 'email', 'token');
+	protected static $db_fields  = ['id', 'username', 'password', 'first_name', 'last_name', 'email', 'token'];
 	public           $id;
 	public           $username;
 	public           $password;
@@ -19,7 +15,8 @@ class Admin extends DatabaseObject {
 	/**
 	 * @return string containing first_name and last_name joined with an empty space
 	 */
-	public function full_name() {
+	public function full_name()
+	{
 		if(isset($this->first_name) && isset($this->last_name)) {
 			return $this->first_name . " " . $this->last_name;
 		} else {
@@ -31,7 +28,8 @@ class Admin extends DatabaseObject {
 	 * @param string $search gets the search query from the user
 	 * @return array|null result of an query search
 	 */
-	public static function search($search = "") {
+	public static function search($search = "")
+	{
 		global $database;
 		$sql = "SELECT * FROM " . self::$table_name . " WHERE ";
 		$sql .= "username LIKE '%{$database->escape_value($search)}%' ";
@@ -47,7 +45,8 @@ class Admin extends DatabaseObject {
 	 * @param $password string gets the password from the user
 	 * @return bool|string encrypts the password using Blowfish
 	 */
-	public function password_encrypt($password) {
+	public function password_encrypt($password)
+	{
 		// password_hash() needs PHP v5.5+
 		return password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
 	}
@@ -58,7 +57,8 @@ class Admin extends DatabaseObject {
 	 * @param string $password gets the password from the user
 	 * @return bool|mixed user fields if username and password match to user's input
 	 */
-	public static function authenticate($username = "", $password = "") {
+	public static function authenticate($username = "", $password = "")
+	{
 		$admin = self::find_by_username($username);
 		if($admin) {
 			// password_verify() needs PHP v5.5+

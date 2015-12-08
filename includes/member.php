@@ -1,11 +1,10 @@
-<?php
-require_once(LIB_PATH . DS . 'database.php');
+<?php require_once(LIB_PATH . DS . 'database.php');
 
 class Member extends DatabaseObject {
 
 	// Really important: array and properties MUST be exactly the same name as db columns
 	protected static $table_name = "members";
-	protected static $db_fields  = array(
+	protected static $db_fields  = [
 			'id',
 			'username',
 			'hashed_password',
@@ -19,7 +18,7 @@ class Member extends DatabaseObject {
 			'email',
 			'status',
 			'token'
-	);
+	];
 	public           $id;
 	public           $username;
 	public           $hashed_password;

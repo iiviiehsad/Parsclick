@@ -1,23 +1,19 @@
-<?php
-require_once(LIB_PATH . DS . 'database.php');
+<?php require_once(LIB_PATH . DS . 'database.php');
 
-/**
- * Class Author inherits from DatabaseObject Class to work with authors database table
- */
 class Author extends DatabaseObject {
 
 	protected static $table_name = "authors";
-	protected static $db_fields  = array(
-		'id',
-		'username',
-		'password',
-		'first_name',
-		'last_name',
-		'email',
-		'status',
-		'photo',
-		'token'
-	);
+	protected static $db_fields  = [
+			'id',
+			'username',
+			'password',
+			'first_name',
+			'last_name',
+			'email',
+			'status',
+			'photo',
+			'token'
+	];
 	public           $id;
 	public           $username;
 	public           $password;
@@ -32,14 +28,16 @@ class Author extends DatabaseObject {
 	 * Finds active authors
 	 * @return array
 	 */
-	public static function find_active_authors() {
+	public static function find_active_authors()
+	{
 		return self::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE status = 1");
 	}
 
 	/**
 	 * @return string containing first_name and last_name joined with an empty space
 	 */
-	public function full_name() {
+	public function full_name()
+	{
 		if(isset($this->first_name) && isset($this->last_name)) {
 			return $this->first_name . " " . $this->last_name;
 		} else {
@@ -51,7 +49,8 @@ class Author extends DatabaseObject {
 	 * @param string $search gets the search query
 	 * @return array|null the result
 	 */
-	public static function search($search = "") {
+	public static function search($search = "")
+	{
 		global $database;
 		$sql = "SELECT * FROM " . self::$table_name . " WHERE ";
 		$sql .= "username LIKE '%{$database->escape_value($search)}%' ";
@@ -67,7 +66,8 @@ class Author extends DatabaseObject {
 	 * @param $password string gets the password from the user
 	 * @return bool|string encrypts the password using Blowfish
 	 */
-	public function password_encrypt($password) {
+	public function password_encrypt($password)
+	{
 		// password_hash() needs PHP v5.5+
 		return password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
 	}
@@ -78,7 +78,8 @@ class Author extends DatabaseObject {
 	 * @param string $password gets the username from the user
 	 * @return bool|mixed fields if username and password match to user's input
 	 */
-	public static function authenticate($username = "", $password = "") {
+	public static function authenticate($username = "", $password = "")
+	{
 		$author = self::find_by_username($username);
 		if($author) {
 			// password_verify() needs PHP v5.5+
@@ -95,7 +96,8 @@ class Author extends DatabaseObject {
 	/**
 	 * This function checks the status to see if is TRUE or FALSE
 	 */
-	public function check_status() {
+	public function check_status()
+	{
 		if($this->status == 0) {
 			redirect_to("author_freezed.php");
 		} elseif($this->status == 2) {
@@ -106,7 +108,8 @@ class Author extends DatabaseObject {
 	/**
 	 * @return bool TRUE if photo is deleted and FALSE if not
 	 */
-	public function remove_photo() {
+	public function remove_photo()
+	{
 		global $database;
 		$sql = "UPDATE " . self::$table_name . " SET ";
 		$sql .= " photo = NULL ";
@@ -122,7 +125,8 @@ class Author extends DatabaseObject {
 	 * @throws \Exception
 	 * @throws \phpmailerException
 	 */
-	public function email_confirmation_details($username) {
+	public function email_confirmation_details($username)
+	{
 		$user      = self::find_by_username($username);
 		$site_root = DOMAIN;
 		if($user && isset($user->token)) {

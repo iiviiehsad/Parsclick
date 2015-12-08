@@ -15,7 +15,8 @@ class Session {
 	private $admin_logged_in  = FALSE;
 	private $author_logged_in = FALSE;
 
-	function __construct() {
+	function __construct()
+	{
 		session_start();
 		$this->check_message();
 		$this->check_login();
@@ -31,40 +32,47 @@ class Session {
 		}
 	}
 
-	public function is_logged_in() {
+	public function is_logged_in()
+	{
 		return (isset($this->logged_in) && $this->logged_in);
 	}
 
-	public function confirm_logged_in() {
+	public function confirm_logged_in()
+	{
 		if(!$this->is_logged_in() || !$this->is_session_valid()) {
 			$this->logout();
 			redirect_to("login");
 		}
 	}
 
-	public function is_admin_logged_in() {
+	public function is_admin_logged_in()
+	{
 		return (isset($this->admin_logged_in) && $this->admin_logged_in);
 	}
 
-	public function confirm_admin_logged_in() {
+	public function confirm_admin_logged_in()
+	{
 		if(!$this->is_admin_logged_in() || !$this->is_session_valid()) {
 			$this->logout();
 			redirect_to("index.php");
 		}
 	}
 
-	public function is_author_logged_in() {
+	public function is_author_logged_in()
+	{
 		return (isset($this->author_logged_in) && $this->author_logged_in);
 	}
 
-	public function confirm_author_logged_in() {
+	public function confirm_author_logged_in()
+	{
 		if(!$this->is_author_logged_in() || !$this->is_session_valid()) {
 			$this->logout();
 			redirect_to("index.php");
 		}
 	}
 
-	public function login($member) {
+	public function login($member)
+	{
 		if($member) {
 			session_regenerate_id();
 			$this->id               = $_SESSION['id'] = $member->id;
@@ -75,7 +83,8 @@ class Session {
 		}
 	}
 
-	public function admin_login($admin) {
+	public function admin_login($admin)
+	{
 		if($admin) {
 			session_regenerate_id();
 			$this->id               = $_SESSION['admin_id'] = $admin->id;
@@ -86,7 +95,8 @@ class Session {
 		}
 	}
 
-	public function author_login($author) {
+	public function author_login($author)
+	{
 		if($author) {
 			session_regenerate_id();
 			$this->id               = $_SESSION['author_id'] = $author->id;
@@ -97,12 +107,14 @@ class Session {
 		}
 	}
 
-	public function logout() {
+	public function logout()
+	{
 		session_unset();
 		session_destroy();
 	}
 
-	public function message($msg = "") {
+	public function message($msg = "")
+	{
 		if(!empty($msg)) {
 			$_SESSION['message'] = $msg;
 		} else {
@@ -110,12 +122,14 @@ class Session {
 		}
 	}
 
-	public function csrf_token_tag() {
+	public function csrf_token_tag()
+	{
 		$token = $this->create_csrf_token();
 		return "<input type=\"hidden\" name=\"csrf_token\" value=\"" . $token . "\">";
 	}
 
-	public function csrf_token_is_valid() {
+	public function csrf_token_is_valid()
+	{
 		if(isset($_POST['csrf_token'])) {
 			$user_token   = $_POST['csrf_token'];
 			$stored_token = $_SESSION['csrf_token'];
@@ -125,7 +139,8 @@ class Session {
 		}
 	}
 
-	public function csrf_token_is_recent() {
+	public function csrf_token_is_recent()
+	{
 		$max_elapsed = 60 * 60 * 24; // 1 day
 		if(isset($_SESSION['csrf_token_time'])) {
 			$stored_time = $_SESSION['csrf_token_time'];
@@ -136,30 +151,35 @@ class Session {
 		}
 	}
 
-	public function die_on_csrf_token_failure() {
+	public function die_on_csrf_token_failure()
+	{
 		if(!$this->csrf_token_is_valid()) {
 			die("CSRF token validation failed.");
 		}
 	}
 
-	private function csrf_token() {
+	private function csrf_token()
+	{
 		return md5(uniqid(rand(), TRUE));
 	}
 
-	private function create_csrf_token() {
+	private function create_csrf_token()
+	{
 		$token                       = $this->csrf_token();
 		$_SESSION['csrf_token']      = $token;
 		$_SESSION['csrf_token_time'] = time();
 		return $token;
 	}
 
-	private function destroy_csrf_token() {
+	private function destroy_csrf_token()
+	{
 		$_SESSION['csrf_token']      = NULL;
 		$_SESSION['csrf_token_time'] = NULL;
 		return TRUE;
 	}
 
-	public function request_is_same_domain() {
+	public function request_is_same_domain()
+	{
 		if(!isset($_SERVER['HTTP_REFERER'])) {
 			return FALSE;
 		} else {
@@ -169,7 +189,8 @@ class Session {
 		}
 	}
 
-	private function check_login() {
+	private function check_login()
+	{
 		if(isset($_SESSION['id'])) {
 			$this->id        = $_SESSION['id'];
 			$this->logged_in = TRUE;
@@ -187,7 +208,8 @@ class Session {
 		}
 	}
 
-	private function check_message() {
+	private function check_message()
+	{
 		// Is there a message stored in the session?
 		if(isset($_SESSION['message'])) {
 			// Add it as an attribute and erase the stored version
@@ -198,7 +220,8 @@ class Session {
 		}
 	}
 
-	private function allowed_get_params($allowed_params = []) {
+	private function allowed_get_params($allowed_params = [])
+	{
 		$allowed_array = [];
 		foreach($allowed_params as $param) {
 			if(isset($_GET[$param])) {
@@ -210,7 +233,8 @@ class Session {
 		return $allowed_array;
 	}
 
-	private function request_ip_matches_session() {
+	private function request_ip_matches_session()
+	{
 		// return false if either value is not set
 		if(!isset($_SESSION['ip']) || !isset($_SERVER['REMOTE_ADDR'])) {
 			return FALSE;
@@ -222,7 +246,8 @@ class Session {
 		}
 	}
 
-	private function request_user_agent_matches_session() {
+	private function request_user_agent_matches_session()
+	{
 		// return false if either value is not set
 		if(!isset($_SESSION['user_agent']) || !isset($_SERVER['HTTP_USER_AGENT'])) {
 			return FALSE;
@@ -234,7 +259,8 @@ class Session {
 		}
 	}
 
-	private function last_login_is_recent() {
+	private function last_login_is_recent()
+	{
 		$max_elapsed = 60 * 60 * 24; // 1 day
 		// return false if value is not set
 		if(!isset($_SESSION['last_login'])) {
@@ -247,7 +273,8 @@ class Session {
 		}
 	}
 
-	private function is_session_valid() {
+	private function is_session_valid()
+	{
 		$check_ip         = TRUE;
 		$check_user_agent = TRUE;
 		$check_last_login = TRUE;

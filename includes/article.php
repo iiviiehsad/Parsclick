@@ -1,13 +1,9 @@
-<?php
-require_once(LIB_PATH . DS . 'database.php');
+<?php require_once(LIB_PATH . DS . 'database.php');
 
-/**
- * Class Article inherits from DatabaseObject Class to work with articles database table
- */
 class Article extends DatabaseObject {
 
 	protected static $table_name = "articles";
-	protected static $db_fields  = array(
+	protected static $db_fields  = [
 			'id',
 			'subject_id',
 			'author_id',
@@ -16,7 +12,7 @@ class Article extends DatabaseObject {
 			'visible',
 			'content',
 			'created_at'
-	);
+	];
 	public           $id;
 	public           $subject_id;
 	public           $author_id;
@@ -32,7 +28,8 @@ class Article extends DatabaseObject {
 	 * @param bool $public     sets TRUE if article is visible and FALSE if article is not visible
 	 * @return mixed counts the number of articles for subject given
 	 */
-	public static function count_articles_for_subject($subject_id = 0, $public = TRUE) {
+	public static function count_articles_for_subject($subject_id = 0, $public = TRUE)
+	{
 		global $database;
 		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
 		$sql .= " WHERE subject_id = " . $subject_id;
@@ -49,7 +46,8 @@ class Article extends DatabaseObject {
 	 * @param bool   $public sets TRUE if article is visible and FALSE if article is not visible
 	 * @return array|null the result
 	 */
-	public static function search($search = "", $public = TRUE) {
+	public static function search($search = "", $public = TRUE)
+	{
 		global $database;
 		$sql = "SELECT * FROM " . self::$table_name . " WHERE ";
 		$sql .= "name LIKE '%{$database->escape_value($search)}%'";
@@ -65,7 +63,8 @@ class Article extends DatabaseObject {
 	 * @param bool $public     sets TRUE if subject is visible and FALSE if subject is not visible
 	 * @return bool|mixed set of articles
 	 */
-	public static function find_by_id($article_id = 0, $public = TRUE) {
+	public static function find_by_id($article_id = 0, $public = TRUE)
+	{
 		global $database;
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;
@@ -83,7 +82,8 @@ class Article extends DatabaseObject {
 	 * @param bool $public     sets TRUE if subject is visible and FALSE if subject is not visible
 	 * @return array of articles for subjects given
 	 */
-	public static function find_articles_for_subject($subject_id = 0, $public = TRUE) {
+	public static function find_articles_for_subject($subject_id = 0, $public = TRUE)
+	{
 		global $database;
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;
@@ -99,7 +99,8 @@ class Article extends DatabaseObject {
 	 * @param $subject_id integer gets the subject ID
 	 * @return integer number of articles for subject given
 	 */
-	public static function num_articles_for_subject($subject_id = 0) {
+	public static function num_articles_for_subject($subject_id = 0)
+	{
 		global $database;
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;
@@ -113,7 +114,8 @@ class Article extends DatabaseObject {
 	 * @param int $subject_id gets the subject ID
 	 * @return bool|mixed set of articles
 	 */
-	public static function find_default_article_for_subject($subject_id = 0) {
+	public static function find_default_article_for_subject($subject_id = 0)
+	{
 		$article_set = self::find_articles_for_subject($subject_id);
 		return !empty($article_set) ? array_shift($article_set) : FALSE;
 	}
@@ -122,7 +124,8 @@ class Article extends DatabaseObject {
 	 * @param bool|TRUE $public sets TRUE if subject is visible and FALSE if subject is not visible
 	 * @return bool|mixed newest article
 	 */
-	public static function find_newest_article($public = TRUE) {
+	public static function find_newest_article($public = TRUE)
+	{
 		$sql = "SELECT * FROM " . self::$table_name;
 		if($public) {
 			$sql .= " WHERE visible = 1 ";
@@ -135,7 +138,8 @@ class Article extends DatabaseObject {
 	/**
 	 * @return bool TRUE if article is new and FALSE if old
 	 */
-	public function find_new_articles() {
+	public function find_new_articles()
+	{
 		$this->time = 60 * 60 * 24 * 7 * 2; // 2 weeks
 		if(strtotime($this->created_at) + $this->time > time()) {
 			return TRUE;
@@ -150,7 +154,8 @@ class Article extends DatabaseObject {
 	 * @param bool|TRUE $public
 	 * @return array
 	 */
-	public static function find_articles_for_author($author_id = 0, $public = TRUE) {
+	public static function find_articles_for_author($author_id = 0, $public = TRUE)
+	{
 		global $database;
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;

@@ -1,5 +1,4 @@
-<?php
-require_once(LIB_PATH . DS . 'database.php');
+<?php require_once(LIB_PATH . DS . 'database.php');
 
 /**
  * File: php.ini -------------
@@ -18,7 +17,7 @@ require_once(LIB_PATH . DS . 'database.php');
 class File extends DatabaseObject {
 
 	protected static $table_name     = "files";
-	protected static $db_fields      = array('id', 'course_id', 'name', 'type', 'size', 'description');
+	protected static $db_fields      = ['id', 'course_id', 'name', 'type', 'size', 'description'];
 	public           $id;
 	public           $course_id;
 	public           $name;
@@ -26,11 +25,11 @@ class File extends DatabaseObject {
 	public           $size;
 	public           $description;
 	private          $temp_path;
-	public           $errors         = array();
+	public           $errors         = [];
 	protected        $upload_dir     = "files";
 	public static    $max_file_size  = 524200000; //500MB
-	protected        $permittedTypes = array('application/zip');
-	protected        $upload_errors  = array(
+	protected        $permittedTypes = ['application/zip'];
+	protected        $upload_errors  = [
 			UPLOAD_ERR_OK         => "خطایی نیست.",
 			UPLOAD_ERR_INI_SIZE   => "بزرگتر از upload_max_filesize.",
 			UPLOAD_ERR_FORM_SIZE  => "بزرگتر از MAX_FILE_SIZE.",
@@ -39,13 +38,14 @@ class File extends DatabaseObject {
 			UPLOAD_ERR_NO_TMP_DIR => "پوشه موقت نیست.",
 			UPLOAD_ERR_CANT_WRITE => "قادر به نوشتن روی دیسک نیست.",
 			UPLOAD_ERR_EXTENSION  => "آپلود فایل بخاطر فرمت فایل جلوگیری شد."
-	);
+	];
 
 	/**
 	 * @param $course_id int gets the course ID
 	 * @return int number of files related to the course
 	 */
-	public static function num_files_for_course($course_id) {
+	public static function num_files_for_course($course_id)
+	{
 		global $database;
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;
@@ -58,7 +58,8 @@ class File extends DatabaseObject {
 	 * @param $course_id int gets the course ID
 	 * @return array of files related to the course
 	 */
-	public static function find_files_for_course($course_id) {
+	public static function find_files_for_course($course_id)
+	{
 		global $database;
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;
@@ -70,7 +71,8 @@ class File extends DatabaseObject {
 	 * @param $filename string gets the file name
 	 * @return mixed|string of sanitized file name
 	 */
-	public function sanitize_file_name($filename) {
+	public function sanitize_file_name($filename)
+	{
 		// Remove characters that could alter file path.
 		// I disallowed spaces because they cause other headaches.
 		// "." is allowed (e.g. "photo.jpg") but ".." is not.
@@ -84,7 +86,8 @@ class File extends DatabaseObject {
 	 * @param $file array gets the file details from that array
 	 * @return bool TRUE if file is attached and FALSE if not
 	 */
-	public function attach_file($file) {
+	public function attach_file($file)
+	{
 		if(!$file || empty($file) || !is_array($file)) {
 			$this->errors[] = "هیچ فایلی آپلود نشد!";
 			return FALSE;
@@ -106,7 +109,8 @@ class File extends DatabaseObject {
 	 * @param $file array gets the file details from that array
 	 * @return bool TRUE if type is matched to the permitted types property and FALSE if not
 	 */
-	protected function checkType($file) {
+	protected function checkType($file)
+	{
 		if(in_array($file['type'], $this->permittedTypes)) {
 			return TRUE;
 		} else {
@@ -119,7 +123,8 @@ class File extends DatabaseObject {
 	 * @param $file array gets the file details from that array
 	 * @return string of permission to use for every file
 	 */
-	public function file_permissions($file) {
+	public function file_permissions($file)
+	{
 		// fileperms returns a numeric value
 		$numeric_perms = fileperms($file);
 		// but we are used to seeing the octal value
@@ -138,7 +143,8 @@ class File extends DatabaseObject {
 	 *           7- Checks if file is moved from temporary to permanent path and sets the file permission to 644
 	 * @return bool TRUE if file is moved and FALSE if not and return the error
 	 */
-	public function save() {
+	public function save()
+	{
 		if(!empty($this->errors)) {
 			$this->errors[] = "مشکلی پیش آمد!";
 			return FALSE;
@@ -182,7 +188,8 @@ class File extends DatabaseObject {
 	 * This function checks to see whether the file is deleted from the database first
 	 * @return bool TRUE if file is deleted from the database and directory, FALSE if any of them did not happen
 	 */
-	public function destroy() {
+	public function destroy()
+	{
 		if($this->delete()) {
 			$target_path = SITE_ROOT . DS . 'public_html' . DS . $this->file_path();
 			return unlink($target_path) ? TRUE : FALSE;
@@ -194,7 +201,8 @@ class File extends DatabaseObject {
 	/**
 	 * @return string dynamic uploading directory for ease of use in every View and Controller files
 	 */
-	public function file_path() {
+	public function file_path()
+	{
 		return $this->upload_dir . DS . $this->name;
 	}
 
@@ -202,7 +210,8 @@ class File extends DatabaseObject {
 	 * This function is display the file size which is in bytes into KB or MB
 	 * @return string file size in bytes, kilobytes or megabytes
 	 */
-	public function size_as_text() {
+	public function size_as_text()
+	{
 		if($this->size < 1024) {
 			return "{$this->size} bytes";
 		} elseif($this->size < 1048576) {

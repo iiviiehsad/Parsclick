@@ -1,21 +1,21 @@
-<?php
-
-require_once(LIB_PATH . DS . 'database.php');
+<?php require_once(LIB_PATH . DS . 'database.php');
 
 class Subject extends DatabaseObject {
 
 	protected static $table_name = "subjects";
-	protected static $db_fields  = array('id', 'name', 'position', 'visible');
+	protected static $db_fields  = ['id', 'name', 'position', 'visible'];
 	public           $id;
 	public           $name;
 	public           $position;
 	public           $visible;
 
 	/**
-	 * @param bool $public TRUE by default means we don't want hidden subject to be visible to the users and FALSE the otherwise
+	 * @param bool $public TRUE by default means we don't want hidden subject to be visible to the users and FALSE the
+	 *                     otherwise
 	 * @return array of all subjects
 	 */
-	public static function find_all($public = TRUE) {
+	public static function find_all($public = TRUE)
+	{
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;
 		if($public) {
@@ -27,10 +27,12 @@ class Subject extends DatabaseObject {
 
 	/**
 	 * @param int  $subject_id taken form the user or any function
-	 * @param bool $public TRUE by default means we don't want hidden subject to be visible to the users and FALSE the otherwise
+	 * @param bool $public     TRUE by default means we don't want hidden subject to be visible to the users and FALSE
+	 *                         the otherwise
 	 * @return bool|mixed TRUE and one subject only from database and FALSE if found nothing
 	 */
-	public static function find_by_id($subject_id = 0, $public = TRUE) {
+	public static function find_by_id($subject_id = 0, $public = TRUE)
+	{
 		global $database;
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;
