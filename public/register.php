@@ -29,6 +29,8 @@ if($_POST) {
 					$errors = "اسم کاربری موجود نیست! لطفا از اسم کاربری دیگری استفاده کنید.";
 				} elseif(Member::find_by_email(trim($_POST["email"]))) {
 					$errors = "این ایمیل قبلا ثبت شده، لطفااگر جزئیات یادتان نیست آنها را بازیافت کنید.";
+				} elseif (is_temp_mail(trim($_POST["email"]))) {
+					$errors = "نه دیگه! ثبت نام با ایمیل موقت نداشتیم! ایمیل معتبر وارد کنید.";
 				} else {
 					global $database;
 					$member                  = new Member();
