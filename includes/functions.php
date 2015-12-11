@@ -407,6 +407,7 @@ function is_temp_mail($mail)
 			'emailwarden.com',
 			'emailx.at.hm',
 			'emailxfer.com',
+			'emall.ml',
 			'emeil.in',
 			'emeil.ir',
 			'emz.net',

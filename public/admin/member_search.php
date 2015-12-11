@@ -52,9 +52,11 @@ echo output_message($message);
 					</table>
 				</div>
 			<?php } else { ?>
-				<h3 class="center">برای <?php echo $search_query; ?></h3>
-				<h1 class="center">چیزی پیدا نشد!</h1>
-				<h1><i class="center fa fa-frown-o fa-5x"></i></h1>
+				<div class="center">
+					<h3>برای <?php echo $search_query; ?></h3>
+					<h1>چیزی پیدا نشد!</h1>
+					<h1><i class="fa fa-frown-o fa-5x"></i></h1>
+				</div>
 			<?php } ?>
 		</article>
 	</section>
