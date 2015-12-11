@@ -892,7 +892,7 @@ function admin_articles($subject_array, $article_array)
 		}
 		$output .= "</a>";
 		if(!$subject->visible) {
-			$output .= "&nbsp;<i class='text-danger fa fa-eye-slash'></i>";
+			$output .= "&nbsp;<i class='text-danger fa fa-eye-slash fa-lg'></i>";
 		} else {
 			$output .= "&nbsp;<i class='text-success fa fa-eye'></i>";
 		}
@@ -970,7 +970,7 @@ function author_articles($subject_array, $article_array)
 			$output .= "</a>";
 			if(!$article->visible) //if visibility is FALSE
 			{
-				$output .= " <i class='text-danger fa fa-eye-slash'></i>";
+				$output .= " <i class='text-danger fa fa-eye-slash fa-lg'></i>";
 			}
 			$output .= "</li>";
 		endforeach;

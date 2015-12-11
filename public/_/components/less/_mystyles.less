@@ -1,13 +1,13 @@
 //my colours
 @parsclick : #FF8000;
 @darkblack : #303030;
-@purple    : #415B76;
-@yellow    : #F0C832;
-@beige     : #F5F5DC;
-@green     : #00CDA0;
-@pink      : #E74C3C;
-@red       : #BA83D4;
-@shadow    : #9B9B9B;
+@purple : #415B76;
+@yellow : #F0C832;
+@beige : #F5F5DC;
+@green : #00CDA0;
+@pink : #E74C3C;
+@red : #BA83D4;
+@shadow : #9B9B9B;
 
 @font-face {
 	font-family : "yekan";
@@ -20,7 +20,6 @@
 	font-weight : normal;
 	font-style  : normal;
 }
-
 @font-face {
 	font-family : "bbcnassim";
 	src         : url(../fonts/BBCFont/BBCNassim.ttf) format("truetype"),
@@ -28,47 +27,39 @@
 	font-weight : normal;
 	font-style  : normal;
 }
-
 @headlineFontFamily : "yekan", "bbcnassim", Tahoma, Verdana, Arial, sans-serif;
-@copyFontFamily     : "yekan", "Helvetica Neue", Helvetica, Tahoma, Verdana, Arial, sans-serif;
-@englishFontFamily  : "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
-@editFontFamily     : "bbcnassim", "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+@copyFontFamily : "yekan", "Helvetica Neue", Helvetica, Tahoma, Verdana, Arial, sans-serif;
+@englishFontFamily : "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+@editFontFamily : "bbcnassim", "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
 
 ::selection {
 	color      : @darkblack;
 	background : @yellow;
 }
-
 .arial { font-family : @englishFontFamily; }
-
 .yekan { font-family : @copyFontFamily; }
-
 .edit {
 	font-family : @editFontFamily;
 	direction   : ltr;
 	text-align  : left;
 	float       : left;
 }
-
 body {
 	background  : @purple;
 	margin-top  : 30px;
 	font-family : @copyFontFamily;
 }
-
 h1, h2, h3, h4, h5, h6 {
 	font-family : @headlineFontFamily;
 	color       : @purple;
 	text-shadow : 1px 1px 10px @shadow;
 }
-
 code {
 	display    : inline-block;
 	direction  : ltr;
 	text-align : left;
 	font-size  : 80%;
 }
-
 pre {
 	white-space      : pre-wrap; /* css-3 */
 	white-space      : -moz-pre-wrap; /* Mozilla, since 1999 */
@@ -79,7 +70,7 @@ pre {
 	text-align       : left;
 	overflow         : auto;
 	width            : 100%;
-	line-height      : 1;
+	line-height      : 2;
 	display          : block;
 	margin           : 0 0 11px;
 	padding          : 10.5px;
@@ -88,16 +79,13 @@ pre {
 	word-wrap        : break-word;
 	border           : none;
 	border-radius    : 4px;
-	//background-color : #F5F5F5;
 	background-color : @darkblack;
 	color            : @yellow;
 }
-
 blockquote {
 	border-right : 5px solid darken(@beige, 10%);
 	border-left  : 0;
 }
-
 p {
 	font-family : @copyFontFamily;
 	font-size   : 15px;
@@ -106,16 +94,13 @@ p {
 	padding     : 0 2%;
 	text-align  : justify;
 }
-
 input, select, textarea {
 	font-family : "bbcnassim", Tahoma, Verdana;
 }
-
 ul {
 	list-style : inside;
 	margin-top : 5px;
 }
-
 aside {
 	h2 {
 		font-size     : 1.8em;
@@ -123,52 +108,41 @@ aside {
 		border-bottom : 1px dotted @purple;
 	}
 }
-
 textarea {
 	resize  : vertical;
 	padding : 15px !important;
 }
-
 option { direction : ltr; }
-
 legend { font-family : @copyFontFamily; }
-
 hr {
 	margin : 22px 0;
 	border : 1px solid @purple;
 }
-
 dd {
 	@media (max-width : 767px) {
 		float : left;
 	}
 }
-
 .dl-horizontal dd {
 	@media (max-width : 767px) {
 		margin-left : 0;
 	}
 }
-
 .lead {
 	margin-top    : 15px;
 	margin-bottom : 5px;
 }
-
 .list-group-item-text {
 	margin-right : 20px;
 }
-
 .list-group-item li {
 	margin-right : 20px;
 }
-
 a:hover, a:focus {
 	color           : @pink;
 	text-decoration : none;
 	transition      : color 0.5s ease;
 }
-
 .container {
 	background            : @beige;
 	-webkit-border-radius : 0 60px 0 0;
@@ -181,7 +155,6 @@ a:hover, a:focus {
 		border-radius         : 0 30px 0 0;
 	}
 }
-
 .main {
 	background        : @beige;
 	min-height        : 400px;
@@ -190,12 +163,10 @@ a:hover, a:focus {
 	-o-animation      : fadeIn 2s;
 	animation         : fadeIn 2s;
 }
-
 .navbar {
 	margin-bottom : 0;
 	border-radius : 0;
 }
-
 .navbar-toggle {
 	position         : absolute;
 	top              : 2px;
@@ -205,13 +176,9 @@ a:hover, a:focus {
 	border           : 1px solid #DDD;
 	border-radius    : 4px;
 }
-
 .navbar-toggle:hover, .navbar-toggle:focus { background-color : @beige; }
-
 .carousel { margin-bottom : 0; }
-
 .carousel-caption > * { color : @parsclick; }
-
 // Uncomment for carousel fade in
 .carousel-fade {
 	.carousel-inner {
@@ -240,7 +207,6 @@ a:hover, a:focus {
 		z-index : 2;
 	}
 }
-
 // End: Uncomment for carousel fade in
 
 .main > article {
@@ -253,11 +219,9 @@ a:hover, a:focus {
 		text-align : right;
 	}
 }
-
 #member_article {
 	margin : 2.5% 5% 5% 5%;
 }
-
 .sidebar > aside {
 	padding : 5%;
 
@@ -265,7 +229,6 @@ a:hover, a:focus {
 		padding : 5%;
 	}
 }
-
 #branding {
 	img {
 		margin    : 20px 25px 5px 0;
@@ -276,16 +239,13 @@ a:hover, a:focus {
 		}
 	}
 }
-
 .modal.fade.in { direction : ltr; }
-
 @media screen and (min-width : 768px) {
 	.modal-dialog {
 		width       : 560px;
 		margin-left : -330px;
 	}
 }
-
 .accordion-heading {
 	background    : @purple;
 	border-radius : 5px;
@@ -293,7 +253,6 @@ a:hover, a:focus {
 		color : white;
 	}
 }
-
 .about {
 	article {
 		margin  : 0;
@@ -312,7 +271,6 @@ a:hover, a:focus {
 		font-size : 1.5em;
 	}
 }
-
 .nav-tabs {
 	li a { color : @purple; }
 
@@ -320,7 +278,6 @@ a:hover, a:focus {
 
 	li a:hover { background : @pink; color : white; }
 }
-
 kbd {
 	padding            : 0 2px;
 	font-size          : 80%;
@@ -331,14 +288,12 @@ kbd {
 	box-shadow         : inset 0 -1px 0 rgba(0, 0, 0, .25);
 	font-family        : @editFontFamily;
 }
-
 .nav-tabs li.active {
 	a {
 		color       : @pink;
 		font-weight : bold;
 	}
 }
-
 .tab-content {
 	h3, h4 { margin : 0; padding : 0; }
 
@@ -346,7 +301,6 @@ kbd {
 
 	p { padding-top : 10px; text-align : justify; }
 }
-
 .photogrid img {
 	width  : 96px;
 	margin : 0 5px 5px 0;
@@ -356,9 +310,7 @@ kbd {
 		width : 64px;
 	}
 }
-
 ul.breadcrumb a:hover { color : @pink; }
-
 footer {
 	ul.breadcrumb {
 		background            : @purple;
@@ -378,9 +330,7 @@ footer {
 		}
 	}
 }
-
 .navbar .nav > li > .dropdown-menu { top : 30px; }
-
 .scrollspy .nav {
 	background : @purple;
 	margin-top : 20px;
@@ -426,28 +376,23 @@ footer {
 
 	li:last-child { border-bottom : none; }
 }
-
 .pagination { border-left : 1px solid #CCC; }
-
 .label-as-badge {
 	display       : inline-block;
 	min-width     : 10px;
 	border-radius : 1em;
 }
-
 .breadcrumb > li:after {
 	display : inline-block;
 	content : "";
 	padding : 0 5px;
 	color   : #CCC;
 }
-
 // change the jumbotron font size
 .jumbotron h1 {
 	font-size : 50px;
 	color     : @beige;
 }
-
 // Jumbotron Style
 .jumbotron {
 	padding          : 30px;
@@ -463,7 +408,6 @@ footer {
 		font-size : 75%;
 	}
 }
-
 .table-responsive {
 	width                      : 100%;
 	margin-bottom              : 15px;
@@ -472,7 +416,6 @@ footer {
 	-ms-overflow-style         : -ms-autohiding-scrollbar;
 	-webkit-overflow-scrolling : touch;
 }
-
 .center {
 	margin     : auto;
 	text-align : center !important;
@@ -481,54 +424,41 @@ footer {
 		text-align : center !important;
 	}
 }
-
 .btn { margin : 1% 0; }
-
 .selected {
 	font-weight : bold;
 	color       : @pink !important;
 }
-
 .range-wrap { overflow : hidden; }
-
 .glyphicon-user:before { display : block; }
-
 form.addtoplaylist, form.removefromplaylist { display : inline; }
-
 .input-group-addon:first-child { border-right : 1px solid #CCC; }
-
 .input-group input:last-child, .input-group-addon:last-child, .input-group-btn:first-child > .btn:not(:first-child), .input-group-btn:last-child > .btn, .input-group-btn:last-child > .dropdown-toggle {
 	border-bottom-right-radius : 0;
 	border-top-right-radius    : 0;
 	border-bottom-left-radius  : 4px;
 	border-top-left-radius     : 4px;
 }
-
 .dl-horizontal dt { float : right; }
-
 .bgvideo {
 	min-width  : 100%;
 	min-height : 100%;
 	width      : auto;
 	height     : auto;
 }
-
 // FACEBOOK COMMENTS
 .fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
 	min-width : 100% !important;
 	width     : 100% !important;
 }
-
 .share-buttons {
 	opacity             : .6;
 	transition-duration : 1s;
 }
-
 .share-buttons:hover {
 	opacity             : 1;
 	transition-duration : 1s;
 }
-
 .admin-jumbotron {
 	background              : url('../../images/others/admin.jpg') no-repeat;
 	-webkit-background-size : 100% 100%;
@@ -538,7 +468,6 @@ form.addtoplaylist, form.removefromplaylist { display : inline; }
 	background-size         : cover;
 	text-shadow             : black 0.3em 0.3em 0.3em;
 }
-
 .author-jumbotron {
 	background              : url('../../images/others/author.jpg') no-repeat;
 	-webkit-background-size : 100% 100%;
@@ -548,7 +477,6 @@ form.addtoplaylist, form.removefromplaylist { display : inline; }
 	background-size         : cover;
 	text-shadow             : black 0.3em 0.3em 0.3em;
 }
-
 .member-jumbotron {
 	//-webkit-animation : box 10s infinite alternate;
 	//-moz-animation    : box 10s infinite alternate;
@@ -562,12 +490,10 @@ form.addtoplaylist, form.removefromplaylist { display : inline; }
 	background-size         : cover;
 	text-shadow             : black 0.3em 0.3em 0.3em;
 }
-
 // DISQUS commenting to hide the logo
 #disqus_thread {
 	position : relative;
 }
-
 #disqus_thread:after {
 	content    : "";
 	display    : block;
@@ -577,7 +503,6 @@ form.addtoplaylist, form.removefromplaylist { display : inline; }
 	bottom     : 0;
 	background : #F5F5F5;
 }
-
 #faq #disqus_thread:after {
 	content    : "";
 	display    : block;
@@ -587,7 +512,6 @@ form.addtoplaylist, form.removefromplaylist { display : inline; }
 	bottom     : 0;
 	background : @beige;
 }
-
 // TWITTER EMBED
 #twitter-widget-1 {
 	width      : 80% !important;
