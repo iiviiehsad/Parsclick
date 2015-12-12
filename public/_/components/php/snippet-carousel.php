@@ -5,21 +5,21 @@
 	</ol>
 	<section class="carousel-inner" role="listbox">
 		<div class="item"><img src="images/carousel/hands.jpg" alt="Parsclick">
-			<div class="carousel-caption">
-				<h3>عضو شوید و ببینید این همه سروصدا برای چیست!</h3>
+			<div class="carousel-caption visible-lg visible-md">
+				<h4>عضو شوید و ببینید این همه سروصدا برای چیست!</h4>
 			</div>
 		</div>
 		<div class="item"><img src="images/carousel/desktop.jpg" alt="Parsclick"></div>
 		<div class="item">
 			<img src="images/carousel/laptop.jpg" alt="Parsclick">
-			<div class="carousel-caption">
-				<h3>زیبایی در سادگی است</h3>
+			<div class="carousel-caption visible-lg visible-md">
+				<h4>زیبایی در سادگی است پس ما ساده و زیبا تعلیم می دهیم</h4>
 			</div>
 		</div>
 		<div class="item"><img src="images/carousel/spreadsheet.jpg" alt="Parsclick"></div>
 		<div class="item active">
 			<img src="images/carousel/workspace.jpg" alt="Parsclick">
-			<div class="carousel-caption">
+			<div class="carousel-caption visible-lg visible-md">
 				<h3>پارس کلیک بهترین منبع آموزش کامل کامپیوتر است</h3>
 				<h3>این تمجید نیست</h3>
 			</div>
