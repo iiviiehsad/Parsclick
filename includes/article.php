@@ -26,6 +26,7 @@ class Article extends DatabaseObject {
 	/**
 	 * @param int  $subject_id gets the subject ID
 	 * @param bool $public     sets TRUE if article is visible and FALSE if article is not visible
+	 *
 	 * @return mixed counts the number of articles for subject given
 	 */
 	public static function count_articles_for_subject($subject_id = 0, $public = TRUE)
@@ -38,12 +39,14 @@ class Article extends DatabaseObject {
 		}
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
+
 		return array_shift($row);
 	}
 
 	/**
 	 * @param string $search gets the search query
 	 * @param bool   $public sets TRUE if article is visible and FALSE if article is not visible
+	 *
 	 * @return array|null the result
 	 */
 	public static function search($search = "", $public = TRUE)
@@ -55,12 +58,14 @@ class Article extends DatabaseObject {
 			$sql .= " AND visible = 1";
 		}
 		$result_set = self::find_by_sql($sql);
-		return !empty($result_set) ? $result_set : NULL;
+
+		return ! empty($result_set) ? $result_set : NULL;
 	}
 
 	/**
 	 * @param int  $article_id gets the article ID
 	 * @param bool $public     sets TRUE if subject is visible and FALSE if subject is not visible
+	 *
 	 * @return bool|mixed set of articles
 	 */
 	public static function find_by_id($article_id = 0, $public = TRUE)
@@ -74,12 +79,14 @@ class Article extends DatabaseObject {
 		}
 		$sql .= " LIMIT 1";
 		$article_set = self::find_by_sql($sql);
-		return !empty($article_set) ? array_shift($article_set) : FALSE;
+
+		return ! empty($article_set) ? array_shift($article_set) : FALSE;
 	}
 
 	/**
 	 * @param int  $subject_id integer gets the subject ID
 	 * @param bool $public     sets TRUE if subject is visible and FALSE if subject is not visible
+	 *
 	 * @return array of articles for subjects given
 	 */
 	public static function find_articles_for_subject($subject_id = 0, $public = TRUE)
@@ -92,11 +99,13 @@ class Article extends DatabaseObject {
 			$sql .= " AND visible = 1 ";
 		}
 		$sql .= " ORDER BY position DESC";
+
 		return self::find_by_sql($sql);
 	}
 
 	/**
 	 * @param $subject_id integer gets the subject ID
+	 *
 	 * @return integer number of articles for subject given
 	 */
 	public static function num_articles_for_subject($subject_id = 0)
@@ -107,21 +116,25 @@ class Article extends DatabaseObject {
 		$sql .= " WHERE subject_id = " . $database->escape_value($subject_id);
 		$sql .= " ORDER BY position ASC";
 		$article_set = $database->query($sql);
+
 		return $database->num_rows($article_set);
 	}
 
 	/**
 	 * @param int $subject_id gets the subject ID
+	 *
 	 * @return bool|mixed set of articles
 	 */
 	public static function find_default_article_for_subject($subject_id = 0)
 	{
 		$article_set = self::find_articles_for_subject($subject_id);
-		return !empty($article_set) ? array_shift($article_set) : FALSE;
+
+		return ! empty($article_set) ? array_shift($article_set) : FALSE;
 	}
 
 	/**
 	 * @param bool|TRUE $public sets TRUE if subject is visible and FALSE if subject is not visible
+	 *
 	 * @return bool|mixed newest article
 	 */
 	public static function find_newest_article($public = TRUE)
@@ -132,7 +145,8 @@ class Article extends DatabaseObject {
 		}
 		$sql .= " ORDER BY id DESC LIMIT 1";
 		$course_set = self::find_by_sql($sql);
-		return !empty($course_set) ? array_shift($course_set) : FALSE;
+
+		return ! empty($course_set) ? array_shift($course_set) : FALSE;
 	}
 
 	/**
@@ -150,8 +164,10 @@ class Article extends DatabaseObject {
 
 	/**
 	 * Finds articles for specific author
+	 *
 	 * @param int       $author_id
 	 * @param bool|TRUE $public
+	 *
 	 * @return array
 	 */
 	public static function find_articles_for_author($author_id = 0, $public = TRUE)
@@ -163,10 +179,11 @@ class Article extends DatabaseObject {
 		if($public) {
 			$sql .= " AND visible = 1 ";
 		}
-		if(!$public) {
+		if(! $public) {
 			$sql .= " AND visible = 0 ";
 		}
 		$sql .= " ORDER BY position DESC";
+
 		return self::find_by_sql($sql);
 	}
 }
