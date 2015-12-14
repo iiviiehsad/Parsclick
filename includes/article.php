@@ -152,7 +152,7 @@ class Article extends DatabaseObject {
 	/**
 	 * @return bool TRUE if article is new and FALSE if old
 	 */
-	public function find_new_articles()
+	public function recent()
 	{
 		$this->time = 60 * 60 * 24 * 7 * 2; // 2 weeks
 		if(strtotime($this->created_at) + $this->time > time()) {

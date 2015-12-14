@@ -79,9 +79,11 @@ echo output_message($message, $errors);
 					<section class="row">
 						<div class="controls col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
 							<a class="btn btn-danger" href="author_articles.php">لغو</a>
-							<a class="btn btn-info" href="author_delete_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>" onclick="return confirm('آیا مطمئن هستید؟\nاگر این مقاله نشر شده و شما بدون دلیل اقدام به حذف آن کنید، ممکن هست باعث معوق شدن حساب نویسندگی شما شود.')">
-								حذف
-							</a>
+							<?php if($current_article->recent()) { ?>
+								<a class="btn btn-default" href="author_delete_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>" onclick="return confirm('آیا مطمئن هستید؟\nاگر این مقاله نشر شده و شما بدون دلیل اقدام به حذف آن کنید، ممکن هست باعث معوق شدن حساب نویسندگی شما شود.')">
+									حذف
+								</a>
+							<?php } ?>
 							<button class="btn btn-success" name="submit" id="submit" type="submit">
 								ویرایش
 							</button>

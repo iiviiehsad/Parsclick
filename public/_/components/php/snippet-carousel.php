@@ -20,8 +20,7 @@
 		<div class="item active">
 			<img src="images/carousel/workspace.jpg" alt="Parsclick">
 			<div class="carousel-caption visible-lg visible-md">
-				<h3>پارس کلیک بهترین منبع آموزش کامل کامپیوتر است</h3>
-				<h3>این تمجید نیست</h3>
+				<h2>برای توسعه دهندگان مثل سینماست</h2>
 			</div>
 		</div>
 		<!--</div>-->

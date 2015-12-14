@@ -296,7 +296,7 @@ function file_upload_error($error_integer)
 		UPLOAD_ERR_CANT_WRITE => "نمیشه روی دیسک نوشت!",
 		UPLOAD_ERR_EXTENSION  => "آپلود فایل بخاطر نوع آن متوقف شد!"
 	];
-	return $upload_errors[ $error_integer ];
+	return $upload_errors[$error_integer];
 }
 
 function is_temp_mail($mail)
@@ -1057,7 +1057,7 @@ function member_articles($subject_array, $article_array)
 						} else {
 							$output .= htmlentities("(مقاله اسم ندارد!)");
 						}
-						if($article->find_new_articles()) {
+						if($article->recent()) {
 							$output .= "&nbsp;<kbd>تازه</kbd>";
 						}
 						$output .= "</a></li>";
@@ -1420,7 +1420,7 @@ function public_articles()
 				} else {
 					$output .= htmlentities("مقاله اسم ندارد");
 				}
-				if($article->find_new_articles()) {
+				if($article->recent()) {
 					$output .= "&nbsp;<kbd>تازه</kbd>";
 				}
 				$output .= "</a></li>";
@@ -1512,7 +1512,8 @@ function active()
 	} elseif($filename == "member-playlist.php") {
 		echo "<script>$(\"a:contains('لیست پخش')\").parent().addClass('active');</script>";
 	} elseif(($filename == "member_list.php") || ($filename == "edit_member.php") || ($filename == "new_member.php") ||
-	         ($filename == "email_to_members.php")) {
+	         ($filename == "email_to_members.php")
+	) {
 		echo "<script>$(\"a:contains('اعضا')\").parent().addClass('active');</script>";
 		if($filename == "email_to_members.php") {
 			echo "<script>$(\"a:contains(' ایمیل به عضوها')\").parent().addClass('active');</script>";
