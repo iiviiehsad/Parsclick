@@ -46,7 +46,7 @@ if(isset($_POST['submit'])) {
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="password">پسورد</label>
 						<div class="controls">
-							<input readonly class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="Password encrypted"/>
+							<input disabled class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="Password encrypted"/>
 						</div>
 					</section>
 					<!--first_name-->

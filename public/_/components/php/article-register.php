@@ -63,7 +63,7 @@
 			<section class="row">
 				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="gender">جنس &nbsp;</label>
 				<div class="controls">
-					<select class="form-control col-xs-8 col-sm-4 col-md-4 col-lg-4" name="gender" id="gender">
+					<select style="direction:ltr;" class="form-control col-xs-8 col-sm-4 col-md-4 col-lg-4" name="gender" id="gender">
 						<optgroup label="لطفا انتخاب کنید">
 							<option value="مرد">مرد</option>
 							<option value="زن">زن</option>

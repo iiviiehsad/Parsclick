@@ -67,7 +67,7 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="position">محل</label>
 						<div class="controls">
-							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8" name="position" id="position">
+							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position">
 								<option value="" disabled>انتخاب کنید</option>
 								<?php
 								$page_set   = Course::num_courses_for_category($current_course->category_id);

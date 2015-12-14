@@ -76,7 +76,7 @@ if(isset($_POST['submit'])) {
 				<section class="row">
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="gender"> جنس &nbsp;</label>
 					<div class="controls">
-						<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8" name="gender" id="gender">
+						<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="gender" id="gender">
 							<?php echo htmlentities($member->gender); ?>
 							<?php if($member->gender === "مرد") { ?>
 								<option value="مرد">مرد</option>

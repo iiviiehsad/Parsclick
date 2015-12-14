@@ -33,7 +33,7 @@ class Member extends DatabaseObject {
 	public           $status;
 	public           $token;
 	public           $customer;
-	
+
 	/**
 	 * @return string jones the first name and last name with an space
 	 */
@@ -45,9 +45,10 @@ class Member extends DatabaseObject {
 			return "";
 		}
 	}
-
+	
 	/**
 	 * @param string $search gets the search query
+	 *
 	 * @return array|null the result
 	 */
 	public static function search($search = "")
@@ -64,12 +65,15 @@ class Member extends DatabaseObject {
 		$sql .= "OR phone LIKE '%{$database->escape_value($search)}%' ";
 		$sql .= "OR email LIKE '%{$database->escape_value($search)}%' ";
 		$result_set = self::find_by_sql($sql);
-		return !empty($result_set) ? $result_set : NULL;
+
+		return ! empty($result_set) ? $result_set : NULL;
 	}
 
 	/**
 	 * Important: This function needs needs PHP v5.5+
+	 *
 	 * @param $password string gets the password from the user
+	 *
 	 * @return string encrypts the password using Blowfish
 	 */
 	public function password_encrypt($password)
@@ -81,11 +85,13 @@ class Member extends DatabaseObject {
 		$salt            = $this->generate_salt($salt_length);
 		$format_and_salt = $hash_format . $salt;
 		$hash            = crypt($password, $format_and_salt);
+
 		return $hash;
 	}
 
 	/**
 	 * @param $length int length of salt
+	 *
 	 * @return string the salt
 	 */
 	private function generate_salt($length)
@@ -99,12 +105,14 @@ class Member extends DatabaseObject {
 		$modified_base64_string = str_replace('+', '.', $base64_string);
 		// Truncate string to the correct length
 		$salt = substr($modified_base64_string, 0, $length);
+
 		return $salt;
 	}
 
 	/**
 	 * @param $password      string gets the password
 	 * @param $existing_hash string has the existing hash
+	 *
 	 * @return bool TRUE if existing hash matches the password and FALSE if not
 	 */
 	private static function password_check($password, $existing_hash)
@@ -121,6 +129,7 @@ class Member extends DatabaseObject {
 	/**
 	 * @param string $username gets username
 	 * @param string $password gets the password
+	 *
 	 * @return bool|mixed TRUE if matches and FALSE if not
 	 */
 	public static function authenticate($username = "", $password = "")
@@ -154,7 +163,9 @@ class Member extends DatabaseObject {
 	/**
 	 * This method will send generate a token, stores it into the token database column and sends that to the member's
 	 * email address, where then this token will be checked to see if the member is legitimate or not.
+	 *
 	 * @param $username string is taken from user by typing
+	 *
 	 * @return bool TRUE if email is sent ond FALSE if not
 	 * @throws \Exception
 	 * @throws \phpMailerException
@@ -196,6 +207,7 @@ class Member extends DatabaseObject {
 			http://{$site_root}</p>
 			</body>
 EMAILBODY;
+
 			return $mail->Send();
 			//return TRUE;
 		} else {
@@ -205,7 +217,9 @@ EMAILBODY;
 
 	/**
 	 * This method will email the member's username to the member's email address on file.
+	 *
 	 * @param $email string is taken from the member by typing in the input field
+	 *
 	 * @return bool TRUE if email is sent and FALSE if not
 	 * @throws \Exception
 	 * @throws \phpMailerException
@@ -246,6 +260,7 @@ EMAILBODY;
 			http://{$site_root}</p>
 			</body>
 EMAILBODY;
+
 			return $mail->Send();
 		} else {
 			return FALSE;
@@ -254,7 +269,9 @@ EMAILBODY;
 
 	/**
 	 * This method will send a confirmation email to the recently registered members.
+	 *
 	 * @param $username
+	 *
 	 * @return bool TRUE if email is sent and FALSE if not
 	 * @throws \Exception
 	 * @throws \phpmailerException
@@ -304,6 +321,7 @@ EMAILBODY;
 				http://{$site_root}</p>
 			</body>
 EMAILBODY;
+
 			return $mail->Send();
 		} else {
 			return FALSE;

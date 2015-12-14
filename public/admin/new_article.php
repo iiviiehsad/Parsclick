@@ -5,7 +5,7 @@ $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 find_selected_article();
-if(!$current_subject) {
+if(! $current_subject) {
 	redirect_to("author_articles.php");
 }
 $errors = "";
@@ -17,7 +17,11 @@ if(isset($_POST['submit'])) {
 	$article->author_id  = $author->id;
 	$article->name       = $_POST["article_name"];
 	$article->position   = (int)$_POST["position"];
-	$article->visible    = (int)$_POST["visible"];
+	if($author->id == 1) {
+		$article->visible  = (int)$_POST["visible"];
+	} else {
+		$article->visible  = 0;
+	}
 	$article->content    = $_POST["content"];
 	$article->created_at = strftime("%Y-%m-%d %H:%M:%S", time());
 	$result              = $article->create();
@@ -35,8 +39,7 @@ echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-newspaper-o"></i> مقاله جدید</h2>
-
-			<form class="form-horizontal" action="new_article.php?subject=<?php echo urlencode($current_subject->id); ?>" method="post" role="form">
+			<form class="form-horizontal" action="new_article.php?subject=<?php echo urlencode($current_subject->id); ?>" method="POST" role="form">
 				<fieldset id="login">
 					<legend><i class="fa fa-list-alt"></i> <?php echo ucfirst($current_subject->name); ?></legend>
 					<section class="row">
@@ -49,9 +52,9 @@ echo output_message($message, $errors); ?>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="position">محل</label>
 						<div class="controls">
-							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8" name="position" id="position">
+							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position">
 								<?php $page_count = Article::num_articles_for_subject($current_subject->id);
-								echo "<option selected value=" . ++$page_count . ">" . $page_count . "</option>";
+								echo "<option selected value=" . ++ $page_count . ">" . $page_count . "</option>";
 								?>
 							</select>
 						</div>

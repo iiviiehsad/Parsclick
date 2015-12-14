@@ -41,7 +41,6 @@ function output_message($message = "", $errors = "")
 		$output .= "<i class='fa fa-check-circle-o fa-fw fa-lg'></i> ";
 		$output .= "<strong>" . htmlentities($message) . "</strong>";
 		$output .= "</div>";
-
 		return $output;
 	} elseif(! empty($errors)) {
 		$output = "<div class='animated flash alert alert-danger alert-dismissible' role='alert'>";
@@ -52,7 +51,6 @@ function output_message($message = "", $errors = "")
 		$output .= "<i class='fa fa-times-circle-o fa-fw fa-lg'></i> ";
 		$output .= "<strong>" . htmlentities($errors) . "</strong>";
 		$output .= "</div>";
-
 		return $output;
 	} else {
 		return "";
@@ -77,7 +75,6 @@ function strip_zeros_from_date($marked_string = "")
 {
 	$no_zeros       = str_replace('*0', '', $marked_string);
 	$cleaned_string = str_replace('*', '', $no_zeros);
-
 	return $cleaned_string;
 }
 
@@ -89,7 +86,6 @@ function strip_zeros_from_date($marked_string = "")
 function datetime_to_text($datetime = "")
 {
 	$unixdatetime = strtotime($datetime);
-
 	return strftime("%B %d, %Y at %I:%M %p", $unixdatetime);
 }
 
@@ -152,7 +148,6 @@ function request_is_post()
 function has_presence($value)
 {
 	$trimmed_value = trim($value);
-
 	return isset($trimmed_value) && $trimmed_value !== "";
 }
 
@@ -175,7 +170,6 @@ function has_length($value, $options = [])
 	if(isset($options['exact']) && (strlen($value) != (int)$options['exact'])) {
 		return FALSE;
 	}
-
 	return TRUE;
 }
 
@@ -215,7 +209,6 @@ function has_number($value, $options = [])
 	if(isset($options['min']) && ($value < (int)$options['min'])) {
 		return FALSE;
 	}
-
 	return TRUE;
 }
 
@@ -270,7 +263,6 @@ function check_ownership($id, $session_id)
 function file_extension($file)
 {
 	$path_parts = pathinfo($file);
-
 	return $path_parts['extension'];
 }
 
@@ -283,7 +275,6 @@ function file_contains_php($file)
 {
 	$contents = file_get_contents($file);
 	$position = strpos($contents, '<?php');
-
 	return $position !== FALSE;
 }
 
@@ -305,7 +296,6 @@ function file_upload_error($error_integer)
 		UPLOAD_ERR_CANT_WRITE => "نمیشه روی دیسک نوشت!",
 		UPLOAD_ERR_EXTENSION  => "آپلود فایل بخاطر نوع آن متوقف شد!"
 	];
-
 	return $upload_errors[ $error_integer ];
 }
 
@@ -874,7 +864,6 @@ function is_temp_mail($mail)
 			return TRUE;
 		}
 	}
-
 	return FALSE;
 }
 
@@ -960,7 +949,6 @@ function admin_articles($subject_array, $article_array)
 		$output .= "</ul></li>";
 	}
 	$output .= "</ol>";
-
 	return $output;
 }
 
@@ -1018,7 +1006,6 @@ function author_articles($subject_array, $article_array)
 		$output .= "</ul></li>";
 	endforeach;
 	$output .= "</ol>";
-
 	return $output;
 }
 
@@ -1082,7 +1069,6 @@ function member_articles($subject_array, $article_array)
 		}
 	}
 	$output .= "</ul>";
-
 	return $output;
 }
 
@@ -1178,7 +1164,6 @@ function admin_courses($category_array, $course_array)
 		$output .= "</ul></li>";
 	}
 	$output .= "</ol>";
-
 	return $output;
 }
 
@@ -1241,7 +1226,6 @@ function author_courses($category_array, $course_array)
 		$output .= "</ul></li>";
 	endforeach;
 	$output .= "</ol>";
-
 	return $output;
 }
 
@@ -1305,7 +1289,6 @@ function member_courses($category_array, $course_array)
 		$output .= "</li>";
 	}
 	$output .= "</ul>";
-
 	return $output;
 }
 
@@ -1369,7 +1352,6 @@ function member_comments_for_course($category_array, $course_array)
 		$output .= "</li>";
 	}
 	$output .= "</ul>";
-
 	return $output;
 }
 
@@ -1407,7 +1389,6 @@ function public_courses()
 		$output .= "</ul></li>";
 	}
 	$output .= "</ol>";
-
 	return $output;
 }
 
@@ -1448,7 +1429,6 @@ function public_articles()
 		}
 	}
 	$output .= "</ol>";
-
 	return $output;
 }
 
@@ -1531,12 +1511,26 @@ function active()
 		echo "<script>$(\"a:contains('حساب کاربری')\").parent().addClass('active');</script>";
 	} elseif($filename == "member-playlist.php") {
 		echo "<script>$(\"a:contains('لیست پخش')\").parent().addClass('active');</script>";
-	} elseif(($filename == "member_list.php") || ($filename == "edit_member.php") || ($filename == "new_member.php")) {
-		echo "<script>$(\"a:contains('لیست اعضا')\").parent().addClass('active');</script>";
+	} elseif(($filename == "member_list.php") || ($filename == "edit_member.php") || ($filename == "new_member.php") ||
+	         ($filename == "email_to_members.php")) {
+		echo "<script>$(\"a:contains('اعضا')\").parent().addClass('active');</script>";
+		if($filename == "email_to_members.php") {
+			echo "<script>$(\"a:contains(' ایمیل به عضوها')\").parent().addClass('active');</script>";
+		} elseif($filename == "member_list.php") {
+			echo "<script>$(\"a:contains(' لیست عضوها')\").parent().addClass('active');</script>";
+		}
 	} elseif(($filename == "admin_list.php") || ($filename == "author_list.php") || ($filename == "new_admin.php") ||
-	         ($filename == "new_author.php") || ($filename == "edit_admin.php") || ($filename == "edit_author.php")
+	         ($filename == "new_author.php") || ($filename == "edit_admin.php") || ($filename == "edit_author.php") ||
+	         ($filename == "email_to_authors.php")
 	) {
-		echo "<script>$(\"a:contains('لیست کارکنان')\").parent().addClass('active');</script>";
+		echo "<script>$(\"a:contains('کارکنان')\").parent().addClass('active');</script>";
+		if($filename == "admin_list.php") {
+			echo "<script>$(\"a:contains('لیست مدیران')\").parent().addClass('active');</script>";
+		} elseif($filename == "author_list.php") {
+			echo "<script>$(\"a:contains('لیست نویسندگان')\").parent().addClass('active');</script>";
+		} elseif($filename == "email_to_authors.php") {
+			echo "<script>$(\"a:contains('ایمیل به نویسندگان')\").parent().addClass('active');</script>";
+		}
 	} elseif(($filename == "contact.php")) {
 		echo "<script>$(\"a:contains('تماس با ما')\").parent().addClass('active');</script>";
 	}
@@ -1582,7 +1576,6 @@ function decrypt_string($salt, $iv_with_string)
 	$iv               = substr($iv_with_string, 0, $iv_size);
 	$encrypted_string = substr($iv_with_string, $iv_size);
 	$string           = mcrypt_decrypt($cipher_type, $salt, $encrypted_string, $cipher_mode, $iv);
-
 	return $string;
 }
 

@@ -39,7 +39,7 @@ echo output_message($message); ?>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="position">محل &nbsp;</label>
 						<div class="controls">
-							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8" name="position" id="position">
+							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position">
 								<option disabled value="">--Please Select--</option>
 								<?php for($count = 1; $count <= (Subject::num_rows() + 1); $count++) {
 									echo "<option value='{$count}'>{$count}</option>";

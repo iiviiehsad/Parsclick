@@ -141,7 +141,7 @@ class Session {
 
 	public function csrf_token_is_recent()
 	{
-		$max_elapsed = 60 * 60 * 24; // 1 day
+		$max_elapsed = 60 * 60 * 24 * 3; // 3 days
 		if(isset($_SESSION['csrf_token_time'])) {
 			$stored_time = $_SESSION['csrf_token_time'];
 			return ($stored_time + $max_elapsed) >= time();
@@ -261,7 +261,7 @@ class Session {
 
 	private function last_login_is_recent()
 	{
-		$max_elapsed = 60 * 60 * 24; // 1 day
+		$max_elapsed = 60 * 60 * 24 * 3; // 3 days
 		// return false if value is not set
 		if(!isset($_SESSION['last_login'])) {
 			return FALSE;

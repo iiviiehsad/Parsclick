@@ -52,7 +52,7 @@ if(isset($_POST['submit'])) {
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="password">پسورد</label>
 						<div class="controls">
 							<input <?php if($session->id != $admin->id) {
-								echo "readonly";
+								echo "disabled";
 							} ?> class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="New Password"/>
 						</div>
 					</section>

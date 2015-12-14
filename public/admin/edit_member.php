@@ -52,7 +52,7 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="password"> پسورد &nbsp;</label>
 						<div class="controls">
-							<input readonly class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="Password is encrypted"/>
+							<input disabled class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="Password is encrypted"/>
 						</div>
 					</section>
 					<!--first_name-->
@@ -64,8 +64,7 @@ echo output_message($message, $errors);
 					</section>
 					<!--last_name-->
 					<section class="row">
-						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name"> نام خانوادگی
-						                                                                                   &nbsp;</label>
+						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name"> نام خانوادگی&nbsp;</label>
 						<div class="controls">
 							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name" placeholder="نام خانوادگی" value="<?php echo htmlentities($member->last_name); ?>"/>
 						</div>
@@ -74,7 +73,7 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="gender"> جنس &nbsp;</label>
 						<div class="controls">
-							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8" name="gender" id="gender">
+							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="gender" id="gender">
 								<?php echo htmlentities($member->gender); ?>
 								<?php if($member->gender === "مرد") { ?>
 									<option value="مرد">مرد</option>
