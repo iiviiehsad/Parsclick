@@ -890,6 +890,7 @@ function is_temp_mail($mail)
 			'trashmail.net',
 			'trashmail.org',
 			'trashymail.com',
+			'trbvm.com',
 			'trialmail.de',
 			'trillianpro.com',
 			'twinmail.de',

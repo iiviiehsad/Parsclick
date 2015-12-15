@@ -7,12 +7,12 @@ $member = Member::find_by_id($session->id);
 $member->check_status();
 $errors = "";
 if(isset($_POST['submit'])) {
-	$member->id       = $session->id;
+	$member->id = $session->id;
 	//$member->username = trim($_POST["username"]);
-	if(!empty($_POST["password"])) {
-		if(!has_length($_POST["password"], ['min' => 6])) {
+	if(! empty($_POST["password"])) {
+		if(! has_length($_POST["password"], ['min' => 6])) {
 			$errors = "پسورد باید حداقل ۶ حروف یا بیشتر باشد!";
-		} elseif(!has_format_matching($_POST["password"], '/[^A-Za-z0-9]/')) {
+		} elseif(! has_format_matching($_POST["password"], '/[^A-Za-z0-9]/')) {
 			$errors = "حداقل از یک حرف مخصوص استفاده کنید!";
 		} else {
 			$member->hashed_password = $member->password_encrypt(trim($_POST["password"]));
@@ -26,13 +26,17 @@ if(isset($_POST['submit'])) {
 	$member->city       = trim($_POST["city"]);
 	$member->post_code  = trim($_POST["post_code"]);
 	$member->phone      = trim($_POST["phone"]);
-	$member->email      = trim($_POST["email"]);
-	$result             = $member->save();
-	if($result) {
-		$session->message("پروفایل بروزرسانی شد.");
-		redirect_to("member-profile");
+	if(is_temp_mail(trim($_POST["email"]))) {
+		$errors = "ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!";
 	} else {
-		$errors = "بروزرسانی پروفایل موفقیت آمیز نبود یا چیزی اصلا تغییر داده نشد!";
+		$member->email = trim($_POST["email"]);
+		$result = $member->save();
+		if($result) {
+			$session->message("پروفایل بروزرسانی شد.");
+			redirect_to("member-profile");
+		} else {
+			$errors = "بروزرسانی پروفایل موفقیت آمیز نبود یا چیزی اصلا تغییر داده نشد!";
+		}
 	}
 } else {
 }
@@ -43,7 +47,6 @@ if(isset($_POST['submit'])) {
 <section class="main col-sm-12 col-md-9 col-lg-9">
 	<article>
 		<h2><i class="fa fa-pencil-square"></i> ویرایش پروفایل </h2>
-
 		<form class="registration form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
 			<fieldset id="login">
 				<legend><i class="fa fa-user"></i> <?php echo ucwords(strtolower($member->full_name())); ?>
@@ -139,7 +142,6 @@ if(isset($_POST['submit'])) {
 		<img class="img-thumbnail center" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=250&d=<?php echo DOMAIN .
 		                                                                                                                        DS .
 		                                                                                                                        'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->email; ?>">
-
 		<h2><i class="fa fa-info-circle"></i> اطلاعات</h2>
 		<div class="alert alert-info">
 			<small>

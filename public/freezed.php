@@ -7,24 +7,32 @@ if($member->status == 2) {
 }
 $errors = "";
 if(isset($_POST["resend_email"])) {
-	$member->create_reset_token($member->username);
-	$result = $member->email_confirmation_details($member->username);
-	if($result) {
-		$session->message("ایمیل برای فعال کردن عضویت دوباره فرستاده شد. لطفا ایمیل خود را چک کنید و از اینجا خارج شوید.");
-		redirect_to("freezed");
+	if(is_temp_mail($member->email)) {
+		$errors = "ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!";
 	} else {
-		$errors = "نتوانستیم ایمیل بفرستیم! لطفا بعدا سعی کنید یا با مدیر سایت تماس بگیرید.";
+		$member->create_reset_token($member->username);
+		$result = $member->email_confirmation_details($member->username);
+		if($result) {
+			$session->message("ایمیل برای فعال کردن عضویت دوباره فرستاده شد. لطفا ایمیل خود را چک کنید و از اینجا خارج شوید.");
+			redirect_to("freezed");
+		} else {
+			$errors = "نتوانستیم ایمیل بفرستیم! لطفا بعدا سعی کنید یا با مدیر سایت تماس بگیرید.";
+		}
 	}
 } elseif(isset($_POST["update_email"])) {
 	if(request_is_post() && $session->request_is_same_domain()) {
 		if($session->csrf_token_is_valid() && $session->csrf_token_is_recent()) {
-			$member->email = trim($_POST["email"]);
-			$result        = $member->save();
-			if($result) {
-				$session->message("شما ایمیل خود را بروز رساندید. حالا روی دوباره ایمیل را بفرست کلیک کنید.");
-				redirect_to("freezed");
+			if(is_temp_mail(trim($_POST["email"]))) {
+				$errors = "ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!";
 			} else {
-				$errors = "بروزرسانی ایمیل موفقیت آمیز نبود!";
+				$member->email = trim($_POST["email"]);
+				$result        = $member->save();
+				if($result) {
+					$session->message("شما ایمیل خود را بروز رساندید. حالا روی دوباره ایمیل را بفرست کلیک کنید.");
+					redirect_to("freezed");
+				} else {
+					$errors = "بروزرسانی ایمیل موفقیت آمیز نبود!";
+				}
 			}
 		} else {
 			$errors = "شناسه CSRF معتبر نیست!";
@@ -58,7 +66,7 @@ if(isset($_POST["resend_email"])) {
 		<p>حق اشتراک شما به یکی از دلایل زیر کار نمیکند:</p>
 		<ul class="text-warning">
 			<li>شما لینک فعال کردن عضویت خود که با ایمیل دریافت کردید کلیک نکردید.</li>
-			<li>سیستم در حال چک کردن دوباره ی ایمیل شماست.</li>
+			<li>سیستم در حال چک کردن دوباره ی ایمیل شماست چون مدیران دریافتند که ایمیل شما موقت است.</li>
 		</ul>
 		<form action="freezed" method="POST">
 			<a class="btn btn-danger btn-large" href="logout.php" role="button">خروج</a>
