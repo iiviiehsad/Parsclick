@@ -19,10 +19,14 @@ echo output_message($message);
 					<dd><?php echo $current_article->visible == 1 ? 'بله' : 'خیر'; ?></dd>
 					<dt>نویسنده:</dt>
 					<dd><?php echo isset($current_article->author_id) ? htmlentities(Author::find_by_id($current_article->author_id)->full_name()) : '- '; ?></dd>
-					<dt>ویرایش:</dt>
+					<dt>تغییرات</dt>
 					<dd>
-						<a class="btn btn-primary btn-small arial" href="edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
+						<a class="btn btn-primary btn-small arial" href="edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>" data-toggle="tooltip" title="ویرایش">
 							<span class="glyphicon glyphicon-pencil"></span>
+						</a>
+						<a class="btn btn-primary btn-small arial" href="admin_article_comments.php?article=<?php echo urlencode($current_article->id); ?>" data-toggle="tooltip" title="نظرات">
+							<?php echo count($current_article->comments()); ?>
+							<span class="glyphicon glyphicon-comment"></span>
 						</a>
 					</dd>
 					<dt>مطالب:</dt>
@@ -45,7 +49,7 @@ echo output_message($message);
 					</dd>
 				</dl>
 				<?php if(Article::num_articles_for_subject($current_subject->id) != 0) { ?>
-					<hr/>
+					<hr>
 					<div>
 						<h2><i class="fa fa-newspaper-o"></i> مقالات در این موضوع </h2>
 						<ul>
@@ -54,10 +58,13 @@ echo output_message($message);
 							foreach($subject_articles as $article) {
 								echo "<li class='list-group-item-text'>";
 								$safe_article_id = urlencode($article->id);
-								echo "<a href='admin_articles.php?subject=" . $current_subject->id . "&article={$safe_article_id}'>";
-								if(empty($article->name)) {
-									echo "(مقاله اسم ندارد)";
+								echo "<a href='author_articles.php?subject=" . $current_subject->id . "&article={$safe_article_id}'";
+								if($article->comments()) {
+									echo "data-toggle='tooltip' data-placement='left' title='";
+									echo count($article->comments()) . " دیدگاه";
+									echo "'";
 								}
+								echo ">";
 								echo htmlentities(ucwords($article->name));
 								echo "</a>";
 								echo "</li>";

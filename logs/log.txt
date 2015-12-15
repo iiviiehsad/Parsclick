@@ -36,3 +36,5 @@ December 15, 2015 at 07:18 PM | Login: <span class='alert-success'>Amirhassanazi
 December 15, 2015 at 07:23 PM | Login: <span class='alert-success'>Amirhassanazimi</span> logged in.
 December 15, 2015 at 07:28 PM | Login: <span class='alert-success'>Amirhassanazimi</span> logged in.
 December 15, 2015 at 08:40 PM | Login: <span class='alert-success'>Amirhassanazimi</span> logged in.
+December 15, 2015 at 09:09 PM | Login: <span class='alert-danger'>Hazz</span> logged in.
+December 15, 2015 at 09:14 PM | Login: <span class='alert-danger'>Hazz</span> logged in.

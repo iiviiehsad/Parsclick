@@ -29,17 +29,17 @@ echo output_message($message);
 					<dt>لینک ها:</dt>
 					<dd>
 						<!-----------------------------------------------EDIT------------------------------------------>
-						<a class="btn btn-primary arial" href="edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" title="Edit Course">
+						<a class="btn btn-primary btn-small arial" href="edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" title="ویرایش درس">
 							<span class="glyphicon glyphicon-pencil"></span>
 						</a>
 						<!---------------------------------------------FILE LINK--------------------------------------->
 						<?php if(!empty($current_course->file_link)) { ?>
-							<a class="btn btn-primary arial" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" title="لینک فایل تمرینی">
+							<a class="btn btn-primary btn-small arial" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" data-toggle="tooltip" title="لینک فایل تمرینی">
 								<span class="glyphicon glyphicon-file"></span>
 							</a>
 						<?php } ?>
 						<!---------------------------------------------COMMENTS---------------------------------------->
-						<a class="btn btn-primary arial" href="admin_comments.php?course=<?php echo urlencode($current_course->id); ?>" title="نظرات">
+						<a class="btn btn-primary btn-small arial" href="admin_comments.php?course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" title="نظرات">
 							<?php echo count($current_course->comments()); ?>
 							<span class="glyphicon glyphicon-comment"></span>
 						</a>
@@ -95,7 +95,7 @@ echo output_message($message);
 											<tr>
 												<td>
 													<a class="youtube visited" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
-													   title="Click to play">
+													   title="پخش کنید">
 														<?php echo $item['snippet']['title']; ?>
 													</a>
 												</td>
@@ -136,7 +136,7 @@ echo output_message($message);
 					<dd><?php echo $current_category->visible == 1 ? 'بله' : 'خیر'; ?></dd>
 					<dt>&nbsp;</dt>
 					<dd>
-						<a title="Edit Category" class="btn btn-primary" href="edit_category.php?category=<?php echo urlencode($current_category->id); ?>">
+						<a title="ویرایش" class="btn btn-primary btn-small" href="edit_category.php?category=<?php echo urlencode($current_category->id); ?>" data-toggle="tooltip">
 							<span class="glyphicon glyphicon-pencil"></span>
 						</a>
 					</dd>
@@ -150,10 +150,13 @@ echo output_message($message);
 						foreach($category_courses as $course) {
 							echo "<li class='list-group-item-text'>";
 							$safe_course_id = urlencode($course->id);
-							echo "<a href='admin_courses.php?category=" . $current_category->id . "&course={$safe_course_id}'>";
-							if(empty($course->name)) {
-								echo "(اسم درس وجود ندارد)";
+							echo "<a href='admin_courses.php?category=" . $current_category->id . "&course={$safe_course_id}'";
+							if($course->comments()) {
+								echo "data-toggle='tooltip' data-placement='left' title='";
+								echo count($course->comments()) . " دیدگاه";
+								echo "'";
 							}
+							echo ">";
 							echo htmlentities(ucwords($course->name));
 							echo "</a>";
 							echo "</li>";
@@ -169,7 +172,7 @@ echo output_message($message);
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>
 			<h2>موضوعات و دروس</h2>
-			<a class="btn btn-success pull-left arial" href="new_category.php" title="Add New Category"><span class="glyphicon glyphicon-plus"></span></a>
+			<a class="btn btn-success pull-left arial" href="new_category.php" data-toggle="tooltip" title="موضوع جدید اضافه کنید"><span class="glyphicon glyphicon-plus"></span></a>
 			<?php echo admin_courses($current_category, $current_course); ?>
 		</aside>
 	</section>
