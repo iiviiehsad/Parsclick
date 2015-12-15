@@ -63,6 +63,7 @@ require_once(LIB_PATH . DS . 'course.php');
 require_once(LIB_PATH . DS . 'file.php');
 require_once(LIB_PATH . DS . 'playlist.php');
 require_once(LIB_PATH . DS . 'comment.php');
+require_once(LIB_PATH . DS . 'article_comment.php');
 require_once(LIB_PATH . DS . 'failed_logins.php');
 require_once(LIB_PATH . DS . 'PHPMailer' . DS . 'class.phpmailer.php');
 require_once(LIB_PATH . DS . 'PHPMailer' . DS . 'class.smtp.php');

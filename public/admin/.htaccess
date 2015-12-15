@@ -1,0 +1,7 @@
+
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^admin\.parsclick\.net$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.admin\.parsclick\.net$
+RewriteRule ^/?$ "http\:\/\/www\.parsclick\.net\/admin\/" [R=301,L]
+

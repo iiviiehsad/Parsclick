@@ -2279,6 +2279,7 @@ function active()
 		echo "<script>$(\"a:contains('درباره ما')\").parent().addClass('active');</script>";
 	} elseif($filename == "faq.php") {
 		echo "<script>$(\"a:contains('سوالات شما')\").parent().addClass('active');</script>";
+		include('_/components/php/smoothscrolling.php');
 	} elseif($filename == "help.php") {
 		echo "<script>$(\"a:contains('کمک به ما')\").parent().addClass('active');</script>";
 	} elseif(($filename == "login.php") || ($filename == "register.php") || ($filename == "forgot.php") ||

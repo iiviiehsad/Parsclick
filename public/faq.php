@@ -14,3 +14,4 @@ $title    = "پارس کلیک - سوالات و جواب ها";
 		<?php include("_/components/php/aside-twitter-embed.php"); ?>
 	</section><!-- sidebar -->
 <?php include_layout_template("footer.php"); ?>
+

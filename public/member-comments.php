@@ -93,7 +93,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 			<br/>
 			<fieldset>
 				<legend><i class="fa fa-comments-o"></i> فرم نظر</legend>
-				<form class="form-horizontal" action="member-comments?course=<?php echo urlencode($current_course->id); ?>" method="post" role="form">
+				<form class="form-horizontal" action="member-comments?course=<?php echo urlencode($current_course->id); ?>" method="POST" role="form">
 					<!--content-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
