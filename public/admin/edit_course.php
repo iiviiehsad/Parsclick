@@ -30,12 +30,12 @@ echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<h2><i class="fa fa-pencil-square-o"></i> ویرایش درس</h2>
+			<h2><i class="fa fa-pencil-square"></i> ویرایش درس</h2>
 
 			<form class="form-horizontal" action="edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id) ?>" method="POST" role="form">
 				<fieldset>
 					<!--name-->
-					<legend><i class="fa fa-film"></i> <?php echo htmlentities(ucfirst($current_course->name)); ?>
+					<legend><?php echo htmlentities(ucfirst($current_course->name)); ?>
 					</legend>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="course_name">

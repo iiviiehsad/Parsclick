@@ -41,7 +41,7 @@ echo output_message($message, $errors);
 			<form class="form-horizontal" method="POST" role="form" action="new_course.php?category=<?php echo urlencode($current_category->id); ?>">
 				<fieldset>
 					<!--course name-->
-					<legend><i class="fa fa-list-alt"></i> <?php echo ucfirst($current_category->name); ?></legend>
+					<legend><?php echo ucfirst($current_category->name); ?></legend>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="course_name">
 							اسم درس

@@ -41,7 +41,7 @@ echo output_message($message, $errors); ?>
 			<h2><i class="fa fa-newspaper-o"></i> مقاله جدید</h2>
 			<form class="form-horizontal" action="new_article.php?subject=<?php echo urlencode($current_subject->id); ?>" method="POST" role="form">
 				<fieldset id="login">
-					<legend><i class="fa fa-list-alt"></i> <?php echo ucfirst($current_subject->name); ?></legend>
+					<legend><?php echo ucfirst($current_subject->name); ?></legend>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="article_name">اسم مقاله</label>
 						<div class="controls">

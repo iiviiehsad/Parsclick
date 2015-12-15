@@ -31,7 +31,7 @@ echo output_message($message, $errors);
 
 			<form class="form-horizontal" action="edit_subject.php?subject=<?php echo urlencode($current_subject->id); ?>" method="post" role="form">
 				<fieldset>
-					<legend><i class="fa fa-list-alt"></i> <?php echo htmlentities(ucfirst($current_subject->name)); ?></legend>
+					<legend><?php echo htmlentities(ucfirst($current_subject->name)); ?></legend>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="subject_name">اسم موضوع</label>
 						<div class="controls">

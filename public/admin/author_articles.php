@@ -93,10 +93,10 @@ echo output_message($message);
 				</article>
 			<?php } elseif($current_subject) { ?>
 				<?php if(! $current_subject->visible) redirect_to("author_articles.php"); ?>
-				<div class="panel panel-default">
+				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h2 class="panel-title">
-							<a class="btn btn-success btn-small arial" href="new_article.php?subject=<?php echo urlencode($current_subject->id); ?>">
+							<a class="btn btn-success btn-small arial" href="new_article.php?subject=<?php echo urlencode($current_subject->id); ?>" data-toggle="tooltip" title="مقاله جدید">
 								<i class="fa fa-plus fa-lg"></i>
 							</a> &nbsp;<?php echo htmlentities(ucwords($current_subject->name)); ?>&nbsp;
 						</h2>
@@ -116,9 +116,6 @@ echo output_message($message);
 									echo "'";
 								}
 								echo ">";
-								if(empty($article->name)) {
-									echo "(اسم مقاله موجود نیست)";
-								}
 								echo htmlentities(ucwords($article->name));
 								echo "</a>";
 								echo "</li>";

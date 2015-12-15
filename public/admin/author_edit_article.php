@@ -33,11 +33,11 @@ echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<h2><i class="fa fa-pencil-square-o"></i> ویرایش مقاله</h2>
+			<h2><i class="fa fa-pencil-square"></i> ویرایش مقاله</h2>
 
 			<form class="form-horizontal" action="author_edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id) ?>" method="post" role="form">
-				<fieldset id="login">
-					<legend><i class="fa fa-newspaper-o"></i> <?php echo htmlentities(ucfirst($current_article->name)); ?>
+				<fieldset>
+					<legend><i class="fa fa-newspaper"></i> <?php echo htmlentities(ucfirst($current_article->name)); ?>
 					</legend>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="article_name">اسم مقاله</label>

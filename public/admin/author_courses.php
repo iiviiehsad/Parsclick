@@ -40,7 +40,7 @@ echo output_message($message, $errors);
 					</a>
 				<?php } ?>
 				<!-- -------------------------------------------FILE LINK--------------------------------------------- -->
-				<?php if(!empty($current_course->file_link)) { ?>
+				<?php if(! empty($current_course->file_link)) { ?>
 					<a class="btn btn-primary btn-small" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" title="لینک فایل تمرینی">
 						لینک فایل تمرینی
 					</a>
@@ -63,7 +63,7 @@ echo output_message($message, $errors);
 					<?php endforeach; ?>
 				<?php } ?>
 				<!-- --------------------------------------------Content---------------------------------------------- -->
-				<?php if(!empty($current_course->content)) { ?>
+				<?php if(! empty($current_course->content)) { ?>
 					<h5>توضیحات:</h5>
 					<p><?php echo nl2br(htmlentities($current_course->content)); ?></p>
 				<?php } ?>
@@ -72,7 +72,6 @@ echo output_message($message, $errors);
 					<?php if(check_ownership($current_course->author_id, $session->id)) { ?>
 						<div class="alert alert-info">
 							<h3><i class="fa fa-upload"></i> آپلود فایل تمرینی زیپ</h3>
-
 							<form enctype="multipart/form-data" action="author_courses.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" method="POST" class="form-horizontal fileForm" role="form">
 								<section class="row">
 									<label style="cursor:pointer;" class="control-label btn btn-small btn-info" for="single_file">
@@ -100,7 +99,7 @@ echo output_message($message, $errors);
 				if(isset($current_course->youtubePlaylist)) {
 					$googleapi  = "https://www.googleapis.com/youtube/v3/playlistItems";
 					$playListID = $current_course->youtubePlaylist;
-					if(!isset($_GET['nextPageToken']) || !isset($_GET['prevPageToken'])) {
+					if(! isset($_GET['nextPageToken']) || ! isset($_GET['prevPageToken'])) {
 						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI;
 					}
 					if(isset($_GET['nextPageToken'])) {
@@ -157,30 +156,38 @@ echo output_message($message, $errors);
 					<?php } ?>
 				<?php } ?>
 			<?php } elseif($current_category) { ?>
-				<?php if(!$current_category->visible) redirect_to("author_courses.php"); ?>
-				<h2>
-					<a class="arial btn btn-success btn-small" href="new_course.php?category=<?php echo urlencode($current_category->id); ?>">
-						<i class="fa fa-plus"></i>
-					</a>
-					<?php echo htmlentities(ucwords($current_category->name)); ?>
-				</h2>
-				<br/>
-				<h4><i class="fa fa-film"></i> درس ها در این موضوع:</h4>
-				<ul>
-					<?php
-					$category_courses = Course::find_courses_for_category($current_category->id, FALSE);
-					foreach($category_courses as $course):
-						echo "<li class='list-group-item-text'>";
-						$safe_course_id = urlencode($course->id);
-						echo "<a href='author_courses.php?category=" . urlencode($current_category->id) . "&course={$safe_course_id}'>";
-						if(empty($course->name)) {
-							echo "(نام درس موجود نیست)";
-						}
-						echo htmlentities(ucwords($course->name));
-						echo "</a>";
-						echo "</li>";
-					endforeach; ?>
-				</ul>
+				<?php if(! $current_category->visible) redirect_to("author_courses.php"); ?>
+				<div class="panel panel-danger">
+					<div class="panel-heading">
+						<h2 class="panel-title">
+							<a class="arial btn btn-success btn-small" href="new_course.php?category=<?php echo urlencode($current_category->id); ?>" data-toggle="tooltip" title="درس جدید">
+								<i class="fa fa-plus fa-lg"></i>
+							</a>
+							<?php echo htmlentities(ucwords($current_category->name)); ?>
+						</h2>
+					</div>
+					<div class="panel-body">
+						<h4><i class="fa fa-film"></i> درس ها در این موضوع:</h4>
+						<ul>
+							<?php
+							$category_courses = Course::find_courses_for_category($current_category->id, FALSE);
+							foreach($category_courses as $course):
+								echo "<li class='list-group-item-text'>";
+								$safe_course_id = urlencode($course->id);
+								echo "<a href='author_courses.php?category=" . urlencode($current_category->id) . "&course={$safe_course_id}'";
+								if($course->comments()) {
+									echo "data-toggle='tooltip' data-placement='left' title='";
+									echo count($course->comments()) . " دیدگاه";
+									echo "'";
+								}
+								echo ">";
+								echo htmlentities(ucwords($course->name));
+								echo "</a>";
+								echo "</li>";
+							endforeach; ?>
+						</ul>
+					</div>
+				</div>
 			<?php } else { ?>
 				<article>
 					<h2>لطفا یک موضوع یا درس انتخاب کنید.</h2>

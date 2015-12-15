@@ -43,7 +43,7 @@ echo output_message($message);
 					<dd><?php echo $current_subject->visible == 1 ? 'بله' : 'خیر'; ?></dd>
 					<dt>&nbsp;</dt>
 					<dd>
-						<a class="btn btn-primary" href="edit_subject.php?subject=<?php echo urlencode($current_subject->id); ?>">
+						<a class="btn btn-primary btn-small" href="edit_subject.php?subject=<?php echo urlencode($current_subject->id); ?>">
 							<span class="glyphicon glyphicon-pencil"></span>
 						</a>
 					</dd>

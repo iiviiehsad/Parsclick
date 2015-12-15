@@ -35,11 +35,11 @@ echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<h2><i class="fa fa-pencil-square-o"></i> ویرایش درس</h2>
+			<h2><i class="fa fa-pencil-square"></i> ویرایش درس</h2>
 
 			<form class="form-horizontal" action="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id) ?>" method="post" role="form">
-				<fieldset id="login">
-					<legend><i class="fa fa-film"></i> <?php echo htmlentities(ucfirst($current_course->name)); ?>
+				<fieldset>
+					<legend><?php echo htmlentities(ucfirst($current_course->name)); ?>
 					</legend>
 					<!--name-->
 					<section class="row">

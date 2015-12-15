@@ -27,11 +27,11 @@ echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<h2><i class="fa fa-pencil-square-o"></i> ویرایش موضوع</h2>
+			<h2><i class="fa fa-pencil-square"></i> ویرایش موضوع</h2>
 
-			<form class="form-horizontal" action="edit_category.php?category=<?php echo urlencode($current_category->id); ?>" method="post" role="form">
-				<fieldset id="login">
-					<legend><i class="fa fa-list-alt"></i> <?php echo htmlentities(ucfirst($current_category->name)); ?></legend>
+			<form class="form-horizontal" action="edit_category.php?category=<?php echo urlencode($current_category->id); ?>" method="POST" role="form">
+				<fieldset>
+					<legend><?php echo htmlentities(ucfirst($current_category->name)); ?></legend>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="category_name">اسم موضوع</label>
 						<div class="controls">
