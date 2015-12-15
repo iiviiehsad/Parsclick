@@ -27,7 +27,6 @@ function redirect_to($location = NULL)
 /**
  * @param string $message string shows the messages
  * @param string $errors  string shows the errors
- *
  * @return string
  */
 function output_message($message = "", $errors = "")
@@ -68,7 +67,6 @@ function include_layout_template($template = "")
 /**
  * @param string $marked_string is the marked string and the date you need to pas in which first removes the marked
  *                              zeros, then removes any remaining marks.
- *
  * @return mixed the clean date output
  */
 function strip_zeros_from_date($marked_string = "")
@@ -80,7 +78,6 @@ function strip_zeros_from_date($marked_string = "")
 
 /**
  * @param string $datetime will get the date and time as a simple text
- *
  * @return string ready format to insert into MySQL
  */
 function datetime_to_text($datetime = "")
@@ -91,7 +88,6 @@ function datetime_to_text($datetime = "")
 
 /**
  * @param $size integer parameter getting the size as bytes
- *
  * @return string format for size
  */
 function check_size($size)
@@ -109,7 +105,6 @@ function check_size($size)
  * @param        $string string text to truncate
  * @param        $length integer length to truncate from the string
  * @param string $dots   string default (...) to show immediately after the string
- *
  * @return string from 0 character to length and ... after it
  */
 function truncate($string, $length, $dots = " (برای ادامه کلیک کنید ...) ")
@@ -129,11 +124,9 @@ function truncate($string, $length, $dots = " (برای ادامه کلیک کن
  * echo ip_info("Visitor", "State");
  * echo ip_info("Visitor", "City");
  * echo ip_info("Visitor", "Address");
- *
  * @param null   $ip          gets the IP address
  * @param string $purpose     gets Country, Country Code, State, City or Address
  * @param bool   $deep_detect TRUE is user is using proxy and FALSE otherwise
- *
  * @return array|null|string of location details
  */
 function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE)
@@ -227,11 +220,9 @@ function request_is_post()
 
 /**
  * validate value has presence
- *
  * @param $value        string uses trim() so empty spaces don't count
  *                      use === to avoid false positives
  *                      empty() would consider "0" to be empty
- *
  * @return bool true or false
  */
 function has_presence($value)
@@ -243,7 +234,6 @@ function has_presence($value)
 /**
  * @param       $value   string validate value has string length
  * @param array $options leading and trailing spaces will count
- *
  * @return bool options: exact, max, min
  *                       has_length($first_name, ['exact' => 20])
  *                       has_length($first_name, ['min' => 5, 'max' => 100])
@@ -267,12 +257,10 @@ function has_length($value, $options = [])
  * has_format_matching('1234', '/\d{4}/') is true
  * has_format_matching('12345', '/\d{4}/') is also true
  * has_format_matching('12345', '/\A\d{4}\Z/') is false
- *
  * @param        $value string has a format matching
  * @param string $regex regular expression
  *                      Be sure to use anchor expressions to match start and end of string.
  *                      (Use \A and \Z, not ^ and $ which allow line returns.)
- *
  * @return int
  */
 function has_format_matching($value, $regex = '//')
@@ -281,10 +269,8 @@ function has_format_matching($value, $regex = '//')
 }
 
 /** validate value is a number
- *
  * @param       $value   string so use is_numeric instead of is_int
  * @param array $options : max, min
- *
  * @return bool has_number($items_to_order, ['min' => 1, 'max' => 5])
  */
 function has_number($value, $options = [])
@@ -303,10 +289,8 @@ function has_number($value, $options = [])
 
 /**
  * validate value is included in a set
- *
  * @param       $value
  * @param array $set
- *
  * @return bool
  */
 function has_inclusion_in($value, $set = [])
@@ -316,10 +300,8 @@ function has_inclusion_in($value, $set = [])
 
 /**
  * validate value is excluded from a set
- *
  * @param       $value
  * @param array $set
- *
  * @return bool
  */
 function has_exclusion_from($value, $set = [])
@@ -329,10 +311,8 @@ function has_exclusion_from($value, $set = [])
 
 /**
  * This function will simply check if the parameters given are identical or not
- *
  * @param $id         integer to compare
  * @param $session_id integer to compare
- *
  * @return bool return TRUE if two values are identical
  */
 function check_ownership($id, $session_id)
@@ -346,7 +326,6 @@ function check_ownership($id, $session_id)
 
 /**
  * @param $file string gets the file name
- *
  * @return mixed of file extensions
  */
 function file_extension($file)
@@ -357,7 +336,6 @@ function file_extension($file)
 
 /**
  * @param $file string gets the file name
- *
  * @return bool TRUE if file contains PHP in it and FALSE otherwise
  */
 function file_contains_php($file)
@@ -369,7 +347,6 @@ function file_contains_php($file)
 
 /**
  * @param $error_integer integer gets the file error number
- *
  * @return mixed of errors descriptions
  */
 function file_upload_error($error_integer)
@@ -1693,10 +1670,8 @@ function log_action($action, $message = "")
 
 /**
  * Function for super admins to show the subjects and articles
- *
  * @param $subject_array array gets the subject ID form URL and return it as an array
  * @param $article_array array gets the article ID form URL and return it as an array
- *
  * @return string subjects as an HTML ordered list along with articles as an HTML unordered list
  */
 function admin_articles($subject_array, $article_array)
@@ -1734,6 +1709,11 @@ function admin_articles($subject_array, $article_array)
 			if($article_array && $article->id == $article_array->id) {
 				$output .= " class='selected'";
 			}
+			if($article->comments()) {
+				$output .= "data-toggle='tooltip' data-placement='left' title='";
+				$output .= count($article->comments()) . " دیدگاه";
+				$output .= "'";
+			}
 			$output .= ">";
 			if(! empty($article->name)) {
 				$output .= htmlentities(ucwords($article->name));
@@ -1754,10 +1734,8 @@ function admin_articles($subject_array, $article_array)
 
 /**
  * Function for authors to show the subjects and articles
- *
  * @param $subject_array array gets the subject ID form URL and return it as an array
  * @param $article_array array gets the article ID form URL and return it as an array
- *
  * @return string subjects as an HTML ordered list along with articles as an HTML unordered list
  */
 function author_articles($subject_array, $article_array)
@@ -1790,6 +1768,11 @@ function author_articles($subject_array, $article_array)
 			if($article_array && $article->id == $article_array->id) {
 				$output .= " class='selected'";
 			}
+			if($article->comments()) {
+				$output .= "data-toggle='tooltip' data-placement='left' title='";
+				$output .= count($article->comments()) . " دیدگاه";
+				$output .= "'";
+			}
 			$output .= ">";
 			if(! empty($article->name)) {
 				$output .= htmlentities(ucwords($article->name));
@@ -1797,8 +1780,7 @@ function author_articles($subject_array, $article_array)
 				$output .= htmlentities("(مقاله اسم ندارد)");
 			}
 			$output .= "</a>";
-			if(! $article->visible) //if visibility is FALSE
-			{
+			if(! $article->visible) {
 				$output .= " <i class='text-danger fa fa-eye-slash fa-lg'></i>";
 			}
 			$output .= "</li>";
@@ -1813,10 +1795,8 @@ function author_articles($subject_array, $article_array)
  * Function for members to show the subjects and articles. The difference between this function with administrators
  * functions are instead of all articles to be open for every subjects, the members actually have to click on subjects
  * in order for articles to be open underneath subjects and this happens once for every subject.
- *
  * @param $subject_array array gets the subject ID form URL and return it as an array
  * @param $article_array array gets the article ID form URL and return it as an array
- *
  * @return string subjects as an HTML ordered list along with articles as an HTML unordered list
  */
 function member_articles($subject_array, $article_array)
@@ -1851,6 +1831,11 @@ function member_articles($subject_array, $article_array)
 						if($article_array && $article->id == $article_array->id) {
 							$output .= " class='selected'";
 						}
+						if($article->comments()) {
+							$output .= "data-toggle='tooltip' data-placement='left' title='";
+							$output .= count($article->comments()) . " دیدگاه";
+							$output .= "'";
+						}
 						$output .= ">";
 						if(! empty($article->name)) {
 							$output .= htmlentities(ucwords($article->name));
@@ -1874,7 +1859,6 @@ function member_articles($subject_array, $article_array)
 
 /**
  * Finds all articles for subjects
- *
  * @param bool $public is a condition to select the first article (the default one) for every subject upon clicking on
  *                     subjects and by default is equals to FALSE.
  */
@@ -1903,10 +1887,8 @@ function find_selected_article($public = FALSE)
 
 /**
  * Function for super admins to show the categories and courses
- *
  * @param $category_array array gets the subject ID form URL and return it as an array
  * @param $course_array   array gets the article ID form URL and return it as an array
- *
  * @return string categories as an HTML ordered list along with courses as an HTML unordered list
  */
 function admin_courses($category_array, $course_array)
@@ -1944,9 +1926,9 @@ function admin_courses($category_array, $course_array)
 			if($course_array && $course->id == $course_array->id) {
 				$output .= " class='selected'";
 			}
-			if(Comment::count_comments_for_course($course->id) > 0) {
+			if($course->comments()) {
 				$output .= "data-toggle='tooltip' data-placement='left' title='";
-				$output .= Comment::count_comments_for_course($course->id) . " دیدگاه";
+				$output .= count($course->comments()) . " دیدگاه";
 				$output .= "'";
 			}
 			$output .= ">";
@@ -1969,10 +1951,8 @@ function admin_courses($category_array, $course_array)
 
 /**
  * Function for authors to show the categories and courses
- *
  * @param $category_array array gets the category ID form URL and return it as an array
  * @param $course_array   array gets the course ID form URL and return it as an array
- *
  * @return string categories as an HTML ordered list along with courses as an HTML unordered list
  */
 function author_courses($category_array, $course_array)
@@ -2005,9 +1985,9 @@ function author_courses($category_array, $course_array)
 			if($course_array && $course->id == $course_array->id) {
 				$output .= " class='selected'";
 			}
-			if(Comment::count_comments_for_course($course->id) > 0) {
+			if($course->comments()) {
 				$output .= "data-toggle='tooltip' data-placement='left' title='";
-				$output .= Comment::count_comments_for_course($course->id) . " دیدگاه";
+				$output .= count($course->comments()) . " دیدگاه";
 				$output .= "'";
 			}
 			$output .= ">";
@@ -2033,10 +2013,8 @@ function author_courses($category_array, $course_array)
  * Function for members to show the categories and courses. The difference between this function with administrators
  * functions are instead of all courses to be open for every categories, the members actually have to click on
  * categories in order for courses to be open underneath categories and this happens once for every category.
- *
  * @param $category_array array gets the category ID form URL and return it as an array
  * @param $course_array   array gets the course ID form URL and return it as an array
- *
  * @return string categories as an HTML ordered list along with courses as an HTML unordered list
  */
 function member_courses($category_array, $course_array)
@@ -2070,9 +2048,9 @@ function member_courses($category_array, $course_array)
 					if($course_array && $course->id == $course_array->id) {
 						$output .= " class='selected'";
 					}
-					if(Comment::count_comments_for_course($course->id) > 0) {
+					if($course->comments()) {
 						$output .= "data-toggle='tooltip' data-placement='left' title='";
-						$output .= Comment::count_comments_for_course($course->id) . " دیدگاه";
+						$output .= count($course->comments()) . " دیدگاه";
 						$output .= "'";
 					}
 					$output .= ">";
@@ -2096,10 +2074,8 @@ function member_courses($category_array, $course_array)
  * Function for members to show the categories and courses. The difference between this function with administrators
  * functions are instead of all courses to be open for every categories, the members actually have to click on
  * categories in order for courses to be open underneath categories and this happens once for every category.
- *
  * @param $category_array array gets the category ID form URL and return it as an array
  * @param $course_array   array gets the course ID form URL and return it as an array
- *
  * @return string categories as an HTML ordered list along with courses as an HTML unordered list
  */
 function member_comments_for_course($category_array, $course_array)
@@ -2133,9 +2109,9 @@ function member_comments_for_course($category_array, $course_array)
 					if($course_array && $course->id == $course_array->id) {
 						$output .= " class='selected'";
 					}
-					if(Comment::count_comments_for_course($course->id) > 0) {
+					if($course->comments()) {
 						$output .= "data-toggle='tooltip' data-placement='left' title='";
-						$output .= Comment::count_comments_for_course($course->id) . " دیدگاه";
+						$output .= count($course->comments()) . " دیدگاه";
 						$output .= "'";
 					}
 					$output .= ">";
@@ -2234,7 +2210,6 @@ function public_articles()
 
 /**
  * Finds all courses for categories
- *
  * @param bool $public is a condition to select the first course (the default one) for every category upon clicking on
  *                     categories and by default is equals to FALSE.
  */
@@ -2344,7 +2319,6 @@ function active()
 /**
  * @param $salt   string gets the salt to add to the @param $string
  * @param $string $string string gets the text
- *
  * @return string encrypts the string
  */
 function encrypt_string($salt, $string)
@@ -2364,7 +2338,6 @@ function encrypt_string($salt, $string)
 /**
  * @param $salt           string gets the salt to add to the @param $string
  * @param $iv_with_string string initialization vector
- *
  * @return string decrypts the string
  */
 function decrypt_string($salt, $iv_with_string)
@@ -2384,7 +2357,6 @@ function decrypt_string($salt, $iv_with_string)
 /**
  * @param $salt   string gets the salt to add to the @param $string
  * @param $string string gets the text
- *
  * @return string encode after encryption to ensure encrypted characters are savable
  */
 function encrypt_string_and_encode($salt, $string)
@@ -2395,7 +2367,6 @@ function encrypt_string_and_encode($salt, $string)
 /**
  * @param $salt   string gets the salt to add it to the @param $string
  * @param $string string gets the text
- *
  * @return string and decodes before decryption
  */
 function decrypt_string_and_decode($salt, $string)
@@ -2405,7 +2376,6 @@ function decrypt_string_and_decode($salt, $string)
 
 /**
  * @param $string string gets the cookie or any text
- *
  * @return string signs cookie or any string by applying hashing algorithm and salting
  */
 function sign_string($string)
@@ -2420,7 +2390,6 @@ function sign_string($string)
 
 /**
  * @param $signed_string string gets the cookie or any signed string signed by @function sign_string
- *
  * @return bool TRUE if new signed string equals to the signed string and FALSE if otherwise
  */
 function signed_string_is_valid($signed_string)

@@ -69,10 +69,10 @@ if(isset($_POST["submit"])) {
 									<?php $_member = Member::find_by_id($comment->member_id); ?>
 									<img class="img-circle pull-right" width="50" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->email; ?>">
 									<div class="media-body">
-										<span class="badge"><?php echo htmlentities($_member->first_name); ?></span>
-										<span class="badge arial"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
+										<span class="label label-as-badge label-success"><?php echo htmlentities($_member->first_name); ?></span>
+										<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
 										<?php if($comment->member_id === $session->id) { ?>
-											<a href="member-delete-article-comment?id=<?php echo urlencode($comment->id); ?>" class="badge label-danger" onclick="return confirm('آیا مطمئن هستید؟')">
+											<a href="member-delete-article-comment?id=<?php echo urlencode($comment->id); ?>" class="label label-as-badge label-danger" title="حذف" data-toggle="tooltip" onclick="return confirm('آیا مطمئن هستید؟')">
 												<i class="fa fa-times"></i>
 											</a>
 										<?php } ?>

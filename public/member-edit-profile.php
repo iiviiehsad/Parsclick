@@ -26,10 +26,10 @@ if(isset($_POST['submit'])) {
 	$member->city       = trim($_POST["city"]);
 	$member->post_code  = trim($_POST["post_code"]);
 	$member->phone      = trim($_POST["phone"]);
-	if(is_temp_mail(trim($_POST["email"]))) {
+	if(is_temp_mail(trim(strtolower($_POST["email"])))) {
 		$errors = "ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!";
 	} else {
-		$member->email = trim($_POST["email"]);
+		$member->email = trim(strtolower($_POST["email"]));
 		$result = $member->save();
 		if($result) {
 			$session->message("پروفایل بروزرسانی شد.");

@@ -163,6 +163,15 @@ class Article extends DatabaseObject {
 	}
 
 	/**
+	 * Finds the comments for the course by using the function find_comments_for_article
+	 * @return array of comments for the article
+	 */
+	public function comments()
+	{
+		return ArticleComment::find_comments_for_article($this->id);
+	}
+
+	/**
 	 * Finds articles for specific author
 	 *
 	 * @param int       $author_id
