@@ -12,13 +12,13 @@ echo output_message($message);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<?php if($current_subject && $current_article) { ?>
-					<?php $_author = Author::find_by_id($current_article->author_id); ?>
+				<?php $_author = Author::find_by_id($current_article->author_id); ?>
 				<h1>
 					<?php echo $current_article->visible == 1 ? '<i class="fa fa-eye"></i>' : '<i class="text-danger fa fa-eye-slash"></i>'; ?>
 					<?php echo htmlentities(ucwords($current_article->name)); ?>
 				</h1>
 				<h4 class="text-success">
-					<?php if(!empty($_author->photo)) { ?>
+					<?php if(! empty($_author->photo)) { ?>
 						<img class="img-circle" width="50" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($_author->photo); ?>">
 					<?php } ?>
 					<?php echo isset($current_article->author_id) ? htmlentities($_author->full_name()) : "-"; ?>
@@ -30,7 +30,7 @@ echo output_message($message);
 				<?php } ?>
 				<p><?php echo nl2br(strip_tags($current_article->content, '<h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?></p>
 			<?php } elseif($current_subject) { ?>
-				<?php if(!$current_subject->visible) redirect_to("author_articles.php"); ?>
+				<?php if(! $current_subject->visible) redirect_to("author_articles.php"); ?>
 				<h2>
 					<a class="btn btn-success btn-small arial" href="new_article.php?subject=<?php echo urlencode($current_subject->id); ?>">
 						<i class="fa fa-plus"></i>
@@ -66,6 +66,20 @@ echo output_message($message);
 					<li><p>غلط املایی یکی از آشکارترین چیزهاست که نشان میدهد شما مقالات خود را چک نکردید. پس مواظب باشید ما غلط
 					       املایی نمی خواهیم این را جدا عرض کردم. یک لغت اگر بیشتر از دوبار در هر مقاله ای غلط بود این یعنی مقاله
 					       شما کپی است و ارزش ندارد.این مقاله شما را نشر نخواهد کرد.</p></li>
+					<li>
+						<p>قبل از گذاشتن مقاله درون ویرایشگر متن:</p>
+						<ul>
+							<li>دور کلمات انگلیسی از تگ <code>&lt;code&gt;</code> استفاده کنید</li>
+							<li>دور کد های چند خطه از تگ <code>&lt;pre&gt;</code> استفاده کنید</li>
+							<li>اگر لیست اضافه می کنید از تگ های زیر استفاده کنید:
+								<pre>&lt;ul&gt;<br> &lt;li&gt;لیست اول&lt;/li&gt;<br> &lt;li&gt;لیست دوم&lt;/li&gt;<br>&lt;/ul&gt;</pre>
+							</li>
+							<li>تگ های <code>HTML</code> قابل رویت نیست یعنی وقتی مطلبی رو می سازید که می خواهید کدهای
+								<code>HTML</code> رو نشون بدید این کدها دیده نخواهند شد چون کدهای <code>HTML</code> تبدیل میشوند. برای
+							    نشون دادن این کدها باید <code>&lt;&gt;</code> ها را به این صورت تبدیل کنید:
+								<pre>&lt;html&gt; => <span class="text-danger">&amp;lt;</span>html<span class="text-danger">&amp;gt;</span><br>&lt;/html&gt; => <span class="text-danger">&amp;lt;</span>/html<span class="text-danger">&amp;gt;</span></pre>
+						</ul>
+					</li>
 					<li><p>لطفا سعی بر پاک کردن مقاله هایی که از قبل توسط مدیران تنظیم شده اند ننمائید مگر اینکه مایل به
 					       بروزرساندن آنها هستید.</p></li>
 					<li><p>پاک کردن مقاله ای بدون دلیل باعث معلق شدن عضویت شما به عنوان نویسنده خواهد شد.</p></li>
