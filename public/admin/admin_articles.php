@@ -48,7 +48,7 @@ echo output_message($message);
 						</a>
 					</dd>
 				</dl>
-				<?php if(Article::num_articles_for_subject($current_subject->id) != 0) { ?>
+				<?php if(Article::num_articles_for_subject($current_subject->id, FALSE)) { ?>
 					<hr>
 					<div>
 						<h2><i class="fa fa-newspaper-o"></i> مقالات در این موضوع </h2>

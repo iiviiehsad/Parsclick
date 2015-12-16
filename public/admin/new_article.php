@@ -53,7 +53,7 @@ echo output_message($message, $errors); ?>
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="position">محل</label>
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position">
-								<?php $page_count = Article::num_articles_for_subject($current_subject->id);
+								<?php $page_count = Article::num_articles_for_subject($current_subject->id, FALSE);
 								echo "<option selected value=" . ++ $page_count . ">" . $page_count . "</option>";
 								?>
 							</select>

@@ -104,16 +104,19 @@ class Article extends DatabaseObject {
 	}
 
 	/**
-	 * @param $subject_id integer gets the subject ID
-	 *
-	 * @return integer number of articles for subject given
+	 * @param      $subject_id integer gets the subject ID
+	 * @param bool $public
+	 * @return int number of articles for subject given
 	 */
-	public static function num_articles_for_subject($subject_id = 0)
+	public static function num_articles_for_subject($subject_id = 0, $public = TRUE)
 	{
 		global $database;
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;
 		$sql .= " WHERE subject_id = " . $database->escape_value($subject_id);
+		if($public) {
+			$sql .= " AND visible = 1 ";
+		}
 		$sql .= " ORDER BY position ASC";
 		$article_set = $database->query($sql);
 
