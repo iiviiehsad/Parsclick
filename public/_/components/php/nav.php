@@ -2,9 +2,8 @@
 <header class="clearfix">
 
 	<section id="branding">
-		<a href="/">
-			<img src="images/misc/logo.png" alt="Logo for Parsclick" title="www.parsclick.net">
-		</a>
+		<a href="/"><img src="images/misc/logo.png" alt="Logo for Parsclick" title="www.parsclick.net"></a>
+			<img src="images/misc/cursor.gif" class="pull-left" width="50" alt="" style="width:50px !important;">
 	</section><!-- branding -->
 
 	<section class="navbar">
