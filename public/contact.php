@@ -28,11 +28,11 @@ if(isset($_POST["submit"])) {
 			$mail->FromName   = $_POST["name"];
 			$mail->From       = EMAILUSER;
 			$mail->Subject    = "پرس و جو از " . $_POST["name"];
-			$mail->AddAddress("persian.loyal@yahoo.com", "Do not reply" . DOMAIN);
+			$mail->AddAddress("parsclickmail@gmail.com", "Do not reply" . DOMAIN);
 			$mail->Body = <<<EMAILBODY
-<body style="direction:rtl;text-align:right;float:right;font-family:Tahoma;background-color:#F0F0F0;">
+<body style="direction:rtl;text-align:right;float:right;font-family:Tahoma;">
 
-<h2>پیام جدید از طرف وب سایت پارس کلیک به این مضمون دریافت شد:</h2>
+<h2>پیام جدید از طرف وب سایت پارس کلیک </h2>
 
 <p style="font-size:15px;"><br/>
 اسم: {$_POST["name"]}<br/>

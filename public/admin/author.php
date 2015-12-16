@@ -13,10 +13,14 @@ echo output_message($message);
 <div class="jumbotron hidden-sm wow fadeIn author-jumbotron">
 	<?php if(!empty($author->photo)) { ?>
 		<img class="img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
-		<br/>
 	<?php } ?>
 	<h1>خوش آمدید نویسنده: <?php echo $author->full_name(); ?></h1>
-	<p>به عنوان نویسنده شما قادر به درست کردن مقاله و درس هستید. شما همینطور قادر به تغییر مقالات و دروس خود هستید.</p>
+	<p>
+		به عنوان نویسنده شما قادر به درست کردن مقاله و درس هستید. شما همینطور قادر به تغییر مقالات و دروس خود هستید.<br/>
+		برای تماس مستقیم با مدیر از این آدرس  بجای تماس با ما استفاده کنید:
+		<code>info@parsclick.net</code><br/>
+		تماس با ما برای اعضاست و هر دو هفته یکبار جواب داده می شود. آدرس بالا دسترسی مستقیم با مدیران است.
+	</p>
 </div>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
