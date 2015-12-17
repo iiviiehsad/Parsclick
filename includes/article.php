@@ -26,7 +26,6 @@ class Article extends DatabaseObject {
 	/**
 	 * @param int  $subject_id gets the subject ID
 	 * @param bool $public     sets TRUE if article is visible and FALSE if article is not visible
-	 *
 	 * @return mixed counts the number of articles for subject given
 	 */
 	public static function count_articles_for_subject($subject_id = 0, $public = TRUE)
@@ -46,7 +45,6 @@ class Article extends DatabaseObject {
 	/**
 	 * @param string $search gets the search query
 	 * @param bool   $public sets TRUE if article is visible and FALSE if article is not visible
-	 *
 	 * @return array|null the result
 	 */
 	public static function search($search = "", $public = TRUE)
@@ -65,7 +63,6 @@ class Article extends DatabaseObject {
 	/**
 	 * @param int  $article_id gets the article ID
 	 * @param bool $public     sets TRUE if subject is visible and FALSE if subject is not visible
-	 *
 	 * @return bool|mixed set of articles
 	 */
 	public static function find_by_id($article_id = 0, $public = TRUE)
@@ -86,7 +83,6 @@ class Article extends DatabaseObject {
 	/**
 	 * @param int  $subject_id integer gets the subject ID
 	 * @param bool $public     sets TRUE if subject is visible and FALSE if subject is not visible
-	 *
 	 * @return array of articles for subjects given
 	 */
 	public static function find_articles_for_subject($subject_id = 0, $public = TRUE)
@@ -125,7 +121,6 @@ class Article extends DatabaseObject {
 
 	/**
 	 * @param int $subject_id gets the subject ID
-	 *
 	 * @return bool|mixed set of articles
 	 */
 	public static function find_default_article_for_subject($subject_id = 0)
@@ -137,7 +132,6 @@ class Article extends DatabaseObject {
 
 	/**
 	 * @param bool|TRUE $public sets TRUE if subject is visible and FALSE if subject is not visible
-	 *
 	 * @return bool|mixed newest article
 	 */
 	public static function find_newest_article($public = TRUE)
@@ -167,6 +161,7 @@ class Article extends DatabaseObject {
 
 	/**
 	 * Finds the comments for the course by using the function find_comments_for_article
+	 *
 	 * @return array of comments for the article
 	 */
 	public function comments()
@@ -179,7 +174,6 @@ class Article extends DatabaseObject {
 	 *
 	 * @param int       $author_id
 	 * @param bool|TRUE $public
-	 *
 	 * @return array
 	 */
 	public static function find_articles_for_author($author_id = 0, $public = TRUE)
