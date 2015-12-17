@@ -74,7 +74,7 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position">
 								<?php $page_count = Course::num_courses_for_category($current_category->id);
-								echo "<option selected value=" . $page_count++ . ">" . $page_count . "</option>";
+								echo "<option selected value=" . ++$page_count . ">" . $page_count . "</option>";
 								?>
 							</select>
 						</div>
