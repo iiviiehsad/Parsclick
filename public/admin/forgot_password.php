@@ -50,7 +50,6 @@ if(isset($_POST["submit"])) {
 		<article>
 			<h2><i class="fa fa-key"></i> قسمت فراموش کردن پسورد</h2>
 			<br/>
-
 			<form class="form-horizontal" action="forgot_password.php" method="POST" accept-charset="utf-8">
 				<fieldset>
 					<legend>اسم کاربری شما چیست؟</legend>
@@ -73,8 +72,8 @@ if(isset($_POST["submit"])) {
 					<section class="row">
 						<p class="col-sm-offset-4 col-md-offset-4 col-lg-offset-4 alert alert-info">
 							<i class="fa fa-info-circle"></i>
-							اگر پسوردتان یادتان نیست با مدیر ارشد سایت از ایمیلی که ثبت نام کردید تماس بگیرید تا یک
-							پسورد موقت برای شما فراهم شود.
+							اگر اسم کاربری یادتان نیست با مدیر ارشد سایت از ایمیلی که ثبت نام کردید تماس بگیرید تا اسم کاربری به ایمیل
+							شما فرستاده شود.
 						</p>
 					</section>
 				</fieldset>

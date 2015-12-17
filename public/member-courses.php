@@ -112,13 +112,13 @@ if(isset($current_course->author_id)) {
 							<div class="clearfix center">
 								<?php
 								if(isset($json["nextPageToken"])) { ?>
-									<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json["nextPageToken"]; ?>">
-										<span class="arial">&lt;</span> صفحه بعدی
+									<a class="btn btn-primary btn-block" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json["nextPageToken"]; ?>">
+										<span class="arial">&laquo;</span> صفحه بعدی
 									</a>
 								<?php }
 								if(isset($json["prevPageToken"])) { ?>
-									<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json["prevPageToken"]; ?>">
-										صفحه قبلی <span class="arial">&gt;</span>
+									<a class="btn btn-primary btn-block" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json["prevPageToken"]; ?>">
+										صفحه قبلی <span class="arial">&raquo;</span>
 									</a>
 								<?php } ?>
 							</div>

@@ -5,7 +5,7 @@ $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 find_selected_course();
-if(!$current_category) {
+if(! $current_category) {
 	redirect_to("author_courses.php");
 }
 $errors = "";
@@ -19,9 +19,11 @@ if(isset($_POST['submit'])) {
 	$course->youtubePlaylist = $_POST["youtubePlaylist"];
 	$course->file_link       = $_POST["file_link"];
 	$course->position        = (int)$_POST["position"];
-	if($author->id == 1) { $course->visible = (int)$_POST["visible"]; }
-	$course->content         = $_POST["description"];
-	$result                  = $course->create();
+	if($author->id == 1) {
+		$course->visible = (int)$_POST["visible"];
+	}
+	$course->content = $_POST["description"];
+	$result          = $course->create();
 	if($result) { // Success
 		$session->message("درس ساخته شد. درس قبل از نشر باید توسط مدیران بازبینی شود.");
 		redirect_to("author_courses.php");
@@ -37,7 +39,6 @@ echo output_message($message, $errors);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-film"></i> درس جدید</h2>
-
 			<form class="form-horizontal" method="POST" role="form" action="new_course.php?category=<?php echo urlencode($current_category->id); ?>">
 				<fieldset>
 					<!--course name-->
@@ -74,7 +75,7 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position">
 								<?php $page_count = Course::num_courses_for_category($current_category->id);
-								echo "<option selected value=" . ++$page_count . ">" . $page_count . "</option>";
+								echo "<option selected value=" . ++ $page_count . ">" . $page_count . "</option>";
 								?>
 							</select>
 						</div>

@@ -198,7 +198,7 @@ class DatabaseObject {
 			$mail->SMTPAuth   = TRUE;
 			$mail->Username   = EMAILUSER;
 			$mail->Password   = EMAILPASS;
-			$mail->FromName   = "Parsclick.net";
+			$mail->FromName   = DOMAIN;
 			$mail->From       = EMAILUSER;
 			$mail->AddAddress($this->email, "Reset Password");
 			$mail->Subject = "Reset Password Request";

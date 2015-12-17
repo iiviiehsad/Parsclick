@@ -28,7 +28,7 @@ if(isset($_POST["submit"])) {
 			$mail->FromName   = $_POST["name"];
 			$mail->From       = EMAILUSER;
 			$mail->Subject    = "پرس و جو از " . $_POST["name"];
-			$mail->AddAddress("parsclickmail@gmail.com", "Do not reply" . DOMAIN);
+			$mail->AddAddress("parsclickmail@gmail.com", DOMAIN);
 			$mail->Body = <<<EMAILBODY
 <body style="direction:rtl;text-align:right;float:right;font-family:Tahoma;">
 

@@ -186,7 +186,7 @@ class Member extends DatabaseObject {
 			$mail->SMTPAuth   = TRUE;
 			$mail->Username   = EMAILUSER;
 			$mail->Password   = EMAILPASS;
-			$mail->FromName   = "parsclick.net";
+			$mail->FromName   = DOMAIN;
 			$mail->From       = EMAILUSER;
 			$mail->Subject    = "Reset Password Request";
 			$mail->Body       = <<<EMAILBODY
@@ -240,7 +240,7 @@ EMAILBODY;
 			$mail->SMTPAuth   = TRUE;
 			$mail->Username   = EMAILUSER;
 			$mail->Password   = EMAILPASS;
-			$mail->FromName   = "parsclick.net";
+			$mail->FromName   = DOMAIN;
 			$mail->From       = EMAILUSER;
 			$mail->Subject    = "Username Reminder Request";
 			$mail->Body       = <<<EMAILBODY
@@ -292,7 +292,7 @@ EMAILBODY;
 			$mail->SMTPAuth   = TRUE;
 			$mail->Username   = EMAILUSER;
 			$mail->Password   = EMAILPASS;
-			$mail->FromName   = "parsclick.net";
+			$mail->FromName   = DOMAIN;
 			$mail->From       = EMAILUSER;
 			$mail->Subject    = "به پارس کلیک خوش آمدید";
 			$mail->Body       = <<<EMAILBODY

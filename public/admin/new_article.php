@@ -18,9 +18,9 @@ if(isset($_POST['submit'])) {
 	$article->name       = $_POST["article_name"];
 	$article->position   = (int)$_POST["position"];
 	if($author->id == 1) {
-		$article->visible  = (int)$_POST["visible"];
+		$article->visible = (int)$_POST["visible"];
 	} else {
-		$article->visible  = 0;
+		$article->visible = 0;
 	}
 	$article->content    = $_POST["content"];
 	$article->created_at = strftime("%Y-%m-%d %H:%M:%S", time());

@@ -21,7 +21,7 @@ class Article extends DatabaseObject {
 	public           $visible;
 	public           $content;
 	public           $created_at;
-	public           $time;
+	private          $time;
 
 	/**
 	 * @param int  $subject_id gets the subject ID
