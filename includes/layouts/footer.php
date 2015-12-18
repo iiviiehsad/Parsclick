@@ -19,7 +19,6 @@
 				<a target="_blank" href="https://www.facebook.com/persiantc"><i title="Facebook" class="fa fa-facebook-square fa-3x"></i></a>&nbsp;&nbsp;
 				<a target="_blank" href="https://twitter.com/AmirHassanAzimi"><i title="Twitter" class="fa fa-twitter-square fa-3x"></i></a>&nbsp;&nbsp;
 				<a target="_blank" href="https://www.youtube.com/user/PersianComputers"><i title="YouTube" class="fa fa-youtube-square fa-3x"></i></a>&nbsp;&nbsp;
-				<a target="_blank" href="https://instagram.com/amirhazz/"><i title="Instagram" class="fa fa-instagram fa-3x"></i></a>&nbsp;&nbsp;
 				<a target="_blank" href="https://plus.google.com/+PersianComputers/posts"><i title="Google+" class="fa fa-google-plus-square fa-3x"></i></a>&nbsp;&nbsp;
 				<a target="_blank" href="https://www.linkedin.com/in/hass0azimi"><i title="LinkedIn" class="fa fa-linkedin-square fa-3x"></i></a>&nbsp;&nbsp;
 				<a target="_blank" href="https://github.com/hassanazimi"><i title="GitHub" class="fa fa-github-square fa-3x"></i></a>&nbsp;&nbsp;

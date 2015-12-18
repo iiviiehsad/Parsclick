@@ -32,6 +32,7 @@
 	 علم فنی کامپیوتر, طراحی وب, نرم افزار, آدوبی, دیتابیس, اپل, گوگل, مایکروسافت و بیشتر"/>
 	<meta name="twitter:image" content="<?php echo DOMAIN . DS . 'images/parsclick-logo.png'; ?>" />
 	<!--Apple Icons-->
+	<meta name="apple-mobile-web-app-capable" content="yes">
 	<link rel="apple-touch-icon" sizes="57x57" href="images/icons/apple-touch-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="images/icons/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="images/icons/apple-touch-icon-114x114.png">
@@ -47,3 +48,4 @@
 <body>
 <section class="container"><!-- container -->
 	<div class="content row"><!-- content -->
+

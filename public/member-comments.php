@@ -42,7 +42,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 			<?php foreach($comments as $comment) { ?>
 				<section class="media">
 					<?php $_member = Member::find_by_id($comment->member_id); ?>
-					<img class="img-circle pull-right" width="50" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->email; ?>">
+					<img class="img-circle pull-right" width="50" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo 'http://' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="گراواتار">
 					<div class="media-body">
 						<span class="label label-as-badge label-success"><?php echo htmlentities($_member->first_name); ?></span>
 						<span class="label label-as-badge label-info arial"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
@@ -97,7 +97,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 					<!--content-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
-							<img class="img-circle pull-left" width="100" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->email; ?>">
+							<img class="img-circle pull-left" width="100" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo 'http://' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="گراواتار">
 						</label>
 						<div class="controls">
 							<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" rows="7" required placeholder=" نظرتان را اینجا وارد کنید و این تگ ها هم قابل استفاده اند <strong><pre><code><em><p>"></textarea>
