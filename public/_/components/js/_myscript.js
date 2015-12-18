@@ -29,7 +29,7 @@ $(function() {
 	//SHOW MODALS
 	$('.modalphotos img').on('click', function() {
 		$('#modal').modal({show : true});
-		var mysrc       = this.src.substr(0, this.src.length - 7) + '.jpg';
+		var mysrc      = this.src.substr(0, this.src.length - 7) + '.jpg';
 		var modalimage = $('#modalimage');
 		modalimage.css('width', "80%");
 		modalimage.css('display', "block");
@@ -67,7 +67,7 @@ $(function() {
 		$.ajax({
 			       url : url, type : type, data : data, success : function(html) {
 				$('form.addtoplaylist')
-						.replaceWith('<a href="#" class="btn btn-info disabled"><i class="fa fa-check"></i> به لیست پخش اضافه شد</a>');
+				.replaceWith('<a href="#" class="btn btn-info disabled"><i class="fa fa-check"></i> به لیست پخش اضافه شد</a>');
 			}
 		       });
 		return false;
@@ -85,7 +85,7 @@ $(function() {
 		$.ajax({
 			       url : url, type : type, data : data, success : function(html) {
 				$('form.removefromplaylist')
-						.replaceWith('<a href="#" class="btn btn-danger disabled"><i class="fa fa-check"></i> از لیست پخش حذف شد</a>');
+				.replaceWith('<a href="#" class="btn btn-danger disabled"><i class="fa fa-check"></i> از لیست پخش حذف شد</a>');
 			}
 		       });
 		return false;
@@ -301,4 +301,5 @@ wow.init();
 //data-wow-duration="4s"
 //data-wow-iteration="infinite"
 //----------------------------------------------------------------------------------------------------------------------
+
 
