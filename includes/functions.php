@@ -40,6 +40,7 @@ function output_message($message = "", $errors = "")
 		$output .= "<i class='fa fa-check-circle-o fa-fw fa-lg'></i> ";
 		$output .= "<strong>" . htmlentities($message) . "</strong>";
 		$output .= "</div>";
+
 		return $output;
 	} elseif(! empty($errors)) {
 		$output = "<div class='animated flash alert alert-danger alert-dismissible' role='alert'>";
@@ -50,6 +51,7 @@ function output_message($message = "", $errors = "")
 		$output .= "<i class='fa fa-times-circle-o fa-fw fa-lg'></i> ";
 		$output .= "<strong>" . htmlentities($errors) . "</strong>";
 		$output .= "</div>";
+
 		return $output;
 	} else {
 		return "";
@@ -73,6 +75,7 @@ function strip_zeros_from_date($marked_string = "")
 {
 	$no_zeros       = str_replace('*0', '', $marked_string);
 	$cleaned_string = str_replace('*', '', $no_zeros);
+
 	return $cleaned_string;
 }
 
@@ -83,6 +86,7 @@ function strip_zeros_from_date($marked_string = "")
 function datetime_to_text($datetime = "")
 {
 	$unixdatetime = strtotime($datetime);
+
 	return strftime("%B %d, %Y at %I:%M %p", $unixdatetime);
 }
 
@@ -124,6 +128,7 @@ function truncate($string, $length, $dots = " (برای ادامه کلیک کن
  * echo ip_info("Visitor", "State");
  * echo ip_info("Visitor", "City");
  * echo ip_info("Visitor", "Address");
+ *
  * @param null   $ip          gets the IP address
  * @param string $purpose     gets Country, Country Code, State, City or Address
  * @param bool   $deep_detect TRUE is user is using proxy and FALSE otherwise
@@ -196,6 +201,7 @@ function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE)
 			}
 		}
 	}
+
 	return $output;
 }
 
@@ -220,6 +226,7 @@ function request_is_post()
 
 /**
  * validate value has presence
+ *
  * @param $value        string uses trim() so empty spaces don't count
  *                      use === to avoid false positives
  *                      empty() would consider "0" to be empty
@@ -228,6 +235,7 @@ function request_is_post()
 function has_presence($value)
 {
 	$trimmed_value = trim($value);
+
 	return isset($trimmed_value) && $trimmed_value !== "";
 }
 
@@ -249,6 +257,7 @@ function has_length($value, $options = [])
 	if(isset($options['exact']) && (strlen($value) != (int)$options['exact'])) {
 		return FALSE;
 	}
+
 	return TRUE;
 }
 
@@ -257,6 +266,7 @@ function has_length($value, $options = [])
  * has_format_matching('1234', '/\d{4}/') is true
  * has_format_matching('12345', '/\d{4}/') is also true
  * has_format_matching('12345', '/\A\d{4}\Z/') is false
+ *
  * @param        $value string has a format matching
  * @param string $regex regular expression
  *                      Be sure to use anchor expressions to match start and end of string.
@@ -269,6 +279,7 @@ function has_format_matching($value, $regex = '//')
 }
 
 /** validate value is a number
+ *
  * @param       $value   string so use is_numeric instead of is_int
  * @param array $options : max, min
  * @return bool has_number($items_to_order, ['min' => 1, 'max' => 5])
@@ -284,11 +295,13 @@ function has_number($value, $options = [])
 	if(isset($options['min']) && ($value < (int)$options['min'])) {
 		return FALSE;
 	}
+
 	return TRUE;
 }
 
 /**
  * validate value is included in a set
+ *
  * @param       $value
  * @param array $set
  * @return bool
@@ -300,6 +313,7 @@ function has_inclusion_in($value, $set = [])
 
 /**
  * validate value is excluded from a set
+ *
  * @param       $value
  * @param array $set
  * @return bool
@@ -311,17 +325,14 @@ function has_exclusion_from($value, $set = [])
 
 /**
  * This function will simply check if the parameters given are identical or not
+ *
  * @param $id         integer to compare
  * @param $session_id integer to compare
  * @return bool return TRUE if two values are identical
  */
 function check_ownership($id, $session_id)
 {
-	if($id === $session_id) {
-		return TRUE;
-	} else {
-		return FALSE;
-	}
+	return $id === $session_id ? TRUE : FALSE;
 }
 
 /**
@@ -331,6 +342,7 @@ function check_ownership($id, $session_id)
 function file_extension($file)
 {
 	$path_parts = pathinfo($file);
+
 	return $path_parts['extension'];
 }
 
@@ -342,6 +354,7 @@ function file_contains_php($file)
 {
 	$contents = file_get_contents($file);
 	$position = strpos($contents, '<?php');
+
 	return $position !== FALSE;
 }
 
@@ -362,6 +375,7 @@ function file_upload_error($error_integer)
 		UPLOAD_ERR_CANT_WRITE => "نمیشه روی دیسک نوشت!",
 		UPLOAD_ERR_EXTENSION  => "آپلود فایل بخاطر نوع آن متوقف شد!"
 	];
+
 	return $upload_errors[$error_integer];
 }
 
@@ -1643,6 +1657,7 @@ function is_temp_mail($mail)
 			return TRUE;
 		}
 	}
+
 	return FALSE;
 }
 
@@ -1666,12 +1681,13 @@ function log_action($action, $message = "")
 			chmod($logfile, 0777);
 		}
 	} else {
-		echo "Could not open log file for writing";
+		echo "فایل ثبت قابل نوشتن نیست!";
 	}
 }
 
 /**
  * Function for super admins to show the subjects and articles
+ *
  * @param $subject_array array gets the subject ID form URL and return it as an array
  * @param $article_array array gets the article ID form URL and return it as an array
  * @return string subjects as an HTML ordered list along with articles as an HTML unordered list
@@ -1689,11 +1705,7 @@ function admin_articles($subject_array, $article_array)
 			$output .= " class='selected'";
 		}
 		$output .= ">";
-		if(! empty($subject->name)) {
-			$output .= htmlentities(ucwords($subject->name));
-		} else {
-			$output .= htmlentities("(موضوع اسم ندارد)");
-		}
+		$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
 		$output .= "</a>";
 		if(! $subject->visible) {
 			$output .= "&nbsp;<i class='text-danger fa fa-eye-slash fa-lg'></i>";
@@ -1717,11 +1729,7 @@ function admin_articles($subject_array, $article_array)
 				$output .= "'";
 			}
 			$output .= ">";
-			if(! empty($article->name)) {
-				$output .= htmlentities(ucwords($article->name));
-			} else {
-				$output .= htmlentities("(مقاله اسم ندارد)");
-			}
+			$output = ! empty($article->name) ? $output . $article->name : $output . '-';
 			$output .= "</a>";
 			if(! $article->visible) {
 				$output .= "&nbsp;<i class='text-danger fa fa-eye-slash'></i>";
@@ -1731,11 +1739,13 @@ function admin_articles($subject_array, $article_array)
 		$output .= "</ul></li>";
 	}
 	$output .= "</ol>";
+
 	return $output;
 }
 
 /**
  * Function for authors to show the subjects and articles
+ *
  * @param $subject_array array gets the subject ID form URL and return it as an array
  * @param $article_array array gets the article ID form URL and return it as an array
  * @return string subjects as an HTML ordered list along with articles as an HTML unordered list
@@ -1753,11 +1763,7 @@ function author_articles($subject_array, $article_array)
 			$output .= " class='selected'";
 		}
 		$output .= ">";
-		if(! empty($subject->name)) {
-			$output .= htmlentities(ucwords($subject->name));
-		} else {
-			$output .= htmlentities("(موضوع اسم ندارد)");
-		}
+		$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
 		$output .= "</a>";
 		$output .= "</div>";
 		$article_set = Article::find_articles_for_subject($subject->id, FALSE);
@@ -1776,11 +1782,7 @@ function author_articles($subject_array, $article_array)
 				$output .= "'";
 			}
 			$output .= ">";
-			if(! empty($article->name)) {
-				$output .= htmlentities(ucwords($article->name));
-			} else {
-				$output .= htmlentities("(مقاله اسم ندارد)");
-			}
+			$output = ! empty($article->name) ? $output . $article->name : $output . '-';
 			$output .= "</a>";
 			if(! $article->visible) {
 				$output .= " <i class='text-danger fa fa-eye-slash fa-lg'></i>";
@@ -1790,6 +1792,7 @@ function author_articles($subject_array, $article_array)
 		$output .= "</ul></li>";
 	endforeach;
 	$output .= "</ol>";
+
 	return $output;
 }
 
@@ -1797,6 +1800,7 @@ function author_articles($subject_array, $article_array)
  * Function for members to show the subjects and articles. The difference between this function with administrators
  * functions are instead of all articles to be open for every subjects, the members actually have to click on subjects
  * in order for articles to be open underneath subjects and this happens once for every subject.
+ *
  * @param $subject_array array gets the subject ID form URL and return it as an array
  * @param $article_array array gets the article ID form URL and return it as an array
  * @return string subjects as an HTML ordered list along with articles as an HTML unordered list
@@ -1815,11 +1819,7 @@ function member_articles($subject_array, $article_array)
 				$output .= " style='font-size:25px;' ";
 			}
 			$output .= ">";
-			if(! empty($subject->name)) {
-				$output .= htmlentities(ucwords($subject->name));
-			} else {
-				$output .= htmlentities("(موضوع اسم ندارد!)");
-			}
+			$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
 			$output .= "</a>";
 			if($subject_array && $article_array) {
 				if($subject_array->id == $subject->id || $article_array->subject_id == $subject->id) {
@@ -1839,11 +1839,7 @@ function member_articles($subject_array, $article_array)
 							$output .= "'";
 						}
 						$output .= ">";
-						if(! empty($article->name)) {
-							$output .= htmlentities(ucwords($article->name));
-						} else {
-							$output .= htmlentities("(مقاله اسم ندارد!)");
-						}
+						$output = ! empty($article->name) ? $output . $article->name : $output . '-';
 						if($article->recent()) {
 							$output .= "&nbsp;<kbd>تازه</kbd>";
 						}
@@ -1856,11 +1852,13 @@ function member_articles($subject_array, $article_array)
 		}
 	}
 	$output .= "</ul>";
+
 	return $output;
 }
 
 /**
  * Finds all articles for subjects
+ *
  * @param bool $public is a condition to select the first article (the default one) for every subject upon clicking on
  *                     subjects and by default is equals to FALSE.
  */
@@ -1889,6 +1887,7 @@ function find_selected_article($public = FALSE)
 
 /**
  * Function for super admins to show the categories and courses
+ *
  * @param $category_array array gets the subject ID form URL and return it as an array
  * @param $course_array   array gets the article ID form URL and return it as an array
  * @return string categories as an HTML ordered list along with courses as an HTML unordered list
@@ -1906,11 +1905,7 @@ function admin_courses($category_array, $course_array)
 			$output .= " class='selected'";
 		}
 		$output .= ">";
-		if(! empty($category->name)) {
-			$output .= htmlentities(ucwords($category->name));
-		} else {
-			$output .= htmlentities("(موضوع اسم ندارد)");
-		}
+		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
 		$output .= "</a>";
 		if(! $category->visible) {
 			$output .= "&nbsp;<i class='text-danger fa fa-eye-slash'></i>";
@@ -1934,11 +1929,7 @@ function admin_courses($category_array, $course_array)
 				$output .= "'";
 			}
 			$output .= ">";
-			if(! empty($course->name)) {
-				$output .= htmlentities(ucwords($course->name));
-			} else {
-				$output .= htmlentities("(درس اسم ندارد)");
-			}
+			$output = ! empty($course->name) ? $output . $course->name : $output . '-';
 			$output .= "</a>";
 			if(! $course->visible) {
 				$output .= "&nbsp;<i class='text-danger fa fa-eye-slash'></i>";
@@ -1948,11 +1939,13 @@ function admin_courses($category_array, $course_array)
 		$output .= "</ul></li>";
 	}
 	$output .= "</ol>";
+
 	return $output;
 }
 
 /**
  * Function for authors to show the categories and courses
+ *
  * @param $category_array array gets the category ID form URL and return it as an array
  * @param $course_array   array gets the course ID form URL and return it as an array
  * @return string categories as an HTML ordered list along with courses as an HTML unordered list
@@ -1970,11 +1963,7 @@ function author_courses($category_array, $course_array)
 			$output .= " class='selected'";
 		}
 		$output .= ">";
-		if(! empty($category->name)) {
-			$output .= htmlentities(ucwords($category->name));
-		} else {
-			$output .= htmlentities("(no category title)");
-		}
+		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
 		$output .= "</a>";
 		$output .= "</div>";
 		$course_set = Course::find_courses_for_category($category->id, FALSE);
@@ -1993,11 +1982,7 @@ function author_courses($category_array, $course_array)
 				$output .= "'";
 			}
 			$output .= ">";
-			if(! empty($course->name)) {
-				$output .= htmlentities(ucwords($course->name));
-			} else {
-				$output .= htmlentities("(no course title)");
-			}
+			$output = ! empty($course->name) ? $output . $course->name : $output . '-';
 			$output .= "</a>";
 			if(! $course->visible) //if visibility is FALSE
 			{
@@ -2008,6 +1993,7 @@ function author_courses($category_array, $course_array)
 		$output .= "</ul></li>";
 	endforeach;
 	$output .= "</ol>";
+
 	return $output;
 }
 
@@ -2015,6 +2001,7 @@ function author_courses($category_array, $course_array)
  * Function for members to show the categories and courses. The difference between this function with administrators
  * functions are instead of all courses to be open for every categories, the members actually have to click on
  * categories in order for courses to be open underneath categories and this happens once for every category.
+ *
  * @param $category_array array gets the category ID form URL and return it as an array
  * @param $course_array   array gets the course ID form URL and return it as an array
  * @return string categories as an HTML ordered list along with courses as an HTML unordered list
@@ -2032,11 +2019,7 @@ function member_courses($category_array, $course_array)
 			$output .= " style='font-size:25px;' ";
 		}
 		$output .= ">";
-		if(! empty($category->name)) {
-			$output .= htmlentities(ucwords($category->name));
-		} else {
-			$output .= htmlentities("(موضوع اسم ندارد!)");
-		}
+		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
 		$output .= "</a>";
 		if($category_array && $course_array) {
 			if($category_array->id == $category->id || $course_array->category_id == $category->id) {
@@ -2056,11 +2039,7 @@ function member_courses($category_array, $course_array)
 						$output .= "'";
 					}
 					$output .= ">";
-					if(! empty($course->name)) {
-						$output .= htmlentities(ucwords($course->name));
-					} else {
-						$output .= htmlentities("(درس اسم ندارد!)");
-					}
+					$output = ! empty($course->name) ? $output . $course->name : $output . '-';
 					$output .= "</a></li>";
 				}
 				$output .= "</ul>";
@@ -2069,6 +2048,7 @@ function member_courses($category_array, $course_array)
 		$output .= "</li>";
 	}
 	$output .= "</ul>";
+
 	return $output;
 }
 
@@ -2076,6 +2056,7 @@ function member_courses($category_array, $course_array)
  * Function for members to show the categories and courses. The difference between this function with administrators
  * functions are instead of all courses to be open for every categories, the members actually have to click on
  * categories in order for courses to be open underneath categories and this happens once for every category.
+ *
  * @param $category_array array gets the category ID form URL and return it as an array
  * @param $course_array   array gets the course ID form URL and return it as an array
  * @return string categories as an HTML ordered list along with courses as an HTML unordered list
@@ -2093,11 +2074,7 @@ function member_comments_for_course($category_array, $course_array)
 			$output .= " style='font-size:25px;' ";
 		}
 		$output .= ">";
-		if(! empty($category->name)) {
-			$output .= htmlentities(ucwords($category->name));
-		} else {
-			$output .= htmlentities("(موضوع اسم ندارد!)");
-		}
+		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
 		$output .= "</a>";
 		if($category_array && $course_array) {
 			if($category_array->id == $category->id || $course_array->category_id == $category->id) {
@@ -2117,11 +2094,7 @@ function member_comments_for_course($category_array, $course_array)
 						$output .= "'";
 					}
 					$output .= ">";
-					if(! empty($course->name)) {
-						$output .= htmlentities(ucwords($course->name));
-					} else {
-						$output .= htmlentities("(درس اسم ندارد!)");
-					}
+					$output = ! empty($course->name) ? $output . $course->name : $output . '-';
 					$output .= "</a></li>";
 				}
 				$output .= "</ul>";
@@ -2130,11 +2103,13 @@ function member_comments_for_course($category_array, $course_array)
 		$output .= "</li>";
 	}
 	$output .= "</ul>";
+
 	return $output;
 }
 
 /**
  * Function for public to show the categories and courses
+ *
  * @return string categories as an HTML ordered list along with courses as an HTML unordered list
  */
 function public_courses()
@@ -2144,11 +2119,7 @@ function public_courses()
 	foreach($category_set as $category) {
 		$output .= "<li>";
 		$output .= "<h3>";
-		if(! empty($category->name)) {
-			$output .= htmlentities(ucwords($category->name));
-		} else {
-			$output .= htmlentities("موضوع اسم ندارد");
-		}
+		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
 		$output .= "</h3>";
 		$course_set = Course::find_courses_for_category($category->id, TRUE);
 		$output .= "<ul>";
@@ -2157,21 +2128,19 @@ function public_courses()
 			$output .= "<a target='_blank' data-toggle='tooltip' data-placement='left' title='برو به یوتیوب' href='https://www.youtube.com/playlist?list=";
 			$output .= $course->youtubePlaylist;
 			$output .= "'>";
-			if(! empty($course->name)) {
-				$output .= htmlentities(ucwords($course->name));
-			} else {
-				$output .= htmlentities("درس اسم ندارد");
-			}
+			$output = ! empty($course->name) ? $output . $course->name : $output . '-';
 			$output .= "</a></li>";
 		}
 		$output .= "</ul></li>";
 	}
 	$output .= "</ol>";
+
 	return $output;
 }
 
 /**
  * Function for public to show the subjects and articles
+ *
  * @return string subject as an HTML ordered list along with courses as an HTML unordered list
  */
 function public_articles()
@@ -2182,22 +2151,14 @@ function public_articles()
 		if(Article::num_articles_for_subject($subject->id)) {
 			$output .= "<li>";
 			$output .= "<h3>";
-			if(! empty($subject->name)) {
-				$output .= htmlentities(ucwords($subject->name));
-			} else {
-				$output .= htmlentities("موضوع اسم ندارد");
-			}
+			$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
 			$output .= "</h3>";
 			$article_set = Article::find_articles_for_subject($subject->id, TRUE);
 			$output .= "<ul>";
 			foreach($article_set as $article) {
 				$output .= "<li>";
 				$output .= "<a data-toggle='tooltip' data-placement='left' title='وارد شوید' href='login'>";
-				if(! empty($article->name)) {
-					$output .= htmlentities(ucwords($article->name));
-				} else {
-					$output .= htmlentities("مقاله اسم ندارد");
-				}
+				$output = ! empty($article->name) ? $output . $article->name : $output . '-';
 				if($article->recent()) {
 					$output .= "&nbsp;<kbd>تازه</kbd>";
 				}
@@ -2207,11 +2168,13 @@ function public_articles()
 		}
 	}
 	$output .= "</ol>";
+
 	return $output;
 }
 
 /**
  * Finds all courses for categories
+ *
  * @param bool $public is a condition to select the first course (the default one) for every category upon clicking on
  *                     categories and by default is equals to FALSE.
  */
@@ -2353,6 +2316,7 @@ function decrypt_string($salt, $iv_with_string)
 	$iv               = substr($iv_with_string, 0, $iv_size);
 	$encrypted_string = substr($iv_with_string, $iv_size);
 	$string           = mcrypt_decrypt($cipher_type, $salt, $encrypted_string, $cipher_mode, $iv);
+
 	return $string;
 }
 
