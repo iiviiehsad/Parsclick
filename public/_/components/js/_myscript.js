@@ -105,6 +105,7 @@ $(function() {
 		return false;
 	});
 
+	// ADDING COMMENTS AJAX ----------------------------------------------------------------------------------------------
 	$('form.submit-comment').on('submit', function() {
 		var that = $(this),
 		    url  = that.attr('action'),
