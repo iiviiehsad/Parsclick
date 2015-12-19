@@ -10,17 +10,17 @@ $errors = "";
 $body   = "";
 if(isset($current_article->author_id)) { // find the author for the article
 	$author = Author::find_by_id($current_article->author_id);
-}
-if(isset($_POST["submit"])) {
-	$member_id   = (int)$member->id;
-	$body        = trim($_POST["body"]);
-	$new_comment = ArticleComment::make($member_id, $current_article->id, $body);
-	if($new_comment && $new_comment->create()) {
-		$session->message("نظر شما با موفقیت فرستاده شد.");
-		redirect_to($_SERVER['HTTP_REFERER'] . "#comments");
-	} else {
-		$errors = "خطا در فرستادن نظر!";
-	}
+//}
+//if(isset($_POST["submit"])) {
+//	$member_id   = (int)$member->id;
+//	$body        = trim($_POST["body"]);
+//	$new_comment = ArticleComment::make($member_id, $current_article->id, $body);
+//	if($new_comment && $new_comment->create()) {
+//		$session->message("نظر شما با موفقیت فرستاده شد.");
+//		redirect_to($_SERVER['HTTP_REFERER'] . "#comments");
+//	} else {
+//		$errors = "خطا در فرستادن نظر!";
+//	}
 } else {
 }
 ?>
@@ -62,63 +62,65 @@ if(isset($_POST["submit"])) {
 					</div>
 					<div class="panel-footer">
 						<article id="comments">
-							<h2>نظرات</h2>
-							<?php echo output_message($message); ?>
-							<?php foreach($comments as $comment) { ?>
-								<section class="media">
-									<?php $_member = Member::find_by_id($comment->member_id); ?>
-									<img class="img-circle pull-right" width="50" style="padding-right:0;" src="//www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->username; ?>">
-									<div class="media-body">
-										<span class="label label-as-badge label-success"><?php echo htmlentities($_member->first_name); ?></span>
-										<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
-										<?php if($comment->member_id === $session->id) { ?>
-											<a href="member-delete-article-comment?id=<?php echo urlencode($comment->id); ?>" class="label label-as-badge label-danger" title="حذف" data-toggle="tooltip" onclick="return confirm('آیا مطمئن هستید؟')">
-												<i class="fa fa-times"></i>
-											</a>
-										<?php } ?>
-										<br/>
-										<?php echo strip_tags($comment->body, '<strong><em><p><pre>'); ?>
-									</div>
-								</section>
-							<?php } // end foreach comments ?>
-							<?php if($pagination->total_page() > 1) { ?>
-								<nav class="clearfix center">
-									<ul class="pagination">
-										<?php if($pagination->has_previous_page()) { ?>
-											<li>
-												<a href="member-articles?subject=<?php echo urlencode($current_article->subject_id); ?>&article=<?php echo urlencode($current_article->id); ?>&page=<?php echo urlencode($pagination->previous_page()); ?>#comments" aria-label="Previous">
-													<span aria-hidden="true"> &lt;&lt; </span>
+							<div id="ajax-comments">
+								<h2>نظرات</h2>
+								<?php echo output_message($message); ?>
+								<?php foreach($comments as $comment) { ?>
+									<section class="media">
+										<?php $_member = Member::find_by_id($comment->member_id); ?>
+										<img class="img-circle pull-right" width="50" style="padding-right:0;" src="//www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->username; ?>">
+										<div class="media-body">
+											<span class="label label-as-badge label-success"><?php echo htmlentities($_member->first_name); ?></span>
+											<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
+											<?php if($comment->member_id === $session->id) { ?>
+												<a href="member-delete-article-comment?id=<?php echo urlencode($comment->id); ?>" class="label label-as-badge label-danger" title="حذف" data-toggle="tooltip" onclick="return confirm('آیا مطمئن هستید؟')">
+													<i class="fa fa-times"></i>
 												</a>
-											</li>
-										<?php } // end: if($pagination->has_previous_page()) ?>
-										<?php for($i = 1; $i < $pagination->total_page() + 1; $i++) { ?>
-											<?php if($i == $page) { ?>
-												<li class="active">
-													<span><?php echo $i; ?></span>
-												</li>
-											<?php } else { ?>
-												<li>
-													<a href="member-articles?subject=<?php echo urlencode($current_article->subject_id); ?>&article=<?php echo urlencode($current_article->id); ?>&page=<?php echo urlencode($i); ?>#comments"><?php echo $i; ?></a>
-												</li>
 											<?php } ?>
-										<?php } ?>
-										<?php if($pagination->has_next_page()) { ?>
-											<li>
-												<a href="member-articles?subject=<?php echo urlencode($current_article->subject_id); ?>&article=<?php echo urlencode($current_article->id) ?>&page=<?php echo urlencode($pagination->next_page()); ?>#comments" aria-label="Next">
-													<span aria-hidden="true">&gt;&gt;</span>
-												</a>
-											</li>
-										<?php } // end: if($pagination->has_next_page()) ?>
-									</ul>
-								</nav>
-							<?php } // end pagination?>
-							<?php if(empty($comments)) { ?>
-								<h3><span class="badge">نظری وجود ندارد. اولین نفری باشید که نظر می دهید.</span></h3>
-							<?php } ?>
+											<br/>
+											<?php echo strip_tags($comment->body, '<strong><em><p><pre>'); ?>
+										</div>
+									</section>
+								<?php } // end foreach comments ?>
+								<?php if($pagination->total_page() > 1) { ?>
+									<nav class="clearfix center">
+										<ul class="pagination">
+											<?php if($pagination->has_previous_page()) { ?>
+												<li>
+													<a href="member-articles?subject=<?php echo urlencode($current_article->subject_id); ?>&article=<?php echo urlencode($current_article->id); ?>&page=<?php echo urlencode($pagination->previous_page()); ?>#comments" aria-label="Previous">
+														<span aria-hidden="true"> &lt;&lt; </span>
+													</a>
+												</li>
+											<?php } // end: if($pagination->has_previous_page()) ?>
+											<?php for($i = 1; $i < $pagination->total_page() + 1; $i ++) { ?>
+												<?php if($i == $page) { ?>
+													<li class="active">
+														<span><?php echo $i; ?></span>
+													</li>
+												<?php } else { ?>
+													<li>
+														<a href="member-articles?subject=<?php echo urlencode($current_article->subject_id); ?>&article=<?php echo urlencode($current_article->id); ?>&page=<?php echo urlencode($i); ?>#comments"><?php echo $i; ?></a>
+													</li>
+												<?php } ?>
+											<?php } ?>
+											<?php if($pagination->has_next_page()) { ?>
+												<li>
+													<a href="member-articles?subject=<?php echo urlencode($current_article->subject_id); ?>&article=<?php echo urlencode($current_article->id) ?>&page=<?php echo urlencode($pagination->next_page()); ?>#comments" aria-label="Next">
+														<span aria-hidden="true">&gt;&gt;</span>
+													</a>
+												</li>
+											<?php } // end: if($pagination->has_next_page()) ?>
+										</ul>
+									</nav>
+								<?php } // end pagination?>
+								<?php if(empty($comments)) { ?>
+									<h3><span class="badge">نظری وجود ندارد. اولین نفری باشید که نظر می دهید.</span></h3>
+								<?php } ?>
+							</div>
 							<br>
 							<fieldset>
 								<legend></legend>
-								<form class="form-horizontal" action="" method="POST" role="form">
+								<form class="form-horizontal submit-comment" action="add-article-comment.php" method="POST" role="form">
 									<!--content-->
 									<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
 										<img class="img-circle pull-left" width="100" style="padding-right:0;" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->username; ?>">
@@ -126,6 +128,7 @@ if(isset($_POST["submit"])) {
 									<div class="controls">
 										<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" required placeholder=" نظرتان را اینجا وارد کنید و این تگ ها هم قابل استفاده اند <strong><pre><em><p>"></textarea>
 									</div>
+									<input type="hidden" name="article" value="<?php echo urlencode($current_article->id); ?>">
 									<!--buttons-->
 									<section class="row">
 										<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">

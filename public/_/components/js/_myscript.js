@@ -57,37 +57,74 @@ $(function() {
 
 	// ADDING COURSE TO PLAYLIST USING AJAX ----------------------------------------------------------------------------------
 	$('form.addtoplaylist').on('submit', function() {
-		var that = $(this), url = that.attr('action'), type = that.attr('method'), data = {}, btn = $("#btn");
+		var that = $(this),
+		    url  = that.attr('action'),
+		    type = that.attr('method'),
+		    data = {},
+		    btn  = $("#btn");
 		btn.prop('disabled', true);
 		that.find('[name]').each(function() {
-			var that   = $(this), name = that.attr('name'), value = that.val();
-			data[name] = value;
-
+			var that   = $(this),
+			    name   = that.attr('name');
+			data[name] = that.val();
 		});
+
 		$.ajax({
-			       url : url, type : type, data : data, success : function(html) {
-				$('form.addtoplaylist')
-						.replaceWith('<a href="#" class="btn btn-info disabled"><i class="fa fa-check"></i> به لیست پخش اضافه شد</a>');
+			url     : url,
+			type    : type,
+			data    : data,
+			success : function(html) {
+				that.replaceWith('<a href="#" class="btn btn-info disabled"><i class="fa fa-check"></i> به لیست پخش اضافه شد</a>');
 			}
-		       });
+		});
 		return false;
 	});
 
 	// REMOVING COURSE FROM PLAYLIST USING AJAX --------------------------------------------------------------------------
 	$('form.removefromplaylist').on('submit', function() {
-		var that = $(this), url = that.attr('action'), type = that.attr('method'), data = {}, btn = $("#btn");
+		var that = $(this),
+		    url  = that.attr('action'),
+		    type = that.attr('method'),
+		    data = {},
+		    btn  = $("#btn");
 		btn.prop('disabled', true);
 		that.find('[name]').each(function() {
-			var that   = $(this), name = that.attr('name'), value = that.val();
-			data[name] = value;
-
+			var that   = $(this),
+			    name   = that.attr('name');
+			data[name] = that.val();
 		});
+
 		$.ajax({
-			       url : url, type : type, data : data, success : function(html) {
-				$('form.removefromplaylist')
-						.replaceWith('<a href="#" class="btn btn-danger disabled"><i class="fa fa-check"></i> از لیست پخش حذف شد</a>');
+			url     : url,
+			type    : type,
+			data    : data,
+			success : function(html) {
+				that.replaceWith('<a href="#" class="btn btn-danger disabled"><i class="fa fa-check"></i> از لیست پخش حذف شد</a>');
 			}
-		       });
+		});
+		return false;
+	});
+
+	$('form.submit-comment').on('submit', function() {
+		var that = $(this),
+		    url  = that.attr('action'),
+		    type = that.attr('method'),
+		    data = {};
+		that.find('[name]').each(function() {
+			var that   = $(this),
+			    name   = that.attr('name');
+			data[name] = that.val();
+		});
+
+		$.ajax({
+			url     : url,
+			type    : type,
+			data    : data,
+			success : function(html) {
+				$('.submit-comment textarea').val('');
+				$('#ajax-comments').load(html + " #ajax-comments");
+			}
+		});
 		return false;
 	});
 
@@ -301,5 +338,3 @@ wow.init();
 //data-wow-duration="4s"
 //data-wow-iteration="infinite"
 //----------------------------------------------------------------------------------------------------------------------
-
-

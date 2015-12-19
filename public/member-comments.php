@@ -25,7 +25,7 @@ if(isset($_POST["submit"])) {
 }
 // Pagination
 $page        = !empty($_GET["page"]) ? (int)$_GET["page"] : 1;
-$per_page    = 5;
+$per_page    = 20;
 $total_count = Comment::count_comments_for_course($current_course->id);
 $pagination  = new pagination($page, $per_page, $total_count);
 $comments    = Comment::find_comments($current_course->id, $per_page, $pagination->offset());
