@@ -67,7 +67,7 @@ $(function() {
 		$.ajax({
 			       url : url, type : type, data : data, success : function(html) {
 				$('form.addtoplaylist')
-				.replaceWith('<a href="#" class="btn btn-info disabled"><i class="fa fa-check"></i> به لیست پخش اضافه شد</a>');
+						.replaceWith('<a href="#" class="btn btn-info disabled"><i class="fa fa-check"></i> به لیست پخش اضافه شد</a>');
 			}
 		       });
 		return false;
@@ -85,7 +85,7 @@ $(function() {
 		$.ajax({
 			       url : url, type : type, data : data, success : function(html) {
 				$('form.removefromplaylist')
-				.replaceWith('<a href="#" class="btn btn-danger disabled"><i class="fa fa-check"></i> از لیست پخش حذف شد</a>');
+						.replaceWith('<a href="#" class="btn btn-danger disabled"><i class="fa fa-check"></i> از لیست پخش حذف شد</a>');
 			}
 		       });
 		return false;
