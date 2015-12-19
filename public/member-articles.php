@@ -78,7 +78,7 @@ if(isset($current_article->author_id)) { // find the author for the article
 												</a>
 											<?php } ?>
 											<br/>
-											<?php echo strip_tags($comment->body, '<strong><em><p><pre>'); ?>
+											<?php echo nl2br(strip_tags($comment->body, '<strong><em><p><pre>')); ?>
 										</div>
 									</section>
 								<?php } // end foreach comments ?>
