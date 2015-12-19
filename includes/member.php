@@ -57,8 +57,6 @@ class Member extends DatabaseObject {
 		$sql .= "OR gender LIKE '%{$database->escape_value($search)}%' ";
 		$sql .= "OR address LIKE '%{$database->escape_value($search)}%' ";
 		$sql .= "OR city LIKE '%{$database->escape_value($search)}%' ";
-		$sql .= "OR post_code LIKE '%{$database->escape_value($search)}%' ";
-		$sql .= "OR phone LIKE '%{$database->escape_value($search)}%' ";
 		$sql .= "OR email LIKE '%{$database->escape_value($search)}%' ";
 		$result_set = self::find_by_sql($sql);
 
