@@ -13,8 +13,6 @@ class Member extends DatabaseObject {
 			'gender',
 			'address',
 			'city',
-			'post_code',
-			'phone',
 			'email',
 			'status',
 			'token'
@@ -27,8 +25,6 @@ class Member extends DatabaseObject {
 	public           $gender;
 	public           $address;
 	public           $city;
-	public           $post_code;
-	public           $phone;
 	public           $email;
 	public           $status;
 	public           $token;

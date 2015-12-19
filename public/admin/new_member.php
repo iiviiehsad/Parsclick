@@ -18,8 +18,6 @@ if(isset($_POST['submit'])) {
 		$member->gender          = trim($_POST["gender"]);
 		$member->address         = trim(ucwords(strtolower($_POST["address"])));
 		$member->city            = trim(ucwords(strtolower($_POST["city"])));
-		$member->post_code       = trim(strtoupper($_POST["post_code"]));
-		$member->phone           = trim($_POST["phone"]);
 		$member->email           = trim(strtolower($_POST["email"]));
 		$member->status          = (int)$_POST["status"];
 		$member->token           = NULL;
@@ -95,20 +93,6 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="city">شهر &nbsp;</label>
 						<div class="controls">
 							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="city" id="address" placeholder="شهر"/>
-						</div>
-					</section>
-					<!--post_code-->
-					<section class="row">
-						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="post_code">کد پستی &nbsp;</label>
-						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="post_code" id="post_code" placeholder="کد پستی"/>
-						</div>
-					</section>
-					<!--phone-->
-					<section class="row">
-						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="phone">تلفن &nbsp;</label>
-						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="phone" id="post_code" placeholder="تلفن"/>
 						</div>
 					</section>
 					<!--email-->

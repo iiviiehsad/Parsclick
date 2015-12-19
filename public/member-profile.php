@@ -27,10 +27,6 @@ $errors = "";
 			<dd><?php echo !empty($member->address) ? htmlentities(ucfirst($member->address)) : "-"; ?></dd>
 			<dt>شهر:</dt>
 			<dd><?php echo !empty($member->city) ? htmlentities(ucfirst($member->city)) : "-"; ?></dd>
-			<dt>کد پستی:</dt>
-			<dd><?php echo !empty($member->post_code) ? htmlentities(strtoupper($member->post_code)) : "-"; ?></dd>
-			<dt>تلفن:</dt>
-			<dd><?php echo !empty($member->phone) ? htmlentities($member->phone) : "-"; ?></dd>
 			<dt>ایمیل:</dt>
 			<dd class="arial"><?php echo !empty($member->email) ? htmlentities(strtolower($member->email)) : "-"; ?></dd>
 			<dt>&nbsp;</dt>

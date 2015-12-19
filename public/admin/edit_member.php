@@ -16,10 +16,7 @@ if(isset($_POST['submit'])) {
 	$member->gender     = ucfirst($_POST["gender"]);
 	$member->address    = ucwords(strtolower($_POST["address"]));
 	$member->city       = ucwords(strtolower($_POST["city"]));
-	$member->post_code  = strtoupper($_POST["post_code"]);
-	$member->phone      = $_POST["phone"];
 	$member->email      = strtolower($_POST["email"]);
-	//$member->photo;
 	$member->status = (int)$_POST["status"];
 	$result         = $member->save();
 	if($result) { // Success
@@ -101,20 +98,6 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="city"> شهر &nbsp;</label>
 						<div class="controls">
 							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="city" id="address" placeholder="شهر" value="<?php echo htmlentities($member->city); ?>"/>
-						</div>
-					</section>
-					<!--post_code-->
-					<section class="row">
-						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="post_code"> کد پستی &nbsp;</label>
-						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="post_code" id="post_code" placeholder="کد پستی" value="<?php echo htmlentities($member->post_code); ?>"/>
-						</div>
-					</section>
-					<!--phone-->
-					<section class="row">
-						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="phone"> تلفن &nbsp;</label>
-						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="tel" name="phone" id="post_code" placeholder="تلفن" value="<?php echo htmlentities($member->phone); ?>"/>
 						</div>
 					</section>
 					<!--email-->

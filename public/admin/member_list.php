@@ -36,7 +36,6 @@ echo output_message($message);
 						<th>نام خانوادگی</th>
 						<th>جنس</th>
 						<th>آدرس</th>
-						<!--<th>تلفن</th>-->
 						<th>ایمیل</th>
 						<th colspan="2">عملیات</th>
 					</tr>
@@ -70,12 +69,8 @@ echo output_message($message);
 								<small>
 									<?php echo htmlentities(ucwords(strtolower($member->address))); ?> <br/>
 									<?php echo htmlentities(ucwords(strtolower($member->city))); ?> <br/>
-									<?php echo htmlentities(strtoupper($member->post_code)); ?>
 								</small>
 							</td>
-							<!--<td>-->
-							<!--	<small>--><?php //echo htmlentities($member->phone); ?><!--</small>-->
-							<!--</td>-->
 							<td class="arial">
 								<small><?php echo htmlentities($member->email); ?></small>
 							</td>

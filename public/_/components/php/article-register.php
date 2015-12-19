@@ -86,19 +86,6 @@
 				</div><!-- controls -->
 			</section><!-- row -->
 
-			<section class="row">
-				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="post_code">کد پستی &nbsp;</label>
-				<div class="controls">
-					<input class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" name="post_code" id="post_code"  placeholder="کد پستی" value="<?php echo $_POST["post_code"]; ?>"/>
-				</div><!-- controls -->
-			</section><!-- row -->
-
-			<section class="row">
-				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="phone">تلفن &nbsp;</label>
-				<div class="controls">
-					<input class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="tel" name="phone" id="phone" placeholder="تلفن" value="<?php echo $_POST["phone"]; ?>"/>
-				</div><!-- controls -->
-			</section><!-- row -->
 		</fieldset>
 
 		<section class="row">

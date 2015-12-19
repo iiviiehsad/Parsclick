@@ -42,8 +42,6 @@ if($_POST) {
 					$member->gender          = trim($_POST["gender"]);
 					$member->address         = trim(ucwords(strtolower($_POST["address"])));
 					$member->city            = trim(ucwords(strtolower($_POST["city"])));
-					$member->post_code       = trim(strtoupper($_POST["post_code"]));
-					$member->phone           = trim($_POST["phone"]);
 					$member->email           = trim(strtolower($_POST["email"]));
 					$member->status          = 0;
 					$member->token           = md5(uniqid(rand()));
@@ -73,8 +71,6 @@ if($_POST) {
 	$_POST["last_name"]  = "";
 	$_POST["address"]    = "";
 	$_POST["city"]       = "";
-	$_POST["post_code"]  = "";
-	$_POST["phone"]      = "";
 }
 ?>
 <?php include("../includes/layouts/header.php"); ?>

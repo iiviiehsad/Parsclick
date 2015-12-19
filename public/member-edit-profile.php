@@ -24,8 +24,6 @@ if(isset($_POST['submit'])) {
 	$member->gender     = trim($_POST["gender"]);
 	$member->address    = trim($_POST["address"]);
 	$member->city       = trim($_POST["city"]);
-	$member->post_code  = trim($_POST["post_code"]);
-	$member->phone      = trim($_POST["phone"]);
 	if(is_temp_mail(trim(strtolower($_POST["email"])))) {
 		$errors = "ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!";
 	} else {
@@ -105,18 +103,6 @@ if(isset($_POST['submit'])) {
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="city"> شهر &nbsp;</label>
 					<div class="controls">
 						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="city" id="city" placeholder="شهر" value="<?php echo htmlentities($member->city); ?>"/>
-					</div>
-				</section>
-				<section class="row">
-					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="post_code"> کد پستی &nbsp;</label>
-					<div class="controls">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="post_code" id="post_code" placeholder="کد پستی" value="<?php echo htmlentities($member->post_code); ?>"/>
-					</div>
-				</section>
-				<section class="row">
-					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="phone"> تلفن &nbsp;</label>
-					<div class="controls">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="tel" name="phone" id="phone" placeholder="تلفن" value="<?php echo htmlentities($member->phone); ?>"/>
 					</div>
 				</section>
 				<section class="row">
