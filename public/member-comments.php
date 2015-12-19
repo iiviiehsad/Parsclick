@@ -100,7 +100,8 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 							<img class="img-circle pull-left" width="100" style="padding-right:0;" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->username; ?>">
 						</label>
 						<div class="controls">
-							<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" rows="7" required placeholder=" نظرتان را اینجا وارد کنید و این تگ ها هم قابل استفاده اند <strong><pre><code><em><p>"></textarea>
+							<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" rows="5" required
+							          placeholder="سوال یا نظرتان را اینجا وارد کنید و کد ها را داخل تگ <pre> وارد کنید"></textarea>
 						</div>
 					</section>
 					<!--buttons-->
