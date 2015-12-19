@@ -275,7 +275,7 @@ class Session {
 
 	private function is_session_valid()
 	{
-		$check_ip         = TRUE;
+		$check_ip         = FALSE;
 		$check_user_agent = TRUE;
 		$check_last_login = TRUE;
 		if($check_ip && !$this->request_ip_matches_session()) {

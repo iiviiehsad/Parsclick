@@ -82,10 +82,10 @@ if(isset($_POST['submit'])) {
 						<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="gender" id="gender">
 							<?php echo htmlentities($member->gender); ?>
 							<?php if($member->gender === "مرد") { ?>
-								<option value="مرد">مرد</option>
+								<option selected value="مرد">مرد</option>
 								<option value="زن">زن</option>
 							<?php } elseif($member->gender === "زن") { ?>
-								<option value="زن">زن</option>
+								<option selected value="زن">زن</option>
 								<option value="مرد">مرد</option>
 							<?php } else { ?>
 								<option disabled value="">لطفا برگزینید</option>
