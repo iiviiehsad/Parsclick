@@ -1,6 +1,7 @@
 <?php
 require_once("../includes/initialize.php");
 $filename = basename(__FILE__);
+$title = 'پارس کلیک - انجمن';
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();

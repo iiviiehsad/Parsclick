@@ -51,7 +51,7 @@ $newest_article = Article::find_newest_article();
 
 		<h3><?php echo htmlentities($newest_article->name); ?></h3>
 		<?php echo truncate(nl2br(strip_tags($newest_article->content, '<h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')), 1500,
-		                    "...<a class='text-danger' href='member-articles?subject={$newest_article->subject_id}&article={$newest_article->id}'>&nbsp;<strong><i>برای ادامه کلیک کنید</i></strong></a>"); ?>
+		                    "...<a class='btn btn-small btn-info pull-left' href='member-articles?subject={$newest_article->subject_id}&article={$newest_article->id}'>برای ادامه کلیک کنید</a>"); ?>
 	</article>
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
