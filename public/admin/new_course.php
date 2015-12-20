@@ -25,6 +25,7 @@ if(isset($_POST['submit'])) {
 	$course->content = $_POST["description"];
 	$result          = $course->create();
 	if($result) { // Success
+		send_email('New Course!', 'New Course Added');
 		$session->message("درس ساخته شد. درس قبل از نشر باید توسط مدیران بازبینی شود.");
 		redirect_to("author_courses.php");
 	} else { // Failure

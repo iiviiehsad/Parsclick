@@ -26,6 +26,7 @@ if(isset($_POST['submit'])) {
 	$article->created_at = strftime("%Y-%m-%d %H:%M:%S", time());
 	$result              = $article->create();
 	if($result) { // Success
+		send_email('New Article!', 'New Article Added');
 		$session->message("مقاله ساخته شد.");
 		redirect_to("author_articles.php");
 	} else { // Failure

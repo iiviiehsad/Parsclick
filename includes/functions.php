@@ -205,6 +205,16 @@ function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE)
 	return $output;
 }
 
+/**
+ * @param $subject string gets the subject
+ * @param $message string gets the message
+ * @return bool TRUE if mail is sent and FALSE otherwise
+ */
+function send_email($subject, $message)
+{
+	return mail('hazz.azimi@gmail.com', $subject, $message, 'From: Parsclick <do-not-reply@parsclick.net>' . "\r\n");
+}
+
 /******************************************************************************************************/
 /*                                    SECURITY FUNCTIONS                                              */
 /******************************************************************************************************/
