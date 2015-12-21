@@ -31,7 +31,7 @@ function redirect_to($location = NULL)
  */
 function output_message($message = "", $errors = "")
 {
-	if(! empty($message)) {
+	if( ! empty($message)) {
 		$output = "<div class='alert alert-success alert-dismissible' role='alert'>";
 		$output .= "<button type='button' class='close' data-dismiss='alert'>";
 		$output .= "<span aria-hidden='true'>&times;</span>";
@@ -42,7 +42,7 @@ function output_message($message = "", $errors = "")
 		$output .= "</div>";
 
 		return $output;
-	} elseif(! empty($errors)) {
+	} elseif( ! empty($errors)) {
 		$output = "<div class='animated flash alert alert-danger alert-dismissible' role='alert'>";
 		$output .= "<button type='button' class='close' data-dismiss='alert'>";
 		$output .= "<span aria-hidden='true'>&times;</span>";
@@ -296,7 +296,7 @@ function has_format_matching($value, $regex = '//')
  */
 function has_number($value, $options = [])
 {
-	if(! is_numeric($value)) {
+	if( ! is_numeric($value)) {
 		return FALSE;
 	}
 	if(isset($options['max']) && ($value > (int)$options['max'])) {
@@ -1717,10 +1717,8 @@ function admin_articles($subject_array, $article_array)
 		$output .= ">";
 		$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
 		$output .= "</a>";
-		if(! $subject->visible) {
+		if( ! $subject->visible) {
 			$output .= "&nbsp;<i class='text-danger fa fa-eye-slash fa-lg'></i>";
-		} else {
-			$output .= "&nbsp;<i class='text-success fa fa-eye'></i>";
 		}
 		$output .= "</div>";
 		$article_set = Article::find_articles_for_subject($subject->id, FALSE);
@@ -1739,11 +1737,12 @@ function admin_articles($subject_array, $article_array)
 				$output .= "'";
 			}
 			$output .= ">";
-			$output = ! empty($article->name) ? $output . $article->name : $output . '-';
-			$output .= "</a>";
-			if(! $article->visible) {
-				$output .= "&nbsp;<i class='text-danger fa fa-eye-slash'></i>";
+			if( ! $article->visible) {
+				$output = ! empty($article->name) ? $output . ('<del>' . $article->name . '</del>') : $output . '-';
+			} else {
+				$output = ! empty($article->name) ? $output . $article->name : $output . '-';
 			}
+			$output .= "</a>";
 			$output .= "</li>";
 		}
 		$output .= "</ul></li>";
@@ -1794,7 +1793,7 @@ function author_articles($subject_array, $article_array)
 			$output .= ">";
 			$output = ! empty($article->name) ? $output . $article->name : $output . '-';
 			$output .= "</a>";
-			if(! $article->visible) {
+			if( ! $article->visible) {
 				$output .= " <i class='text-danger fa fa-eye-slash fa-lg'></i>";
 			}
 			$output .= "</li>";
@@ -1917,7 +1916,7 @@ function admin_courses($category_array, $course_array)
 		$output .= ">";
 		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
 		$output .= "</a>";
-		if(! $category->visible) {
+		if( ! $category->visible) {
 			$output .= "&nbsp;<i class='text-danger fa fa-eye-slash'></i>";
 		} else {
 			$output .= "&nbsp;<i class='text-success fa fa-eye'></i>";
@@ -1939,11 +1938,12 @@ function admin_courses($category_array, $course_array)
 				$output .= "'";
 			}
 			$output .= ">";
-			$output = ! empty($course->name) ? $output . $course->name : $output . '-';
-			$output .= "</a>";
-			if(! $course->visible) {
-				$output .= "&nbsp;<i class='text-danger fa fa-eye-slash'></i>";
+			if( ! $course->visible) {
+				$output = ! empty($course->name) ? $output . ('<del>' . $course->name . '</del>') : $output . '-';
+			} else {
+				$output = ! empty($course->name) ? $output . $course->name : $output . '-';
 			}
+			$output .= "</a>";
 			$output .= "</li>";
 		}
 		$output .= "</ul></li>";
@@ -1994,7 +1994,7 @@ function author_courses($category_array, $course_array)
 			$output .= ">";
 			$output = ! empty($course->name) ? $output . $course->name : $output . '-';
 			$output .= "</a>";
-			if(! $course->visible) //if visibility is FALSE
+			if( ! $course->visible) //if visibility is FALSE
 			{
 				$output .= "&nbsp;<i class='text-danger fa fa-eye-slash'></i>";
 			}
