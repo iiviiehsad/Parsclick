@@ -172,7 +172,7 @@ class File extends DatabaseObject {
 
 			return FALSE;
 		}
-		$target_path = SITE_ROOT . DS . 'public_html' . DS . $this->upload_dir . DS . $this->name;
+		$target_path = SITE_ROOT . DS . PUB_PATH . DS . $this->upload_dir . DS . $this->name;
 		if( ! is_uploaded_file($this->temp_path)) {
 			$this->errors[] = "خطا! فایل {$this->name} همان فایلی نیست که از قبل آپلود شده.";
 
@@ -207,7 +207,7 @@ class File extends DatabaseObject {
 	public function destroy()
 	{
 		if($this->delete()) {
-			$target_path = SITE_ROOT . DS . 'public_html' . DS . $this->file_path();
+			$target_path = SITE_ROOT . DS . PUB_PATH . DS . $this->file_path();
 
 			return unlink($target_path) ? TRUE : FALSE;
 		} else {

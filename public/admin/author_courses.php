@@ -51,13 +51,16 @@ echo output_message($message, $errors);
 					<?php foreach($files as $file): ?>
 						<?php if(check_ownership($current_course->author_id, $session->id)) { ?>
 							<div class="btn-group">
-								<a class="btn btn-primary btn-small edit" href="../files/<?php echo urlencode($file->name); ?>"><span class="glyphicon glyphicon-file"></span>&nbsp;<?php echo htmlentities($file->name); ?>
+								<a class="btn btn-primary btn-small" href="../files/<?php echo urlencode($file->name); ?>">
+									<?php echo htmlentities($file->description); ?>
 								</a>
-								<a class="btn btn-danger btn-small" href="author_delete_file.php?id=<?php echo urlencode($file->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید این فایل حذف شود؟')"><span class="glyphicon glyphicon-trash"></span></a>
+								<a class="btn btn-danger btn-small" href="author_delete_file.php?id=<?php echo urlencode($file->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید این فایل حذف شود؟')">
+									<i class="fa fa-trash fa-lg"></i>
+								</a>
 							</div>
 						<?php } else { ?>
 							<a class="btn btn-small btn-success" href="../<?php echo urlencode($file->name); ?>">
-								<?php echo htmlentities($file->name); ?>
+								<?php echo htmlentities($file->description); ?>
 							</a>
 						<?php } ?>
 					<?php endforeach; ?>

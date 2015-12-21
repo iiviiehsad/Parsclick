@@ -12,6 +12,7 @@ defined('SITE_ROOT') ? NULL : define("SITE_ROOT", dirname(dirname(__FILE__)));
 defined('DOMAIN') ? NULL : define('DOMAIN', 'www.parsclick.net');
 
 defined('LIB_PATH') ? NULL : define('LIB_PATH', SITE_ROOT . DS . 'includes');
+defined('PUB_PATH') ? NULL : define('PUB_PATH', SITE_ROOT . DS . 'public_html');
 
 // Email Details
 // TODO: Change based on email configuration
