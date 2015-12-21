@@ -10,17 +10,6 @@ $errors = "";
 $body   = "";
 if(isset($current_article->author_id)) { // find the author for the article
 	$author = Author::find_by_id($current_article->author_id);
-//}
-//if(isset($_POST["submit"])) {
-//	$member_id   = (int)$member->id;
-//	$body        = trim($_POST["body"]);
-//	$new_comment = ArticleComment::make($member_id, $current_article->id, $body);
-//	if($new_comment && $new_comment->create()) {
-//		$session->message("نظر شما با موفقیت فرستاده شد.");
-//		redirect_to($_SERVER['HTTP_REFERER'] . "#comments");
-//	} else {
-//		$errors = "خطا در فرستادن نظر!";
-//	}
 } else {
 }
 ?>

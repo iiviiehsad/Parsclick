@@ -2103,6 +2103,10 @@ function member_comments_for_course($category_array, $course_array)
 		$output .= ">";
 		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
 		$output .= "</a>";
+		if(Course::count_recent_course_for_category($category->id, TRUE) > 0) {
+			$output .= "&nbsp;&nbsp;";
+			$output .= "<small><span class='label label-as-badge'>" . Course::count_recent_course_for_category($category->id, TRUE) . " درس جدید</span></small>";
+		}
 		if($category_array && $course_array) {
 			if($category_array->id == $category->id || $course_array->category_id == $category->id) {
 				$course_set = Course::find_courses_for_category($category->id);
@@ -2122,6 +2126,9 @@ function member_comments_for_course($category_array, $course_array)
 					}
 					$output .= ">";
 					$output = ! empty($course->name) ? $output . $course->name : $output . '-';
+					if($course->recent()) {
+						$output .= "&nbsp;<kbd>تازه</kbd>";
+					}
 					$output .= "</a></li>";
 				}
 				$output .= "</ul>";
@@ -2156,6 +2163,9 @@ function public_courses()
 			$output .= $course->youtubePlaylist;
 			$output .= "'>";
 			$output = ! empty($course->name) ? $output . $course->name : $output . '-';
+			if($course->recent()) {
+				$output .= "&nbsp;<kbd>تازه</kbd>";
+			}
 			$output .= "</a></li>";
 		}
 		$output .= "</ul></li>";

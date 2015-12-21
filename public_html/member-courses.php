@@ -17,6 +17,9 @@ if(isset($current_course->author_id)) {
 			<?php if($current_category && $current_course) { ?>
 				<h1><?php echo htmlentities($current_course->name); ?></h1>
 				<h4>
+					<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_course->created_at)); ?>
+				</h4>
+				<h4>
 					<?php if(isset($author)) {
 						echo $author->full_name();
 					} ?>
