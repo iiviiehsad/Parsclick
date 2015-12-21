@@ -2002,7 +2002,7 @@ function author_courses($category_array, $course_array)
 			$output .= "</a>";
 			if( ! $course->visible) //if visibility is FALSE
 			{
-				$output .= "&nbsp;<i class='text-danger fa fa-eye-slash'></i>";
+				$output .= "&nbsp;<i class='text-danger fa fa-eye-slash fa-lg'></i>";
 			}
 			$output .= "</li>";
 		endforeach;
