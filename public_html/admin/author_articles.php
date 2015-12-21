@@ -147,11 +147,15 @@ echo output_message($message);
 								<code>HTML</code> رو نشون بدید این کدها دیده نخواهند شد چون کدهای <code>HTML</code> تبدیل میشوند. برای
 							    نشون دادن این کدها باید <code>&lt;&gt;</code> ها را به این صورت تبدیل کنید:
 								<pre>&lt;html&gt; => <span class="text-danger">&amp;lt;</span>html<span class="text-danger">&amp;gt;</span><br>&lt;/html&gt; => <span class="text-danger">&amp;lt;</span>/html<span class="text-danger">&amp;gt;</span></pre>
+							</li>
 						</ul>
 					</li>
 					<li><p>لطفا سعی بر پاک کردن مقاله هایی که از قبل توسط مدیران تنظیم شده اند ننمائید مگر اینکه مایل به
 					       بروزرساندن آنها هستید.</p></li>
 					<li><p>پاک کردن مقاله ای بدون دلیل باعث معلق شدن عضویت شما به عنوان نویسنده خواهد شد.</p></li>
+					<li><p>اگر نویسنده قدیمی هستید از شما انتظار می رود بعد از مدتی ویرایش کردن را بلد باشید. اگر ویرایش نکنید
+					       مقاله شما تا دیده شدن توسط عموم طول خواهد کشید.</p>
+					</li>
 				</ul>
 					<h3>نویسندگان قدیمی</h3>
 				<div class="center">
