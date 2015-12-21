@@ -15,7 +15,7 @@ ErrorDocument 500 /500
     Options -MultiViews
 
     RewriteEngine On
-    RewriteBase /Parsclick/public
+    RewriteBase /Parsclick/public_html
 
     ## TODO: Remove WWW
     # RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]

@@ -1836,6 +1836,10 @@ function member_articles($subject_array, $article_array)
 			$output .= ">";
 			$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
 			$output .= "</a>";
+			if(Article::count_recent_articles_for_subject($subject->id, TRUE) > 0) {
+				$output .= "&nbsp;&nbsp;";
+				$output .= "<small><span class='label label-as-badge'>" . Article::count_recent_articles_for_subject($subject->id, TRUE) . " مقاله جدید</span></small>";
+			}
 			if($subject_array && $article_array) {
 				if($subject_array->id == $subject->id || $article_array->subject_id == $subject->id) {
 					$article_set = Article::find_articles_for_subject($subject->id, TRUE);

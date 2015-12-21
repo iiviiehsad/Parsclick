@@ -160,6 +160,26 @@ class Article extends DatabaseObject {
 	}
 
 	/**
+	 * @param int  $subject_id gets the subject ID
+	 * @param bool $public     if it is visible to public
+	 * @return mixed number of recent article(s) for subject
+	 */
+	public static function count_recent_articles_for_subject($subject_id = 0, $public = TRUE)
+	{
+		global $database;
+		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
+		$sql .= " WHERE subject_id = " . $subject_id;
+		$sql .= " AND created_at > NOW() - INTERVAL 2 WEEK ";
+		if($public) {
+			$sql .= " AND visible = 1 ";
+		}
+		$result_set = $database->query($sql);
+		$row        = $database->fetch_assoc($result_set);
+
+		return array_shift($row);
+	}
+
+	/**
 	 * Finds the comments for the course by using the function find_comments_for_article
 	 *
 	 * @return array of comments for the article
@@ -185,7 +205,7 @@ class Article extends DatabaseObject {
 		if($public) {
 			$sql .= " AND visible = 1 ";
 		}
-		if(! $public) {
+		if( ! $public) {
 			$sql .= " AND visible = 0 ";
 		}
 		$sql .= " ORDER BY position DESC";
