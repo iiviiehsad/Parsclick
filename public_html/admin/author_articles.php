@@ -153,6 +153,11 @@ echo output_message($message);
 					       بروزرساندن آنها هستید.</p></li>
 					<li><p>پاک کردن مقاله ای بدون دلیل باعث معلق شدن عضویت شما به عنوان نویسنده خواهد شد.</p></li>
 				</ul>
+					<h3>نویسندگان قدیمی</h3>
+				<div class="center">
+					<p>برای بزرگ کردن ویدئو روی ویدئو دابل کلیک، ۲ بار کلیک کنید.</p>
+					<iframe src="https://www.youtube.com/embed/9Wxoo2DgUYw?modestbranding=1&rel=0&showinfo=0&&hl=fa-ir" width="320" height="180" frameborder="0" allowfullscreen></iframe>
+				</div>
 			<?php } ?>
 		</article>
 	</section>
@@ -160,9 +165,6 @@ echo output_message($message);
 		<aside>
 			<h2>موضوعات و مقالات</h2>
 			<?php echo author_articles($current_subject, $current_article); ?>
-			<h2>نویسندگان قدیمی</h2>
-			<iframe src="https://www.youtube.com/embed/9Wxoo2DgUYw?modestbranding=1&rel=0&showinfo=0&&hl=fa-ir" style="width: 100%; height: 197px;" frameborder="0" allowfullscreen></iframe>
-			<p>برای بزرگ کردن ویدئو روی ویدئو دابل کلیک، ۲ بار کلیک کنید.</p>
 		</aside>
 	</section>
 <?php include_layout_template("admin_footer.php"); ?>
