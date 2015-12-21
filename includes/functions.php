@@ -97,11 +97,11 @@ function datetime_to_text($datetime = "")
 function check_size($size)
 {
 	if($size > 1024000) {
-		return round($size / 1024000) . " MB";
+		return round($size / 1024000) . " مگابایت";
 	} elseif($size > 1024) {
-		return round($size / 1024) . " KB";
+		return round($size / 1024) . " کیلوبایت";
 	} else {
-		return $size . " bytes";
+		return $size . " بایت";
 	}
 }
 
@@ -389,6 +389,12 @@ function file_upload_error($error_integer)
 	return $upload_errors[$error_integer];
 }
 
+/**
+ * Check if it's disposable email address
+ *
+ * @param $mail string gets user email
+ * @return bool TRUE if it is disposable and FALSE if not
+ */
 function is_temp_mail($mail)
 {
 	$mail_domains_ko = [

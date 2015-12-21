@@ -6,7 +6,7 @@ $author->check_status();
 $filename = basename(__FILE__);
 find_selected_course();
 include_layout_template("admin_header.php");
-$file_max_file_size = File::$max_file_size; // 500MB
+$file_max_file_size = File::$max_file_size; // 32MB
 $errors             = "";
 if(isset($_POST["submit_file"])) {
 	$file              = new File();
@@ -71,7 +71,7 @@ echo output_message($message, $errors);
 				<?php if(File::num_files_for_course($current_course->id) == 0) { ?>
 					<?php if(check_ownership($current_course->author_id, $session->id)) { ?>
 						<div class="alert alert-info">
-							<h3><i class="fa fa-upload"></i> آپلود فایل تمرینی زیپ</h3>
+							<h3><i class="fa fa-upload"></i> آپلود فایل تمرینی زیپ <small><?php echo check_size($file_max_file_size); ?></small></h3>
 							<form enctype="multipart/form-data" action="author_courses.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" method="POST" class="form-horizontal fileForm" role="form">
 								<section class="row">
 									<label style="cursor:pointer;" class="control-label btn btn-small btn-info" for="single_file">
@@ -82,7 +82,7 @@ echo output_message($message, $errors);
 										<input type="file" name="single_file" class="form-control" id="single_file" accept="application/zip"/>
 									</div>
 									<div class="input-group col-xs-11 col-sm-11 col-md-11 col-lg-11">
-										<input type="text" name="description" class="form-control input-small" placeholder="توضیح خیلی مختصر برای این فایل" maxlength="255" required/>
+										<input type="text" name="description" class="form-control input-small" placeholder="اسم فایل " maxlength="255" required/>
 										<span class="input-group-btn">
 											<button class="btn btn-primary  btn-small" type="submit" name="submit_file" id="fileSubmit" data-loading-text="<i class='fa fa-spinner fa-pulse'></i> Loading...">
 												آپلود
