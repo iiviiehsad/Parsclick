@@ -77,7 +77,7 @@
 	                        خودتان، آموزش ها را نگاه کنید. اما اگر این کار برای شما مقدور نیست خیلی متاسفیم.</p>
 	<p class="text-danger" id="12">۱۲. می خواهم وب سایت درست کنم از کجا باید شروع کنم؟</p>
 	<p class="text-success">لطفا روی این
-		<a href="http://youtu.be/Lb_fezpUEXc?t=8m45s" title="How to start building a website" target="_blank">لینک</a>
+		<mark><a href="http://youtu.be/Lb_fezpUEXc?t=8m45s" title="How to start building a website" target="_blank">لینک</a></mark>
 	                        کلیک کنید و به صحبتهای ما خوب گوش کنید.</p>
 	<p class="text-danger" id="13">۱۳. آیا از منابع دیگری هم برای ساخت ویدئوهات کمک میگیری؟</p>
 	<p class="text-success">اولا اگر ویدیویی ترجمه شده از منبع خاصی باشه در قسمت توضیحات به اون منبع اشاره شده. مثلا آموزش

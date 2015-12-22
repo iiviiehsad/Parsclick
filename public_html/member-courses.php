@@ -51,11 +51,11 @@ if(isset($current_course->author_id)) {
 				<p><?php echo nl2br(htmlentities($current_course->content)); ?></p>
 				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php if(empty($current_course->file_link) && File::num_files_for_course($current_course->id) == 0) {
-					echo "<h4 class='text-danger'>این درس فایل تمرینی ندارد.</h4>";
+					echo "<h4 class='text-danger'>این درس فایلی ندارد.</h4>";
 				} ?>
 				<?php if(!empty($current_course->file_link)) { ?>
 					<a class="btn btn-primary" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" data-toggle="tooltip" data-placement="left" title="دانلود کنید">
-						<i class="fa fa-files-o fa-lg"></i>&nbsp; دانلود فایل های تمرینی
+						<i class="fa fa-files-o fa-lg"></i>&nbsp; دانلود فایل ها
 					</a>
 				<?php } ?>
 				<!-- ------------------------------------------------------------------------------------------------- -->
