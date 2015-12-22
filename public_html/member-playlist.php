@@ -14,7 +14,7 @@ $playlist_set = Playlist::find_playlist_for_member($member->id);
 	<article class="member_profile">
 		<h1><i class="fa fa-floppy-o fa-lg"></i> لیست پخش <?php if(!$playlist_set) { echo "خالی است."; } ?></h1>
 		<?php if($playlist_set) { ?>
-			<span class='badge'>تعداد <?php echo Playlist::count_playlist_for_member($member->id); ?> درس داخل لیست پخش شماست.</span>
+			<span class='badge'>تعداد <?php echo convert(Playlist::count_playlist_for_member($member->id)); ?> درس داخل لیست پخش شماست.</span>
 		<?php } else { ?>
 			<span class='badge'>هیچ درسی داخل لیست پخش شما نیست.</span>
 		<?php } ?>
