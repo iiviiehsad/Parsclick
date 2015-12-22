@@ -1,6 +1,7 @@
 <?php
 require_once("../includes/initialize.php");
 require_once("../includes/Stripe/vendor/autoload.php");
+$title    = "پارس کلیک - کمک به ما";
 $filename = basename(__FILE__);
 $title    = "پارس کلیک - کمک به ما";
 $errors   = "";

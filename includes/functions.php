@@ -2115,7 +2115,7 @@ function member_comments_for_course($category_array, $course_array)
 		$output .= "</a>";
 		if(Course::count_recent_course_for_category($category->id, TRUE) > 0) {
 			$output .= "&nbsp;&nbsp;";
-			$output .= "<small><span class='label label-as-badge'>" . Course::count_recent_course_for_category($category->id, TRUE) . " درس جدید</span></small>";
+			$output .= "<small><span class='label label-as-badge'>" . convert(Course::count_recent_course_for_category($category->id, TRUE)) . " درس جدید</span></small>";
 		}
 		if($category_array && $course_array) {
 			if($category_array->id == $category->id || $course_array->category_id == $category->id) {

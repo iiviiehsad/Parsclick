@@ -1,4 +1,5 @@
 <?php require_once("../includes/initialize.php"); ?>
+<?php $title    = "پارس کلیک - شرایط و ضوابط"; ?>
 <?php include_layout_template("header.php"); ?>
 <?php include "_/components/php/nav.php"; ?>
 <section class="main">

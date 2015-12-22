@@ -5,6 +5,7 @@ if($session->is_logged_in()) {
 	$session->message("شما داخل سایت شدید. به منظور ثبت نام لطفا خارج شوید،");
 	redirect_to("member");
 }
+$title    = "پارس کلیک - ثبت نام";
 $filename = basename(__FILE__);
 $errors   = "";
 $lang     = 'fa';
