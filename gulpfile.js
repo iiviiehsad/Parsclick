@@ -7,7 +7,7 @@ elixir(function(mix) {
 		         'bootstrap.less',
 		         'bootstrap-rtl.min.less',
 		         '_mystyles.less'
-	         ], "public/_/components/css")
+	         ], "public_html/_/components/css")
 	   .styles([
       'app.css',
       'font-awesome.min.css'

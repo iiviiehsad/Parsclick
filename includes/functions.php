@@ -91,6 +91,16 @@ function datetime_to_text($datetime = "")
 }
 
 /**
+ * @param $string string gets the number as western
+ * @return mixed string number as eastern
+ */
+function convert($string) {
+	$eastern = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+	$western = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+	return str_replace($western, $eastern, $string);
+}
+
+/**
  * @param $size integer parameter getting the size as bytes
  * @return string format for size
  */
@@ -1838,7 +1848,7 @@ function member_articles($subject_array, $article_array)
 			$output .= "</a>";
 			if(Article::count_recent_articles_for_subject($subject->id, TRUE) > 0) {
 				$output .= "&nbsp;&nbsp;";
-				$output .= "<small><span class='label label-as-badge'>" . Article::count_recent_articles_for_subject($subject->id, TRUE) . " مقاله جدید</span></small>";
+				$output .= "<small><span class='label label-as-badge'>" . convert(Article::count_recent_articles_for_subject($subject->id, TRUE)) . " مقاله جدید</span></small>";
 			}
 			if($subject_array && $article_array) {
 				if($subject_array->id == $subject->id || $article_array->subject_id == $subject->id) {
@@ -2043,7 +2053,7 @@ function member_courses($category_array, $course_array)
 		$output .= "</a>";
 		if(Course::count_recent_course_for_category($category->id, TRUE) > 0) {
 			$output .= "&nbsp;&nbsp;";
-			$output .= "<small><span class='label label-as-badge'>" . Course::count_recent_course_for_category($category->id, TRUE) . " درس جدید</span></small>";
+			$output .= "<small><span class='label label-as-badge'>" . convert(Course::count_recent_course_for_category($category->id, TRUE)) . " درس جدید</span></small>";
 		}
 		if($category_array && $course_array) {
 			if($category_array->id == $category->id || $course_array->category_id == $category->id) {
