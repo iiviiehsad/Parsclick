@@ -112,7 +112,7 @@
 			<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="submit"></label>
 			<div class="controls">
 				<a href="login" class="btn btn-danger">لغو کردن</a>
-				<button class="btn btn-primary" name="submit" type="submit">ثبت نام</button>
+				<button class="btn btn-primary" id="register" name="submit" type="submit" data-loading-text="صبر کنید <i class='fa fa-spinner fa-pulse'></i>">ثبت نام</button>
 			</div><!-- controls -->
 		</section><!-- row -->
 	</form>

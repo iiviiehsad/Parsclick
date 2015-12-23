@@ -697,6 +697,7 @@ function is_temp_mail($mail)
 			'centermail.com',
 			'centermail.net',
 			'chammy.info',
+			'chaparmail.tk',
 			'cheatmail.de',
 			'childsavetrust.org',
 			'chogmail.com',

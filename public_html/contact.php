@@ -54,7 +54,7 @@ if(isset($_POST["submit"])) {
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2>تماس با ما</h2>
-			<form action="contact" method="POST" role="form">
+			<form class="contact" action="contact" method="POST" role="form">
 				<fieldset>
 					<legend>لطفا از فرم زیر برای تماس با ما استفاده کنید.</legend>
 					<div class="form-group">
@@ -79,7 +79,7 @@ if(isset($_POST["submit"])) {
 					<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>"></script>
 					<!--End of reCaptcha-->
 					<div class="form-group">
-						<button type="submit" name="submit" class="btn btn-primary">بفرست</button>
+						<button type="submit" id="contact-btn" name="submit" class="btn btn-primary" data-loading-text="در حال ارسال <i class='fa fa-spinner fa-pulse'></i>">بفرست</button>
 					</div>
 				</fieldset>
 			</form>

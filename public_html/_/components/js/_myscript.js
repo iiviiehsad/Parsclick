@@ -132,7 +132,21 @@ $(function() {
 		var $btn = $('#fileSubmit').button('loading');
 		setTimeout(function() {
 			$btn.button('reset');
-		}, 86400000); //1000*60*60*24*1 (1 day)
+		}, 43200000); //1000*60*60*12 (0.5 day)
+	});
+
+	$('form.registration').on('submit', function() {
+		var $btn = $('#register').button('loading');
+		setTimeout(function() {
+			$btn.button('reset');
+		}, 3600000); //1000*60*60 (1 hour)
+	});
+
+	$('form.contact').on('submit', function() {
+		var $btn = $('#contact-btn').button('loading');
+		setTimeout(function() {
+			$btn.button('reset');
+		}, 300000); //1000*60*5 (5 min)
 	});
 
 	/**
