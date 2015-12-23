@@ -23,10 +23,8 @@ if(isset($_POST['submit'])) {
 	foreach(Author::find_all() as $authors) {
 		$mail->AddBCC($authors->email, $authors->full_name());
 	}
-	$mail->Body =
-			"<body style='direction:rtl;background-color:#F5F5DC;font-family:Tahoma;'>
-			" . nl2br($_POST['message']) . "
-			</body>";
+	$mail->Body = email("نویسندگان محترم پارس کلیک", DOMAIN, "", $_POST['message']);
+
 	$result     = $mail->Send();
 	if($result) {
 		$message = "پیام به همه نویسندگان فرستاده شد.";

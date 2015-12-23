@@ -19,17 +19,11 @@ if(isset($_POST['submit'])) {
 	$mail->FromName   = DOMAIN;
 	$mail->From       = EMAILUSER;
 	$mail->Subject    = $_POST['subject'];
-	$mail->AddAddress("do-not-reply@parsclick.net", "Parsclick Members");
+	$mail->AddAddress("do-not-reply@parsclick.net", "اعضای پارس کلیک");
 	foreach(Member::find_all() as $members) {
 		$mail->AddBCC($members->email, $members->full_name());
 	}
-	$mail->Body =
-			"<body style='direction:rtl;background-color:#F5F5DC;font-family:Tahoma;'>
-			" . nl2br($_POST['message']) . "
-			<hr>
-			<a href='http://www.parsclick.net' target='_blank'>پارس کلیک</a><br/>
-			<small>لطفا جواب این ایمیل را ندهید.</small>
-			</body>";
+	$mail->Body = email("اعضای محترم پارس کلیک", DOMAIN, "", $_POST['message']);
 	$result     = $mail->Send();
 	if($result) {
 		$message = "پیام به همه اعضا فرستاده شد.";
