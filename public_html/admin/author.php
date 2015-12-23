@@ -26,7 +26,7 @@ echo output_message($message);
 	<article>
 		<?php if($articles_under_edit): ?>
 			<h3>
-				<span class="label label-danger label-as-badge"><?php echo count($articles_under_edit); ?></span>
+				<span class="label label-danger label-as-badge"><?php echo convert(count($articles_under_edit)); ?></span>
 				مقالات زیر بررسی:
 			</h3>
 			<ul class="fa-ul">
@@ -42,7 +42,7 @@ echo output_message($message);
 		<?php endif; ?>
 		<?php if($articles_for_author): ?>
 			<h3>
-				<span class="label label-success label-as-badge"><?php echo count($articles_for_author); ?></span>
+				<span class="label label-success label-as-badge"><?php echo convert(count($articles_for_author)); ?></span>
 				مقالات منتشر شده:
 			</h3>
 			<ul class="fa-ul">
