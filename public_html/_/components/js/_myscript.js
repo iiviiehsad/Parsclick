@@ -142,8 +142,8 @@ $(function() {
 		}, 3600000); //1000*60*60 (1 hour)
 	});
 
-	$('form.contact').on('submit', function() {
-		var $btn = $('#contact-btn').button('loading');
+	$('form.contactus').on('submit', function() {
+		var $btn = $('#contactbtn').button('loading');
 		setTimeout(function() {
 			$btn.button('reset');
 		}, 300000); //1000*60*5 (5 min)
