@@ -54,7 +54,7 @@ class FailedLogins extends DatabaseObject {
 	{
 		$throttle_at      = 5;
 		$delay_in_minutes = 60;
-		$delay            = 60 * $delay_in_minutes;
+		$delay            = 30 * $delay_in_minutes;
 		$failed_login     = self::find_by_username($username);
 		// Once failure count is over $throttle_at value,
 		// user must wait for the $delay period to pass.

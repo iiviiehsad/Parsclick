@@ -94,9 +94,11 @@ function datetime_to_text($datetime = "")
  * @param $string string gets the number as western
  * @return mixed string number as eastern
  */
-function convert($string) {
+function convert($string)
+{
 	$eastern = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
 	$western = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
 	return str_replace($western, $eastern, $string);
 }
 
@@ -223,6 +225,109 @@ function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE)
 function send_email($subject, $message)
 {
 	return mail('hazz.azimi@gmail.com', $subject, $message, 'From: Parsclick <do-not-reply@parsclick.net>' . "\r\n");
+}
+
+/**
+ * Sends responsive emails
+ * @param string $full_name
+ * @param string $site_root
+ * @param string $highlight
+ * @param string $content
+ * @return string
+ */
+function email($full_name = "", $site_root = DOMAIN, $highlight = "", $content = "")
+{
+	$output = <<<EMAILBODY
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" style="direction: rtl !important;">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width" />
+</head>
+<body style="direction: rtl; unicode-bidi: embed; width: 100% !important; min-width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; color: #222222; font-family: yekan, Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; text-align: right; line-height: 19px; font-size: 14px; margin: 0; padding: 0;">
+	<table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: right; height: 100%; width: 100%; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td align="center" valign="top" style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: center; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;">
+		<center style="width: 100%; min-width: 580px;">
+
+			<table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; background: #000000; padding: 0px;" bgcolor="#000000"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td align="center" style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: center; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;" valign="top">
+				<center style="width: 100%; min-width: 580px;">
+
+					<table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: inherit; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="wrapper last" style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; position: relative; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 10px 0px 0px;" align="right" valign="top">
+
+						<table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; min-width: 0px; width: 50%; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 10px 10px 0px;" align="right" valign="top">
+							<img src="http://www.parsclick.net/images/misc/logo.png" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block;" align="left" /></td>
+							<td style="text-align: left; vertical-align: middle; word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; min-width: 0px; width: 50%; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;" align="left" valign="middle">
+								<span style="color: #ffffff; font-weight: bold; font-size: 11px;"><a href="http://{$site_root}/" style="color: #2ba6cb; text-decoration: none;">Parscick.net</a></span>
+							</td>
+							<td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; visibility: hidden; width: 0px; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;" align="right" valign="top"></td>
+						</tr></table></td>
+					</tr></table></center>
+				</td>
+			</tr></table><table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: inherit; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;" align="right" valign="top">
+
+			<table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="wrapper last" style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; position: relative; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 10px 0px 0px;" align="right" valign="top">
+
+				<table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;" align="right" valign="top">
+					<h1 style="color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; text-align: right; line-height: 1.3; word-break: normal; font-size: 25px; margin: 0; padding: 0;" align="right"> جناب {$full_name} </h1><br/>
+					<p style="color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; text-align: right; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;" align="right">
+					{$content}
+					</p></td>
+					<td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; visibility: hidden; width: 0px; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;" align="right" valign="top"></td>
+				</tr></table></td>
+			</tr></table><table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; position: relative; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 10px 0px 20px;" align="right" valign="top">
+
+			<table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; background: #ECF8FF; margin: 0; padding: 10px; border: 1px solid #b9e5ff;" align="right" bgcolor="#ECF8FF" valign="top">
+				<p style="color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; text-align: right; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;" align="right">
+				{$highlight}
+				</p>
+			</td>
+			<td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; visibility: hidden; width: 0px; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;" align="right" valign="top"></td>
+		</tr></table></td>
+	</tr></table><table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; position: relative; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; background: #ebebeb; margin: 0; padding: 10px 20px 0px 0px;" align="right" bgcolor="#ebebeb" valign="top">
+
+	<table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 280px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px 10px;" align="right" valign="top">
+
+		<h5 style="color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; text-align: right; line-height: 1.3; word-break: normal; font-size: 18px; margin: 0; padding: 0 0 10px;" align="right">تماس با ما:</h5>
+
+		<table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; overflow: hidden; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: center; color: #ffffff; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: initial !important; font-size: 14px; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; display: block; width: auto !important; background: #3b5998; margin: 0; padding: 5px 0; border: 1px solid #2d4473;" align="center" bgcolor="#3b5998" valign="top">
+			<a href="https://www.facebook.com/persiantc/" style="color: #ffffff; text-decoration: none; font-weight: normal; font-family: Tahoma, Helvetica, Arial, sans-serif; font-size: 12px; display: block; height: 100%; width: 100%;">Facebook</a>
+		</td>
+	</tr></table><br /><table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; overflow: hidden; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: center; color: #ffffff; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: initial !important; font-size: 14px; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; display: block; width: auto !important; background: #00acee; margin: 0; padding: 5px 0; border: 1px solid #0087bb;" align="center" bgcolor="#00acee" valign="top">
+	<a href="https://twitter.com/AmirHassanAzimi" style="color: #ffffff; text-decoration: none; font-weight: normal; font-family: Tahoma, Helvetica, Arial, sans-serif; font-size: 12px; display: block; height: 100%; width: 100%;">Twitter</a>
+</td>
+</tr></table><br /><table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; overflow: hidden; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: center; color: #ffffff; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: initial !important; font-size: 14px; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; display: block; width: auto !important; background: #DB4A39; margin: 0; padding: 5px 0; border: 1px solid #cc0000;" align="center" bgcolor="#DB4A39" valign="top">
+<a href="https://plus.google.com/+PersianComputers" style="color: #ffffff; text-decoration: none; font-weight: normal; font-family: Tahoma, Helvetica, Arial, sans-serif; font-size: 12px; display: block; height: 100%; width: 100%;">Google +</a>
+</td>
+</tr></table></td>
+<td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; visibility: hidden; width: 0px; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;" align="right" valign="top"></td>
+</tr></table></td>
+<td last" style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; position: relative; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; background: #ebebeb; margin: 0; padding: 10px 0px 0px;" align="right" bgcolor="#ebebeb" valign="top">
+
+	<table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 280px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;" align="right" valign="top">
+		<h5 style="color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; text-align: right; line-height: 1.3; word-break: normal; font-size: 18px; margin: 0; padding: 0 0 10px;" align="right">اطلاعات بیشتر:</h5>
+		<p style="color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; text-align: right; line-height: 19px; font-size: 14px; margin: 0 0 14px; padding: 0;" align="right"> کانال تلگرام: <a href="https://telegram.me/pars_click" style="color: #2ba6cb; text-decoration: none;">@pars_click</a></p>
+		<p style="color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; text-align: right; line-height: 19px; font-size: 14px; margin: 0 0 14px; padding: 0;" align="right">ایمیل: <a href="mailto:hseldon@trantor.com" style="color: #2ba6cb; text-decoration: none;">parsclickmail@gmail.com</a></p>
+		<hr/>
+		<p style="color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; text-align: right; line-height: 19px; font-size: 12px; margin: 0 0 10px; padding: 0;" align="right">لطفا به این ایمیل جواب ندهید. این ایمیل صرفا جهت اطلاع رسانی است.</p>
+		</td>
+	<td  style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; visibility: hidden; width: 0px; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;" align="right" valign="top"></td>
+</tr></table></td>
+</tr></table><table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td  style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; position: relative; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 10px 0px 0px;" align="right" valign="top">
+
+<table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td align="center" style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;" valign="top">
+	<center style="width: 100%; min-width: 580px;">
+		<p style="text-align: center; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;" align="center"><a href="http://{$site_root}/" style="color: #2ba6cb; text-decoration: none;">پارس کلیک</a> | <a href="http://{$site_root}/privacypolicy" style="color: #2ba6cb; text-decoration: none;">شرایط و ضوابط</a> | <a href="http://{$site_root}/login" style="color: #2ba6cb; text-decoration: none;">ورود به سیستم</a></p>
+	</center>
+</td>
+<td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: right; visibility: hidden; width: 0px; color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;" align="right" valign="top"></td>
+</tr></table></td>
+</tr></table></td>
+</tr></table></center>
+</td>
+</tr></table></body>
+</html>
+EMAILBODY;
+
+	return $output;
 }
 
 /******************************************************************************************************/

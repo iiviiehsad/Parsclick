@@ -41,10 +41,9 @@ class Member extends DatabaseObject {
 			return "";
 		}
 	}
-	
+
 	/**
 	 * @param string $search gets the search query
-	 *
 	 * @return array|null the result
 	 */
 	public static function search($search = "")
@@ -67,7 +66,6 @@ class Member extends DatabaseObject {
 	 * Important: This function needs needs PHP v5.5+
 	 *
 	 * @param $password string gets the password from the user
-	 *
 	 * @return string encrypts the password using Blowfish
 	 */
 	public function password_encrypt($password)
@@ -85,7 +83,6 @@ class Member extends DatabaseObject {
 
 	/**
 	 * @param $length int length of salt
-	 *
 	 * @return string the salt
 	 */
 	private function generate_salt($length)
@@ -106,7 +103,6 @@ class Member extends DatabaseObject {
 	/**
 	 * @param $password      string gets the password
 	 * @param $existing_hash string has the existing hash
-	 *
 	 * @return bool TRUE if existing hash matches the password and FALSE if not
 	 */
 	private static function password_check($password, $existing_hash)
@@ -123,7 +119,6 @@ class Member extends DatabaseObject {
 	/**
 	 * @param string $username gets username
 	 * @param string $password gets the password
-	 *
 	 * @return bool|mixed TRUE if matches and FALSE if not
 	 */
 	public static function authenticate($username = "", $password = "")
@@ -159,15 +154,13 @@ class Member extends DatabaseObject {
 	 * email address, where then this token will be checked to see if the member is legitimate or not.
 	 *
 	 * @param $username string is taken from user by typing
-	 *
 	 * @return bool TRUE if email is sent ond FALSE if not
 	 * @throws \Exception
 	 * @throws \phpMailerException
 	 */
 	public function email_reset_token($username)
 	{
-		$user      = self::find_by_username($username);
-		$site_root = DOMAIN;
+		$user = self::find_by_username($username);
 		if($user && isset($user->token)) {
 			$mail = new PHPMailer();
 			$mail->IsSMTP();
@@ -183,24 +176,12 @@ class Member extends DatabaseObject {
 			$mail->FromName   = DOMAIN;
 			$mail->From       = EMAILUSER;
 			$mail->Subject    = "Reset Password Request";
-			$mail->Body       = <<<EMAILBODY
-			<body style="background-color:#F5F5DC;direction:rtl;font-family:Tahoma;">
-			<h1>جناب {$user->full_name()}،</h1>
-			<br /><br />
-			<h3>اخیرا شما درخواست بازیافت پسوردتان را از ما نموده اید؟ <br />
-			از لینک زیر برای عوض کردن پسورد خود استفاده کنید:</h3>
-			<br /><br />
-			<p style="margin:auto;padding:5px;direction:ltr;">
-			http://{$site_root}/reset-password?token={$user->token}
-			</p>
-			<br /><br />
-			<h3 style="color: green;">یادآوری مهم: اگر شما این درخواست را نکردید هول نکنید, هیچ اقدامی لازم نیست انجام دهید. پسورد شما بدون کلیک کردن به لینک بالا قابل تغییر نخواهد بود.</h3>
-			<br /><br /><hr />
-			<p>ممنون <br />
-			پارس کلیک <br />
-			http://{$site_root}</p>
-			</body>
-EMAILBODY;
+			$content          = "
+			اخیرا شما درخواست بازیافت پسوردتان را از ما نموده اید؟ <br/>
+			اگر شما این درخواست را نکردید هول نکنید, هیچ اقدامی لازم نیست انجام دهید. پسورد شما بدون کلیک کردن به لینک بالا قابل تغییر نخواهد بود. <br/>
+			از لینک زیر برای عوض کردن پسورد خود استفاده کنید:<br/>
+			";
+			$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content);
 
 			return $mail->Send();
 			//return TRUE;
@@ -213,15 +194,13 @@ EMAILBODY;
 	 * This method will email the member's username to the member's email address on file.
 	 *
 	 * @param $email string is taken from the member by typing in the input field
-	 *
 	 * @return bool TRUE if email is sent and FALSE if not
 	 * @throws \Exception
 	 * @throws \phpMailerException
 	 */
 	public function email_username($email)
 	{
-		$user      = self::find_by_email($email);
-		$site_root = DOMAIN;
+		$user = self::find_by_email($email);
 		if($user && isset($user->token)) {
 			$mail = new PHPMailer();
 			$mail->IsSMTP();
@@ -237,23 +216,12 @@ EMAILBODY;
 			$mail->FromName   = DOMAIN;
 			$mail->From       = EMAILUSER;
 			$mail->Subject    = "Username Reminder Request";
-			$mail->Body       = <<<EMAILBODY
-			<body style="background-color:#F5F5DC;direction:rtl;font-family:Tahoma;">
-			<h1>جناب {$user->full_name()}،</h1>
-			<br /><br />
-			<h3>اسم کاربری را فراموش کردید؟</h3>
-			<br/>
-			<h3 style="margin:auto;padding:10px;">
-				اسم کاربری شما هست: {$user->username}
-			</h3>
-			<br /><br />
-			<h3 style="color: red;">لطفا به خاطر بسپارید که اسم کاربری را در جایی امن نگه داری کنید و این ایمیل را پاک کنید. این ایمیل را از سطل زباله ایمیل هم پاک کنید.</h3>
-			<br /><br /><hr />
-			<p>ممنون <br />
-			پارس کلیک <br />
-			http://{$site_root}</p>
-			</body>
-EMAILBODY;
+			$content          = "
+			اسم کاربری را فراموش کردید؟ <br/>
+			لطفا به خاطر بسپارید که اسم کاربری را در جایی امن نگه داری کنید و این ایمیل را پاک کنید. این ایمیل را از سطل زباله ایمیل هم پاک کنید.<br/>
+			اسم کاربری شما هست:
+			";
+			$mail->Body       = email($user->full_name(), DOMAIN, $user->username, $content);
 
 			return $mail->Send();
 		} else {
@@ -265,15 +233,13 @@ EMAILBODY;
 	 * This method will send a confirmation email to the recently registered members.
 	 *
 	 * @param $username
-	 *
 	 * @return bool TRUE if email is sent and FALSE if not
 	 * @throws \Exception
 	 * @throws \phpmailerException
 	 */
 	public function email_confirmation_details($username)
 	{
-		$user      = self::find_by_username($username);
-		$site_root = DOMAIN;
+		$user = self::find_by_username($username);
 		if($user && isset($user->token)) {
 			$mail = new PHPMailer();
 			$mail->IsSMTP();
@@ -289,32 +255,17 @@ EMAILBODY;
 			$mail->FromName   = DOMAIN;
 			$mail->From       = EMAILUSER;
 			$mail->Subject    = "به پارس کلیک خوش آمدید";
-			$mail->Body       = <<<EMAILBODY
-			<body style="background-color:#F5F5DC;direction:rtl;font-family:Tahoma;">
-				<h1>جناب {$this->full_name()}،</h1>
-				<br/><br/>
-				<h3>عضویت شما ساخته شد و قبل از اینکه از سیستم استفاده کنید از لینک زیر برای تایید کردن ایمیل خود استفاده کنید:<br/><br/>
-				<p style="direction:ltr;margin:auto;padding:5px;">
-					http://{$site_root}/confirm-email?token={$user->token}
-				</p>
-				</h3>
-				<p>خوب یک خوش آمد و استقبال گرم را از طرف بچه های پارس کلیک بپذیرید و ممنونیم که ما را انتخاب کردید.<br />
-				باعث افتخار ماست که برای دوستانمان خدمت کنیم. دوستانتان را برای ملحق کردن به ما راهنمایی کنید.</p><br/>
-				<h3 style="color:red;">یارآوری مهم:</h3>
-				<ul>
-				<li>خیلی ضرورت دارد که اطلاعات شما بروز باشد مخصوصا تنها پل ارتباطی بین ما  و شما که ایمیلتان است. </li>
-				<li>به محض ورود به سیستم شما قادر به تغییر اطلاعات شخصی خود هستید. </li>
-				<li>از ایمیل آدرس شما برای بازیافت پسورد در موقعیت احتمالی گم کردن و فراموشی پسورد استفاده می شود. </li>
-				<li>اگر سوالی در مورد دروس و مقالات داشتید در قسمت نظرات مربوط به هر کدام بنویسید.</li>
-				<li>اگر سوالی کلی داشتید با ما در قسمت تماس با مای سایت تماس بگیرید. قبل از هر سوال بد نیست یک سری به قسمت سوالات شما بزنید چون بیشتر جواب سوالات مشترک شما آنجاست.</li>
-				</ul>
-				<br/><br/><br/>
-				<hr/>
-				<p>باز هم ممنون <br/>
-				پارس کلیک <br/>
-				http://{$site_root}</p>
-			</body>
-EMAILBODY;
+			$content          = "
+			خوب یک خوش آمد و استقبال گرم را از طرف بچه های پارس کلیک بپذیرید و ممنونیم که ما را انتخاب کردید.
+					<ul><li>خیلی ضرورت دارد که اطلاعات شما بروز باشد مخصوصا تنها پل ارتباطی بین ما  و شما که ایمیلتان است. </li>
+						<li>به محض ورود به سیستم شما قادر به تغییر اطلاعات شخصی خود هستید. </li>
+						<li>از ایمیل آدرس شما برای بازیافت پسورد در موقعیت احتمالی گم کردن و فراموشی پسورد استفاده می شود. </li>
+						<li>اگر سوالی در مورد دروس و مقالات داشتید در قسمت نظرات مربوط به هر کدام بنویسید.</li>
+						<li>اگر سوالی کلی داشتید با ما در قسمت تماس با مای سایت تماس بگیرید. قبل از هر سوال بد نیست یک سری به قسمت سوالات شما بزنید چون بیشتر جواب سوالات مشترک شما آنجاست.</li>
+					</ul>
+					لطفا روی لینک زیر جهت تایید ایمیل خود استفاده کنید:
+			";
+			$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content);
 
 			return $mail->Send();
 		} else {

@@ -2,7 +2,9 @@
 require_once("../includes/initialize.php");
 require_once("../includes/Recaptcha/autoload.php");
 $filename = basename(__FILE__);
-if($session->is_logged_in()) { $member = Member::find_by_id($session->id); }
+if($session->is_logged_in()) {
+	$member = Member::find_by_id($session->id);
+}
 $title   = "پارس کلیک - تماس با ما";
 $errors  = "";
 $message = "";
@@ -27,23 +29,11 @@ if(isset($_POST["submit"])) {
 			$mail->Password   = EMAILPASS;
 			$mail->FromName   = $_POST["name"];
 			$mail->From       = EMAILUSER;
-			$mail->Subject    = "پرس و جو از " . $_POST["name"];
+			$mail->Subject    = "پرس و جو از " . $_POST['name'];
 			$mail->AddAddress("parsclickmail@gmail.com", DOMAIN);
-			$mail->Body = <<<EMAILBODY
-<body style="direction:rtl;text-align:right;float:right;font-family:Tahoma;">
-
-<h2>پیام جدید از طرف وب سایت پارس کلیک </h2>
-
-<p style="font-size:15px;"><br/>
-اسم: {$_POST["name"]}<br/>
-ایمیل: {$_POST["email"]}<br/></p><br/>
-<h3>پیام:</h3>
-
-	<p>{$_POST["message"]}</p>
-
-<hr />
-EMAILBODY;
-			$result     = $mail->Send();
+			$content    = nl2br($_POST['message']);
+			$mail->Body = email($_POST['name'], DOMAIN, $_POST['email'], $content);
+			$result = $mail->Send();
 			if($result) {
 				$message = "با تشکر، پیام شما فرستاده شد.";
 			} else {
@@ -64,7 +54,6 @@ EMAILBODY;
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2>تماس با ما</h2>
-
 			<form action="contact" method="POST" role="form">
 				<fieldset>
 					<legend>لطفا از فرم زیر برای تماس با ما استفاده کنید.</legend>

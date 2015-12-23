@@ -186,7 +186,6 @@ class DatabaseObject {
 	public function email_reset_token($username)
 	{
 		$user      = static::find_by_username($username);
-		$site_root = DOMAIN;
 		if($user && isset($user->token)) {
 			$mail = new PHPMailer();
 			$mail->IsSMTP();
@@ -200,24 +199,13 @@ class DatabaseObject {
 			$mail->Password   = EMAILPASS;
 			$mail->FromName   = DOMAIN;
 			$mail->From       = EMAILUSER;
-			$mail->AddAddress($this->email, "Reset Password");
+			$mail->AddAddress($user->email, "Reset Password");
 			$mail->Subject = "Reset Password Request";
-			$mail->Body    = <<<EMAILBODY
-			<body style="background-color:#F5F5DC;direction:rtl;font-family:Tahoma;">
-			<h1>جناب {$user->full_name()}،</h1>
-			<h3>آیا اخیرا درخواست بازیافت پسوردتان را کردید؟ <br />
-			اگر جواب مثبت است لطفا از لینک زیر برای بازیافت پسوردتان استفاده کنید:</h3>
-			<br /><br />
-			<p style="margin:auto;padding:5px;direction:ltr;">
-			http://{$site_root}/admin/reset_password.php?token={$user->token}
-			</p>
-			<br /><br />
-			<h3 style="color: green;">یادآوری: اگر این درخواست را نکردید, احتیاج نیست کاری کنید. بدون کلیک کردن به لینک بالا پسورد شما قابل تغییر نیست.</h3>
-			<br /><br /><hr />
-			<p>Thank You <br />
-			<a href='http://{$site_root}'>پارس کلیک</a> <br /></p>
-			</body>
-EMAILBODY;
+			$content          = "
+			آیا اخیرا درخواست بازیافت پسوردتان را کردید؟ <br/>
+			اگر جواب مثبت است لطفا از لینک زیر برای بازیافت پسوردتان استفاده کنید:<br/>
+			";
+			$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content);
 			return $mail->Send();
 		} else {
 			return FALSE;
