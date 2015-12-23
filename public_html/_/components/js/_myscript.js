@@ -45,9 +45,6 @@ $(function() {
 	var wrapper = $('<label/>').css({height : 0, width : 0, 'overflow' : 'hidden'});
 	$(':file').wrap(wrapper);
 
-	/**
-	 * Adding course to playlist using AJAX
-	 */
 	$('form.addtoplaylist').on('submit', function() {
 		var that = $(this),
 		    url  = that.attr('action'),
@@ -72,9 +69,6 @@ $(function() {
 		return false;
 	});
 
-	/**
-	 * Removing course from playlist using AJAX
-	 */
 	$('form.removefromplaylist').on('submit', function() {
 		var that = $(this),
 		    url  = that.attr('action'),
@@ -99,9 +93,6 @@ $(function() {
 		return false;
 	});
 
-	/**
-	 * Adding AJAX for comment form
-	 */
 	$('form.submit-comment').on('submit', function() {
 		var that = $(this),
 		    url  = that.attr('action'),
@@ -125,9 +116,6 @@ $(function() {
 		return false;
 	});
 
-	/**
-	 * Perform AJAX for button when uploading file
-	 */
 	$('form.fileForm').on('submit', function() {
 		var $btn = $('#fileSubmit').button('loading');
 		setTimeout(function() {

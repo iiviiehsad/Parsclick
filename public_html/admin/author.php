@@ -29,9 +29,10 @@ echo output_message($message);
 				<span class="label label-danger label-as-badge"><?php echo count($articles_under_edit); ?></span>
 				مقالات زیر بررسی:
 			</h3>
-			<ul style="list-style: url('../images/misc/loading.gif');">
+			<ul class="fa-ul">
 				<?php foreach($articles_under_edit as $aue): ?>
 					<li>
+						<i class='fa fa-refresh fa-spin text-danger'></i>&nbsp;
 						<a href="author_articles.php?subject=<?php echo urlencode($aue->subject_id); ?>&article=<?php echo urlencode($aue->id); ?>">
 							<?php echo $aue->name; ?>
 						</a>
@@ -44,9 +45,10 @@ echo output_message($message);
 				<span class="label label-success label-as-badge"><?php echo count($articles_for_author); ?></span>
 				مقالات منتشر شده:
 			</h3>
-			<ul style="list-style: url('../images/misc/green_tick.png');">
+			<ul class="fa-ul">
 				<?php foreach($articles_for_author as $afa): ?>
 					<li>
+						<i class="fa fa-check-square text-success"></i>
 						<a href="author_articles.php?subject=<?php echo urlencode($afa->subject_id); ?>&article=<?php echo urlencode($afa->id); ?>">
 							<?php echo $afa->name; ?>
 						</a>
