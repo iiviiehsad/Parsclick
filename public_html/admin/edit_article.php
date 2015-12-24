@@ -4,22 +4,22 @@ $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_article();
 $errors = "";
-if(!$current_article || !$current_subject) {
+if( ! $current_article || ! $current_subject) {
 	redirect_to("author_articles.php");
 }
 if(isset($_POST['submit'])) {
-	$article           = Article::find_by_id($current_article->id, FALSE);
-	$article->name     = ucfirst($_POST["article_name"]);
-	$article->position = (int)$_POST["position"];
-	$article->visible  = (int)$_POST["visible"];
-	$article->content  = $_POST["content"];
-	$result            = $article->save();
+	$article             = Article::find_by_id($current_article->id, FALSE);
+	$article->name       = ucfirst($_POST["article_name"]);
+	$article->subject_id = (int)$_POST["subject_id"];
+	$article->position   = (int)$_POST["position"];
+	$article->visible    = (int)$_POST["visible"];
+	$article->content    = $_POST["content"];
+	$result              = $article->save();
 	if($result) {
 		$session->message("مقاله بروزرسانی شد.");
 		redirect_to("admin_articles.php?subject=" . $current_subject->id . "&article=" . $current_article->id);
 	} else {
 		$errors = "مقاله بروزرسانی نشد!";
-		//redirect_to("admin_articles.php?subject=" . $current_subject->id . "&article=" . $current_article->id);
 	}
 } else {
 }
@@ -30,7 +30,6 @@ echo output_message($message, $errors);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-pencil-square"></i> ویرایش مقاله</h2>
-
 			<form class="form-horizontal" action="edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id) ?>" method="post" role="form">
 				<fieldset>
 					<legend><?php echo htmlentities(ucfirst($current_article->name)); ?></legend>
@@ -59,19 +58,35 @@ echo output_message($message, $errors);
 							</select>
 						</div>
 					</section>
+					<!--subject-->
+					<section class="row">
+						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="subject_id">زیر موضوع</label>
+						<div class="controls">
+							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="subject_id" id="subject_id">
+								<?php
+								$subject_set = Subject::find_all();
+								foreach($subject_set as $subject) {
+									echo "<option value='{$subject->id}'";
+									if($current_article->subject_id == $subject->id) {
+										echo "selected";
+									}
+									echo ">{$subject->name}</option>";
+								}
+								?>
+							</select>
+						</div>
+					</section>
 					<!--visible-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="visible">نشر شد</label>
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" value="0"
-									<?php if($current_article->visible == 0) echo "checked";
-									?> > خیر
+										<?php if($current_article->visible == 0) echo "checked"; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" value="1"
-									<?php if($current_article->visible == 1) echo "checked";
-									?> > بله
+										<?php if($current_article->visible == 1) echo "checked"; ?> > بله
 							</label>
 						</div>
 					</section>
