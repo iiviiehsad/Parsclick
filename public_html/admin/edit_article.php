@@ -64,8 +64,7 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="subject_id" id="subject_id">
 								<?php
-								$subject_set = Subject::find_all();
-								foreach($subject_set as $subject) {
+								foreach(Subject::find_all() as $subject) {
 									echo "<option value='{$subject->id}'";
 									if($current_article->subject_id == $subject->id) {
 										echo "selected";
