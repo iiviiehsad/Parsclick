@@ -58,7 +58,7 @@ echo output_message($message);
 							foreach($subject_articles as $article) {
 								echo "<li class='list-group-item-text'>";
 								$safe_article_id = urlencode($article->id);
-								echo "<a href='author_articles.php?subject=" . $current_subject->id . "&article={$safe_article_id}'";
+								echo "<a href='admin_articles.php?subject=" . $current_subject->id . "&article={$safe_article_id}'";
 								if($article->comments()) {
 									echo "data-toggle='tooltip' data-placement='left' title='";
 									echo count($article->comments()) . " دیدگاه";
