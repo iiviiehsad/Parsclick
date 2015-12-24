@@ -35,8 +35,9 @@ $newest_article = Article::find_newest_article();
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
 		<h2><span class="visible-sm"><?php echo "خوش آمدید  " . ucwords(strtolower($member->full_name())); ?></span></h2>
-		<h2>جدیدترین مقاله</h2>
-		<h5 class="text-success">
+		<h2>جدیدترین مقاله: </h2>
+		<h4><?php echo htmlentities($newest_article->name); ?></h4>
+		<h5>
 			<?php
 			if(isset($newest_article->author_id)) {
 				$author = Author::find_by_id($newest_article->author_id);
@@ -44,10 +45,10 @@ $newest_article = Article::find_newest_article();
 				<?php echo "توسط: " . $author->full_name();
 			} ?>
 		</h5>
-		<h5 class="text-success">
+		<h5>
 			<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($newest_article->created_at)); ?>
 		</h5>
-		<h3><?php echo htmlentities($newest_article->name); ?></h3>
+		<hr>
 		<?php echo truncate(nl2br(strip_tags($newest_article->content, '<h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')), 1500,
 				"...<a class='btn btn-small btn-info pull-left' href='member-articles?subject={$newest_article->subject_id}&article={$newest_article->id}'>برای ادامه کلیک کنید</a>"); ?>
 	</article>
