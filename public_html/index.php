@@ -1,6 +1,6 @@
 <?php
 require_once("../includes/initialize.php");
-if($session->is_logged_in()) {redirect_to("member.php");}
+if($session->is_logged_in()) { redirect_to("member.php"); }
 $filename = basename(__FILE__);
 ?>
 <?php include_layout_template("header.php"); ?>

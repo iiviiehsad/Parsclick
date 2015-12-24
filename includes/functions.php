@@ -457,7 +457,7 @@ function has_exclusion_from($value, $set = [])
  */
 function check_ownership($id, $session_id)
 {
-	return $id === $session_id ? TRUE : FALSE;
+	return $id === $session_id;
 }
 
 /**
@@ -1806,7 +1806,8 @@ function log_action($action, $message = "")
 	$new     = file_exists($logfile) ? FALSE : TRUE;
 	if($handle = fopen($logfile, 'a')) { //appends
 		$timestamp = datetime_to_text(strftime("%Y-%m-%d %H:%M:%S", time()));
-		$content   = "{$timestamp} | {$action}: {$message}" . PHP_EOL;
+		$country = ip_info("Visitor", "Country");
+		$content   = "{$timestamp} | {$country} | {$action}: {$message}" . PHP_EOL;
 		fwrite($handle, $content);
 		fclose($handle);
 		if($new) {

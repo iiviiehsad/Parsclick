@@ -38,7 +38,6 @@ if(isset($_POST["submit"])) {
 		<article>
 			<h2><i class="fa fa-key"></i> بازیافت پسورد </h2>
 			<br/>
-
 			<form class="form-horizontal" action="forgot" method="POST" accept-charset="utf-8">
 				<fieldset>
 					<legend>اسم کاربری شما چیست؟</legend>

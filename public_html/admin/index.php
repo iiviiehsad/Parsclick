@@ -28,12 +28,12 @@ if(isset($_POST["submit"])) {
 					// TRY TO LOGIN
 					if($found_admin && ($type === "admin")) { //find the super admin 1st
 						$session->admin_login($found_admin);
-						log_action("Login", "<span class='alert-danger'>" . ucfirst($found_admin->username) . "</span> logged in.");
+						log_action("Login:", "<span class='alert-danger'>" . $found_admin->username . "</span>");
 						FailedLogins::clear_failed_logins($username);
 						redirect_to("admin.php");
 					} elseif($found_author && ($type === "author")) { // find the authors 2nd
 						$session->author_login($found_author);
-						log_action("Login", "<span class='alert-success'>" . ucfirst($found_author->username) . "</span> logged in.");
+						log_action("Login:", "<span class='alert-success'>" . $found_author->username . "</span>");
 						FailedLogins::clear_failed_logins($username);
 						redirect_to("author.php");
 					} else {

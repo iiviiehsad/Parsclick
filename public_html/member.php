@@ -15,7 +15,7 @@ $newest_article = Article::find_newest_article();
 	<img class="pull-left img-circle" width="150" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=150&d=<?php echo 'http://' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->email; ?>">
 	<h1>خوش آمدید <?php echo ucwords(strtolower($member->full_name())); ?></h1>
 	<p>شما دسترسی به یکی از بزرگترین کتابخانه ویدئویی رایگان پارسی زبانان را دارید. لطفا از دوستان خود دعوت کنید که به ما
-		بپیوندند.</p>
+	   بپیوندند.</p>
 	<p>
 		<?php if($newest_course) { ?>
 			<span>جدیدترین درس:</span>&nbsp;
@@ -31,11 +31,10 @@ $newest_article = Article::find_newest_article();
 				<?php echo $newest_article->name; ?> </a>&nbsp;
 		<?php } ?>
 	</p>
-</div>
+</div><!--.jumbotron-->
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
 		<h2><span class="visible-sm"><?php echo "خوش آمدید  " . ucwords(strtolower($member->full_name())); ?></span></h2>
-
 		<h2>جدیدترین مقاله</h2>
 		<h5 class="text-success">
 			<?php
@@ -48,10 +47,9 @@ $newest_article = Article::find_newest_article();
 		<h5 class="text-success">
 			<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($newest_article->created_at)); ?>
 		</h5>
-
 		<h3><?php echo htmlentities($newest_article->name); ?></h3>
 		<?php echo truncate(nl2br(strip_tags($newest_article->content, '<h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')), 1500,
-		                    "...<a class='btn btn-small btn-info pull-left' href='member-articles?subject={$newest_article->subject_id}&article={$newest_article->id}'>برای ادامه کلیک کنید</a>"); ?>
+				"...<a class='btn btn-small btn-info pull-left' href='member-articles?subject={$newest_article->subject_id}&article={$newest_article->id}'>برای ادامه کلیک کنید</a>"); ?>
 	</article>
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">

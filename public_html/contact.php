@@ -2,9 +2,7 @@
 require_once("../includes/initialize.php");
 require_once("../includes/Recaptcha/autoload.php");
 $filename = basename(__FILE__);
-if($session->is_logged_in()) {
-	$member = Member::find_by_id($session->id);
-}
+if($session->is_logged_in()) { $member = Member::find_by_id($session->id); }
 $title   = "پارس کلیک - تماس با ما";
 $errors  = "";
 $message = "";
@@ -33,7 +31,7 @@ if(isset($_POST["submit"])) {
 			$mail->AddAddress("parsclickmail@gmail.com", DOMAIN);
 			$content    = nl2br($_POST['message']);
 			$mail->Body = email($_POST['name'], DOMAIN, $_POST['email'], $content);
-			$result = $mail->Send();
+			$result     = $mail->Send();
 			if($result) {
 				$message = "با تشکر، پیام شما فرستاده شد.";
 			} else {
@@ -79,7 +77,9 @@ if(isset($_POST["submit"])) {
 					<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>"></script>
 					<!--End of reCaptcha-->
 					<div class="form-group">
-						<button type="submit" id="contactbtn" name="submit" class="btn btn-primary" data-loading-text="در حال ارسال <i class='fa fa-spinner fa-pulse'></i>">بفرست</button>
+						<button type="submit" id="contactbtn" name="submit" class="btn btn-primary" data-loading-text="در حال ارسال <i class='fa fa-spinner fa-pulse'></i>">
+							بفرست
+						</button>
 					</div>
 				</fieldset>
 			</form>
