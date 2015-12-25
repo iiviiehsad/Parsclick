@@ -24,7 +24,10 @@ echo output_message($message);
 					<?php echo $current_article->visible == 1 ? '<i class="fa fa-eye"></i>' : '<i class="text-danger fa fa-eye-slash"></i>'; ?>
 					<?php echo htmlentities(ucwords($current_article->name)); ?>
 				</h1>
-				<h4 class="text-success">
+				<h4>
+					<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
+				</h4>
+				<h4>
 					<?php if(! empty($_author->photo)) { ?>
 						<img class="img-circle" width="50" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($_author->photo); ?>">
 					<?php } ?>
@@ -35,6 +38,7 @@ echo output_message($message);
 						ویرایش
 					</a>
 				<?php } ?>
+				<hr/>
 				<p><?php echo nl2br(strip_tags($current_article->content, '<h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?></p>
 				<article id="comments">
 					<div class="panel panel-default">
