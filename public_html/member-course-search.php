@@ -24,7 +24,7 @@ if(isset($search_query) && !empty($search_query)) {
 					<table class="table">
 						<thead>
 						<tr>
-							<th>درس های پیدا شده: <span class="badge"><?php echo count($course_set); ?></span></th>
+							<th>درس های پیدا شده: <span class="badge"><?php echo convert(count($course_set)); ?></span></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -36,7 +36,7 @@ if(isset($search_query) && !empty($search_query)) {
 									&nbsp;	توسط <?php echo htmlentities(Author::find_by_id($course->author_id)->full_name()); ?>
 									</a>
 									<p>
-										<small><?php echo truncate(nl2br(htmlentities($course->content)), 200) ?></small>
+										<small><?php echo truncate(nl2br(htmlentities($course->content)), 500) ?></small>
 									</p>
 								</td>
 							</tr>

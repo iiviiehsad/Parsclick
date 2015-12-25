@@ -25,7 +25,7 @@ if(isset($search_query) && !empty($search_query)) {
 					<table class="table">
 						<thead>
 						<tr>
-							<th>مقالات پیدا شده: <span class="badge"><?php echo count($article_set); ?></span></th>
+							<th>مقالات پیدا شده: <span class="badge"><?php echo convert(count($article_set)); ?></span></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -37,7 +37,7 @@ if(isset($search_query) && !empty($search_query)) {
 										&nbsp;توسط <?php echo isset($article->author_id) ? htmlentities(Author::find_by_id($article->author_id)->full_name()) : '-'; ?>
 									</a>
 									<p>
-										<small>برای ادامه کلیک کنید...</small>
+										<small><?php echo truncate(nl2br(htmlentities($article->content)), 500) ?></small>
 									</p>
 								</td>
 							</tr>
