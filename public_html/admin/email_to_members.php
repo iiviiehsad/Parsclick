@@ -23,7 +23,7 @@ if(isset($_POST['submit'])) {
 	foreach(Member::find_all() as $members) {
 		$mail->AddBCC($members->email, $members->full_name());
 	}
-	$mail->Body = email("اعضای محترم پارس کلیک", DOMAIN, "", $_POST['message']);
+	$mail->Body = email("اعضای محترم پارس کلیک", DOMAIN, "", nl2br($_POST['message']));
 	$result     = $mail->Send();
 	if($result) {
 		$message = "پیام به همه اعضا فرستاده شد.";

@@ -23,7 +23,7 @@ if(isset($_POST['submit'])) {
 	foreach(Author::find_all() as $authors) {
 		$mail->AddBCC($authors->email, $authors->full_name());
 	}
-	$mail->Body = email("نویسندگان محترم پارس کلیک", DOMAIN, "", $_POST['message']);
+	$mail->Body = email("نویسندگان محترم پارس کلیک", DOMAIN, "", nl2br($_POST['message']));
 
 	$result     = $mail->Send();
 	if($result) {
