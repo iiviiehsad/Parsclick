@@ -5,7 +5,7 @@
 function __autoload($class_name)
 {
 	$class_name = strtolower($class_name);
-	$path       = LIB_PATH . DS . $class_name . "php";
+	$path       = LIB_PATH . DS . $class_name . ".php";
 	if(file_exists($path)) {
 		require_once($path);
 	} else {
@@ -229,6 +229,7 @@ function send_email($subject, $message)
 
 /**
  * Sends responsive emails
+ *
  * @param string $full_name
  * @param string $site_root
  * @param string $highlight
@@ -1890,7 +1891,7 @@ function log_action($action, $message = "")
 	$new     = file_exists($logfile) ? FALSE : TRUE;
 	if($handle = fopen($logfile, 'a')) { //appends
 		$timestamp = datetime_to_text(strftime("%Y-%m-%d %H:%M:%S", time()));
-		$country = ip_info("Visitor", "Country");
+		$country   = ip_info("Visitor", "Country");
 		$content   = "{$timestamp} | {$country} | {$action}: {$message}" . PHP_EOL;
 		fwrite($handle, $content);
 		fclose($handle);

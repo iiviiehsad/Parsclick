@@ -30,8 +30,8 @@ class File extends DatabaseObject {
 	protected        $permittedTypes = ['application/zip'];
 	protected        $upload_errors  = [
 			UPLOAD_ERR_OK         => "خطایی نیست.",
-			UPLOAD_ERR_INI_SIZE   => "بزرگتر از upload_max_filesize.",
-			UPLOAD_ERR_FORM_SIZE  => "بزرگتر از MAX_FILE_SIZE.",
+			UPLOAD_ERR_INI_SIZE   => "فایل بسیار بزرگ است.",
+			UPLOAD_ERR_FORM_SIZE  => "فایل بزرگ است.",
 			UPLOAD_ERR_PARTIAL    => "مقداری از فایل آپلود شد.",
 			UPLOAD_ERR_NO_FILE    => "فایلی نیست.",
 			UPLOAD_ERR_NO_TMP_DIR => "پوشه موقت نیست.",

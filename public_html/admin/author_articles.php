@@ -39,7 +39,7 @@ echo output_message($message);
 					</a>
 				<?php } ?>
 				<hr/>
-				<p><?php echo nl2br(strip_tags($current_article->content, '<h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')); ?></p>
+				<p><?php echo nl2br(strip_tags($current_article->content, '<h2><h3><h4><h5><h6><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd><img><a>')); ?></p>
 				<article id="comments">
 					<div class="panel panel-default">
 						<div class="panel-heading">

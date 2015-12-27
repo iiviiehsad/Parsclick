@@ -39,7 +39,7 @@ class Session {
 
 	public function confirm_logged_in()
 	{
-		if(!$this->is_logged_in() || !$this->is_session_valid()) {
+		if( ! $this->is_logged_in() || ! $this->is_session_valid()) {
 			$this->logout();
 			redirect_to("login");
 		}
@@ -52,7 +52,7 @@ class Session {
 
 	public function confirm_admin_logged_in()
 	{
-		if(!$this->is_admin_logged_in() || !$this->is_session_valid()) {
+		if( ! $this->is_admin_logged_in() || ! $this->is_session_valid()) {
 			$this->logout();
 			redirect_to("index.php");
 		}
@@ -65,7 +65,7 @@ class Session {
 
 	public function confirm_author_logged_in()
 	{
-		if(!$this->is_author_logged_in() || !$this->is_session_valid()) {
+		if( ! $this->is_author_logged_in() || ! $this->is_session_valid()) {
 			$this->logout();
 			redirect_to("index.php");
 		}
@@ -115,7 +115,7 @@ class Session {
 
 	public function message($msg = "")
 	{
-		if(!empty($msg)) {
+		if( ! empty($msg)) {
 			$_SESSION['message'] = $msg;
 		} else {
 			return $this->message;
@@ -125,7 +125,8 @@ class Session {
 	public function csrf_token_tag()
 	{
 		$token = $this->create_csrf_token();
-		return "<input type=\"hidden\" name=\"csrf_token\" value=\"" . $token . "\">";
+
+		return '<input type="hidden" name="csrf_token" value="' . $token . '">';
 	}
 
 	public function csrf_token_is_valid()
@@ -133,6 +134,7 @@ class Session {
 		if(isset($_POST['csrf_token'])) {
 			$user_token   = $_POST['csrf_token'];
 			$stored_token = $_SESSION['csrf_token'];
+
 			return $user_token === $stored_token;
 		} else {
 			return FALSE;
@@ -144,16 +146,18 @@ class Session {
 		$max_elapsed = 60 * 60 * 24 * 3; // 3 days
 		if(isset($_SESSION['csrf_token_time'])) {
 			$stored_time = $_SESSION['csrf_token_time'];
+
 			return ($stored_time + $max_elapsed) >= time();
 		} else {
 			$this->destroy_csrf_token();
+
 			return FALSE;
 		}
 	}
 
 	public function die_on_csrf_token_failure()
 	{
-		if(!$this->csrf_token_is_valid()) {
+		if( ! $this->csrf_token_is_valid()) {
 			die("CSRF token validation failed.");
 		}
 	}
@@ -168,6 +172,7 @@ class Session {
 		$token                       = $this->csrf_token();
 		$_SESSION['csrf_token']      = $token;
 		$_SESSION['csrf_token_time'] = time();
+
 		return $token;
 	}
 
@@ -175,16 +180,18 @@ class Session {
 	{
 		$_SESSION['csrf_token']      = NULL;
 		$_SESSION['csrf_token_time'] = NULL;
+
 		return TRUE;
 	}
 
 	public function request_is_same_domain()
 	{
-		if(!isset($_SERVER['HTTP_REFERER'])) {
+		if( ! isset($_SERVER['HTTP_REFERER'])) {
 			return FALSE;
 		} else {
 			$referer_host = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
 			$server_host  = $_SERVER['HTTP_HOST'];
+
 			return ($referer_host == $server_host) ? TRUE : FALSE;
 		}
 	}
@@ -230,13 +237,14 @@ class Session {
 				$allowed_array[$param] = NULL;
 			}
 		}
+
 		return $allowed_array;
 	}
 
 	private function request_ip_matches_session()
 	{
 		// return false if either value is not set
-		if(!isset($_SESSION['ip']) || !isset($_SERVER['REMOTE_ADDR'])) {
+		if( ! isset($_SESSION['ip']) || ! isset($_SERVER['REMOTE_ADDR'])) {
 			return FALSE;
 		}
 		if($_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
@@ -249,7 +257,7 @@ class Session {
 	private function request_user_agent_matches_session()
 	{
 		// return false if either value is not set
-		if(!isset($_SESSION['user_agent']) || !isset($_SERVER['HTTP_USER_AGENT'])) {
+		if( ! isset($_SESSION['user_agent']) || ! isset($_SERVER['HTTP_USER_AGENT'])) {
 			return FALSE;
 		}
 		if($_SESSION['user_agent'] === $_SERVER['HTTP_USER_AGENT']) {
@@ -263,7 +271,7 @@ class Session {
 	{
 		$max_elapsed = 60 * 60 * 24 * 3; // 3 days
 		// return false if value is not set
-		if(!isset($_SESSION['last_login'])) {
+		if( ! isset($_SESSION['last_login'])) {
 			return FALSE;
 		}
 		if(($_SESSION['last_login'] + $max_elapsed) >= time()) {
@@ -275,18 +283,19 @@ class Session {
 
 	private function is_session_valid()
 	{
-		$check_ip         = FALSE;
+		$check_ip         = FALSE; // FALSE because everybody uses proxy
 		$check_user_agent = TRUE;
 		$check_last_login = TRUE;
-		if($check_ip && !$this->request_ip_matches_session()) {
+		if($check_ip && ! $this->request_ip_matches_session()) {
 			return FALSE;
 		}
-		if($check_user_agent && !$this->request_user_agent_matches_session()) {
+		if($check_user_agent && ! $this->request_user_agent_matches_session()) {
 			return FALSE;
 		}
-		if($check_last_login && !$this->last_login_is_recent()) {
+		if($check_last_login && ! $this->last_login_is_recent()) {
 			return FALSE;
 		}
+
 		return TRUE;
 	}
 
