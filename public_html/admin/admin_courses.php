@@ -23,7 +23,7 @@ echo output_message($message);
 					<?php if(!empty($current_course->content)) { ?>
 						<dt>توضیحات:</dt>
 						<dd>
-							<small><?php echo htmlentities(ucfirst($current_course->content)); ?></small>
+							<small><?php echo nl2br(strip_tags($current_course->content, '<strong><em><p><code><pre><mark><kbd><ul><ol><li><img><a>')); ?></small>
 						</dd>
 					<?php } ?>
 					<dt>لینک ها:</dt>

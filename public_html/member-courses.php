@@ -48,7 +48,7 @@ if(isset($current_course->author_id)) {
 					&nbsp;
 				<?php } ?>
 				<br/><br/>
-				<p><?php echo nl2br(htmlentities($current_course->content)); ?></p>
+				<p><?php echo nl2br(strip_tags($current_course->content, '<strong><em><p><code><pre><mark><kbd><ul><ol><li><img><a>')); ?></p>
 				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php if(empty($current_course->file_link) && File::num_files_for_course($current_course->id) == 0) {
 					echo "<h4 class='text-danger'>این درس فایلی ندارد.</h4>";

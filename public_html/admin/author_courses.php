@@ -68,7 +68,7 @@ echo output_message($message, $errors);
 				<!-- --------------------------------------------Content---------------------------------------------- -->
 				<?php if(! empty($current_course->content)) { ?>
 					<h5>توضیحات:</h5>
-					<p><?php echo nl2br(htmlentities($current_course->content)); ?></p>
+					<p><?php echo nl2br(strip_tags($current_course->content, '<strong><em><p><code><pre><mark><kbd><ul><ol><li><img><a>')); ?></p>
 				<?php } ?>
 				<!-- --------------------------------Check to see if there is any file-------------------------------- -->
 				<?php if(File::num_files_for_course($current_course->id) == 0) { ?>

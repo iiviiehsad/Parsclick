@@ -1951,6 +1951,9 @@ function admin_articles($subject_array, $article_array)
 				$output = ! empty($article->name) ? $output . $article->name : $output . '-';
 			}
 			$output .= "</a>";
+			if($article->recent()) {
+				$output .= "&nbsp;<kbd>تازه</kbd>";
+			}
 			$output .= "</li>";
 		}
 		$output .= "</ul></li>";
@@ -1971,7 +1974,7 @@ function author_articles($subject_array, $article_array)
 {
 	$output      = "<ol>";
 	$subject_set = Subject::find_all(TRUE);
-	foreach($subject_set as $subject):
+	foreach($subject_set as $subject) {
 		$output .= "<li>";
 		$output .= "<div class='lead'>";
 		$output .= "<a href='author_articles.php?subject=";
@@ -1985,7 +1988,7 @@ function author_articles($subject_array, $article_array)
 		$output .= "</div>";
 		$article_set = Article::find_articles_for_subject($subject->id, FALSE);
 		$output .= "<ul>";
-		foreach($article_set as $article):
+		foreach($article_set as $article) {
 			$output .= "<li>";
 			$output .= "<a href='author_articles.php?subject=";
 			$output .= urlencode($subject->id) . "&article=";
@@ -2004,10 +2007,13 @@ function author_articles($subject_array, $article_array)
 			if( ! $article->visible) {
 				$output .= " <i class='text-danger fa fa-eye-slash fa-lg'></i>";
 			}
+			if($article->recent()) {
+				$output .= "&nbsp;<kbd>تازه</kbd>";
+			}
 			$output .= "</li>";
-		endforeach;
+		}
 		$output .= "</ul></li>";
-	endforeach;
+	}
 	$output .= "</ol>";
 
 	return $output;
@@ -2156,6 +2162,9 @@ function admin_courses($category_array, $course_array)
 				$output = ! empty($course->name) ? $output . $course->name : $output . '-';
 			}
 			$output .= "</a>";
+			if($course->recent()) {
+				$output .= "&nbsp;<kbd>تازه</kbd>";
+			}
 			$output .= "</li>";
 		}
 		$output .= "</ul></li>";
@@ -2206,9 +2215,11 @@ function author_courses($category_array, $course_array)
 			$output .= ">";
 			$output = ! empty($course->name) ? $output . $course->name : $output . '-';
 			$output .= "</a>";
-			if( ! $course->visible) //if visibility is FALSE
-			{
+			if( ! $course->visible) {
 				$output .= "&nbsp;<i class='text-danger fa fa-eye-slash fa-lg'></i>";
+			}
+			if($course->recent()) {
+				$output .= "&nbsp;<kbd>تازه</kbd>";
 			}
 			$output .= "</li>";
 		endforeach;
@@ -2266,10 +2277,11 @@ function member_courses($category_array, $course_array)
 					}
 					$output .= ">";
 					$output = ! empty($course->name) ? $output . $course->name : $output . '-';
+					$output .= "</a>";
 					if($course->recent()) {
 						$output .= "&nbsp;<kbd>تازه</kbd>";
 					}
-					$output .= "</a></li>";
+					$output .= "</li>";
 				}
 				$output .= "</ul>";
 			}
@@ -2365,10 +2377,11 @@ function public_courses()
 			$output .= $course->youtubePlaylist;
 			$output .= "'>";
 			$output = ! empty($course->name) ? $output . $course->name : $output . '-';
+			$output .= "</a>";
 			if($course->recent()) {
-				$output .= "&nbsp;<kbd>تازه</kbd>";
+				$output .= "&nbsp;<span class='lead'><kbd>تازه</kbd></span>";
 			}
-			$output .= "</a></li>";
+			$output .= "</li>";
 		}
 		$output .= "</ul></li>";
 	}
@@ -2398,10 +2411,11 @@ function public_articles()
 				$output .= "<li>";
 				$output .= "<a data-toggle='tooltip' data-placement='left' title='وارد شوید' href='login'>";
 				$output = ! empty($article->name) ? $output . $article->name : $output . '-';
+				$output .= "</a>";
 				if($article->recent()) {
-					$output .= "&nbsp;<kbd>تازه</kbd>";
+					$output .= "&nbsp;<span class='lead'><kbd>تازه</kbd></span>";
 				}
-				$output .= "</a></li>";
+				$output .= "</li>";
 			}
 			$output .= "</ul></li>";
 		}
