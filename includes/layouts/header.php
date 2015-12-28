@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-	<title><?php global $title; echo isset($title) ? $title : "پارس کلیک - آموزش کامپیوتر - رایگان"; ?></title>
+	<title><?php global $title; echo isset($title) ? $title : "پارس کلیک - سینمای برنامه نویسان"; ?></title>
 	<meta charset="UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<meta name="description" content="کاملترین سایت آموزش ویدئویی رایگان کامپیوتر, وب, برنامه نویسی, مدیریت محتوا,
@@ -18,7 +18,7 @@
 	<link rel="alternate" href="/" hreflang="fa-IR" />
 	<!--Facebook Tags-->
 	<meta property="og:url" content="<?php echo DOMAIN . $_SERVER['REQUEST_URI']; ?>"/>
-	<meta property="og:title" content="<?php global $title; echo isset($title) ? $title : "پارس کلیک - آموزش کامپیوتر - رایگان"; ?>"/>
+	<meta property="og:title" content="<?php echo isset($title) ? $title : "پارس کلیک - سینمای برنامه نویسان"; ?>"/>
 	<meta property="og:type" content="article"/>
 	<meta property="og:image" content="<?php echo DOMAIN . DS . 'images/parsclick-logo.png'; ?>"/>
 	<meta property="article:author" content="https://www.facebook.com/amirhazz" />
@@ -27,7 +27,7 @@
 	 علم فنی کامپیوتر, طراحی وب, نرم افزار, آدوبی, دیتابیس, اپل, گوگل, مایکروسافت و بیشتر"/>
 	<!--Twitter Tags-->
 	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content="<?php global $title; echo isset($title) ? $title : "پارس کلیک - آموزش کامپیوتر - رایگان"; ?>" />
+	<meta name="twitter:title" content="<?php echo isset($title) ? $title : "پارس کلیک - سینمای برنامه نویسان"; ?>" />
 	<meta name="twitter:description" content="کاملترین سایت آموزش ویدئویی رایگان کامپیوتر, وب, برنامه نویسی, مدیریت محتوا,
 	 علم فنی کامپیوتر, طراحی وب, نرم افزار, آدوبی, دیتابیس, اپل, گوگل, مایکروسافت و بیشتر"/>
 	<meta name="twitter:image" content="<?php echo DOMAIN . DS . 'images/parsclick-logo.png'; ?>" />
