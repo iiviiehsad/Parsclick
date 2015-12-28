@@ -49,7 +49,7 @@ $newest_article = Article::find_newest_article();
 			<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($newest_article->created_at)); ?>
 		</h5>
 		<hr>
-		<?php echo truncate(nl2br(strip_tags($newest_article->content, '<h3><h4><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')), 1500,
+		<?php echo truncate(nl2br(strip_tags($newest_article->content, '<h2><h3><h4><h5><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')), 1500,
 				"...<a class='btn btn-small btn-info pull-left' href='member-articles?subject={$newest_article->subject_id}&article={$newest_article->id}'>برای ادامه کلیک کنید</a>"); ?>
 	</article>
 </section>

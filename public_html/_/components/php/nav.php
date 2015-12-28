@@ -9,17 +9,10 @@
 	<section class="navbar">
 		<ul class="nav navbar-nav">
 			<li><a href="/"> خانه</a></li>
-			<!-- <li><a href="about"><i class="fa fa-globe fa-lg"></i> درباره ما</a></li> -->
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"> محتوی <span class="caret"></span></a>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-					<li><a tabindex="-1" href="courses"><i class="fa fa-film fa-lg"></i> دروس</a></li>
-					<li><a tabindex="-1" href="articles"><i class="fa fa-newspaper-o fa-lg"></i> مقالات</a></li>
-				</ul>
-			</li>
+			<li><a href="articles">مقالات</a></li>
+			<li><a href="courses">دروس</a></li>
 			<li><a href="faq"> سوالات شما</a></li>
 			<li><a href="help"> کمک به ما</a></li>
-			<li><a href="contact"> تماس با ما</a></li>
 			<li><a href="login"> ورود</a></li>
 		</ul><!-- nav -->
 	</section><!-- navbar -->

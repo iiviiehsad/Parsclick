@@ -123,7 +123,7 @@ function check_size($size)
  * @param string $dots   string default (...) to show immediately after the string
  * @return string from 0 character to length and ... after it
  */
-function truncate($string, $length, $dots = " (برای ادامه کلیک کنید ...) ")
+function truncate($string, $length, $dots = "... ... ...")
 {
 	return (strlen($string) > $length) ? substr($string, 0, $length - strlen($dots)) . $dots : $string;
 }
@@ -2046,7 +2046,7 @@ function member_articles($subject_array, $article_array)
 			$output .= "</a>";
 			if(Article::count_recent_articles_for_subject($subject->id, TRUE) > 0) {
 				$output .= "&nbsp;&nbsp;";
-				$output .= "<small><span class='label label-as-badge'>" . convert(Article::count_recent_articles_for_subject($subject->id, TRUE)) . " مقاله جدید</span></small>";
+				$output .= "<small><span class='label label-as-badge label-info'>" . convert(Article::count_recent_articles_for_subject($subject->id, TRUE)) . " مقاله جدید</span></small>";
 			}
 			if($subject_array && $article_array) {
 				if($subject_array->id == $subject->id || $article_array->subject_id == $subject->id) {
@@ -2256,7 +2256,7 @@ function member_courses($category_array, $course_array)
 		$output .= "</a>";
 		if(Course::count_recent_course_for_category($category->id, TRUE) > 0) {
 			$output .= "&nbsp;&nbsp;";
-			$output .= "<small><span class='label label-as-badge'>" . convert(Course::count_recent_course_for_category($category->id, TRUE)) . " درس جدید</span></small>";
+			$output .= "<small><span class='label label-as-badge label-info'>" . convert(Course::count_recent_course_for_category($category->id, TRUE)) . " درس جدید</span></small>";
 		}
 		if($category_array && $course_array) {
 			if($category_array->id == $category->id || $course_array->category_id == $category->id) {
@@ -2393,34 +2393,56 @@ function public_courses()
 /**
  * Function for public to show the subjects and articles
  *
+ * @param $subject_array
+ * @param $article_array
  * @return string subject as an HTML ordered list along with courses as an HTML unordered list
  */
-function public_articles()
+function public_articles($subject_array, $article_array)
 {
-	$output      = "<ol class='list-unstyled'>";
+	$output      = "<ul class='list-group'>";
 	$subject_set = Subject::find_all(TRUE);
 	foreach($subject_set as $subject) {
 		if(Article::num_articles_for_subject($subject->id)) {
-			$output .= "<li>";
-			$output .= "<h3>";
-			$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
-			$output .= "</h3>";
-			$article_set = Article::find_articles_for_subject($subject->id, TRUE);
-			$output .= "<ul>";
-			foreach($article_set as $article) {
-				$output .= "<li>";
-				$output .= "<a data-toggle='tooltip' data-placement='left' title='وارد شوید' href='login'>";
-				$output = ! empty($article->name) ? $output . $article->name : $output . '-';
-				$output .= "</a>";
-				if($article->recent()) {
-					$output .= "&nbsp;<span class='lead'><kbd>تازه</kbd></span>";
-				}
-				$output .= "</li>";
+			$output .= "<li class='list-group-item'>";
+			$output .= "<span class='badge'>" . Article::count_articles_for_subject($subject->id, TRUE) . "</span>";
+			$output .= "<a href='articles?subject=";
+			$output .= urlencode($subject->id) . "'";
+			if($subject_array && $subject->id == $subject_array->id) {
+				$output .= " style='font-size:25px;' ";
 			}
-			$output .= "</ul></li>";
+			$output .= ">";
+			$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
+			$output .= "</a>";
+			if(Article::count_recent_articles_for_subject($subject->id, TRUE) > 0) {
+				$output .= "&nbsp;&nbsp;";
+				$output .= "<span class='label label-as-badge label-primary'>" . convert(Article::count_recent_articles_for_subject($subject->id, TRUE)) . " مقاله جدید</span>";
+			}
+			if($subject_array && $article_array) {
+				if($subject_array->id == $subject->id || $article_array->subject_id == $subject->id) {
+					$article_set = Article::find_articles_for_subject($subject->id, TRUE);
+					$output .= "<ul>";
+					foreach($article_set as $article) {
+						$output .= "<li>";
+						$output .= "<a href='articles?subject=";
+						$output .= urlencode($subject->id) . "&article=";
+						$output .= urlencode($article->id) . "'";
+						if($article_array && $article->id == $article_array->id) {
+							$output .= " class='selected'";
+						}
+						$output .= ">";
+						$output = ! empty($article->name) ? $output . $article->name : $output . '-';
+						if($article->recent()) {
+							$output .= "&nbsp;<kbd>تازه</kbd>";
+						}
+						$output .= "</a></li>";
+					}
+					$output .= "</ul>";
+				}
+			}
+			$output .= "</li>";
 		}
 	}
-	$output .= "</ol>";
+	$output .= "</ul>";
 
 	return $output;
 }
@@ -2486,19 +2508,23 @@ function active()
 	         ($filename == "author_edit_article.php") || ($filename == "new_course.php") ||
 	         ($filename == "author_edit_course.php") || ($filename == "author_add_video.php") ||
 	         ($filename == "author_edit_video_description.php") || ($filename == "edit_video_description.php") ||
-	         ($filename == "admin_comments.php") || ($filename == "edit_course.php") || ($filename == "courses.php") ||
-	         ($filename == "articles.php") || ($filename == "member-courses.php") || ($filename == "member-articles.php")
+	         ($filename == "admin_comments.php") || ($filename == "edit_course.php") ||
+	         ($filename == "member-courses.php") || ($filename == "member-articles.php")
 	) {
 		echo "<script>$(\"a:contains('محتوی')\").parent().addClass('active');</script>";
-		if(($filename == "courses.php") || ($filename == "member-courses.php") || ($filename == "admin_courses.php") ||
+		if(($filename == "member-courses.php") || ($filename == "admin_courses.php") ||
 		   ($filename == "author_courses.php")
 		) {
 			echo "<script>$(\"a:contains('دروس')\").parent().addClass('active');</script>";
-		} elseif(($filename == "articles.php") || ($filename == "admin_articles.php") ||
+		} elseif(($filename == "admin_articles.php") ||
 		         ($filename == "author_articles.php") || ($filename == "member-articles.php")
 		) {
 			echo "<script>$(\"a:contains('مقالات')\").parent().addClass('active');</script>";
 		}
+	} elseif($filename == "articles.php") {
+		echo "<script>$(\"a:contains('مقالات')\").parent().addClass('active');</script>";
+	} elseif($filename == "courses.php") {
+		echo "<script>$(\"a:contains('دروس')\").parent().addClass('active');</script>";
 	} elseif(($filename == "member-profile.php") || ($filename == "member-edit-profile.php") ||
 	         ($filename == "author_profile.php") || ($filename == "author_edit_profile.php")
 	) {
