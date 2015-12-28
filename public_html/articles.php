@@ -45,7 +45,8 @@ if(isset($current_article)) {
 			<?php echo nl2br(strip_tags($current_article->content, '<h2><h3><h4><h5><h6><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd><img><a>')); ?>
 			<hr/>
 			<article id="comments">
-				<h2>نظرات</h2><div class="badge">برای اظهار نظر لطفا عضو شوید.</div>
+				<h2>نظرات</h2>
+				<div class="badge">برای اظهار نظر لطفا عضو شوید.</div>
 				<?php foreach($comments as $comment) { ?>
 					<section class="media">
 						<?php $_member = Member::find_by_id($comment->member_id); ?>
@@ -68,7 +69,7 @@ if(isset($current_article)) {
 									</a>
 								</li>
 							<?php } // end: if($pagination->has_previous_page()) ?>
-							<?php for($i = 1; $i < $pagination->total_page() + 1; $i ++) { ?>
+							<?php for($i = 1; $i < $pagination->total_page() + 1; $i++) { ?>
 								<?php if($i == $page) { ?>
 									<li class="active">
 										<span><?php echo $i; ?></span>
@@ -94,8 +95,12 @@ if(isset($current_article)) {
 				<?php } ?>
 			</article>
 		<?php } else { ?>
-			<h2 class="text-danger">آخرین مقاله:</h2>
-			<h3><?php echo htmlentities($newest_article->name); ?></h3>
+				<h2 class="text-danger">آخرین مقاله:</h2>
+				<h3>
+				<a href="articles?subject=<?php echo urlencode($newest_article->subject_id); ?>&article=<?php echo urlencode($newest_article->id); ?>" title="کلیک کنید">
+					<?php echo htmlentities($newest_article->name); ?>
+				</a>
+				</h3>
 			<h5>
 				<?php
 				if(isset($newest_article->author_id)) {
