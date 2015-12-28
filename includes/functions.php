@@ -2039,7 +2039,7 @@ function member_articles($subject_array, $article_array)
 			$output .= "<a href='member-articles?subject=";
 			$output .= urlencode($subject->id) . "'";
 			if($subject_array && $subject->id == $subject_array->id) {
-				$output .= " style='font-size:25px;' ";
+				$output .= " class='lead' ";
 			}
 			$output .= ">";
 			$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
@@ -2249,7 +2249,7 @@ function member_courses($category_array, $course_array)
 		$output .= "<a href='member-courses?category=";
 		$output .= urlencode($category->id) . "'";
 		if($category_array && $category->id == $category_array->id) {
-			$output .= " style='font-size:25px;' ";
+			$output .= " class='lead' ";
 		}
 		$output .= ">";
 		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
@@ -2312,7 +2312,7 @@ function member_comments_for_course($category_array, $course_array)
 		$output .= "<a href='member-comments?category=";
 		$output .= urlencode($category->id) . "'";
 		if($category_array && $category->id == $category_array->id) {
-			$output .= " style='font-size:25px;' ";
+			$output .= " class='lead' ";
 		}
 		$output .= ">";
 		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
@@ -2408,7 +2408,7 @@ function public_articles($subject_array, $article_array)
 			$output .= "<a href='articles?subject=";
 			$output .= urlencode($subject->id) . "'";
 			if($subject_array && $subject->id == $subject_array->id) {
-				$output .= " style='font-size:25px;' ";
+				$output .= " class='lead' ";
 			}
 			$output .= ">";
 			$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
@@ -2531,6 +2531,8 @@ function active()
 		echo "<script>$(\"a:contains('حساب کاربری')\").parent().addClass('active');</script>";
 	} elseif($filename == "member-playlist.php") {
 		echo "<script>$(\"a:contains('لیست پخش')\").parent().addClass('active');</script>";
+	} elseif($filename == "member-comments.php") {
+		echo "<script>$(\"a:contains('انجمن دروس')\").parent().addClass('active');</script>";
 	} elseif(($filename == "member_list.php") || ($filename == "edit_member.php") || ($filename == "new_member.php") ||
 	         ($filename == "email_to_members.php")
 	) {

@@ -15,6 +15,7 @@
 					<li><a tabindex="-1" href="member-articles"><i class="fa fa-newspaper-o fa-lg"></i> مقالات</a></li>
 				</ul>
 			</li>
+			<li><a href="member-comments"><i class="fa fa-comments fa-lg"></i> انجمن دروس</a></li>
 			<li><a href="member-playlist"><i class="fa fa-bookmark fa-lg"></i> لیست پخش</a></li>
 			<li><a href="logout"><i class="fa fa-sign-out fa-lg"></i> خروج</a></li>
 		</ul>
