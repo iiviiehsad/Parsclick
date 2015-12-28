@@ -224,7 +224,7 @@ function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE)
  */
 function send_email($subject, $message)
 {
-	return mail('hazz.azimi@gmail.com', $subject, $message, 'From: Parsclick <do-not-reply@parsclick.net>' . "\r\n");
+	return mail('info@parsclick.net', $subject, $message, 'From: Parsclick <do-not-reply@parsclick.net>' . "\r\n");
 }
 
 /**
@@ -488,8 +488,8 @@ function has_format_matching($value, $regex = '//')
 	return preg_match($regex, $value);
 }
 
-/** validate value is a number
- *
+/**
+ * validate value is a number
  * @param       $value   string so use is_numeric instead of is_int
  * @param array $options : max, min
  * @return bool has_number($items_to_order, ['min' => 1, 'max' => 5])
