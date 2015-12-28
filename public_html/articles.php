@@ -5,15 +5,16 @@ if($session->is_logged_in()) {
 }
 $filename = basename(__FILE__);
 find_selected_article(TRUE);
-$errors = "";
-$body   = "";
+$newest_article = Article::find_newest_article();
+$errors         = "";
+$body           = "";
 if(isset($current_article->author_id)) {
 	$author = Author::find_by_id($current_article->author_id);
 }
 if(isset($current_article)) {
 	$title = "پارس کلیک - " . $current_article->name;
 } else {
-	$title = "پارس کلیک - مقالات و اخبار";
+	$title = "پارس کلیک - " . $newest_article->name;
 }
 ?>
 <?php include_layout_template("header.php"); ?>
@@ -40,7 +41,6 @@ if(isset($current_article)) {
 				<h3><span class="badge">برای اظهار نظر و دیدن نظرات لطفا عضو شوید.</span></h3>
 			</article>
 		<?php } else { ?>
-			<?php $newest_article = Article::find_newest_article(); ?>
 			<h2 class="text-danger">آخرین مقاله:</h2>
 			<h3><?php echo htmlentities($newest_article->name); ?></h3>
 			<h5>
