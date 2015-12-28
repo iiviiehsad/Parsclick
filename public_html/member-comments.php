@@ -1,31 +1,19 @@
 <?php
 require_once("../includes/initialize.php");
 $filename = basename(__FILE__);
-$title = 'پارس کلیک - انجمن';
+$title    = 'پارس کلیک - انجمن';
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_course(TRUE);
 $errors = "";
 $body   = "";
-if(!$current_course) {
-	$session->message("شناسه درسی پیدا نشد!");
-	redirect_to("member-courses");
-//}
-//if(isset($_POST["submit"])) {
-//	$member_id   = (int)$member->id;
-//	$body        = trim($_POST["body"]);
-//	$new_comment = Comment::make($member_id, $current_course->id, $body);
-//	if($new_comment && $new_comment->create()) {
-//		$session->message("نظر شما با موفقیت فرستاده شد.");
-//		redirect_to($_SERVER['HTTP_REFERER']);
-//	} else {
-//		$errors = "خطا در فرستادن نظر!";
-//	}
+if( ! $current_course || ! $current_category) {
+	$current_course = $current_category = Course::find_newest_course();
 } else {
 }
 // Pagination
-$page        = !empty($_GET["page"]) ? (int)$_GET["page"] : 1;
+$page        = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
 $per_page    = 20;
 $total_count = Comment::count_comments_for_course($current_course->id);
 $pagination  = new pagination($page, $per_page, $total_count);
@@ -68,7 +56,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 									</a>
 								</li>
 							<?php } // end: if($pagination->has_previous_page()) ?>
-							<?php for($i = 1; $i < $pagination->total_page() + 1; $i ++) { ?>
+							<?php for($i = 1; $i < $pagination->total_page() + 1; $i++) { ?>
 								<?php if($i == $page) { ?>
 									<li class="active">
 										<span><?php echo $i; ?></span>
