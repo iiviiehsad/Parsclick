@@ -41,7 +41,7 @@ if(isset($current_article)) {
 			</article>
 		<?php } else { ?>
 			<?php $newest_article = Article::find_newest_article(); ?>
-			<h2>جدیدترین مقاله: </h2>
+			<h2 class="text-danger">آخرین مقاله:</h2>
 			<h3><?php echo htmlentities($newest_article->name); ?></h3>
 			<h5>
 				<?php
