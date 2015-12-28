@@ -13,10 +13,10 @@
 	font-family : "yekan";
 	src         : url(../fonts/Yekan/Yekan.eot);
 	src         : url(../fonts/Yekan/Yekan.eot?#iefix) format("embedded-opentype"),
-	url(../fonts/Yekan/Yekan.woff) format("woff"),
-	url(../fonts/Yekan/Yekan.ttf) format("truetype"),
-	url(../fonts/Yekan/YekanBold.ttf) format("truetype"),
-	url(../fonts/Yekan/Yekan.svg#BYekan) format("svg");
+								url(../fonts/Yekan/Yekan.woff) format("woff"),
+								url(../fonts/Yekan/Yekan.ttf) format("truetype"),
+								url(../fonts/Yekan/YekanBold.ttf) format("truetype"),
+								url(../fonts/Yekan/Yekan.svg#BYekan) format("svg");
 	font-weight : normal;
 	font-style  : normal;
 }
@@ -24,7 +24,7 @@
 @font-face {
 	font-family : "bbcnassim";
 	src         : url(../fonts/BBCFont/BBCNassim.ttf) format("truetype"),
-	url(../fonts/BBCFont/BBCNassim.otf) format("opentype");
+								url(../fonts/BBCFont/BBCNassim.otf) format("opentype");
 	font-weight : normal;
 	font-style  : normal;
 }
@@ -80,7 +80,6 @@ pre {
 	text-align       : left;
 	overflow         : auto;
 	width            : 100%;
-	//line-height      : 2;
 	display          : block;
 	margin           : 0 0 11px;
 	padding          : 10.5px;
@@ -107,14 +106,11 @@ p {
 	text-align  : justify;
 }
 
-input, select, textarea {
-	font-family : "bbcnassim", Tahoma, Verdana;
-}
+input, select, textarea { font-family : "bbcnassim", Tahoma, Verdana; }
 
-ul {
-	list-style : inside;
-	margin-top : 5px;
-}
+ul { margin-top : 5px; }
+
+ul ul { list-style : inside; }
 
 aside {
 	h2 {
@@ -155,13 +151,9 @@ dd {
 	margin-bottom : 5px;
 }
 
-.list-group-item-text {
-	margin-right : 20px;
-}
+.list-group-item-text { margin-right : 20px; }
 
-.list-group-item li {
-	margin-right : 5px;
-}
+.list-group-item li { margin-right : 5px; }
 
 a:hover, a:focus {
 	color           : @pink;
@@ -226,19 +218,13 @@ a:hover, a:focus {
 // Uncomment for carousel fade in
 .carousel-fade {
 	.carousel-inner {
-		.item {
-			transition-property : opacity;
-		}
+		.item { transition-property : opacity; }
 		.item,
 		.active.left,
-		.active.right {
-			opacity : 0;
-		}
+		.active.right { opacity : 0; }
 		.active,
 		.next.left,
-		.prev.right {
-			opacity : 1;
-		}
+		.prev.right { opacity : 1; }
 		.next,
 		.prev,
 		.active.left,
@@ -247,9 +233,7 @@ a:hover, a:focus {
 			transform : translate3d(0, 0, 0);
 		}
 	}
-	.carousel-control {
-		z-index : 2;
-	}
+	.carousel-control { z-index : 2; }
 }
 
 // End: Uncomment for carousel fade in
@@ -265,9 +249,7 @@ a:hover, a:focus {
 	}
 }
 
-#member_article {
-	margin : 2.5% 5% 5% 5%;
-}
+#member_article { margin : 2.5% 5% 5% 5%; }
 
 .sidebar > aside {
 	padding : 5%;
@@ -300,9 +282,7 @@ a:hover, a:focus {
 .accordion-heading {
 	background    : @purple;
 	border-radius : 5px;
-	a {
-		color : white;
-	}
+	a { color : white;              }
 }
 
 .about {
@@ -509,7 +489,9 @@ form.addtoplaylist, form.removefromplaylist { display : inline; }
 
 .input-group-addon:first-child { border-right : 1px solid #CCC; }
 
-.input-group input:last-child, .input-group-addon:last-child, .input-group-btn:first-child > .btn:not(:first-child), .input-group-btn:last-child > .btn, .input-group-btn:last-child > .dropdown-toggle {
+.input-group input:last-child, .input-group-addon:last-child,
+.input-group-btn:first-child > .btn:not(:first-child),
+.input-group-btn:last-child > .btn, .input-group-btn:last-child > .dropdown-toggle {
 	border-bottom-right-radius : 0;
 	border-top-right-radius    : 0;
 	border-bottom-left-radius  : 4px;

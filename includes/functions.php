@@ -490,6 +490,7 @@ function has_format_matching($value, $regex = '//')
 
 /**
  * validate value is a number
+ *
  * @param       $value   string so use is_numeric instead of is_int
  * @param array $options : max, min
  * @return bool has_number($items_to_order, ['min' => 1, 'max' => 5])
@@ -2405,10 +2406,9 @@ function public_articles($subject_array, $article_array)
 		if(Article::num_articles_for_subject($subject->id)) {
 			$output .= "<li class='list-group-item'>";
 			$output .= "<span class='badge'>" . Article::count_articles_for_subject($subject->id, TRUE) . "</span>";
-			$output .= "<a href='articles?subject=";
-			$output .= urlencode($subject->id) . "'";
+			$output .= "<a href='articles?subject=" . urlencode($subject->id) . "'";
 			if($subject_array && $subject->id == $subject_array->id) {
-				$output .= " class='lead' ";
+				$output .= " class='lead selected' ";
 			}
 			$output .= ">";
 			$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
@@ -2423,9 +2423,7 @@ function public_articles($subject_array, $article_array)
 					$output .= "<ul>";
 					foreach($article_set as $article) {
 						$output .= "<li>";
-						$output .= "<a href='articles?subject=";
-						$output .= urlencode($subject->id) . "&article=";
-						$output .= urlencode($article->id) . "'";
+						$output .= "<a href='articles?subject=" . urlencode($subject->id) . "&article=" . urlencode($article->id) . "'";
 						if($article_array && $article->id == $article_array->id) {
 							$output .= " class='selected'";
 						}
