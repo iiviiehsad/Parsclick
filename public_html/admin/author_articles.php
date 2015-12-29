@@ -20,35 +20,36 @@ echo output_message($message);
 				$comments    = ArticleComment::find_comments($current_article->id, $per_page, $pagination->offset());
 				?>
 				<?php $_author = Author::find_by_id($current_article->author_id); ?>
-				<h3>
-					<?php echo $current_article->visible == 1 ? '<i class="fa fa-eye"></i>' : '<i class="text-danger fa fa-eye-slash"></i>'; ?>
-					<?php echo htmlentities(ucwords($current_article->name)); ?>
-				</h3>
-				<h5>
-					<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
-				</h5>
-				<h5>
-					<?php if(isset($current_article->author_id)) { ?>
-						<i class="fa fa-user fa-lg"></i>&nbsp;
-						<?php echo "توسط: " . Author::find_by_id($current_article->author_id)->full_name();
-						if( ! empty(Author::find_by_id($current_article->author_id)->photo)) { ?>
-							<img class="author-photo img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode(Author::find_by_id($current_article->author_id)->photo); ?>"/>
-						<?php }
-					} ?>
-				</h5>
-				<?php if(check_ownership($current_article->author_id, $session->id)) { ?>&nbsp;
-					<a class="btn btn-primary btn-small" href="author_edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
-						ویرایش
-					</a>
-				<?php } ?>
-				<hr/>
-				<p><?php echo nl2br(strip_tags($current_article->content, '<h2><h3><h4><h5><h6><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd><img><a>')); ?></p>
-				<article id="comments">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h2 class="panel-title"><i class="fa fa-comments-o"></i> نظرات</h2>
-						</div>
-						<div class="panel-body">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<?php echo $current_article->visible == 1 ? '<i class="fa fa-eye"></i>' : '<i class="text-danger fa fa-eye-slash"></i>'; ?>
+							<?php echo htmlentities(ucwords($current_article->name)); ?>
+						</h3>
+						<h5>
+							<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
+						</h5>
+						<h5>
+							<?php if(isset($current_article->author_id)) { ?>
+								<i class="fa fa-user fa-lg"></i>&nbsp;
+								<?php echo "توسط: " . Author::find_by_id($current_article->author_id)->full_name();
+								if( ! empty(Author::find_by_id($current_article->author_id)->photo)) { ?>
+									<img class="author-photo img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode(Author::find_by_id($current_article->author_id)->photo); ?>"/>
+								<?php }
+							} ?>
+						</h5>
+						<?php if(check_ownership($current_article->author_id, $session->id)) { ?>&nbsp;
+							<a class="btn btn-primary btn-small" href="author_edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
+								ویرایش
+							</a>
+						<?php } ?>
+					</div>
+					<div class="panel-body">
+						<p><?php echo nl2br(strip_tags($current_article->content, '<h2><h3><h4><h5><h6><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd><img><a>')); ?></p>
+					</div>
+					<div class="panel-footer">
+						<article id="comments">
+							<h2><i class="fa fa-comments-o"></i> نظرات</h2>
 							<?php foreach($comments as $comment) { ?>
 								<section class="media">
 									<?php $_member = Member::find_by_id($comment->member_id); ?>
@@ -95,9 +96,9 @@ echo output_message($message);
 							<?php if(empty($comments)) { ?>
 								<h3><span class="badge">نظری وجود ندارد.</span></h3>
 							<?php } ?>
-						</div>
+						</article>
 					</div>
-				</article>
+				</div>
 			<?php } elseif($current_subject) { ?>
 				<?php if( ! $current_subject->visible) redirect_to("author_articles.php"); ?>
 				<div class="panel panel-info">
@@ -140,7 +141,8 @@ echo output_message($message);
 					       نشده است. مقاله هایی که توسط شما ساخته می شوند، تا زمان تنظیم و ویرایش آنها توسط مدیران قابل
 					       دیدن نمی باشند.</p></li>
 					<li><p>غلط املایی یکی از آشکارترین چیزهاست که نشان میدهد شما مقالات خود را چک نکردید. پس مواظب باشید ما غلط
-					       املایی نمی خواهیم این را جدا عرض کردم. یک لغت اگر بیشتر از دوبار در هر مقاله ای غلط بود این یعنی مقاله
+					       املایی نمی خواهیم این را جدا عرض کردم. یک لغت اگر بیشتر از دوبار در هر مقاله ای غلط بود این یعنی
+					       مقاله
 					       شما کپی است و ارزش ندارد.این مقاله شما را نشر نخواهد کرد.</p></li>
 					<li>
 						<p>قبل از گذاشتن مقاله درون ویرایشگر متن:</p>

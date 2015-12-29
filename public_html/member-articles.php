@@ -96,7 +96,7 @@ $body   = "";
 											<?php } // end: if($pagination->has_next_page()) ?>
 										</ul>
 									</nav>
-								<?php } // end pagination?>
+								<?php } // end pagination ?>
 								<?php if(empty($comments)) { ?>
 									<h3><span class="badge">نظری وجود ندارد. اولین نفری باشید که نظر می دهید.</span></h3>
 								<?php } ?>
