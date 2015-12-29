@@ -1,7 +1,6 @@
 <?php
 require_once("../includes/initialize.php");
-$title    = "پارس کلیک - فراموشی پسورد
-";
+$title    = "پارس کلیک - فراموشی پسورد";
 $filename = basename(__FILE__);
 if(isset($_POST["submit"])) {
 	$username = $_POST['username'];

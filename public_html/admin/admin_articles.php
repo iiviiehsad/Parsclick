@@ -11,7 +11,7 @@ echo output_message($message);
 			<?php if($current_subject && $current_article) { ?>
 				<h2><i class="fa fa-newspaper-o"></i> تنظیم مقاله </h2>
 				<?php if( ! empty(Author::find_by_id($current_article->author_id)->photo)) { ?>
-					<img style="width:100px;height:100px;box-shadow:1px 1px 10px #737373;" class="img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode(Author::find_by_id($current_article->author_id)->photo); ?>"/>
+					<img class="author-photo img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode(Author::find_by_id($current_article->author_id)->photo); ?>"/>
 				<?php } ?>
 				<dl class="dl-horizontal">
 					<dt>اسم مقاله:</dt>

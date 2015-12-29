@@ -13,10 +13,10 @@
 	font-family : "yekan";
 	src         : url(../fonts/Yekan/Yekan.eot);
 	src         : url(../fonts/Yekan/Yekan.eot?#iefix) format("embedded-opentype"),
-								url(../fonts/Yekan/Yekan.woff) format("woff"),
-								url(../fonts/Yekan/Yekan.ttf) format("truetype"),
-								url(../fonts/Yekan/YekanBold.ttf) format("truetype"),
-								url(../fonts/Yekan/Yekan.svg#BYekan) format("svg");
+	url(../fonts/Yekan/Yekan.woff) format("woff"),
+	url(../fonts/Yekan/Yekan.ttf) format("truetype"),
+	url(../fonts/Yekan/YekanBold.ttf) format("truetype"),
+	url(../fonts/Yekan/Yekan.svg#BYekan) format("svg");
 	font-weight : normal;
 	font-style  : normal;
 }
@@ -24,7 +24,7 @@
 @font-face {
 	font-family : "bbcnassim";
 	src         : url(../fonts/BBCFont/BBCNassim.ttf) format("truetype"),
-								url(../fonts/BBCFont/BBCNassim.otf) format("opentype");
+	url(../fonts/BBCFont/BBCNassim.otf) format("opentype");
 	font-weight : normal;
 	font-style  : normal;
 }
@@ -282,7 +282,7 @@ a:hover, a:focus {
 .accordion-heading {
 	background    : @purple;
 	border-radius : 5px;
-	a { color : white;              }
+	a { color : white; }
 }
 
 .about {
@@ -474,12 +474,16 @@ footer {
 	}
 }
 
+.author-photo {
+	width         : 100px;
+	height        : 100px;
+	margin-bottom : 30px;
+	box-shadow    : 1px 1px 10px #737373;
+}
+
 .btn { margin : 1% 0; }
 
-.selected {
-	font-weight : bold;
-	color       : @pink !important;
-}
+.selected { font-weight : bold; color : @pink !important; }
 
 .range-wrap { overflow : hidden; }
 

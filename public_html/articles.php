@@ -37,7 +37,7 @@ if(isset($current_article)) {
 					<i class="fa fa-user fa-lg"></i>&nbsp;
 					<?php echo "توسط: " . $author->full_name();
 					if( ! empty($author->photo)) { ?>
-						<img style="width:100px;height:100px;box-shadow:1px 1px 10px #737373;" class="img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
+						<img class="author-photo img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
 					<?php }
 				} ?>
 			</h5>

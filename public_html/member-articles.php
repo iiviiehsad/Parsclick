@@ -33,7 +33,7 @@ $body   = "";
 								<i class="fa fa-user fa-lg"></i>&nbsp;
 								<?php echo "توسط: " . Author::find_by_id($current_article->author_id)->full_name();
 								if( ! empty(Author::find_by_id($current_article->author_id)->photo)) { ?>
-									<img style="width:100px;height:100px;box-shadow:1px 1px 10px #737373;" class="img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode(Author::find_by_id($current_article->author_id)->photo); ?>"/>
+									<img class="author-photo img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode(Author::find_by_id($current_article->author_id)->photo); ?>"/>
 								<?php }
 							} ?>
 						</h5>

@@ -26,7 +26,12 @@ echo output_message($message);
 					<?php foreach($author_set as $author): ?>
 						<tr>
 							<td class="arial">
-								<img class="img-circle" src="http://gravatar.com/avatar/<?php echo md5($author->email); ?>?s=30" alt="<?php echo $author->email; ?>">
+								<?php if( ! empty($author->photo)) { ?>
+									<img class="img-circle pull-right" width="30" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
+								<?php } else { ?>
+									<img class="img-circle pull-right" width="30" alt="Profile Picture" src="../images/misc/default-gravatar-pic.png"/>
+								<?php } ?>
+								&nbsp;
 								<?php echo htmlentities($author->username); ?>
 							</td>
 							<td><?php echo htmlentities(ucfirst(strtolower($author->first_name))); ?></td>
