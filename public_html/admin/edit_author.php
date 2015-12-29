@@ -109,6 +109,11 @@ if(isset($_POST['submit'])) {
 				<p class="text-muted center">عکس پروفایل موجود نیست.</p>
 			<?php } else { ?>
 				<img class="img-thumbnail center" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
+				<div class="center">
+					<a class="btn btn-default btn-small" href="remove_author_photo.php?id=<?php echo urlencode($author->id); ?>" onclick="return confirm('آیا مطمئن به حذف کردن عکس پروفایل این نویسنده هستید؟')">
+						حذف آواتار
+					</a>
+				</div>
 			<?php } ?>
 		</aside>
 	</section>
