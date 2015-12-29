@@ -15,6 +15,7 @@ class DatabaseObject {
 	{
 		global $database;
 		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE id=" . $database->escape_value($id) . " LIMIT 1");
+
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
@@ -26,6 +27,7 @@ class DatabaseObject {
 		while($row = $database->fetch_assoc($result_set)) {
 			$object_array[] = static::instantiate($row);
 		}
+
 		return $object_array;
 	}
 
@@ -33,6 +35,7 @@ class DatabaseObject {
 	{
 		global $database;
 		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE username = '" . $database->escape_value($username) . "' LIMIT 1");
+
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
@@ -40,6 +43,7 @@ class DatabaseObject {
 	{
 		global $database;
 		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE email = '" . $database->escape_value($email) . "' LIMIT 1");
+
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
@@ -47,6 +51,7 @@ class DatabaseObject {
 	{
 		global $database;
 		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE token = '" . $database->escape_value($token) . "' LIMIT 1");
+
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
@@ -56,6 +61,7 @@ class DatabaseObject {
 		$sql        = "SELECT COUNT(*) FROM " . static::$table_name;
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
+
 		return array_shift($row);
 	}
 
@@ -66,6 +72,7 @@ class DatabaseObject {
 		$sql .= " FROM " . static::$table_name;
 		$sql .= " ORDER BY position ASC";
 		$subject_set = $database->query($sql);
+
 		return $database->num_rows($subject_set);
 	}
 
@@ -77,12 +84,14 @@ class DatabaseObject {
 				$object->$attribute = $value;
 			}
 		}
+
 		return $object;
 	}
 
 	private function has_attribute($attribute)
 	{
 		$object_vars = $this->attributes();
+
 		return array_key_exists($attribute, $object_vars);
 	}
 
@@ -91,9 +100,10 @@ class DatabaseObject {
 		$attributes = [];
 		foreach(static::$db_fields as $field) {
 			if(property_exists($this, $field)) {
-				$attributes[ $field ] = $this->$field;
+				$attributes[$field] = $this->$field;
 			}
 		}
+
 		return $attributes;
 	}
 
@@ -102,8 +112,9 @@ class DatabaseObject {
 		global $database;
 		$clean_attributes = [];
 		foreach($this->attributes() as $key => $value) {
-			$clean_attributes[ $key ] = $database->escape_value($value);
+			$clean_attributes[$key] = $database->escape_value($value);
 		}
+
 		return $clean_attributes;
 	}
 
@@ -123,6 +134,7 @@ class DatabaseObject {
 		$sql .= "')";
 		if($database->query($sql)) {
 			$this->id = $database->insert_id();
+
 			return TRUE;
 		} else {
 			return FALSE;
@@ -141,6 +153,7 @@ class DatabaseObject {
 		$sql .= join(", ", $attribute_pairs);
 		$sql .= " WHERE id=" . $database->escape_value($this->id);
 		$database->query($sql);
+
 		return ($database->affected_rows() == 1) ? TRUE : FALSE;
 	}
 
@@ -151,6 +164,7 @@ class DatabaseObject {
 		$sql .= " WHERE id=" . $database->escape_value($this->id);
 		$sql .= " LIMIT 1";
 		$database->query($sql);
+
 		return ($database->affected_rows() == 1) ? TRUE : FALSE;
 	}
 
@@ -165,6 +179,7 @@ class DatabaseObject {
 		if($user) {
 			$user->token = $token_value;
 			$user->update();
+
 			return TRUE;
 		} else {
 			return FALSE;
@@ -174,18 +189,20 @@ class DatabaseObject {
 	public function create_reset_token($username)
 	{
 		$token = $this->reset_token();
+
 		return $this->set_user_reset_token($username, $token);
 	}
 
 	public function delete_reset_token($username)
 	{
 		$token = NULL;
+
 		return $this->set_user_reset_token($username, $token);
 	}
 
 	public function email_reset_token($username)
 	{
-		$user      = static::find_by_username($username);
+		$user = static::find_by_username($username);
 		if($user && isset($user->token)) {
 			$mail = new PHPMailer();
 			$mail->IsSMTP();
@@ -201,11 +218,12 @@ class DatabaseObject {
 			$mail->From       = EMAILUSER;
 			$mail->AddAddress($user->email, "Reset Password");
 			$mail->Subject = "Reset Password Request";
-			$content          = "
+			$content       = "
 			آیا اخیرا درخواست بازیافت پسوردتان را کردید؟ <br/>
 			اگر جواب مثبت است لطفا از لینک زیر برای بازیافت پسوردتان استفاده کنید:<br/>
 			";
-			$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content);
+			$mail->Body    = email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content);
+
 			return $mail->Send();
 		} else {
 			return FALSE;

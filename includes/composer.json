@@ -7,5 +7,7 @@
             "email": "hazz.azimi@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "stripe/stripe-php": "v3.5.0"
+    }
 }
