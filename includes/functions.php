@@ -1973,10 +1973,10 @@ function admin_articles($subject_array, $article_array)
  */
 function author_articles($subject_array, $article_array)
 {
-	$output      = "<ol>";
+	$output      = "<ul class='list-group'>";
 	$subject_set = Subject::find_all(TRUE);
 	foreach($subject_set as $subject) {
-		$output .= "<li>";
+		$output .= "<li class='list-group-item'>";
 		$output .= "<div class='lead'>";
 		$output .= "<a href='author_articles.php?subject=";
 		$output .= urlencode($subject->id) . "'";
@@ -2015,7 +2015,7 @@ function author_articles($subject_array, $article_array)
 		}
 		$output .= "</ul></li>";
 	}
-	$output .= "</ol>";
+	$output .= "</ul>";
 
 	return $output;
 }
