@@ -1,6 +1,6 @@
 <?php
 require_once("../includes/initialize.php");
-require_once("../includes/Recaptcha/autoload.php");
+require_once("../includes/vendor/autoload.php");
 if($session->is_logged_in()) {
 	$session->message("شما داخل سایت شدید. به منظور ثبت نام لطفا خارج شوید،");
 	redirect_to("member");

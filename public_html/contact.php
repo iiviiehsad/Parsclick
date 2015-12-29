@@ -1,6 +1,6 @@
 <?php
 require_once("../includes/initialize.php");
-require_once("../includes/Recaptcha/autoload.php");
+require_once("../includes/vendor/autoload.php");
 $filename = basename(__FILE__);
 if($session->is_logged_in()) { $member = Member::find_by_id($session->id); }
 $title   = "پارس کلیک - تماس با ما";
@@ -27,7 +27,7 @@ if(isset($_POST["submit"])) {
 			$mail->Password   = EMAILPASS;
 			$mail->FromName   = $_POST["name"];
 			$mail->From       = EMAILUSER;
-			$mail->Subject    = "پرس و جو از " . $_POST['name'];
+			$mail->Subject    = $_POST['name'];
 			$mail->AddAddress("parsclickmail@gmail.com", DOMAIN);
 			$content    = nl2br($_POST['message']);
 			$mail->Body = email($_POST['name'], DOMAIN, $_POST['email'], $content);
