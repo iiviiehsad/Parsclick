@@ -20,7 +20,7 @@ echo output_message($message);
 				$comments    = ArticleComment::find_comments($current_article->id, $per_page, $pagination->offset());
 				?>
 				<?php $_author = Author::find_by_id($current_article->author_id); ?>
-				<div class="panel panel-default">
+				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3 class="panel-title">
 							<?php echo $current_article->visible == 1 ? '<i class="fa fa-eye"></i>' : '<i class="text-danger fa fa-eye-slash"></i>'; ?>
