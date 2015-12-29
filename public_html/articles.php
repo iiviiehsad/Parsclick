@@ -37,7 +37,7 @@ if(isset($current_article)) {
 					<i class="fa fa-user fa-lg"></i>&nbsp;
 					<?php echo "توسط: " . $author->full_name();
 					if( ! empty($author->photo)) { ?>
-						<img class="author-photo img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
+						<img class="author-photo img-circle pull-left" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
 					<?php }
 				} ?>
 			</h5>
@@ -98,18 +98,21 @@ if(isset($current_article)) {
 				<?php } ?>
 			</article>
 		<?php } else { ?>
-				<h2 class="text-danger">آخرین مقاله:</h2>
-				<h3>
+			<h2 class="text-danger">آخرین مقاله:</h2>
+			<h3>
 				<a href="articles?subject=<?php echo urlencode($newest_article->subject_id); ?>&article=<?php echo urlencode($newest_article->id); ?>" title="کلیک کنید">
 					<?php echo htmlentities($newest_article->name); ?>
 				</a>
-				</h3>
+			</h3>
 			<h5>
 				<?php
 				if(isset($newest_article->author_id)) {
 					$author = Author::find_by_id($newest_article->author_id);
 					?><i class="fa fa-user fa-lg"></i>&nbsp;
 					<?php echo "توسط: " . $author->full_name();
+					if( ! empty($author->photo)) { ?>
+						<img class="author-photo img-circle pull-left" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
+					<?php }
 				} ?>
 			</h5>
 			<h5>

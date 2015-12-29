@@ -32,9 +32,9 @@ echo output_message($message);
 						<h5>
 							<?php if(isset($current_article->author_id)) { ?>
 								<i class="fa fa-user fa-lg"></i>&nbsp;
-								<?php echo "توسط: " . Author::find_by_id($current_article->author_id)->full_name();
-								if( ! empty(Author::find_by_id($current_article->author_id)->photo)) { ?>
-									<img class="author-photo img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode(Author::find_by_id($current_article->author_id)->photo); ?>"/>
+								<?php echo "توسط: " . $_author->full_name();
+								if( ! empty($_author->photo)) { ?>
+									<img class="author-photo img-circle pull-left" alt="<?php echo $_author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($_author->photo); ?>"/>
 								<?php }
 							} ?>
 						</h5>
