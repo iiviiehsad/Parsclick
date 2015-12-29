@@ -1,5 +1,6 @@
 <?php
 require_once("../../includes/initialize.php");
+require_once("../../includes/vendor/autoload.php");
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 $title   = "پارس کلیک - ایمیل به اعضا";

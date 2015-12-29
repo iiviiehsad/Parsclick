@@ -1,4 +1,6 @@
-<?php require_once(LIB_PATH . DS . 'database.php');
+<?php
+require_once(LIB_PATH . DS . 'database.php');
+require_once("vendor/autoload.php");
 
 class Member extends DatabaseObject {
 
