@@ -20,8 +20,9 @@ if(isset($current_course->author_id)) {
 					<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_course->created_at)); ?>
 				</h4>
 				<h4>
-					<?php if(isset($author)) {
-						echo $author->full_name();
+					<?php if(isset($author)) { ?>
+						<i class="fa fa-user fa-lg"></i>&nbsp;
+						<?php echo $author->full_name();
 					} ?>
 				</h4>
 				<a class="btn btn-primary pull-right" href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" data-placement="bottom" title="سوالات و نظرات"><i class="fa fa-comments fa-lg"></i>
@@ -30,7 +31,7 @@ if(isset($current_course->author_id)) {
 				&nbsp;
 				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php $playlist_set = Playlist::courses_playlist_for_member($current_course->id, $member->id); ?>
-				<?php if(!$playlist_set) { ?>
+				<?php if( ! $playlist_set) { ?>
 					<form action="add-to-playlist" method="POST" class="addtoplaylist">
 						<input type="hidden" name="course" value="<?php echo $current_course->id; ?>">
 						<button id="btn" type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="left" title="اضافه به لیست پخش">
@@ -53,7 +54,7 @@ if(isset($current_course->author_id)) {
 				<?php if(empty($current_course->file_link) && File::num_files_for_course($current_course->id) == 0) {
 					echo "<h4 class='text-danger'>این درس فایلی ندارد.</h4>";
 				} ?>
-				<?php if(!empty($current_course->file_link)) { ?>
+				<?php if( ! empty($current_course->file_link)) { ?>
 					<a class="btn btn-primary" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" data-toggle="tooltip" data-placement="left" title="دانلود کنید">
 						<i class="fa fa-files-o fa-lg"></i>&nbsp; دانلود فایل ها
 					</a>
@@ -71,7 +72,7 @@ if(isset($current_course->author_id)) {
 				<?php if(isset($current_course->youtubePlaylist)) {
 					$googleapi  = "https://www.googleapis.com/youtube/v3/playlistItems";
 					$playListID = $current_course->youtubePlaylist;
-					if(!isset($_GET['nextPageToken']) || !isset($_GET['prevPageToken'])) {
+					if( ! isset($_GET['nextPageToken']) || ! isset($_GET['prevPageToken'])) {
 						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI;
 					}
 					if(isset($_GET['nextPageToken'])) {

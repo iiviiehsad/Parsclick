@@ -8,10 +8,6 @@ $member->check_status();
 find_selected_article(TRUE);
 $errors = "";
 $body   = "";
-if(isset($current_article->author_id)) { // find the author for the article
-	$author = Author::find_by_id($current_article->author_id);
-} else {
-}
 ?>
 <?php include_layout_template("header.php"); ?>
 <?php include("_/components/php/member_nav.php"); ?>
@@ -33,13 +29,12 @@ if(isset($current_article->author_id)) { // find the author for the article
 							<?php echo htmlentities($current_article->name); ?>
 						</h3>
 						<h5 class="text-success">
-							<?php if(isset($author)) {
-								if(empty($author->photo)) { ?>
-									<i class="fa fa-user fa-lg"></i>&nbsp;
-								<?php } else { ?>
-									<img style="width:50px;height:50px;" class="img-responsive img-circle" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
+							<?php if(isset($current_article->author_id)) { ?>
+								<i class="fa fa-user fa-lg"></i>&nbsp;
+								<?php echo "توسط: " . Author::find_by_id($current_article->author_id)->full_name();
+								if( ! empty(Author::find_by_id($current_article->author_id)->photo)) { ?>
+									<img style="width:100px;height:100px;box-shadow:1px 1px 10px #737373;" class="img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode(Author::find_by_id($current_article->author_id)->photo); ?>"/>
 								<?php }
-								echo "توسط: " . $author->full_name();
 							} ?>
 						</h5>
 						<h5 class="text-success">
@@ -81,7 +76,7 @@ if(isset($current_article->author_id)) { // find the author for the article
 													</a>
 												</li>
 											<?php } // end: if($pagination->has_previous_page()) ?>
-											<?php for($i = 1; $i < $pagination->total_page() + 1; $i ++) { ?>
+											<?php for($i = 1; $i < $pagination->total_page() + 1; $i++) { ?>
 												<?php if($i == $page) { ?>
 													<li class="active">
 														<span><?php echo $i; ?></span>

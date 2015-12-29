@@ -27,12 +27,15 @@ echo output_message($message);
 				<h4>
 					<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
 				</h4>
-				<h4>
-					<?php if(! empty($_author->photo)) { ?>
-						<img class="img-circle" width="50" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($_author->photo); ?>">
-					<?php } ?>
-					<?php echo isset($current_article->author_id) ? htmlentities($_author->full_name()) : "-"; ?>
-				</h4>
+				<h5>
+					<?php if(isset($current_article->author_id)) { ?>
+						<i class="fa fa-user fa-lg"></i>&nbsp;
+						<?php echo "توسط: " . Author::find_by_id($current_article->author_id)->full_name();
+						if( ! empty(Author::find_by_id($current_article->author_id)->photo)) { ?>
+							<img style="width:100px;height:100px;box-shadow:1px 1px 10px #737373;" class="img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode(Author::find_by_id($current_article->author_id)->photo); ?>"/>
+						<?php }
+					} ?>
+				</h5>
 				<?php if(check_ownership($current_article->author_id, $session->id)) { ?>&nbsp;
 					<a class="btn btn-primary btn-small" href="author_edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
 						ویرایش
@@ -68,7 +71,7 @@ echo output_message($message);
 												</a>
 											</li>
 										<?php } // end: if($pagination->has_previous_page()) ?>
-										<?php for($i = 1; $i < $pagination->total_page() + 1; $i ++) { ?>
+										<?php for($i = 1; $i < $pagination->total_page() + 1; $i++) { ?>
 											<?php if($i == $page) { ?>
 												<li class="active">
 													<span><?php echo $i; ?></span>
@@ -96,7 +99,7 @@ echo output_message($message);
 					</div>
 				</article>
 			<?php } elseif($current_subject) { ?>
-				<?php if(! $current_subject->visible) redirect_to("author_articles.php"); ?>
+				<?php if( ! $current_subject->visible) redirect_to("author_articles.php"); ?>
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h2 class="panel-title">
@@ -161,7 +164,7 @@ echo output_message($message);
 					       مقاله شما تا دیده شدن توسط عموم طول خواهد کشید.</p>
 					</li>
 				</ul>
-					<h3>نویسندگان قدیمی</h3>
+				<h3>نویسندگان قدیمی</h3>
 				<div class="center">
 					<p>برای بزرگ کردن ویدئو روی ویدئو دابل کلیک، ۲ بار کلیک کنید.</p>
 					<iframe src="https://www.youtube.com/embed/9Wxoo2DgUYw?modestbranding=1&rel=0&showinfo=0&&hl=fa-ir" width="320" height="180" frameborder="0" allowfullscreen></iframe>

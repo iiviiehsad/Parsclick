@@ -2530,7 +2530,7 @@ function active()
 	} elseif($filename == "member-playlist.php") {
 		echo "<script>$(\"a:contains('لیست پخش')\").parent().addClass('active');</script>";
 	} elseif($filename == "member-comments.php") {
-		echo "<script>$(\"a:contains('انجمن دروس')\").parent().addClass('active');</script>";
+		echo "<script>$(\"a:contains('انجمن')\").parent().addClass('active');</script>";
 	} elseif(($filename == "member_list.php") || ($filename == "edit_member.php") || ($filename == "new_member.php") ||
 	         ($filename == "email_to_members.php")
 	) {
