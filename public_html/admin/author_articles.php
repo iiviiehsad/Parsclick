@@ -20,13 +20,13 @@ echo output_message($message);
 				$comments    = ArticleComment::find_comments($current_article->id, $per_page, $pagination->offset());
 				?>
 				<?php $_author = Author::find_by_id($current_article->author_id); ?>
-				<h1>
+				<h3>
 					<?php echo $current_article->visible == 1 ? '<i class="fa fa-eye"></i>' : '<i class="text-danger fa fa-eye-slash"></i>'; ?>
 					<?php echo htmlentities(ucwords($current_article->name)); ?>
-				</h1>
-				<h4>
+				</h3>
+				<h5>
 					<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
-				</h4>
+				</h5>
 				<h5>
 					<?php if(isset($current_article->author_id)) { ?>
 						<i class="fa fa-user fa-lg"></i>&nbsp;
