@@ -1,6 +1,8 @@
 <aside>
 	<h2>برخی از آموزش های ویدیویی</h2>
 	<div class="modalphotos photogrid clearfix center">
+		<img class="img-thumbnail" src="images/courses/Gulp-tn.jpg" alt="گالپ جی اس"/>
+		<img class="img-thumbnail" src="images/courses/Grunt-tn.jpg" alt="گرانت جی اس"/>
 		<img class="img-thumbnail" src="images/courses/PHPStorm-tn.jpg" alt="پی اچ پی استورم"/>
 		<img class="img-thumbnail" src="images/courses/PHP7-tn.jpg" alt="قابلیت های جدید پی اچ پی هفت"/>
 		<img class="img-thumbnail" src="images/courses/PHP-DateTime-tn.jpg" alt="کار با تاریخ و زمان در پی اچ پی"/>

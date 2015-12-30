@@ -147,6 +147,22 @@ class Course extends DatabaseObject {
 	}
 
 	/**
+	 * @param bool|TRUE $public sets TRUE if subject is visible and FALSE if subject is not visible
+	 * @return bool|mixed newest course
+	 */
+	public static function find_newest_course($public = TRUE)
+	{
+		$sql = "SELECT * FROM " . self::$table_name;
+		if($public) {
+			$sql .= " WHERE visible = 1 ";
+		}
+		$sql .= " ORDER BY id DESC LIMIT 1";
+		$course_set = self::find_by_sql($sql);
+
+		return ! empty($course_set) ? array_shift($course_set) : FALSE;
+	}
+
+	/**
 	 * @return bool TRUE if course is new and FALSE if old
 	 */
 	public function recent()
@@ -190,18 +206,27 @@ class Course extends DatabaseObject {
 	}
 
 	/**
-	 * @param bool|TRUE $public sets TRUE if subject is visible and FALSE if subject is not visible
-	 * @return bool|mixed newest course
+	 * Finds courses for specific author
+	 *
+	 * @param int       $author_id
+	 * @param bool|TRUE $public
+	 * @return array
 	 */
-	public static function find_newest_course($public = TRUE)
+	public static function find_courses_for_author($author_id = 0, $public = TRUE)
 	{
-		$sql = "SELECT * FROM " . self::$table_name;
+		global $database;
+		$sql = "SELECT * ";
+		$sql .= " FROM " . self::$table_name;
+		$sql .= " WHERE author_id = " . $database->escape_value($author_id);
 		if($public) {
-			$sql .= " WHERE visible = 1 ";
+			$sql .= " AND visible = 1 ";
 		}
-		$sql .= " ORDER BY id DESC LIMIT 1";
-		$course_set = self::find_by_sql($sql);
+		if( ! $public) {
+			$sql .= " AND visible = 0 ";
+		}
+		$sql .= " ORDER BY position DESC";
 
-		return ! empty($course_set) ? array_shift($course_set) : FALSE;
+		return self::find_by_sql($sql);
 	}
+
 }

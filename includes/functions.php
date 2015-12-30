@@ -96,7 +96,7 @@ function datetime_to_text($datetime = "")
  */
 function convert($string)
 {
-	$eastern = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+	$eastern = ['۰', '١', '٢', '٣', '۴', '۵', '۶', '۷', '۸', '۹'];
 	$western = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 	return str_replace($western, $eastern, $string);
