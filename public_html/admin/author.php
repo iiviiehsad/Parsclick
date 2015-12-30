@@ -14,7 +14,9 @@ echo output_message($message);
 ?>
 <div class="jumbotron hidden-sm wow fadeIn author-jumbotron">
 	<?php if( ! empty($author->photo)) { ?>
-		<img class="img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
+		<img class="img-circle pull-left" height="200" width="200" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
+	<?php } else { ?>
+		<img class="img-circle pull-left" height="200" width="200" src="../images/misc/default-gravatar-pic.png" alt="No Profile Picture">
 	<?php } ?>
 	<h1>خوش آمدید نویسنده: <?php echo $author->full_name(); ?></h1>
 	<p>
