@@ -53,7 +53,7 @@ echo output_message($message);
 				<?php foreach($courses_under_edit as $cue): ?>
 					<li>
 						<i class='fa fa-refresh fa-spin text-danger'></i>&nbsp;
-						<a href="author_courses.php?category=<?php echo urlencode($cue->subject_id); ?>&course=<?php echo urlencode($cue->id); ?>">
+						<a href="author_courses.php?category=<?php echo urlencode($cue->category_id); ?>&course=<?php echo urlencode($cue->id); ?>">
 							<?php echo $cue->name; ?>
 						</a>
 					</li>

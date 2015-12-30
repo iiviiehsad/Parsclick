@@ -5,9 +5,7 @@ $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 find_selected_course();
-if(! $current_category) {
-	redirect_to("author_courses.php");
-}
+if( ! $current_category) { redirect_to("author_courses.php"); }
 $errors = "";
 if(isset($_POST['submit'])) {
 	$author                  = Author::find_by_id($session->id);
@@ -22,13 +20,14 @@ if(isset($_POST['submit'])) {
 	if($author->id == 1) {
 		$course->visible = (int)$_POST["visible"];
 	}
-	$course->content = $_POST["description"];
-	$result          = $course->create();
-	if($result) { // Success
+	$course->content    = $_POST["description"];
+	$course->created_at = strftime("%Y-%m-%d %H:%M:%S", time());
+	$result             = $course->create();
+	if($result) {
 		send_email('New Course!', 'New Course Added');
 		$session->message("درس ساخته شد. درس قبل از نشر باید توسط مدیران بازبینی شود.");
 		redirect_to("author_courses.php");
-	} else { // Failure
+	} else {
 		$errors = "درس ساخته نشد!";
 	}
 } else {
@@ -76,7 +75,7 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position">
 								<?php $page_count = Course::num_courses_for_category($current_category->id);
-								echo "<option selected value=" . ++ $page_count . ">" . $page_count . "</option>";
+								echo "<option selected value=" . ++$page_count . ">" . $page_count . "</option>";
 								?>
 							</select>
 						</div>

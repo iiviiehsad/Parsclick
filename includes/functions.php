@@ -893,6 +893,7 @@ function is_temp_mail($mail)
 			'eintagsmail.de',
 			'e-mail.com',
 			'email.net',
+			'emailirani.ir',
 			'e-mail.org',
 			'email60.com',
 			'emailage.cf',
