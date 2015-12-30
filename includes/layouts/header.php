@@ -21,7 +21,7 @@
 	<meta property="og:title" content="<?php echo isset($title) ? $title : "پارس کلیک - سینمای برنامه نویسان"; ?>"/>
 	<meta property="og:type" content="article"/>
 	<meta property="og:image" content="<?php echo DOMAIN . DS . 'images/parsclick-logo.png'; ?>"/>
-	<meta property="article:author" content="https://www.facebook.com/amirhazz" />
+	<meta property="article:author" content="https://www.facebook.com/persiantc" />
 	<meta property="og:locale" content="fa_IR" />
 	<meta property="og:description" content="کاملترین سایت آموزش ویدئویی رایگان کامپیوتر, وب, برنامه نویسی, مدیریت محتوا,
 	 علم فنی کامپیوتر, طراحی وب, نرم افزار, آدوبی, دیتابیس, اپل, گوگل, مایکروسافت و بیشتر"/>
