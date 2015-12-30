@@ -2040,7 +2040,7 @@ function member_articles($subject_array, $article_array)
 			$output .= "<a href='member-articles?subject=";
 			$output .= urlencode($subject->id) . "'";
 			if($subject_array && $subject->id == $subject_array->id) {
-				$output .= " class='lead' ";
+				$output .= " class='lead selected' ";
 			}
 			$output .= ">";
 			$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
