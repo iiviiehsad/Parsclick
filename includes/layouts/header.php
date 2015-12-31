@@ -48,4 +48,3 @@
 <body>
 <section class="container"><!-- container -->
 	<div class="content row"><!-- content -->
-
