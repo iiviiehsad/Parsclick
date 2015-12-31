@@ -24,7 +24,7 @@ if(isset($_POST['submit'])) {
 	foreach(Member::find_all() as $members) {
 		$mail->AddBCC($members->email, $members->full_name());
 	}
-	$mail->Body = email("اعضای محترم پارس کلیک", DOMAIN, "", nl2br($_POST['message']));
+	$mail->Body = email("اعضای محترم پارس کلیک", DOMAIN, nl2br($_POST['important']), nl2br($_POST['message']));
 	$result     = $mail->Send();
 	if($result) {
 		$message = "پیام به همه اعضا فرستاده شد.";
@@ -50,6 +50,10 @@ if(isset($_POST['submit'])) {
 					<div class="form-group">
 						<label for="message">پیغام</label>
 						<textarea class="form-control" name="message" id="message" rows="9" placeholder="پیغام" required></textarea>
+					</div>
+					<div class="form-group">
+						<label for="name">مطلب مهم</label>
+						<textarea class="form-control" name="important" id="important" rows="2" placeholder="مطلب کوتاه و مهم: این مطلب هایلایت میشود پس باید کوتاه باشد"></textarea>
 					</div>
 					<br/>
 					<div class="form-group">

@@ -170,6 +170,7 @@ echo output_message($message);
 				<div class="center">
 					<p>برای بزرگ کردن ویدئو روی ویدئو دابل کلیک، ۲ بار کلیک کنید.</p>
 					<iframe src="https://www.youtube.com/embed/9Wxoo2DgUYw?modestbranding=1&rel=0&showinfo=0&&hl=fa-ir" width="320" height="180" frameborder="0" allowfullscreen></iframe>
+					<iframe src="https://www.youtube.com/embed/4aGQ5X9N2u8?modestbranding=1&rel=0&showinfo=0&&hl=fa-ir" width="320" height="180" frameborder="0" allowfullscreen></iframe>
 				</div>
 			<?php } ?>
 		</article>

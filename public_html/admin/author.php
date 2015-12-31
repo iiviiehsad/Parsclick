@@ -114,6 +114,15 @@ echo output_message($message);
 		<h2><i class="fa fa-film"></i> دروس</h2>
 		<p>برای ساختن درس روی دگمه ی زیر کلیک کنید:</p>
 		<a class="btn btn-primary" href="author_courses.php">دروس</a>
+		<h2>آموزش نویسندگی</h2>
+		<div class="center">
+			<h4>ویدیو اول: نویسندگی</h4>
+			<iframe src="https://www.youtube.com/embed/G0TY36VCODc?modestbranding=1&rel=0&showinfo=0&hl=fa-ir" width="320" height="180" frameborder="0" allowfullscreen></iframe>
+			<h4>ویدیو دوم: ویرایش کردن</h4>
+			<iframe src="https://www.youtube.com/embed/9Wxoo2DgUYw?modestbranding=1&rel=0&showinfo=0&&hl=fa-ir" width="320" height="180" frameborder="0" allowfullscreen></iframe>
+			<h4>ویدیو سوم: استفاده از عکس برای مقالات</h4>
+			<iframe src="https://www.youtube.com/embed/4aGQ5X9N2u8?modestbranding=1&rel=0&showinfo=0&&hl=fa-ir" width="320" height="180" frameborder="0" allowfullscreen></iframe>
+		</div>
 	</aside>
 </section>
 <?php include_layout_template("admin_footer.php"); ?>
