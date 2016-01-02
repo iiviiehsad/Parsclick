@@ -98,9 +98,9 @@
 </article>
 <?php include "_/components/php/aside-share.php"; ?>
 <article class="about edit">
-	<h2>About The Owner</h2>
+	<h2 style="text-align: left;">About The Owner</h2>
 	<article class="media">
-		<h3>How Everything Began?</h3>
+		<h3 style="text-align: left;">How Everything Began?</h3>
 		<p class="media-body">Hello, My name is Amir Hassan Azimi. I was born and raised in Iran - Centre of Tehran
 		                      until nearly eighteen when I moved to London, Great Britain where I currently live. Well I
 		                      managed to get my mathematics and physics diploma from Shariati Pre-University, which is
@@ -115,7 +115,7 @@
 		                      graduation I cannot stay inactive and I must be upgraded.</p>
 	</article>
 	<article class="media">
-		<h3>What Did I Do?</h3>
+		<h3 style="text-align: left;">What Did I Do?</h3>
 		<p class="media-body">Subsequently, reading a lot of books about computers and watching more video tutorials
 		                      about programming and web design, I learnt a lot of new objects and I must say I really
 		                      enjoyed it. The decision was to learn everything about computing science except
@@ -136,7 +136,7 @@
 		                      YouTube.</p>
 	</article>
 	<article class="media">
-		<h3>My Experience With Online Tutorials</h3>
+		<h3 style="text-align: left;">My Experience With Online Tutorials</h3>
 		<p class="media-body">Of course I had known YouTube and I had been watching videos in that platform. The most of
 		                      those videos were about music video, news or about cute cats. However I found that some
 		                      Iranians uploaded some videos about computing science but none of them were thorough or
@@ -168,14 +168,15 @@
 		                      teach us everything as we call them research institutions. (You are buying your degree!)
 		                      Most of rich people are from this field and almost none of them finished university.
 		                      (Examples: Mark Zuckerberg, Steve Jobs, Bill Gates, Pierre Omidyar, Arash Ferdowsi and
-		                      more, search if you don't know them) Where am I going with this? See, after the first year in the university, I
+		                      more, search if you don't know them) Where am I going with this? See, after the first year in
+		                      the university, I
 		                      understood something: “Institutions are there to only give you the tools.” Now if you ask
 		                      me I would say school is not everything you need to accomplish, get your degree and you
 		                      are done, no! I want to know everything, well mostly everything. I hope you understand my
 		                      point!</p>
 	</article>
 	<article class="media">
-		<h3>The Future Of Educations</h3>
+		<h3 style="text-align: left;">The Future Of Educations</h3>
 		<p class="media-body">At the moment I am on my own, managing this website and creating videos and they are all
 		                      filling my free time. I spend so much time to create these videos, edit this website and
 		                      uploading those videos. The lack of budget and time completely tied my hand and I also
