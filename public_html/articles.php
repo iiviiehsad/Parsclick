@@ -128,6 +128,13 @@ if(isset($current_article)) {
 		<?php include("_/components/php/aside-share.php"); ?>
 		<h2>موضوعات و مقالات</h2>
 		<?php echo public_articles($current_subject, $current_article); ?>
+		<h2>وبلاگ پارس کلیک</h2>
+		<ul class="list-group">
+			<li class="list-group-item">
+				<a href="http://parsclick.blogspot.co.uk/" target="_blank">وبلاگ پارس کلیک</a>
+				<span class="label label-as-badge label-danger pull-left">اخبار</span>
+			</li>
+		</ul>
 		<?php include("_/components/php/aside-read.php"); ?>
 	</aside>
 </section>
