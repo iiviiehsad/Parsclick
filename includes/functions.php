@@ -2185,10 +2185,10 @@ function admin_courses($category_array, $course_array)
  */
 function author_courses($category_array, $course_array)
 {
-	$output       = "<ol>";
+	$output      = "<ul class='list-group'>";
 	$category_set = Category::find_all(TRUE);
 	foreach($category_set as $category):
-		$output .= "<li>";
+		$output .= "<li class='list-group-item'>";
 		$output .= "<div class='lead'>";
 		$output .= "<a href='author_courses.php?category=";
 		$output .= urlencode($category->id) . "'";
@@ -2227,7 +2227,7 @@ function author_courses($category_array, $course_array)
 		endforeach;
 		$output .= "</ul></li>";
 	endforeach;
-	$output .= "</ol>";
+	$output .= "</ul>";
 
 	return $output;
 }

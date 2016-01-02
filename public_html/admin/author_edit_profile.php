@@ -7,7 +7,7 @@ $author->check_status();
 $errors             = "";
 $MAX_FILE_SIZE      = 100000;
 $allowed_mime_types = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg'];
-$allowed_extensions = ['png', 'gif', 'jpg', 'jpeg'];
+$allowed_extensions = ['png', 'gif', 'jpg', 'jpeg', 'PNG', 'GIF', 'JPG', 'JPEG'];
 if(isset($_POST['submit'])) {
 	$author->id       = $session->id;
 	//$author->username = trim($_POST["username"]);
