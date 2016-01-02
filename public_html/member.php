@@ -35,7 +35,8 @@ $newest_article = Article::find_newest_article();
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
 		<h2><span class="visible-sm"><?php echo "خوش آمدید  " . ucwords(strtolower($member->full_name())); ?></span></h2>
-		<h2>جدیدترین مقاله: </h2>
+		<h2 class="text-danger">جدیدترین مقاله: </h2>
+		<hr>
 		<h4><?php echo htmlentities($newest_article->name); ?></h4>
 		<h5>
 			<?php

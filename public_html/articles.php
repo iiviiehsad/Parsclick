@@ -99,6 +99,7 @@ if(isset($current_article)) {
 			</article>
 		<?php } else { ?>
 			<h2 class="text-danger">آخرین مقاله:</h2>
+			<hr>
 			<h3>
 				<a href="articles?subject=<?php echo urlencode($newest_article->subject_id); ?>&article=<?php echo urlencode($newest_article->id); ?>" title="کلیک کنید">
 					<?php echo htmlentities($newest_article->name); ?>
@@ -129,6 +130,8 @@ if(isset($current_article)) {
 		<h2>موضوعات و مقالات</h2>
 		<?php echo public_articles($current_subject, $current_article); ?>
 		<h2>وبلاگ پارس کلیک</h2>
+		<p>برای اخبار، کوپن های یودمی، خبر از درس های آینده، پادکست، صحبت از نویسندگان، صحبت از مقالات خوب، لینک دانلود
+		   ویدیو و خیلی چیزهای دیگه به وبلاگ پارس کلیک سر بزنید.</p>
 		<ul class="list-group">
 			<li class="list-group-item">
 				<a href="http://parsclick.blogspot.co.uk/" target="_blank">وبلاگ پارس کلیک</a>
