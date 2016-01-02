@@ -28,6 +28,7 @@ class Author extends DatabaseObject {
 
 	/**
 	 * Finds active authors
+	 *
 	 * @return array
 	 */
 	public static function find_active_authors()
@@ -60,11 +61,13 @@ class Author extends DatabaseObject {
 		$sql .= "OR last_name LIKE '%{$database->escape_value($search)}%' ";
 		$sql .= "OR email LIKE '%{$database->escape_value($search)}%' ";
 		$result_set = self::find_by_sql($sql);
-		return !empty($result_set) ? $result_set : NULL;
+
+		return ! empty($result_set) ? $result_set : NULL;
 	}
 
 	/**
 	 * Important: This function needs needs PHP v5.5+
+	 *
 	 * @param $password string gets the password from the user
 	 * @return bool|string encrypts the password using Blowfish
 	 */
@@ -76,6 +79,7 @@ class Author extends DatabaseObject {
 
 	/**
 	 * Important: This function needs needs PHP v5.5+
+	 *
 	 * @param string $username gets the username from the user
 	 * @param string $password gets the username from the user
 	 * @return bool|mixed fields if username and password match to user's input
@@ -117,11 +121,13 @@ class Author extends DatabaseObject {
 		$sql .= " photo = NULL ";
 		$sql .= " WHERE id=" . $database->escape_value($this->id);
 		$database->query($sql);
+
 		return ($database->affected_rows() == 1) ? TRUE : FALSE;
 	}
 
 	/**
 	 * This method will send a confirmation email to the recently registered members.
+	 *
 	 * @param $username
 	 * @return bool TRUE if email is sent and FALSE if not
 	 * @throws \Exception
@@ -178,6 +184,7 @@ class Author extends DatabaseObject {
 				http://{$site_root}</p>
 			</body>
 EMAILBODY;
+
 			return $mail->Send();
 		} else {
 			return FALSE;
