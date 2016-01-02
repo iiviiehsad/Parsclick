@@ -31,13 +31,14 @@ if(isset($search_query) && !empty($search_query)) {
 						<?php foreach($course_set as $course): ?>
 							<tr>
 								<td>
-									<a href="member-courses?category=<?php echo urlencode($course->category_id); ?>&course=<?php echo urlencode($course->id); ?>">
-										<?php echo htmlentities($course->name); ?>
-									&nbsp;	توسط <?php echo htmlentities(Author::find_by_id($course->author_id)->full_name()); ?>
-									</a>
-									<p>
-										<small><?php echo truncate(nl2br(htmlentities($course->content)), 500) ?></small>
-									</p>
+									<strong>
+										<i>
+											<a href="member-courses?category=<?php echo urlencode($course->category_id); ?>&course=<?php echo urlencode($course->id); ?>">
+												<mark><?php echo htmlentities($course->name); ?></mark>
+												<small>&nbsp;توسط <?php echo htmlentities(Author::find_by_id($course->author_id)->full_name()); ?></small>
+											</a>
+										</i>
+									</strong>
 								</td>
 							</tr>
 						<?php endforeach; ?>

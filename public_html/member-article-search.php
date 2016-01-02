@@ -7,7 +7,7 @@ $member   = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_article(TRUE);
 $search_query = trim($_GET['q']);
-if(isset($search_query) && !empty($search_query)) {
+if(isset($search_query) && ! empty($search_query)) {
 	$article_set = Article::search($search_query);
 } else { // this is a $_GET request
 	$session->message("شما چیزی جستجو نکردید.");
@@ -19,7 +19,7 @@ if(isset($search_query) && !empty($search_query)) {
 <?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if(!empty($article_set)) { ?>
+			<?php if( ! empty($article_set)) { ?>
 				<h2>نتیجه جستجو</h2>
 				<div class="table-responsive">
 					<table class="table">
@@ -32,13 +32,14 @@ if(isset($search_query) && !empty($search_query)) {
 						<?php foreach($article_set as $article): ?>
 							<tr>
 								<td>
-									<a href="member-articles?subject=<?php echo urlencode($article->subject_id); ?>&article=<?php echo urlencode($article->id); ?>">
-										<?php echo htmlentities($article->name); ?>
-										&nbsp;توسط <?php echo isset($article->author_id) ? htmlentities(Author::find_by_id($article->author_id)->full_name()) : '-'; ?>
-									</a>
-									<p>
-										<small><?php echo truncate(nl2br(htmlentities($article->content)), 500) ?></small>
-									</p>
+									<strong>
+										<i>
+											<a href="member-articles?subject=<?php echo urlencode($article->subject_id); ?>&article=<?php echo urlencode($article->id); ?>">
+												<mark><?php echo htmlentities($article->name); ?></mark>
+												<small>&nbsp;توسط <?php echo isset($article->author_id) ? htmlentities(Author::find_by_id($article->author_id)->full_name()) : '-'; ?></small>
+											</a>
+										</i>
+									</strong>
 								</td>
 							</tr>
 						<?php endforeach; ?>
