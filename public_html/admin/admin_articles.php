@@ -10,7 +10,7 @@ echo output_message($message);
 		<article>
 			<?php if($current_subject && $current_article) { ?>
 				<h2><i class="fa fa-newspaper-o"></i> تنظیم مقاله </h2>
-				<?php if( ! empty(Author::find_by_id($current_article->author_id)->photo)) { ?>
+				<?php if(isset($current_article->author_id) && ! empty(Author::find_by_id($current_article->author_id)->photo)) { ?>
 					<img class="author-photo img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode(Author::find_by_id($current_article->author_id)->photo); ?>"/>
 				<?php } ?>
 				<dl class="dl-horizontal">

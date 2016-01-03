@@ -3,20 +3,29 @@ require_once("../../includes/initialize.php");
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_course();
-if(!$current_course || !$current_category) {
-	redirect_to("author_courses.php");
-}
+if( ! $current_course || ! $current_category) { redirect_to("author_courses.php"); }
 $errors = "";
 if(isset($_POST['submit'])) {
-	$course                  = Course::find_by_id($current_course->id, FALSE);
-	$course->name            = ucfirst($_POST["course_name"]);
-	$course->youtubePlaylist = $_POST["youtubePlaylist"];
-	$course->file_link       = $_POST["file_link"];
-	$course->position        = (int)$_POST["position"];
-	$course->visible         = (int)$_POST["visible"];
-	$course->content         = $_POST["content"];
-	$result                  = $course->save();
-	if($result) {
+	global $database;
+	$course          = Course::find_by_id($current_course->id, FALSE);
+	$name            = ucfirst($_POST["course_name"]);
+	$youtubePlaylist = $_POST["youtubePlaylist"];
+	$file_link       = $_POST["file_link"];
+	$position        = (int)$_POST["position"];
+	$visible         = (int)$_POST["visible"];
+	$content         = $_POST["content"];
+	$sql             = "UPDATE courses SET ";
+	$sql             .= "name = '" . $database->escape_value($name) . "', ";
+	$sql             .= "youtubePlaylist = '" . $database->escape_value($youtubePlaylist) . "', ";
+	$sql             .= "file_link = '" . $database->escape_value($file_link) . "', ";
+	$sql             .= "position = " . $database->escape_value($position) . ", ";
+	$sql             .= "visible = " . $database->escape_value($visible) . ", ";
+	$sql             .= "content = '" . $database->escape_value($content) . "' ";
+	$sql             .= "WHERE id = " . $database->escape_value($course->id);
+	$database->query($sql);
+	$result = $database->affected_rows();
+
+	if($result == 1) {
 		$session->message("درس بروزرسانی شد.");
 		redirect_to("admin_courses.php?category=" . $current_category->id . "&course=" . $current_course->id);
 	} else {
@@ -31,7 +40,6 @@ echo output_message($message, $errors);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-pencil-square"></i> ویرایش درس</h2>
-
 			<form class="form-horizontal" action="edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id) ?>" method="POST" role="form">
 				<fieldset>
 					<!--name-->
@@ -70,7 +78,7 @@ echo output_message($message, $errors);
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position">
 								<option value="" disabled>انتخاب کنید</option>
 								<?php
-								$page_set   = Course::num_courses_for_category($current_course->category_id);
+								$page_set = Course::num_courses_for_category($current_course->category_id);
 								for($count = 1; $count <= $page_set; $count++) {
 									echo "<option value='{$count}'";
 									if($current_course->position == $count) {
@@ -88,11 +96,11 @@ echo output_message($message, $errors);
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" value="0"
-									<?php if($current_course->visible == 0) { echo "checked"; } ?> > خیر
+										<?php if($current_course->visible == 0) echo "checked"; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" value="1"
-									<?php if($current_course->visible == 1) { echo "checked"; } ?> > بله
+										<?php if($current_course->visible == 1) echo "checked"; ?> > بله
 							</label>
 						</div>
 					</section>

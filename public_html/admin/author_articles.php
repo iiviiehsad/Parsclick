@@ -19,7 +19,6 @@ echo output_message($message);
 				$pagination  = new pagination($page, $per_page, $total_count);
 				$comments    = ArticleComment::find_comments($current_article->id, $per_page, $pagination->offset());
 				?>
-				<?php $_author = Author::find_by_id($current_article->author_id); ?>
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3 class="panel-title">
@@ -30,7 +29,8 @@ echo output_message($message);
 							<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
 						</h5>
 						<h5>
-							<?php if(isset($current_article->author_id)) { ?>
+							<?php if(isset($current_article->author_id)) {
+								$_author = Author::find_by_id($current_article->author_id); ?>
 								<i class="fa fa-user fa-lg"></i>&nbsp;
 								<?php echo "توسط: " . $_author->full_name();
 								if( ! empty($_author->photo)) { ?>

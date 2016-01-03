@@ -14,9 +14,9 @@ echo output_message($message);
 ?>
 <div class="jumbotron hidden-sm wow fadeIn author-jumbotron">
 	<?php if( ! empty($author->photo)) { ?>
-		<img class="img-circle pull-left" height="200" width="200" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
+		<img class="img-circle pull-left" height="150" width="150" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 	<?php } else { ?>
-		<img class="img-circle pull-left" height="200" width="200" src="../images/misc/default-gravatar-pic.png" alt="No Profile Picture">
+		<img class="img-circle pull-left" height="150" width="150" src="../images/misc/default-gravatar-pic.png" alt="No Profile Picture">
 	<?php } ?>
 	<h1>خوش آمدید نویسنده: <?php echo $author->full_name(); ?></h1>
 	<p>
@@ -101,6 +101,8 @@ echo output_message($message);
 			   نویسنده ای
 			   که تازه شروع به کار کردید بهتر هست که مقاله ای آماده کنید و اون رو بفرستید چون دلیلی برای نگه داشتن نویسنده ی
 			   غیر فعال اینجا پیدا نمی کنیم.</p>
+			<p>لطفا قبل از فرستادن مقاله به ویدئوهای آموزش نویسندگی نگاه کنید. انتظار می رود نکاتی که در این ویدئوها مطرح می
+			   شوند را رعایت کنید.</p>
 			<p class="lead pull-left">با تشکر از شمـا</p>
 		<?php endif; ?>
 	</article>
@@ -109,10 +111,10 @@ echo output_message($message);
 	<aside>
 		<h2><i class="fa fa-newspaper-o"></i> مقالات</h2>
 		<p>برای ساختن مقاله روی دگمه ی زیر کلیک کنید:</p>
-		<a class="btn btn-primary" href="author_articles.php">مقالات</a>
+		<a class="btn btn-danger btn-small" href="author_articles.php">مقالات</a>
 		<h2><i class="fa fa-film"></i> دروس</h2>
 		<p>برای ساختن درس روی دگمه ی زیر کلیک کنید:</p>
-		<a class="btn btn-primary" href="author_courses.php">دروس</a>
+		<a class="btn btn-danger btn-small" href="author_courses.php">دروس</a>
 		<h2>آموزش نویسندگی</h2>
 		<div class="center">
 			<h4>ویدیو اول: نویسندگی</h4>

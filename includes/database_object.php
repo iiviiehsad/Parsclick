@@ -16,7 +16,7 @@ class DatabaseObject {
 	public static function find_by_id($id = 0)
 	{
 		global $database;
-		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE id=" . $database->escape_value($id) . " LIMIT 1");
+		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE id = " . $database->escape_value($id) . " LIMIT 1");
 
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
@@ -163,7 +163,7 @@ class DatabaseObject {
 	{
 		global $database;
 		$sql = "DELETE FROM " . static::$table_name;
-		$sql .= " WHERE id=" . $database->escape_value($this->id);
+		$sql .= " WHERE id = " . $database->escape_value($this->id);
 		$sql .= " LIMIT 1";
 		$database->query($sql);
 
@@ -172,7 +172,7 @@ class DatabaseObject {
 
 	private function reset_token()
 	{
-		return md5(uniqid(rand()));
+		return md5(uniqid(mt_rand()));
 	}
 
 	public function set_user_reset_token($username, $token_value)

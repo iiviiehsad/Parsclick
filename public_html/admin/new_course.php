@@ -19,6 +19,8 @@ if(isset($_POST['submit'])) {
 	$course->position        = (int)$_POST["position"];
 	if($author->id == 1) {
 		$course->visible = (int)$_POST["visible"];
+	} else {
+		$course->visible = 0;
 	}
 	$course->content    = $_POST["description"];
 	$course->created_at = strftime("%Y-%m-%d %H:%M:%S", time());
