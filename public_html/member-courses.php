@@ -89,41 +89,47 @@ find_selected_course(TRUE);
 						//var_dump($json);
 						if($json['pageInfo']['totalResults'] > 0) { ?>
 							<article class="videos">
-								<div class="table-responsive">
-									<table class="table table-condensed table-hover">
-										<thead>
-										<tr>
-											<h3><i class="fa fa-video-camera fa-lg"></i> ویدیوهای این درس</h3>
-										</tr>
-										</thead>
-										<tbody>
-										<?php foreach($json['items'] as $item): ?>
-											<tr>
-												<td>
-													<a class="youtube" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
-													   title="Click to play">
-														<?php echo $item['snippet']['title']; ?>
-													</a>
-												</td>
-											</tr>
-										<?php endforeach; ?>
-										</tbody>
-									</table>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h3 class="panel-title">
+											<i class="fa fa-video-camera"></i> ویدیوهای این درس
+										</h3>
+									</div>
+									<div class="panel-body">
+										<div class="table-responsive">
+											<table class="table table-condensed table-hover">
+												<tbody>
+												<?php foreach($json['items'] as $item): ?>
+													<tr>
+														<td>
+															<a class="youtube" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
+															   title="Click to play">
+																<?php echo $item['snippet']['title']; ?>
+															</a>
+														</td>
+													</tr>
+												<?php endforeach; ?>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="panel-footer">
+										<div class="clearfix center">
+											<?php
+											if(isset($json["nextPageToken"])) { ?>
+												<a class="btn btn-primary btn-block" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json["nextPageToken"]; ?>">
+													<span class="arial">&laquo;</span> صفحه بعدی
+												</a>
+											<?php }
+											if(isset($json["prevPageToken"])) { ?>
+												<a class="btn btn-primary btn-block" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json["prevPageToken"]; ?>">
+													صفحه قبلی <span class="arial">&raquo;</span>
+												</a>
+											<?php } ?>
+										</div>
+									</div>
 								</div>
 							</article>
-							<div class="clearfix center">
-								<?php
-								if(isset($json["nextPageToken"])) { ?>
-									<a class="btn btn-primary btn-block" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json["nextPageToken"]; ?>">
-										<span class="arial">&laquo;</span> صفحه بعدی
-									</a>
-								<?php }
-								if(isset($json["prevPageToken"])) { ?>
-									<a class="btn btn-primary btn-block" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json["prevPageToken"]; ?>">
-										صفحه قبلی <span class="arial">&raquo;</span>
-									</a>
-								<?php } ?>
-							</div>
 						<?php } ?>
 					<?php } else { ?>
 						<div class='alert alert-danger'><i class='fa fa-exclamation-triangle'></i>
