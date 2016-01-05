@@ -29,8 +29,8 @@ echo output_message($message);
 							<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
 						</h5>
 						<h5>
-							<?php if(isset($current_article->author_id)) {
-								$_author = Author::find_by_id($current_article->author_id); ?>
+							<?php if(isset($current_article->author_id)) { ?>
+									<?php $_author = Author::find_by_id($current_article->author_id); ?>
 								<i class="fa fa-user fa-lg"></i>&nbsp;
 								<?php echo "توسط: " . $_author->full_name();
 								if( ! empty($_author->photo)) { ?>
@@ -144,6 +144,7 @@ echo output_message($message);
 					       املایی نمی خواهیم این را جدا عرض کردم. یک لغت اگر بیشتر از دوبار در هر مقاله ای غلط بود این یعنی
 					       مقاله
 					       شما کپی است و ارزش ندارد.این مقاله شما را نشر نخواهد کرد.</p></li>
+					<li><p>برای آپلود کردن عکس چون بعضی ها میگن پیکاسا در ایران فیلتر هست، می تونید از <a href="http://imgur.com/" target="_blank" title="imageur"><mark>imageur</mark></a> و یا <a href="https://app.prntscr.com/" target="_blank" title="lightshot"><mark>lightshot</mark></a> استفاده کنید که lightshot سریعتر هم هست چون براش اپ وجود داره.</p></li>
 					<li>
 						<p>قبل از گذاشتن مقاله درون ویرایشگر متن:</p>
 						<ul>
@@ -159,12 +160,8 @@ echo output_message($message);
 							</li>
 						</ul>
 					</li>
-					<li><p>لطفا سعی بر پاک کردن مقاله هایی که از قبل توسط مدیران تنظیم شده اند ننمائید مگر اینکه مایل به
-					       بروزرساندن آنها هستید.</p></li>
-					<li><p>پاک کردن مقاله ای بدون دلیل باعث معلق شدن عضویت شما به عنوان نویسنده خواهد شد.</p></li>
-					<li><p>اگر نویسنده قدیمی هستید از شما انتظار می رود بعد از مدتی ویرایش کردن را بلد باشید. اگر ویرایش نکنید
-					       مقاله شما تا دیده شدن توسط عموم طول خواهد کشید.</p>
-					</li>
+					<li><p>لطفا سعی بر پاک کردن مقاله هایی که از قبل توسط مدیران تنظیم شده اند ننمائید مگر اینکه مایل به بروزرساندن آنها هستید.</p></li>
+					<li><p>اگر نویسنده قدیمی هستید از شما انتظار می رود بعد از مدتی ویرایش کردن را بلد باشید. اگر ویرایش نکنید مقاله شما تا دیده شدن توسط عموم طول خواهد کشید.</p></li>
 				</ul>
 			<?php } ?>
 		</article>
