@@ -35,9 +35,7 @@ $newest_article = Article::find_newest_article();
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
 		<h2><span class="visible-sm"><?php echo "خوش آمدید  " . ucwords(strtolower($member->full_name())); ?></span></h2>
-		<h2 class="text-danger">جدیدترین مقاله: </h2>
-		<hr>
-		<h4><?php echo htmlentities($newest_article->name); ?></h4>
+		<h2><?php echo htmlentities($newest_article->name); ?>&nbsp;<span class="badge">جدیدترین مقاله</span></h2>
 		<h5>
 			<?php
 			if(isset($newest_article->author_id)) {
@@ -50,7 +48,7 @@ $newest_article = Article::find_newest_article();
 			<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($newest_article->created_at)); ?>
 		</h5>
 		<hr>
-		<?php echo truncate(nl2br(strip_tags($newest_article->content, '<h2><h3><h4><h5><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd>')), 1500,
+		<?php echo truncate(nl2br(strip_tags($newest_article->content, '<h2><h3><h4><h5><h6><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd><img><a>')), 1500,
 				"...<a class='btn btn-small btn-info pull-left' href='member-articles?subject={$newest_article->subject_id}&article={$newest_article->id}'>برای ادامه کلیک کنید</a>"); ?>
 	</article>
 </section>

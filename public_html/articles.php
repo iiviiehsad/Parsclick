@@ -98,13 +98,12 @@ if(isset($current_article)) {
 				<?php } ?>
 			</article>
 		<?php } else { ?>
-			<h2 class="text-danger">آخرین مقاله:</h2>
-			<hr>
-			<h3>
+			<?php $current_article = $current_subject = $newest_article; ?>
+			<h2>
 				<a href="articles?subject=<?php echo urlencode($newest_article->subject_id); ?>&article=<?php echo urlencode($newest_article->id); ?>" title="کلیک کنید">
 					<?php echo htmlentities($newest_article->name); ?>
-				</a>
-			</h3>
+				</a><span class="badge">جدیدترین مقاله</span>
+			</h2>
 			<h5>
 				<?php
 				if(isset($newest_article->author_id)) {
