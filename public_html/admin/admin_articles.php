@@ -33,7 +33,7 @@ echo output_message($message);
 						</a>
 					</dd>
 					<dt>مطالب:</dt>
-					<dd><?php echo nl2br(strip_tags($current_article->content, '<h2><h3><h4><h5><h6><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd><img><a>')); ?></dd>
+					<dd><?php echo nl2br(strip_tags($current_article->content, '<h2><h3><h4><h5><h6><strong><em><u><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd><img><a>')); ?></dd>
 				</dl>
 			<?php } elseif($current_subject) { ?>
 				<h2><i class="fa fa-list-alt"></i> تنظیم موضوع </h2>

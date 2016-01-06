@@ -45,7 +45,7 @@ echo output_message($message);
 						<?php } ?>
 					</div>
 					<div class="panel-body">
-						<p><?php echo nl2br(strip_tags($current_article->content, '<h2><h3><h4><h5><h6><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd><img><a>')); ?></p>
+						<p><?php echo nl2br(strip_tags($current_article->content, '<h2><h3><h4><h5><h6><strong><em><u><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd><img><a>')); ?></p>
 					</div>
 					<div class="panel-footer">
 						<article id="comments">
@@ -170,6 +170,8 @@ echo output_message($message);
 		<aside>
 			<h2>موضوعات و مقالات</h2>
 			<?php echo author_articles($current_subject, $current_article); ?>
+			<h2>موضوع جدید</h2>
+			<p>نویسندگان عزیز اگر موضوع خاصی مد نظرتان هست که در موضوعات نیست، بدون هیچ تعارفی یک ایمیل کوتاه به نویسنده بزنید، (از ایمیل نویسندگی تون) و اشاره کنید چه موضوعی می خواهید. مطالب شما حتما نباید زیر یکی از موضوعات بالا قرار بگیرند.</p>
 		</aside>
 	</section>
 <?php include_layout_template("admin_footer.php"); ?>

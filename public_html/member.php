@@ -48,8 +48,7 @@ $newest_article = Article::find_newest_article();
 			<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($newest_article->created_at)); ?>
 		</h5>
 		<hr>
-		<?php echo truncate(nl2br(strip_tags($newest_article->content, '<h2><h3><h4><h5><h6><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd><img><a>')), 1500,
-				"...<a class='btn btn-small btn-info pull-left' href='member-articles?subject={$newest_article->subject_id}&article={$newest_article->id}'>برای ادامه کلیک کنید</a>"); ?>
+		<?php echo nl2br(strip_tags($newest_article->content, '<h2><h3><h4><h5><h6><strong><em><u><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd><a><img>')); ?>
 	</article>
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">

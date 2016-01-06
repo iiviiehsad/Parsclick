@@ -10,7 +10,8 @@ elixir(function(mix) {
 	   ], "public_html/_/components/css")
 	   .styles([
 		   'app.css',
-		   'font-awesome.min.css'
+		   'font-awesome.min.css',
+	     'prism.css'
 	   ])
 	   .scripts([
 		   'jquery.js',
@@ -26,6 +27,7 @@ elixir(function(mix) {
 		   'scrollspy.js',
 		   'modal.js',
 		   'tab.js',
+		   'prism.js',
 		   'wow.min.js',
 		   'youtubeplayer.js',
 		   // 'jquery.countdown.min.js',
