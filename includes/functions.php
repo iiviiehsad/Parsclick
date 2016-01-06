@@ -2488,7 +2488,6 @@ function active()
 	   ($filename == "author.php")
 	) {
 		echo "<script>$(\"a:contains('خانه')\").parent().addClass('active');</script>";
-		include('notice.php');
 	} elseif($filename == "authors.php") {
 		echo "<script>$(\"a:contains('نویسندگان')\").parent().addClass('active');</script>";
 	} elseif($filename == "about.php") {
