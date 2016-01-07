@@ -121,8 +121,8 @@ echo output_message($message);
 			<iframe src="https://www.youtube.com/embed/G0TY36VCODc?modestbranding=1&rel=0&showinfo=0&hl=fa-ir" width="320" height="180" frameborder="0" allowfullscreen></iframe>
 			<h4>ویدیو دوم: ویرایش کردن</h4>
 			<iframe src="https://www.youtube.com/embed/9Wxoo2DgUYw?modestbranding=1&rel=0&showinfo=0&&hl=fa-ir" width="320" height="180" frameborder="0" allowfullscreen></iframe>
-			<h4>ویدیو سوم: استفاده از عکس برای مقالات</h4>
-			<iframe src="https://www.youtube.com/embed/4aGQ5X9N2u8?modestbranding=1&rel=0&showinfo=0&&hl=fa-ir" width="320" height="180" frameborder="0" allowfullscreen></iframe>
+			<h4>ویدیو سوم: پاراگراف، عکس ها و کدها </h4>
+			<iframe src="https://www.youtube.com/embed/er470cSnl-M?modestbranding=1&rel=0&showinfo=0&&hl=fa-ir" width="320" height="180" frameborder="0" allowfullscreen></iframe>
 		</div>
 	</aside>
 </section>
