@@ -1990,9 +1990,9 @@ function author_articles($subject_array, $article_array)
 		$output .= "</a>";
 		$output .= "</div>";
 		$article_set = Article::find_articles_for_subject($subject->id, FALSE);
-		$output .= "<ul>";
+		$output .= "<ul class='list-unstyled'>";
 		foreach($article_set as $article) {
-			$output .= "<li>";
+			$output .= "<li>- ";
 			$output .= "<a href='author_articles.php?subject=";
 			$output .= urlencode($subject->id) . "&article=";
 			$output .= $article->id . "'";
@@ -2054,9 +2054,9 @@ function member_articles($subject_array, $article_array)
 			if($subject_array && $article_array) {
 				if($subject_array->id == $subject->id || $article_array->subject_id == $subject->id) {
 					$article_set = Article::find_articles_for_subject($subject->id, TRUE);
-					$output .= "<ul>";
+					$output .= "<ul class='list-unstyled'>";
 					foreach($article_set as $article) {
-						$output .= "<li>";
+						$output .= "<li>- ";
 						$output .= "<a href='member-articles?subject=";
 						$output .= urlencode($subject->id) . "&article=";
 						$output .= urlencode($article->id) . "'";
@@ -2201,9 +2201,9 @@ function author_courses($category_array, $course_array)
 		$output .= "</a>";
 		$output .= "</div>";
 		$course_set = Course::find_courses_for_category($category->id, FALSE);
-		$output .= "<ul>";
+		$output .= "<ul class='list-unstyled'>";
 		foreach($course_set as $course):
-			$output .= "<li>";
+			$output .= "<li>- ";
 			$output .= "<a href='author_courses.php?category=";
 			$output .= urlencode($category->id) . "&course=";
 			$output .= $course->id . "'";
@@ -2264,9 +2264,9 @@ function member_courses($category_array, $course_array)
 		if($category_array && $course_array) {
 			if($category_array->id == $category->id || $course_array->category_id == $category->id) {
 				$course_set = Course::find_courses_for_category($category->id);
-				$output .= "<ul>";
+				$output .= "<ul class='list-unstyled'>";
 				foreach($course_set as $course) {
-					$output .= "<li>";
+					$output .= "<li>- ";
 					$output .= "<a href='member-courses?category=";
 					$output .= urlencode($category->id) . "&course=";
 					$output .= urlencode($course->id) . "'";
@@ -2422,9 +2422,9 @@ function public_articles($subject_array, $article_array)
 			if($subject_array && $article_array) {
 				if($subject_array->id == $subject->id || $article_array->subject_id == $subject->id) {
 					$article_set = Article::find_articles_for_subject($subject->id, TRUE);
-					$output .= "<ul>";
+					$output .= "<ul class='list-unstyled'>";
 					foreach($article_set as $article) {
-						$output .= "<li>";
+						$output .= "<li>- ";
 						$output .= "<a href='articles?subject=" . urlencode($subject->id) . "&article=" . urlencode($article->id) . "'";
 						if($article_array && $article->id == $article_array->id) {
 							$output .= " class='selected'";
