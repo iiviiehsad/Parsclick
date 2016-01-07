@@ -218,13 +218,14 @@ function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE)
 }
 
 /**
+ * @param $email
  * @param $subject string gets the subject
  * @param $message string gets the message
  * @return bool TRUE if mail is sent and FALSE otherwise
  */
-function send_email($subject, $message)
+function send_email($email, $subject, $message)
 {
-	return mail('info@parsclick.net', $subject, $message, 'From: Parsclick <do-not-reply@parsclick.net>' . "\r\n");
+	return mail($email, $subject, $message, 'From: Parsclick <do-not-reply@parsclick.net>' . "\r\n");
 }
 
 /**

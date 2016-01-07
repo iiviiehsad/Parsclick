@@ -26,7 +26,7 @@ if(isset($_POST['submit'])) {
 	$course->created_at = strftime("%Y-%m-%d %H:%M:%S", time());
 	$result             = $course->create();
 	if($result) {
-		send_email('New Course!', 'New Course Added');
+		send_email('info@parsclick.net', 'New Course!', 'New Course Added');
 		$session->message("درس ساخته شد. درس قبل از نشر باید توسط مدیران بازبینی شود.");
 		redirect_to("author_courses.php");
 	} else {
