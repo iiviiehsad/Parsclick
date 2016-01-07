@@ -2328,9 +2328,9 @@ function member_comments_for_course($category_array, $course_array)
 		if($category_array && $course_array) {
 			if($category_array->id == $category->id || $course_array->category_id == $category->id) {
 				$course_set = Course::find_courses_for_category($category->id);
-				$output .= "<ul>";
+				$output .= "<ul class='list-unstyled'>";
 				foreach($course_set as $course) {
-					$output .= "<li>";
+					$output .= "<li>- ";
 					$output .= "<a href='member-comments?category=";
 					$output .= urlencode($category->id) . "&course=";
 					$output .= urlencode($course->id) . "'";
