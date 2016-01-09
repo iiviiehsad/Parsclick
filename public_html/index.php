@@ -8,7 +8,6 @@ $filename = basename(__FILE__);
 <?php include("_/components/php/snippet-carousel.php"); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<?php include("_/components/php/article-intro.php"); ?>
-	<?php include("_/components/php/article-facebook-comment.php"); ?>
 </section><!-- main -->
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<?php include("_/components/php/google-search.php"); ?>

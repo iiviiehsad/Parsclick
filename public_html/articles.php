@@ -138,6 +138,8 @@ if(isset($current_article)) {
 			</li>
 		</ul>
 		<?php include("_/components/php/aside-read.php"); ?>
+<!--		<h2>تبلیغات</h2>-->
+		<?php include("_/components/php/aside-ad.php"); ?>
 	</aside>
 </section>
 <?php include_layout_template("footer.php"); ?>

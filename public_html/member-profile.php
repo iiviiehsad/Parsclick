@@ -22,23 +22,23 @@ $errors = "";
 			<dt>نام خانوادگی:</dt>
 			<dd><?php echo htmlentities(ucfirst($member->last_name)); ?></dd>
 			<dt>جنس:</dt>
-			<dd><?php echo !empty($member->gender) ? htmlentities(ucfirst($member->gender)) : "-"; ?></dd>
+			<dd><?php echo ! empty($member->gender) ? htmlentities(ucfirst($member->gender)) : "-"; ?></dd>
 			<dt>کشور:</dt>
-			<dd><?php echo !empty($member->address) ? htmlentities(ucfirst($member->address)) : "-"; ?></dd>
+			<dd><?php echo ! empty($member->address) ? htmlentities(ucfirst($member->address)) : "-"; ?></dd>
 			<dt>شهر:</dt>
-			<dd><?php echo !empty($member->city) ? htmlentities(ucfirst($member->city)) : "-"; ?></dd>
+			<dd><?php echo ! empty($member->city) ? htmlentities(ucfirst($member->city)) : "-"; ?></dd>
 			<dt>ایمیل:</dt>
-			<dd class="arial"><?php echo !empty($member->email) ? htmlentities(strtolower($member->email)) : "-"; ?></dd>
+			<dd class="arial"><?php echo ! empty($member->email) ? htmlentities(strtolower($member->email)) : "-"; ?></dd>
 			<dt>&nbsp;</dt>
 			<dd><a href="member-edit-profile" class="btn btn-primary">ویرایش</a></dd>
 			<dt>&nbsp;</dt>
 			<dd>
 				<div class="alert alert-info">
-					<i class="fa fa-info-circle fa-lg"></i> بچه ها اگر آواتار یا عکس پروفایل ندارید
-					<a target="_blank" data-toggle="tooltip" title="آپلود کنید" href="http://fa.gravatar.com/">اینجا رو کلیک کنید</a>
-					                                                         تا آپلود کنید. اگر می دونید گراواتار چیه که خیلی هم عالی ولی اگر نمیدونید خوب گراواتار جایی
-					                                                         هست که شما عکسی یا آواتاری از خودتون آپلود می کنید فقط برای یکبار اما تمام جاهای دیگه و سایت
-					                                                         ها از این عکس که مربوط به ایمیل آدرسی هست که شما ثبت نام کردید ازش استفاده می کنند.
+					<i class="fa fa-info-circle fa-lg"></i> اگر آواتار یا عکس پروفایل ندارید
+					<a target="_blank" data-toggle="tooltip" title="آپلود کنید" href="http://fa.gravatar.com/">
+						<mark>اینجا رو کلیک کنید</mark>
+					</a>تا آپلود کنید. از شما خواهش می کنم که حتما این کار را انجام دهید.
+					<span class="underline">نداشتن گراواتار یعنی شما کاربر درستی نیستید!</span>
 				</div>
 			</dd>
 		</dl>
