@@ -1916,7 +1916,7 @@ function log_action($action, $message = "")
  */
 function admin_articles($subject_array, $article_array)
 {
-	$output      = "<ol>";
+	$output      = "<ol type='persian'>";
 	$subject_set = Subject::find_all(FALSE);
 	foreach($subject_set as $subject) {
 		$output .= "<li>";
@@ -1934,9 +1934,9 @@ function admin_articles($subject_array, $article_array)
 		}
 		$output .= "</div>";
 		$article_set = Article::find_articles_for_subject($subject->id, FALSE);
-		$output .= "<ul>";
+		$output .= "<ol>";
 		foreach($article_set as $article) {
-			$output .= "<li>";
+			$output .= "<li value='". $article->position ."'>";
 			$output .= "<a href='admin_articles.php?subject=";
 			$output .= urlencode($subject->id) . "&article=";
 			$output .= $article->id . "'";
@@ -1960,7 +1960,7 @@ function admin_articles($subject_array, $article_array)
 			}
 			$output .= "</li>";
 		}
-		$output .= "</ul></li>";
+		$output .= "</ol></li>";
 	}
 	$output .= "</ol>";
 
@@ -2125,7 +2125,7 @@ function find_selected_article($public = FALSE)
  */
 function admin_courses($category_array, $course_array)
 {
-	$output       = "<ol>";
+	$output       = "<ol type='persian'>";
 	$category_set = Category::find_all(FALSE);
 	foreach($category_set as $category) {
 		$output .= "<li>";
@@ -2145,9 +2145,9 @@ function admin_courses($category_array, $course_array)
 		}
 		$output .= "</div>";
 		$course_set = Course::find_courses_for_category($category->id, FALSE);
-		$output .= "<ul>";
+		$output .= "<ol style='margin-right:20px;'>";
 		foreach($course_set as $course) {
-			$output .= "<li>";
+			$output .= "<li value='". $course->position ."'>";
 			$output .= "<a href='admin_courses.php?category=";
 			$output .= urlencode($category->id) . "&course=";
 			$output .= $course->id . "'";
@@ -2171,7 +2171,7 @@ function admin_courses($category_array, $course_array)
 			}
 			$output .= "</li>";
 		}
-		$output .= "</ul></li>";
+		$output .= "</ol></li>";
 	}
 	$output .= "</ol>";
 
