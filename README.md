@@ -1,4 +1,7 @@
-<div dir="rtl">![Parsclick](public_html/images/misc/logo.png "Parsclick")</div>
+<span dir="rtl">
+	![Parsclick](public_html/images/misc/logo.png "Parsclick")
+</span>
+
 Parsclick
 ===================
 This project is made by Hassan Azimi for Parsclick website
