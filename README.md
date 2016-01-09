@@ -1,6 +1,6 @@
-<span dir="rtl">
+<p style="direction:rtl;">
 	![Parsclick](public_html/images/misc/logo.png "Parsclick")
-</span>
+</p>
 
 Parsclick
 ===================
