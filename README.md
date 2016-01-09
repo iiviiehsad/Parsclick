@@ -1,4 +1,4 @@
-![Parsclick](public_html/images/misc/logo.png "Logo Title Text 1")
+<div dir="rtl">![Parsclick](public_html/images/misc/logo.png "Parsclick")</div>
 Parsclick
 ===================
 This project is made by Hassan Azimi for Parsclick website
