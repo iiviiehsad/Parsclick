@@ -1,4 +1,4 @@
-![Parsclick](public_html/images/misc/logo.png "Parsclick"){style="float:right;"}
+![Parsclick](public_html/images/misc/logo.png "Parsclick"){float:right;}
 
 Parsclick
 ===================
