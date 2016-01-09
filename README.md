@@ -1,6 +1,4 @@
-<span style="direction:rtl;">
-	![Parsclick](public_html/images/misc/logo.png "Parsclick")
-</span>
+![Parsclick](public_html/images/misc/logo.png "Parsclick"){style="float:right;"}
 
 Parsclick
 ===================
