@@ -12,8 +12,11 @@ $title    = "پارس کلیک - درباره ما";
 		<aside class="socialmedia">
 			<?php include "_/components/php/aside-twitter.php" ?>
 			<div class="center">
+				<hr/>
 				<img src="images/others/All.png" alt="Programming Languages"/>
+				<hr/>
 			</div><!-- center -->
 		</aside><!-- socialmedia -->
+		<?php include('_/components/php/aside-ad.php'); ?>
 	</section><!-- sidebar -->
 <?php include_layout_template("footer.php"); ?>

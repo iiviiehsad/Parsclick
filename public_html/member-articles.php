@@ -151,6 +151,7 @@ $body   = "";
 					<span class="label label-as-badge label-danger pull-left">اخبار</span>
 				</li>
 			</ul>
+			<p><?php include('_/components/php/aside-ad.php'); ?></p>
 		</aside>
 	</section>
 <?php include_layout_template("footer.php"); ?>

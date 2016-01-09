@@ -12,6 +12,7 @@ $title    = "پارس کلیک - سوالات و جواب ها";
 	<?php include("_/components/php/aside-register.php"); ?>
 	<?php include("_/components/php/aside-twitter.php"); ?>
 	<?php include("_/components/php/aside-twitter-embed.php"); ?>
+	<?php include("_/components/php/aside-ad.php"); ?>
 </section><!-- sidebar -->
 <?php include_layout_template("footer.php"); ?>
 

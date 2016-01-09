@@ -36,6 +36,7 @@ if(isset($_POST['stripeToken'])) {
 			   کنند و همه رو آگاه کنند، دعوت میکنم به ما ایمیل بدهند. ما این دوستان را به عنوان تبلیغ کننده در فیسبوک
 			   ثبت نام خواهیم کرد.</p>
 		</article>
+		<?php include('_/components/php/aside-ad.php'); ?>
 		<?php include("_/components/php/aside-share.php"); ?>
 	</section><!-- main -->
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">

@@ -59,14 +59,15 @@ $newest_article = Article::find_newest_article();
 		   این دروس درون دسته ها یا مقوله هایی برای دسترسی آسانتر طبقه بندی شده اند.در اولین صفحه شما قادر به جستجو کردن
 		   درس ها هستید اگر دنبال درس خاصی می گردید. هر درسی شامل یک فایل تمرینی می باشد که با دانلود کردن این فایل زیپ
 		   تمامی فایل هایی تمرینی بعد از خارج کردن فایل فشرده قابل مشاهده خواهند بود. در ضمن نظر نویسی برای هر درس
-		   جداگانه امکان پذیر است.
-			<br/><a class="btn btn-small btn-danger" href="member-courses">دیدن درس ها</a></p>
+		   جداگانه امکان پذیر است.</p>
+		<p><a class="btn btn-small btn-danger" href="member-courses">دیدن درس ها</a></p>
 		<hr/>
 		<i class="pull-right fa fa-newspaper-o fa-5x text-danger"></i>
 		<p>با دنبال کردن مقالات ها شما به مقاله ها دسترسی پیدا خواهید کرد. مقاله هایی که در رابطه با کامپیوتر هستند. این
 		   مقاله ها درون موضوعات برای دسترسی آسانتر طبقه بندی شده اند.در اولین صفحه شما قادر به جستجو کردن مقاله ها
-		   هستید اگر دنبال مقاله ی خاصی می گردید.
-			<br/><a class="btn btn-small btn-danger" href="member-articles">دیدن مقالات</a></p>
+		   هستید اگر دنبال مقاله ی خاصی می گردید.</p>
+		<p><a class="btn btn-small btn-danger" href="member-articles">دیدن مقالات</a></p>
+		<p><?php include('_/components/php/aside-ad.php'); ?></p>
 	</aside>
 </section>
 <?php include_layout_template("footer.php"); ?>
