@@ -128,7 +128,7 @@ $body   = "";
 					</div>
 				</div>
 			<?php } else { ?>
-				<div class="hidden-md"><?php include_once("_/components/php/member_article_info.php"); ?></div>
+				<div class="visible-lg"><?php include_once("_/components/php/member_article_info.php"); ?></div>
 			<?php } ?>
 		</article>
 	</section>
