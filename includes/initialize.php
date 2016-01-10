@@ -13,6 +13,11 @@ defined('DOMAIN') ? NULL : define('DOMAIN', 'www.parsclick.net');
 defined('LIB_PATH') ? NULL : define('LIB_PATH', SITE_ROOT . DS . 'includes');
 defined('PUB_PATH') ? NULL : define('PUB_PATH', SITE_ROOT . DS . 'public_html');
 
+defined('ARTICLE_ALLOWABLE_TAGS') ? NULL : define(
+	'ARTICLE_ALLOWABLE_TAGS',
+	"<h2><h3><h4><h5><h6><strong><em><i><p><code><pre><mark><span><ul><ol><li><dl><dt><dd><a><img><iframe><video><audio>"
+);
+
 // Email Details
 // TODO: Change based on email configuration
 defined('SMTP') ? NULL : define('SMTP', "n1plcpnl0045.prod.ams1.secureserver.net");

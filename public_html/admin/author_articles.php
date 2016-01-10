@@ -45,7 +45,7 @@ echo output_message($message);
 						<?php } ?>
 					</div>
 					<div class="panel-body">
-						<p><?php echo nl2br(strip_tags($current_article->content, '<h2><h3><h4><h5><h6><strong><em><u><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd><img><a>')); ?></p>
+						<p><?php echo nl2br(strip_tags($current_article->content, ARTICLE_ALLOWABLE_TAGS)); ?></p>
 					</div>
 					<div class="panel-footer">
 						<article id="comments">

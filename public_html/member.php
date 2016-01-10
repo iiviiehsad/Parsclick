@@ -48,7 +48,7 @@ $newest_article = Article::find_newest_article();
 			<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($newest_article->created_at)); ?>
 		</h5>
 		<hr>
-		<?php echo nl2br(strip_tags($newest_article->content, '<h2><h3><h4><h5><h6><strong><em><u><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd><a><img>')); ?>
+		<?php echo nl2br(strip_tags($newest_article->content, ARTICLE_ALLOWABLE_TAGS)); ?>
 	</article>
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">

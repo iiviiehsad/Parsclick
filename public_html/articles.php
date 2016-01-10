@@ -45,7 +45,7 @@ if(isset($current_article)) {
 				<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
 			</h5>
 			<hr/>
-			<?php echo nl2br(strip_tags($current_article->content, '<h2><h3><h4><h5><h6><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd><img><a>')); ?>
+			<?php echo nl2br(strip_tags($current_article->content, ARTICLE_ALLOWABLE_TAGS)); ?>
 			<hr/>
 			<article id="comments">
 				<h2>نظرات</h2>
@@ -119,7 +119,7 @@ if(isset($current_article)) {
 				<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($newest_article->created_at)); ?>
 			</h5>
 			<hr>
-			<?php echo nl2br(strip_tags($newest_article->content, '<h2><h3><h4><h5><h6><strong><em><p><code><pre><mark><kbd><ul><ol><li><dl><dt><dd><img><a>')); ?>
+			<?php echo nl2br(strip_tags($newest_article->content, ARTICLE_ALLOWABLE_TAGS)); ?>
 		<?php } ?>
 	</article>
 </section>
