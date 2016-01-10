@@ -83,12 +83,14 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 			</div>
 			<br/>
 			<fieldset>
-				<legend><i class="fa fa-comments-o"></i> فرم سوال و نظر</legend>
+				<legend>
+					<img class="img-circle pull-left visible-sm" width="50" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->username; ?>">
+					<i class="fa fa-comments-o"></i> فرم سوال و نظر</legend>
 				<form class="form-horizontal submit-comment" action="add-comment.php" method="POST" role="form">
 					<!--content-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
-							<img class="img-circle pull-left" width="100" style="padding-right:0;" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->username; ?>">
+							<img class="img-circle pull-right hidden-sm" width="100" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->username; ?>">
 						</label>
 						<input type="hidden" name="course" value="<?php echo urlencode($current_course->id); ?>">
 						<div class="controls">

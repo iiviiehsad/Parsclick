@@ -1,5 +1,5 @@
 <h2>به قسمت مقالات خوش آمدید.</h2>
-<section class="visible-lg">
+<section>
 	<h4>تعداد نویسندگان: <span class="badge arial"><?php echo count(Author::find_active_authors()); ?></span></h4>
 	<?php $authors = Author::find_active_authors(); ?>
 	<?php foreach($authors as $author) { ?>

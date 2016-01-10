@@ -12,7 +12,7 @@ $playlist_set = Playlist::find_playlist_for_member($member->id);
 <?php echo output_message($message); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article class="member_profile">
-		<h1><i class="fa fa-floppy-o fa-lg"></i> لیست پخش <?php if(!$playlist_set) { echo "خالی است."; } ?></h1>
+		<h3><i class="fa fa-floppy-o fa-lg"></i> لیست پخش <?php if(!$playlist_set) { echo "خالی است."; } ?></h3>
 		<?php if($playlist_set) { ?>
 			<span class='badge'>تعداد <?php echo convert(Playlist::count_playlist_for_member($member->id)); ?> درس داخل لیست پخش شماست.</span>
 		<?php } else { ?>

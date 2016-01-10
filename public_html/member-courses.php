@@ -138,7 +138,7 @@ find_selected_course(TRUE);
 					<?php } ?>
 				<?php } ?>
 			<?php } else { ?>
-				<?php include_once("_/components/php/member_course_info.php"); ?>
+				<div class="hidden-sm"><?php include_once("_/components/php/member_course_info.php"); ?></div>
 			<?php } ?>
 		</article>
 	</section>
