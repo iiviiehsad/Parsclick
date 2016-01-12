@@ -25,7 +25,7 @@ How To Install On Heroku
 7. `heroku run bash --parsclick`
 8. Create a PostgreSQL database and import the database structure from `Database/Parsclick_postgres_structure_only.sql`
 9. We have `Procfile` in the project. If you don't have the file, you can create it and add these:
- 9.1. `web: vendor/bin/heroku-php-apache2` for apache server
- 9.2. `web: vendor/bin/heroku-php-nginx` for nginx server
- 9.3. `web: vendor/bin/heroku-php-apache2 public/` to specify the root of the app
+  9.1. `web: vendor/bin/heroku-php-apache2` for apache server
+  9.2. `web: vendor/bin/heroku-php-nginx` for nginx server
+  9.3. `web: vendor/bin/heroku-php-apache2 public/` to specify the root of the app
   
