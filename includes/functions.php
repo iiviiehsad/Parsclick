@@ -662,7 +662,7 @@ function admin_articles($subject_array, $article_array)
 		}
 		$output .= "</div>";
 		$article_set = Article::find_articles_for_subject($subject->id, FALSE);
-		$output .= "<ol>";
+		$output .= "<ol style='margin-right:20px;'>";
 		foreach($article_set as $article) {
 			$output .= "<li value='" . $article->position . "'>";
 			$output .= "<a href='admin_articles.php?subject=";

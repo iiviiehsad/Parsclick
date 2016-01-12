@@ -1,6 +1,7 @@
 <Files ~ "^\.(htaccess|htpasswd)$">
 	deny from all
 </Files>
+
 ErrorDocument 400 /400
 ErrorDocument 403 /403
 ErrorDocument 404 /404
@@ -25,9 +26,9 @@ ErrorDocument 500 /500
 		# RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L,NC]
 
     ## TODO: To make website Unavailable
-    # RewriteCond %{REQUEST_URI} !\.(css|jpg|png|gif|bmp|js|min|svg|eot|ttf|woff|woff2|otf|ico)  [NC]
-    # RewriteCond %{REQUEST_URI} !unavailable\.html  [NC]
-    # RewriteRule .*   /unavailable.html [R=302,L]
+    # RewriteCond %{REQUEST_URI} !\.(css|jpg|png|gif|bmp|js|min|svg|eot|ttf|woff|woff2|otf)  [NC]
+    # RewriteCond %{REQUEST_URI} !unavailable  [NC]
+    # RewriteRule .*   /unavailable [R=302,L]
 
     DirectoryIndex index.php index.html
 
@@ -36,13 +37,13 @@ ErrorDocument 500 /500
     # RewriteCond %{THE_REQUEST} ^.*/index.php
     # RewriteRule ^(.*)index(\.php)?$ /$1 [R=307,L]
 
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d [OR]
+    RewriteCond %{REQUEST_FILENAME} !-f [OR]
+    RewriteCond %{REQUEST_FILENAME} -l
+
     RewriteCond %{REQUEST_FILENAME}\.php -f
     RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L,NC]
 
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME}\.html -f
     RewriteRule !.*\.html$ %{REQUEST_FILENAME}.html [QSA,L,NC]
 
@@ -59,50 +60,7 @@ ErrorDocument 500 /500
     </FilesMatch>
 
 </IfModule>
-# END: CHECK IF mod_rewrite is ON
 
 ##################################################################################
 # Uncomment to use Username: amirhassanazimi and Password: 1234-asdf for the site
 ##################################################################################
-
-#AuthType Basic
-#AuthName "Access to Parsclick"
-#AuthUserFile /.htpasswd
-#Require valid-user
-
-###################################################################################
-#                                   PHP INI                                       #
-###################################################################################
-
-# TODO: stop revealing php information
-#php_flag expose_php off   #only php.ini
-#ServerSignature Off       #only httpd.conf
-#ServerTokens Prod         #only httpd.conf
-
-#php_flag session.auto_start off
-#php_flag session.use_cookies on
-#php_flag session.use_only_cookies on
-#php_flag session.use_trans_sid off
-
-## comment out for PHP < 5.5.2
-# php_flag session.use_strict_mode on
-
-## letters and numbers for session name
-# php_value session.name PARSCLICKSESSION
-#php_value session.cache_limiter nocache
-
-### Cookie settings
-## add your domain for better security
-#php_value session.cookie_domain ''
-## specify path for storing cookies
-#php_value session.cookie_path '/parsclick'
-# php_value session.cookie_lifetime 0
-## sessions only can be accessible via http request
-# php_flag session.cookie_httponly on
-
-# TODO: comment out for https://
-#php_flag session.cookie_secure off
-
-#php_value session.gc_maxlifetime 1440
-#php_value session.gc_probability 1
-#php_value session.gc_divisor 100
