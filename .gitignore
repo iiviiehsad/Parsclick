@@ -1,8 +1,6 @@
 Database
 /index.php
-### Exclude any PSD/AI source ###
-*.psd
-*.ai
+logs
 
 # package.json
  
@@ -19,10 +17,6 @@ build/*
 *.wmv
 *.webm
 *.mov
-!parsclick.mp4
-
-### Netbeans ###
-nbproject/*
 
 ### Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm ###
 
