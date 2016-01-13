@@ -16,21 +16,21 @@
 			<section class="row">
 				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="username">اسم کاربری * &nbsp;</label>
 				<div class="controls">
-					<input onblur="checkUser();" onkeyup="checkUser();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8 edit" type="text" maxlength="50" name="username" id="username" placeholder="Username (حروف انگلیسی)" required pattern="[a-zA-Z0-9_.]+" value="<?php echo $_POST["username"]; ?>"/>
+					<input onblur="checkUser();" onkeyup="checkUser();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8 edit" type="text" maxlength="20" name="username" id="username" placeholder="Username (حروف انگلیسی)" required pattern="[a-zA-Z0-9_.]+" value="<?php echo $_POST["username"]; ?>"/>
 				</div><!-- controls -->
 			</section><!-- row -->
 
 			<section class="row">
 				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="password">پسورد * &nbsp;</label>
 				<div class="controls">
-					<input onblur="checkPass();" onkeyup="checkPass();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8 edit" type="password" maxlength="50" name="password" id="password" placeholder="Password" required pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
+					<input onblur="checkPass();" onkeyup="checkPass();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8 edit" type="password" maxlength="30" name="password" id="password" placeholder="Password" required pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
 				</div><!-- controls -->
 			</section><!-- row -->
 
 			<section class="row">
 				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="confirm_pass">تایید پسورد  * &nbsp;</label>
 				<div class="controls">
-					<input onblur="checkConfirmPass();" onkeyup="checkConfirmPass();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8 edit" type="password" maxlength="50" name="confirm_pass" id="confirm_pass" placeholder="Confirm Password" required pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
+					<input onblur="checkConfirmPass();" onkeyup="checkConfirmPass();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8 edit" type="password" maxlength="30" name="confirm_pass" id="confirm_pass" placeholder="Confirm Password" required pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
 				</div><!-- controls -->
 			</section><!-- row -->
 

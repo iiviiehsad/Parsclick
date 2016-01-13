@@ -20,6 +20,8 @@ if($_POST) {
 				//validations
 				if(!has_presence($_POST["username"]) || !has_presence($_POST["password"])) {
 					$errors = "اسم کاربری و پسورد را خالی نگذارید!";
+				} elseif(!has_length($_POST["username"], ['max' => 20])) {
+					$errors = "اسم کاربری بیشتر از ۲۰ حرف است!";
 				} elseif($_POST["password"] !== $_POST["confirm_pass"]) {
 					$errors = "پسورد ها مطابقت ندارند!";
 				} elseif(!has_length($_POST["password"], ['min' => 6])) {
