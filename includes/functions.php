@@ -1285,6 +1285,7 @@ function active()
 		}
 	} elseif(($filename == "contact.php")) {
 		echo "<script>$(\"a:contains('تماس با ما')\").parent().addClass('active');</script>";
+		include('notice.php');
 	}
 }
 
