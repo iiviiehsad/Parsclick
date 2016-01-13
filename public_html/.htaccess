@@ -16,26 +16,29 @@ ErrorDocument 500 /500
     Options -MultiViews
 
     RewriteEngine On
+    ## TODO: Production:
     RewriteBase /Parsclick/public_html
+    ## TODO: Development:
+    # RewriteBase /
 
-    ## TODO: Remove WWW
+    ## TODO: Remove WWW:
     # RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
     # RewriteRule ^(.*)$ http://%1/$1 [R=301,NC,L]
-    ## TODO: Force WWW
+    ## TODO: Force WWW (development):
     # RewriteCond %{HTTP_HOST} !^www\. [NC]
 		# RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L,NC]
 
-    ## TODO: To make website Unavailable
+    ## TODO: To make website Unavailable:
     # RewriteCond %{REQUEST_URI} !\.(css|jpg|png|gif|bmp|js|min|svg|eot|ttf|woff|woff2|otf)  [NC]
     # RewriteCond %{REQUEST_URI} !unavailable  [NC]
-    # RewriteRule .*   /unavailable [R=302,L]
+    # RewriteRule .* /unavailable [R=302,L]
 
     DirectoryIndex index.php index.html
 
     ## Remove index from URL TODO: uncomment
-    # RewriteCond %{THE_REQUEST} ^.*/index [OR]
-    # RewriteCond %{THE_REQUEST} ^.*/index.php
-    # RewriteRule ^(.*)index(\.php)?$ /$1 [R=307,L]
+    RewriteCond %{THE_REQUEST} ^.*/index [OR]
+    RewriteCond %{THE_REQUEST} ^.*/index.php
+    RewriteRule ^(.*)index(\.php)?$ /$1 [R=307,L]
 
     RewriteCond %{REQUEST_FILENAME} !-d [OR]
     RewriteCond %{REQUEST_FILENAME} !-f [OR]
