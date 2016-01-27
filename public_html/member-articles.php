@@ -147,7 +147,7 @@ $body   = "";
 			   ویدیو و خیلی چیزهای دیگه به وبلاگ پارس کلیک سر بزنید.</p>
 			<ul class="list-group">
 				<li class="list-group-item">
-					<a href="http://parsclick.blogspot.co.uk/" target="_blank">وبلاگ پارس کلیک</a>
+					<a href="http://blog.parsclick.net/" target="_blank">وبلاگ پارس کلیک</a>
 					<span class="label label-as-badge label-danger pull-left">اخبار</span>
 				</li>
 			</ul>

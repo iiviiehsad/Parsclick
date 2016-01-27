@@ -4,8 +4,7 @@
 	<title><?php global $title; echo isset($title) ? $title : "پارس کلیک - سینمای برنامه نویسان"; ?></title>
 	<meta charset="UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<meta name="description" content="کاملترین سایت آموزش ویدئویی رایگان کامپیوتر, وب, برنامه نویسی, مدیریت محتوا,
-	 علم فنی کامپیوتر, طراحی وب, نرم افزار, آدوبی, دیتابیس, اپل, گوگل, مایکروسافت و بیشتر"/>
+	<meta name="description" content="کامل ترین سینمای برنامه نویسان و آموزش های برنامه نویسی وب، مدیریت محتوا، طراحی وب، نرم افزار، آدوبی، دیتابیس و اپلیکیشن های روز دنیا به صورت ویدئویی برای پارسی زبانان و ایرانیان"/>
 	<meta name="keywords" content="آموزش, کامپیوتر, برنامه نویسی, وب, طراحی, ویرایش, جاوا, روبی, پایتون, پی‌اچ‌پی, سی‌اس‌اس, اچ‌تی‌ام‌ال, جاوااسکریپت, گیت, آیفون, اندروید, وردپرس, جوملا, دروپال, بوتسترپ, جی‌کوئری, ای‌جکس, آدوبی"/>
 	<meta name="copyright" content="parsclick.net">
 	<meta name="author" content="Amir Hassan Azimi" />
