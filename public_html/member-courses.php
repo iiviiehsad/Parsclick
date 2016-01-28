@@ -67,6 +67,8 @@ find_selected_course(TRUE);
 					<?php } //foreach file ?>
 				<?php } //num_files_for_course ?>
 				<!-- ------------------------------------------------------------------------------------------------- -->
+
+				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php if(isset($current_course->youtubePlaylist)) {
 					$googleapi  = "https://www.googleapis.com/youtube/v3/playlistItems";
 					$playListID = $current_course->youtubePlaylist;
@@ -99,6 +101,9 @@ find_selected_course(TRUE);
 										<div class="table-responsive">
 											<table class="table table-condensed table-hover">
 												<tbody>
+												<div class="embed-responsive embed-responsive-16by9">
+													<iframe width="640" height="360" src="https://www.youtube.com/embed/?list=<?php echo $current_course->youtubePlaylist; ?>&hl=fa-ir" frameborder="0" allowfullscreen></iframe>
+												</div>
 												<?php foreach($json['items'] as $item): ?>
 													<tr>
 														<td>
