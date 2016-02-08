@@ -12,6 +12,7 @@ class Author extends DatabaseObject {
 			'first_name',
 			'last_name',
 			'email',
+			'parsclickmail',
 			'status',
 			'photo',
 			'token'
@@ -22,6 +23,7 @@ class Author extends DatabaseObject {
 	public           $first_name;
 	public           $last_name;
 	public           $email;
+	public           $parsclickmail;
 	public           $status;
 	public           $photo;
 	public           $token;

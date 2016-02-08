@@ -94,6 +94,12 @@ echo output_message($message, $errors);
 					</div>
 				</section>
 				<section class="row">
+					<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="parsclickmail">ایمیل اختصاصی</label>
+					<div class="controls">
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" disabled type="email" name="parsclickmail" id="parsclickmail" placeholder="Parsclick Email" required value="<?php echo htmlentities($author->parsclickmail); ?>"/>
+					</div>
+				</section>
+				<section class="row">
 					<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="photo">عکس پروفایل</label>
 					<div class="controls">
 						<label style="cursor:pointer;" class="control-label btn btn-small btn-primary" for="photo">

@@ -4,18 +4,19 @@ $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
 $author   = Author::find_by_id($_GET["id"]);
 $errors   = "";
-if(!$author) {
+if( ! $author) {
 	$session->message("نویسنده پیدا نشد!");
 	redirect_to("author_list.php");
 }
 if(isset($_POST['submit'])) {
-	$author->id         = (int)$_GET["id"];
-	$author->username   = strtolower($_POST["username"]);
-	$author->first_name = ucwords(strtolower($_POST["first_name"]));
-	$author->last_name  = ucwords(strtolower($_POST["last_name"]));
-	$author->email      = strtolower($_POST["email"]);
-	$author->status     = (int)$_POST["status"];
-	$result             = $author->save();
+	$author->id            = (int)$_GET["id"];
+	$author->username      = strtolower($_POST["username"]);
+	$author->first_name    = ucwords(strtolower($_POST["first_name"]));
+	$author->last_name     = ucwords(strtolower($_POST["last_name"]));
+	$author->email         = strtolower($_POST["email"]);
+	$author->parsclickmail = strtolower($_POST["parsclickmail"]);
+	$author->status        = (int)$_POST["status"];
+	$result                = $author->save();
 	if($result) { // Success
 		$session->message("نویسنده بروزرسانی شد.");
 		redirect_to("author_list.php");
@@ -24,17 +25,17 @@ if(isset($_POST['submit'])) {
 	}
 } else {
 }
- include_layout_template("admin_header.php");
- include("../_/components/php/admin_nav.php");
- echo output_message($message, $errors);
+include_layout_template("admin_header.php");
+include("../_/components/php/admin_nav.php");
+echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-9 col-lg-9">
 		<article>
 			<h2><i class="fa fa-pencil-square"></i> ویرایش نویسنده</h2>
-
 			<form class="form-horizontal" action="edit_author.php?id=<?php echo urlencode($author->id); ?>" method="post" role="form">
 				<fieldset>
-					<legend><i class="fa fa-user"></i> <?php echo htmlentities(ucwords(strtolower($author->full_name()))); ?></legend>
+					<legend><i class="fa fa-user"></i> <?php echo htmlentities(ucwords(strtolower($author->full_name()))); ?>
+					</legend>
 					<!--username-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="username">اسم کاربری</label>
@@ -67,7 +68,15 @@ if(isset($_POST['submit'])) {
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="email">ایمیل</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="email" id="post_code" placeholder="Email" value="<?php echo htmlentities($author->email); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="email" id="email" placeholder="Email" value="<?php echo htmlentities($author->email); ?>"/>
+						</div>
+					</section>
+					<!--parsclickmail-->
+					<section class="row">
+						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="parsclickmail">ایمیل پارس
+						                                                                                      کلیک</label>
+						<div class="controls">
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="parsclickmail" id="parsclickmail" placeholder="Parsclick Mail" value="<?php echo htmlentities($author->parsclickmail); ?>"/>
 						</div>
 					</section>
 					<!--status-->
@@ -75,13 +84,19 @@ if(isset($_POST['submit'])) {
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="status">فعال</label>
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="status" id="inlineRadioNo" value="0" <?php if($author->status == 0) { echo "checked"; } ?> /> خیر
+								<input type="radio" name="status" id="inlineRadioNo" value="0" <?php if($author->status == 0) {
+									echo "checked";
+								} ?> /> خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
-								<input type="radio" name="status" id="inlineRadioYes" value="1" <?php if($author->status == 1) { echo "checked"; } ?> /> بله
+								<input type="radio" name="status" id="inlineRadioYes" value="1" <?php if($author->status == 1) {
+									echo "checked";
+								} ?> /> بله
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
-								<input type="radio" name="status" id="inlineRadioYes" value="2" <?php if($author->status == 2) { echo "checked"; } ?> /> مسدود
+								<input type="radio" name="status" id="inlineRadioYes" value="2" <?php if($author->status == 2) {
+									echo "checked";
+								} ?> /> مسدود
 							</label>
 						</div>
 					</section>
