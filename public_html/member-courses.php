@@ -67,8 +67,6 @@ find_selected_course(TRUE);
 					<?php } //foreach file ?>
 				<?php } //num_files_for_course ?>
 				<!-- ------------------------------------------------------------------------------------------------- -->
-
-				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php if(isset($current_course->youtubePlaylist)) {
 					$googleapi  = "https://www.googleapis.com/youtube/v3/playlistItems";
 					$playListID = $current_course->youtubePlaylist;

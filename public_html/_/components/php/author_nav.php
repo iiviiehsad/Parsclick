@@ -16,6 +16,7 @@
 					<li><a tabindex="-1" href="author_articles.php"><i class="fa fa-newspaper-o fa-lg"></i> مقالات</a></li>
 				</ul>
 			</li>
+			<li><a href="author_contact.php"><i class="fa fa-envelope fa-lg"></i> ارتباط با همکاران</a></li>
 			<li><a href="logout.php"><i class="fa fa-sign-out fa-lg"></i> خروج</a></li>
 		</ul><!-- nav -->
 	</section><!-- navbar -->
