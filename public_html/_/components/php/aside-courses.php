@@ -1,6 +1,7 @@
 <aside>
 	<h2>برخی از آموزش های ویدیویی</h2>
 	<div class="modalphotos photogrid clearfix center">
+		<img class="img-thumbnail" src="images/courses/React-tn.jpg" alt="ری اکت جی اس"/>
 		<img class="img-thumbnail" src="images/courses/Angular-tn.jpg" alt="انگولار جی اس"/>
 		<img class="img-thumbnail" src="images/courses/Express-tn.jpg" alt="اکسپرس جی اس"/>
 		<img class="img-thumbnail" src="images/courses/Node-tn.jpg" alt="نود جی اس"/>
