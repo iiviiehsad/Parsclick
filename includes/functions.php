@@ -1137,7 +1137,7 @@ function public_articles($subject_array, $article_array)
 		if(Article::num_articles_for_subject($subject->id)) {
 			$output .= "<li class='list-group-item'>";
 			$output .= "<span class='badge'>" . Article::count_articles_for_subject($subject->id, TRUE) . "</span>";
-			$output .= "<a href='articles?subject=" . urlencode($subject->id) . "'";
+			$output .= "<a href='/articles?subject=" . urlencode($subject->id) . "'";
 			if($subject_array && $subject->id == $subject_array->id) {
 				$output .= " class='lead selected' ";
 			}
@@ -1154,7 +1154,7 @@ function public_articles($subject_array, $article_array)
 					$output .= "<ul class='list-unstyled'>";
 					foreach($article_set as $article) {
 						$output .= "<li>- ";
-						$output .= "<a href='articles?subject=" . urlencode($subject->id) . "&article=" . urlencode($article->id) . "'";
+						$output .= "<a href='/articles?subject=" . urlencode($subject->id) . "&article=" . urlencode($article->id) . "'";
 						if($article_array && $article->id == $article_array->id) {
 							$output .= " class='selected'";
 						}

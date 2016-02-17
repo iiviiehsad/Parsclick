@@ -1,3 +1,1 @@
 User-agent: *
-
-Sitemap: http://www.parsclick.net/sitemap.xml
