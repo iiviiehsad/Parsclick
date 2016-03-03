@@ -34,7 +34,6 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 			<fieldset>
 				<legend>
 					<img class="img-circle pull-left visible-sm" width="50" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->username; ?>">
-					<i class="fa fa-comments-o"></i> فرم سوال و نظر
 				</legend>
 				<form class="form-horizontal submit-comment" action="add-comment.php" method="POST" role="form">
 					<!--content-->
