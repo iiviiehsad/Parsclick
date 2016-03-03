@@ -23,6 +23,7 @@ class pagination {
 	 * page 1 has an offset of 0   (1-1) * 20 = 0
 	 * page 2 has an offset of 20  (2-1) * 20 = 20
 	 * in other words, page 2 starts with item 21
+	 *
 	 * @return int offset
 	 */
 	public function offset()
@@ -32,6 +33,7 @@ class pagination {
 
 	/**
 	 * total_count divided by per_page:
+	 *
 	 * @return float total number of pages
 	 */
 	public function total_page()

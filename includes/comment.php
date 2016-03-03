@@ -66,7 +66,7 @@ class Comment extends DatabaseObject {
 	 */
 	public static function find_comments($course_id = 0, $limit = 0, $offset = 0)
 	{
-		$sql = "SELECT * FROM " . self::$table_name . " WHERE course_id = {$course_id} LIMIT {$limit} OFFSET {$offset}";
+		$sql = "SELECT * FROM " . self::$table_name . " WHERE course_id = {$course_id} ORDER BY created DESC LIMIT {$limit} OFFSET {$offset}";
 		return self::find_by_sql($sql);
 	}
 }

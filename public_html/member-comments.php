@@ -24,11 +24,42 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
+			<h3><i class="fa fa-comments fa-lg"></i> انجمن
+				<a href="member-courses?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>"
+				   data-toggle="tooltip" title="برگردید به درس"><?php echo htmlentities($current_course->name); ?></a>
+			</h3>
+			<?php if(empty($comments)) { ?>
+				<h3><span class="badge">سوال یا نظری وجود ندارد. اولین نفری باشید که نظر می دهید.</span></h3>
+			<?php } ?>
+			<fieldset>
+				<legend>
+					<img class="img-circle pull-left visible-sm" width="50" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->username; ?>">
+					<i class="fa fa-comments-o"></i> فرم سوال و نظر
+				</legend>
+				<form class="form-horizontal submit-comment" action="add-comment.php" method="POST" role="form">
+					<!--content-->
+					<section class="row">
+						<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
+							<img class="img-circle pull-right hidden-sm" width="100" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->username; ?>">
+						</label>
+						<input type="hidden" name="course" value="<?php echo urlencode($current_course->id); ?>">
+						<div class="controls">
+							<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" rows="3" required
+							          placeholder="سوال یا نظرتان را اینجا وارد کنید و کد ها را داخل تگ <pre> وارد کنید"></textarea>
+						</div>
+					</section>
+					<!--buttons-->
+					<section class="row">
+						<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+							<button class="btn btn-primary" name="submit" id="submit" type="submit">
+								بفرست
+							</button>
+						</div>
+					</section>
+				</form>
+			</fieldset>
+			<hr/>
 			<div id="ajax-comments">
-				<h3><i class="fa fa-comments fa-lg"></i> انجمن
-					<a href="member-courses?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>"
-					   data-toggle="tooltip" title="برگردید به درس"><?php echo htmlentities($current_course->name); ?></a>
-				</h3>
 				<?php foreach($comments as $comment) { ?>
 					<section class="media">
 						<?php $_member = Member::find_by_id($comment->member_id); ?>
@@ -77,38 +108,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 						</ul>
 					</nav>
 				<?php } // end pagination?>
-				<?php if(empty($comments)) { ?>
-					<h3><span class="badge">سوال یا نظری وجود ندارد. اولین نفری باشید که نظر می دهید.</span></h3>
-				<?php } ?>
 			</div>
-			<br/>
-			<fieldset>
-				<legend>
-					<img class="img-circle pull-left visible-sm" width="50" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->username; ?>">
-					<i class="fa fa-comments-o"></i> فرم سوال و نظر</legend>
-				<form class="form-horizontal submit-comment" action="add-comment.php" method="POST" role="form">
-					<!--content-->
-					<section class="row">
-						<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
-							<img class="img-circle pull-right hidden-sm" width="100" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->username; ?>">
-						</label>
-						<input type="hidden" name="course" value="<?php echo urlencode($current_course->id); ?>">
-						<div class="controls">
-							<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" rows="5" required
-							          placeholder="سوال یا نظرتان را اینجا وارد کنید و کد ها را داخل تگ <pre> وارد کنید"></textarea>
-						</div>
-					</section>
-					<!--buttons-->
-					<section class="row">
-						<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-							<a class="btn btn-danger" href="member-courses?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>">لغو</a>
-							<button class="btn btn-success" name="submit" id="submit" type="submit">
-								بفرست
-							</button>
-						</div>
-					</section>
-				</form>
-			</fieldset>
 		</article>
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">

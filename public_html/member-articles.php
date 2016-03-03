@@ -47,9 +47,31 @@ $body   = "";
 					</div>
 					<div class="panel-footer">
 						<article id="comments">
+							<h2>نظرات</h2>
+							<?php echo output_message($message); ?>
+							<fieldset>
+								<legend></legend>
+								<form class="form-horizontal submit-comment" action="add-article-comment.php" method="POST" role="form">
+									<!--content-->
+									<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
+										<img class="img-circle pull-left" width="100" style="padding-right:0;" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->username; ?>">
+									</label>
+									<div class="controls">
+										<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" required placeholder=" نظرتان را اینجا وارد کنید و این تگ ها هم قابل استفاده اند <strong><pre><em><p>"></textarea>
+									</div>
+									<input type="hidden" name="article" value="<?php echo urlencode($current_article->id); ?>">
+									<!--buttons-->
+									<section class="row">
+										<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+											<button class="btn btn-primary" name="submit" id="submit" type="submit">
+												بفرست
+											</button>
+										</div>
+									</section>
+								</form>
+							</fieldset>
+							<hr>
 							<div id="ajax-comments">
-								<h2>نظرات</h2>
-								<?php echo output_message($message); ?>
 								<?php foreach($comments as $comment) { ?>
 									<section class="media">
 										<?php $_member = Member::find_by_id($comment->member_id); ?>
@@ -101,29 +123,7 @@ $body   = "";
 								<?php if(empty($comments)) { ?>
 									<h3><span class="badge">نظری وجود ندارد. اولین نفری باشید که نظر می دهید.</span></h3>
 								<?php } ?>
-							</div>
-							<br>
-							<fieldset>
-								<legend></legend>
-								<form class="form-horizontal submit-comment" action="add-article-comment.php" method="POST" role="form">
-									<!--content-->
-									<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
-										<img class="img-circle pull-left" width="100" style="padding-right:0;" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->username; ?>">
-									</label>
-									<div class="controls">
-										<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" required placeholder=" نظرتان را اینجا وارد کنید و این تگ ها هم قابل استفاده اند <strong><pre><em><p>"></textarea>
-									</div>
-									<input type="hidden" name="article" value="<?php echo urlencode($current_article->id); ?>">
-									<!--buttons-->
-									<section class="row">
-										<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-											<button class="btn btn-primary" name="submit" id="submit" type="submit">
-												بفرست
-											</button>
-										</div>
-									</section>
-								</form>
-							</fieldset>
+							</div> <!--AJAX Coomment-->
 						</article>
 					</div>
 				</div>
