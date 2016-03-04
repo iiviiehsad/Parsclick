@@ -72,7 +72,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 								</a>
 							<?php } ?>
 							<br/>
-							<?php echo nl2br(strip_tags($comment->body, '<strong><em><p><pre>')); ?>
+							<?php echo nl2br(strip_tags($comment->body, ARTICLE_ALLOWABLE_TAGS)); ?>
 						</div>
 					</section>
 				<?php } // end foreach comments ?>
