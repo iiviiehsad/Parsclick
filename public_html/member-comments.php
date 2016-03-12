@@ -32,12 +32,9 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 				<h3><span class="badge">سوال یا نظری وجود ندارد. اولین نفری باشید که نظر می دهید.</span></h3>
 			<?php } ?>
 			<fieldset>
-				<legend>
-					<img class="img-circle pull-left visible-sm" width="50" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->username; ?>">
-				</legend>
+				<legend></legend>
 				<form class="form-horizontal submit-comment" action="add-comment.php" method="POST" role="form">
 					<!--content-->
-					<section class="row">
 						<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
 							<img class="img-circle pull-right hidden-sm" width="100" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->username; ?>">
 						</label>
@@ -46,15 +43,12 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 							<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" rows="3" required
 							          placeholder="سوال یا نظرتان را اینجا وارد کنید و کد ها را داخل تگ <pre> وارد کنید"></textarea>
 						</div>
-					</section>
 					<!--buttons-->
-					<section class="row">
 						<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
 							<button class="btn btn-primary" name="submit" id="submit" type="submit">
 								بفرست
 							</button>
 						</div>
-					</section>
 				</form>
 			</fieldset>
 			<hr/>
