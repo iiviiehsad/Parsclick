@@ -1,6 +1,6 @@
 <h2>به قسمت مقالات خوش آمدید.</h2>
 <section>
-	<h3>تعداد نویسندگان: <span class="label label-as-badge"><?php echo convert(count(Author::find_active_authors())); ?></span></h3>
+	<p class="lead">تعداد نویسندگان: <span class="label label-as-badge"><?php echo convert(count(Author::find_active_authors())); ?></span></p>
 	<br/>
 	<?php $authors = Author::find_active_authors(); ?>
 	<?php foreach($authors as $author) : ?>
