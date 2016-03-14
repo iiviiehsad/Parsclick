@@ -365,7 +365,7 @@ function email($full_name = "", $site_root = DOMAIN, $highlight = "", $content =
 													<a href="https://telegram.me/pars_click" style="color: #2BA6CB; text-decoration: none;">pars_click</a>
 												</p>
 												<p style="color: #222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; text-align: right; line-height: 19px; font-size: 14px; margin: 0 0 14px; padding: 0;" align="right">
-													ایمیل: <a href="mailto:hseldon@trantor.com" style="color: #2BA6CB; text-decoration: none;">parsclickmail@gmail.com</a>
+													ایمیل: <a href="mailto:parsclickmail@gmail.com" style="color: #2BA6CB; text-decoration: none;">parsclickmail@gmail.com</a>
 												</p>
 												<hr/>
 												<p style="color: #222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; text-align: right; line-height: 19px; font-size: 12px; margin: 0 0 10px; padding: 0;" align="right">
