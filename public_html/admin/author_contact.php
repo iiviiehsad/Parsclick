@@ -10,32 +10,41 @@ echo output_message($message);
 ?>
 <section class="main col-sm-12 col-md-12 col-lg-12">
 	<article>
-		<h4>تعداد نویسندگان: <span class="badge arial"><?php echo count(Author::find_active_authors()); ?></span></h4>
+		<h1>ارتباط با همکاران</h1>
+		<p class="lead">تعداد نویسندگان:
+			<span class="label label-as-badge"><?php echo convert(count(Author::find_active_authors())); ?></span></p>
+		<br/>
 		<?php $authors = Author::find_active_authors(); ?>
-		<?php foreach($authors as $author) { ?>
-			<div class="col-sm-12 col-md-2 col-lg-2">
-				<div class="thumbnail">
-					<?php if( ! empty($author->photo)) { ?>
-						<img width="100%" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
-					<?php } else { ?>
-						<img width="100%" alt="No Profile Picture" src="../images/misc/default-gravatar-pic.png"/>
-					<?php } ?>
-					&nbsp;
-					<div class="caption center">
-						<h4>
-							<?php echo $author->full_name(); ?>
-						</h4>
-						<?php echo convert(count(Article::find_articles_for_author($author->id, TRUE))); ?> مقاله منتشر شده
-						<hr>
-						<?php if(isset($author->parsclickmail)) { ?>
-							<a data-toggle="tooltip" target="_blank" title="<?php echo $author->parsclickmail; ?>" href="mailto:<?php echo $author->parsclickmail; ?>">ایمیل</a>
-						<?php } else { ?>
-								---
-						<?php } ?>
-					</div>
+		<?php foreach($authors as $author): ?>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+				<div class="center">
+					<?php if( ! empty($author->photo)): ?>
+						<img class="img-circle" style="width:200px;height:200px;" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
+					<?php else: ?>
+						<img class="img-circle" width="200" alt="No Profile Picture" src="../images/misc/default-gravatar-pic.png"/>
+					<?php endif; ?>
+				</div>
+				<div class="center">
+					<span class="label label-as-badge label-danger"><?php echo $author->full_name(); ?></span>
+					<br/>
+					<span class="label label-as-badge label-info">
+						<?php echo convert(count(Article::find_articles_for_author($author->id, TRUE))); ?>
+						مقاله منتشر شده
+					</span>
+					<?php if(isset($author->parsclickmail)): ?>
+						<br/>
+						<p class="label label-as-badge label-warning">
+							<a data-toggle="tooltip" target="_blank" title="<?php echo $author->parsclickmail; ?>" href="mailto:<?php echo $author->parsclickmail; ?>">
+								ایمیل پارس کلیکی
+							</a>
+						</p>
+					<?php else: ?>
+						<br/>
+						<p class="label label-as-badge label-primary">ایمیل پارس کلیک موجود نیست</p>
+					<?php endif; ?>
 				</div>
 			</div>
-		<?php } ?>
+		<?php endforeach; ?>
 	</article>
 </section>
 <?php include_layout_template("admin_footer.php"); ?>
