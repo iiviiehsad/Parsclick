@@ -6,10 +6,14 @@ if(empty($_GET["id"])) {
 	redirect_to("member-articles");
 }
 $comment = ArticleComment::find_by_id($_GET["id"]);
-$article  = Article::find_by_id($comment->article_id);
-if(!$comment || !$article) {
+$article = Article::find_by_id($comment->article_id);
+if( ! $comment || ! $article) {
 	$session->message("مقاله یا نظر موجود نیست!");
 	redirect_to("member-articles");
+}
+if($comment->member_id !== $session->id) {
+	$session->message("نظر متعلق به شما نیست!");
+	redirect_to($_SERVER['HTTP_REFERER'] . '#comments');
 }
 if($comment->delete()) {
 	$session->message("نظر حذف شد.");
@@ -18,4 +22,6 @@ if($comment->delete()) {
 	$session->message("نظر حذف نشد!");
 	redirect_to($_SERVER['HTTP_REFERER'] . '#comments');
 }
-if(isset($database)) { $database->close_connection(); }
+if(isset($database)) {
+	$database->close_connection();
+}

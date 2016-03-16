@@ -7,9 +7,13 @@ if(empty($_GET["id"])) {
 }
 $comment = Comment::find_by_id($_GET["id"]);
 $course  = Course::find_by_id($comment->course_id);
-if(!$comment || !$course) {
+if( ! $comment || ! $course) {
 	$session->message("درس یا نظر موجود نیست!");
 	redirect_to("member-courses");
+}
+if($comment->member_id !== $session->id) {
+	$session->message("نظر متعلق به شما نیست!");
+	redirect_to($_SERVER['HTTP_REFERER']);
 }
 if($comment->delete()) {
 	$session->message("نظر حذف شد.");
@@ -18,4 +22,6 @@ if($comment->delete()) {
 	$session->message("نظر حذف نشد!");
 	redirect_to($_SERVER['HTTP_REFERER']);
 }
-if(isset($database)) { $database->close_connection(); }
+if(isset($database)) {
+	$database->close_connection();
+}
