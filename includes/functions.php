@@ -225,7 +225,15 @@ function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE)
  */
 function send_email($email, $subject, $message)
 {
-	return mail($email, $subject, $message, 'From: Parsclick <do-not-reply@parsclick.net>' . "\r\n");
+	$headers = 'MIME-Version: 1.0' . "\r\n";
+	$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+	$headers .= 'From: Parsclick <do-not-reply@parsclick.net>' . "\r\n";
+
+	//$headers .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
+	//$headers .= 'Cc: birthdayarchive@example.com' . "\r\n";
+	//$headers .= 'Bcc: birthdaycheck@example.com' . "\r\n";
+
+	return mail($email, $subject, $message, $headers);
 }
 
 /**
@@ -623,9 +631,9 @@ function log_action($action, $message = "")
 	$new     = file_exists($logfile) ? FALSE : TRUE;
 	if($handle = fopen($logfile, 'a')) { //appends
 		$timestamp = datetime_to_text(strftime("%Y-%m-%d %H:%M:%S", time()));
-//		$country   = ip_info("Visitor", "Country");
-//		$content   = "{$timestamp} | {$country} | {$action}: {$message}" . PHP_EOL;
-		$content   = "{$timestamp} | {$action}: {$message}" . PHP_EOL;
+		//		$country   = ip_info("Visitor", "Country");
+		//		$content   = "{$timestamp} | {$country} | {$action}: {$message}" . PHP_EOL;
+		$content = "{$timestamp} | {$action}: {$message}" . PHP_EOL;
 		fwrite($handle, $content);
 		fclose($handle);
 		if($new) {
@@ -1214,9 +1222,7 @@ function find_selected_course($public = FALSE)
 function active()
 {
 	global $filename;
-	if(($filename == "index.php") || ($filename == "member.php") || ($filename == "admin.php") ||
-	   ($filename == "author.php")
-	) {
+	if(($filename == "index.php") || ($filename == "member.php") || ($filename == "admin.php") || ($filename == "author.php")) {
 		echo "<script>$(\"a:contains('خانه')\").parent().addClass('active');</script>";
 	} elseif($filename == "authors.php") {
 		echo "<script>$(\"a:contains('نویسندگان')\").parent().addClass('active');</script>";
@@ -1227,55 +1233,33 @@ function active()
 		include('_/components/php/smoothscrolling.php');
 	} elseif($filename == "help.php") {
 		echo "<script>$(\"a:contains('کمک به ما')\").parent().addClass('active');</script>";
-	} elseif(($filename == "login.php") || ($filename == "register.php") || ($filename == "forgot.php") ||
-	         ($filename == "reset-password.php") || ($filename == "forgot-username.php")
-	) {
+	} elseif(($filename == "login.php") || ($filename == "register.php") || ($filename == "forgot.php") || ($filename == "reset-password.php") || ($filename == "forgot-username.php")) {
 		echo "<script>$(\"a:contains('ورود')\").parent().addClass('active');</script>";
-	} elseif(($filename == "admin_courses.php") || ($filename == "admin_articles.php") ||
-	         ($filename == "new_subject.php") || ($filename == "author_articles.php") ||
-	         ($filename == "author_courses.php") || ($filename == "new_courses.php") ||
-	         ($filename == "edit_courses.php") || ($filename == "new_article.php") || ($filename == "edit_article.php") ||
-	         ($filename == "author_edit_article.php") || ($filename == "new_course.php") ||
-	         ($filename == "author_edit_course.php") || ($filename == "author_add_video.php") ||
-	         ($filename == "author_edit_video_description.php") || ($filename == "edit_video_description.php") ||
-	         ($filename == "admin_comments.php") || ($filename == "edit_course.php") ||
-	         ($filename == "member-courses.php") || ($filename == "member-articles.php")
-	) {
+	} elseif(($filename == "admin_courses.php") || ($filename == "admin_articles.php") || ($filename == "new_subject.php") || ($filename == "author_articles.php") || ($filename == "author_courses.php") || ($filename == "new_courses.php") || ($filename == "edit_courses.php") || ($filename == "new_article.php") || ($filename == "edit_article.php") || ($filename == "author_edit_article.php") || ($filename == "new_course.php") || ($filename == "author_edit_course.php") || ($filename == "author_add_video.php") || ($filename == "author_edit_video_description.php") || ($filename == "edit_video_description.php") || ($filename == "admin_comments.php") || ($filename == "edit_course.php") || ($filename == "member-courses.php") || ($filename == "member-articles.php")) {
 		echo "<script>$(\"a:contains('محتوی')\").parent().addClass('active');</script>";
-		if(($filename == "member-courses.php") || ($filename == "admin_courses.php") ||
-		   ($filename == "author_courses.php")
-		) {
+		if(($filename == "member-courses.php") || ($filename == "admin_courses.php") || ($filename == "author_courses.php")) {
 			echo "<script>$(\"a:contains('دروس')\").parent().addClass('active');</script>";
-		} elseif(($filename == "admin_articles.php") ||
-		         ($filename == "author_articles.php") || ($filename == "member-articles.php")
-		) {
+		} elseif(($filename == "admin_articles.php") || ($filename == "author_articles.php") || ($filename == "member-articles.php")) {
 			echo "<script>$(\"a:contains('مقالات')\").parent().addClass('active');</script>";
 		}
 	} elseif($filename == "articles.php") {
 		echo "<script>$(\"a:contains('مقالات')\").parent().addClass('active');</script>";
 	} elseif($filename == "courses.php") {
 		echo "<script>$(\"a:contains('دروس')\").parent().addClass('active');</script>";
-	} elseif(($filename == "member-profile.php") || ($filename == "member-edit-profile.php") ||
-	         ($filename == "author_profile.php") || ($filename == "author_edit_profile.php")
-	) {
+	} elseif(($filename == "member-profile.php") || ($filename == "member-edit-profile.php") || ($filename == "author_profile.php") || ($filename == "author_edit_profile.php")) {
 		echo "<script>$(\"a:contains('حساب کاربری')\").parent().addClass('active');</script>";
 	} elseif($filename == "member-playlist.php") {
 		echo "<script>$(\"a:contains('لیست پخش')\").parent().addClass('active');</script>";
 	} elseif($filename == "member-comments.php") {
 		echo "<script>$(\"a:contains('انجمن')\").parent().addClass('active');</script>";
-	} elseif(($filename == "member_list.php") || ($filename == "edit_member.php") || ($filename == "new_member.php") ||
-	         ($filename == "email_to_members.php")
-	) {
+	} elseif(($filename == "member_list.php") || ($filename == "edit_member.php") || ($filename == "new_member.php") || ($filename == "email_to_members.php")) {
 		echo "<script>$(\"a:contains('اعضا')\").parent().addClass('active');</script>";
 		if($filename == "email_to_members.php") {
 			echo "<script>$(\"a:contains(' ایمیل به عضوها')\").parent().addClass('active');</script>";
 		} elseif($filename == "member_list.php") {
 			echo "<script>$(\"a:contains(' لیست عضوها')\").parent().addClass('active');</script>";
 		}
-	} elseif(($filename == "admin_list.php") || ($filename == "author_list.php") || ($filename == "new_admin.php") ||
-	         ($filename == "new_author.php") || ($filename == "edit_admin.php") || ($filename == "edit_author.php") ||
-	         ($filename == "email_to_authors.php")
-	) {
+	} elseif(($filename == "admin_list.php") || ($filename == "author_list.php") || ($filename == "new_admin.php") || ($filename == "new_author.php") || ($filename == "edit_admin.php") || ($filename == "edit_author.php") || ($filename == "email_to_authors.php")) {
 		echo "<script>$(\"a:contains('کارکنان')\").parent().addClass('active');</script>";
 		if($filename == "admin_list.php") {
 			echo "<script>$(\"a:contains('لیست مدیران')\").parent().addClass('active');</script>";

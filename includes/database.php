@@ -51,7 +51,10 @@ class MySQLDatabase {
 	public function query($sql)
 	{
 		$this->last_query = $sql;
-		$result           = mysqli_query($this->connection, $sql);
+		// mysqli_begin_transaction($this->connection);
+		$result = mysqli_query($this->connection, $sql);
+		// mysqli_commit($this->connection);
+		// mysqli_close($this->connection);
 		$this->confirm_query($result);
 
 		return $result;

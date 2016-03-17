@@ -21,8 +21,10 @@ echo output_message($message);
 	<h1>خوش آمدید نویسنده: <?php echo $author->full_name(); ?></h1>
 	<p>
 		به عنوان نویسنده شما قادر به درست کردن مقاله و درس هستید. شما همینطور قادر به تغییر مقالات و دروس خود هستید.<br/>
-		برای تماس مستقیم با مدیر از این آدرس بجای تماس با ما استفاده کنید (روی آن کلیک کنید):
-		<a href="mailto:info@parsclick.net" data-toggle="tooltip" data-placement="bottom" title="ایمیل به ما" target="_blank"><code>info@parsclick.net</code></a><br/>
+		برای تماس مستقیم با مدیر از این آدرس استفاده کنید (روی آن کلیک کنید):
+		<a class="lead" href="mailto:info@parsclick.net" data-toggle="tooltip" data-placement="left" title="ایمیل به ما" target="_blank"><kbd>info@parsclick.net</kbd></a><br/>
+		همه نویسندگان ملزم به عضویت گروه فیسبوکی نویسندگان پارس کلیک هستند.
+		<a class="lead" href="https://www.facebook.com/groups/175905176126750/" data-toggle="tooltip" data-placement="left" title="گروه نویسندگان پارس کلیک" target="_blank"><kbd>کلیک کنید</kbd></a><br/>
 	</p>
 </div>
 <section class="main col-sm-12 col-md-8 col-lg-8">

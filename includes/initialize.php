@@ -20,11 +20,11 @@ defined('ARTICLE_ALLOWABLE_TAGS') ? NULL : define(
 
 // Email Details
 // TODO: Change based on email configuration
-defined('SMTP') ? NULL : define('SMTP', "n1plcpnl0045.prod.ams1.secureserver.net");
-defined('PORT') ? NULL : define('PORT', 465);
-defined('EMAILUSER') ? NULL : define('EMAILUSER', "do-not-reply@parsclick.net");
-defined('EMAILPASS') ? NULL : define('EMAILPASS', "1365@1986Ha");
-defined('TLS') ? NULL : define('TLS', "ssl");
+defined('SMTP') ? NULL : define('SMTP', "smtp.gmail.com");
+defined('PORT') ? NULL : define('PORT', 587);
+defined('EMAILUSER') ? NULL : define('EMAILUSER', "parsclickmail@gmail.com");
+defined('EMAILPASS') ? NULL : define('EMAILPASS', "1234-asdf");
+defined('TLS') ? NULL : define('TLS', "tls");
 
 // Stripe keys
 // TODO: Change based on stripe live keys

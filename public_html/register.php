@@ -7,7 +7,7 @@ if($session->is_logged_in()) {
 }
 $title    = "پارس کلیک - ثبت نام";
 $filename = basename(__FILE__);
-$errors   = "";
+$errors   = '';
 $lang     = 'fa';
 if($_POST) {
 	if(empty(RECAPTCHASITEKEY) || empty(RECAPTCHASECRETKEY)) {
@@ -50,7 +50,7 @@ if($_POST) {
 					$member->token           = md5(uniqid(rand()));
 					$result                  = $member->create();
 					if($result) {
-						$session->message("با تشکر! ثبت نام موفقیت آمیز بود. لطفا ایمیل خود را چک کنید و تایید کنید.");
+						$session->message("با تشکر! ثبت نام موفقیت آمیز بود. لطفا ایمیل خود را چک کنید و تایید کنید. پوشه spam را هم چک کنید.");
 						$member->email_confirmation_details($member->username);
 						redirect_to("login");
 					} else {
