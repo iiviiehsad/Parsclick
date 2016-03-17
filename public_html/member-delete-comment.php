@@ -11,17 +11,15 @@ if( ! $comment || ! $course) {
 	$session->message("درس یا نظر موجود نیست!");
 	redirect_to("member-courses");
 }
-if($comment->member_id !== $session->id) {
-	$session->message("نظر متعلق به شما نیست!");
-	redirect_to($_SERVER['HTTP_REFERER']);
+if($comment->member_id === $session->id) {
+	if($comment->delete()) {
+		$session->message("نظر حذف شد.");
+		redirect_to($_SERVER['HTTP_REFERER']);
+	} else {
+		$session->message("نظر حذف نشد!");
+		redirect_to($_SERVER['HTTP_REFERER']);
+	}
 }
-if($comment->delete()) {
-	$session->message("نظر حذف شد.");
-	redirect_to($_SERVER['HTTP_REFERER']);
-} else {
-	$session->message("نظر حذف نشد!");
-	redirect_to($_SERVER['HTTP_REFERER']);
-}
-if(isset($database)) {
-	$database->close_connection();
-}
+$session->message("نظر متعلق به شما نیست!");
+redirect_to($_SERVER['HTTP_REFERER']);
+if(isset($database)) $database->close_connection();

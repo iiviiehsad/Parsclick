@@ -23,11 +23,11 @@ class MySQLDatabase {
 	public function open_connection()
 	{
 		$this->connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-		if(!$this->connection) {
+		if( ! $this->connection) {
 			die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . " )");
 		} else {
 			$db_select = mysqli_select_db($this->connection, DB_NAME);
-			if(!$db_select) {
+			if( ! $db_select) {
 				die("Database selection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . " )");
 			}
 		}
@@ -53,6 +53,7 @@ class MySQLDatabase {
 		$this->last_query = $sql;
 		$result           = mysqli_query($this->connection, $sql);
 		$this->confirm_query($result);
+
 		return $result;
 	}
 
@@ -70,10 +71,11 @@ class MySQLDatabase {
 			$value = mysqli_real_escape_string($this->connection, $value); // PHP v5.0+
 		} else { // before PHP v4.3.0
 			// if magic quotes aren't already on then add slashes manually
-			if(!$this->magic_quotes_active) {
+			if( ! $this->magic_quotes_active) {
 				$value = addslashes($value);
 			} // if magic quotes are active, then the slashes already exist
 		}
+
 		return $value;
 	}
 
@@ -116,8 +118,8 @@ class MySQLDatabase {
 	 */
 	private function confirm_query($result)
 	{
-		if(!$result) {
-			$output = "Database query failed! " . mysqli_error($this->connection) . "<br /><br />";;
+		if( ! $result) {
+			$output = "Database query failed! " . mysqli_error($this->connection) . "<br/><br/>";;
 			$output .= "Last SQL Query: " . $this->last_query;
 			die($output);
 		}
@@ -149,10 +151,8 @@ class PostgresSQLDatabase {
 	 */
 	public function open_connection()
 	{
-		$this->connection =
-				pg_connect("host=" . PG_SERVER . " port=" . PG_PORT . " dbname=" . PG_NAME . " user=" . PG_USER . " password=" .
-				           PG_PASS);
-		if(!$this->connection) {
+		$this->connection = pg_connect("host=" . PG_SERVER . " port=" . PG_PORT . " dbname=" . PG_NAME . " user=" . PG_USER . " password=" . PG_PASS);
+		if( ! $this->connection) {
 			die("Database connection failed!");
 		}
 	}
@@ -177,6 +177,7 @@ class PostgresSQLDatabase {
 		$this->last_query = $sql;
 		$result           = pg_query($this->connection, $sql);
 		$this->confirm_query($result);
+
 		return $result;
 	}
 
@@ -194,10 +195,11 @@ class PostgresSQLDatabase {
 			$value = pg_escape_string($this->connection, $value); // PHP v5.0+
 		} else { // before PHP v4.3.0
 			// if magic quotes aren't already on then add slashes manually
-			if(!$this->magic_quotes_active) {
+			if( ! $this->magic_quotes_active) {
 				$value = addslashes($value);
 			} // if magic quotes are active, then the slashes already exist
 		}
+
 		return $value;
 	}
 
@@ -240,7 +242,7 @@ class PostgresSQLDatabase {
 	 */
 	private function confirm_query($result)
 	{
-		if(!$result) {
+		if( ! $result) {
 			$output = "Database query failed!";;
 			$output .= "Last SQL Query: " . $this->last_query;
 			die($output);
