@@ -2,7 +2,7 @@
 require_once("../../includes/initialize.php");
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
-if(!$author) {
+if( ! $author) {
 	$session->message("شناسه کاربری پیدا نشد!");
 	redirect_to("author_edit_profile.php");
 }
@@ -14,4 +14,6 @@ if($result) {
 	$session->message("حذف عکس موفقیت آمیز نبود.");
 	redirect_to("author_edit_profile.php");
 }
-if(isset($database)) { $database->close_connection(); }
+if(isset($database)) {
+	$database->close_connection();
+}

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @param $class_name String will get the class name for each PHP class and finds the file name associate to it
  */
@@ -163,13 +164,13 @@ function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE)
 	$purpose    = str_replace(array("name", "\n", "\t", " ", "-", "_"), NULL, strtolower(trim($purpose)));
 	$support    = array("country", "countrycode", "state", "region", "city", "location", "address");
 	$continents = array(
-			"AF" => "Africa",
-			"AN" => "Antarctica",
-			"AS" => "Asia",
-			"EU" => "Europe",
-			"OC" => "Australia (Oceania)",
-			"NA" => "North America",
-			"SA" => "South America"
+		"AF" => "Africa",
+		"AN" => "Antarctica",
+		"AS" => "Asia",
+		"EU" => "Europe",
+		"OC" => "Australia (Oceania)",
+		"NA" => "North America",
+		"SA" => "South America"
 	);
 	if(filter_var($ip, FILTER_VALIDATE_IP) && in_array($purpose, $support)) {
 		$ipdat = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
@@ -177,12 +178,12 @@ function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE)
 			switch($purpose) {
 				case "location":
 					$output = array(
-							"city"           => @$ipdat->geoplugin_city,
-							"state"          => @$ipdat->geoplugin_regionName,
-							"country"        => @$ipdat->geoplugin_countryName,
-							"country_code"   => @$ipdat->geoplugin_countryCode,
-							"continent"      => @$continents[strtoupper($ipdat->geoplugin_continentCode)],
-							"continent_code" => @$ipdat->geoplugin_continentCode
+						"city"           => @$ipdat->geoplugin_city,
+						"state"          => @$ipdat->geoplugin_regionName,
+						"country"        => @$ipdat->geoplugin_countryName,
+						"country_code"   => @$ipdat->geoplugin_countryCode,
+						"continent"      => @$continents[strtoupper($ipdat->geoplugin_continentCode)],
+						"continent_code" => @$ipdat->geoplugin_continentCode
 					);
 					break;
 				case "address":
@@ -616,6 +617,44 @@ function is_temp_mail($mail)
 	}
 
 	return FALSE;
+}
+
+/**
+ * @param $output1
+ * @param $output2
+ * @return string HTML
+ */
+function warning($output1, $output2)
+{
+	return "
+<!DOCTYPE html>
+<html>
+<head>
+	<title>پارس کلیک - Parsclick</title>
+	<meta charset='UTF-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+	<link rel='shortcut icon' type='image/png' href=''/images/favicon.png'/>
+	<link rel='stylesheet' href='/_/css/all.css' media='screen'/>
+	<style>
+		body { background-color : beige; }
+		.error-template { padding : 40px 15px; text-align : center; }
+	</style>
+</head>
+<body>
+	<div class='container'>
+		<div class='row'>
+			<section class='col col-md-12'>
+				<div class='error-template'>
+					<h1>!Error</h1>
+					<h2>{$output1}</h2>
+					<h3>{$output2}</h3>
+				</div>
+			</section>
+		</div>
+	</div>
+</body>
+</html>
+";
 }
 
 /******************************************************************************************************/
@@ -1370,3 +1409,4 @@ function signed_string_is_valid($signed_string)
 		return FALSE;
 	}
 }
+

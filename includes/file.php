@@ -15,6 +15,7 @@
  */
 class File extends DatabaseObject {
 
+	public static    $max_file_size  = 33554432;
 	protected static $table_name     = "files";
 	protected static $db_fields      = ['id', 'course_id', 'name', 'type', 'size', 'description'];
 	public           $id;
@@ -23,21 +24,20 @@ class File extends DatabaseObject {
 	public           $type;
 	public           $size;
 	public           $description;
-	private          $temp_path;
 	public           $errors         = [];
 	protected        $upload_dir     = "files";
-	public static    $max_file_size  = 33554432; //32MB
-	protected        $permittedTypes = ['application/zip'];
+	protected        $permittedTypes = ['application/zip']; //32MB
 	protected        $upload_errors  = [
-			UPLOAD_ERR_OK         => "خطایی نیست.",
-			UPLOAD_ERR_INI_SIZE   => "فایل بسیار بزرگ است.",
-			UPLOAD_ERR_FORM_SIZE  => "فایل بزرگ است.",
-			UPLOAD_ERR_PARTIAL    => "مقداری از فایل آپلود شد.",
-			UPLOAD_ERR_NO_FILE    => "فایلی نیست.",
-			UPLOAD_ERR_NO_TMP_DIR => "پوشه موقت نیست.",
-			UPLOAD_ERR_CANT_WRITE => "قادر به نوشتن روی دیسک نیست.",
-			UPLOAD_ERR_EXTENSION  => "آپلود فایل بخاطر فرمت فایل جلوگیری شد."
+		UPLOAD_ERR_OK         => "خطایی نیست.",
+		UPLOAD_ERR_INI_SIZE   => "فایل بسیار بزرگ است.",
+		UPLOAD_ERR_FORM_SIZE  => "فایل بزرگ است.",
+		UPLOAD_ERR_PARTIAL    => "مقداری از فایل آپلود شد.",
+		UPLOAD_ERR_NO_FILE    => "فایلی نیست.",
+		UPLOAD_ERR_NO_TMP_DIR => "پوشه موقت نیست.",
+		UPLOAD_ERR_CANT_WRITE => "قادر به نوشتن روی دیسک نیست.",
+		UPLOAD_ERR_EXTENSION  => "آپلود فایل بخاطر فرمت فایل جلوگیری شد."
 	];
+	private          $temp_path;
 
 	/**
 	 * @param $course_id int gets the course ID
@@ -66,22 +66,6 @@ class File extends DatabaseObject {
 		$sql .= " WHERE course_id = " . $database->escape_value($course_id);
 
 		return self::find_by_sql($sql);
-	}
-
-	/**
-	 * @param $filename string gets the file name
-	 * @return mixed|string of sanitized file name
-	 */
-	public function sanitize_file_name($filename)
-	{
-		// Remove characters that could alter file path.
-		// I disallowed spaces because they cause other headaches.
-		// "." is allowed (e.g. "photo.jpg") but ".." is not.
-		$filename = preg_replace("/([^A-Za-z0-9_\-\.]|[\.]{2})/", "", $filename);
-		// basename() ensures a file name and not a path
-		$filename = basename($filename);
-
-		return $filename;
 	}
 
 	/**
@@ -126,17 +110,19 @@ class File extends DatabaseObject {
 	}
 
 	/**
-	 * @param $file array gets the file details from that array
-	 * @return string of permission to use for every file
+	 * @param $filename string gets the file name
+	 * @return mixed|string of sanitized file name
 	 */
-	public function file_permissions($file)
+	public function sanitize_file_name($filename)
 	{
-		// fileperms returns a numeric value
-		$numeric_perms = fileperms($file);
-		// but we are used to seeing the octal value
-		$octal_perms = sprintf('%o', $numeric_perms);
+		// Remove characters that could alter file path.
+		// I disallowed spaces because they cause other headaches.
+		// "." is allowed (e.g. "photo.jpg") but ".." is not.
+		$filename = preg_replace("/([^A-Za-z0-9_\-\.]|[\.]{2})/", "", $filename);
+		// basename() ensures a file name and not a path
+		$filename = basename($filename);
 
-		return substr($octal_perms, -4);
+		return $filename;
 	}
 
 	/**
@@ -200,6 +186,20 @@ class File extends DatabaseObject {
 	}
 
 	/**
+	 * @param $file array gets the file details from that array
+	 * @return string of permission to use for every file
+	 */
+	public function file_permissions($file)
+	{
+		// fileperms returns a numeric value
+		$numeric_perms = fileperms($file);
+		// but we are used to seeing the octal value
+		$octal_perms = sprintf('%o', $numeric_perms);
+
+		return substr($octal_perms, -4);
+	}
+
+	/**
 	 * This function checks to see whether the file is deleted from the database first
 	 *
 	 * @return bool TRUE if file is deleted from the database and directory, FALSE if any of them did not happen
@@ -242,4 +242,5 @@ class File extends DatabaseObject {
 			return "{$size_mb} MB";
 		}
 	}
-}
+	
+} // END of CLASS

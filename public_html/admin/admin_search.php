@@ -1,9 +1,9 @@
 <?php
 require_once("../../includes/initialize.php");
 $session->confirm_admin_logged_in();
-$filename = basename(__FILE__);
+$filename     = basename(__FILE__);
 $search_query = trim($_GET["q"]);
-if(isset($search_query) && !empty($search_query)) {
+if(isset($search_query) && ! empty($search_query)) {
 	$admin_set = Admin::search($search_query);
 } else {
 	$session->message("شما چیزی جستجو نکردید!");
@@ -15,32 +15,32 @@ echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if(!empty($admin_set)) { ?>
+			<?php if( ! empty($admin_set)) { ?>
 				<h2><i class="fa fa-search"></i> نتیجه جستجو مدیران</h2>
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
-						<tr>
-							<th>اسم کاربری</th>
-							<th>نام</th>
-							<th>نام خانوادگی</th>
-							<th>ایمیل</th>
-							<th colspan="2">عملیات</th>
-						</tr>
+							<tr>
+								<th>اسم کاربری</th>
+								<th>نام</th>
+								<th>نام خانوادگی</th>
+								<th>ایمیل</th>
+								<th colspan="2">عملیات</th>
+							</tr>
 						</thead>
 						<tbody>
-						<?php foreach($admin_set as $admin): ?>
-							<tr>
-								<td><?php echo htmlentities($admin->username); ?></td>
-								<td><?php echo htmlentities(ucfirst(strtolower($admin->first_name))); ?></td>
-								<td><?php echo htmlentities(ucfirst(strtolower($admin->last_name))); ?></td>
-								<td><?php echo htmlentities(strtolower($admin->email)); ?></td>
-								<td>
-									<a class="btn btn-small btn-primary arial" href="edit_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
-									<a class="btn btn-small btn-danger arial" href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید این مدیر را حذف کنید؟');" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
-								</td>
-							</tr>
-						<?php endforeach; ?>
+							<?php foreach($admin_set as $admin): ?>
+								<tr>
+									<td><?php echo htmlentities($admin->username); ?></td>
+									<td><?php echo htmlentities(ucfirst(strtolower($admin->first_name))); ?></td>
+									<td><?php echo htmlentities(ucfirst(strtolower($admin->last_name))); ?></td>
+									<td><?php echo htmlentities(strtolower($admin->email)); ?></td>
+									<td>
+										<a class="btn btn-small btn-primary arial" href="edit_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+										<a class="btn btn-small btn-danger arial" href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید این مدیر را حذف کنید؟');" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
+									</td>
+								</tr>
+							<?php endforeach; ?>
 						</tbody>
 					</table>
 				</div>

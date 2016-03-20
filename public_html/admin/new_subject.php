@@ -30,7 +30,8 @@ echo output_message($message); ?>
 				<fieldset id="login">
 					<legend>جزئیات موضوع</legend>
 					<section class="row">
-						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="subject_name">اسم موضوع &nbsp;</label>
+						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="subject_name">اسم موضوع
+						                                                                                     &nbsp;</label>
 						<div class="controls">
 							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="subject_name" id="subject_name" autofocus placeholder="اسم موضوع" value="" required/>
 						</div>
@@ -49,7 +50,7 @@ echo output_message($message); ?>
 					</section>
 					<!--visible-->
 					<section class="row">
-						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="visible">نمایان  &nbsp;</label>
+						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="visible">نمایان &nbsp;</label>
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" value="0"> خیر

@@ -15,4 +15,6 @@ if($result) { // Success
 	$session->message("مقاله حذف نشد!");
 	redirect_to("edit_articles.php?subject={$subject->id}");
 }
-if(isset($database)) { $database->close_connection(); }
+if(isset($database)) {
+	$database->close_connection();
+}

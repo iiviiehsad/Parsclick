@@ -2,7 +2,9 @@
 require_once("../../includes/initialize.php");
 $token = $_GET['token'];
 $user  = Author::find_by_token($token);
-if(!$user || !$token) { redirect_to('index.php'); }
+if( ! $user || ! $token) {
+	redirect_to('index.php');
+}
 $user->status = 1;
 $result       = $user->update();
 if($result) {

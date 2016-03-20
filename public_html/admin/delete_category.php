@@ -5,7 +5,7 @@ if(empty($_GET["category"])) {
 	$session->message("شناسه دسته پیدا نشد!");
 	redirect_to("admin_courses.php");
 }
-$category = Category::find_by_id($_GET["category"], false);
+$category  = Category::find_by_id($_GET["category"], FALSE);
 $pages_set = Course::num_courses_for_category($category->id);
 if($pages_set > 0) { // if there is any course for the category
 	$session->message("قادر به حذف دسته با درس نیستسم. ابتدا درس ها را حذف کنید.");
@@ -19,4 +19,6 @@ if($result) { // Success
 	$session->message("دسته حذف نشد!");
 	redirect_to("admin_courses.php?category={$category->id}");
 }
-if(isset($database)) { $database->close_connection(); }
+if(isset($database)) {
+	$database->close_connection();
+}

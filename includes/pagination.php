@@ -32,13 +32,11 @@ class pagination {
 	}
 
 	/**
-	 * total_count divided by per_page:
-	 *
-	 * @return float total number of pages
+	 * @return bool TRUE if we have previous page and FALSE if not
 	 */
-	public function total_page()
+	public function has_previous_page()
 	{
-		return ceil($this->total_count / $this->per_pgae);
+		return $this->previous_page() >= 1 ? TRUE : FALSE;
 	}
 
 	/**
@@ -50,6 +48,14 @@ class pagination {
 	}
 
 	/**
+	 * @return bool TRUE if we have next page and FALSE if not
+	 */
+	public function has_next_page()
+	{
+		return $this->next_page() <= $this->total_page() ? TRUE : FALSE;
+	}
+
+	/**
 	 * @return int next page by getting current page and adding it by one
 	 */
 	public function next_page()
@@ -58,18 +64,13 @@ class pagination {
 	}
 
 	/**
-	 * @return bool TRUE if we have previous page and FALSE if not
+	 * total_count divided by per_page:
+	 *
+	 * @return float total number of pages
 	 */
-	public function has_previous_page()
+	public function total_page()
 	{
-		return $this->previous_page() >= 1 ? TRUE : FALSE;
+		return ceil($this->total_count / $this->per_pgae);
 	}
 
-	/**
-	 * @return bool TRUE if we have next page and FALSE if not
-	 */
-	public function has_next_page()
-	{
-		return $this->next_page() <= $this->total_page() ? TRUE : FALSE;
-	}
-}
+} // END of CLASS

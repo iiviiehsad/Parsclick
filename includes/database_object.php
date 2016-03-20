@@ -13,14 +13,6 @@ class DatabaseObject {
 		return static::find_by_sql("SELECT * FROM " . static::$table_name);
 	}
 
-	public static function find_by_id($id = 0)
-	{
-		global $database;
-		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE id = " . $database->escape_value($id) . " LIMIT 1");
-
-		return ! empty($result_array) ? array_shift($result_array) : FALSE;
-	}
-
 	public static function find_by_sql($sql = "")
 	{
 		global $database;
@@ -33,10 +25,41 @@ class DatabaseObject {
 		return $object_array;
 	}
 
-	public static function find_by_username($username = "")
+	private static function instantiate($record)
+	{
+		$object = new static;
+		foreach($record as $attribute => $value) {
+			if($object->has_attribute($attribute)) {
+				$object->$attribute = $value;
+			}
+		}
+
+		return $object;
+	}
+
+	private function has_attribute($attribute)
+	{
+		$object_vars = $this->attributes();
+
+		return array_key_exists($attribute, $object_vars);
+	}
+
+	protected function attributes()
+	{
+		$attributes = [];
+		foreach(static::$db_fields as $field) {
+			if(property_exists($this, $field)) {
+				$attributes[$field] = $this->$field;
+			}
+		}
+
+		return $attributes;
+	}
+
+	public static function find_by_id($id = 0)
 	{
 		global $database;
-		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE username = '" . $database->escape_value($username) . "' LIMIT 1");
+		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE id = " . $database->escape_value($id) . " LIMIT 1");
 
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
@@ -78,35 +101,25 @@ class DatabaseObject {
 		return $database->num_rows($subject_set);
 	}
 
-	private static function instantiate($record)
+	public function save()
 	{
-		$object = new static;
-		foreach($record as $attribute => $value) {
-			if($object->has_attribute($attribute)) {
-				$object->$attribute = $value;
-			}
-		}
-
-		return $object;
+		return isset($this->id) ? $this->update() : $this->create();
 	}
 
-	private function has_attribute($attribute)
+	public function update()
 	{
-		$object_vars = $this->attributes();
-
-		return array_key_exists($attribute, $object_vars);
-	}
-
-	protected function attributes()
-	{
-		$attributes = [];
-		foreach(static::$db_fields as $field) {
-			if(property_exists($this, $field)) {
-				$attributes[$field] = $this->$field;
-			}
+		global $database;
+		$attributes      = $this->sanitized_attributes();
+		$attribute_pairs = [];
+		foreach($attributes as $key => $value) {
+			$attribute_pairs[] = "{$key}='{$value}'";
 		}
+		$sql = "UPDATE " . static::$table_name . " SET ";
+		$sql .= join(", ", $attribute_pairs);
+		$sql .= " WHERE id=" . $database->escape_value($this->id);
+		$database->query($sql);
 
-		return $attributes;
+		return ($database->affected_rows() == 1) ? TRUE : FALSE;
 	}
 
 	protected function sanitized_attributes()
@@ -118,11 +131,6 @@ class DatabaseObject {
 		}
 
 		return $clean_attributes;
-	}
-
-	public function save()
-	{
-		return isset($this->id) ? $this->update() : $this->create();
 	}
 
 	public function create()
@@ -143,22 +151,6 @@ class DatabaseObject {
 		}
 	}
 
-	public function update()
-	{
-		global $database;
-		$attributes      = $this->sanitized_attributes();
-		$attribute_pairs = [];
-		foreach($attributes as $key => $value) {
-			$attribute_pairs[] = "{$key}='{$value}'";
-		}
-		$sql = "UPDATE " . static::$table_name . " SET ";
-		$sql .= join(", ", $attribute_pairs);
-		$sql .= " WHERE id=" . $database->escape_value($this->id);
-		$database->query($sql);
-
-		return ($database->affected_rows() == 1) ? TRUE : FALSE;
-	}
-
 	public function delete()
 	{
 		global $database;
@@ -168,6 +160,13 @@ class DatabaseObject {
 		$database->query($sql);
 
 		return ($database->affected_rows() == 1) ? TRUE : FALSE;
+	}
+
+	public function create_reset_token($username)
+	{
+		$token = $this->reset_token();
+
+		return $this->set_user_reset_token($username, $token);
 	}
 
 	private function reset_token()
@@ -188,11 +187,12 @@ class DatabaseObject {
 		}
 	}
 
-	public function create_reset_token($username)
+	public static function find_by_username($username = "")
 	{
-		$token = $this->reset_token();
+		global $database;
+		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE username = '" . $database->escape_value($username) . "' LIMIT 1");
 
-		return $this->set_user_reset_token($username, $token);
+		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
 	public function delete_reset_token($username)
@@ -206,29 +206,31 @@ class DatabaseObject {
 	{
 		$user = static::find_by_username($username);
 		if($user && isset($user->token)) {
-			$mail = new PHPMailer();
-			$mail->IsSMTP();
-			$mail->IsHTML(TRUE);
-			$mail->CharSet    = 'UTF-8';
-			$mail->Host       = SMTP;
-			$mail->SMTPSecure = TLS;
-			$mail->Port       = PORT;
-			$mail->SMTPAuth   = TRUE;
-			$mail->Username   = EMAILUSER;
-			$mail->Password   = EMAILPASS;
-			$mail->FromName   = DOMAIN;
-			$mail->From       = EMAILUSER;
-			$mail->AddAddress($user->email, "Reset Password");
-			$mail->Subject = "Reset Password Request";
-			$content       = "
+			//$mail = new PHPMailer();
+			//$mail->IsSMTP();
+			//$mail->IsHTML(TRUE);
+			//$mail->CharSet    = 'UTF-8';
+			//$mail->Host       = SMTP;
+			//$mail->SMTPSecure = TLS;
+			//$mail->Port       = PORT;
+			//$mail->SMTPAuth   = TRUE;
+			//$mail->Username   = EMAILUSER;
+			//$mail->Password   = EMAILPASS;
+			//$mail->FromName   = DOMAIN;
+			//$mail->From       = EMAILUSER;
+			//$mail->AddAddress($user->email, "Reset Password");
+			//$mail->Subject = "Reset Password Request";
+			$content = "
 			آیا اخیرا درخواست بازیافت پسوردتان را کردید؟ <br/>
 			اگر جواب مثبت است لطفا از لینک زیر برای بازیافت پسوردتان استفاده کنید:<br/>
 			";
-			$mail->Body    = email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content);
 
-			return $mail->Send();
+			//$mail->Body    = email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content);
+			return send_email($user->email, "Reset Password Request", email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content));
+			//return $mail->Send();
 		} else {
 			return FALSE;
 		}
 	}
-}
+	
+} // END of CLASS

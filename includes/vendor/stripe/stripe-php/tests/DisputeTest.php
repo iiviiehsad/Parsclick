@@ -2,90 +2,85 @@
 
 namespace Stripe;
 
-class DisputeTest extends TestCase
-{
-    public function testUrls()
-    {
-        $this->assertSame(Dispute::classUrl(), '/v1/disputes');
-        $dispute = new Dispute('dp_123');
-        $this->assertSame($dispute->instanceUrl(), '/v1/disputes/dp_123');
-    }
+class DisputeTest extends TestCase {
 
-    private function createDisputedCharge()
-    {
-        $card = array(
-            'number' => '4000000000000259',
-            'exp_month' => 5,
-            'exp_year' => date('Y') + 1
-        );
+	public function testUrls()
+	{
+		$this->assertSame(Dispute::classUrl(), '/v1/disputes');
+		$dispute = new Dispute('dp_123');
+		$this->assertSame($dispute->instanceUrl(), '/v1/disputes/dp_123');
+	}
 
-        $c = Charge::create(
-            array(
-                'amount' => 100,
-                'currency' => 'usd',
-                'card' => $card
-            )
-        );
-        $c = Charge::retrieve($c->id);
+	public function testAll()
+	{
+		self::authorizeFromEnv();
 
-        $attempts = 0;
+		$sublist = Dispute::all(array(
+				'limit' => 3,
+			));
+		$this->assertSame(3, count($sublist->data));
+	}
 
-        while ($c->dispute === null) {
-            if ($attempts > 5) {
-                throw "Charge is taking too long to be disputed";
-            }
-            sleep(1);
-            $c = Charge::retrieve($c->id);
-            $attempts += 1;
-        }
+	public function testUpdate()
+	{
+		self::authorizeFromEnv();
 
-        return $c;
-    }
+		$c = $this->createDisputedCharge();
 
-    public function testAll()
-    {
-        self::authorizeFromEnv();
+		$d                            = $c->dispute;
+		$d->evidence["customer_name"] = "Bob";
+		$s                            = $d->save();
 
-        $sublist = Dispute::all(
-            array(
-                'limit' => 3,
-            )
-        );
-        $this->assertSame(3, count($sublist->data));
-    }
+		$this->assertSame($d->id, $s->id);
+		$this->assertSame("Bob", $s->evidence["customer_name"]);
+	}
 
+	private function createDisputedCharge()
+	{
+		$card = array(
+			'number'    => '4000000000000259',
+			'exp_month' => 5,
+			'exp_year'  => date('Y') + 1
+		);
 
-    public function testUpdate()
-    {
-        self::authorizeFromEnv();
+		$c = Charge::create(array(
+				'amount'   => 100,
+				'currency' => 'usd',
+				'card'     => $card
+			));
+		$c = Charge::retrieve($c->id);
 
-        $c = $this->createDisputedCharge();
+		$attempts = 0;
 
-        $d = $c->dispute;
-        $d->evidence["customer_name"] = "Bob";
-        $s = $d->save();
+		while($c->dispute === NULL) {
+			if($attempts > 5) {
+				throw "Charge is taking too long to be disputed";
+			}
+			sleep(1);
+			$c = Charge::retrieve($c->id);
+			$attempts += 1;
+		}
 
-        $this->assertSame($d->id, $s->id);
-        $this->assertSame("Bob", $s->evidence["customer_name"]);
-    }
+		return $c;
+	}
 
-    public function testClose()
-    {
-        self::authorizeFromEnv();
+	public function testClose()
+	{
+		self::authorizeFromEnv();
 
-        $c = $this->createDisputedCharge();
+		$c = $this->createDisputedCharge();
 
-        $d = $c->dispute->close();
-        $this->assertSame("lost", $d->status);
-    }
+		$d = $c->dispute->close();
+		$this->assertSame("lost", $d->status);
+	}
 
-    public function testRetrieve()
-    {
-        self::authorizeFromEnv();
+	public function testRetrieve()
+	{
+		self::authorizeFromEnv();
 
-        $c = $this->createDisputedCharge();
+		$c = $this->createDisputedCharge();
 
-        $d = Dispute::retrieve($c->dispute->id);
-        $this->assertSame($d->id, $c->dispute->id);
-    }
+		$d = Dispute::retrieve($c->dispute->id);
+		$this->assertSame($d->id, $c->dispute->id);
+	}
 }

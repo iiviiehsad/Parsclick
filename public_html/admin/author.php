@@ -24,7 +24,8 @@ echo output_message($message);
 		برای تماس مستقیم با مدیر از این آدرس استفاده کنید (روی آن کلیک کنید):
 		<a class="lead" href="mailto:info@parsclick.net" data-toggle="tooltip" data-placement="left" title="ایمیل به ما" target="_blank"><kbd>info@parsclick.net</kbd></a><br/>
 		همه نویسندگان ملزم به عضویت گروه فیسبوکی نویسندگان پارس کلیک هستند.
-		<a class="lead" href="https://www.facebook.com/groups/175905176126750/" data-toggle="tooltip" data-placement="left" title="گروه نویسندگان پارس کلیک" target="_blank"><kbd>کلیک کنید</kbd></a><br/>
+		<a class="lead" href="https://www.facebook.com/groups/175905176126750/" data-toggle="tooltip" data-placement="left" title="گروه نویسندگان پارس کلیک" target="_blank"><kbd>کلیک
+		                                                                                                                                                                          کنید</kbd></a><br/>
 	</p>
 </div>
 <section class="main col-sm-12 col-md-8 col-lg-8">

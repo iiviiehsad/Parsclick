@@ -3,16 +3,16 @@ require_once("../../includes/initialize.php");
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
 $yourself = Admin::find_by_id($session->id);
-$admin = Admin::find_by_id($_GET["id"]);
-$errors = "";
-if(!$admin) {
+$admin    = Admin::find_by_id($_GET["id"]);
+$errors   = "";
+if( ! $admin) {
 	$session->message("مدیر پیدا نشد!");
 	redirect_to("admin_list.php");
 }
 if(isset($_POST['submit'])) {
 	$admin->id       = (int)$_GET["id"];
 	$admin->username = strtolower($_POST["username"]);
-	if($yourself == $admin && !empty($_POST["password"])) {
+	if($yourself == $admin && ! empty($_POST["password"])) {
 		// if this is true means this is your profile
 		// and you can change your password
 		$admin->password = $admin->password_encrypt($_POST["password"]);
@@ -29,9 +29,9 @@ if(isset($_POST['submit'])) {
 	}
 } else {
 }
- include_layout_template("admin_header.php");
- include("../_/components/php/admin_nav.php");
- echo output_message($message, $errors);
+include_layout_template("admin_header.php");
+include("../_/components/php/admin_nav.php");
+echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-9 col-lg-9">
 		<article>
@@ -39,7 +39,8 @@ if(isset($_POST['submit'])) {
 
 			<form class="form-horizontal" action="edit_admin.php?id=<?php echo urlencode($admin->id); ?>" method="post" role="form">
 				<fieldset>
-					<legend><i class="fa fa-user"></i> <?php echo htmlentities(ucwords(strtolower($admin->full_name()))); ?></legend>
+					<legend><i class="fa fa-user"></i> <?php echo htmlentities(ucwords(strtolower($admin->full_name()))); ?>
+					</legend>
 					<!--username-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="username">اسم کاربری</label>

@@ -3,7 +3,7 @@ require_once("../../includes/initialize.php");
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_course();
-if(!$current_category) {
+if( ! $current_category) {
 	redirect_to("admin_courses.php");
 }
 $errors = "";
@@ -60,11 +60,15 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" value="0"
-										<?php if($current_category->visible == 0) { echo "checked"; } ?> > خیر
+										<?php if($current_category->visible == 0) {
+											echo "checked";
+										} ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" value="1"
-										<?php if($current_category->visible == 1) { echo "checked"; } ?> > بله
+										<?php if($current_category->visible == 1) {
+											echo "checked";
+										} ?> > بله
 							</label>
 						</div>
 					</section>

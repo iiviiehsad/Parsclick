@@ -6,10 +6,10 @@ $author = Author::find_by_id($session->id);
 $author->check_status();
 find_selected_article();
 $errors = "";
-if(!$current_article || !$current_subject) {
+if( ! $current_article || ! $current_subject) {
 	redirect_to("author_articles.php");
 	// check to see the article belong to this author in order to edit
-} elseif(!check_ownership($current_article->author_id, $session->id)) {
+} elseif( ! check_ownership($current_article->author_id, $session->id)) {
 	$session->message("شما اجازه تغییر این مقاله را ندارید!");
 	redirect_to("author_articles.php");
 }
@@ -17,7 +17,9 @@ if(isset($_POST['submit'])) {
 	$current_article->subject_id = $current_subject->id;
 	$current_article->name       = $_POST["article_name"];
 	$current_article->content    = $_POST["content"];
-	if($author->id == 1) { $current_article->visible = $_POST["visible"]; }
+	if($author->id == 1) {
+		$current_article->visible = $_POST["visible"];
+	}
 	$result = $current_article->save();
 	if($result) { // Success
 		$session->message("مقاله بروزرسانی شد.");

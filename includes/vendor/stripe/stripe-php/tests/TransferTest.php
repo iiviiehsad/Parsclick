@@ -2,109 +2,109 @@
 
 namespace Stripe;
 
-class TransferTest extends TestCase
-{
-    public function testCreate()
-    {
-        $recipient = self::createTestRecipient();
+class TransferTest extends TestCase {
 
-        self::authorizeFromEnv();
-        $transfer = Transfer::create(array(
-            'amount' => 100,
-            'currency' => 'usd',
-            'recipient' => $recipient->id
-        ));
-        $this->assertSame('pending', $transfer->status);
-    }
+	public function testCreate()
+	{
+		$recipient = self::createTestRecipient();
 
-    public function testRetrieve()
-    {
-        $recipient = self::createTestRecipient();
+		self::authorizeFromEnv();
+		$transfer = Transfer::create(array(
+			'amount'    => 100,
+			'currency'  => 'usd',
+			'recipient' => $recipient->id
+		));
+		$this->assertSame('pending', $transfer->status);
+	}
 
-        self::authorizeFromEnv();
-        $transfer = Transfer::create(array(
-            'amount' => 100,
-            'currency' => 'usd',
-            'recipient' => $recipient->id
-        ));
-        $reloaded = Transfer::retrieve($transfer->id);
-        $this->assertSame($reloaded->id, $transfer->id);
-    }
+	public function testRetrieve()
+	{
+		$recipient = self::createTestRecipient();
 
-    /**
-     * @expectedException Stripe\Error\InvalidRequest
-     */
-    public function testCancel()
-    {
-        $recipient = self::createTestRecipient();
+		self::authorizeFromEnv();
+		$transfer = Transfer::create(array(
+			'amount'    => 100,
+			'currency'  => 'usd',
+			'recipient' => $recipient->id
+		));
+		$reloaded = Transfer::retrieve($transfer->id);
+		$this->assertSame($reloaded->id, $transfer->id);
+	}
 
-        self::authorizeFromEnv();
-        $transfer = Transfer::create(array(
-            'amount' => 100,
-            'currency' => 'usd',
-            'recipient' => $recipient->id
-        ));
-        $reloaded = Transfer::retrieve($transfer->id);
-        $this->assertSame($reloaded->id, $transfer->id);
+	/**
+	 * @expectedException Stripe\Error\InvalidRequest
+	 */
+	public function testCancel()
+	{
+		$recipient = self::createTestRecipient();
 
-        $reloaded->cancel();
-    }
+		self::authorizeFromEnv();
+		$transfer = Transfer::create(array(
+			'amount'    => 100,
+			'currency'  => 'usd',
+			'recipient' => $recipient->id
+		));
+		$reloaded = Transfer::retrieve($transfer->id);
+		$this->assertSame($reloaded->id, $transfer->id);
 
-    public function testTransferUpdateMetadata()
-    {
-        $recipient = self::createTestRecipient();
+		$reloaded->cancel();
+	}
 
-        self::authorizeFromEnv();
-        $transfer = Transfer::create(array(
-            'amount' => 100,
-            'currency' => 'usd',
-            'recipient' => $recipient->id
-        ));
+	public function testTransferUpdateMetadata()
+	{
+		$recipient = self::createTestRecipient();
 
-        $transfer->metadata['test'] = 'foo bar';
-        $transfer->save();
+		self::authorizeFromEnv();
+		$transfer = Transfer::create(array(
+			'amount'    => 100,
+			'currency'  => 'usd',
+			'recipient' => $recipient->id
+		));
 
-        $updatedTransfer = Transfer::retrieve($transfer->id);
-        $this->assertSame('foo bar', $updatedTransfer->metadata['test']);
-    }
+		$transfer->metadata['test'] = 'foo bar';
+		$transfer->save();
 
-    public function testTransferUpdateMetadataAll()
-    {
-        $recipient = self::createTestRecipient();
+		$updatedTransfer = Transfer::retrieve($transfer->id);
+		$this->assertSame('foo bar', $updatedTransfer->metadata['test']);
+	}
 
-        self::authorizeFromEnv();
-        $transfer = Transfer::create(array(
-            'amount' => 100,
-            'currency' => 'usd',
-            'recipient' => $recipient->id
-        ));
+	public function testTransferUpdateMetadataAll()
+	{
+		$recipient = self::createTestRecipient();
 
-        $transfer->metadata = array('test' => 'foo bar');
-        $transfer->save();
+		self::authorizeFromEnv();
+		$transfer = Transfer::create(array(
+			'amount'    => 100,
+			'currency'  => 'usd',
+			'recipient' => $recipient->id
+		));
 
-        $updatedTransfer = Transfer::retrieve($transfer->id);
-        $this->assertSame('foo bar', $updatedTransfer->metadata['test']);
-    }
+		$transfer->metadata = array('test' => 'foo bar');
+		$transfer->save();
 
-    public function testRecipientUpdateMetadata()
-    {
-        $recipient = self::createTestRecipient();
+		$updatedTransfer = Transfer::retrieve($transfer->id);
+		$this->assertSame('foo bar', $updatedTransfer->metadata['test']);
+	}
 
-        $recipient->metadata['test'] = 'foo bar';
-        $recipient->save();
+	public function testRecipientUpdateMetadata()
+	{
+		$recipient = self::createTestRecipient();
 
-        $updatedRecipient = Recipient::retrieve($recipient->id);
-        $this->assertSame('foo bar', $updatedRecipient->metadata['test']);
-    }
+		$recipient->metadata['test'] = 'foo bar';
+		$recipient->save();
 
-    public function testRecipientUpdateMetadataAll()
-    {
-        $recipient = self::createTestRecipient();
+		$updatedRecipient = Recipient::retrieve($recipient->id);
+		$this->assertSame('foo bar', $updatedRecipient->metadata['test']);
+	}
 
-        $recipient->metadata = array('test' => 'foo bar');
-        $recipient->save();
+	public function testRecipientUpdateMetadataAll()
+	{
+		$recipient = self::createTestRecipient();
 
-        $updatedRecipient = Recipient::retrieve($recipient->id);
-        $this->assertSame('foo bar', $updatedRecipient->metadata['test']);
-    }
+		$recipient->metadata = array('test' => 'foo bar');
+		$recipient->save();
+
+		$updatedRecipient = Recipient::retrieve($recipient->id);
+		$this->assertSame('foo bar', $updatedRecipient->metadata['test']);
+	}
 }

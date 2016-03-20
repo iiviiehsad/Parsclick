@@ -9,9 +9,9 @@ $MAX_FILE_SIZE      = 100000;
 $allowed_mime_types = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg'];
 $allowed_extensions = ['png', 'gif', 'jpg', 'jpeg', 'PNG', 'GIF', 'JPG', 'JPEG'];
 if(isset($_POST['submit'])) {
-	$author->id       = $session->id;
+	$author->id = $session->id;
 	//$author->username = trim($_POST["username"]);
-	if(!empty($_POST["password"])) {
+	if( ! empty($_POST["password"])) {
 		$author->password = $author->password_encrypt(trim($_POST["password"]));
 	}
 	$author->first_name = trim($_POST["first_name"]);
@@ -21,13 +21,13 @@ if(isset($_POST['submit'])) {
 		$file_extension = file_extension($_FILES["photo"]['name']);
 		if($_FILES["photo"]['error'] > 0) {
 			$errors = "خطا: " . file_upload_error($_FILES["photo"]['error']);
-		} elseif(!is_uploaded_file($_FILES["photo"]["tmp_name"])) {
+		} elseif( ! is_uploaded_file($_FILES["photo"]["tmp_name"])) {
 			$errors = "مرجع فایل شامل فایلی که بتازگی آپلود کردید نیست!";
 		} elseif($_FILES["photo"]["size"] > $MAX_FILE_SIZE) {
 			$errors = "اندازه فایل بزرگ است!";
-		} elseif(!in_array($_FILES["photo"]["type"], $allowed_mime_types)) {
+		} elseif( ! in_array($_FILES["photo"]["type"], $allowed_mime_types)) {
 			$errors = "فایل عکس نیست!";
-		} elseif(!in_array($file_extension, $allowed_extensions)) {
+		} elseif( ! in_array($file_extension, $allowed_extensions)) {
 			$errors = "فایل عکس نیست!";
 		} elseif(file_contains_php($_FILES["photo"]["tmp_name"])) {
 			$errors = "فایل دارای پی اچ پی است!";
@@ -107,7 +107,8 @@ echo output_message($message, $errors);
 						</label>
 						<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $MAX_FILE_SIZE; ?>"/>
 						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="file" name="photo" id="photo" accept="image/*"/>
-						&nbsp;&nbsp;&nbsp;<small>اندازه: ۱۰۰ کیلوبایت</small>
+						&nbsp;&nbsp;&nbsp;
+						<small>اندازه: ۱۰۰ کیلوبایت</small>
 					</div>
 				</section>
 				<section class="row">

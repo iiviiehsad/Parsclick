@@ -19,8 +19,9 @@ echo output_message($message);
 					<dt>نمایان:</dt>
 					<dd><?php echo $current_course->visible == 1 ? '<span class="text-success">بله</span>' : '<span class="text-danger">خیر</span>'; ?></dd>
 					<dt>نویسنده:</dt>
-					<dd><?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)->full_name()) : '-'; ?></dd>
-					<?php if(!empty($current_course->content)) { ?>
+					<dd><?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)
+					                                                                      ->full_name()) : '-'; ?></dd>
+					<?php if( ! empty($current_course->content)) { ?>
 						<dt>توضیحات:</dt>
 						<dd>
 							<small><?php echo nl2br(strip_tags($current_course->content, '<strong><em><p><code><pre><mark><kbd><ul><ol><li><img><a>')); ?></small>
@@ -33,7 +34,7 @@ echo output_message($message);
 							<span class="glyphicon glyphicon-pencil"></span>
 						</a>
 						<!---------------------------------------------FILE LINK--------------------------------------->
-						<?php if(!empty($current_course->file_link)) { ?>
+						<?php if( ! empty($current_course->file_link)) { ?>
 							<a class="btn btn-primary btn-small arial" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" data-toggle="tooltip" title="لینک فایل تمرینی">
 								<span class="glyphicon glyphicon-file"></span>
 							</a>
@@ -68,7 +69,7 @@ echo output_message($message);
 				if(isset($current_course->youtubePlaylist)) {
 					$googleapi  = "https://www.googleapis.com/youtube/v3/playlistItems";
 					$playListID = $current_course->youtubePlaylist;
-					if(!isset($_GET['nextPageToken']) || !isset($_GET['prevPageToken'])) {
+					if( ! isset($_GET['nextPageToken']) || ! isset($_GET['prevPageToken'])) {
 						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI;
 					}
 					if(isset($_GET['nextPageToken'])) {
@@ -91,16 +92,16 @@ echo output_message($message);
 								<div class="table-responsive">
 									<table class="table table-condensed table-hover">
 										<tbody>
-										<?php foreach($json['items'] as $item): ?>
-											<tr>
-												<td>
-													<a class="youtube visited" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
-													   title="پخش کنید">
-														<?php echo $item['snippet']['title']; ?>
-													</a>
-												</td>
-											</tr>
-										<?php endforeach; ?>
+											<?php foreach($json['items'] as $item): ?>
+												<tr>
+													<td>
+														<a class="youtube visited" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
+														   title="پخش کنید">
+															<?php echo $item['snippet']['title']; ?>
+														</a>
+													</td>
+												</tr>
+											<?php endforeach; ?>
 										</tbody>
 									</table>
 								</div>

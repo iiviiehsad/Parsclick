@@ -2,111 +2,110 @@
 
 namespace Stripe;
 
-class RecipientTest extends TestCase
-{
-    public function testDeletion()
-    {
-        $recipient = self::createTestRecipient();
-        $recipient->delete();
+class RecipientTest extends TestCase {
 
-        $this->assertTrue($recipient->deleted);
-    }
+	public function testDeletion()
+	{
+		$recipient = self::createTestRecipient();
+		$recipient->delete();
 
-    public function testSave()
-    {
-        $recipient = self::createTestRecipient();
+		$this->assertTrue($recipient->deleted);
+	}
 
-        $recipient->email = 'gdb@stripe.com';
-        $recipient->save();
-        $this->assertSame($recipient->email, 'gdb@stripe.com');
+	public function testSave()
+	{
+		$recipient = self::createTestRecipient();
 
-        $stripeRecipient = Recipient::retrieve($recipient->id);
-        $this->assertSame($recipient->email, $stripeRecipient->email);
-    }
+		$recipient->email = 'gdb@stripe.com';
+		$recipient->save();
+		$this->assertSame($recipient->email, 'gdb@stripe.com');
 
-    /**
-     * @expectedException Stripe\Error\InvalidRequest
-     */
-    public function testBogusAttribute()
-    {
-        $recipient = self::createTestRecipient();
-        $recipient->bogus = 'bogus';
-        $recipient->save();
-    }
+		$stripeRecipient = Recipient::retrieve($recipient->id);
+		$this->assertSame($recipient->email, $stripeRecipient->email);
+	}
 
-    public function testRecipientAddCard()
-    {
-        $token = Token::create(
-            array("card" => array(
-                "number" => "4000056655665556",
-                "exp_month" => 5,
-                "exp_year" => date('Y') + 3,
-                "cvc" => "314"
-            ))
-        );
+	/**
+	 * @expectedException Stripe\Error\InvalidRequest
+	 */
+	public function testBogusAttribute()
+	{
+		$recipient        = self::createTestRecipient();
+		$recipient->bogus = 'bogus';
+		$recipient->save();
+	}
 
-        $recipient = $this->createTestRecipient();
-        $createdCard = $recipient->cards->create(array("card" => $token->id));
-        $recipient->save();
+	public function testRecipientAddCard()
+	{
+		$token = Token::create(array(
+				"card" => array(
+					"number"    => "4000056655665556",
+					"exp_month" => 5,
+					"exp_year"  => date('Y') + 3,
+					"cvc"       => "314"
+				)
+			));
 
-        $updatedRecipient = Recipient::retrieve($recipient->id);
-        $updatedCards = $updatedRecipient->cards->all();
-        $this->assertSame(count($updatedCards["data"]), 1);
-    }
+		$recipient   = $this->createTestRecipient();
+		$createdCard = $recipient->cards->create(array("card" => $token->id));
+		$recipient->save();
 
-    public function testRecipientUpdateCard()
-    {
-        $token = Token::create(
-            array("card" => array(
-                "number" => "4000056655665556",
-                "exp_month" => 5,
-                "exp_year" => date('Y') + 3,
-                "cvc" => "314"
-            ))
-        );
+		$updatedRecipient = Recipient::retrieve($recipient->id);
+		$updatedCards     = $updatedRecipient->cards->all();
+		$this->assertSame(count($updatedCards["data"]), 1);
+	}
 
-        $recipient = $this->createTestRecipient();
-        $createdCard = $recipient->cards->create(array("card" => $token->id));
-        $recipient->save();
+	public function testRecipientUpdateCard()
+	{
+		$token = Token::create(array(
+				"card" => array(
+					"number"    => "4000056655665556",
+					"exp_month" => 5,
+					"exp_year"  => date('Y') + 3,
+					"cvc"       => "314"
+				)
+			));
 
-        $createdCards = $recipient->cards->all();
-        $this->assertSame(count($createdCards["data"]), 1);
+		$recipient   = $this->createTestRecipient();
+		$createdCard = $recipient->cards->create(array("card" => $token->id));
+		$recipient->save();
 
-        $card = $createdCards['data'][0];
-        $card->name = "Jane Austen";
-        $card->save();
+		$createdCards = $recipient->cards->all();
+		$this->assertSame(count($createdCards["data"]), 1);
 
-        $updatedRecipient = Recipient::retrieve($recipient->id);
-        $updatedCards = $updatedRecipient->cards->all();
-        $this->assertSame($updatedCards["data"][0]->name, "Jane Austen");
-    }
+		$card       = $createdCards['data'][0];
+		$card->name = "Jane Austen";
+		$card->save();
 
-    public function testRecipientDeleteCard()
-    {
-        $token = Token::create(
-            array("card" => array(
-                "number" => "4000056655665556",
-                "exp_month" => 5,
-                "exp_year" => date('Y') + 3,
-                "cvc" => "314"
-            ))
-        );
+		$updatedRecipient = Recipient::retrieve($recipient->id);
+		$updatedCards     = $updatedRecipient->cards->all();
+		$this->assertSame($updatedCards["data"][0]->name, "Jane Austen");
+	}
 
-        $recipient = $this->createTestRecipient();
-        $createdCard = $recipient->cards->create(array("card" => $token->id));
-        $recipient->save();
+	public function testRecipientDeleteCard()
+	{
+		$token = Token::create(array(
+				"card" => array(
+					"number"    => "4000056655665556",
+					"exp_month" => 5,
+					"exp_year"  => date('Y') + 3,
+					"cvc"       => "314"
+				)
+			));
 
-        $updatedRecipient = Recipient::retrieve($recipient->id);
-        $updatedCards = $updatedRecipient->cards->all();
-        $this->assertSame(count($updatedCards["data"]), 1);
+		$recipient   = $this->createTestRecipient();
+		$createdCard = $recipient->cards->create(array("card" => $token->id));
+		$recipient->save();
 
-        $deleteStatus =
-        $updatedRecipient->cards->retrieve($createdCard->id)->delete();
-        $this->assertTrue($deleteStatus->deleted);
-        $updatedRecipient->save();
+		$updatedRecipient = Recipient::retrieve($recipient->id);
+		$updatedCards     = $updatedRecipient->cards->all();
+		$this->assertSame(count($updatedCards["data"]), 1);
 
-        $postDeleteRecipient = Recipient::retrieve($recipient->id);
-        $postDeleteCards = $postDeleteRecipient->cards->all();
-        $this->assertSame(count($postDeleteCards["data"]), 0);
-    }
+		$deleteStatus = $updatedRecipient->cards->retrieve($createdCard->id)->delete();
+		$this->assertTrue($deleteStatus->deleted);
+		$updatedRecipient->save();
+
+		$postDeleteRecipient = Recipient::retrieve($recipient->id);
+		$postDeleteCards     = $postDeleteRecipient->cards->all();
+		$this->assertSame(count($postDeleteCards["data"]), 0);
+	}
 }

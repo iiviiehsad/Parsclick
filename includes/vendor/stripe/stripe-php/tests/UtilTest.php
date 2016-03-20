@@ -2,44 +2,44 @@
 
 namespace Stripe;
 
-class UtilTest extends TestCase
-{
-    public function testIsList()
-    {
-        $list = array(5, 'nstaoush', array());
-        $this->assertTrue(Util\Util::isList($list));
+class UtilTest extends TestCase {
 
-        $notlist = array(5, 'nstaoush', array(), 'bar' => 'baz');
-        $this->assertFalse(Util\Util::isList($notlist));
-    }
+	public function testIsList()
+	{
+		$list = array(5, 'nstaoush', array());
+		$this->assertTrue(Util\Util::isList($list));
 
-    public function testThatPHPHasValueSemanticsForArrays()
-    {
-        $original = array('php-arrays' => 'value-semantics');
-        $derived = $original;
-        $derived['php-arrays'] = 'reference-semantics';
+		$notlist = array(5, 'nstaoush', array(), 'bar' => 'baz');
+		$this->assertFalse(Util\Util::isList($notlist));
+	}
 
-        $this->assertSame('value-semantics', $original['php-arrays']);
-    }
+	public function testThatPHPHasValueSemanticsForArrays()
+	{
+		$original              = array('php-arrays' => 'value-semantics');
+		$derived               = $original;
+		$derived['php-arrays'] = 'reference-semantics';
 
-    public function testConvertStripeObjectToArrayIncludesId()
-    {
-        $customer = self::createTestCustomer();
-        $this->assertTrue(array_key_exists("id", $customer->__toArray(true)));
-    }
+		$this->assertSame('value-semantics', $original['php-arrays']);
+	}
 
-    public function testUtf8()
-    {
-        // UTF-8 string
-        $x = "\xc3\xa9";
-        $this->assertSame(Util\Util::utf8($x), $x);
+	public function testConvertStripeObjectToArrayIncludesId()
+	{
+		$customer = self::createTestCustomer();
+		$this->assertTrue(array_key_exists("id", $customer->__toArray(TRUE)));
+	}
 
-        // Latin-1 string
-        $x = "\xe9";
-        $this->assertSame(Util\Util::utf8($x), "\xc3\xa9");
+	public function testUtf8()
+	{
+		// UTF-8 string
+		$x = "\xc3\xa9";
+		$this->assertSame(Util\Util::utf8($x), $x);
 
-        // Not a string
-        $x = true;
-        $this->assertSame(Util\Util::utf8($x), $x);
-    }
+		// Latin-1 string
+		$x = "\xe9";
+		$this->assertSame(Util\Util::utf8($x), "\xc3\xa9");
+
+		// Not a string
+		$x = TRUE;
+		$this->assertSame(Util\Util::utf8($x), $x);
+	}
 }

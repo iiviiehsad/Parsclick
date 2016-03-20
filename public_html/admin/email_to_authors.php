@@ -26,7 +26,7 @@ if(isset($_POST['submit'])) {
 	}
 	$mail->Body = email("نویسندگان محترم پارس کلیک", DOMAIN, nl2br($_POST['important']), nl2br($_POST['message']));
 
-	$result     = $mail->Send();
+	$result = $mail->Send();
 	if($result) {
 		$message = "پیام به همه نویسندگان فرستاده شد.";
 	} else {

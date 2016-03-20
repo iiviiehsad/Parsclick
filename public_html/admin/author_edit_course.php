@@ -6,10 +6,10 @@ $author = Author::find_by_id($session->id);
 $author->check_status();
 find_selected_course();
 $errors = "";
-if(!$current_course || !$current_category) {
+if( ! $current_course || ! $current_category) {
 	redirect_to("author_courses.php");
 	// check to see the course belong to this author in order to edit
-} elseif(!check_ownership($current_course->author_id, $session->id)) {
+} elseif( ! check_ownership($current_course->author_id, $session->id)) {
 	$session->message("شما قادر به تغییر این درس نیستید");
 	redirect_to("author_courses.php");
 }

@@ -4,16 +4,16 @@ class Course extends DatabaseObject {
 
 	protected static $table_name = "courses";
 	protected static $db_fields  = [
-			'id',
-			'category_id',
-			'author_id',
-			'name',
-			'youtubePlaylist',
-			'file_link',
-			'position',
-			'visible',
-			'content',
-			'created_at'
+		'id',
+		'category_id',
+		'author_id',
+		'name',
+		'youtubePlaylist',
+		'file_link',
+		'position',
+		'visible',
+		'content',
+		'created_at'
 	];
 	public           $id;
 	public           $category_id;
@@ -101,25 +101,6 @@ class Course extends DatabaseObject {
 	}
 
 	/**
-	 * @param int  $category_id get the category ID
-	 * @param bool $public      TRUE is default and will display the hidden and FALSE will not display the hidden
-	 * @return array of courses
-	 */
-	public static function find_courses_for_category($category_id = 0, $public = TRUE)
-	{
-		global $database;
-		$sql = "SELECT * ";
-		$sql .= " FROM " . self::$table_name;
-		$sql .= " WHERE category_id = " . $database->escape_value($category_id);
-		if($public) {
-			$sql .= " AND visible = 1 ";
-		}
-		$sql .= " ORDER BY position DESC";
-
-		return self::find_by_sql($sql);
-	}
-
-	/**
 	 * @param int $category_id gets the category ID
 	 * @return int number of courses for category ID given
 	 */
@@ -147,6 +128,25 @@ class Course extends DatabaseObject {
 	}
 
 	/**
+	 * @param int  $category_id get the category ID
+	 * @param bool $public      TRUE is default and will display the hidden and FALSE will not display the hidden
+	 * @return array of courses
+	 */
+	public static function find_courses_for_category($category_id = 0, $public = TRUE)
+	{
+		global $database;
+		$sql = "SELECT * ";
+		$sql .= " FROM " . self::$table_name;
+		$sql .= " WHERE category_id = " . $database->escape_value($category_id);
+		if($public) {
+			$sql .= " AND visible = 1 ";
+		}
+		$sql .= " ORDER BY position DESC";
+
+		return self::find_by_sql($sql);
+	}
+
+	/**
 	 * @param bool|TRUE $public sets TRUE if subject is visible and FALSE if subject is not visible
 	 * @return bool|mixed newest course
 	 */
@@ -160,19 +160,6 @@ class Course extends DatabaseObject {
 		$course_set = self::find_by_sql($sql);
 
 		return ! empty($course_set) ? array_shift($course_set) : FALSE;
-	}
-
-	/**
-	 * @return bool TRUE if course is new and FALSE if old
-	 */
-	public function recent()
-	{
-		$this->time = 60 * 60 * 24 * 7 * 4; // 4 weeks
-		if(strtotime($this->created_at) + $this->time > time()) {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
 	}
 
 	/**
@@ -193,16 +180,6 @@ class Course extends DatabaseObject {
 		$row        = $database->fetch_assoc($result_set);
 
 		return array_shift($row);
-	}
-
-	/**
-	 * Finds the comments for the course by using the function find_comments_for_course
-	 *
-	 * @return array of comments for the course
-	 */
-	public function comments()
-	{
-		return Comment::find_comments_for_course($this->id);
 	}
 
 	/**
@@ -229,4 +206,27 @@ class Course extends DatabaseObject {
 		return self::find_by_sql($sql);
 	}
 
-}
+	/**
+	 * @return bool TRUE if course is new and FALSE if old
+	 */
+	public function recent()
+	{
+		$this->time = 60 * 60 * 24 * 7 * 4; // 4 weeks
+		if(strtotime($this->created_at) + $this->time > time()) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	/**
+	 * Finds the comments for the course by using the function find_comments_for_course
+	 *
+	 * @return array of comments for the course
+	 */
+	public function comments()
+	{
+		return Comment::find_comments_for_course($this->id);
+	}
+
+} // END of CLASS

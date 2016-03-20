@@ -43,7 +43,8 @@
 				</div><!-- controls -->
 			</section><!-- row -->
 			<section class="row">
-				<a href="forgot_password.php" class="col-sm-offset-4 col-md-offset-4 col-lg-offset-4">اسم کاربری یا پسورد یادتان نیست؟</a><br/>
+				<a href="forgot_password.php" class="col-sm-offset-4 col-md-offset-4 col-lg-offset-4">اسم کاربری یا پسورد یادتان
+				                                                                                      نیست؟</a><br/>
 			</section>
 		</fieldset><!-- personal info -->
 	</form>

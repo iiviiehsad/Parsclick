@@ -3,12 +3,12 @@ require_once("../../includes/initialize.php");
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
 find_selected_article();
-if(!$current_article) {
+if( ! $current_article) {
 	$session->message("هیچ درسی پیدا نشد!");
 	redirect_to("admin_articles.php");
 }
 // Pagination
-$page        = !empty($_GET["page"]) ? (int)$_GET["page"] : 1;
+$page        = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
 $per_page    = 20;
 $total_count = ArticleComment::count_comments_for_article($current_article->id);
 $pagination  = new pagination($page, $per_page, $total_count);

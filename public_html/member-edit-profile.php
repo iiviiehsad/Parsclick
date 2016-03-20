@@ -9,10 +9,10 @@ $errors = "";
 if(isset($_POST['submit'])) {
 	$member->id = $session->id;
 	//$member->username = trim($_POST["username"]);
-	if(! empty($_POST["password"])) {
-		if(! has_length($_POST["password"], ['min' => 6])) {
+	if( ! empty($_POST["password"])) {
+		if( ! has_length($_POST["password"], ['min' => 6])) {
 			$errors = "پسورد باید حداقل ۶ حروف یا بیشتر باشد!";
-		} elseif(! has_format_matching($_POST["password"], '/[^A-Za-z0-9]/')) {
+		} elseif( ! has_format_matching($_POST["password"], '/[^A-Za-z0-9]/')) {
 			$errors = "حداقل از یک حرف مخصوص استفاده کنید!";
 		} else {
 			$member->hashed_password = $member->password_encrypt(trim($_POST["password"]));
@@ -28,7 +28,7 @@ if(isset($_POST['submit'])) {
 		$errors = "ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!";
 	} else {
 		$member->email = trim(strtolower($_POST["email"]));
-		$result = $member->save();
+		$result        = $member->save();
 		if($result) {
 			$session->message("پروفایل بروزرسانی شد.");
 			redirect_to("member-profile");
@@ -125,9 +125,7 @@ if(isset($_POST['submit'])) {
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside class="members_menu">
 		<h2><i class="fa fa-picture-o"></i> آواتار</h2>
-		<img class="img-thumbnail center" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=250&d=<?php echo DOMAIN .
-		                                                                                                                        DS .
-		                                                                                                                        'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->email; ?>">
+		<img class="img-thumbnail center" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=250&d=<?php echo DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->email; ?>">
 		<h2><i class="fa fa-info-circle"></i> اطلاعات</h2>
 		<div class="alert alert-info">
 			<small>

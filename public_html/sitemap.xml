@@ -1,92 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+	xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<url>
-  <loc>http://parsclick.net/</loc>
-  <changefreq>weekly</changefreq>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>http://parsclick.net/courses</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
-</url>
+	<url>
+		<loc>http://parsclick.net/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>1.00</priority>
+	</url>
+	<url>
+		<loc>http://parsclick.net/courses</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
 	<url>
 		<loc>http://parsclick.net/articles</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
 	</url>
-<url>
-  <loc>http://parsclick.net/faq</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>http://parsclick.net/help</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>http://parsclick.net/contact</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>http://parsclick.net/login</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>http://parsclick.net/about</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>http://parsclick.net/register</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>http://parsclick.net/privacypolicy</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>http://parsclick.net/forgot</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>http://parsclick.net/forgot-username</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>http://parsclick.net/member</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>http://parsclick.net/member-profile</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>http://parsclick.net/member-edit-profile</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>http://parsclick.net/member-courses</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>http://parsclick.net/member-articles</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.51</priority>
-</url>
+	<url>
+		<loc>http://parsclick.net/faq</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://parsclick.net/help</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://parsclick.net/contact</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://parsclick.net/login</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://parsclick.net/about</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://parsclick.net/register</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://parsclick.net/privacypolicy</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>http://parsclick.net/forgot</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.64</priority>
+	</url>
+	<url>
+		<loc>http://parsclick.net/forgot-username</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.51</priority>
+	</url>
+	<url>
+		<loc>http://parsclick.net/member</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.51</priority>
+	</url>
+	<url>
+		<loc>http://parsclick.net/member-profile</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.51</priority>
+	</url>
+	<url>
+		<loc>http://parsclick.net/member-edit-profile</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.51</priority>
+	</url>
+	<url>
+		<loc>http://parsclick.net/member-courses</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.51</priority>
+	</url>
+	<url>
+		<loc>http://parsclick.net/member-articles</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.51</priority>
+	</url>
 </urlset>

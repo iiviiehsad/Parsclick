@@ -4,14 +4,14 @@ class Article extends DatabaseObject {
 
 	protected static $table_name = "articles";
 	protected static $db_fields  = [
-			'id',
-			'subject_id',
-			'author_id',
-			'name',
-			'position',
-			'visible',
-			'content',
-			'created_at'
+		'id',
+		'subject_id',
+		'author_id',
+		'name',
+		'position',
+		'visible',
+		'content',
+		'created_at'
 	];
 	public           $id;
 	public           $subject_id;
@@ -81,25 +81,6 @@ class Article extends DatabaseObject {
 	}
 
 	/**
-	 * @param int  $subject_id integer gets the subject ID
-	 * @param bool $public     sets TRUE if subject is visible and FALSE if subject is not visible
-	 * @return array of articles for subjects given
-	 */
-	public static function find_articles_for_subject($subject_id = 0, $public = TRUE)
-	{
-		global $database;
-		$sql = "SELECT * ";
-		$sql .= " FROM " . self::$table_name;
-		$sql .= " WHERE subject_id = " . $database->escape_value($subject_id);
-		if($public) {
-			$sql .= " AND visible = 1 ";
-		}
-		$sql .= " ORDER BY position DESC";
-
-		return self::find_by_sql($sql);
-	}
-
-	/**
 	 * @param      $subject_id integer gets the subject ID
 	 * @param bool $public
 	 * @return int number of articles for subject given
@@ -131,6 +112,25 @@ class Article extends DatabaseObject {
 	}
 
 	/**
+	 * @param int  $subject_id integer gets the subject ID
+	 * @param bool $public     sets TRUE if subject is visible and FALSE if subject is not visible
+	 * @return array of articles for subjects given
+	 */
+	public static function find_articles_for_subject($subject_id = 0, $public = TRUE)
+	{
+		global $database;
+		$sql = "SELECT * ";
+		$sql .= " FROM " . self::$table_name;
+		$sql .= " WHERE subject_id = " . $database->escape_value($subject_id);
+		if($public) {
+			$sql .= " AND visible = 1 ";
+		}
+		$sql .= " ORDER BY position DESC";
+
+		return self::find_by_sql($sql);
+	}
+
+	/**
 	 * @param bool|TRUE $public sets TRUE if subject is visible and FALSE if subject is not visible
 	 * @return bool|mixed newest article
 	 */
@@ -144,19 +144,6 @@ class Article extends DatabaseObject {
 		$course_set = self::find_by_sql($sql);
 
 		return ! empty($course_set) ? array_shift($course_set) : FALSE;
-	}
-
-	/**
-	 * @return bool TRUE if article is new and FALSE if old
-	 */
-	public function recent()
-	{
-		$this->time = 60 * 60 * 24 * 7 * 2; // 2 weeks
-		if(strtotime($this->created_at) + $this->time > time()) {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
 	}
 
 	/**
@@ -177,16 +164,6 @@ class Article extends DatabaseObject {
 		$row        = $database->fetch_assoc($result_set);
 
 		return array_shift($row);
-	}
-
-	/**
-	 * Finds the comments for the course by using the function find_comments_for_article
-	 *
-	 * @return array of comments for the article
-	 */
-	public function comments()
-	{
-		return ArticleComment::find_comments_for_article($this->id);
 	}
 
 	/**
@@ -212,4 +189,28 @@ class Article extends DatabaseObject {
 
 		return self::find_by_sql($sql);
 	}
-}
+
+	/**
+	 * @return bool TRUE if article is new and FALSE if old
+	 */
+	public function recent()
+	{
+		$this->time = 60 * 60 * 24 * 7 * 2; // 2 weeks
+		if(strtotime($this->created_at) + $this->time > time()) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	/**
+	 * Finds the comments for the course by using the function find_comments_for_article
+	 *
+	 * @return array of comments for the article
+	 */
+	public function comments()
+	{
+		return ArticleComment::find_comments_for_article($this->id);
+	}
+	
+} // END of CLASS

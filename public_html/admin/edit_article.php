@@ -4,7 +4,9 @@ $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_article();
 $errors = "";
-if( ! $current_article || ! $current_subject) {   redirect_to("author_articles.php"); }
+if( ! $current_article || ! $current_subject) {
+	redirect_to("author_articles.php");
+}
 if(isset($_POST['submit'])) {
 	global $database;
 	$article    = Article::find_by_id($current_article->id, FALSE);
@@ -14,12 +16,12 @@ if(isset($_POST['submit'])) {
 	$visible    = (int)$_POST["visible"];
 	$content    = $_POST["content"];
 	$sql        = "UPDATE articles SET ";
-	$sql       .= "subject_id = " . $database->escape_value($subject_id) . ", ";
-	$sql       .= "name = '" . $database->escape_value($name) . "', ";
-	$sql       .= "position = " . $database->escape_value($position) . ", ";
-	$sql       .= "visible = " . $database->escape_value($visible) . ", ";
-	$sql       .= "content = '" . $database->escape_value($content) . "' ";
-	$sql       .= "WHERE id = " . $database->escape_value($article->id);
+	$sql .= "subject_id = " . $database->escape_value($subject_id) . ", ";
+	$sql .= "name = '" . $database->escape_value($name) . "', ";
+	$sql .= "position = " . $database->escape_value($position) . ", ";
+	$sql .= "visible = " . $database->escape_value($visible) . ", ";
+	$sql .= "content = '" . $database->escape_value($content) . "' ";
+	$sql .= "WHERE id = " . $database->escape_value($article->id);
 	$database->query($sql);
 	$result = $database->affected_rows();
 	if($result == 1) {

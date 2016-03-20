@@ -36,4 +36,6 @@
 <?php include_once("_/components/php/google_analytic.php"); ?>
 </body>
 </html>
-<?php if(isset($database)) { $database->close_connection(); } ?>
+<?php if(isset($database)) {
+	$database->close_connection();
+} ?>

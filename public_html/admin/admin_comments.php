@@ -3,12 +3,12 @@ require_once("../../includes/initialize.php");
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
 find_selected_course();
-if(!$current_course) {
+if( ! $current_course) {
 	$session->message("هیچ درسی پیدا نشد!");
 	redirect_to("admin_courses.php");
 }
 // Pagination
-$page        = !empty($_GET["page"]) ? (int)$_GET["page"] : 1;
+$page        = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
 $per_page    = 20;
 $total_count = Comment::count_comments_for_course($current_course->id);
 $pagination  = new pagination($page, $per_page, $total_count);
@@ -26,7 +26,7 @@ echo output_message($message);
 					<img class="img-circle pull-right" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50" alt="<?php echo $_member->email; ?>">
 					<div class="media-body arial">
 						<span class="label label-as-badge label-success yekan"><?php echo htmlentities($_member->full_name()); ?></span>
-							<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
+						<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
 						<a class="label label-as-badge label-danger" href="admin_delete_comment.php?id=<?php echo urlencode($comment->id); ?>">
 							<i class="fa fa-times"></i>
 						</a>

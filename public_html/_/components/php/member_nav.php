@@ -9,7 +9,8 @@
 			<li><a href="member"><i class="fa fa-home fa-lg"></i> خانه</a></li>
 			<li><a href="member-profile"><i class="fa fa-pencil-square fa-lg"></i> حساب کاربری</a></li>
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-archive fa-lg"></i> محتوی <span class="caret"></span></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-archive fa-lg"></i> محتوی
+					<span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 					<li><a tabindex="-1" href="member-courses"><i class="fa fa-film fa-lg"></i> دروس</a></li>
 					<li><a tabindex="-1" href="member-articles"><i class="fa fa-newspaper-o fa-lg"></i> مقالات</a></li>

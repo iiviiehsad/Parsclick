@@ -14,4 +14,6 @@ if($comment && $comment->delete()) {
 	$session->message("نظر حذف نشد!");
 	redirect_to("admin_article_comments.php?article={$comment->article_id}");
 }
-if(isset($database)) { $database->close_connection(); }
+if(isset($database)) {
+	$database->close_connection();
+}

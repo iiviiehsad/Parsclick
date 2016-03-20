@@ -7,17 +7,17 @@ class Member extends DatabaseObject {
 	// Really important: array and properties MUST be exactly the same name as db columns
 	protected static $table_name = "members";
 	protected static $db_fields  = [
-			'id',
-			'username',
-			'hashed_password',
-			'first_name',
-			'last_name',
-			'gender',
-			'address',
-			'city',
-			'email',
-			'status',
-			'token'
+		'id',
+		'username',
+		'hashed_password',
+		'first_name',
+		'last_name',
+		'gender',
+		'address',
+		'city',
+		'email',
+		'status',
+		'token'
 	];
 	public           $id;
 	public           $username;
@@ -31,18 +31,6 @@ class Member extends DatabaseObject {
 	public           $status;
 	public           $token;
 	public           $customer;
-
-	/**
-	 * @return string jones the first name and last name with an space
-	 */
-	public function full_name()
-	{
-		if(isset($this->first_name) && isset($this->last_name)) {
-			return $this->first_name . " " . $this->last_name;
-		} else {
-			return "";
-		}
-	}
 
 	/**
 	 * @param string $search gets the search query
@@ -62,6 +50,53 @@ class Member extends DatabaseObject {
 		$result_set = self::find_by_sql($sql);
 
 		return ! empty($result_set) ? $result_set : NULL;
+	}
+
+	/**
+	 * @param string $username gets username
+	 * @param string $password gets the password
+	 * @return bool|mixed TRUE if matches and FALSE if not
+	 */
+	public static function authenticate($username = "", $password = "")
+	{
+		$user = self::find_by_username($username);
+		if($user) {
+			if(self::password_check($password, $user->hashed_password)) {
+				return $user;
+			} else {
+				return FALSE;
+			}
+		} else {
+			return FALSE;
+		}
+	}
+
+	/**
+	 * @param $password      string gets the password
+	 * @param $existing_hash string has the existing hash
+	 * @return bool TRUE if existing hash matches the password and FALSE if not
+	 */
+	private static function password_check($password, $existing_hash)
+	{
+		// existing hash contains format and salt at start
+		$hash = crypt($password, $existing_hash);
+		if($hash === $existing_hash) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	/**
+	 * @return string jones the first name and last name with an space
+	 */
+	public function full_name()
+	{
+		if(isset($this->first_name) && isset($this->last_name)) {
+			return $this->first_name . " " . $this->last_name;
+		} else {
+			return "";
+		}
 	}
 
 	/**
@@ -103,41 +138,6 @@ class Member extends DatabaseObject {
 	}
 
 	/**
-	 * @param $password      string gets the password
-	 * @param $existing_hash string has the existing hash
-	 * @return bool TRUE if existing hash matches the password and FALSE if not
-	 */
-	private static function password_check($password, $existing_hash)
-	{
-		// existing hash contains format and salt at start
-		$hash = crypt($password, $existing_hash);
-		if($hash === $existing_hash) {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
-	}
-
-	/**
-	 * @param string $username gets username
-	 * @param string $password gets the password
-	 * @return bool|mixed TRUE if matches and FALSE if not
-	 */
-	public static function authenticate($username = "", $password = "")
-	{
-		$user = self::find_by_username($username);
-		if($user) {
-			if(self::password_check($password, $user->hashed_password)) {
-				return $user;
-			} else {
-				return FALSE;
-			}
-		} else {
-			return FALSE;
-		}
-	}
-
-	/**
 	 * This method checks the member's status to see if this property which represents the database status column
 	 * (BOOLEAN) is 0 or FALSE or 1 or TRUE. If the status is not TRUE then member will be redirected to the specific
 	 * page to prevent the member from using the system.
@@ -164,29 +164,29 @@ class Member extends DatabaseObject {
 	{
 		$user = self::find_by_username($username);
 		if($user && isset($user->token)) {
-			$mail = new PHPMailer();
-			$mail->IsSMTP();
-			$mail->IsHTML(TRUE);
-			$mail->AddAddress($this->email, "Reset Password");
-			$mail->CharSet    = 'UTF-8';
-			$mail->Host       = SMTP;
-			$mail->SMTPSecure = TLS;
-			$mail->Port       = PORT;
-			$mail->SMTPAuth   = TRUE;
-			$mail->Username   = EMAILUSER;
-			$mail->Password   = EMAILPASS;
-			$mail->FromName   = DOMAIN;
-			$mail->From       = EMAILUSER;
-			$mail->Subject    = "Reset Password Request";
-			$content          = "
+			//$mail = new PHPMailer();
+			//$mail->IsSMTP();
+			//$mail->IsHTML(TRUE);
+			//$mail->AddAddress($this->email, "Reset Password");
+			//$mail->CharSet    = 'UTF-8';
+			//$mail->Host       = SMTP;
+			//$mail->SMTPSecure = TLS;
+			//$mail->Port       = PORT;
+			//$mail->SMTPAuth   = TRUE;
+			//$mail->Username   = EMAILUSER;
+			//$mail->Password   = EMAILPASS;
+			//$mail->FromName   = DOMAIN;
+			//$mail->From       = EMAILUSER;
+			//$mail->Subject    = "Reset Password Request";
+			$content = "
 			اخیرا شما درخواست بازیافت پسوردتان را از ما نموده اید؟ <br/>
 			اگر شما این درخواست را نکردید هول نکنید, هیچ اقدامی لازم نیست انجام دهید. پسورد شما بدون کلیک کردن به لینک بالا قابل تغییر نخواهد بود. <br/>
 			از لینک زیر برای عوض کردن پسورد خود استفاده کنید:<br/>
 			";
-			$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content);
 
-			return $mail->Send();
-			//return TRUE;
+			//$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content);
+			return send_email($this->email, "Reset Password Request", email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content));
+			//return $mail->Send();
 		} else {
 			return FALSE;
 		}
@@ -204,28 +204,29 @@ class Member extends DatabaseObject {
 	{
 		$user = self::find_by_email($email);
 		if($user && isset($user->token)) {
-			$mail = new PHPMailer();
-			$mail->IsSMTP();
-			$mail->IsHTML(TRUE);
-			$mail->AddAddress($this->email, "Forgot Username");
-			$mail->CharSet    = 'UTF-8';
-			$mail->Host       = SMTP;
-			$mail->SMTPSecure = TLS;
-			$mail->Port       = PORT;
-			$mail->SMTPAuth   = TRUE;
-			$mail->Username   = EMAILUSER;
-			$mail->Password   = EMAILPASS;
-			$mail->FromName   = DOMAIN;
-			$mail->From       = EMAILUSER;
-			$mail->Subject    = "Username Reminder Request";
-			$content          = "
+			//$mail = new PHPMailer();
+			//$mail->IsSMTP();
+			//$mail->IsHTML(TRUE);
+			//$mail->AddAddress($this->email, "Forgot Username");
+			//$mail->CharSet    = 'UTF-8';
+			//$mail->Host       = SMTP;
+			//$mail->SMTPSecure = TLS;
+			//$mail->Port       = PORT;
+			//$mail->SMTPAuth   = TRUE;
+			//$mail->Username   = EMAILUSER;
+			//$mail->Password   = EMAILPASS;
+			//$mail->FromName   = DOMAIN;
+			//$mail->From       = EMAILUSER;
+			//$mail->Subject    = "Username Reminder Request";
+			$content = "
 			اسم کاربری را فراموش کردید؟ <br/>
 			لطفا به خاطر بسپارید که اسم کاربری را در جایی امن نگه داری کنید و این ایمیل را پاک کنید. این ایمیل را از سطل زباله ایمیل هم پاک کنید.<br/>
 			اسم کاربری شما هست:
 			";
-			$mail->Body       = email($user->full_name(), DOMAIN, $user->username, $content);
 
-			return $mail->Send();
+			//$mail->Body       = email($user->full_name(), DOMAIN, $user->username, $content);
+			return send_email($this->email, "Username Reminder Request", email($user->full_name(), DOMAIN, $user->username, $content));
+			//return $mail->Send();
 		} else {
 			return FALSE;
 		}
@@ -243,21 +244,21 @@ class Member extends DatabaseObject {
 	{
 		$user = self::find_by_username($username);
 		if($user && isset($user->token)) {
-			$mail = new PHPMailer();
-			$mail->IsSMTP();
-			$mail->IsHTML(TRUE);
-			$mail->AddAddress($this->email, "Welcome to Parsclick, Confirm Your Email");
-			$mail->CharSet    = 'UTF-8';
-			$mail->Host       = SMTP;
-			$mail->SMTPSecure = TLS;
-			$mail->Port       = PORT;
-			$mail->SMTPAuth   = TRUE;
-			$mail->Username   = EMAILUSER;
-			$mail->Password   = EMAILPASS;
-			$mail->FromName   = DOMAIN;
-			$mail->From       = EMAILUSER;
-			$mail->Subject    = "به پارس کلیک خوش آمدید";
-			$content          = "
+			//$mail = new PHPMailer();
+			//$mail->IsSMTP();
+			//$mail->IsHTML(TRUE);
+			//$mail->AddAddress($this->email, "Welcome to Parsclick, Confirm Your Email");
+			//$mail->CharSet    = 'UTF-8';
+			//$mail->Host       = SMTP;
+			//$mail->SMTPSecure = TLS;
+			//$mail->Port       = PORT;
+			//$mail->SMTPAuth   = TRUE;
+			//$mail->Username   = EMAILUSER;
+			//$mail->Password   = EMAILPASS;
+			//$mail->FromName   = DOMAIN;
+			//$mail->From       = EMAILUSER;
+			//$mail->Subject    = "به پارس کلیک خوش آمدید";
+			$content = "
 			خوب یک خوش آمد و استقبال گرم را از طرف بچه های پارس کلیک بپذیرید و ممنونیم که ما را انتخاب کردید.
 					<ul><li>خیلی ضرورت دارد که اطلاعات شما بروز باشد مخصوصا تنها پل ارتباطی بین ما  و شما که ایمیلتان است. </li>
 						<li>به محض ورود به سیستم شما قادر به تغییر اطلاعات شخصی خود هستید. </li>
@@ -267,9 +268,10 @@ class Member extends DatabaseObject {
 					</ul>
 					لطفا روی لینک زیر جهت تایید ایمیل خود استفاده کنید:
 			";
-			$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content);
 
-			return $mail->Send();
+			//$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content);
+			return send_email($this->email, "به پارس کلیک خوش آمدید", email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content));
+			//return $mail->Send();
 		} else {
 			return FALSE;
 		}

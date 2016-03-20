@@ -1,6 +1,7 @@
 <h2>به قسمت مقالات خوش آمدید.</h2>
 <section>
-	<p class="lead">تعداد نویسندگان: <span class="label label-as-badge"><?php echo convert(count(Author::find_active_authors())); ?></span></p>
+	<p class="lead">تعداد نویسندگان:
+		<span class="label label-as-badge"><?php echo convert(count(Author::find_active_authors())); ?></span></p>
 	<br/>
 	<?php $authors = Author::find_active_authors(); ?>
 	<?php foreach($authors as $author) : ?>
@@ -17,7 +18,7 @@
 				<p class="label label-as-badge label-info">
 					<?php echo convert(count(Article::find_articles_for_author($author->id, TRUE))); ?>
 					مقاله منتشر شده
-			</p>
+				</p>
 			</div>
 		</div>
 	<?php endforeach; ?>

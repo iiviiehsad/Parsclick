@@ -13,18 +13,6 @@ class Admin extends DatabaseObject {
 	public           $token;
 
 	/**
-	 * @return string containing first_name and last_name joined with an empty space
-	 */
-	public function full_name()
-	{
-		if(isset($this->first_name) && isset($this->last_name)) {
-			return $this->first_name . " " . $this->last_name;
-		} else {
-			return "";
-		}
-	}
-
-	/**
 	 * @param string $search gets the search query from the user
 	 * @return array|null result of an query search
 	 */
@@ -37,22 +25,13 @@ class Admin extends DatabaseObject {
 		$sql .= "OR last_name LIKE '%{$database->escape_value($search)}%' ";
 		$sql .= "OR email LIKE '%{$database->escape_value($search)}%' ";
 		$result_set = self::find_by_sql($sql);
-		return !empty($result_set) ? $result_set : NULL;
+
+		return ! empty($result_set) ? $result_set : NULL;
 	}
 
 	/**
 	 * Important: This function needs needs PHP v5.5+
-	 * @param $password string gets the password from the user
-	 * @return bool|string encrypts the password using Blowfish
-	 */
-	public function password_encrypt($password)
-	{
-		// password_hash() needs PHP v5.5+
-		return password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
-	}
-
-	/**
-	 * Important: This function needs needs PHP v5.5+
+	 *
 	 * @param string $username gets the username from the user
 	 * @param string $password gets the password from the user
 	 * @return bool|mixed user fields if username and password match to user's input
@@ -71,4 +50,29 @@ class Admin extends DatabaseObject {
 			return FALSE;
 		}
 	}
-}
+
+	/**
+	 * @return string containing first_name and last_name joined with an empty space
+	 */
+	public function full_name()
+	{
+		if(isset($this->first_name) && isset($this->last_name)) {
+			return $this->first_name . " " . $this->last_name;
+		} else {
+			return "";
+		}
+	}
+
+	/**
+	 * Important: This function needs needs PHP v5.5+
+	 *
+	 * @param $password string gets the password from the user
+	 * @return bool|string encrypts the password using Blowfish
+	 */
+	public function password_encrypt($password)
+	{
+		// password_hash() needs PHP v5.5+
+		return password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
+	}
+
+} // END of CLASS

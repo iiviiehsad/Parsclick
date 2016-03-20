@@ -5,7 +5,9 @@ $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 find_selected_course();
-if( ! $current_category) { redirect_to("author_courses.php"); }
+if( ! $current_category) {
+	redirect_to("author_courses.php");
+}
 $errors = "";
 if(isset($_POST['submit'])) {
 	$author                  = Author::find_by_id($session->id);

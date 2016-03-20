@@ -4,7 +4,7 @@ $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_article();
 $errors = "";
-if(!$current_subject) {
+if( ! $current_subject) {
 	redirect_to("admin_articles.php");
 }
 if(isset($_POST['submit'])) {
@@ -61,11 +61,15 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" value="0"
-										<?php if($current_subject->visible == 0) { echo "checked"; } ?> > خیر
+										<?php if($current_subject->visible == 0) {
+											echo "checked";
+										} ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" value="1"
-										<?php if($current_subject->visible == 1) { echo "checked"; } ?> > بله
+										<?php if($current_subject->visible == 1) {
+											echo "checked";
+										} ?> > بله
 							</label>
 						</div>
 					</section>

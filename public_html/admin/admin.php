@@ -14,7 +14,7 @@ $admin = Admin::find_by_id($session->id);
 		<h2>کارهایی که می توانید انجام دهید:</h2>
 		<br/><br/>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow bounceInUp">
-			<a href="member_list.php" title="اداره اعضا" >
+			<a href="member_list.php" title="اداره اعضا">
 				<i style="height:100px; font-size: 500%;" class="fa fa-users fa-fw"></i><br>
 				<h4>اداره اعضا</h4>
 			</a>
@@ -26,13 +26,13 @@ $admin = Admin::find_by_id($session->id);
 			</a>
 		</div>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow bounceInUp" data-wow-delay=".6s">
-			<a href="admin_courses.php" title="اداره دروس" >
+			<a href="admin_courses.php" title="اداره دروس">
 				<i style="height:100px; font-size: 500%;" class="fa fa-film fa-fw"></i><br>
 				<h4>اداره دروس</h4>
 			</a>
 		</div>
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow bounceInUp" data-wow-delay=".9s">
-			<a href="admin_list.php" title="اداره مدیران" >
+			<a href="admin_list.php" title="اداره مدیران">
 				<i style="height:100px; font-size: 500%;" class="fa fa-users fa-fw"></i><br>
 				<h4>اداره مدیران</h4>
 			</a>

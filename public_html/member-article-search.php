@@ -24,25 +24,27 @@ if(isset($search_query) && ! empty($search_query)) {
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
-						<tr>
-							<th>مقالات پیدا شده: <span class="badge"><?php echo convert(count($article_set)); ?></span></th>
-						</tr>
+							<tr>
+								<th>مقالات پیدا شده: <span class="badge"><?php echo convert(count($article_set)); ?></span></th>
+							</tr>
 						</thead>
 						<tbody>
-						<?php foreach($article_set as $article): ?>
-							<tr>
-								<td>
-									<strong>
-										<i>
-											<a href="member-articles?subject=<?php echo urlencode($article->subject_id); ?>&article=<?php echo urlencode($article->id); ?>">
-												<mark><?php echo htmlentities($article->name); ?></mark>
-												<small>&nbsp;توسط <?php echo isset($article->author_id) ? htmlentities(Author::find_by_id($article->author_id)->full_name()) : '-'; ?></small>
-											</a>
-										</i>
-									</strong>
-								</td>
-							</tr>
-						<?php endforeach; ?>
+							<?php foreach($article_set as $article): ?>
+								<tr>
+									<td>
+										<strong>
+											<i>
+												<a href="member-articles?subject=<?php echo urlencode($article->subject_id); ?>&article=<?php echo urlencode($article->id); ?>">
+													<mark><?php echo htmlentities($article->name); ?></mark>
+													<small>
+														&nbsp;توسط <?php echo isset($article->author_id) ? htmlentities(Author::find_by_id($article->author_id)
+														                                                                      ->full_name()) : '-'; ?></small>
+												</a>
+											</i>
+										</strong>
+									</td>
+								</tr>
+							<?php endforeach; ?>
 						</tbody>
 					</table>
 				</div>

@@ -3,7 +3,7 @@ require_once("../../includes/initialize.php");
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
 $member   = Member::find_by_id($_GET["id"]);
-if(!$member) {
+if( ! $member) {
 	$session->message("Member could not be found!");
 	redirect_to("manage_members.php");
 }
@@ -17,8 +17,8 @@ if(isset($_POST['submit'])) {
 	$member->address    = ucwords(strtolower($_POST["address"]));
 	$member->city       = ucwords(strtolower($_POST["city"]));
 	$member->email      = strtolower($_POST["email"]);
-	$member->status = (int)$_POST["status"];
-	$result         = $member->save();
+	$member->status     = (int)$_POST["status"];
+	$result             = $member->save();
 	if($result) { // Success
 		$session->message("عضویت بروزرسانی شد.");
 		redirect_to("member_list.php");
@@ -37,7 +37,8 @@ echo output_message($message, $errors);
 
 			<form class="form-horizontal" action="edit_member.php?id=<?php echo urlencode($member->id); ?>" method="post" role="form">
 				<fieldset>
-					<legend><i class="fa fa-user"></i> <?php echo htmlentities(ucwords(strtolower($member->full_name()))); ?></legend>
+					<legend><i class="fa fa-user"></i> <?php echo htmlentities(ucwords(strtolower($member->full_name()))); ?>
+					</legend>
 					<!--username-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="username"> اسم کاربری &nbsp;</label>
@@ -61,7 +62,8 @@ echo output_message($message, $errors);
 					</section>
 					<!--last_name-->
 					<section class="row">
-						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name"> نام خانوادگی&nbsp;</label>
+						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name"> نام
+						                                                                                   خانوادگی&nbsp;</label>
 						<div class="controls">
 							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name" placeholder="نام خانوادگی" value="<?php echo htmlentities($member->last_name); ?>"/>
 						</div>
@@ -113,15 +115,21 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="status" id="inlineRadioNo" value="0"
-										<?php if($member->status == 0) { echo "checked"; } ?> /> منتظر دریافت ایمیل
+										<?php if($member->status == 0) {
+											echo "checked";
+										} ?> /> منتظر دریافت ایمیل
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="status" id="inlineRadioYes" value="1"
-										<?php if($member->status == 1) { echo "checked"; } ?> /> بله
+										<?php if($member->status == 1) {
+											echo "checked";
+										} ?> /> بله
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="status" id="inlineRadioYes" value="2"
-										<?php if($member->status == 2) { echo "checked"; } ?> /> خیر
+										<?php if($member->status == 2) {
+											echo "checked";
+										} ?> /> خیر
 							</label>
 						</div>
 						<!--buttons-->

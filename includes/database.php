@@ -2,8 +2,8 @@
 
 class MySQLDatabase {
 
-	private $connection;
 	public  $last_query;
+	private $connection;
 	private $magic_quotes_active;
 	private $real_escape_string_exists;
 
@@ -58,6 +58,27 @@ class MySQLDatabase {
 		$this->confirm_query($result);
 
 		return $result;
+	}
+
+	/**
+	 * @param $result boolean checks if the query is OK
+	 */
+	private function confirm_query($result)
+	{
+		if( ! $result) {
+			$ip1 = '127.0.0.1';
+			$ip2 = '::1';
+			if($_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2) {
+				$output1 = "Database query failed! " . mysqli_error($this->connection) . "<br/><br/>";
+				$output2 = "Last SQL Query: " . $this->last_query;
+				$output  = warning($output1, $output2);
+			} else {
+				$output1 = "اوخ!";
+				$output2 = "درخواست شما ناقص یا ناهنجار است.";
+				$output  = warning($output1, $output2);
+			}
+			die($output);
+		}
 	}
 
 	/**
@@ -116,26 +137,15 @@ class MySQLDatabase {
 		return mysqli_affected_rows($this->connection);
 	}
 
-	/**
-	 * @param $result boolean checks if the query is OK
-	 */
-	private function confirm_query($result)
-	{
-		if( ! $result) {
-			$output = "Database query failed! " . mysqli_error($this->connection) . "<br/><br/>";;
-			$output .= "Last SQL Query: " . $this->last_query;
-			die($output);
-		}
-	}
-}
+} // END of CLASS
 
 /**
  * Class PostgresSQLDatabase is created to use PostgresSQL database and has only functions related to PostgresSQL
  */
 class PostgresSQLDatabase {
 
-	private $connection;
 	public  $last_query;
+	private $connection;
 	private $magic_quotes_active;
 	private $real_escape_string_exists;
 
@@ -182,6 +192,18 @@ class PostgresSQLDatabase {
 		$this->confirm_query($result);
 
 		return $result;
+	}
+
+	/**
+	 * @param $result boolean checks if the query is OK
+	 */
+	private function confirm_query($result)
+	{
+		if( ! $result) {
+			$output = "Database query failed!";;
+			$output .= "Last SQL Query: " . $this->last_query;
+			die($output);
+		}
 	}
 
 	/**
@@ -240,18 +262,7 @@ class PostgresSQLDatabase {
 		return pg_affected_rows($this->connection);
 	}
 
-	/**
-	 * @param $result boolean checks if the query is OK
-	 */
-	private function confirm_query($result)
-	{
-		if( ! $result) {
-			$output = "Database query failed!";;
-			$output .= "Last SQL Query: " . $this->last_query;
-			die($output);
-		}
-	}
-}
+} // END of CLASS
 
 $database = new MySQLDatabase();
 //$database = new PostgresSQLDatabase();

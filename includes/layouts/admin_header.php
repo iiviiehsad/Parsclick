@@ -16,5 +16,5 @@
 	<link rel="stylesheet" href="../_/css/all.css" media="screen">
 </head>
 <body>
-<section class="container"><!-- container -->
-	<div class="content row"><!-- content -->
+	<section class="container"><!-- container -->
+		<div class="content row"><!-- content -->

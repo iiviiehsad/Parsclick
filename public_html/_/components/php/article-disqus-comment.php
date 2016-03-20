@@ -6,7 +6,7 @@
 		//	this.page.url = <?php //echo DOMAIN . $_SERVER['REQUEST_URI']; ?>//;
 		//	this.page.identifier = <?php //echo  $_SERVER['REQUEST_URI']; ?>//;
 		//};
-		(function () { // DON'T EDIT BELOW THIS LINE
+		(function() { // DON'T EDIT BELOW THIS LINE
 			var d = document, s = d.createElement('script');
 			s.src = 'http://parsclick.disqus.com/embed.js';
 			s.setAttribute('data-timestamp', +new Date());

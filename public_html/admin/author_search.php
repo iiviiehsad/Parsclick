@@ -1,9 +1,9 @@
 <?php
 require_once("../../includes/initialize.php");
 $session->confirm_admin_logged_in();
-$filename = basename(__FILE__);
+$filename     = basename(__FILE__);
 $search_query = trim($_GET["q"]);
-if(isset($search_query) && !empty($search_query)) {
+if(isset($search_query) && ! empty($search_query)) {
 	$author_set = Author::search($search_query);
 } else { // this is a $_GET request
 	$session->message("شما چیزی جستجو نکردید!");
@@ -15,32 +15,32 @@ echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if(!empty($author_set)) { ?>
+			<?php if( ! empty($author_set)) { ?>
 				<h2><i class="fa fa-search"></i> نتیجه جستجو نویسندگان</h2>
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
-						<tr>
-							<th>اسم کاربری</th>
-							<th>نام</th>
-							<th>نام خانوادگی</th>
-							<th>ایمیل</th>
-							<th colspan="2">عملیات</th>
-						</tr>
+							<tr>
+								<th>اسم کاربری</th>
+								<th>نام</th>
+								<th>نام خانوادگی</th>
+								<th>ایمیل</th>
+								<th colspan="2">عملیات</th>
+							</tr>
 						</thead>
 						<tbody>
-						<?php foreach($author_set as $author): ?>
-							<tr>
-								<td><?php echo htmlentities($author->username); ?></td>
-								<td><?php echo htmlentities(ucfirst(strtolower($author->first_name))); ?></td>
-								<td><?php echo htmlentities(ucfirst(strtolower($author->last_name))); ?></td>
-								<td><?php echo htmlentities(strtolower($author->email)); ?></td>
-								<td>
-									<a class="btn btn-small btn-primary arial" href="edit_author.php?id=<?php echo urlencode($author->id); ?>" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
-									<a class="btn btn-small btn-danger arial" href="delete_author.php?id=<?php echo urlencode($author->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید این نویسنده را حذف کنید؟');" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
-								</td>
-							</tr>
-						<?php endforeach; ?>
+							<?php foreach($author_set as $author): ?>
+								<tr>
+									<td><?php echo htmlentities($author->username); ?></td>
+									<td><?php echo htmlentities(ucfirst(strtolower($author->first_name))); ?></td>
+									<td><?php echo htmlentities(ucfirst(strtolower($author->last_name))); ?></td>
+									<td><?php echo htmlentities(strtolower($author->email)); ?></td>
+									<td>
+										<a class="btn btn-small btn-primary arial" href="edit_author.php?id=<?php echo urlencode($author->id); ?>" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+										<a class="btn btn-small btn-danger arial" href="delete_author.php?id=<?php echo urlencode($author->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید این نویسنده را حذف کنید؟');" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
+									</td>
+								</tr>
+							<?php endforeach; ?>
 						</tbody>
 					</table>
 				</div>

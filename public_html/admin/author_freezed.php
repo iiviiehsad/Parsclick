@@ -2,7 +2,9 @@
 require_once("../../includes/initialize.php");
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
-if($author->status == 2) { redirect_to("deactivated.php"); }
+if($author->status == 2) {
+	redirect_to("deactivated.php");
+}
 $errors = "";
 if(isset($_POST["resend_email"])) {
 	$author->create_reset_token($author->username);

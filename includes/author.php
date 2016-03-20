@@ -6,16 +6,16 @@ class Author extends DatabaseObject {
 
 	protected static $table_name = "authors";
 	protected static $db_fields  = [
-			'id',
-			'username',
-			'password',
-			'first_name',
-			'last_name',
-			'email',
-			'parsclickmail',
-			'status',
-			'photo',
-			'token'
+		'id',
+		'username',
+		'password',
+		'first_name',
+		'last_name',
+		'email',
+		'parsclickmail',
+		'status',
+		'photo',
+		'token'
 	];
 	public           $id;
 	public           $username;
@@ -39,18 +39,6 @@ class Author extends DatabaseObject {
 	}
 
 	/**
-	 * @return string containing first_name and last_name joined with an empty space
-	 */
-	public function full_name()
-	{
-		if(isset($this->first_name) && isset($this->last_name)) {
-			return $this->first_name . " " . $this->last_name;
-		} else {
-			return "";
-		}
-	}
-
-	/**
 	 * @param string $search gets the search query
 	 * @return array|null the result
 	 */
@@ -65,18 +53,6 @@ class Author extends DatabaseObject {
 		$result_set = self::find_by_sql($sql);
 
 		return ! empty($result_set) ? $result_set : NULL;
-	}
-
-	/**
-	 * Important: This function needs needs PHP v5.5+
-	 *
-	 * @param $password string gets the password from the user
-	 * @return bool|string encrypts the password using Blowfish
-	 */
-	public function password_encrypt($password)
-	{
-		// password_hash() needs PHP v5.5+
-		return password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
 	}
 
 	/**
@@ -99,6 +75,18 @@ class Author extends DatabaseObject {
 		} else {
 			return FALSE;
 		}
+	}
+
+	/**
+	 * Important: This function needs needs PHP v5.5+
+	 *
+	 * @param $password string gets the password from the user
+	 * @return bool|string encrypts the password using Blowfish
+	 */
+	public function password_encrypt($password)
+	{
+		// password_hash() needs PHP v5.5+
+		return password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
 	}
 
 	/**
@@ -140,21 +128,22 @@ class Author extends DatabaseObject {
 		$user      = self::find_by_username($username);
 		$site_root = DOMAIN;
 		if($user && isset($user->token)) {
-			$mail = new PHPMailer();
-			$mail->IsSMTP();
-			$mail->IsHTML(TRUE);
-			$mail->AddAddress($this->email, "Welcome to Parsclick, Confirm Your Email");
-			$mail->CharSet    = 'UTF-8';
-			$mail->Host       = SMTP;
-			$mail->SMTPSecure = TLS;
-			$mail->Port       = PORT;
-			$mail->SMTPAuth   = TRUE;
-			$mail->Username   = EMAILUSER;
-			$mail->Password   = EMAILPASS;
-			$mail->FromName   = "do-not-reply@parsclick.net";
-			$mail->From       = EMAILUSER;
-			$mail->Subject    = "به پارس کلیک خوش آمدید";
-			$mail->Body       = <<<EMAILBODY
+			//$mail = new PHPMailer();
+			//$mail->IsSMTP();
+			//$mail->IsHTML(TRUE);
+			//$mail->AddAddress($this->email, "Welcome to Parsclick, Confirm Your Email");
+			//$mail->CharSet    = 'UTF-8';
+			//$mail->Host       = SMTP;
+			//$mail->SMTPSecure = TLS;
+			//$mail->Port       = PORT;
+			//$mail->SMTPAuth   = TRUE;
+			//$mail->Username   = EMAILUSER;
+			//$mail->Password   = EMAILPASS;
+			//$mail->FromName   = "do-not-reply@parsclick.net";
+			//$mail->From       = EMAILUSER;
+			//$mail->Subject    = "به پارس کلیک خوش آمدید";
+			//$mail->Body       = <<<EMAILBODY
+			$mail = <<<EMAILBODY
 			<body style="background-color:#F5F5DC;direction:rtl;font-family:Tahoma;">
 				<h1>جناب {$this->full_name()}،</h1>
 				<br/><br/>
@@ -187,9 +176,23 @@ class Author extends DatabaseObject {
 			</body>
 EMAILBODY;
 
-			return $mail->Send();
+			//return $mail->Send();
+			return send_email($this->email, "به پارس کلیک خوش آمدید", $mail);
 		} else {
 			return FALSE;
 		}
 	}
-}
+
+	/**
+	 * @return string containing first_name and last_name joined with an empty space
+	 */
+	public function full_name()
+	{
+		if(isset($this->first_name) && isset($this->last_name)) {
+			return $this->first_name . " " . $this->last_name;
+		} else {
+			return "";
+		}
+	}
+	
+} // END of CLASS

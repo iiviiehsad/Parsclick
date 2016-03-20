@@ -61,11 +61,11 @@ $body   = "";
 									</div>
 									<input type="hidden" name="article" value="<?php echo urlencode($current_article->id); ?>">
 									<!--buttons-->
-										<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-											<button class="btn btn-primary" name="submit" id="submit" type="submit">
-												بفرست
-											</button>
-										</div>
+									<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+										<button class="btn btn-primary" name="submit" id="submit" type="submit">
+											بفرست
+										</button>
+									</div>
 								</form>
 							</fieldset>
 							<hr>

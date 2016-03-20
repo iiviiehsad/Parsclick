@@ -21,6 +21,7 @@ class Comment extends DatabaseObject {
 		$sql .= " WHERE course_id = " . $database->escape_value($course_id);
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
+
 		return array_shift($row);
 	}
 
@@ -32,13 +33,14 @@ class Comment extends DatabaseObject {
 	 */
 	public static function make($member_id, $course_id, $body = "")
 	{
-		if(!empty($member_id) && !empty($course_id) && !empty($body)) {
+		if( ! empty($member_id) && ! empty($course_id) && ! empty($body)) {
 			$comment            = new Comment();
 			$comment->id        = (int)'';
 			$comment->member_id = (int)$member_id;
 			$comment->course_id = (int)$course_id;
 			$comment->created   = strftime("%Y-%m-%d %H:%M:%S", time());
 			$comment->body      = $body;
+
 			return $comment;
 		} else {
 			return FALSE;
@@ -55,6 +57,7 @@ class Comment extends DatabaseObject {
 		$sql = "SELECT * FROM " . self::$table_name;
 		$sql .= " WHERE course_id=" . $database->escape_value($course_id);
 		$sql .= " ORDER BY created DESC";
+
 		return self::find_by_sql($sql);
 	}
 
@@ -67,6 +70,8 @@ class Comment extends DatabaseObject {
 	public static function find_comments($course_id = 0, $limit = 0, $offset = 0)
 	{
 		$sql = "SELECT * FROM " . self::$table_name . " WHERE course_id = {$course_id} ORDER BY created DESC LIMIT {$limit} OFFSET {$offset}";
+
 		return self::find_by_sql($sql);
 	}
-}
+	
+} // END of CLASS

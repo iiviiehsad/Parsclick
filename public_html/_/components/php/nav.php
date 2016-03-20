@@ -1,9 +1,8 @@
-
 <header class="clearfix">
 
 	<section id="branding">
 		<a href="/"><img src="images/misc/logo.png" alt="Logo for Parsclick" title="www.parsclick.net"></a>
-			<img src="images/misc/cursor.gif" class="pull-left" width="50" alt="" style="width:50px !important;">
+		<img src="images/misc/cursor.gif" class="pull-left" width="50" alt="" style="width:50px !important;">
 	</section><!-- branding -->
 
 	<section class="navbar">
@@ -17,7 +16,7 @@
 		</ul><!-- nav -->
 	</section><!-- navbar -->
 
-	<!-- Modal -->
+	          <!-- Modal -->
 	<section id="modal" class="modal fade">
 		<div class="modal-body">
 			<img id="modalimage" src="" alt="Modal Photo">

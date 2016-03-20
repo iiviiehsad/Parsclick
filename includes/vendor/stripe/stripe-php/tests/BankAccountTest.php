@@ -2,31 +2,31 @@
 
 namespace Stripe;
 
-class BankAccountTest extends TestCase
-{
-    public function testVerify()
-    {
-        self::authorizeFromEnv();
+class BankAccountTest extends TestCase {
 
-        $customer = self::createTestCustomer();
+	public function testVerify()
+	{
+		self::authorizeFromEnv();
 
-        $bankAccount = $customer->sources->create(array(
-            'source' => array(
-                'object' => 'bank_account',
-                'account_holder_type' => 'individual',
-                'account_number' => '000123456789',
-                'name' => 'John Doe',
-                'routing_number' => '110000000',
-                'country' => 'US'
-            )
-        ));
+		$customer = self::createTestCustomer();
 
-        $this->assertSame($bankAccount->status, 'new');
+		$bankAccount = $customer->sources->create(array(
+			'source' => array(
+				'object'              => 'bank_account',
+				'account_holder_type' => 'individual',
+				'account_number'      => '000123456789',
+				'name'                => 'John Doe',
+				'routing_number'      => '110000000',
+				'country'             => 'US'
+			)
+		));
 
-        $bankAccount = $bankAccount->verify(array(
-            'amounts' => array(32, 45)
-        ));
+		$this->assertSame($bankAccount->status, 'new');
 
-        $this->assertSame($bankAccount->status, 'verified');
-    }
+		$bankAccount = $bankAccount->verify(array(
+			'amounts' => array(32, 45)
+		));
+
+		$this->assertSame($bankAccount->status, 'verified');
+	}
 }

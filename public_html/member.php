@@ -31,10 +31,13 @@ $newest_article = Article::find_newest_article();
 				<?php echo $newest_article->name; ?> </a>&nbsp;
 		<?php } ?>
 	</p>
+	<h1>سال نو مبارک!</h1>
 </div><!--.jumbotron-->
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
-		<h3><span class="label label-success visible-sm"><?php echo "خوش آمدید  " . ucwords(strtolower($member->full_name())); ?></span></h3>
+		<h3>
+			<span class="label label-success visible-sm"><?php echo "خوش آمدید  " . ucwords(strtolower($member->full_name())); ?></span>
+		</h3>
 		<h2><?php echo htmlentities($newest_article->name); ?>&nbsp;<span class="badge">جدیدترین مقاله</span></h2>
 		<h5>
 			<?php

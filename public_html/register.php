@@ -18,21 +18,21 @@ if($_POST) {
 		if($resp->isSuccess()) {
 			if($session->csrf_token_is_valid() && $session->csrf_token_is_recent()) {
 				//validations
-				if(!has_presence($_POST["username"]) || !has_presence($_POST["password"])) {
+				if( ! has_presence($_POST["username"]) || ! has_presence($_POST["password"])) {
 					$errors = "اسم کاربری و پسورد را خالی نگذارید!";
-				} elseif(!has_length($_POST["username"], ['max' => 20])) {
+				} elseif( ! has_length($_POST["username"], ['max' => 20])) {
 					$errors = "اسم کاربری بیشتر از ۲۰ حرف است!";
 				} elseif($_POST["password"] !== $_POST["confirm_pass"]) {
 					$errors = "پسورد ها مطابقت ندارند!";
-				} elseif(!has_length($_POST["password"], ['min' => 6])) {
+				} elseif( ! has_length($_POST["password"], ['min' => 6])) {
 					$errors = "پسورد باید حداقل ۶ حروف یا بیشتر باشد!";
-				} elseif(!has_format_matching($_POST["password"], '/[^A-Za-z0-9]/')) {
+				} elseif( ! has_format_matching($_POST["password"], '/[^A-Za-z0-9]/')) {
 					$errors = "حداقل از یک حرف مخصوص استفاده کنید!";
 				} elseif(Member::find_by_username(trim($_POST["username"]))) {
 					$errors = "اسم کاربری موجود نیست! لطفا از اسم کاربری دیگری استفاده کنید.";
 				} elseif(Member::find_by_email(trim($_POST["email"]))) {
 					$errors = "این ایمیل قبلا ثبت شده، لطفااگر جزئیات یادتان نیست آنها را بازیافت کنید.";
-				} elseif (is_temp_mail(trim($_POST["email"]))) {
+				} elseif(is_temp_mail(trim($_POST["email"]))) {
 					$errors = "نه دیگه! ثبت نام با ایمیل موقت نداشتیم! ایمیل معتبر وارد کنید.";
 				} else {
 					global $database;

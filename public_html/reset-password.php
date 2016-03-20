@@ -3,7 +3,7 @@ $filename = basename(__FILE__);
 $token    = $_GET['token'];
 // Confirm that the token sent is valid
 $user = Member::find_by_token($token);
-if(!$token || !$user) {
+if( ! $token || ! $user) {
 	// Token wasn't sent or didn't match a user.
 	redirect_to('forgot');
 }
@@ -11,11 +11,11 @@ $errors = "";
 if(isset($_POST["submit"])) {
 	$password         = $_POST['password'];
 	$password_confirm = $_POST['password_confirm'];
-	if(!has_presence($password) || !has_presence($password_confirm)) {
+	if( ! has_presence($password) || ! has_presence($password_confirm)) {
 		$errors = "جفت پسوردها را پر کنید و خالی نگذارید.";
-	} elseif(!has_length($password, ['min' => 6])) {
+	} elseif( ! has_length($password, ['min' => 6])) {
 		$errors = "پسورد باید حداقل شش حروف یا بیشتر باشد.";
-	} elseif(!has_format_matching($password, '/[^A-Za-z0-9]/')) {
+	} elseif( ! has_format_matching($password, '/[^A-Za-z0-9]/')) {
 		$errors = "پسورد باید حداقل شامل یک حرفی باشد که نه حروف و نه عدد باشد: مثلا ستاره";
 	} elseif($password !== $password_confirm) {
 		$errors = "پسوردها با همدیگر یکی نیستند..";

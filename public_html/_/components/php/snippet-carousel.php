@@ -1,4 +1,3 @@
-
 <div id="myCarousel" class="carousel hidden-sm slide carousel-fade wow fadeIn" data-wow-duration="3s" data-ride="carousel">
 	<ol class="carousel-indicators">
 		<!--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
@@ -24,10 +23,10 @@
 			</div>
 		</div>
 		<!--</div>-->
-			<!--<video autoplay loop muted class="bgvideo" id="bgvideo" poster="images/carousel/library.jpg">-->
-			<!--	<source src="images/carousel/parsclick.mp4" type="video/mp4">-->
-			<!--	<img src="images/carousel/library.jpg" alt="Parsclick">-->
-			<!--</video>-->
+		<!--<video autoplay loop muted class="bgvideo" id="bgvideo" poster="images/carousel/library.jpg">-->
+		<!--	<source src="images/carousel/parsclick.mp4" type="video/mp4">-->
+		<!--	<img src="images/carousel/library.jpg" alt="Parsclick">-->
+		<!--</video>-->
 		<!--</div>-->
 	</section>
 	<!--<a href="#myCarousel" class="left carousel-control" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>-->

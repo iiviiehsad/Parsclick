@@ -2,203 +2,183 @@
 
 namespace Stripe;
 
-class ChargeTest extends TestCase
-{
-    public function testUrls()
-    {
-        $this->assertSame(Charge::classUrl(), '/v1/charges');
-        $charge = new Charge('abcd/efgh');
-        $this->assertSame($charge->instanceUrl(), '/v1/charges/abcd%2Fefgh');
-    }
+class ChargeTest extends TestCase {
 
-    public function testCreate()
-    {
-        self::authorizeFromEnv();
+	public function testUrls()
+	{
+		$this->assertSame(Charge::classUrl(), '/v1/charges');
+		$charge = new Charge('abcd/efgh');
+		$this->assertSame($charge->instanceUrl(), '/v1/charges/abcd%2Fefgh');
+	}
 
-        $card = array(
-            'number' => '4242424242424242',
-            'exp_month' => 5,
-            'exp_year' => date('Y') + 1
-        );
+	public function testCreate()
+	{
+		self::authorizeFromEnv();
 
-        $c = Charge::create(
-            array(
-                'amount' => 100,
-                'currency' => 'usd',
-                'card' => $card
-            )
-        );
-        $this->assertTrue($c->paid);
-        $this->assertFalse($c->refunded);
-    }
+		$card = array(
+			'number'    => '4242424242424242',
+			'exp_month' => 5,
+			'exp_year'  => date('Y') + 1
+		);
 
-    public function testIdempotentCreate()
-    {
-        self::authorizeFromEnv();
+		$c = Charge::create(array(
+				'amount'   => 100,
+				'currency' => 'usd',
+				'card'     => $card
+			));
+		$this->assertTrue($c->paid);
+		$this->assertFalse($c->refunded);
+	}
 
-        $card = array(
-            'number' => '4242424242424242',
-            'exp_month' => 5,
-            'exp_year' => date('Y') + 1
-        );
+	public function testIdempotentCreate()
+	{
+		self::authorizeFromEnv();
 
-        $c = Charge::create(
-            array(
-                'amount' => 100,
-                'currency' => 'usd',
-                'card' => $card
-            ),
-            array(
-                'idempotency_key' => self::generateRandomString(),
-            )
-        );
+		$card = array(
+			'number'    => '4242424242424242',
+			'exp_month' => 5,
+			'exp_year'  => date('Y') + 1
+		);
 
-        $this->assertTrue($c->paid);
-        $this->assertSame(200, $c->getLastResponse()->code);
-    }
+		$c = Charge::create(array(
+			'amount'   => 100,
+			'currency' => 'usd',
+			'card'     => $card
+		), array(
+				'idempotency_key' => self::generateRandomString(),
+			));
 
-    public function testRetrieve()
-    {
-        self::authorizeFromEnv();
+		$this->assertTrue($c->paid);
+		$this->assertSame(200, $c->getLastResponse()->code);
+	}
 
-        $card = array(
-            'number' => '4242424242424242',
-            'exp_month' => 5,
-            'exp_year' => date('Y') + 1
-        );
+	public function testRetrieve()
+	{
+		self::authorizeFromEnv();
 
-        $c = Charge::create(
-            array(
-                'amount' => 100,
-                'currency' => 'usd',
-                'card' => $card
-            )
-        );
-        $d = Charge::retrieve($c->id);
-        $this->assertSame(200, $d->getLastResponse()->code);
-        $this->assertSame($d->id, $c->id);
-    }
+		$card = array(
+			'number'    => '4242424242424242',
+			'exp_month' => 5,
+			'exp_year'  => date('Y') + 1
+		);
 
-    public function testUpdateMetadata()
-    {
-        self::authorizeFromEnv();
+		$c = Charge::create(array(
+				'amount'   => 100,
+				'currency' => 'usd',
+				'card'     => $card
+			));
+		$d = Charge::retrieve($c->id);
+		$this->assertSame(200, $d->getLastResponse()->code);
+		$this->assertSame($d->id, $c->id);
+	}
 
-        $card = array(
-            'number' => '4242424242424242',
-            'exp_month' => 5,
-            'exp_year' => date('Y') + 1
-        );
+	public function testUpdateMetadata()
+	{
+		self::authorizeFromEnv();
 
-        $charge = Charge::create(
-            array(
-                'amount' => 100,
-                'currency' => 'usd',
-                'card' => $card
-            )
-        );
+		$card = array(
+			'number'    => '4242424242424242',
+			'exp_month' => 5,
+			'exp_year'  => date('Y') + 1
+		);
 
-        $charge->metadata['test'] = 'foo bar';
-        $charge->save();
+		$charge = Charge::create(array(
+				'amount'   => 100,
+				'currency' => 'usd',
+				'card'     => $card
+			));
 
-        $updatedCharge = Charge::retrieve($charge->id);
-        $this->assertSame('foo bar', $updatedCharge->metadata['test']);
-    }
+		$charge->metadata['test'] = 'foo bar';
+		$charge->save();
 
-    public function testUpdateMetadataAll()
-    {
-        self::authorizeFromEnv();
+		$updatedCharge = Charge::retrieve($charge->id);
+		$this->assertSame('foo bar', $updatedCharge->metadata['test']);
+	}
 
-        $card = array(
-            'number' => '4242424242424242',
-            'exp_month' => 5,
-            'exp_year' => date('Y') + 1
-        );
+	public function testUpdateMetadataAll()
+	{
+		self::authorizeFromEnv();
 
-        $charge = Charge::create(
-            array(
-                'amount' => 100,
-                'currency' => 'usd',
-                'card' => $card
-            )
-        );
+		$card = array(
+			'number'    => '4242424242424242',
+			'exp_month' => 5,
+			'exp_year'  => date('Y') + 1
+		);
 
-        $charge->metadata = array('test' => 'foo bar');
-        $charge->save();
-        $this->assertSame(200, $charge->getLastResponse()->code);
+		$charge = Charge::create(array(
+				'amount'   => 100,
+				'currency' => 'usd',
+				'card'     => $card
+			));
 
-        $updatedCharge = Charge::retrieve($charge->id);
-        $this->assertSame('foo bar', $updatedCharge->metadata['test']);
-    }
+		$charge->metadata = array('test' => 'foo bar');
+		$charge->save();
+		$this->assertSame(200, $charge->getLastResponse()->code);
 
-    public function testMarkAsFraudulent()
-    {
-        self::authorizeFromEnv();
+		$updatedCharge = Charge::retrieve($charge->id);
+		$this->assertSame('foo bar', $updatedCharge->metadata['test']);
+	}
 
-        $card = array(
-            'number' => '4242424242424242',
-            'exp_month' => 5,
-            'exp_year' => date('Y') + 1
-        );
+	public function testMarkAsFraudulent()
+	{
+		self::authorizeFromEnv();
 
-        $charge = Charge::create(
-            array(
-                'amount' => 100,
-                'currency' => 'usd',
-                'card' => $card
-            )
-        );
+		$card = array(
+			'number'    => '4242424242424242',
+			'exp_month' => 5,
+			'exp_year'  => date('Y') + 1
+		);
 
-        $charge->refunds->create();
-        $charge->markAsFraudulent();
+		$charge = Charge::create(array(
+				'amount'   => 100,
+				'currency' => 'usd',
+				'card'     => $card
+			));
 
-        $updatedCharge = Charge::retrieve($charge->id);
-        $this->assertSame(
-            'fraudulent',
-            $updatedCharge['fraud_details']['user_report']
-        );
-    }
+		$charge->refunds->create();
+		$charge->markAsFraudulent();
 
-    public function testCreateWithBitcoinReceiverSource()
-    {
-        self::authorizeFromEnv();
+		$updatedCharge = Charge::retrieve($charge->id);
+		$this->assertSame('fraudulent', $updatedCharge['fraud_details']['user_report']);
+	}
 
-        $receiver = $this->createTestBitcoinReceiver("do+fill_now@stripe.com");
+	public function testCreateWithBitcoinReceiverSource()
+	{
+		self::authorizeFromEnv();
 
-        $charge = Charge::create(
-            array(
-                'amount' => 100,
-                'currency' => 'usd',
-                'source' => $receiver->id
-            )
-        );
+		$receiver = $this->createTestBitcoinReceiver("do+fill_now@stripe.com");
 
-        $this->assertSame($receiver->id, $charge->source->id);
-        $this->assertSame("bitcoin_receiver", $charge->source->object);
-        $this->assertSame("succeeded", $charge->status);
-        $this->assertInstanceOf('Stripe\\BitcoinReceiver', $charge->source);
-    }
+		$charge = Charge::create(array(
+				'amount'   => 100,
+				'currency' => 'usd',
+				'source'   => $receiver->id
+			));
 
-    public function markAsSafe()
-    {
-        self::authorizeFromEnv();
+		$this->assertSame($receiver->id, $charge->source->id);
+		$this->assertSame("bitcoin_receiver", $charge->source->object);
+		$this->assertSame("succeeded", $charge->status);
+		$this->assertInstanceOf('Stripe\\BitcoinReceiver', $charge->source);
+	}
 
-        $card = array(
-            'number' => '4242424242424242',
-            'exp_month' => 5,
-            'exp_year' => date('Y') + 1
-        );
+	public function markAsSafe()
+	{
+		self::authorizeFromEnv();
 
-        $charge = Charge::create(
-            array(
-                'amount' => 100,
-                'currency' => 'usd',
-                'card' => $card
-            )
-        );
+		$card = array(
+			'number'    => '4242424242424242',
+			'exp_month' => 5,
+			'exp_year'  => date('Y') + 1
+		);
 
-        $charge->markAsSafe();
+		$charge = Charge::create(array(
+				'amount'   => 100,
+				'currency' => 'usd',
+				'card'     => $card
+			));
 
-        $updatedCharge = Charge::retrieve($charge->id);
-        $this->assertSame('safe', $updatedCharge['fraud_details']['user_report']);
-    }
+		$charge->markAsSafe();
+
+		$updatedCharge = Charge::retrieve($charge->id);
+		$this->assertSame('safe', $updatedCharge['fraud_details']['user_report']);
+	}
 }

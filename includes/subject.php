@@ -22,6 +22,7 @@ class Subject extends DatabaseObject {
 			$sql .= " WHERE visible = 1 ";
 		}
 		$sql .= " ORDER BY position ASC ";
+
 		return self::find_by_sql($sql);
 	}
 
@@ -42,6 +43,8 @@ class Subject extends DatabaseObject {
 		}
 		$sql .= " LIMIT 1";
 		$subject_set = self::find_by_sql($sql);
-		return !empty($subject_set) ? array_shift($subject_set) : FALSE;
+
+		return ! empty($subject_set) ? array_shift($subject_set) : FALSE;
 	}
-}
+
+} // END of CLASS

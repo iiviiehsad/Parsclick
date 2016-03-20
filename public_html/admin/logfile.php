@@ -20,7 +20,7 @@ echo output_message($message);
 			<?php
 			if(file_exists($logfile) && is_readable($logfile) && $handle = fopen($logfile, 'r')) {  // read
 				echo "<ul class=\"list-group arial\" style='direction: ltr;'>";
-				while(!feof($handle)) {
+				while( ! feof($handle)) {
 					$entry = fgets($handle);
 					if(trim($entry) != "") {
 						echo "<li class=\"list-group-item\">{$entry}</li>";

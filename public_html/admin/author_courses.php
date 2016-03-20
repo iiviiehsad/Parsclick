@@ -32,7 +32,8 @@ echo output_message($message, $errors);
 					<?php echo htmlentities(ucwords($current_course->name)); ?>
 				</h1>
 				<h4 class="text-success">
-					<?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)->full_name()) : ''; ?>
+					<?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)
+					                                                                  ->full_name()) : ''; ?>
 				</h4>
 				<?php if(check_ownership($current_course->author_id, $session->id)) { ?>
 					<a class="btn btn-small btn-primary" href="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" title="ویرایش">
@@ -40,7 +41,7 @@ echo output_message($message, $errors);
 					</a>
 				<?php } ?>
 				<!-- -------------------------------------------FILE LINK--------------------------------------------- -->
-				<?php if(! empty($current_course->file_link)) { ?>
+				<?php if( ! empty($current_course->file_link)) { ?>
 					<a class="btn btn-primary btn-small" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" title="لینک فایل تمرینی">
 						لینک فایل تمرینی
 					</a>
@@ -66,7 +67,7 @@ echo output_message($message, $errors);
 					<?php endforeach; ?>
 				<?php } ?>
 				<!-- --------------------------------------------Content---------------------------------------------- -->
-				<?php if(! empty($current_course->content)) { ?>
+				<?php if( ! empty($current_course->content)) { ?>
 					<h5>توضیحات:</h5>
 					<p><?php echo nl2br(strip_tags($current_course->content, '<strong><em><p><code><pre><mark><kbd><ul><ol><li><img><a>')); ?></p>
 				<?php } ?>
@@ -74,7 +75,9 @@ echo output_message($message, $errors);
 				<?php if(File::num_files_for_course($current_course->id) == 0) { ?>
 					<?php if(check_ownership($current_course->author_id, $session->id)) { ?>
 						<div class="alert alert-info">
-							<h3><i class="fa fa-upload"></i> آپلود فایل تمرینی زیپ <small><?php echo check_size($file_max_file_size); ?></small></h3>
+							<h3><i class="fa fa-upload"></i> آپلود فایل تمرینی زیپ
+								<small><?php echo check_size($file_max_file_size); ?></small>
+							</h3>
 							<form enctype="multipart/form-data" action="author_courses.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" method="POST" class="form-horizontal fileForm" role="form">
 								<section class="row">
 									<label style="cursor:pointer;" class="control-label btn btn-small btn-info" for="single_file">
@@ -102,7 +105,7 @@ echo output_message($message, $errors);
 				if(isset($current_course->youtubePlaylist)) {
 					$googleapi  = "https://www.googleapis.com/youtube/v3/playlistItems";
 					$playListID = $current_course->youtubePlaylist;
-					if(! isset($_GET['nextPageToken']) || ! isset($_GET['prevPageToken'])) {
+					if( ! isset($_GET['nextPageToken']) || ! isset($_GET['prevPageToken'])) {
 						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI;
 					}
 					if(isset($_GET['nextPageToken'])) {
@@ -124,16 +127,16 @@ echo output_message($message, $errors);
 								<div class="table-responsive">
 									<table class="table table-condensed table-hover">
 										<tbody>
-										<?php foreach($json['items'] as $item): ?>
-											<tr>
-												<td>
-													<a class="youtube visited" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
-													   title="Click to play">
-														<?php echo $item['snippet']['title']; ?>
-													</a>
-												</td>
-											</tr>
-										<?php endforeach; ?>
+											<?php foreach($json['items'] as $item): ?>
+												<tr>
+													<td>
+														<a class="youtube visited" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
+														   title="Click to play">
+															<?php echo $item['snippet']['title']; ?>
+														</a>
+													</td>
+												</tr>
+											<?php endforeach; ?>
 										</tbody>
 									</table>
 								</div>
@@ -159,7 +162,7 @@ echo output_message($message, $errors);
 					<?php } ?>
 				<?php } ?>
 			<?php } elseif($current_category) { ?>
-				<?php if(! $current_category->visible) redirect_to("author_courses.php"); ?>
+				<?php if( ! $current_category->visible) redirect_to("author_courses.php"); ?>
 				<div class="panel panel-danger">
 					<div class="panel-heading">
 						<h2 class="panel-title">

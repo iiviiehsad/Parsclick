@@ -99,19 +99,19 @@ find_selected_course(TRUE);
 										<div class="table-responsive">
 											<table class="table table-condensed table-hover">
 												<tbody>
-												<div class="embed-responsive embed-responsive-16by9">
-													<iframe width="640" height="360" src="https://www.youtube.com/embed/?list=<?php echo $current_course->youtubePlaylist; ?>&hl=fa-ir" frameborder="0" allowfullscreen></iframe>
-												</div>
-												<?php foreach($json['items'] as $item): ?>
-													<tr>
-														<td>
-															<a class="youtube" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
-															   title="Click to play">
-																<?php echo $item['snippet']['title']; ?>
-															</a>
-														</td>
-													</tr>
-												<?php endforeach; ?>
+													<div class="embed-responsive embed-responsive-16by9">
+														<iframe width="640" height="360" src="https://www.youtube.com/embed/?list=<?php echo $current_course->youtubePlaylist; ?>&hl=fa-ir" frameborder="0" allowfullscreen></iframe>
+													</div>
+													<?php foreach($json['items'] as $item): ?>
+														<tr>
+															<td>
+																<a class="youtube" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
+																   title="Click to play">
+																	<?php echo $item['snippet']['title']; ?>
+																</a>
+															</td>
+														</tr>
+													<?php endforeach; ?>
 												</tbody>
 											</table>
 										</div>

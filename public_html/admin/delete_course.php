@@ -15,4 +15,6 @@ if($result) { // Success
 	$session->message("درس حذف نشد!");
 	redirect_to("edit_courses.php?category={$category->id}&course={$course->id}");
 }
-if(isset($database)) { $database->close_connection(); }
+if(isset($database)) {
+	$database->close_connection();
+}

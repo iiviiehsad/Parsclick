@@ -10,37 +10,38 @@ echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<h2><i class="fa fa-users"></i> لیست مدیران ارشد<span class="badge arial"><?php echo count($admin_set); ?></span></h2>
+			<h2><i class="fa fa-users"></i> لیست مدیران ارشد<span class="badge arial"><?php echo count($admin_set); ?></span>
+			</h2>
 			<br/>
 			<div class="table-responsive">
 				<table class="table table-hover table-responsive table-condensed">
 					<thead>
-					<tr>
-						<th>اسم کاربری</th>
-						<th>نام</th>
-						<th>نام خانوادگی</th>
-						<th>ایمیل</th>
-						<th colspan="2">عملیات</th>
-					</tr>
+						<tr>
+							<th>اسم کاربری</th>
+							<th>نام</th>
+							<th>نام خانوادگی</th>
+							<th>ایمیل</th>
+							<th colspan="2">عملیات</th>
+						</tr>
 					</thead>
 					<tbody>
-					<?php foreach($admin_set as $admin): ?>
-						<tr>
-							<td class="arial">
-								<img class="img-circle" src="http://gravatar.com/avatar/<?php echo md5($admin->email); ?>?s=30" alt="<?php echo $admin->email; ?>">
-								<?php echo htmlentities($admin->username); ?>
-							</td>
-							<td><?php echo htmlentities(ucfirst(strtolower($admin->first_name))); ?></td>
-							<td><?php echo htmlentities(ucfirst(strtolower($admin->last_name))); ?></td>
-							<td class="arial">
-								<small><?php echo htmlentities(strtolower($admin->email)); ?></small>
-							</td>
-							<td>
-								<a class="btn btn-small btn-primary arial" href="edit_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
-								<a class="btn btn-small btn-danger arial" href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید این مدیر را حذف کنید؟');" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
-							</td>
-						</tr>
-					<?php endforeach; ?>
+						<?php foreach($admin_set as $admin): ?>
+							<tr>
+								<td class="arial">
+									<img class="img-circle" src="http://gravatar.com/avatar/<?php echo md5($admin->email); ?>?s=30" alt="<?php echo $admin->email; ?>">
+									<?php echo htmlentities($admin->username); ?>
+								</td>
+								<td><?php echo htmlentities(ucfirst(strtolower($admin->first_name))); ?></td>
+								<td><?php echo htmlentities(ucfirst(strtolower($admin->last_name))); ?></td>
+								<td class="arial">
+									<small><?php echo htmlentities(strtolower($admin->email)); ?></small>
+								</td>
+								<td>
+									<a class="btn btn-small btn-primary arial" href="edit_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+									<a class="btn btn-small btn-danger arial" href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید این مدیر را حذف کنید؟');" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
+								</td>
+							</tr>
+						<?php endforeach; ?>
 					</tbody>
 				</table>
 			</div>

@@ -1,8 +1,9 @@
 <?php
 /**
  * Azerbaijani PHPMailer language file: refer to English translation for definitive list
+ *
  * @package PHPMailer
- * @author @mirjalal
+ * @author  @mirjalal
  */
 
 $PHPMAILER_LANG['authenticate']         = 'SMTP xətası: Giriş uğursuz oldu.';

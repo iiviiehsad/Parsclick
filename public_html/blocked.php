@@ -2,7 +2,9 @@
 require_once("../includes/initialize.php");
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
-if($member->status == 0) { redirect_to("freezed"); }
+if($member->status == 0) {
+	redirect_to("freezed");
+}
 ?>
 <?php include("../includes/layouts/header.php"); ?>
 	<style type="text/css">

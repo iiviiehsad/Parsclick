@@ -21,7 +21,8 @@ class Playlist extends DatabaseObject {
 		$sql .= " WHERE course_id = " . $database->escape_value($course_id);
 		$sql .= " AND member_id = " . $database->escape_value($member_id);
 		$result_array = self::find_by_sql($sql);
-		return !empty($result_array) ? array_shift($result_array) : FALSE;
+
+		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
 	/**
@@ -35,6 +36,7 @@ class Playlist extends DatabaseObject {
 		$sql .= " FROM " . self::$table_name;
 		$sql .= " WHERE member_id = " . $database->escape_value($member_id);
 		$sql .= " ORDER BY course_id";
+
 		return self::find_by_sql($sql);
 	}
 
@@ -48,7 +50,8 @@ class Playlist extends DatabaseObject {
 		$sql        = "SELECT COUNT(*) FROM " . self::$table_name . " WHERE member_id = " . $member_id;
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
+
 		return array_shift($row);
 	}
 
-}
+} // END of CLASS

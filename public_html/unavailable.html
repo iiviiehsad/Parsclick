@@ -8,51 +8,59 @@
 	<link rel="stylesheet" type="text/css" href="_/css/all.css" media="screen">
 	<style type="text/css">
 		body, .container { background : #2D2D2D; }
+
 		h1, h2, h3, h4, h5, h6 { color : #FF8000; text-shadow : none; }
+
 		.template { padding : 40px 15px; text-align : center; }
+
 		#branding img { margin : 0; border-radius : 5px; }
+
 		.actions { margin-top : 15px; margin-bottom : 15px; }
+
 		.actions .btn { margin-right : 10px; }
+
 		a { color : #FF8000; text-decoration : none; }
+
 		a:hover { color : #FFC000; }
 	</style>
 </head>
 <body>
-<div class="container">
-	<div class="row">
-		<section class="col col-md-12">
-			<article class="template">
-				<section id="branding">
-					<img src="images/misc/parsclick-logo.png" alt="Logo for Parsclick">
-				</section>
-				<h1>این سایت در دست تغییر است</h1>
-				<h4>لطفا بعدا برگردید</h4>
-				<h4>کی برمی گردیم؟</h4>
+	<div class="container">
+		<div class="row">
+			<section class="col col-md-12">
+				<article class="template">
+					<section id="branding">
+						<img src="images/misc/parsclick-logo.png" alt="Logo for Parsclick">
+					</section>
+					<h1>این سایت در دست تغییر است</h1>
+					<h4>لطفا بعدا برگردید</h4>
+					<h4>کی برمی گردیم؟</h4>
 
-				<h2 id="my-countdown"></h2> <!-- DO NOT REMOVE THIS TAG -->
-				<div class="actions">
-					<a href="mailto:info@parsclick.net" class="btn btn-danger btn-lg">
-						با ما تماس بگیرید
-					</a>
-					<a href="/" class="btn btn-primary btn-lg">
-						دوباره امتحان کن
-					</a>
-					<h4>اگر مدت زمان به اتمام رسید و هنوز این صفحه رو میبینید، مخزن مرورگر خودتون را خالی کنید و روی دوباره امتحان کن کلیک کنید.</h4>
-				</div>
-			</article>
-		</section>
+					<h2 id="my-countdown"></h2> <!-- DO NOT REMOVE THIS TAG -->
+					<div class="actions">
+						<a href="mailto:info@parsclick.net" class="btn btn-danger btn-lg">
+							با ما تماس بگیرید
+						</a>
+						<a href="/" class="btn btn-primary btn-lg">
+							دوباره امتحان کن
+						</a>
+						<h4>اگر مدت زمان به اتمام رسید و هنوز این صفحه رو میبینید، مخزن مرورگر خودتون را خالی کنید و روی دوباره
+						    امتحان کن کلیک کنید.</h4>
+					</div>
+				</article>
+			</section>
+		</div>
 	</div>
-</div>
-<script type="text/javascript" src="_/js/all.js"></script>
-<script type="text/javascript" src="_/js/jquery.countdown.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function () { //TODO: Add YOUR DATE BELOW
-		$("#my-countdown").countdown("2015/11/20", function (event) {
-			$(this).text(
-					event.strftime('%-m ماه %-d روز %-H ساعت %-M دقیقه %-S ثانیه')
-			);
+	<script type="text/javascript" src="_/js/all.js"></script>
+	<script type="text/javascript" src="_/js/jquery.countdown.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() { //TODO: Add YOUR DATE BELOW
+			$("#my-countdown").countdown("2015/11/20", function(event) {
+				$(this).text(
+						event.strftime('%-m ماه %-d روز %-H ساعت %-M دقیقه %-S ثانیه')
+				);
+			});
 		});
-	});
-</script>
+	</script>
 </body>
 </html>

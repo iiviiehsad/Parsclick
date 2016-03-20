@@ -9,42 +9,43 @@ echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<h2><i class="fa fa-users"></i> لیست نویسندگان<span class="badge arial"><?php echo count($author_set); ?></span></h2>
+			<h2><i class="fa fa-users"></i> لیست نویسندگان<span class="badge arial"><?php echo count($author_set); ?></span>
+			</h2>
 			<br/>
 			<div class="table-responsive">
 				<table class="table table-hover table-responsive table-condensed">
 					<thead>
-					<tr>
-						<th>اسم کاربری</th>
-						<th>نام</th>
-						<th>نام خانوادگی</th>
-						<th>ایمیل</th>
-						<th colspan="2">عملیات</th>
-					</tr>
+						<tr>
+							<th>اسم کاربری</th>
+							<th>نام</th>
+							<th>نام خانوادگی</th>
+							<th>ایمیل</th>
+							<th colspan="2">عملیات</th>
+						</tr>
 					</thead>
 					<tbody>
-					<?php foreach($author_set as $author): ?>
-						<tr>
-							<td class="arial">
-								<?php if( ! empty($author->photo)) { ?>
-									<img class="img-circle pull-right" width="30" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
-								<?php } else { ?>
-									<img class="img-circle pull-right" width="30" alt="Profile Picture" src="../images/misc/default-gravatar-pic.png"/>
-								<?php } ?>
-								&nbsp;
-								<?php echo htmlentities($author->username); ?>
-							</td>
-							<td><?php echo htmlentities(ucfirst(strtolower($author->first_name))); ?></td>
-							<td><?php echo htmlentities(ucfirst(strtolower($author->last_name))); ?></td>
-							<td class="arial">
-								<small><?php echo htmlentities(strtolower($author->email)); ?></small>
-							</td>
-							<td>
-								<a class="btn btn-small btn-primary arial" href="edit_author.php?id=<?php echo urlencode($author->id); ?>" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
-								<a class="btn btn-small btn-danger arial" href="delete_author.php?id=<?php echo urlencode($author->id); ?>" title="Delete" onclick="return confirm('آیا مطمئن به حذف این نویسنده هستید؟');"><span class="glyphicon glyphicon-trash"></span></a>
-							</td>
-						</tr>
-					<?php endforeach; ?>
+						<?php foreach($author_set as $author): ?>
+							<tr>
+								<td class="arial">
+									<?php if( ! empty($author->photo)) { ?>
+										<img class="img-circle pull-right" width="30" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
+									<?php } else { ?>
+										<img class="img-circle pull-right" width="30" alt="Profile Picture" src="../images/misc/default-gravatar-pic.png"/>
+									<?php } ?>
+									&nbsp;
+									<?php echo htmlentities($author->username); ?>
+								</td>
+								<td><?php echo htmlentities(ucfirst(strtolower($author->first_name))); ?></td>
+								<td><?php echo htmlentities(ucfirst(strtolower($author->last_name))); ?></td>
+								<td class="arial">
+									<small><?php echo htmlentities(strtolower($author->email)); ?></small>
+								</td>
+								<td>
+									<a class="btn btn-small btn-primary arial" href="edit_author.php?id=<?php echo urlencode($author->id); ?>" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+									<a class="btn btn-small btn-danger arial" href="delete_author.php?id=<?php echo urlencode($author->id); ?>" title="Delete" onclick="return confirm('آیا مطمئن به حذف این نویسنده هستید؟');"><span class="glyphicon glyphicon-trash"></span></a>
+								</td>
+							</tr>
+						<?php endforeach; ?>
 					</tbody>
 				</table>
 			</div>

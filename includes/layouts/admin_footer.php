@@ -3,7 +3,9 @@
 	<footer class="row">
 		<nav class="col-lg-12">
 			<ul class="breadcrumb">
-				<li class="pull-left arial" style="direction:ltr;">Copyright &copy; <?php echo strftime("%Y", time()); ?> Parsclick</li>
+				<li class="pull-left arial" style="direction:ltr;">Copyright &copy; <?php echo strftime("%Y", time()); ?>
+				                                                   Parsclick
+				</li>
 				<li><a href="../login">قسمت اعضا</a></li>
 			</ul><!-- breadcrumb -->
 		</nav><!-- nav -->
@@ -14,4 +16,6 @@
 <?php active(); ?>
 </body>
 </html>
-<?php if(isset($database)) { $database->close_connection(); } ?>
+<?php if(isset($database)) {
+	$database->close_connection();
+} ?>

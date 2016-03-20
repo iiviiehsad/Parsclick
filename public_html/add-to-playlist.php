@@ -20,4 +20,6 @@ if($result) {
 	$session->message("اضافه درس به لیست پخش موفقیت آمیز نبود!");
 	redirect_to($_SERVER["HTTP_REFERER"]);
 }
-if(isset($database)) { $database->close_connection(); }
+if(isset($database)) {
+	$database->close_connection();
+}

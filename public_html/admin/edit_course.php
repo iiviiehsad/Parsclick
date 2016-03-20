@@ -3,7 +3,9 @@ require_once("../../includes/initialize.php");
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_course();
-if( ! $current_course || ! $current_category) { redirect_to("author_courses.php"); }
+if( ! $current_course || ! $current_category) {
+	redirect_to("author_courses.php");
+}
 $errors = "";
 if(isset($_POST['submit'])) {
 	global $database;
@@ -15,13 +17,13 @@ if(isset($_POST['submit'])) {
 	$visible         = (int)$_POST["visible"];
 	$content         = $_POST["content"];
 	$sql             = "UPDATE courses SET ";
-	$sql             .= "name = '" . $database->escape_value($name) . "', ";
-	$sql             .= "youtubePlaylist = '" . $database->escape_value($youtubePlaylist) . "', ";
-	$sql             .= "file_link = '" . $database->escape_value($file_link) . "', ";
-	$sql             .= "position = " . $database->escape_value($position) . ", ";
-	$sql             .= "visible = " . $database->escape_value($visible) . ", ";
-	$sql             .= "content = '" . $database->escape_value($content) . "' ";
-	$sql             .= "WHERE id = " . $database->escape_value($course->id);
+	$sql .= "name = '" . $database->escape_value($name) . "', ";
+	$sql .= "youtubePlaylist = '" . $database->escape_value($youtubePlaylist) . "', ";
+	$sql .= "file_link = '" . $database->escape_value($file_link) . "', ";
+	$sql .= "position = " . $database->escape_value($position) . ", ";
+	$sql .= "visible = " . $database->escape_value($visible) . ", ";
+	$sql .= "content = '" . $database->escape_value($content) . "' ";
+	$sql .= "WHERE id = " . $database->escape_value($course->id);
 	$database->query($sql);
 	$result = $database->affected_rows();
 
