@@ -17,19 +17,19 @@ $newest_article = Article::find_newest_article();
 	<p>شما دسترسی به یکی از بزرگترین کتابخانه ویدئویی رایگان پارسی زبانان را دارید. لطفا از دوستان خود دعوت کنید که به ما
 	   بپیوندند.</p>
 	<p>
-		<?php if($newest_course) { ?>
+		<?php if($newest_course): ?>
 			<span>جدیدترین درس:</span>&nbsp;
 			<a style="color: #FF8000;" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
 			   href="member-courses?category=<?php echo $newest_course->category_id; ?>&course=<?php echo $newest_course->id; ?>">
 				<?php echo $newest_course->name; ?> </a>&nbsp;
-		<?php } ?>
+		<?php endif; ?>
 		<br/>
-		<?php if($newest_article) { ?>
+		<?php if($newest_article): ?>
 			<span>جدیدترین مقاله:</span>&nbsp;
 			<a style="color: #FF8000;" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
 			   href="member-articles?subject=<?php echo $newest_article->subject_id; ?>&article=<?php echo $newest_article->id; ?>">
 				<?php echo $newest_article->name; ?> </a>&nbsp;
-		<?php } ?>
+		<?php endif; ?>
 	</p>
 	<h1>سال نو مبارک!</h1>
 </div><!--.jumbotron-->
@@ -41,11 +41,11 @@ $newest_article = Article::find_newest_article();
 		<h2><?php echo htmlentities($newest_article->name); ?>&nbsp;<span class="badge">جدیدترین مقاله</span></h2>
 		<h5>
 			<?php
-			if(isset($newest_article->author_id)) {
+			if(isset($newest_article->author_id)):
 				$author = Author::find_by_id($newest_article->author_id);
 				?><i class="fa fa-user fa-lg"></i>&nbsp;
 				<?php echo "توسط: " . $author->full_name();
-			} ?>
+			endif; ?>
 		</h5>
 		<h5>
 			<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($newest_article->created_at)); ?>

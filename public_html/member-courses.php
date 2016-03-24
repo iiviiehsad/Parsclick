@@ -11,17 +11,17 @@ find_selected_course(TRUE);
 <?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if($current_category && $current_course) { ?>
+			<?php if($current_category && $current_course): ?>
 				<h1><?php echo htmlentities($current_course->name); ?></h1>
 				<h4>
 					<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_course->created_at)); ?>
 				</h4>
 				<h4>
-					<?php if(isset($current_course->author_id)) { ?>
+					<?php if(isset($current_course->author_id)): ?>
 						<?php $author = Author::find_by_id($current_course->author_id); ?>
 						<i class="fa fa-user fa-lg"></i>&nbsp;
 						<?php echo $author->full_name();
-					} ?>
+					endif; ?>
 				</h4>
 				<a class="btn btn-primary pull-right" href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" data-placement="bottom" title="سوالات و نظرات"><i class="fa fa-comments fa-lg"></i>
 					انجمن<?php echo "<span class='label label-danger label-as-badge'>" . Comment::count_comments_for_course($current_course->id) . "</span>"; ?>
@@ -29,14 +29,14 @@ find_selected_course(TRUE);
 				&nbsp;
 				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php $playlist_set = Playlist::courses_playlist_for_member($current_course->id, $member->id); ?>
-				<?php if( ! $playlist_set) { ?>
+				<?php if( ! $playlist_set): ?>
 					<form action="add-to-playlist" method="POST" class="addtoplaylist">
 						<input type="hidden" name="course" value="<?php echo $current_course->id; ?>">
 						<button id="btn" type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="left" title="اضافه به لیست پخش">
 							<i class="fa fa-plus-circle"></i> اضافه به لیست
 						</button>
 					</form>
-				<?php } else { ?>
+				<?php else: ?>
 					&nbsp;
 					<form action="remove-from-playlist" method="POST" class="removefromplaylist">
 						<input type="hidden" name="playlist" value="<?php echo $playlist_set->id; ?>">
@@ -45,30 +45,30 @@ find_selected_course(TRUE);
 						</button>
 					</form>
 					&nbsp;
-				<?php } ?>
+				<?php endif; ?>
 				<br/><br/>
 				<p><?php echo nl2br(strip_tags($current_course->content, '<strong><em><p><code><pre><mark><kbd><ul><ol><li><img><a>')); ?></p>
 				<!-- ------------------------------------------------------------------------------------------------- -->
-				<?php if(empty($current_course->file_link) && File::num_files_for_course($current_course->id) == 0) {
+				<?php if(empty($current_course->file_link) && File::num_files_for_course($current_course->id) == 0):
 					echo "<h4 class='text-danger'>این درس فایلی ندارد.</h4>";
-				} ?>
-				<?php if( ! empty($current_course->file_link)) { ?>
+				endif; ?>
+				<?php if( ! empty($current_course->file_link)): ?>
 					<a class="btn btn-primary" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" data-toggle="tooltip" data-placement="left" title="دانلود کنید">
 						<i class="fa fa-files-o fa-lg"></i>&nbsp; دانلود فایل ها
 					</a>
-				<?php } ?>
+				<?php endif; ?>
 				<!-- ------------------------------------------------------------------------------------------------- -->
-				<?php if(File::num_files_for_course($current_course->id) > 0) { ?>
+				<?php if(File::num_files_for_course($current_course->id) > 0): ?>
 					<?php $files = File::find_files_for_course($current_course->id); ?>
-					<?php foreach($files as $file) { ?>
+					<?php foreach($files as $file): ?>
 						<a class="btn btn-primary btn-small" href="<?php echo urlencode($file->file_path()); ?>">
 							<?php echo htmlentities($file->description); ?>
 						</a>
-					<?php } //foreach file ?>
-				<?php } //num_files_for_course ?>
+					<?php endforeach; //foreach file ?>
+				<?php endif; //num_files_for_course ?>
 				<!-- ------------------------------------------------------------------------------------------------- -->
-				<?php if(isset($current_course->youtubePlaylist)) {
-					$googleapi  = "https://www.googleapis.com/youtube/v3/playlistItems";
+				<?php if(isset($current_course->youtubePlaylist)):
+					$googleapi = "https://www.googleapis.com/youtube/v3/playlistItems";
 					$playListID = $current_course->youtubePlaylist;
 					if( ! isset($_GET['nextPageToken']) || ! isset($_GET['prevPageToken'])) {
 						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI;
@@ -81,13 +81,13 @@ find_selected_course(TRUE);
 					}
 					// check to see if the url exists
 					$file_headers = get_headers($url);
-					if($file_headers[0] != 'HTTP/1.0 404 Not Found') {
+					if($file_headers[0] != 'HTTP/1.0 404 Not Found'):
 						//get the playlist from JSON file
 						$content = file_get_contents($url);
 						// decode the JSON file
 						$json = json_decode($content, TRUE);
 						//var_dump($json);
-						if($json['pageInfo']['totalResults'] > 0) { ?>
+						if($json['pageInfo']['totalResults'] > 0): ?>
 							<article class="videos">
 								<div class="panel panel-default">
 									<div class="panel-heading">
@@ -118,31 +118,30 @@ find_selected_course(TRUE);
 									</div>
 									<div class="panel-footer">
 										<div class="clearfix center">
-											<?php
-											if(isset($json["nextPageToken"])) { ?>
+											<?php if(isset($json["nextPageToken"])): ?>
 												<a class="btn btn-primary btn-block" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json["nextPageToken"]; ?>">
 													<span class="arial">&laquo;</span> صفحه بعدی
 												</a>
-											<?php }
-											if(isset($json["prevPageToken"])) { ?>
+											<?php endif; ?>
+											<?php if(isset($json["prevPageToken"])): ?>
 												<a class="btn btn-primary btn-block" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json["prevPageToken"]; ?>">
 													صفحه قبلی <span class="arial">&raquo;</span>
 												</a>
-											<?php } ?>
+											<?php endif; ?>
 										</div>
 									</div>
 								</div>
 							</article>
-						<?php } ?>
-					<?php } else { ?>
+						<?php endif; ?>
+					<?php else: ?>
 						<div class='alert alert-danger'><i class='fa fa-exclamation-triangle'></i>
 							پلی لیست پیدا نشد، آدرس اینترنتی چیزی را بر نمی گرداند یا سِرور شلوغ است! لطفا بعدا بر گردید... 
 						</div>
-					<?php } ?>
-				<?php } ?>
-			<?php } else { ?>
+					<?php endif; ?>
+				<?php endif; ?>
+			<?php else: ?>
 				<div class="hidden-sm"><?php include_once("_/components/php/member_course_info.php"); ?></div>
-			<?php } ?>
+			<?php endif; ?>
 		</article>
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">

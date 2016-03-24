@@ -22,7 +22,7 @@ if(isset($current_article)) {
 <?php echo output_message($message, $errors); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article id="member_article">
-		<?php if($current_subject && $current_article) { ?>
+		<?php if($current_subject && $current_article): ?>
 			<?php
 			// Pagination
 			$page        = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
@@ -33,13 +33,13 @@ if(isset($current_article)) {
 			?>
 			<h2><?php echo htmlentities($current_article->name); ?></h2>
 			<h5>
-				<?php if(isset($author)) { ?>
+				<?php if(isset($author)): ?>
 					<i class="fa fa-user fa-lg"></i>&nbsp;
 					<?php echo "توسط: " . $author->full_name();
-					if( ! empty($author->photo)) { ?>
+					if( ! empty($author->photo)): ?>
 						<img class="author-photo img-circle pull-left" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
-					<?php }
-				} ?>
+					<?php endif;
+				endif; ?>
 			</h5>
 			<h5>
 				<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
@@ -50,7 +50,7 @@ if(isset($current_article)) {
 			<article id="comments">
 				<h2>نظرات</h2>
 				<div class="badge">برای اظهار نظر لطفا عضو شوید.</div>
-				<?php foreach($comments as $comment) { ?>
+				<?php foreach($comments as $comment): ?>
 					<section class="media">
 						<?php $_member = Member::find_by_id($comment->member_id); ?>
 						<img class="img-circle pull-right" width="50" style="padding-right:0;" src="//www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->username; ?>">
@@ -61,43 +61,43 @@ if(isset($current_article)) {
 							<?php echo nl2br(strip_tags($comment->body, '<strong><em><p><pre>')); ?>
 						</div>
 					</section>
-				<?php } // end foreach comments ?>
-				<?php if($pagination->total_page() > 1) { ?>
+				<?php endforeach; ?>
+				<?php if($pagination->total_page() > 1): ?>
 					<nav class="clearfix center">
 						<ul class="pagination">
-							<?php if($pagination->has_previous_page()) { ?>
+							<?php if($pagination->has_previous_page()): ?>
 								<li>
 									<a href="articles?subject=<?php echo urlencode($current_article->subject_id); ?>&article=<?php echo urlencode($current_article->id); ?>&page=<?php echo urlencode($pagination->previous_page()); ?>#comments" aria-label="Previous">
 										<span aria-hidden="true"> &lt;&lt; </span>
 									</a>
 								</li>
-							<?php } // end: if($pagination->has_previous_page()) ?>
-							<?php for($i = 1; $i < $pagination->total_page() + 1; $i++) { ?>
-								<?php if($i == $page) { ?>
+							<?php endif; ?>
+							<?php for($i = 1; $i < $pagination->total_page() + 1; $i++): ?>
+								<?php if($i == $page): ?>
 									<li class="active">
 										<span><?php echo $i; ?></span>
 									</li>
-								<?php } else { ?>
+								<?php else: ?>
 									<li>
 										<a href="articles?subject=<?php echo urlencode($current_article->subject_id); ?>&article=<?php echo urlencode($current_article->id); ?>&page=<?php echo urlencode($i); ?>#comments"><?php echo $i; ?></a>
 									</li>
-								<?php } ?>
-							<?php } ?>
-							<?php if($pagination->has_next_page()) { ?>
+								<?php endif; ?>
+							<?php endfor; ?>
+							<?php if($pagination->has_next_page()): ?>
 								<li>
 									<a href="articles?subject=<?php echo urlencode($current_article->subject_id); ?>&article=<?php echo urlencode($current_article->id) ?>&page=<?php echo urlencode($pagination->next_page()); ?>#comments" aria-label="Next">
 										<span aria-hidden="true">&gt;&gt;</span>
 									</a>
 								</li>
-							<?php } // end: if($pagination->has_next_page()) ?>
+							<?php endif; // end: if($pagination->has_next_page()) ?>
 						</ul>
 					</nav>
-				<?php } // end pagination ?>
-				<?php if(empty($comments)) { ?>
+				<?php endif; // end pagination ?>
+				<?php if(empty($comments)): ?>
 					<div class="badge">نظری وجود ندارد.</div>
-				<?php } ?>
+				<?php endif; ?>
 			</article>
-		<?php } else { ?>
+		<?php else: ?>
 			<?php $current_article = $current_subject = $newest_article; ?>
 			<h2>
 				<a href="articles?subject=<?php echo urlencode($newest_article->subject_id); ?>&article=<?php echo urlencode($newest_article->id); ?>" title="کلیک کنید">
@@ -105,22 +105,21 @@ if(isset($current_article)) {
 				</a><span class="badge">جدیدترین مقاله</span>
 			</h2>
 			<h5>
-				<?php
-				if(isset($newest_article->author_id)) {
+				<?php if(isset($newest_article->author_id)):
 					$author = Author::find_by_id($newest_article->author_id);
 					?><i class="fa fa-user fa-lg"></i>&nbsp;
 					<?php echo "توسط: " . $author->full_name();
-					if( ! empty($author->photo)) { ?>
+					if( ! empty($author->photo)): ?>
 						<img class="author-photo img-circle pull-left" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
-					<?php }
-				} ?>
+					<?php endif; ?>
+				<?php endif; ?>
 			</h5>
 			<h5>
 				<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($newest_article->created_at)); ?>
 			</h5>
 			<hr>
 			<?php echo nl2br(strip_tags($newest_article->content, ARTICLE_ALLOWABLE_TAGS)); ?>
-		<?php } ?>
+		<?php endif; ?>
 	</article>
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">

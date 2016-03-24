@@ -79,17 +79,17 @@ if(isset($_POST['submit'])) {
 					<div class="controls">
 						<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="gender" id="gender">
 							<?php echo htmlentities($member->gender); ?>
-							<?php if($member->gender === "مرد") { ?>
+							<?php if($member->gender === "مرد"): ?>
 								<option selected value="مرد">مرد</option>
 								<option value="زن">زن</option>
-							<?php } elseif($member->gender === "زن") { ?>
+							<?php elseif($member->gender === "زن"): ?>
 								<option selected value="زن">زن</option>
 								<option value="مرد">مرد</option>
-							<?php } else { ?>
+							<?php else: ?>
 								<option disabled value="">لطفا برگزینید</option>
 								<option value="مرد">مرد</option>
 								<option value="زن">مرد</option>
-							<?php } ?>
+							<?php endif; ?>
 						</select>
 					</div>
 				</section>

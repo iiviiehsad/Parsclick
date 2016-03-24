@@ -5,7 +5,6 @@ if($session->is_logged_in()) {
 }
 $title    = "پارس کلیک - ورود به سایت";
 $filename = basename(__FILE__);
-$title    = "پارس کلیک - ورود به سایت";
 $username = "";
 $errors   = "";
 if(isset($_POST["submit"])) { // if form submitted

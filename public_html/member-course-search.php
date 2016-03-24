@@ -18,7 +18,7 @@ if(isset($search_query) && ! empty($search_query)) {
 <?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if( ! empty($course_set)) { ?>
+			<?php if( ! empty($course_set)): ?>
 				<h2>نتیجه جستجو</h2>
 				<div class="table-responsive">
 					<table class="table">
@@ -35,8 +35,7 @@ if(isset($search_query) && ! empty($search_query)) {
 											<i>
 												<a href="member-courses?category=<?php echo urlencode($course->category_id); ?>&course=<?php echo urlencode($course->id); ?>">
 													<mark><?php echo htmlentities($course->name); ?></mark>
-													<small>&nbsp;توسط <?php echo htmlentities(Author::find_by_id($course->author_id)
-													                                                ->full_name()); ?></small>
+													<small>&nbsp;توسط <?php echo htmlentities(Author::find_by_id($course->author_id)->full_name()); ?></small>
 												</a>
 											</i>
 										</strong>
@@ -46,13 +45,13 @@ if(isset($search_query) && ! empty($search_query)) {
 						</tbody>
 					</table>
 				</div>
-			<?php } else { ?>
+			<?php else: ?>
 				<div class="center">
 					<h3>برای <?php echo $search_query; ?></h3>
 					<h1>چیزی پیدا نشد!</h1>
 					<h1><i class="fa fa-frown-o fa-5x"></i></h1>
 				</div>
-			<?php } ?>
+			<?php endif; ?>
 		</article>
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">

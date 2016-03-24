@@ -22,6 +22,4 @@ if($comment->member_id === $session->id) {
 }
 $session->message("نظر متعلق به شما نیست!");
 redirect_to($_SERVER['HTTP_REFERER'] . '#comments');
-if(isset($database)) {
-	$database->close_connection();
-}
+if(isset($database)) $database->close_connection();

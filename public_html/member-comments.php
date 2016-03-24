@@ -28,9 +28,9 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 				<a href="member-courses?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>"
 				   data-toggle="tooltip" title="برگردید به درس"><?php echo htmlentities($current_course->name); ?></a>
 			</h3>
-			<?php if(empty($comments)) { ?>
+			<?php if(empty($comments)): ?>
 				<h3><span class="badge">سوال یا نظری وجود ندارد. اولین نفری باشید که نظر می دهید.</span></h3>
-			<?php } ?>
+			<?php endif; ?>
 			<fieldset>
 				<legend></legend>
 				<form class="form-horizontal submit-comment" action="add-comment.php" method="POST" role="form">
@@ -53,54 +53,54 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 			</fieldset>
 			<hr/>
 			<div id="ajax-comments">
-				<?php foreach($comments as $comment) { ?>
+				<?php foreach($comments as $comment): ?>
 					<section class="media">
 						<?php $_member = Member::find_by_id($comment->member_id); ?>
 						<img class="img-circle pull-right" width="50" style="padding-right:0;" src="//www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->username; ?>">
 						<div class="media-body">
 							<span class="label label-as-badge label-success"><?php echo htmlentities($_member->first_name); ?></span>
 							<span class="label label-as-badge label-info arial"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
-							<?php if($comment->member_id === $session->id) { ?>
+							<?php if($comment->member_id === $session->id): ?>
 								<a href="member-delete-comment?id=<?php echo urlencode($comment->id); ?>" class="label label-as-badge label-danger" onclick="return confirm('آیا مطمئن هستید؟')">
 									<i class="fa fa-times"></i>
 								</a>
-							<?php } ?>
+							<?php endif; ?>
 							<br/>
 							<?php echo nl2br(strip_tags($comment->body, ARTICLE_ALLOWABLE_TAGS)); ?>
 						</div>
 					</section>
-				<?php } // end foreach comments ?>
-				<?php if($pagination->total_page() > 1) { ?>
+				<?php endforeach; ?>
+				<?php if($pagination->total_page() > 1): ?>
 					<nav class="clearfix center">
 						<ul class="pagination">
-							<?php if($pagination->has_previous_page()) { ?>
+							<?php if($pagination->has_previous_page()): ?>
 								<li>
 									<a href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>&page=<?php echo urlencode($pagination->previous_page()); ?>" aria-label="Previous">
 										<span aria-hidden="true"> &lt;&lt; </span>
 									</a>
 								</li>
-							<?php } // end: if($pagination->has_previous_page()) ?>
-							<?php for($i = 1; $i < $pagination->total_page() + 1; $i++) { ?>
-								<?php if($i == $page) { ?>
+							<?php endif; ?>
+							<?php for($i = 1; $i < $pagination->total_page() + 1; $i++): ?>
+								<?php if($i == $page): ?>
 									<li class="active">
 										<span><?php echo $i; ?></span>
 									</li>
-								<?php } else { ?>
+								<?php else: ?>
 									<li>
 										<a href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>&page=<?php echo urlencode($i); ?>"><?php echo $i; ?></a>
 									</li>
-								<?php } ?>
-							<?php } ?>
-							<?php if($pagination->has_next_page()) { ?>
+								<?php endif; ?>
+							<?php endfor; ?>
+							<?php if($pagination->has_next_page()): ?>
 								<li>
 									<a href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id) ?>&page=<?php echo urlencode($pagination->next_page()); ?>" aria-label="Next">
 										<span aria-hidden="true">&gt;&gt;</span>
 									</a>
 								</li>
-							<?php } // end: if($pagination->has_next_page()) ?>
+							<?php endif; ?>
 						</ul>
 					</nav>
-				<?php } // end pagination?>
+				<?php endif; // end pagination?>
 			</div>
 		</article>
 	</section>

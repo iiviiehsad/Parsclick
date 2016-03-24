@@ -19,7 +19,7 @@ if(isset($search_query) && ! empty($search_query)) {
 <?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if( ! empty($article_set)) { ?>
+			<?php if( ! empty($article_set)): ?>
 				<h2>نتیجه جستجو</h2>
 				<div class="table-responsive">
 					<table class="table">
@@ -48,13 +48,13 @@ if(isset($search_query) && ! empty($search_query)) {
 						</tbody>
 					</table>
 				</div>
-			<?php } else { ?>
+			<?php else: ?>
 				<div class="center">
 					<h3>برای <?php echo $search_query; ?></h3>
 					<h1>چیزی پیدا نشد!</h1>
 					<h1><i class="fa fa-frown-o fa-4x"></i></h1>
 				</div>
-			<?php } ?>
+			<?php endif; ?>
 		</article>
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">

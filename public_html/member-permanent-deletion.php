@@ -14,6 +14,4 @@ if($result) {
 	$session->message("حذف کاربر موفقیت آمیز نبود!");
 	redirect_to("member-profile");
 }
-if(isset($database)) {
-	$database->close_connection();
-}
+if(isset($database)) $database->close_connection();
