@@ -52,9 +52,7 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="password">پسورد</label>
 						<div class="controls">
-							<input <?php if($session->id != $admin->id) {
-								echo "disabled";
-							} ?> class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="New Password"/>
+							<input <?php if($session->id != $admin->id): echo "disabled"; endif; ?> class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="New Password"/>
 						</div>
 					</section>
 					<!--first_name-->
@@ -100,12 +98,11 @@ echo output_message($message, $errors);
 			<h2>عوض کردن پسورد</h2>
 			<p>اسم شما <?php echo $yourself->full_name(); ?> است.</p>
 			<?php
-			if($yourself->id == $admin->id) {
-				echo "<p class='text-success'>شما قادر به عوض کردن پسورد هستید چون این اطلاعات خودتان است. لطفا هیچ چیزی را خالی نگذارید.</p>";
-			} else {
-				echo "<p class='text-danger'>شما قادر به عوض کردن پسورد نیستید چون این اطلاعات شما نیست!</p>";
-			}
-			?>
+			if($yourself->id == $admin->id): ?>
+				<p class='text-success'>شما قادر به عوض کردن پسورد هستید چون این اطلاعات خودتان است. لطفا هیچ چیزی را خالی نگذارید.</p>
+			<?php else: ?>
+				<p class='text-danger'>شما قادر به عوض کردن پسورد نیستید چون این اطلاعات شما نیست!</p>
+			<?php endif; ?>
 		</aside>
 	</section>
 <?php include_layout_template("admin_footer.php"); ?>

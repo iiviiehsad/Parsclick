@@ -27,11 +27,11 @@ echo output_message($message);
 						<?php foreach($author_set as $author): ?>
 							<tr>
 								<td class="arial">
-									<?php if( ! empty($author->photo)) { ?>
+									<?php if( ! empty($author->photo)): ?>
 										<img class="img-circle pull-right" width="30" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
-									<?php } else { ?>
+									<?php else: ?>
 										<img class="img-circle pull-right" width="30" alt="Profile Picture" src="../images/misc/default-gravatar-pic.png"/>
-									<?php } ?>
+									<?php endif; ?>
 									&nbsp;
 									<?php echo htmlentities($author->username); ?>
 								</td>

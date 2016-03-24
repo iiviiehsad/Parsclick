@@ -43,10 +43,9 @@ echo output_message($message);
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position">
 								<option disabled value="">انتخاب کنید</option>
 								<?php
-								for($count = 1; $count <= (Category::num_rows() + 1); $count++) {
-									echo "<option value='{$count}'>{$count}</option>";
-								}
-								?>
+								for($count = 1; $count <= (Category::num_rows() + 1); $count++): ?>
+									<option value='<?php echo $count; ?>'><?php echo $count; ?></option>
+								<?php endfor; ?>
 							</select>
 						</div>
 					</section>

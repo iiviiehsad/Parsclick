@@ -9,7 +9,7 @@ echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if($current_category && $current_course) { ?>
+			<?php if($current_category && $current_course): ?>
 				<h2><i class="fa fa-film"></i> تنظیم درس</h2>
 				<dl class="dl-horizontal">
 					<dt>اسم درس:</dt>
@@ -21,12 +21,12 @@ echo output_message($message);
 					<dt>نویسنده:</dt>
 					<dd><?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)
 					                                                                      ->full_name()) : '-'; ?></dd>
-					<?php if( ! empty($current_course->content)) { ?>
+					<?php if( ! empty($current_course->content)): ?>
 						<dt>توضیحات:</dt>
 						<dd>
 							<small><?php echo nl2br(strip_tags($current_course->content, '<strong><em><p><code><pre><mark><kbd><ul><ol><li><img><a>')); ?></small>
 						</dd>
-					<?php } ?>
+					<?php endif; ?>
 					<dt>لینک ها:</dt>
 					<dd>
 						<!-----------------------------------------------EDIT------------------------------------------>
@@ -34,11 +34,11 @@ echo output_message($message);
 							<span class="glyphicon glyphicon-pencil"></span>
 						</a>
 						<!---------------------------------------------FILE LINK--------------------------------------->
-						<?php if( ! empty($current_course->file_link)) { ?>
+						<?php if( ! empty($current_course->file_link)): ?>
 							<a class="btn btn-primary btn-small arial" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" data-toggle="tooltip" title="لینک فایل تمرینی">
 								<span class="glyphicon glyphicon-file"></span>
 							</a>
-						<?php } ?>
+						<?php endif; ?>
 						<!---------------------------------------------COMMENTS---------------------------------------->
 						<a class="btn btn-primary btn-small arial" href="admin_comments.php?course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" title="نظرات">
 							<?php echo count($current_course->comments()); ?>
@@ -47,9 +47,9 @@ echo output_message($message);
 					</dd>
 					<dt>فایل های تمرینی:</dt>
 					<dd>
-						<?php if(File::num_files_for_course($current_course->id) != 0) { ?>
+						<?php if(File::num_files_for_course($current_course->id) != 0): ?>
 							<?php $files = File::find_files_for_course($current_course->id); ?>
-							<?php foreach($files as $file) { ?>
+							<?php foreach($files as $file): ?>
 								<div class="btn-group">
 									<a class="btn btn-primary btn-small" href="../files/<?php echo urlencode($file->name); ?>">
 										<?php echo htmlentities($file->name); ?>
@@ -58,16 +58,16 @@ echo output_message($message);
 										<i class="fa fa-trash fa-lg"></i>
 									</a>
 								</div>
-							<?php } ?>
-						<?php } else { ?>
+							<?php endforeach; ?>
+						<?php else: ?>
 							فایل تمرینی نداریم
-						<?php } ?>
+						<?php endif; ?>
 					</dd>
 				</dl>
 				<!--------------------------------------------VIDEOS--------------------------------------------------->
 				<?php
-				if(isset($current_course->youtubePlaylist)) {
-					$googleapi  = "https://www.googleapis.com/youtube/v3/playlistItems";
+				if(isset($current_course->youtubePlaylist)):
+					$googleapi = "https://www.googleapis.com/youtube/v3/playlistItems";
 					$playListID = $current_course->youtubePlaylist;
 					if( ! isset($_GET['nextPageToken']) || ! isset($_GET['prevPageToken'])) {
 						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI;
@@ -80,13 +80,13 @@ echo output_message($message);
 					}
 					// check to see if the url exists
 					$file_headers = get_headers($url);
-					if($file_headers[0] != 'HTTP/1.0 404 Not Found') {
+					if($file_headers[0] != 'HTTP/1.0 404 Not Found'):
 						//get the playlist from JSON file
 						$content = file_get_contents($url);
 						// decode the JSON file
 						$json = json_decode($content, TRUE);
 						//var_dump($json);
-						if($json['pageInfo']['totalResults'] > 0) { ?>
+						if($json['pageInfo']['totalResults'] > 0): ?>
 							<div class="alert">
 								<h3><i class="fa fa-video-camera"></i> ویدیوهای این درس</h3>
 								<div class="table-responsive">
@@ -108,25 +108,25 @@ echo output_message($message);
 							</div>
 							<div class="clearfix center">
 								<?php
-								if(isset($json["nextPageToken"])) { ?>
+								if(isset($json["nextPageToken"])): ?>
 									<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json["nextPageToken"]; ?>">
 										<span class="arial">&lt;</span> صفحه بعدی
 									</a>
-								<?php }
-								if(isset($json["prevPageToken"])) { ?>
+								<?php endif;
+								if(isset($json["prevPageToken"])): ?>
 									<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json["prevPageToken"]; ?>">
 										صفحه قبلی <span class="arial">&gt;</span>
 									</a>
-								<?php } ?>
+								<?php endif; ?>
 							</div>
-						<?php } ?>
-					<?php } else { ?>
+						<?php endif; ?>
+					<?php else: ?>
 						<div class='alert alert-danger'><i class='fa fa-exclamation-triangle'></i>
 							پلی لیست پیدا نشد، آدرس اینترنتی چیزی را بر نمی گرداند یا سِرور شلوغ است! لطفا بعدا بر گردید... 
 						</div>
-					<?php } ?>
-				<?php } ?>
-			<?php } elseif($current_category) { ?>
+					<?php endif; ?>
+				<?php endif; ?>
+			<?php elseif($current_category): ?>
 				<h2><i class="fa fa-list-alt"></i>&nbsp;تنظیم موضوع</h2>
 				<dl class="dl-horizontal">
 					<dt>اسم موضوع:</dt>
@@ -148,26 +148,26 @@ echo output_message($message);
 					<ul>
 						<?php
 						$category_courses = Course::find_courses_for_category($current_category->id, FALSE);
-						foreach($category_courses as $course) {
+						foreach($category_courses as $course):
 							echo "<li class='list-group-item-text'>";
 							$safe_course_id = urlencode($course->id);
 							echo "<a href='admin_courses.php?category=" . $current_category->id . "&course={$safe_course_id}'";
-							if($course->comments()) {
+							if($course->comments()):
 								echo "data-toggle='tooltip' data-placement='left' title='";
 								echo count($course->comments()) . " دیدگاه";
 								echo "'";
-							}
+							endif;
 							echo ">";
 							echo htmlentities(ucwords($course->name));
 							echo "</a>";
 							echo "</li>";
-						} ?>
+						endforeach; ?>
 					</ul>
 				</div>
 
-			<?php } else { ?>
+			<?php else: ?>
 				<h2>لطفا یک درس یا یک موضوع انتخاب کنید.</h2>
-			<?php } ?>
+			<?php endif; ?>
 		</article>
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">

@@ -13,6 +13,4 @@ if($comment && $comment->delete()) {
 	$session->message("نظر حذف نشد!");
 	redirect_to("list_comments.php");
 }
-if(isset($database)) {
-	$database->close_connection();
-}
+if(isset($database)) $database->close_connection();

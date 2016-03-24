@@ -19,6 +19,4 @@ if($session->id == $admin->id) {
 		redirect_to("admin_list.php");
 	}
 }
-if(isset($database)) {
-	$database->close_connection();
-}
+if(isset($database)) $database->close_connection();

@@ -34,13 +34,13 @@ echo output_message($message);
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside class="members_menu">
 		<h2>آواتار</h2>
-		<?php if(empty($author->photo)) { ?>
+		<?php if(empty($author->photo)): ?>
 			<div>
 				<span class="glyphicon glyphicon-user center" style="font-size: 150px;"></span>
 			</div>
-		<?php } else { ?>
+		<?php else: ?>
 			<img class="img-circle" height="200" width="200" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
-		<?php } ?>
+		<?php endif; ?>
 	</aside>
 </section>
 <?php include_layout_template("admin_footer.php"); ?>

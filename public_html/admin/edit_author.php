@@ -84,19 +84,13 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="status">فعال</label>
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="status" id="inlineRadioNo" value="0" <?php if($author->status == 0) {
-									echo "checked";
-								} ?> /> خیر
+								<input type="radio" name="status" id="inlineRadioNo" value="0" <?php if($author->status == 0): echo "checked"; endif; ?> /> خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
-								<input type="radio" name="status" id="inlineRadioYes" value="1" <?php if($author->status == 1) {
-									echo "checked";
-								} ?> /> بله
+								<input type="radio" name="status" id="inlineRadioYes" value="1" <?php if($author->status == 1): echo "checked"; endif; ?> /> بله
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
-								<input type="radio" name="status" id="inlineRadioYes" value="2" <?php if($author->status == 2) {
-									echo "checked";
-								} ?> /> مسدود
+								<input type="radio" name="status" id="inlineRadioYes" value="2" <?php if($author->status == 2): echo "checked"; endif; ?> /> مسدود
 							</label>
 						</div>
 					</section>

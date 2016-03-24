@@ -14,7 +14,7 @@ echo output_message($message);
 ?>
 	<section class="main">
 		<article>
-			<?php if( ! empty($member_set)) { ?>
+			<?php if( ! empty($member_set)): ?>
 				<h2><i class="fa fa-search"></i> نتیجه جستجوی اعضا </h2>
 				<div class="table-responsive">
 					<table class="table">
@@ -50,13 +50,13 @@ echo output_message($message);
 						</tbody>
 					</table>
 				</div>
-			<?php } else { ?>
+			<?php else: ?>
 				<div class="center">
 					<h3>برای <?php echo $search_query; ?></h3>
 					<h1>چیزی پیدا نشد!</h1>
 					<h1><i class="fa fa-frown-o fa-5x"></i></h1>
 				</div>
-			<?php } ?>
+			<?php endif; ?>
 		</article>
 	</section>
 <?php include_layout_template("admin_footer.php"); ?>

@@ -8,8 +8,8 @@ $errors  = '';
 $message = '';
 if(isset($_POST['submit'])) {
 	$mail = new PHPMailer();
-	$mail->IsSMTP();
-	$mail->IsHTML(TRUE);
+	$mail->isSMTP();
+	$mail->isHTML(TRUE);
 	$mail->CharSet    = 'UTF-8';
 	$mail->Host       = SMTP;
 	$mail->SMTPSecure = TLS;
@@ -20,12 +20,12 @@ if(isset($_POST['submit'])) {
 	$mail->FromName   = DOMAIN;
 	$mail->From       = EMAILUSER;
 	$mail->Subject    = $_POST['subject'];
-	$mail->AddAddress("do-not-reply@parsclick.net", "اعضای پارس کلیک");
+	$mail->addAddress("do-not-reply@parsclick.net", "اعضای پارس کلیک");
 	foreach(Member::find_all() as $members) {
-		$mail->AddBCC($members->email, $members->full_name());
+		$mail->addBCC($members->email, $members->full_name());
 	}
 	$mail->Body = email("اعضای محترم پارس کلیک", DOMAIN, nl2br($_POST['important']), nl2br($_POST['message']));
-	$result     = $mail->Send();
+	$result     = $mail->send();
 	if($result) {
 		$message = "پیام به همه اعضا فرستاده شد.";
 	} else {
@@ -68,9 +68,7 @@ if(isset($_POST['submit'])) {
 			<h2><i class="fa fa-info-circle"></i> اطلاعات</h2>
 			<div class="form-group">
 				<label for="emails">ایمیل ها</label>
-						<textarea class="form-control edit" name="emails" id="emails" rows="15" placeholder="ایمیل ها" disabled><?php
-							foreach(Member::find_all() as $members) echo $members->email, ", ";
-							?></textarea>
+						<textarea class="form-control edit" name="emails" id="emails" rows="15" placeholder="ایمیل ها" disabled><?php foreach(Member::find_all() as $members) echo $members->email, ", "; ?></textarea>
 			</div>
 		</aside>
 	</section>

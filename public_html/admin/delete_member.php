@@ -14,6 +14,4 @@ if($result) {
 	$session->message("عضو حذف نشد!");
 	redirect_to("member_list.php");
 }
-if(isset($database)) {
-	$database->close_connection();
-}
+if(isset($database)) $database->close_connection();

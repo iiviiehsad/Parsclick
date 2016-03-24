@@ -19,6 +19,4 @@ if($result) { // Success
 	$session->message("دسته حذف نشد!");
 	redirect_to("admin_courses.php?category={$category->id}");
 }
-if(isset($database)) {
-	$database->close_connection();
-}
+if(isset($database)) $database->close_connection();

@@ -1,6 +1,6 @@
-<?php require_once("../../includes/initialize.php"); ?>
-<?php $session->confirm_admin_logged_in(); ?>
 <?php
+require_once("../../includes/initialize.php");
+$session->confirm_admin_logged_in();
 $comment_id = $_GET["id"];
 if(empty($comment_id)) {
 	$session->message("شناسه نظر پیدا نشد!");
@@ -14,6 +14,4 @@ if($comment && $comment->delete()) {
 	$session->message("نظر حذف نشد!");
 	redirect_to("admin_article_comments.php?article={$comment->article_id}");
 }
-if(isset($database)) {
-	$database->close_connection();
-}
+if(isset($database)) $database->close_connection();

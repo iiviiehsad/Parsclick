@@ -8,11 +8,11 @@ echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if($current_subject && $current_article) { ?>
+			<?php if($current_subject && $current_article): ?>
 				<h2><i class="fa fa-newspaper-o"></i> تنظیم مقاله </h2>
-				<?php if(isset($current_article->author_id) && ! empty(Author::find_by_id($current_article->author_id)->photo)) { ?>
+				<?php if(isset($current_article->author_id) && ! empty(Author::find_by_id($current_article->author_id)->photo)): ?>
 					<img class="author-photo img-circle pull-left" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode(Author::find_by_id($current_article->author_id)->photo); ?>"/>
-				<?php } ?>
+				<?php endif; ?>
 				<dl class="dl-horizontal">
 					<dt>اسم مقاله:</dt>
 					<dd><?php echo htmlentities(ucwords($current_article->name)); ?></dd>
@@ -36,7 +36,7 @@ echo output_message($message);
 					<dt>مطالب:</dt>
 					<dd><?php echo nl2br(strip_tags($current_article->content, ARTICLE_ALLOWABLE_TAGS)); ?></dd>
 				</dl>
-			<?php } elseif($current_subject) { ?>
+			<?php elseif($current_subject): ?>
 				<h2><i class="fa fa-list-alt"></i> تنظیم موضوع </h2>
 				<dl class="dl-horizontal">
 					<dt>اسم موضوع:</dt>
@@ -52,33 +52,33 @@ echo output_message($message);
 						</a>
 					</dd>
 				</dl>
-				<?php if(Article::num_articles_for_subject($current_subject->id, FALSE)) { ?>
+				<?php if(Article::num_articles_for_subject($current_subject->id, FALSE)): ?>
 					<hr>
 					<div>
 						<h2><i class="fa fa-newspaper-o"></i> مقالات در این موضوع </h2>
 						<ul>
 							<?php
 							$subject_articles = Article::find_articles_for_subject($current_subject->id, FALSE);
-							foreach($subject_articles as $article) {
+							foreach($subject_articles as $article):
 								echo "<li class='list-group-item-text'>";
 								$safe_article_id = urlencode($article->id);
 								echo "<a href='admin_articles.php?subject=" . $current_subject->id . "&article={$safe_article_id}'";
-								if($article->comments()) {
+								if($article->comments()):
 									echo "data-toggle='tooltip' data-placement='left' title='";
 									echo count($article->comments()) . " دیدگاه";
 									echo "'";
-								}
+								endif;
 								echo ">";
 								echo htmlentities(ucwords($article->name));
 								echo "</a>";
 								echo "</li>";
-							} ?>
+							endforeach; ?>
 						</ul>
 					</div>
-				<?php } ?>
-			<?php } else { ?>
+				<?php endif; ?>
+			<?php else: ?>
 				<h2>لطفا یک مقاله یا یک موضوع انتخاب کنید.</h2>
-			<?php } ?>
+			<?php endif; ?>
 		</article>
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">

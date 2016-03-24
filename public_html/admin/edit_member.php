@@ -74,17 +74,17 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="gender" id="gender">
 								<?php echo htmlentities($member->gender); ?>
-								<?php if($member->gender === "مرد") { ?>
+								<?php if($member->gender === "مرد"): ?>
 									<option value="مرد">مرد</option>
 									<option value="زن">زن</option>
-								<?php } elseif($member->gender === "زن") { ?>
+								<?php elseif($member->gender === "زن"): ?>
 									<option value="زن">زن</option>
 									<option value="مرد">مرد</option>
-								<?php } else { ?>
+								<?php else: ?>
 									<option disabled value="">لطفا برگزینید</option>
 									<option value="مرد">مرد</option>
 									<option value="زن">مرد</option>
-								<?php } ?>
+								<?php endif; ?>
 							</select>
 						</div>
 					</section>
@@ -115,21 +115,15 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="status" id="inlineRadioNo" value="0"
-										<?php if($member->status == 0) {
-											echo "checked";
-										} ?> /> منتظر دریافت ایمیل
+										<?php if($member->status == 0) echo "checked"; ?> /> منتظر دریافت ایمیل
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="status" id="inlineRadioYes" value="1"
-										<?php if($member->status == 1) {
-											echo "checked";
-										} ?> /> بله
+										<?php if($member->status == 1) echo "checked"; ?> /> بله
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="status" id="inlineRadioYes" value="2"
-										<?php if($member->status == 2) {
-											echo "checked";
-										} ?> /> خیر
+										<?php if($member->status == 2) echo "checked"; ?> /> خیر
 							</label>
 						</div>
 						<!--buttons-->

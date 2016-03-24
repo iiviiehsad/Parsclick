@@ -19,6 +19,4 @@ if($result) { // Success
 	$session->message("موضوع حذف نشد!");
 	redirect_to("admin_articles.php?subject={$subject->id}");
 }
-if(isset($database)) {
-	$database->close_connection();
-}
+if(isset($database)) $database->close_connection();

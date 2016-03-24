@@ -81,13 +81,11 @@ echo output_message($message, $errors);
 								<option value="" disabled>انتخاب کنید</option>
 								<?php
 								$page_set = Course::num_courses_for_category($current_course->category_id);
-								for($count = 1; $count <= $page_set; $count++) {
+								for($count = 1; $count <= $page_set; $count++):
 									echo "<option value='{$count}'";
-									if($current_course->position == $count) {
-										echo " selected";
-									}
+									if($current_course->position == $count): echo " selected"; endif;
 									echo ">{$count}</option>";
-								}
+								endfor;
 								?>
 							</select>
 						</div>

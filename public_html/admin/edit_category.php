@@ -46,9 +46,9 @@ echo output_message($message, $errors);
 								<option disabled value="">انتخاب کنید</option>
 								<?php for($count = 1; $count <= Category::num_rows(); $count++):
 									echo "<option value=\"{$count}\"";
-									if($current_category->position == $count) {
+									if($current_category->position == $count):
 										echo " selected";
-									}
+									endif;
 									echo ">{$count}</option>";
 								endfor; ?>
 							</select>
@@ -60,15 +60,11 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" value="0"
-										<?php if($current_category->visible == 0) {
-											echo "checked";
-										} ?> > خیر
+										<?php if($current_category->visible == 0): echo "checked"; endif; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" value="1"
-										<?php if($current_category->visible == 1) {
-											echo "checked";
-										} ?> > بله
+										<?php if($current_category->visible == 1): echo "checked"; endif; ?> > بله
 							</label>
 						</div>
 					</section>

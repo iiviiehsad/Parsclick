@@ -42,15 +42,17 @@ echo output_message($message);
 				<tbody>
 					<?php foreach($member_set as $member): ?>
 						<tr class="
-					<?php if($member->status == 0) {
+					<?php
+						if($member->status == 0):
 							echo "warning";
-						} elseif($member->status == 1) {
+						elseif($member->status == 1):
 							echo "success";
-						} elseif($member->status == 2) {
+						elseif($member->status == 2):
 							echo "danger";
-						} else {
+						else:
 							echo "";
-						} ?>">
+						endif;
+						?>">
 							<td><img class="img-circle" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=30"></td>
 							<td class="arial">
 								<small><?php echo htmlentities($member->username); ?></small>

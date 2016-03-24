@@ -14,6 +14,4 @@ if($result) {
 	$session->message("نویسنده حذف نشد!");
 	redirect_to("author_list.php");
 }
-if(isset($database)) {
-	$database->close_connection();
-}
+if(isset($database)) $database->close_connection();

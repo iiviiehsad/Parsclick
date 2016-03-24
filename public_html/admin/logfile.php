@@ -18,19 +18,19 @@ echo output_message($message);
 		<article>
 			<h2><i class="fa fa-list"></i> جزئیات ثبت</h2>
 			<?php
-			if(file_exists($logfile) && is_readable($logfile) && $handle = fopen($logfile, 'r')) {  // read
+			if(file_exists($logfile) && is_readable($logfile) && $handle = fopen($logfile, 'r')):  // read
 				echo "<ul class=\"list-group arial\" style='direction: ltr;'>";
-				while( ! feof($handle)) {
+				while( ! feof($handle)):
 					$entry = fgets($handle);
-					if(trim($entry) != "") {
+					if(trim($entry) != ""):
 						echo "<li class=\"list-group-item\">{$entry}</li>";
-					}
-				}
+					endif;
+				endwhile;
 				echo "</ul>";
 				fclose($handle);
-			} else {
+			else:
 				echo "Could not read from {$logfile}.";
-			}
+			endif;
 			?>
 		</article>
 	</section><!-- main -->

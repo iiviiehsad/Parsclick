@@ -47,9 +47,7 @@ echo output_message($message, $errors);
 								<?php
 								for($count = 1; $count <= Subject::num_rows(); $count++):
 									echo "<option value=\"{$count}\"";
-									if($current_subject->position == $count) {
-										echo " selected";
-									}
+									if($current_subject->position == $count): echo " selected"; endif;
 									echo ">{$count}</option>";
 								endfor; ?>
 							</select>
@@ -61,15 +59,11 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" value="0"
-										<?php if($current_subject->visible == 0) {
-											echo "checked";
-										} ?> > خیر
+										<?php if($current_subject->visible == 0) echo "checked"; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" value="1"
-										<?php if($current_subject->visible == 1) {
-											echo "checked";
-										} ?> > بله
+										<?php if($current_subject->visible == 1) echo "checked"; ?> > بله
 							</label>
 						</div>
 					</section>

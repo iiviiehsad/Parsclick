@@ -20,7 +20,7 @@ echo output_message($message);
 	<section class="main col-sm-12 col-md-7 col-lg-7">
 		<article>
 			<h3><i class="fa fa-comments fa-lg"></i> نظرات</h3>
-			<?php foreach($comments as $comment) { ?>
+			<?php foreach($comments as $comment): ?>
 				<section class="media">
 					<?php $_member = Member::find_by_id($comment->member_id); ?>
 					<img class="img-circle pull-right" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50" alt="<?php echo $_member->email; ?>">
@@ -34,41 +34,41 @@ echo output_message($message);
 						<p><?php echo strip_tags($comment->body, '<strong><em><p><pre>'); ?></p>
 					</div>
 				</section>
-			<?php } // end foreach comments ?>
-			<?php if($pagination->total_page() > 1) { ?>
+			<?php endforeach; ?>
+			<?php if($pagination->total_page() > 1): ?>
 				<nav class="clearfix center">
 					<ul class="pagination">
-						<?php if($pagination->has_previous_page()) { ?>
+						<?php if($pagination->has_previous_page()): ?>
 							<li>
 								<a href="admin_article_comments.php?article=<?php echo urlencode($current_article->id) ?>&page=<?php echo urlencode($pagination->previous_page()); ?>" aria-label="Previous">
 									<span aria-hidden="true">&lt;&lt;</span>
 								</a>
 							</li>
-						<?php } // end: if($pagination->has_previous_page()) ?>
-						<?php for($i = 1; $i < $pagination->total_page() + 1; $i++) { ?>
-							<?php if($i == $page) { ?>
+						<?php endif; ?>
+						<?php for($i = 1; $i < $pagination->total_page() + 1; $i++): ?>
+							<?php if($i == $page): ?>
 								<li class="active">
 									<span><?php echo $i; ?></span>
 								</li>
-							<?php } else { ?>
+							<?php else: ?>
 								<li>
 									<a href="admin_article_comments.php?article=<?php echo urlencode($current_article->id); ?>&page=<?php echo urlencode($i); ?>"><?php echo $i; ?></a>
 								</li>
-							<?php } ?>
-						<?php } ?>
-						<?php if($pagination->has_next_page()) { ?>
+							<?php endif; ?>
+						<?php endfor; ?>
+						<?php if($pagination->has_next_page()): ?>
 							<li>
 								<a href="admin_article_comments.php?article=<?php echo urlencode($current_article->id) ?>&page=<?php echo urlencode($pagination->next_page()); ?>" aria-label="Next">
 									<span aria-hidden="true">&gt;&gt;</span>
 								</a>
 							</li>
-						<?php } // end: if($pagination->has_next_page()) ?>
+						<?php endif; ?>
 					</ul>
 				</nav>
-			<?php } // end pagination ?>
-			<?php if(empty($comments)) { ?>
+			<?php endif; // pagination ?>
+			<?php if(empty($comments)): ?>
 				<h3><span class="label label-default">نظری نیست</span></h3>
-			<?php } ?>
+			<?php endif; ?>
 		</article>
 	</section>
 	<section class="sidebar col-sm-12 col-md-5 col-lg-5">

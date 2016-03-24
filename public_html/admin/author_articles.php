@@ -11,7 +11,7 @@ echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if($current_subject && $current_article) { ?>
+			<?php if($current_subject && $current_article): ?>
 				<?php
 				$page        = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
 				$per_page    = 10;
@@ -29,20 +29,20 @@ echo output_message($message);
 							<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
 						</h5>
 						<h5>
-							<?php if(isset($current_article->author_id)) { ?>
+							<?php if(isset($current_article->author_id)): ?>
 								<?php $_author = Author::find_by_id($current_article->author_id); ?>
 								<i class="fa fa-user fa-lg"></i>&nbsp;
 								<?php echo "توسط: " . $_author->full_name();
-								if( ! empty($_author->photo)) { ?>
+								if( ! empty($_author->photo)): ?>
 									<img class="author-photo img-circle pull-left" alt="<?php echo $_author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($_author->photo); ?>"/>
-								<?php }
-							} ?>
+								<?php endif; ?>
+							<?php endif; ?>
 						</h5>
-						<?php if(check_ownership($current_article->author_id, $session->id)) { ?>&nbsp;
+						<?php if(check_ownership($current_article->author_id, $session->id)): ?>&nbsp;
 							<a class="btn btn-primary btn-small" href="author_edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
 								ویرایش
 							</a>
-						<?php } ?>
+						<?php endif; ?>
 					</div>
 					<div class="panel-body">
 						<p><?php echo nl2br(strip_tags($current_article->content, ARTICLE_ALLOWABLE_TAGS)); ?></p>
@@ -50,7 +50,7 @@ echo output_message($message);
 					<div class="panel-footer">
 						<article id="comments">
 							<h2><i class="fa fa-comments-o"></i> نظرات</h2>
-							<?php foreach($comments as $comment) { ?>
+							<?php foreach($comments as $comment): ?>
 								<section class="media">
 									<?php $_member = Member::find_by_id($comment->member_id); ?>
 									<img class="img-circle pull-right" width="50" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->email; ?>">
@@ -61,45 +61,45 @@ echo output_message($message);
 										<?php echo nl2br(strip_tags($comment->body, '<strong><em><p><pre>')); ?>
 									</div>
 								</section>
-							<?php } // end foreach comments ?>
-							<?php if($pagination->total_page() > 1) { ?>
+							<?php endforeach; ?>
+							<?php if($pagination->total_page() > 1): ?>
 								<nav class="clearfix center">
 									<ul class="pagination">
-										<?php if($pagination->has_previous_page()) { ?>
+										<?php if($pagination->has_previous_page()): ?>
 											<li>
 												<a href="author_articles.php?subject=<?php echo urlencode($current_article->subject_id); ?>&article=<?php echo urlencode($current_article->id); ?>&page=<?php echo urlencode($pagination->previous_page()); ?>#comments" aria-label="Previous">
 													<span aria-hidden="true"> &lt;&lt; </span>
 												</a>
 											</li>
-										<?php } // end: if($pagination->has_previous_page()) ?>
-										<?php for($i = 1; $i < $pagination->total_page() + 1; $i++) { ?>
-											<?php if($i == $page) { ?>
+										<?php endif; ?>
+										<?php for($i = 1; $i < $pagination->total_page() + 1; $i++): ?>
+											<?php if($i == $page): ?>
 												<li class="active">
 													<span><?php echo $i; ?></span>
 												</li>
-											<?php } else { ?>
+											<?php else: ?>
 												<li>
 													<a href="author_articles.php?subject=<?php echo urlencode($current_article->subject_id); ?>&article=<?php echo urlencode($current_article->id); ?>&page=<?php echo urlencode($i); ?>#comments"><?php echo $i; ?></a>
 												</li>
-											<?php } ?>
-										<?php } ?>
-										<?php if($pagination->has_next_page()) { ?>
+											<?php endif; ?>
+										<?php endfor; ?>
+										<?php if($pagination->has_next_page()): ?>
 											<li>
 												<a href="author_articles.php?subject=<?php echo urlencode($current_article->subject_id); ?>&article=<?php echo urlencode($current_article->id) ?>&page=<?php echo urlencode($pagination->next_page()); ?>#comments" aria-label="Next">
 													<span aria-hidden="true">&gt;&gt;</span>
 												</a>
 											</li>
-										<?php } // end: if($pagination->has_next_page()) ?>
+										<?php endif; ?>
 									</ul>
 								</nav>
-							<?php } // end pagination?>
-							<?php if(empty($comments)) { ?>
+							<?php endif; // end pagination ?>
+							<?php if(empty($comments)): ?>
 								<h3><span class="badge">نظری وجود ندارد.</span></h3>
-							<?php } ?>
+							<?php endif; ?>
 						</article>
 					</div>
 				</div>
-			<?php } elseif($current_subject) { ?>
+			<?php elseif($current_subject): ?>
 				<?php if( ! $current_subject->visible) redirect_to("author_articles.php"); ?>
 				<div class="panel panel-info">
 					<div class="panel-heading">
@@ -114,24 +114,24 @@ echo output_message($message);
 						<ul>
 							<?php
 							$subject_articles = Article::find_articles_for_subject($current_subject->id, FALSE);
-							foreach($subject_articles as $article) {
+							foreach($subject_articles as $article):
 								echo "<li class='list-group-item-text'>";
 								$safe_article_id = urlencode($article->id);
 								echo "<a href='author_articles.php?subject=" . $current_subject->id . "&article={$safe_article_id}'";
-								if($article->comments()) {
+								if($article->comments()):
 									echo "data-toggle='tooltip' data-placement='left' title='";
 									echo count($article->comments()) . " دیدگاه";
 									echo "'";
-								}
+								endif;
 								echo ">";
 								echo htmlentities(ucwords($article->name));
 								echo "</a>";
 								echo "</li>";
-							} ?>
+							endforeach; ?>
 						</ul>
 					</div>
 				</div>
-			<?php } else { ?>
+			<?php else: ?>
 				<h2>لطفا یک موضوع یا مقاله انتخاب کنید.</h2>
 				<em class="text-success">همیشه به این صفحه قبل از انتشار مقاله نگاه کنید چون این صفحه به مراتب بروزرسانی می شود
 				                         و یک جورایی ارتباط ما با نویسندگان در مورد ساخت مقاله هست.</em>
@@ -187,7 +187,7 @@ echo output_message($message);
 					<li><p>اگر نویسنده قدیمی هستید از شما انتظار می رود بعد از مدتی ویرایش کردن را بلد باشید. اگر ویرایش نکنید
 					       مقاله شما تا دیده شدن توسط عموم طول خواهد کشید.</p></li>
 				</ul>
-			<?php } ?>
+			<?php endif; ?>
 		</article>
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">

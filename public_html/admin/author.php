@@ -13,11 +13,11 @@ include("../_/components/php/author_nav.php");
 echo output_message($message);
 ?>
 <div class="jumbotron hidden-sm wow fadeIn author-jumbotron">
-	<?php if( ! empty($author->photo)) { ?>
+	<?php if( ! empty($author->photo)): ?>
 		<img class="img-circle pull-left" height="150" width="150" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
-	<?php } else { ?>
+	<?php else: ?>
 		<img class="img-circle pull-left" height="150" width="150" src="../images/misc/default-gravatar-pic.png" alt="No Profile Picture">
-	<?php } ?>
+	<?php endif; ?>
 	<h1>خوش آمدید نویسنده: <?php echo $author->full_name(); ?></h1>
 	<p>
 		به عنوان نویسنده شما قادر به درست کردن مقاله و درس هستید. شما همینطور قادر به تغییر مقالات و دروس خود هستید.<br/>

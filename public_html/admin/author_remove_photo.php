@@ -14,6 +14,4 @@ if($result) {
 	$session->message("حذف عکس موفقیت آمیز نبود.");
 	redirect_to("author_edit_profile.php");
 }
-if(isset($database)) {
-	$database->close_connection();
-}
+if(isset($database)) $database->close_connection();

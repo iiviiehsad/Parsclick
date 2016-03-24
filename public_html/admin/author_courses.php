@@ -26,7 +26,7 @@ echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if($current_category && $current_course) { ?>
+			<?php if($current_category && $current_course): ?>
 				<h1>
 					<?php echo $current_course->visible == 1 ? '<i class="fa fa-eye"></i>' : '<i class="text-danger fa fa-eye-slash"></i>'; ?>
 					<?php echo htmlentities(ucwords($current_course->name)); ?>
@@ -35,22 +35,22 @@ echo output_message($message, $errors);
 					<?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)
 					                                                                  ->full_name()) : ''; ?>
 				</h4>
-				<?php if(check_ownership($current_course->author_id, $session->id)) { ?>
+				<?php if(check_ownership($current_course->author_id, $session->id)): ?>
 					<a class="btn btn-small btn-primary" href="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" title="ویرایش">
 						ویرایش
 					</a>
-				<?php } ?>
+				<?php endif; ?>
 				<!-- -------------------------------------------FILE LINK--------------------------------------------- -->
-				<?php if( ! empty($current_course->file_link)) { ?>
+				<?php if( ! empty($current_course->file_link)): ?>
 					<a class="btn btn-primary btn-small" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" title="لینک فایل تمرینی">
 						لینک فایل تمرینی
 					</a>
-				<?php } ?>
+				<?php endif; ?>
 				<!-- -------------------------------------------FILES------------------------------------------------- -->
-				<?php if(File::num_files_for_course($current_course->id) > 0) { ?>
+				<?php if(File::num_files_for_course($current_course->id) > 0): ?>
 					<?php $files = File::find_files_for_course($current_course->id); ?>
 					<?php foreach($files as $file): ?>
-						<?php if(check_ownership($current_course->author_id, $session->id)) { ?>
+						<?php if(check_ownership($current_course->author_id, $session->id)): ?>
 							<div class="btn-group">
 								<a class="btn btn-primary btn-small" href="../files/<?php echo urlencode($file->name); ?>">
 									<?php echo htmlentities($file->description); ?>
@@ -59,21 +59,21 @@ echo output_message($message, $errors);
 									<i class="fa fa-trash fa-lg"></i>
 								</a>
 							</div>
-						<?php } else { ?>
+						<?php else: ?>
 							<a class="btn btn-small btn-success" href="../<?php echo urlencode($file->name); ?>">
 								<?php echo htmlentities($file->description); ?>
 							</a>
-						<?php } ?>
+						<?php endif; ?>
 					<?php endforeach; ?>
-				<?php } ?>
+				<?php endif; ?>
 				<!-- --------------------------------------------Content---------------------------------------------- -->
-				<?php if( ! empty($current_course->content)) { ?>
+				<?php if( ! empty($current_course->content)): ?>
 					<h5>توضیحات:</h5>
 					<p><?php echo nl2br(strip_tags($current_course->content, '<strong><em><p><code><pre><mark><kbd><ul><ol><li><img><a>')); ?></p>
-				<?php } ?>
+				<?php endif; ?>
 				<!-- --------------------------------Check to see if there is any file-------------------------------- -->
-				<?php if(File::num_files_for_course($current_course->id) == 0) { ?>
-					<?php if(check_ownership($current_course->author_id, $session->id)) { ?>
+				<?php if(File::num_files_for_course($current_course->id) == 0): ?>
+					<?php if(check_ownership($current_course->author_id, $session->id)): ?>
 						<div class="alert alert-info">
 							<h3><i class="fa fa-upload"></i> آپلود فایل تمرینی زیپ
 								<small><?php echo check_size($file_max_file_size); ?></small>
@@ -98,12 +98,12 @@ echo output_message($message, $errors);
 								</section>
 							</form>
 						</div>
-					<?php } ?>
-				<?php } ?>
+					<?php endif; ?>
+				<?php endif; ?>
 				<!-- ------------------------------------------VIDEOS------------------------------------------------- -->
 				<?php
-				if(isset($current_course->youtubePlaylist)) {
-					$googleapi  = "https://www.googleapis.com/youtube/v3/playlistItems";
+				if(isset($current_course->youtubePlaylist)):
+					$googleapi = "https://www.googleapis.com/youtube/v3/playlistItems";
 					$playListID = $current_course->youtubePlaylist;
 					if( ! isset($_GET['nextPageToken']) || ! isset($_GET['prevPageToken'])) {
 						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI;
@@ -115,13 +115,13 @@ echo output_message($message, $errors);
 						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . "&pageToken=" . $_GET['prevPageToken'];
 					}
 					$file_headers = get_headers($url);
-					if($file_headers[0] != 'HTTP/1.0 404 Not Found') {
+					if($file_headers[0] != 'HTTP/1.0 404 Not Found'):
 						//get the playlist from JSON file
 						$content = file_get_contents($url);
 						// decode the JSON file
 						$json = json_decode($content, TRUE);
 						//var_dump($json);
-						if($json['pageInfo']['totalResults'] > 0) { ?>
+						if($json['pageInfo']['totalResults'] > 0): ?>
 							<div class="alert alert-success">
 								<h3><i class="fa fa-video-camera"></i> ویدیوهای این درس</h3>
 								<div class="table-responsive">
@@ -143,25 +143,25 @@ echo output_message($message, $errors);
 							</div>
 							<div class="clearfix center">
 								<?php
-								if(isset($json["nextPageToken"])) { ?>
+								if(isset($json["nextPageToken"])): ?>
 									<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json["nextPageToken"]; ?>">
 										<span class="arial">&lt;</span> صفحه بعدی
 									</a>
-								<?php }
-								if(isset($json["prevPageToken"])) { ?>
+								<?php endif;
+								if(isset($json["prevPageToken"])): ?>
 									<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json["prevPageToken"]; ?>">
 										صفحه قبلی <span class="arial">&gt;</span>
 									</a>
-								<?php } ?>
+								<?php endif; ?>
 							</div>
-						<?php } else { ?>
+						<?php else: ?>
 							<div class='alert alert-danger'><i class='fa fa-exclamation-triangle'></i>
 								پلی لیست پیدا نشد، آدرس اینترنتی چیزی را بر نمی گرداند یا سِرور شلوغ است! لطفا بعدا بر گردید... 
 							</div>
-						<?php } ?>
-					<?php } ?>
-				<?php } ?>
-			<?php } elseif($current_category) { ?>
+						<?php endif; ?>
+					<?php endif; ?>
+				<?php endif; ?>
+			<?php elseif($current_category): ?>
 				<?php if( ! $current_category->visible) redirect_to("author_courses.php"); ?>
 				<div class="panel panel-danger">
 					<div class="panel-heading">
@@ -181,11 +181,11 @@ echo output_message($message, $errors);
 								echo "<li class='list-group-item-text'>";
 								$safe_course_id = urlencode($course->id);
 								echo "<a href='author_courses.php?category=" . urlencode($current_category->id) . "&course={$safe_course_id}'";
-								if($course->comments()) {
+								if($course->comments()):
 									echo "data-toggle='tooltip' data-placement='left' title='";
 									echo count($course->comments()) . " دیدگاه";
 									echo "'";
-								}
+								endif;
 								echo ">";
 								echo htmlentities(ucwords($course->name));
 								echo "</a>";
@@ -194,7 +194,7 @@ echo output_message($message, $errors);
 						</ul>
 					</div>
 				</div>
-			<?php } else { ?>
+			<?php else: ?>
 				<article>
 					<h2>لطفا یک موضوع یا درس انتخاب کنید.</h2>
 					<p class="lead text-danger"><i class="fa fa-info-circle"></i> نکات مهم:</p>
@@ -218,7 +218,7 @@ echo output_message($message, $errors);
 						       دسترسی پیدا کنند.</p></li>
 					</ul>
 				</article>
-			<?php } ?>
+			<?php endif; ?>
 		</article>
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">

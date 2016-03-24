@@ -125,17 +125,17 @@ echo output_message($message, $errors);
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside>
 		<h2>آواتار</h2>
-		<?php if(empty($author->photo)) { ?>
+		<?php if(empty($author->photo)): ?>
 			<span class="glyphicon glyphicon-user center" style="font-size: 150px; margin: 0; padding: 0;"></span>
 			<span class="text-muted center">عکس پروفایل موجود نیست</span>
-		<?php } else { ?>
+		<?php else: ?>
 			<img class="img-thumbnail center" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 			<div class="center">
 				<a class="btn btn-default btn-small" href="author_remove_photo.php" onclick="return confirm('آیا مطمئن به حذف کردن عکس پروفایل خود هستید؟')">
 					حذف آواتار
 				</a>
 			</div>
-		<?php } ?>
+		<?php endif; ?>
 	</aside>
 </section>
 <?php include_layout_template("admin_footer.php"); ?>

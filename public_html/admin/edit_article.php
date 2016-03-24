@@ -56,13 +56,13 @@ echo output_message($message, $errors);
 								<option value="" disabled> انتخاب کنید</option>
 								<?php
 								$page_set = Article::num_articles_for_subject($current_article->subject_id, FALSE);
-								for($count = 1; $count <= $page_set; $count++) {
+								for($count = 1; $count <= $page_set; $count++):
 									echo "<option value='{$count}'";
-									if($current_article->position == $count) {
+									if($current_article->position == $count):
 										echo " selected";
-									}
+									endif;
 									echo ">{$count}</option>";
-								}
+								endfor;
 								?>
 							</select>
 						</div>
@@ -73,13 +73,13 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="subject_id" id="subject_id">
 								<?php
-								foreach(Subject::find_all() as $subject) {
+								foreach(Subject::find_all() as $subject):
 									echo "<option value='{$subject->id}'";
-									if($current_article->subject_id == $subject->id) {
+									if($current_article->subject_id == $subject->id):
 										echo "selected";
-									}
+									endif;
 									echo ">{$subject->name}</option>";
-								}
+								endforeach;
 								?>
 							</select>
 						</div>
