@@ -273,6 +273,7 @@ class Member extends DatabaseObject {
 			";
 
 			$mail->Body = email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content);
+
 			//return send_email($this->email, "به پارس کلیک خوش آمدید", email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content));
 			return $mail->send();
 		} else {

@@ -1,7 +1,7 @@
 $(function() {
 
 	//SLIDE UO MESSAGES AFTER 5 SECONDS
-	$('div.alert-dismissible').delay(5000).slideUp();
+	$('div.alert-dismissible').delay(7000).slideUp();
 
 	// YOUTUBE INIT VIDEO PLAY
 	$(".youtube").YouTubeModal({width : 640, height : 360});
