@@ -22,7 +22,7 @@ if(isset($_POST["submit"])) {
 		// Message returned is the same whether the user
 		// was found or not, so that we don't reveal which
 		// usernames exist and which do not.
-		$message = "ایمیلی دارای اسم کاربری شما به آدرسی فرستاده شد که در دیتابیس موجود است.";
+		$message = "ایمیلی دارای اسم کاربری شما به آدرسی فرستاده شد که در دیتابیس موجود است. تا ۱۰ دقیقه دیگه ایمیلتون رو چک کنید.";
 	} else {
 		$message = "لطفا اسم کاربری را وارد کنید.";
 	}

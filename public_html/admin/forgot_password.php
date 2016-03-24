@@ -30,7 +30,7 @@ if(isset($_POST["submit"])) {
 		// Message returned is the same whether the user
 		// was found or not, so that we don't reveal which
 		// usernames exist and which do not.
-		$message = "لینکی برای بازیافت پسورد شما به آدرس ایمیلی فرستاده شد که هنگام ثبت نام وارد کردید.";
+		$message = "لینکی برای بازیافت پسورد شما به آدرس ایمیلی فرستاده شد که هنگام ثبت نام وارد کردید. تا ۱۰ دقیقه دیگه ایمیلتون رو چک کنید.";
 	} else {
 		$message = "لطفا اسم کاربری را وارد کنید.";
 	}
