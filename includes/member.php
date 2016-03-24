@@ -165,9 +165,9 @@ class Member extends DatabaseObject {
 		$user = self::find_by_username($username);
 		if($user && isset($user->token)) {
 			//$mail = new PHPMailer();
-			//$mail->IsSMTP();
-			//$mail->IsHTML(TRUE);
-			//$mail->AddAddress($this->email, "Reset Password");
+			//$mail->isSMTP();
+			//$mail->isHTML(TRUE);
+			//$mail->addAddress($this->email, "Reset Password");
 			//$mail->CharSet    = 'UTF-8';
 			//$mail->Host       = SMTP;
 			//$mail->SMTPSecure = TLS;
@@ -186,7 +186,7 @@ class Member extends DatabaseObject {
 
 			//$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content);
 			return send_email($this->email, "Reset Password Request", email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content));
-			//return $mail->Send();
+			//return $mail->send();
 		} else {
 			return FALSE;
 		}
@@ -205,9 +205,9 @@ class Member extends DatabaseObject {
 		$user = self::find_by_email($email);
 		if($user && isset($user->token)) {
 			//$mail = new PHPMailer();
-			//$mail->IsSMTP();
-			//$mail->IsHTML(TRUE);
-			//$mail->AddAddress($this->email, "Forgot Username");
+			//$mail->isSMTP();
+			//$mail->isHTML(TRUE);
+			//$mail->addAddress($this->email, "Forgot Username");
 			//$mail->CharSet    = 'UTF-8';
 			//$mail->Host       = SMTP;
 			//$mail->SMTPSecure = TLS;
@@ -226,7 +226,7 @@ class Member extends DatabaseObject {
 
 			//$mail->Body       = email($user->full_name(), DOMAIN, $user->username, $content);
 			return send_email($this->email, "Username Reminder Request", email($user->full_name(), DOMAIN, $user->username, $content));
-			//return $mail->Send();
+			//return $mail->send();
 		} else {
 			return FALSE;
 		}
@@ -245,9 +245,9 @@ class Member extends DatabaseObject {
 		$user = self::find_by_username($username);
 		if($user && isset($user->token)) {
 			//$mail = new PHPMailer();
-			//$mail->IsSMTP();
-			//$mail->IsHTML(TRUE);
-			//$mail->AddAddress($this->email, "Welcome to Parsclick, Confirm Your Email");
+			//$mail->isSMTP();
+			//$mail->isHTML(TRUE);
+			//$mail->addAddress($this->email, "Welcome to Parsclick, Confirm Your Email");
 			//$mail->CharSet    = 'UTF-8';
 			//$mail->Host       = SMTP;
 			//$mail->SMTPSecure = TLS;
@@ -271,7 +271,7 @@ class Member extends DatabaseObject {
 
 			//$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content);
 			return send_email($this->email, "به پارس کلیک خوش آمدید", email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content));
-			//return $mail->Send();
+			//return $mail->send();
 		} else {
 			return FALSE;
 		}

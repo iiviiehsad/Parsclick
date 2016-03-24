@@ -19,6 +19,7 @@ if(isset($_POST["submit"])) {
 		if($resp->isSuccess()) {
 			$mail = new PHPMailer();
 			$mail->isSMTP();
+			$mail->isHTML(TRUE);
 			$mail->CharSet    = 'UTF-8';
 			$mail->Host       = SMTP;
 			$mail->SMTPSecure = TLS;
@@ -30,7 +31,6 @@ if(isset($_POST["submit"])) {
 			$mail->From       = EMAILUSER;
 			$mail->Subject    = $_POST['name'];
 			$mail->addAddress("parsclickmail@gmail.com", DOMAIN);
-			$mail->isHTML(TRUE);
 			$content    = nl2br($_POST['message']);
 			$mail->Body = email($_POST['name'], DOMAIN, $_POST['email'], $content);
 			$result     = $mail->send();

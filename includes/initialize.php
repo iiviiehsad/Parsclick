@@ -20,10 +20,10 @@ defined('ARTICLE_ALLOWABLE_TAGS') ? NULL : define(
 
 // Email Details
 // TODO: Change based on email configuration
-defined('SMTP') ? NULL : define('SMTP', "smtp.mail.yahoo.com");
+defined('SMTP') ? NULL : define('SMTP', "smtp.gmail.com");
 defined('PORT') ? NULL : define('PORT', 587);
-defined('EMAILUSER') ? NULL : define('EMAILUSER', "persian.loyal@yahoo.com");
-defined('EMAILPASS') ? NULL : define('EMAILPASS', "1365*1986HA");
+defined('EMAILUSER') ? NULL : define('EMAILUSER', "parsclickmail@gmail.com");
+defined('EMAILPASS') ? NULL : define('EMAILPASS', "1234-asdf");
 defined('TLS') ? NULL : define('TLS', "tls");
 
 // Stripe keys
