@@ -358,8 +358,7 @@ function email($full_name = "", $site_root = DOMAIN, $highlight = "", $content =
 											</tr>
 										</table>
 									</td>
-									<td last
-									" style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none;
+									<td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none;
 									border-collapse: collapse !important; vertical-align: top; text-align: right; position: relative;
 									color: #222222; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height:
 									19px; font-size: 14px; background: #ebebeb; margin: 0; padding: 10px 0px 0px;" align="right"

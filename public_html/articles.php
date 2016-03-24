@@ -89,7 +89,7 @@ if(isset($current_article)) {
 										<span aria-hidden="true">&gt;&gt;</span>
 									</a>
 								</li>
-							<?php endif; // end: if($pagination->has_next_page()) ?>
+							<?php endif; ?>
 						</ul>
 					</nav>
 				<?php endif; // end pagination ?>

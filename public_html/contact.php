@@ -18,8 +18,7 @@ if(isset($_POST["submit"])) {
 		$resp      = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 		if($resp->isSuccess()) {
 			$mail = new PHPMailer();
-			$mail->IsSMTP();
-			$mail->IsHTML(TRUE);
+			$mail->isSMTP();
 			$mail->CharSet    = 'UTF-8';
 			$mail->Host       = SMTP;
 			$mail->SMTPSecure = TLS;
@@ -30,14 +29,15 @@ if(isset($_POST["submit"])) {
 			$mail->FromName   = $_POST["name"];
 			$mail->From       = EMAILUSER;
 			$mail->Subject    = $_POST['name'];
-			$mail->AddAddress("parsclickmail@gmail.com", DOMAIN);
+			$mail->addAddress("parsclickmail@gmail.com", DOMAIN);
+			$mail->isHTML(TRUE);
 			$content    = nl2br($_POST['message']);
 			$mail->Body = email($_POST['name'], DOMAIN, $_POST['email'], $content);
-			$result     = $mail->Send();
+			$result     = $mail->send();
 			if($result) {
 				$message = "با تشکر، پیام شما فرستاده شد.";
 			} else {
-				$errors = "خطا در فرستادن پیام!";
+				$errors = "خطا در فرستادن پیام!" . $mail->ErrorInfo;
 			}
 		} else {
 			foreach($resp->getErrorCodes() as $code) {
