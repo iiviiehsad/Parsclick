@@ -128,56 +128,41 @@ class Author extends DatabaseObject {
 		$user      = self::find_by_username($username);
 		$site_root = DOMAIN;
 		if($user && isset($user->token)) {
-			//$mail = new PHPMailer();
-			//$mail->IsSMTP();
-			//$mail->IsHTML(TRUE);
-			//$mail->AddAddress($this->email, "Welcome to Parsclick, Confirm Your Email");
-			//$mail->CharSet    = 'UTF-8';
-			//$mail->Host       = SMTP;
-			//$mail->SMTPSecure = TLS;
-			//$mail->Port       = PORT;
-			//$mail->SMTPAuth   = TRUE;
-			//$mail->Username   = EMAILUSER;
-			//$mail->Password   = EMAILPASS;
-			//$mail->FromName   = "do-not-reply@parsclick.net";
-			//$mail->From       = EMAILUSER;
-			//$mail->Subject    = "به پارس کلیک خوش آمدید";
-			//$mail->Body       = <<<EMAILBODY
-			$mail = <<<EMAILBODY
-			<body style="background-color:#F5F5DC;direction:rtl;font-family:Tahoma;">
-				<h1>جناب {$this->full_name()}،</h1>
-				<br/><br/>
-				<h3>عضویت شما به عنوان نویسنده ساخته شد و قبل از اینکه از سیستم استفاده کنید از لینک زیر برای تایید کردن ایمیل خود استفاده کنید:<br/><br/>
-				<p style="direction:ltr;margin:auto;padding:5px;">
-					http://{$site_root}/admin/author_confirm_email.php?token={$user->token}
-				</p>
-				</h3>
-				<p>خوب یک خوش آمد و استقبال گرم را از طرف پارس کلیک بپذیرید و ممنونیم که ما را انتخاب کردید.<br />
-				باعث افتخار ماست که دعوت ما به عنوان نویسنده را می پذیرید و مقاله می نویسید.</p><br/>
-				<h3 style="color:red;">یارآوری مهم:</h3>
+			$mail = new PHPMailer();
+			$mail->isSMTP();
+			$mail->isHTML(TRUE);
+			$mail->addAddress($user->email, "Welcome to Parsclick, Confirm Your Email");
+			$mail->CharSet    = 'UTF-8';
+			$mail->Host       = SMTP;
+			$mail->SMTPSecure = TLS;
+			$mail->Port       = PORT;
+			$mail->SMTPAuth   = TRUE;
+			$mail->Username   = EMAILUSER;
+			$mail->Password   = EMAILPASS;
+			$mail->FromName   = "do-not-reply@parsclick.net";
+			$mail->From       = EMAILUSER;
+			$mail->Subject    = "به پارس کلیک خوش آمدید";
+			$content          = "
+				<p>خوب یک خوش آمد و استقبال گرم را از طرف پارس کلیک بپذیرید و ممنونیم که ما را انتخاب کردید.</p>
+				<p>باعث افتخار ماست که دعوت ما به عنوان نویسنده را می پذیرید و مقاله می نویسید.</p>
+				<h3>یارآوری مهم:</h3>
 				<ul>
-				<li>به محض کلیک کردن لینک، شما به قسمت نویسندگان وارد خواهید شد. اولین و مهمترین کاری که باید انجام بدهید این است که به قسمت ویرایش حساب کاربری روید و پسوردتان را تغییر دهید. </li>
-				<li>خیلی ضرورت دارد که اطلاعات شما بروز باشد مخصوصا تنها پل ارتباطی بین ما  و شما که ایمیلتان است. </li>
-				<li>به محض ورود به سیستم شما قادر به تغییر اطلاعات شخصی خود هستید. </li>
-				<li>از ایمیل آدرس شما برای بازیافت پسورد در موقعیت احتمالی گم کردن و فراموشی پسورد استفاده می شود. </li>
-				<li>اگر سوالی در مورد دروس و مقالات داشتید در قسمت نظرات مربوط به هر کدام بنویسید.</li>
-				<li>شما به عنوان نویسنده فعلا قادر به نوشتن مقاله هستید و درسی نسازید تا اینکه مدیر سایت به شما خبر دهد.
-				 چرا که ساخت درس حساب یوتیوب، و پلی لیست یا لیست پخش می خواهد، بعلاوه ی آنها فایل های تمرینی باید تهیه کنید.
-				  بنابراین فعلا فقط مقاله نویسی کنید. اگر دسترسی به یوتیوب برای شما آسان است و کانال یوتیوب دارید و
-				  مهمتر از همه اینکه دقیقا می توانید ازسیستم استفاده کنید پس می توانید درس هم بسازید.</li>
-				<li>در آخر اینکه حتما این ویدئو را تماشا کنید که همه چیز در مورد نویسندگی برای پارس کلیک را توضیح داده است:
-				<a href="https://www.youtube.com/embed/G0TY36VCODc?modestbranding=1&rel=0&showinfo=0&controls=0&hl=fa-ir" target="_blank">https://www.youtube.com/embed/G0TY36VCODc?showinfo=0&theme=light</a></li>
+					<li>به محض کلیک کردن لینک، شما به قسمت نویسندگان وارد خواهید شد. اولین و مهمترین کاری که باید انجام بدهید این است که به قسمت ویرایش حساب کاربری روید و پسوردتان را تغییر دهید. </li>
+					<li>خیلی ضرورت دارد که اطلاعات شما بروز باشد مخصوصا تنها پل ارتباطی بین ما  و شما که ایمیلتان است. </li>
+					<li>به محض ورود به سیستم شما قادر به تغییر اطلاعات شخصی خود هستید. </li>
+					<li>از ایمیل آدرس شما برای بازیافت پسورد در موقعیت احتمالی گم کردن و فراموشی پسورد استفاده می شود. </li>
+					<li>اگر سوالی در مورد دروس و مقالات داشتید در قسمت نظرات مربوط به هر کدام بنویسید.</li>
+					<li>شما به عنوان نویسنده فعلا قادر به نوشتن مقاله هستید و درسی نسازید تا اینکه مدیر سایت به شما خبر دهد. چرا که ساخت درس حساب یوتیوب، و پلی لیست یا لیست پخش می خواهد، بعلاوه ی آنها فایل های تمرینی باید تهیه کنید. بنابراین فعلا فقط مقاله نویسی کنید. اگر دسترسی به یوتیوب برای شما آسان است و کانال یوتیوب دارید و مهمتر از همه اینکه دقیقا می توانید ازسیستم استفاده کنید پس می توانید درس هم بسازید.</li>
+					<li>در آخر اینکه حتما این ویدئو را تماشا کنید که همه چیز در مورد نویسندگی برای پارس کلیک را توضیح داده است: <a href='https://www.youtube.com/embed/G0TY36VCODc?modestbranding=1&rel=0&showinfo=0&controls=0&hl=fa-ir' target='_blank'>https://www.youtube.com/embed/G0TY36VCODc?showinfo=0</a></li>
 				</ul>
-				<br/><br/><br/>
-				<hr/>
-				<p>با تشکر نویسنده عزیز <br/>
-				پارس کلیک <br/>
-				http://{$site_root}</p>
-			</body>
-EMAILBODY;
+				<br/>
+				<h3>عضویت شما به عنوان نویسنده ساخته شد و قبل از اینکه از سیستم استفاده کنید از لینک زیر برای تایید کردن ایمیل خود استفاده کنید:</h3>
+			";
 
-			//return $mail->Send();
-			return send_email($this->email, "به پارس کلیک خوش آمدید", $mail);
+			$mail->Body = email($user->full_name(), DOMAIN, "http://{$site_root}/admin/author_confirm_email.php?token={$user->token}", $content);
+
+			return $mail->send();
+			//return send_email($user->email, "به پارس کلیک خوش آمدید", email($user->full_name(), DOMAIN, "http://{$site_root}/admin/author_confirm_email.php?token={$user->token}", $content));
 		} else {
 			return FALSE;
 		}
@@ -194,5 +179,5 @@ EMAILBODY;
 			return "";
 		}
 	}
-	
+
 } // END of CLASS

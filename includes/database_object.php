@@ -207,8 +207,8 @@ class DatabaseObject {
 		$user = static::find_by_username($username);
 		if($user && isset($user->token)) {
 			//$mail = new PHPMailer();
-			//$mail->IsSMTP();
-			//$mail->IsHTML(TRUE);
+			//$mail->isSMTP();
+			//$mail->isHTML(TRUE);
 			//$mail->CharSet    = 'UTF-8';
 			//$mail->Host       = SMTP;
 			//$mail->SMTPSecure = TLS;
@@ -218,7 +218,7 @@ class DatabaseObject {
 			//$mail->Password   = EMAILPASS;
 			//$mail->FromName   = DOMAIN;
 			//$mail->From       = EMAILUSER;
-			//$mail->AddAddress($user->email, "Reset Password");
+			//$mail->addAddress($user->email, "Reset Password");
 			//$mail->Subject = "Reset Password Request";
 			$content = "
 			آیا اخیرا درخواست بازیافت پسوردتان را کردید؟ <br/>
@@ -227,10 +227,10 @@ class DatabaseObject {
 
 			//$mail->Body    = email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content);
 			return send_email($user->email, "Reset Password Request", email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content));
-			//return $mail->Send();
+			//return $mail->send();
 		} else {
 			return FALSE;
 		}
 	}
-	
+
 } // END of CLASS
