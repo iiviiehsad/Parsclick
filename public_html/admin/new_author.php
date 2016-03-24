@@ -14,7 +14,7 @@ if(isset($_POST['submit'])) {
 	$author->token      = md5(uniqid(rand()));
 	$result             = $author->create();
 	$send_email         = $author->email_confirmation_details($author->username);
-	if($result && $author->email_confirmation_details($author->username)) { // Success
+	if($result && $send_email) { // Success
 		$session->message("نویسنده با اسم کاربری " . strtoupper($author->username) . " ساخته شد.");
 		redirect_to("author_list.php");
 	} else { // Failure
