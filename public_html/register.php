@@ -50,9 +50,11 @@ if($_POST) {
 					$member->token           = md5(uniqid(rand()));
 					$result                  = $member->create();
 					if($result) {
-						$session->message("با تشکر! ثبت نام موفقیت آمیز بود. لطفا ایمیل خود را چک کنید و تایید کنید. پوشه spam را هم چک کنید.");
-						$member->email_confirmation_details($member->username);
-						redirect_to("login");
+						if( ! $member->email_confirmation_details($member->username)) {
+							$errors = "ثبت نام موفقیت آمیز بود اما ایمیل فرستاده نشد! ادمین را این موضوع باخبر کنید";
+						} else {
+							$session->message("ثبت نام موفقیت آمیز بود. لطفا ایمیل خود را تا ۱۰ دقیقه دیگر چک کنید و تایید کنید. پوشه spam را هم چک کنید.");							redirect_to("login");
+						}
 					} else {
 						$errors = "ثبت نام موفق نبود. اشتباهی مانع از انجام ثبت نام شما شد!";
 					}
