@@ -281,4 +281,16 @@ class Member extends DatabaseObject {
 		}
 	}
 
+	/**
+	 * @param int $limit  limits members per page
+	 * @param int $offset the pagination offset
+	 * @return array of members in each page
+	 */
+	public static function find_members($limit = 0, $offset = 0)
+	{
+		$sql = "SELECT * FROM " . self::$table_name . " ORDER BY id DESC LIMIT {$limit} OFFSET {$offset}";
+
+		return self::find_by_sql($sql);
+	}
+
 } // END of CLASS

@@ -83,11 +83,11 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 							<?php for($i = 1; $i < $pagination->total_page() + 1; $i++): ?>
 								<?php if($i == $page): ?>
 									<li class="active">
-										<span><?php echo $i; ?></span>
+										<span><?php echo convert($i); ?></span>
 									</li>
 								<?php else: ?>
 									<li>
-										<a href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>&page=<?php echo urlencode($i); ?>"><?php echo $i; ?></a>
+										<a href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>&page=<?php echo urlencode($i); ?>"><?php echo convert($i); ?></a>
 									</li>
 								<?php endif; ?>
 							<?php endfor; ?>

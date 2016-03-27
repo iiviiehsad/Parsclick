@@ -24,7 +24,7 @@ find_selected_course(TRUE);
 					endif; ?>
 				</h4>
 				<a class="btn btn-primary pull-right" href="member-comments?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" data-placement="bottom" title="سوالات و نظرات"><i class="fa fa-comments fa-lg"></i>
-					انجمن<?php echo "<span class='label label-danger label-as-badge'>" . Comment::count_comments_for_course($current_course->id) . "</span>"; ?>
+					انجمن<?php echo "<span class='label label-danger label-as-badge'>" . convert(Comment::count_comments_for_course($current_course->id)) . "</span>"; ?>
 				</a>
 				&nbsp;
 				<!-- ------------------------------------------------------------------------------------------------- -->

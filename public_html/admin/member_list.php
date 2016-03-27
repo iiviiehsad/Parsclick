@@ -2,7 +2,12 @@
 require_once("../../includes/initialize.php");
 $session->confirm_admin_logged_in();
 $filename   = basename(__FILE__);
-$member_set = Member::find_all();
+// Pagination
+$page        = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
+$per_page    = 50;
+$total_count = Member::count_all();
+$pagination  = new pagination($page, $per_page, $total_count);
+$member_set  = Member::find_members($per_page, $pagination->offset());
 include_layout_template("admin_header.php");
 include("../_/components/php/admin_nav.php");
 echo output_message($message);
@@ -83,6 +88,37 @@ echo output_message($message);
 					<?php endforeach; ?>
 				</tbody>
 			</table>
+			<?php if($pagination->total_page() > 1): ?>
+				<nav class="clearfix center">
+					<ul class="pagination">
+						<?php if($pagination->has_previous_page()): ?>
+							<li>
+								<a href="member_list.php?page=<?php echo urlencode($pagination->previous_page()); ?>" aria-label="Previous">
+									<span aria-hidden="true"> &lt;&lt; </span>
+								</a>
+							</li>
+						<?php endif; ?>
+						<?php for($i = 1; $i < $pagination->total_page() + 1; $i++): ?>
+							<?php if($i == $page): ?>
+								<li class="active">
+									<span><?php echo convert($i); ?></span>
+								</li>
+							<?php else: ?>
+								<li>
+									<a href="member_list.php?page=<?php echo urlencode($i); ?>"><?php echo convert($i); ?></a>
+								</li>
+							<?php endif; ?>
+						<?php endfor; ?>
+						<?php if($pagination->has_next_page()): ?>
+							<li>
+								<a href="member_list.php?page=<?php echo urlencode($pagination->next_page()); ?>" aria-label="Next">
+									<span aria-hidden="true">&gt;&gt;</span>
+								</a>
+							</li>
+						<?php endif; ?>
+					</ul>
+				</nav>
+			<?php endif; // end pagination ?>
 		</div>
 	</section>
 <?php include_layout_template("admin_footer.php"); ?>
