@@ -1252,7 +1252,7 @@ function find_selected_course($public = FALSE)
 	}
 }
 
-function paginate($url, $pagination, $page)
+function paginate($pagination, $page, $main_url = '', $url1 = '', $url2 = '')
 {
 	$output = '';
 	if($pagination->total_page() > 1) {
@@ -1260,7 +1260,14 @@ function paginate($url, $pagination, $page)
 		$output .= '<ul class="pagination">';
 		if($pagination->has_previous_page()) {
 			$output .= '<li>';
-			$output .= '<a href="' . $url . '?page=' . urlencode($pagination->previous_page()) . '" aria-label="Previous">';
+			$output .= '<a href="' . $main_url . '?page=' . urlencode($pagination->previous_page());
+			if( ! empty($url1)) {
+				$output .= '&' . $url1;
+			}
+			if( ! empty($url2)) {
+				$output .= '&' . $url2;
+			}
+			$output .= '" aria-label="Previous">';
 			$output .= '<span aria-hidden="true"> &lt;&lt; </span>';
 			$output .= '</a>';
 			$output .= '</li>';
@@ -1272,13 +1279,27 @@ function paginate($url, $pagination, $page)
 				$output .= '</li>';
 			} else {
 				$output .= '<li>';
-				$output .= '<a href="' . $url . '?page=' . urlencode($i) . '">' . convert($i) . '</a>';
+				$output .= '<a href="' . $main_url . '?page=' . urlencode($i);
+				if( ! empty($url1)) {
+					$output .= '&' . $url1;
+				}
+				if( ! empty($url2)) {
+					$output .= '&' . $url2;
+				}
+				$output .= '">' . convert($i) . '</a>';
 				$output .= '</li>';
 			}
 		}
 		if($pagination->has_next_page()) {
 			$output .= '<li>';
-			$output .= '<a href="' . $url . '?page=' . urlencode($pagination->next_page()) . '" aria-label="Next">';
+			$output .= '<a href="' . $main_url . '?page=' . urlencode($pagination->next_page());
+			if( ! empty($url1)) {
+				$output .= '&' . $url1;
+			}
+			if( ! empty($url2)) {
+				$output .= '&' . $url2;
+			}
+			$output .= '" aria-label="Next">';
 			$output .= '<span aria-hidden="true">&gt;&gt;</span>';
 			$output .= '</a>';
 			$output .= '</li>';

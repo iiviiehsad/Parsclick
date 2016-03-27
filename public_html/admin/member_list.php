@@ -90,7 +90,7 @@ echo output_message($message);
 					<?php endforeach; ?>
 				</tbody>
 			</table>
-			<?php echo paginate("member_list", $pagination, $page); ?>
+			<?php echo paginate($pagination, $page, "member_list.php"); ?>
 		</div>
 	</section>
 <?php include_layout_template("admin_footer.php"); ?>

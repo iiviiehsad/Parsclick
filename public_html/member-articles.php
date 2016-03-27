@@ -87,37 +87,7 @@ $body   = "";
 										</div>
 									</section>
 								<?php endforeach; ?>
-								<?php if($pagination->total_page() > 1): ?>
-									<nav class="clearfix center">
-										<ul class="pagination">
-											<?php if($pagination->has_previous_page()): ?>
-												<li>
-													<a href="member-articles?subject=<?php echo urlencode($current_article->subject_id); ?>&article=<?php echo urlencode($current_article->id); ?>&page=<?php echo urlencode($pagination->previous_page()); ?>#comments" aria-label="Previous">
-														<span aria-hidden="true"> &lt;&lt; </span>
-													</a>
-												</li>
-											<?php endif; ?>
-											<?php for($i = 1; $i < $pagination->total_page() + 1; $i++): ?>
-												<?php if($i == $page): ?>
-													<li class="active">
-														<span><?php echo convert($i); ?></span>
-													</li>
-												<?php else: ?>
-													<li>
-														<a href="member-articles?subject=<?php echo urlencode($current_article->subject_id); ?>&article=<?php echo urlencode($current_article->id); ?>&page=<?php echo urlencode($i); ?>#comments"><?php echo convert($i); ?></a>
-													</li>
-												<?php endif; ?>
-											<?php endfor; ?>
-											<?php if($pagination->has_next_page()): ?>
-												<li>
-													<a href="member-articles?subject=<?php echo urlencode($current_article->subject_id); ?>&article=<?php echo urlencode($current_article->id) ?>&page=<?php echo urlencode($pagination->next_page()); ?>#comments" aria-label="Next">
-														<span aria-hidden="true">&gt;&gt;</span>
-													</a>
-												</li>
-											<?php endif; ?>
-										</ul>
-									</nav>
-								<?php endif; // end pagination ?>
+								<?php echo paginate($pagination, $page, "member-articles", "subject={$current_article->subject_id}", "article={$current_article->id}"); ?>
 								<?php if(empty($comments)): ?>
 									<h3><span class="badge">نظری وجود ندارد. اولین نفری باشید که نظر می دهید.</span></h3>
 								<?php endif; ?>
