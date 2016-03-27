@@ -1,8 +1,6 @@
 <?php
 require_once("../includes/initialize.php");
-if($session->is_logged_in()) {
-	redirect_to("member.php");
-}
+if($session->is_logged_in()) redirect_to("member-articles.php");
 $filename = basename(__FILE__);
 find_selected_article(TRUE);
 $newest_article = Article::find_newest_article();

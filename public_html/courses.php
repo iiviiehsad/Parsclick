@@ -1,8 +1,6 @@
 <?php
 require_once("../includes/initialize.php");
-if($session->is_logged_in()) {
-	redirect_to("member.php");
-}
+if($session->is_logged_in()) redirect_to("member-courses.php");
 $title    = "پارس کلیک - درس ها و ویدئو ها";
 $filename = basename(__FILE__);
 ?>
