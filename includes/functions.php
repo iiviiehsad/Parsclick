@@ -1252,6 +1252,44 @@ function find_selected_course($public = FALSE)
 	}
 }
 
+function paginate($url, $pagination, $page)
+{
+	$output = '';
+	if($pagination->total_page() > 1) {
+		$output .= '<nav class="clearfix center">';
+		$output .= '<ul class="pagination">';
+		if($pagination->has_previous_page()) {
+			$output .= '<li>';
+			$output .= '<a href="' . $url . '?page=' . urlencode($pagination->previous_page()) . '" aria-label="Previous">';
+			$output .= '<span aria-hidden="true"> &lt;&lt; </span>';
+			$output .= '</a>';
+			$output .= '</li>';
+		}
+		for($i = 1; $i < $pagination->total_page() + 1; $i++) {
+			if($i == $page) {
+				$output .= '<li class="active">';
+				$output .= '<span>' . convert($i) . '</span>';
+				$output .= '</li>';
+			} else {
+				$output .= '<li>';
+				$output .= '<a href="' . $url . '?page=' . urlencode($i) . '">' . convert($i) . '</a>';
+				$output .= '</li>';
+			}
+		}
+		if($pagination->has_next_page()) {
+			$output .= '<li>';
+			$output .= '<a href="' . $url . '?page=' . urlencode($pagination->next_page()) . '" aria-label="Next">';
+			$output .= '<span aria-hidden="true">&gt;&gt;</span>';
+			$output .= '</a>';
+			$output .= '</li>';
+		}
+		$output .= '</ul>';
+		$output .= '</nav>';
+	}
+
+	return $output;
+}
+
 /**
  * This function adds the active class by jQuery for the navbar by checking the file name.
  * There is <?php $filename = basename(__FILE__); ?> on top of every PHP file which finds the file name and based on

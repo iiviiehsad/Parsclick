@@ -20,16 +20,18 @@ echo output_message($message);
 					<input type="text" name="q" class="form-control" size="40" maxlength="50" placeholder="جستجوی اعضا"/>
 				</div>
 			</form>
+			<h2 class="pull-right"><i class="fa fa-users"></i> لیست اعضا <span class="label label-as-badge label-info"><?php echo convert(Member::count_all()); ?> عضو</span></h2>
 		</aside>
 	</section>
 	<section class="sidebar col col-lg-4 pull-left">
 		<aside>
 			<a class="btn btn-success btn-block" href="new_member.php"><i class="fa fa-plus"></i> اضافه کردن عضو جدید</a>
+			<?php if(isset($_GET['page'])): ?>
+				<h2 class="pull-left"><span class="label label-as-badge label-info">صفحه <?php echo convert($_GET['page']); ?></span></h2>
+			<?php endif ?>
 		</aside>
 	</section>
 	<section class="main col col-lg-12">
-		<h2><i class="fa fa-users"></i> لیست اعضا <span class="badge arial"><?php echo count($member_set); ?></span></h2>
-		<br/>
 		<div class="table-responsive">
 			<table class="table table-hover table-condensed">
 				<thead>
@@ -88,37 +90,7 @@ echo output_message($message);
 					<?php endforeach; ?>
 				</tbody>
 			</table>
-			<?php if($pagination->total_page() > 1): ?>
-				<nav class="clearfix center">
-					<ul class="pagination">
-						<?php if($pagination->has_previous_page()): ?>
-							<li>
-								<a href="member_list.php?page=<?php echo urlencode($pagination->previous_page()); ?>" aria-label="Previous">
-									<span aria-hidden="true"> &lt;&lt; </span>
-								</a>
-							</li>
-						<?php endif; ?>
-						<?php for($i = 1; $i < $pagination->total_page() + 1; $i++): ?>
-							<?php if($i == $page): ?>
-								<li class="active">
-									<span><?php echo convert($i); ?></span>
-								</li>
-							<?php else: ?>
-								<li>
-									<a href="member_list.php?page=<?php echo urlencode($i); ?>"><?php echo convert($i); ?></a>
-								</li>
-							<?php endif; ?>
-						<?php endfor; ?>
-						<?php if($pagination->has_next_page()): ?>
-							<li>
-								<a href="member_list.php?page=<?php echo urlencode($pagination->next_page()); ?>" aria-label="Next">
-									<span aria-hidden="true">&gt;&gt;</span>
-								</a>
-							</li>
-						<?php endif; ?>
-					</ul>
-				</nav>
-			<?php endif; // end pagination ?>
+			<?php echo paginate("member_list", $pagination, $page); ?>
 		</div>
 	</section>
 <?php include_layout_template("admin_footer.php"); ?>
