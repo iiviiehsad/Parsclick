@@ -1252,6 +1252,16 @@ function find_selected_course($public = FALSE)
 	}
 }
 
+/**
+ * Adds Bootstrap pagination under pages which need pagination*
+ *
+ * @param        $pagination
+ * @param        $page
+ * @param string $main_url
+ * @param string $url1
+ * @param string $url2
+ * @return string
+ */
 function paginate($pagination, $page, $main_url = '', $url1 = '', $url2 = '')
 {
 	$output = '';
