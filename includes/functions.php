@@ -720,7 +720,7 @@ function admin_articles($subject_array, $article_array)
 			}
 			if($article->comments()) {
 				$output .= "data-toggle='tooltip' data-placement='left' title='";
-				$output .= count($article->comments()) . " دیدگاه";
+				$output .= convert(count($article->comments())) . " دیدگاه";
 				$output .= "'";
 			}
 			$output .= ">";
@@ -777,7 +777,7 @@ function author_articles($subject_array, $article_array)
 			}
 			if($article->comments()) {
 				$output .= "data-toggle='tooltip' data-placement='left' title='";
-				$output .= count($article->comments()) . " دیدگاه";
+				$output .= convert(count($article->comments())) . " دیدگاه";
 				$output .= "'";
 			}
 			$output .= ">";
@@ -814,7 +814,7 @@ function member_articles($subject_array, $article_array)
 	foreach($subject_set as $subject) {
 		if(Article::num_articles_for_subject($subject->id)) {
 			$output .= "<li class='list-group-item'>";
-			$output .= "<span class='badge'>" . Article::count_articles_for_subject($subject->id, TRUE) . "</span>";
+			$output .= "<span class='badge'>" . convert(Article::count_articles_for_subject($subject->id, TRUE)) . "</span>";
 			$output .= "<a href='member-articles?subject=";
 			$output .= urlencode($subject->id) . "'";
 			if($subject_array && $subject->id == $subject_array->id) {
@@ -841,7 +841,7 @@ function member_articles($subject_array, $article_array)
 						}
 						if($article->comments()) {
 							$output .= "data-toggle='tooltip' data-placement='left' title='";
-							$output .= count($article->comments()) . " دیدگاه";
+							$output .= convert(count($article->comments())) . " دیدگاه";
 							$output .= "'";
 						}
 						$output .= ">";
@@ -931,7 +931,7 @@ function admin_courses($category_array, $course_array)
 			}
 			if($course->comments()) {
 				$output .= "data-toggle='tooltip' data-placement='left' title='";
-				$output .= count($course->comments()) . " دیدگاه";
+				$output .= convert(count($course->comments())) . " دیدگاه";
 				$output .= "'";
 			}
 			$output .= ">";
@@ -988,7 +988,7 @@ function author_courses($category_array, $course_array)
 			}
 			if($course->comments()) {
 				$output .= "data-toggle='tooltip' data-placement='left' title='";
-				$output .= count($course->comments()) . " دیدگاه";
+				$output .= convert(count($course->comments())) . " دیدگاه";
 				$output .= "'";
 			}
 			$output .= ">";
@@ -1024,7 +1024,7 @@ function member_courses($category_array, $course_array)
 	$category_set = Category::find_all(TRUE);
 	foreach($category_set as $category) {
 		$output .= "<li class='list-group-item'>";
-		$output .= "<span class='badge'>" . Course::count_courses_for_category($category->id, TRUE) . "</span>";
+		$output .= "<span class='badge'>" . convert(Course::count_courses_for_category($category->id, TRUE)) . "</span>";
 		$output .= "<a href='member-courses?category=";
 		$output .= urlencode($category->id) . "'";
 		if($category_array && $category->id == $category_array->id) {
@@ -1051,7 +1051,7 @@ function member_courses($category_array, $course_array)
 					}
 					if($course->comments()) {
 						$output .= "data-toggle='tooltip' data-placement='left' title='";
-						$output .= count($course->comments()) . " دیدگاه";
+						$output .= convert(count($course->comments())) . " دیدگاه";
 						$output .= "'";
 					}
 					$output .= ">";
@@ -1087,7 +1087,7 @@ function member_comments_for_course($category_array, $course_array)
 	$category_set = Category::find_all(TRUE);
 	foreach($category_set as $category) {
 		$output .= "<li class='list-group-item'>";
-		$output .= "<span class='badge'>" . Course::count_courses_for_category($category->id, TRUE) . "</span>";
+		$output .= "<span class='badge'>" . convert(Course::count_courses_for_category($category->id, TRUE)) . "</span>";
 		$output .= "<a href='member-comments?category=";
 		$output .= urlencode($category->id) . "'";
 		if($category_array && $category->id == $category_array->id) {
@@ -1114,7 +1114,7 @@ function member_comments_for_course($category_array, $course_array)
 					}
 					if($course->comments()) {
 						$output .= "data-toggle='tooltip' data-placement='left' title='";
-						$output .= count($course->comments()) . " دیدگاه";
+						$output .= convert(count($course->comments())) . " دیدگاه";
 						$output .= "'";
 					}
 					$output .= ">";
@@ -1183,7 +1183,7 @@ function public_articles($subject_array, $article_array)
 	foreach($subject_set as $subject) {
 		if(Article::num_articles_for_subject($subject->id)) {
 			$output .= "<li class='list-group-item'>";
-			$output .= "<span class='badge'>" . Article::count_articles_for_subject($subject->id, TRUE) . "</span>";
+			$output .= "<span class='badge'>" . convert(Article::count_articles_for_subject($subject->id, TRUE)) . "</span>";
 			$output .= "<a href='/articles?subject=" . urlencode($subject->id) . "'";
 			if($subject_array && $subject->id == $subject_array->id) {
 				$output .= " class='lead selected' ";
