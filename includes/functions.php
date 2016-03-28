@@ -1279,14 +1279,11 @@ function paginate($pagination, $page, $main_url = '', $url1 = '', $url2 = '')
 			}
 			$output .= '" aria-label="Previous">';
 			$output .= '<span aria-hidden="true"> &lt;&lt; </span>';
-			$output .= '</a>';
-			$output .= '</li>';
+			$output .= '</a></li>';
 		}
 		for($i = 1; $i < $pagination->total_page() + 1; $i++) {
 			if($i == $page) {
-				$output .= '<li class="active">';
-				$output .= '<span>' . convert($i) . '</span>';
-				$output .= '</li>';
+				$output .= '<li class="active"><span>' . convert($i) . '</span></li>';
 			} else {
 				$output .= '<li>';
 				$output .= '<a href="' . $main_url . '?page=' . urlencode($i);
@@ -1311,11 +1308,9 @@ function paginate($pagination, $page, $main_url = '', $url1 = '', $url2 = '')
 			}
 			$output .= '" aria-label="Next">';
 			$output .= '<span aria-hidden="true">&gt;&gt;</span>';
-			$output .= '</a>';
-			$output .= '</li>';
+			$output .= '</a></li>';
 		}
-		$output .= '</ul>';
-		$output .= '</nav>';
+		$output .= '</ul></nav>';
 	}
 
 	return $output;
