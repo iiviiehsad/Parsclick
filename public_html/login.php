@@ -15,8 +15,7 @@ if(isset($_POST["submit"])) { // if form submitted
 			if(has_presence($username) && has_presence($password)) {
 				$throttle_delay = FailedLogins::throttle_failed_logins($username);
 				if($throttle_delay > 0) {
-					$errors = "حساب کابری قفل شده. باید {$throttle_delay} دقیقه صبر کنید و بعد دوباره سعی کنید.";
-				} else {
+					$errors = "حساب کابری قفل شده. باید " . convert($throttle_delay) . " دقیقه صبر کنید و بعد دوباره سعی کنید.";				} else {
 					// check the database to see if username or password exist
 					$found_user = Member::authenticate($username, $password);
 					if($found_user) {

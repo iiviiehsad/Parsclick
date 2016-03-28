@@ -37,8 +37,7 @@ if(isset($search_query) && ! empty($search_query)) {
 												<a href="member-articles?subject=<?php echo urlencode($article->subject_id); ?>&article=<?php echo urlencode($article->id); ?>">
 													<mark><?php echo htmlentities($article->name); ?></mark>
 													<small>
-														&nbsp;توسط <?php echo isset($article->author_id) ? htmlentities(Author::find_by_id($article->author_id)
-														                                                                      ->full_name()) : '-'; ?></small>
+														&nbsp;توسط <?php echo isset($article->author_id) ? htmlentities(Author::find_by_id($article->author_id)->full_name()) : '-'; ?></small>
 												</a>
 											</i>
 										</strong>

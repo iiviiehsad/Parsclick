@@ -22,7 +22,7 @@ if($member->status == 0) redirect_to("freezed");
 		</section>
 	</header>
 	<div class="jumbotron">
-		<h1>با عرض پوزش <?php echo ucwords(strtolower($member->full_name())); ?>!</h1>
+		<h1>با عرض پوزش <?php echo $member->full_name(); ?>!</h1>
 		<p>حق اشتراک شما به یکی از دلایل زیر بسته شده:</p>
 		<ul class="text-warning">
 			<li>شما یکی یا چند تا از قوانین سایت را رعایت نکردید.</li>
@@ -31,7 +31,7 @@ if($member->status == 0) redirect_to("freezed");
 		</ul>
 		<p>
 			<a class="btn btn-danger btn-large" href="logout.php" role="button">خروج</a>
-			<a href="contact" class="btn btn-success btn-large" role="button">
+			<a href="mailto:<?php echo ADMIN_EMAIL; ?>" target="_blank" class="btn btn-success btn-large" role="button">
 				تماس با مدیر سایت
 			</a>
 		</p>

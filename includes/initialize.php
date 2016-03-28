@@ -19,6 +19,7 @@ defined('ARTICLE_ALLOWABLE_TAGS') ? NULL : define(
 );
 
 // Email Details
+defined('ADMIN_EMAIL') ? NULL : define('ADMIN_EMAIL', "info@parsclick.net");
 // TODO: Change based on email configuration
 defined('SMTP') ? NULL : define('SMTP', "n1plcpnl0045.prod.ams1.secureserver.net");
 defined('PORT') ? NULL : define('PORT', 587);

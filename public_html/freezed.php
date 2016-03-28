@@ -2,9 +2,7 @@
 require_once("../includes/initialize.php");
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
-if($member->status == 2) {
-	redirect_to("blocked");
-}
+if($member->status == 2) redirect_to("blocked");
 $errors = "";
 if(isset($_POST["resend_email"])) {
 	if(is_temp_mail($member->email)) {
@@ -62,7 +60,7 @@ if(isset($_POST["resend_email"])) {
 	</header>
 <?php echo output_message($message, $errors); ?>
 	<div class="jumbotron">
-		<h1>با عرض پوزش <?php echo ucwords(strtolower($member->full_name())); ?>!</h1>
+		<h1>با عرض پوزش <?php echo $member->full_name(); ?>!</h1>
 		<p>حق اشتراک شما به یکی از دلایل زیر کار نمیکند:</p>
 		<ul class="text-warning">
 			<li>شما لینک فعال کردن عضویت خود که با ایمیل دریافت کردید کلیک نکردید.</li>

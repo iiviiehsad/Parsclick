@@ -2,12 +2,8 @@
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
-if(isset($_POST["playlist"])) {
-	$playlist_id = $_POST["playlist"];
-}
-if(isset($_GET["playlist"])) {
-	$playlist_id = $_GET["playlist"];
-}
+if(isset($_POST["playlist"])) $playlist_id = $_POST["playlist"];
+if(isset($_GET["playlist"])) $playlist_id = $_GET["playlist"];
 if( ! $playlist_id) {
 	$session->message("شناسه لیست پیدا نشد!");
 	redirect_to($_SERVER["HTTP_REFERER"]);
