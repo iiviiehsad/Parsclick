@@ -19,8 +19,7 @@ echo output_message($message);
 					<dt>نمایان:</dt>
 					<dd><?php echo $current_course->visible == 1 ? '<span class="text-success">بله</span>' : '<span class="text-danger">خیر</span>'; ?></dd>
 					<dt>نویسنده:</dt>
-					<dd><?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)
-					                                                                      ->full_name()) : '-'; ?></dd>
+					<dd><?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)->full_name()) : '-'; ?></dd>
 					<?php if( ! empty($current_course->content)): ?>
 						<dt>توضیحات:</dt>
 						<dd>
@@ -40,8 +39,8 @@ echo output_message($message);
 							</a>
 						<?php endif; ?>
 						<!---------------------------------------------COMMENTS---------------------------------------->
-						<a class="btn btn-primary btn-small arial" href="admin_comments.php?course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" title="نظرات">
-							<?php echo count($current_course->comments()); ?>
+						<a class="btn btn-primary btn-small" href="admin_comments.php?course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" title="نظرات">
+							<?php echo convert(count($current_course->comments())); ?>
 							<span class="glyphicon glyphicon-comment"></span>
 						</a>
 					</dd>
