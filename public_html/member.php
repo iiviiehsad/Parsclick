@@ -16,21 +16,18 @@ $newest_article = Article::find_newest_article();
 	<h1>خوش آمدید <?php echo ucwords(strtolower($member->full_name())); ?></h1>
 	<p>شما دسترسی به یکی از بزرگترین کتابخانه ویدئویی رایگان پارسی زبانان را دارید. لطفا از دوستان خود دعوت کنید که به ما
 	   بپیوندند.</p>
-	<p>
-		<?php if($newest_course): ?>
-			<span>جدیدترین درس:</span>&nbsp;
-			<a style="color: #FF8000;" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
+	<?php if($newest_course): ?>
+		<p>جدیدترین درس:&nbsp;
+			<a style="color: #C8FF00;" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
 			   href="member-courses?category=<?php echo $newest_course->category_id; ?>&course=<?php echo $newest_course->id; ?>">
-				<?php echo $newest_course->name; ?> </a>&nbsp;
-		<?php endif; ?>
-		<br/>
-		<?php if($newest_article): ?>
-			<span>جدیدترین مقاله:</span>&nbsp;
-			<a style="color: #FF8000;" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
+				<?php echo $newest_course->name; ?> </a>&nbsp;</p>
+	<?php endif; ?>
+	<?php if($newest_article): ?>
+		<p>جدیدترین مقاله:&nbsp;
+			<a style="color: #C8FF00;" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
 			   href="member-articles?subject=<?php echo $newest_article->subject_id; ?>&article=<?php echo $newest_article->id; ?>">
-				<?php echo $newest_article->name; ?> </a>&nbsp;
-		<?php endif; ?>
-	</p>
+				<?php echo $newest_article->name; ?> </a>&nbsp;</p>
+	<?php endif; ?>
 	<h1>سال نو مبارک!</h1>
 </div><!--.jumbotron-->
 <section class="main col-sm-12 col-md-8 col-lg-8">
