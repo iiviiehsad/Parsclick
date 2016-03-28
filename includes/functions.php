@@ -1329,55 +1329,122 @@ function paginate($pagination, $page, $main_url = '', $url1 = '', $url2 = '')
 function active()
 {
 	global $filename;
-	if(($filename == "index.php") || ($filename == "member.php") || ($filename == "admin.php") || ($filename == "author.php")) {
-		echo "<script>$(\"a:contains('خانه')\").parent().addClass('active');</script>";
-	} elseif($filename == "authors.php") {
-		echo "<script>$(\"a:contains('نویسندگان')\").parent().addClass('active');</script>";
-	} elseif($filename == "about.php") {
-		echo "<script>$(\"a:contains('درباره ما')\").parent().addClass('active');</script>";
-	} elseif($filename == "faq.php") {
-		echo "<script>$(\"a:contains('سوالات شما')\").parent().addClass('active');</script>";
-		include('_/components/php/smoothscrolling.php');
-	} elseif($filename == "help.php") {
-		echo "<script>$(\"a:contains('کمک به ما')\").parent().addClass('active');</script>";
-	} elseif(($filename == "login.php") || ($filename == "register.php") || ($filename == "forgot.php") || ($filename == "reset-password.php") || ($filename == "forgot-username.php")) {
-		echo "<script>$(\"a:contains('ورود')\").parent().addClass('active');</script>";
-	} elseif(($filename == "admin_courses.php") || ($filename == "admin_articles.php") || ($filename == "new_subject.php") || ($filename == "author_articles.php") || ($filename == "author_courses.php") || ($filename == "new_courses.php") || ($filename == "edit_courses.php") || ($filename == "new_article.php") || ($filename == "edit_article.php") || ($filename == "author_edit_article.php") || ($filename == "new_course.php") || ($filename == "author_edit_course.php") || ($filename == "author_add_video.php") || ($filename == "author_edit_video_description.php") || ($filename == "edit_video_description.php") || ($filename == "admin_comments.php") || ($filename == "edit_course.php") || ($filename == "member-courses.php") || ($filename == "member-articles.php")) {
-		echo "<script>$(\"a:contains('محتوی')\").parent().addClass('active');</script>";
-		if(($filename == "member-courses.php") || ($filename == "admin_courses.php") || ($filename == "author_courses.php")) {
-			echo "<script>$(\"a:contains('دروس')\").parent().addClass('active');</script>";
-		} elseif(($filename == "admin_articles.php") || ($filename == "author_articles.php") || ($filename == "member-articles.php")) {
+	switch($filename) {
+		case "index.php":
+		case "member.php":
+		case "admin.php":
+		case "author.php":
+			echo "<script>$(\"a:contains('خانه')\").parent().addClass('active');</script>";
+			break;
+		case "authors.php":
+			echo "<script>$(\"a:contains('نویسندگان')\").parent().addClass('active');</script>";
+			break;
+		case "about.php":
+			echo "<script>$(\"a:contains('درباره ما')\").parent().addClass('active');</script>";
+			break;
+		case "faq.php":
+			echo "<script>$(\"a:contains('سوالات شما')\").parent().addClass('active');</script>";
+			include('_/components/php/smoothscrolling.php');
+			break;
+		case "help.php":
+			echo "<script>$(\"a:contains('کمک به ما')\").parent().addClass('active');</script>";
+			break;
+		case "login.php":
+		case "register.php":
+		case "forgot.php":
+		case "reset-password.php":
+		case "forgot-username.php":
+			echo "<script>$(\"a:contains('ورود')\").parent().addClass('active');</script>";
+			break;
+		case "admin_courses.php":
+		case "admin_articles.php":
+		case "new_subject.php":
+		case "author_articles.php":
+		case "author_courses.php":
+		case "new_courses.php":
+		case "edit_courses.php":
+		case "new_article.php":
+		case "edit_article.php":
+		case "author_edit_article.php":
+		case "new_course.php":
+		case "author_edit_course.php":
+		case "author_add_video.php":
+		case "author_edit_video_description.php":
+		case "edit_video_description.php":
+		case "admin_comments.php":
+		case "edit_course.php":
+		case "member-courses.php":
+		case "member-articles.php":
+			echo "<script>$(\"a:contains('محتوی')\").parent().addClass('active');</script>";
+			switch($filename) {
+				case "member-courses.php":
+				case "admin_courses.php":
+				case "author_courses.php":
+					echo "<script>$(\"a:contains('دروس')\").parent().addClass('active');</script>";
+					break;
+				case "admin_articles.php":
+				case "author_articles.php":
+				case "member-articles.php":
+					echo "<script>$(\"a:contains('مقالات')\").parent().addClass('active');</script>";
+					break;
+			}
+			break;
+		case "articles.php":
 			echo "<script>$(\"a:contains('مقالات')\").parent().addClass('active');</script>";
-		}
-	} elseif($filename == "articles.php") {
-		echo "<script>$(\"a:contains('مقالات')\").parent().addClass('active');</script>";
-	} elseif($filename == "courses.php") {
-		echo "<script>$(\"a:contains('دروس')\").parent().addClass('active');</script>";
-	} elseif(($filename == "member-profile.php") || ($filename == "member-edit-profile.php") || ($filename == "author_profile.php") || ($filename == "author_edit_profile.php")) {
-		echo "<script>$(\"a:contains('حساب کاربری')\").parent().addClass('active');</script>";
-	} elseif($filename == "member-playlist.php") {
-		echo "<script>$(\"a:contains('لیست پخش')\").parent().addClass('active');</script>";
-	} elseif($filename == "member-comments.php") {
-		echo "<script>$(\"a:contains('انجمن')\").parent().addClass('active');</script>";
-	} elseif(($filename == "member_list.php") || ($filename == "edit_member.php") || ($filename == "new_member.php") || ($filename == "email_to_members.php")) {
-		echo "<script>$(\"a:contains('اعضا')\").parent().addClass('active');</script>";
-		if($filename == "email_to_members.php") {
-			echo "<script>$(\"a:contains(' ایمیل به عضوها')\").parent().addClass('active');</script>";
-		} elseif($filename == "member_list.php") {
-			echo "<script>$(\"a:contains(' لیست عضوها')\").parent().addClass('active');</script>";
-		}
-	} elseif(($filename == "admin_list.php") || ($filename == "author_list.php") || ($filename == "new_admin.php") || ($filename == "new_author.php") || ($filename == "edit_admin.php") || ($filename == "edit_author.php") || ($filename == "email_to_authors.php")) {
-		echo "<script>$(\"a:contains('کارکنان')\").parent().addClass('active');</script>";
-		if($filename == "admin_list.php") {
-			echo "<script>$(\"a:contains('لیست مدیران')\").parent().addClass('active');</script>";
-		} elseif($filename == "author_list.php") {
-			echo "<script>$(\"a:contains('لیست نویسندگان')\").parent().addClass('active');</script>";
-		} elseif($filename == "email_to_authors.php") {
-			echo "<script>$(\"a:contains('ایمیل به نویسندگان')\").parent().addClass('active');</script>";
-		}
-	} elseif(($filename == "contact.php")) {
-		echo "<script>$(\"a:contains('تماس با ما')\").parent().addClass('active');</script>";
-		include('notice.php');
+			break;
+		case "courses.php":
+			echo "<script>$(\"a:contains('دروس')\").parent().addClass('active');</script>";
+			break;
+		case "member-profile.php":
+		case "member-edit-profile.php":
+		case "author_profile.php":
+		case "author_edit_profile.php":
+			echo "<script>$(\"a:contains('حساب کاربری')\").parent().addClass('active');</script>";
+			break;
+		case "member-playlist.php":
+			echo "<script>$(\"a:contains('لیست پخش')\").parent().addClass('active');</script>";
+			break;
+		case "member-comments.php":
+			echo "<script>$(\"a:contains('انجمن')\").parent().addClass('active');</script>";
+			break;
+		case "member_list.php":
+		case "edit_member.php":
+		case "new_member.php":
+		case "email_to_members.php":
+			echo "<script>$(\"a:contains('اعضا')\").parent().addClass('active');</script>";
+			switch($filename) {
+				case "email_to_members.php":
+					echo "<script>$(\"a:contains(' ایمیل به عضوها')\").parent().addClass('active');</script>";
+					break;
+				case "member_list.php":
+					echo "<script>$(\"a:contains(' لیست عضوها')\").parent().addClass('active');</script>";
+					break;
+			}
+			break;
+		case "admin_list.php":
+		case "author_list.php":
+		case "new_admin.php":
+		case "new_author.php":
+		case "edit_admin.php":
+		case "edit_author.php":
+		case "email_to_authors.php":
+			echo "<script>$(\"a:contains('کارکنان')\").parent().addClass('active');</script>";
+			switch($filename) {
+				case "admin_list.php":
+					echo "<script>$(\"a:contains('لیست مدیران')\").parent().addClass('active');</script>";
+					break;
+				case "author_list.php":
+					echo "<script>$(\"a:contains('لیست نویسندگان')\").parent().addClass('active');</script>";
+					break;
+				case "email_to_authors.php":
+					echo "<script>$(\"a:contains('ایمیل به نویسندگان')\").parent().addClass('active');</script>";
+					break;
+			}
+			break;
+		//case "contact.php":
+		//	echo "<script>$(\"a:contains('تماس با ما')\").parent().addClass('active');</script>";
+		//	include('notice.php');
+		//	break;
 	}
 }
 
