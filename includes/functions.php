@@ -768,7 +768,7 @@ function author_articles($subject_array, $article_array)
 		$article_set = Article::find_articles_for_subject($subject->id, FALSE);
 		$output .= "<ul class='list-unstyled'>";
 		foreach($article_set as $article) {
-			$output .= "<li>- ";
+			$output .= "<li><p>- ";
 			$output .= "<a href='author_articles.php?subject=";
 			$output .= urlencode($subject->id) . "&article=";
 			$output .= $article->id . "'";
@@ -789,7 +789,7 @@ function author_articles($subject_array, $article_array)
 			if($article->recent()) {
 				$output .= "&nbsp;<kbd>تازه</kbd>";
 			}
-			$output .= "</li>";
+			$output .= "</p></li>";
 		}
 		$output .= "</ul></li>";
 	}
@@ -832,7 +832,7 @@ function member_articles($subject_array, $article_array)
 					$article_set = Article::find_articles_for_subject($subject->id, TRUE);
 					$output .= "<ul class='list-unstyled'>";
 					foreach($article_set as $article) {
-						$output .= "<li>- ";
+						$output .= "<li><p>- ";
 						$output .= "<a href='member-articles?subject=";
 						$output .= urlencode($subject->id) . "&article=";
 						$output .= urlencode($article->id) . "'";
@@ -849,7 +849,7 @@ function member_articles($subject_array, $article_array)
 						if($article->recent()) {
 							$output .= "&nbsp;<kbd>تازه</kbd>";
 						}
-						$output .= "</a></li>";
+						$output .= "</a></p></li>";
 					}
 					$output .= "</ul>";
 				}
@@ -979,7 +979,7 @@ function author_courses($category_array, $course_array)
 		$course_set = Course::find_courses_for_category($category->id, FALSE);
 		$output .= "<ul class='list-unstyled'>";
 		foreach($course_set as $course):
-			$output .= "<li>- ";
+			$output .= "<li><p>- ";
 			$output .= "<a href='author_courses.php?category=";
 			$output .= urlencode($category->id) . "&course=";
 			$output .= $course->id . "'";
@@ -1000,7 +1000,7 @@ function author_courses($category_array, $course_array)
 			if($course->recent()) {
 				$output .= "&nbsp;<kbd>تازه</kbd>";
 			}
-			$output .= "</li>";
+			$output .= "</p></li>";
 		endforeach;
 		$output .= "</ul></li>";
 	endforeach;
@@ -1042,7 +1042,7 @@ function member_courses($category_array, $course_array)
 				$course_set = Course::find_courses_for_category($category->id);
 				$output .= "<ul class='list-unstyled'>";
 				foreach($course_set as $course) {
-					$output .= "<li>- ";
+					$output .= "<li><p>- ";
 					$output .= "<a href='member-courses?category=";
 					$output .= urlencode($category->id) . "&course=";
 					$output .= urlencode($course->id) . "'";
@@ -1060,7 +1060,7 @@ function member_courses($category_array, $course_array)
 					if($course->recent()) {
 						$output .= "&nbsp;<kbd>تازه</kbd>";
 					}
-					$output .= "</li>";
+					$output .= "</p></li>";
 				}
 				$output .= "</ul>";
 			}
@@ -1105,7 +1105,7 @@ function member_comments_for_course($category_array, $course_array)
 				$course_set = Course::find_courses_for_category($category->id);
 				$output .= "<ul class='list-unstyled'>";
 				foreach($course_set as $course) {
-					$output .= "<li>- ";
+					$output .= "<li><p>- ";
 					$output .= "<a href='member-comments?category=";
 					$output .= urlencode($category->id) . "&course=";
 					$output .= urlencode($course->id) . "'";
@@ -1122,7 +1122,7 @@ function member_comments_for_course($category_array, $course_array)
 					if($course->recent()) {
 						$output .= "&nbsp;<kbd>تازه</kbd>";
 					}
-					$output .= "</a></li>";
+					$output .= "</a></p></li>";
 				}
 				$output .= "</ul>";
 			}
@@ -1200,7 +1200,7 @@ function public_articles($subject_array, $article_array)
 					$article_set = Article::find_articles_for_subject($subject->id, TRUE);
 					$output .= "<ul class='list-unstyled'>";
 					foreach($article_set as $article) {
-						$output .= "<li>- ";
+						$output .= "<li><p>- ";
 						$output .= "<a href='/articles?subject=" . urlencode($subject->id) . "&article=" . urlencode($article->id) . "'";
 						if($article_array && $article->id == $article_array->id) {
 							$output .= " class='selected'";
@@ -1210,7 +1210,7 @@ function public_articles($subject_array, $article_array)
 						if($article->recent()) {
 							$output .= "&nbsp;<kbd>تازه</kbd>";
 						}
-						$output .= "</a></li>";
+						$output .= "</a></p></li>";
 					}
 					$output .= "</ul>";
 				}
