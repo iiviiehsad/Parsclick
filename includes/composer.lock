@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6b02305c144c60dabde3fb371f6059da",
-    "content-hash": "86cbd8081de063d81a07528b1c37a47c",
+    "hash": "0cdbb5e980abcd8e57771874ed4f714c",
+    "content-hash": "0a204da6ca779664a030a7615f3c7a0b",
     "packages": [
         {
             "name": "google/recaptcha",
@@ -51,6 +51,48 @@
                 "spam"
             ],
             "time": "2015-09-02 17:23:59"
+        },
+        {
+            "name": "miladr/jalali",
+            "version": "0.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/miladr/jalali.git",
+                "reference": "b0b2cb0a764a753bb3af6741a94878ee00d7838b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/miladr/jalali/zipball/b0b2cb0a764a753bb3af6741a94878ee00d7838b",
+                "reference": "b0b2cb0a764a753bb3af6741a94878ee00d7838b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Miladr\\Jalali": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Milad Rey",
+                    "email": "miladr@gmail.com"
+                }
+            ],
+            "description": "This Package helps developers to easily work with Jalali (Shamsi or Iranian) dates in Laravel 4 applications, based on Jalali (Shamsi) DateTime class. This Package is based on a Laravel 3 bundle sallar/laravel-jdate by Sallar Kaboli.",
+            "keywords": [
+                "Jalali",
+                "date",
+                "datetime",
+                "laravel"
+            ],
+            "time": "2014-10-26 04:43:04"
         },
         {
             "name": "phpmailer/phpmailer",

@@ -26,9 +26,6 @@ echo output_message($message);
 							<?php echo htmlentities(ucwords($current_article->name)); ?>
 						</h3>
 						<h5>
-							<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
-						</h5>
-						<h5>
 							<?php if(isset($current_article->author_id)): ?>
 								<?php $_author = Author::find_by_id($current_article->author_id); ?>
 								<i class="fa fa-user fa-lg"></i>&nbsp;
@@ -37,6 +34,12 @@ echo output_message($message);
 									<img class="author-photo img-circle pull-left" alt="<?php echo $_author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($_author->photo); ?>"/>
 								<?php endif; ?>
 							<?php endif; ?>
+						</h5>
+						<h5>
+							<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_shamsi($current_article->created_at)); ?>
+						</h5>
+						<h5>
+							<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
 						</h5>
 						<?php if(check_ownership($current_article->author_id, $session->id)): ?>&nbsp;
 							<a class="btn btn-primary btn-small" href="author_edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
@@ -56,7 +59,7 @@ echo output_message($message);
 									<img class="img-circle pull-right" width="50" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->email; ?>">
 									<div class="media-body">
 										<span class="badge"><?php echo htmlentities($_member->first_name); ?></span>
-										<span class="badge"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
+										<span class="badge"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
 										<br/>
 										<?php echo nl2br(strip_tags($comment->body, '<strong><em><p><pre>')); ?>
 									</div>

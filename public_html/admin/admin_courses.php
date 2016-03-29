@@ -11,6 +11,12 @@ echo output_message($message);
 		<article>
 			<?php if($current_category && $current_course): ?>
 				<h2><i class="fa fa-film"></i> تنظیم درس</h2>
+				<h4>
+					<i class="fa fa-calendar arial"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_course->created_at)); ?>
+				</h4>
+				<h4>
+					<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo datetime_to_shamsi($current_course->created_at); ?>
+				</h4>
 				<dl class="dl-horizontal">
 					<dt>اسم درس:</dt>
 					<dd><?php echo htmlentities(ucwords($current_course->name)); ?></dd>

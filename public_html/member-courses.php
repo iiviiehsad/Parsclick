@@ -17,6 +17,9 @@ find_selected_course(TRUE);
 					<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_course->created_at)); ?>
 				</h4>
 				<h4>
+					<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo datetime_to_shamsi($current_course->created_at); ?>
+				</h4>
+				<h4>
 					<?php if(isset($current_course->author_id)): ?>
 						<?php $author = Author::find_by_id($current_course->author_id); ?>
 						<i class="fa fa-user fa-lg"></i>&nbsp;

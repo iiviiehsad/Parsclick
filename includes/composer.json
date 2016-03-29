@@ -11,6 +11,7 @@
 	"require"     : {
 		"stripe/stripe-php"   : "v3.5.0",
 		"google/recaptcha"    : "1.1.2",
-		"phpmailer/phpmailer": "^5.2"
+		"phpmailer/phpmailer" : "^5.2",
+		"miladr/jalali"       : "^0.0.7"
 	}
 }

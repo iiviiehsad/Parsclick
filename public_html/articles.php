@@ -42,6 +42,9 @@ if(isset($current_article)) {
 			<h5>
 				<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
 			</h5>
+			<h5>
+				<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_shamsi($current_article->created_at)); ?>
+			</h5>
 			<hr/>
 			<?php echo nl2br(strip_tags($current_article->content, ARTICLE_ALLOWABLE_TAGS)); ?>
 			<hr/>
@@ -54,7 +57,7 @@ if(isset($current_article)) {
 						<img class="img-circle pull-right" width="50" style="padding-right:0;" src="//www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->username; ?>">
 						<div class="media-body">
 							<span class="label label-as-badge label-success"><?php echo htmlentities($_member->first_name); ?></span>
-							<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
+							<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
 							<br/>
 							<?php echo nl2br(strip_tags($comment->body, '<strong><em><p><pre>')); ?>
 						</div>
@@ -68,7 +71,7 @@ if(isset($current_article)) {
 		<?php else: ?>
 			<?php $current_article = $current_subject = $newest_article; ?>
 			<h2>
-				<a href="articles?subject=<?php echo urlencode($newest_article->subject_id); ?>&article=<?php echo urlencode($newest_article->id); ?>" title="کلیک کنید">
+				<a href="articles?subject=<?php echo urlencode($newest_article->subject_id); ?>&article=<?php echo urlencode($newest_article->id); ?>" title="کلیک کنید" data-toggle="tooltip">
 					<?php echo htmlentities($newest_article->name); ?>
 				</a><span class="badge">جدیدترین مقاله</span>
 			</h2>
@@ -84,6 +87,9 @@ if(isset($current_article)) {
 			</h5>
 			<h5>
 				<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($newest_article->created_at)); ?>
+			</h5>
+			<h5>
+				<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_shamsi($newest_article->created_at)); ?>
 			</h5>
 			<hr>
 			<?php echo nl2br(strip_tags($newest_article->content, ARTICLE_ALLOWABLE_TAGS)); ?>

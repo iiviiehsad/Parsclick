@@ -31,9 +31,14 @@ echo output_message($message, $errors);
 					<?php echo $current_course->visible == 1 ? '<i class="fa fa-eye"></i>' : '<i class="text-danger fa fa-eye-slash"></i>'; ?>
 					<?php echo htmlentities(ucwords($current_course->name)); ?>
 				</h1>
+				<h4>
+					<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_course->created_at)); ?>
+				</h4>
+				<h4>
+					<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo datetime_to_shamsi($current_course->created_at); ?>
+				</h4>
 				<h4 class="text-success">
-					<?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)
-					                                                                  ->full_name()) : ''; ?>
+					<?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)->full_name()) : ''; ?>
 				</h4>
 				<?php if(check_ownership($current_course->author_id, $session->id)): ?>
 					<a class="btn btn-small btn-primary" href="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" title="ویرایش">

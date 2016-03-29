@@ -59,7 +59,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 						<img class="img-circle pull-right" width="50" style="padding-right:0;" src="//www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->username; ?>">
 						<div class="media-body">
 							<span class="label label-as-badge label-success"><?php echo htmlentities($_member->first_name); ?></span>
-							<span class="label label-as-badge label-info arial"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
+							<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
 							<?php if($comment->member_id === $session->id): ?>
 								<a href="member-delete-comment?id=<?php echo urlencode($comment->id); ?>" class="label label-as-badge label-danger" onclick="return confirm('آیا مطمئن هستید؟')">
 									<i class="fa fa-times"></i>
