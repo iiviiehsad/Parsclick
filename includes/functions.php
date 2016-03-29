@@ -1145,20 +1145,20 @@ function public_courses()
 	$category_set = Category::find_all(TRUE);
 	foreach($category_set as $category) {
 		$output .= "<li>";
-		$output .= "<h3>";
+		$output .= "<h2>";
 		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
-		$output .= "</h3>";
+		$output .= "</h2>";
 		$course_set = Course::find_courses_for_category($category->id, TRUE);
-		$output .= "<ul>";
+		$output .= "<ul class='list-group'>";
 		foreach($course_set as $course) {
-			$output .= "<li>";
+			$output .= "<li class='list-group-item'>";
 			$output .= "<a target='_blank' data-toggle='tooltip' data-placement='left' title='برو به یوتیوب' href='https://www.youtube.com/playlist?list=";
 			$output .= $course->youtubePlaylist;
 			$output .= "'>";
 			$output = ! empty($course->name) ? $output . $course->name : $output . '-';
 			$output .= "</a>";
 			if($course->recent()) {
-				$output .= "&nbsp;<span class='lead'><kbd>تازه</kbd></span>";
+				$output .= "&nbsp;&nbsp;&nbsp;<kbd>تازه</kbd>";
 			}
 			$output .= "</li>";
 		}

@@ -8,10 +8,7 @@ $filename = basename(__FILE__);
 <?php include("_/components/php/nav.php"); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
-		<blockquote>
-			<i class="fa fa-film fa-5x text-warning hidden-sm pull-left" style="font-size: 700%;"></i>
-			<?php echo public_courses(); ?>
-		</blockquote>
+		<?php echo public_courses(); ?>
 	</article>
 </section><!-- main -->
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
