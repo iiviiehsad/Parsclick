@@ -195,7 +195,7 @@ class jDateTime
                         $v = ($obj->format('a') == 'am') ? 'ق.ظ' : 'ب.ظ';
                         break;
                     case 'A':
-                        $v = ($obj->format('A') == 'AM') ? 'قبل از ظهر' : 'بعد از ظهر';
+                        $v = ($obj->format('A') == 'AM') ? 'صبح' : 'بعد از ظهر';
                         break;
                     //Full Dates
                     case 'c':
