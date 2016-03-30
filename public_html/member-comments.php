@@ -41,7 +41,9 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 					<input type="hidden" name="course" value="<?php echo urlencode($current_course->id); ?>">
 					<div class="controls">
 							<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" rows="3" required
-							          placeholder="سوال یا نظرتان را اینجا وارد کنید و کد ها را داخل تگ <pre> وارد کنید"></textarea>
+							          placeholder="سوال یا نظرتان را اینجا وارد کنید و کد ها را داخل تگ <pre> وارد کنید
+برای چپ چین کردن از <'p class='edit> استفاده کنید
+کلمات انگلیسی بین کلمات فارسی را داخل تگ <code> بیاندازید"></textarea>
 					</div>
 					<!--buttons-->
 					<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
