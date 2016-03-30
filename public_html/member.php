@@ -18,17 +18,20 @@ $newest_article = Article::find_newest_article();
 	   بپیوندند.</p>
 	<?php if($newest_course): ?>
 		<p>جدیدترین درس:&nbsp;
-			<a style="color: #C8FF00;" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
+			<a class="bright" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
 			   href="member-courses?category=<?php echo $newest_course->category_id; ?>&course=<?php echo $newest_course->id; ?>">
 				<?php echo $newest_course->name; ?> </a>&nbsp;</p>
 	<?php endif; ?>
 	<?php if($newest_article): ?>
 		<p>جدیدترین مقاله:&nbsp;
-			<a style="color: #C8FF00;" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
+			<a class="bright" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
 			   href="member-articles?subject=<?php echo $newest_article->subject_id; ?>&article=<?php echo $newest_article->id; ?>">
 				<?php echo $newest_article->name; ?> </a>&nbsp;</p>
 	<?php endif; ?>
 	<h1>سال نو مبارک!</h1>
+	<p class="edit"> GMT امروز <?php echo datetime_to_shamsi(time()); ?></p>
+	<div class="clearfix"></div>
+	<p class="edit">Today is <?php echo datetime_to_text(date("Y-m-d H:i:s")); ?></p>
 </div><!--.jumbotron-->
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>

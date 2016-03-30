@@ -18,15 +18,21 @@ echo output_message($message);
 	<?php else: ?>
 		<img class="img-circle pull-left" height="150" width="150" src="../images/misc/default-gravatar-pic.png" alt="No Profile Picture">
 	<?php endif; ?>
-	<h1>خوش آمدید نویسنده: <?php echo $author->full_name(); ?></h1>
-	<p>
-		به عنوان نویسنده شما قادر به درست کردن مقاله و درس هستید. شما همینطور قادر به تغییر مقالات و دروس خود هستید.<br/>
-		برای تماس مستقیم با مدیر از این آدرس استفاده کنید (روی آن کلیک کنید):
-		<a class="lead" href="mailto:info@parsclick.net" data-toggle="tooltip" data-placement="left" title="ایمیل به ما" target="_blank"><kbd>info@parsclick.net</kbd></a><br/>
-		همه نویسندگان ملزم به عضویت گروه فیسبوکی نویسندگان پارس کلیک هستند.
-		<a class="lead" href="https://www.facebook.com/groups/175905176126750/" data-toggle="tooltip" data-placement="left" title="گروه نویسندگان پارس کلیک" target="_blank"><kbd>کلیک
-		                                                                                                                                                                          کنید</kbd></a><br/>
+	<h1> نویسنده: <?php echo $author->full_name(); ?></h1>
+	<p class="bright">به عنوان نویسنده شما قادر به درست کردن مقاله و درس هستید. شما همینطور قادر به تغییر مقالات و دروس خود هستید.</p>
+	<p class="bright">برای تماس مستقیم با مدیر از این آدرس استفاده کنید (روی آن کلیک کنید):
+		<a class="lead" href="mailto:info@parsclick.net" data-toggle="tooltip" data-placement="left" title="ایمیل به ما" target="_blank">
+			<kbd>info@parsclick.net</kbd>
+		</a>
 	</p>
+	<p class="bright">همه نویسندگان ملزم به عضویت گروه فیسبوکی نویسندگان پارس کلیک هستند.
+		<a class="lead" href="https://www.facebook.com/groups/175905176126750/" data-toggle="tooltip" data-placement="left" title="گروه نویسندگان پارس کلیک" target="_blank">
+			<kbd>کلیک کنید</kbd>
+		</a>
+	</p>
+	<p class="edit"> GMT امروز <?php echo datetime_to_shamsi(time()); ?></p>
+	<div class="clearfix"></div>
+	<p class="edit">Today is <?php echo datetime_to_text(date("Y-m-d H:i:s")); ?></p>
 </div>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
