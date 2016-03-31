@@ -1,7 +1,7 @@
 <?php require_once(LIB_PATH . DS . 'database.php');
 
-class Admin extends DatabaseObject {
-
+class Admin extends DatabaseObject
+{
 	protected static $table_name = "super_admin";
 	protected static $db_fields  = ['id', 'username', 'password', 'first_name', 'last_name', 'email', 'token'];
 	public           $id;
@@ -30,7 +30,7 @@ class Admin extends DatabaseObject {
 	}
 
 	/**
-	 * Important: This function needs needs PHP v5.5+
+	 * Important: This function needs PHP v5.5+
 	 *
 	 * @param string $username gets the username from the user
 	 * @param string $password gets the password from the user

@@ -2,7 +2,8 @@
 require_once(LIB_PATH . DS . 'database.php');
 require_once("vendor/autoload.php");
 
-class DatabaseObject {
+class DatabaseObject
+{
 
 	// OPTIONAL
 	protected static $table_name;
@@ -224,7 +225,6 @@ class DatabaseObject {
 				<p>آیا اخیرا درخواست بازیافت پسوردتان را کردید؟</p>
 				<p>اگر جواب مثبت است لطفا از لینک زیر برای بازیافت پسوردتان استفاده کنید:</p>
 			";
-
 			$mail->Body = email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content);
 
 			//return send_email($user->email, "Reset Password Request", email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content));

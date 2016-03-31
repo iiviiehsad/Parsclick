@@ -1,7 +1,7 @@
 <?php require_once(LIB_PATH . DS . 'database.php');
 
-class Article extends DatabaseObject {
-
+class Article extends DatabaseObject
+{
 	protected static $table_name = "articles";
 	protected static $db_fields  = [
 		'id',
@@ -212,5 +212,5 @@ class Article extends DatabaseObject {
 	{
 		return ArticleComment::find_comments_for_article($this->id);
 	}
-	
+
 } // END of CLASS

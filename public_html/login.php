@@ -38,7 +38,6 @@ if(isset($_POST["submit"])) { // if form submitted
 	} else {
 		$errors = "درخواست معتبر نیست!";
 	}
-} else { // form has not been submitted
 }
 ?>
 <?php include_layout_template("header.php"); ?>

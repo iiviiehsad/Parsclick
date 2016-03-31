@@ -1,7 +1,7 @@
 <?php require_once(LIB_PATH . DS . 'database.php');
 
-class Playlist extends DatabaseObject {
-
+class Playlist extends DatabaseObject
+{
 	protected static $table_name = "playlist";
 	protected static $db_fields  = ['id', 'member_id', 'course_id'];
 	public           $id;

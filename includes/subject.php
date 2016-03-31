@@ -1,7 +1,7 @@
 <?php require_once(LIB_PATH . DS . 'database.php');
 
-class Subject extends DatabaseObject {
-
+class Subject extends DatabaseObject
+{
 	protected static $table_name = "subjects";
 	protected static $db_fields  = ['id', 'name', 'position', 'visible'];
 	public           $id;

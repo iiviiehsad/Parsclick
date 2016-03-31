@@ -1,7 +1,7 @@
 <?php
 
-class pagination {
-
+class pagination
+{
 	public $current_pgae;
 	public $per_pgae;
 	public $total_count;

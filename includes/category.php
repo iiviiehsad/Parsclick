@@ -1,7 +1,7 @@
 <?php require_once(LIB_PATH . DS . 'database.php');
 
-class Category extends DatabaseObject {
-
+class Category extends DatabaseObject
+{
 	protected static $table_name = "categories";
 	protected static $db_fields  = ['id', 'name', 'position', 'visible'];
 	public           $id;
@@ -44,5 +44,5 @@ class Category extends DatabaseObject {
 
 		return ! empty($category_set) ? array_shift($category_set) : FALSE;
 	}
-	
+
 } // END of CLASS

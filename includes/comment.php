@@ -1,7 +1,7 @@
 <?php require_once(LIB_PATH . DS . 'database.php');
 
-class Comment extends DatabaseObject {
-
+class Comment extends DatabaseObject
+{
 	protected static $table_name = "comments";
 	protected static $db_fields  = ['id', 'member_id', 'course_id', 'created', 'body'];
 	public           $id;
@@ -73,5 +73,5 @@ class Comment extends DatabaseObject {
 
 		return self::find_by_sql($sql);
 	}
-	
+
 } // END of CLASS

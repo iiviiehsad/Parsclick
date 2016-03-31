@@ -1,7 +1,7 @@
 <?php require_once(LIB_PATH . DS . "config.php");
 
-class MySQLDatabase {
-
+class MySQLDatabase
+{
 	public  $last_query;
 	private $connection;
 	private $magic_quotes_active;
@@ -138,12 +138,11 @@ class MySQLDatabase {
 	}
 
 } // END of CLASS
-
 /**
  * Class PostgresSQLDatabase is created to use PostgresSQL database and has only functions related to PostgresSQL
  */
-class PostgresSQLDatabase {
-
+class PostgresSQLDatabase
+{
 	public  $last_query;
 	private $connection;
 	private $magic_quotes_active;
@@ -263,7 +262,6 @@ class PostgresSQLDatabase {
 	}
 
 } // END of CLASS
-
 $database = new MySQLDatabase();
 //$database = new PostgresSQLDatabase();
 // Reference the $database to $db so we can use $db or $database anyone we want

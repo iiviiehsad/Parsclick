@@ -13,7 +13,8 @@
  * php_value post_max_size 500M
  * php_value upload_max_filesize 500M
  */
-class File extends DatabaseObject {
+class File extends DatabaseObject
+{
 
 	public static    $max_file_size  = 33554432;
 	protected static $table_name     = "files";
@@ -242,5 +243,5 @@ class File extends DatabaseObject {
 			return "{$size_mb} MB";
 		}
 	}
-	
+
 } // END of CLASS

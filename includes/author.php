@@ -2,8 +2,8 @@
 require_once(LIB_PATH . DS . 'database.php');
 require_once("vendor/autoload.php");
 
-class Author extends DatabaseObject {
-
+class Author extends DatabaseObject
+{
 	protected static $table_name = "authors";
 	protected static $db_fields  = [
 		'id',
@@ -159,8 +159,7 @@ class Author extends DatabaseObject {
 				<br/>
 				<h3>عضویت شما به عنوان نویسنده ساخته شد و قبل از اینکه از سیستم استفاده کنید از لینک زیر برای تایید کردن ایمیل خود استفاده کنید:</h3>
 			";
-
-			$mail->Body = email($user->full_name(), DOMAIN, "http://{$site_root}/admin/author_confirm_email.php?token={$user->token}", $content);
+			$mail->Body       = email($user->full_name(), DOMAIN, "http://{$site_root}/admin/author_confirm_email.php?token={$user->token}", $content);
 
 			return $mail->send();
 			//return send_email($user->email, "به پارس کلیک خوش آمدید", email($user->full_name(), DOMAIN, "http://{$site_root}/admin/author_confirm_email.php?token={$user->token}", $content));

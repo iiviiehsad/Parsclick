@@ -1,6 +1,7 @@
 <?php require_once(LIB_PATH . DS . 'database.php');
 
-class FailedLogins extends DatabaseObject {
+class FailedLogins extends DatabaseObject
+{
 
 	protected static $table_name = "failed_logins";
 	protected static $db_fields  = ['id', 'username', 'count', 'last_time'];
@@ -69,5 +70,5 @@ class FailedLogins extends DatabaseObject {
 
 		return TRUE;
 	}
-	
+
 } // END of CLASS

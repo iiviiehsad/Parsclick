@@ -7,8 +7,8 @@
  * inadvisable to store DB-related objects in sessions but instead
  * we can store for instance members_id in sessions or database columns
  */
-class Session {
-
+class Session
+{
 	public  $id;
 	public  $message;
 	private $logged_in        = FALSE;
@@ -300,6 +300,5 @@ class Session {
 	}
 
 } // END of CLASS
-
 $session = new Session();
 $message = $session->message();

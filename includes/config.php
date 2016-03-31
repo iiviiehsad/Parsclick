@@ -15,7 +15,6 @@ defined('DB_NAME')   ? NULL : define("DB_NAME"  , "Parsclick");
 //defined('DB_USER')   ? NULL : define("DB_USER"  , "amirhassan");
 //defined('DB_PASS')   ? NULL : define("DB_PASS"  , "1365@1986Ha");
 //defined('DB_NAME')   ? NULL : define("DB_NAME"  , "Parsclick");
-
 /**
  * Change your database configuration here
  * PG_SERVER : your PostgreSQL server name

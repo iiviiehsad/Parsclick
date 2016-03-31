@@ -1,7 +1,7 @@
 <?php require_once(LIB_PATH . DS . 'database.php');
 
-class Course extends DatabaseObject {
-
+class Course extends DatabaseObject
+{
 	protected static $table_name = "courses";
 	protected static $db_fields  = [
 		'id',

@@ -2,8 +2,8 @@
 require_once(LIB_PATH . DS . 'database.php');
 require_once("vendor/autoload.php");
 
-class Member extends DatabaseObject {
-
+class Member extends DatabaseObject
+{
 	// Really important: array and properties MUST be exactly the same name as db columns
 	protected static $table_name = "members";
 	protected static $db_fields  = [
@@ -85,6 +85,18 @@ class Member extends DatabaseObject {
 		} else {
 			return FALSE;
 		}
+	}
+
+	/**
+	 * @param int $limit  limits members per page
+	 * @param int $offset the pagination offset
+	 * @return array of members in each page
+	 */
+	public static function find_members($limit = 0, $offset = 0)
+	{
+		$sql = "SELECT * FROM " . self::$table_name . " ORDER BY id DESC LIMIT {$limit} OFFSET {$offset}";
+
+		return self::find_by_sql($sql);
 	}
 
 	/**
@@ -183,7 +195,6 @@ class Member extends DatabaseObject {
 				<p>اگر شما این درخواست را نکردید هول نکنید, هیچ اقدامی لازم نیست انجام دهید. پسورد شما بدون کلیک کردن به لینک بالا قابل تغییر نخواهد بود.</p>
 				<p>از لینک زیر برای عوض کردن پسورد خود استفاده کنید:</p>
 			";
-
 			$mail->Body = email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content);
 
 			//return send_email($this->email, "Reset Password Request", email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content));
@@ -224,7 +235,6 @@ class Member extends DatabaseObject {
 				<p>لطفا به خاطر بسپارید که اسم کاربری را در جایی امن نگه داری کنید و این ایمیل را پاک کنید. این ایمیل را از سطل زباله ایمیل هم پاک کنید.</p>
 				<p>اسم کاربری شما هست:</p>
 			";
-
 			$mail->Body = email($user->full_name(), DOMAIN, $user->username, $content);
 
 			//return send_email($this->email, "Username Reminder Request", email($user->full_name(), DOMAIN, $user->username, $content));
@@ -271,7 +281,6 @@ class Member extends DatabaseObject {
 				</ul>
 				<p>لطفا روی لینک زیر جهت تایید ایمیل خود استفاده کنید:</p>
 			";
-
 			$mail->Body = email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content);
 
 			//return send_email($this->email, "به پارس کلیک خوش آمدید", email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content));
@@ -279,18 +288,6 @@ class Member extends DatabaseObject {
 		} else {
 			return FALSE;
 		}
-	}
-
-	/**
-	 * @param int $limit  limits members per page
-	 * @param int $offset the pagination offset
-	 * @return array of members in each page
-	 */
-	public static function find_members($limit = 0, $offset = 0)
-	{
-		$sql = "SELECT * FROM " . self::$table_name . " ORDER BY id DESC LIMIT {$limit} OFFSET {$offset}";
-
-		return self::find_by_sql($sql);
 	}
 
 } // END of CLASS
