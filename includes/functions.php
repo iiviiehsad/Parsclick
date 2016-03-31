@@ -1,16 +1,17 @@
 <?php
 /**
- * @param $class_name String will get the class name for each PHP class and finds the file name associate to it
+ * Custom __autoload for finding php classes
+ *
+ * @param $class_name
  */
 function __autoload($class_name)
 {
 	$class_name = strtolower($class_name);
 	$path       = LIB_PATH . DS . $class_name . ".php";
-	if(file_exists($path)) {
-		require_once($path);
-	} else {
+	if( ! file_exists($path)) {
 		die("The file {$class_name}.php could not be found!");
 	}
+	require_once($path);
 }
 
 /**
@@ -32,47 +33,59 @@ function redirect_to($location = NULL)
 function output_message($message = "", $errors = "")
 {
 	if( ! empty($message)) {
-		$output = "<div class='alert alert-success alert-dismissible' role='alert'>";
-		$output .= "<button type='button' class='close' data-dismiss='alert'>";
-		$output .= "<span aria-hidden='true'>&times;</span>";
-		$output .= "<span class='sr-only'></span>";
-		$output .= "</button>";
-		$output .= "<i class='fa fa-check-circle-o fa-fw fa-lg'></i> ";
-		$output .= "<strong>" . htmlentities($message) . "</strong>";
-		$output .= "</div>";
-
-		return $output;
+		return bootstrap_alert($message, 'success');
 	} elseif( ! empty($errors)) {
-		$output = "<div class='animated flash alert alert-danger alert-dismissible' role='alert'>";
-		$output .= "<button type='button' class='close' data-dismiss='alert'>";
-		$output .= "<span aria-hidden='true'>&times;</span>";
-		$output .= "<span class='sr-only'></span>";
-		$output .= "</button>";
-		$output .= "<i class='fa fa-times-circle-o fa-fw fa-lg'></i> ";
-		$output .= "<strong>" . htmlentities($errors) . "</strong>";
-		$output .= "</div>";
-
-		return $output;
-	} else {
-		return "";
+		return bootstrap_alert($errors, 'danger');
 	}
+
+	return '';
 }
 
 /**
- * @param string $template will replace the associate layout for footer or header inside includes folder
+ * @param $message
+ * @param $kind
+ * @return string
+ */
+function bootstrap_alert($message = "", $kind = "info")
+{
+	$output = "<div class='alert alert-{$kind} alert-dismissible' role='alert'>";
+	$output .= "<button type='button' class='close' data-dismiss='alert'>";
+	$output .= "<span aria-hidden='true'>&times;</span>";
+	$output .= "<span class='sr-only'></span>";
+	$output .= "</button>";
+	$output .= "<i class='fa fa-check-circle-o fa-fw fa-lg'></i>";
+	$output .= "<strong>" . htmlentities($message) . "</strong>";
+	$output .= "</div>";
+
+	return $output;
+}
+
+/**
+ * Replaces the associate layout for footer or header inside includes folder
+ *
+ * @param string $template
+ * @return mixed
  */
 function include_layout_template($template = "")
 {
-	include(LIB_PATH . DS . 'layouts' . DS . $template);
+	return include(LIB_PATH . DS . 'layouts' . DS . $template);
 }
 
 /**
- * @param string $marked_string is the marked string and the date you need to pas in which first removes the marked
- *                              zeros, then removes any remaining marks.
+ * is the marked string and the date you need to pas in which first removes the marked zeros, then removes any
+ * remaining marks.
+ *
+ * @param string $marked_string
  * @return mixed the clean date output
  */
 function strip_zeros_from_date($marked_string = "")
 {
+	if(strpos($marked_string, '۰')) {
+		$no_zeros       = str_replace('*۰', '', $marked_string);
+		$cleaned_string = str_replace('*', '', $no_zeros);
+
+		return $cleaned_string;
+	}
 	$no_zeros       = str_replace('*0', '', $marked_string);
 	$cleaned_string = str_replace('*', '', $no_zeros);
 
@@ -87,7 +100,7 @@ function datetime_to_text($datetime = "")
 {
 	$unixdatetime = strtotime($datetime);
 
-	return strftime("%B %d, %Y at %I:%M %p", $unixdatetime);
+	return strip_zeros_from_date(strftime("*%B *%d, %Y at *%I:%M %p", $unixdatetime));
 }
 
 /**
@@ -98,7 +111,7 @@ function datetime_to_text($datetime = "")
  */
 function datetime_to_shamsi($datetime = "")
 {
-	return Miladr\Jalali\jDate::forge($datetime)->format("%d %B، %Y ساعت %H:%M");
+	return strip_zeros_from_date(Miladr\Jalali\jDate::forge($datetime)->format("*%d *%B، %Y ساعت *%H:%M"));
 }
 
 /**
@@ -256,7 +269,7 @@ function send_email($email, $subject, $message)
  */
 function email($full_name = "", $site_root = DOMAIN, $highlight = "", $content = "")
 {
-	$output = <<<EMAILBODY
+	return <<<EMAILBODY
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" style="direction: rtl !important;">
 <head>
@@ -428,8 +441,6 @@ function email($full_name = "", $site_root = DOMAIN, $highlight = "", $content =
 </body>
 </html>
 EMAILBODY;
-
-	return $output;
 }
 
 /******************************************************************************************************/
@@ -677,8 +688,8 @@ function log_action($action, $message = "")
 	$new     = file_exists($logfile) ? FALSE : TRUE;
 	if($handle = fopen($logfile, 'a')) { //appends
 		$timestamp = datetime_to_text(strftime("%Y-%m-%d %H:%M:%S", time()));
-		//		$country   = ip_info("Visitor", "Country");
-		//		$content   = "{$timestamp} | {$country} | {$action}: {$message}" . PHP_EOL;
+		// $country   = ip_info("Visitor", "Country");
+		// $content   = "{$timestamp} | {$country} | {$action}: {$message}" . PHP_EOL;
 		$content = "{$timestamp} | {$action}: {$message}" . PHP_EOL;
 		fwrite($handle, $content);
 		fclose($handle);
