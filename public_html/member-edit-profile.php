@@ -36,7 +36,6 @@ if(isset($_POST['submit'])) {
 			$errors = "بروزرسانی پروفایل موفقیت آمیز نبود یا چیزی اصلا تغییر داده نشد!";
 		}
 	}
-} else {
 }
 ?>
 <?php include_layout_template("header.php"); ?>

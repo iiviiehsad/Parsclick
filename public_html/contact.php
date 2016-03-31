@@ -45,7 +45,6 @@ if(isset($_POST["submit"])) {
 			}
 		}
 	} // end: elseif(isset($_POST['g-recaptcha-response']))
-} else {
 } // end: if(isset($_POST["submit"]))
 ?>
 <?php include_layout_template("header.php"); ?>

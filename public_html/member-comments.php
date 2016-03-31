@@ -10,7 +10,6 @@ $errors = "";
 $body   = "";
 if( ! $current_course || ! $current_category) {
 	$current_course = $current_category = Course::find_newest_course();
-} else {
 }
 // Pagination
 $page        = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;

@@ -11,7 +11,7 @@ if( ! $comment || ! $article) {
 	$session->message("مقاله یا نظر موجود نیست!");
 	redirect_to("member-articles");
 }
-if($comment->member_id === $session->id) {
+if($comment->member_id == $session->id) {
 	if($comment->delete()) {
 		$session->message("نظر حذف شد.");
 		redirect_to($_SERVER['HTTP_REFERER'] . '#comments');

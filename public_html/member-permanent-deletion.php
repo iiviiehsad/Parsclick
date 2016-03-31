@@ -7,11 +7,11 @@ if( ! $member) {
 	redirect_to("member-profile");
 }
 $result = $member->delete();
-if($result) {
-	$session->logout();
-	redirect_to("login");
-} else {
+if( ! $result) {
 	$session->message("حذف کاربر موفقیت آمیز نبود!");
 	redirect_to("member-profile");
 }
+$session->logout();
+redirect_to("login");
+
 if(isset($database)) $database->close_connection();

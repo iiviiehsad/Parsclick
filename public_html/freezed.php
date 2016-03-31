@@ -38,7 +38,6 @@ if(isset($_POST["resend_email"])) {
 	} else {
 		$errors = "درخواست معتبر نیست!";
 	}
-} else {
 }
 ?>
 <?php include("../includes/layouts/header.php"); ?>
