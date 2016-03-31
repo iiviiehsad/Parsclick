@@ -3,7 +3,6 @@ require_once("../../includes/initialize.php");
 $session->confirm_admin_logged_in();
 $filename  = basename(__FILE__);
 $admin_set = Admin::find_all();
-$yourself  = Admin::find_by_id($session->id);
 include_layout_template("admin_header.php");
 include("../_/components/php/admin_nav.php");
 echo output_message($message);
@@ -38,7 +37,9 @@ echo output_message($message);
 								</td>
 								<td>
 									<a class="btn btn-small btn-primary arial" href="edit_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
-									<a class="btn btn-small btn-danger arial" href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید این مدیر را حذف کنید؟');" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
+									<?php if($admin->id != $session->id): ?>
+										<a class="btn btn-small btn-danger arial" href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید این مدیر را حذف کنید؟');" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
+									<?php endif; ?>
 								</td>
 							</tr>
 						<?php endforeach; ?>

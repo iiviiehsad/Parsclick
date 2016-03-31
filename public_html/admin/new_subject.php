@@ -17,7 +17,6 @@ if(isset($_POST['submit'])) {
 		$session->message("موضوع درست نشد!");
 		redirect_to("new_subject.php");
 	}
-} else {
 }
 include_layout_template("admin_header.php");
 include("../_/components/php/admin_nav.php");

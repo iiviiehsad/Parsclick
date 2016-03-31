@@ -81,9 +81,11 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit">&nbsp;</label>
 						<div class="controls">
 							<a class="btn btn-danger" href="admin_list.php">لغو</a>
-							<a class="btn btn-info" href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید مدیر  <?php echo htmlentities(ucwords(strtolower($admin->full_name()))); ?> را حذف کنید؟');">
-								حذف
-							</a>
+							<?php if($yourself != $admin): ?>
+								<a class="btn btn-info" href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید مدیر  <?php echo htmlentities(ucwords(strtolower($admin->full_name()))); ?> را حذف کنید؟');">
+									حذف
+								</a>
+							<?php endif; ?>
 							<button class="btn btn-success" name="submit" id="submit" type="submit">
 								ویرایش
 							</button>
