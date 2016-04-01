@@ -1,11 +1,10 @@
 <?php //namespace Parsclick;
-
 require_once(LIB_PATH . DS . "config.php");
 
 /**
  * Class PostgresSQLDatabase is created to use PostgresSQL database and has only functions related to PostgresSQL
  */
-class PostgresSQLDatabase
+class PostgresSQLDatabase implements Database
 {
 	public  $last_query;
 	private $connection;
@@ -63,8 +62,17 @@ class PostgresSQLDatabase
 	private function confirm_query($result)
 	{
 		if( ! $result) {
-			$output = "Database query failed!";;
-			$output .= "Last SQL Query: " . $this->last_query;
+			$ip1 = '127.0.0.1';
+			$ip2 = '::1';
+			if($_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2) {
+				$output1 = "Database query failed! " . "<br/><br/>";
+				$output2 = "Last SQL Query: " . $this->last_query;
+				$output  = warning($output1, $output2);
+			} else {
+				$output1 = "اوخ!";
+				$output2 = "درخواست شما ناقص یا ناهنجار است.";
+				$output  = warning($output1, $output2);
+			}
 			die($output);
 		}
 	}

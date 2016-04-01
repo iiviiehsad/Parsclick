@@ -1,7 +1,8 @@
-<?php //namespace Parsclick; 
+<?php //namespace Parsclick;
+
 require_once(LIB_PATH . DS . "config.php");
 
-class MySQLDatabase
+class MySQLDatabase implements Database
 {
 	public  $last_query;
 	private $connection;

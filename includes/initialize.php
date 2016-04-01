@@ -55,6 +55,7 @@ require_once(LIB_PATH . DS . 'functions.php');
 
 // load core objects
 require_once(LIB_PATH . DS . 'Session.php');
+require_once(LIB_PATH . DS . 'Database.php');
 require_once(LIB_PATH . DS . 'MySQLDatabase.php');
 require_once(LIB_PATH . DS . 'DatabaseObject.php');
 require_once(LIB_PATH . DS . 'Pagination.php');

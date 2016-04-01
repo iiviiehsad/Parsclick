@@ -28,7 +28,6 @@ $newest_article = Article::find_newest_article();
 			   href="member-articles?subject=<?php echo $newest_article->subject_id; ?>&article=<?php echo $newest_article->id; ?>">
 				<?php echo $newest_article->name; ?> </a>&nbsp;</p>
 	<?php endif; ?>
-	<h1>سال نو مبارک!</h1>
 	<p class="edit"> GMT امروز <?php echo datetime_to_shamsi(time()); ?></p>
 	<div class="clearfix"></div>
 	<p class="edit">Today is <?php echo datetime_to_text(date("Y-m-d H:i:s")); ?></p>

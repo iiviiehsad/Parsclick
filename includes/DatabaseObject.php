@@ -2,7 +2,6 @@
 
 abstract class DatabaseObject
 {
-
 	// OPTIONAL
 	protected static $table_name;
 	protected static $db_fields;
