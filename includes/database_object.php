@@ -1,8 +1,6 @@
 <?php
-require_once(LIB_PATH . DS . 'database.php');
-require_once("vendor/autoload.php");
 
-class DatabaseObject
+abstract class DatabaseObject
 {
 
 	// OPTIONAL
