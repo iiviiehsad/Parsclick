@@ -43,7 +43,7 @@ defined('UDEMY') ? NULL : define('UDEMY', "https://www.udemy.com/u/amirhassanazi
  *
  * @param array $files
  */
-function load_libraries($files = [])
+function init($files = [])
 {
 	foreach($files as $file) {
 		require_once(LIB_PATH . DS . $file);
@@ -51,7 +51,7 @@ function load_libraries($files = [])
 }
 
 // Load libraries using the related function
-load_libraries([
+init([
 	'vendor' . DS . 'autoload.php',
 	'config.php',
 	'functions.php',
