@@ -1,4 +1,4 @@
-<?php
+<?php //namespace Parsclick;
 
 /**
  * File: php.ini -------------

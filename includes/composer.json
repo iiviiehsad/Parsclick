@@ -8,6 +8,7 @@
 			"email" : "hazz.azimi@gmail.com"
 		}
 	],
+
 	"require"     : {
 		"stripe/stripe-php"   : "v3.5.0",
 		"google/recaptcha"    : "1.1.2",

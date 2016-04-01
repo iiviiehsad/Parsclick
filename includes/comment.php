@@ -1,4 +1,4 @@
-<?php 
+<?php //namespace Parsclick; 
 
 class Comment extends DatabaseObject
 {

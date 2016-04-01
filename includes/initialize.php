@@ -47,28 +47,34 @@ defined('YOUTUBE') ? NULL : define('YOUTUBE', "https://www.youtube.com/user/Pers
 defined('UDEMY') ? NULL : define('UDEMY', "https://www.udemy.com/u/amirhassanazimi/");
 
 // load config file first
+require_once(LIB_PATH . DS . 'vendor' . DS . 'autoload.php');
 require_once(LIB_PATH . DS . 'config.php');
 
 // load basic functions next so that everything after can use them
 require_once(LIB_PATH . DS . 'functions.php');
 
 // load core objects
-require_once(LIB_PATH . DS . 'session.php');
-require_once(LIB_PATH . DS . 'database.php');
-require_once(LIB_PATH . DS . 'database_object.php');
-require_once(LIB_PATH . DS . 'pagination.php');
-require_once(LIB_PATH . DS . 'vendor' . DS . 'autoload.php');
+require_once(LIB_PATH . DS . 'Session.php');
+require_once(LIB_PATH . DS . 'MySQLDatabase.php');
+require_once(LIB_PATH . DS . 'DatabaseObject.php');
+require_once(LIB_PATH . DS . 'Pagination.php');
 
 // load database-related classes
-require_once(LIB_PATH . DS . 'member.php');
-require_once(LIB_PATH . DS . 'admin.php');
-require_once(LIB_PATH . DS . 'author.php');
-require_once(LIB_PATH . DS . 'subject.php');
-require_once(LIB_PATH . DS . 'article.php');
-require_once(LIB_PATH . DS . 'category.php');
-require_once(LIB_PATH . DS . 'course.php');
-require_once(LIB_PATH . DS . 'file.php');
-require_once(LIB_PATH . DS . 'playlist.php');
-require_once(LIB_PATH . DS . 'comment.php');
-require_once(LIB_PATH . DS . 'article_comment.php');
-require_once(LIB_PATH . DS . 'failed_logins.php');
+require_once(LIB_PATH . DS . 'Member.php');
+require_once(LIB_PATH . DS . 'Admin.php');
+require_once(LIB_PATH . DS . 'Author.php');
+require_once(LIB_PATH . DS . 'Subject.php');
+require_once(LIB_PATH . DS . 'Article.php');
+require_once(LIB_PATH . DS . 'Category.php');
+require_once(LIB_PATH . DS . 'Course.php');
+require_once(LIB_PATH . DS . 'File.php');
+require_once(LIB_PATH . DS . 'Playlist.php');
+require_once(LIB_PATH . DS . 'Comment.php');
+require_once(LIB_PATH . DS . 'ArticleComment.php');
+require_once(LIB_PATH . DS . 'FailedLogins.php');
+//
+$session = new Session();
+$message = $session->message();
+
+$database = new MySQLDatabase();
+$db =& $database;

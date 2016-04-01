@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Custom __autoload for finding php classes
  *
@@ -6,8 +7,7 @@
  */
 function __autoload($class_name)
 {
-	$class_name = strtolower($class_name);
-	$path       = LIB_PATH . DS . $class_name . ".php";
+	$path = LIB_PATH . DS . $class_name . ".php";
 	if( ! file_exists($path)) {
 		die("The file {$class_name}.php could not be found!");
 	}

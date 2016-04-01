@@ -1,4 +1,4 @@
-<?php
+<?php //namespace Parsclick;
 
 /**
  * Class Session to help work with Sessions
@@ -300,5 +300,5 @@ class Session
 	}
 
 } // END of CLASS
-$session = new Session();
-$message = $session->message();
+// $session = new Session();
+// $message = $session->message();
