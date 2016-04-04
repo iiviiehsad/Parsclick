@@ -62,6 +62,20 @@ ErrorDocument 500 /500
         </IfModule>
     </FilesMatch>
 
+    # BEGIN Expires
+    <ifModule mod_expires.c>
+        ExpiresActive On
+        ExpiresDefault "access plus 1 seconds"
+        ExpiresByType text/html "access plus 1 seconds"
+        ExpiresByType image/gif "access plus 129600 seconds"
+        ExpiresByType image/jpeg "access plus 129600 seconds"
+        ExpiresByType image/png "access plus 129600 seconds"
+        ExpiresByType text/css "access plus 604800 seconds"
+        ExpiresByType text/javascript "access plus 216000 seconds"
+        ExpiresByType application/x-javascript "access plus 216000 seconds"
+    </ifModule>
+    # END Expires
+
 </IfModule>
 
 ##################################################################################
