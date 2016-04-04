@@ -24,7 +24,9 @@ if(isset($_POST['submit'])) {
 	$member->gender     = trim($_POST["gender"]);
 	$member->address    = trim($_POST["address"]);
 	$member->city       = trim($_POST["city"]);
-	if(is_temp_mail(trim(strtolower($_POST["email"])))) {
+	if( ! has_presence($_POST["email"])) {
+		$errors = "ایمیل را خالی نگذارید!";
+	} elseif(is_temp_mail(trim(strtolower($_POST["email"])))) {
 		$errors = "ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!";
 	} else {
 		$member->email = trim(strtolower($_POST["email"]));
