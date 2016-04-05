@@ -25,7 +25,8 @@ echo output_message($message);
 					<dt>نمایان:</dt>
 					<dd><?php echo $current_course->visible == 1 ? '<span class="text-success">بله</span>' : '<span class="text-danger">خیر</span>'; ?></dd>
 					<dt>نویسنده:</dt>
-					<dd><?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)->full_name()) : '-'; ?></dd>
+					<dd><?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)
+					                                                                      ->full_name()) : '-'; ?></dd>
 					<?php if( ! empty($current_course->content)): ?>
 						<dt>توضیحات:</dt>
 						<dd>
@@ -44,11 +45,6 @@ echo output_message($message);
 								<span class="glyphicon glyphicon-file"></span>
 							</a>
 						<?php endif; ?>
-						<!---------------------------------------------COMMENTS---------------------------------------->
-						<a class="btn btn-primary btn-small" href="admin_comments.php?course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" title="نظرات">
-							<?php echo convert(count($current_course->comments())); ?>
-							<span class="glyphicon glyphicon-comment"></span>
-						</a>
 					</dd>
 					<dt>فایل های تمرینی:</dt>
 					<dd>
@@ -131,6 +127,37 @@ echo output_message($message);
 						</div>
 					<?php endif; ?>
 				<?php endif; ?>
+				<!--------------------------------------------COMMENTS--------------------------------------------------->
+				<?php // Pagination
+				$page       = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
+				$pagination = new pagination($page, 20, Comment::count_comments_for_course($current_course->id));
+				$comments   = Comment::find_comments($current_course->id, 20, $pagination->offset());
+				?>
+				<hr><?php echo output_message($message); ?>
+				<article id="comments">
+					<h3>
+						<?php if( ! empty($comments)): ?>
+							<span class="label label-as-badge label-info"><?php echo convert(count($current_course->comments())); ?> نظر</span>
+						<?php else: ?>
+							<span class="label label-as-badge label-danger">نظری نیست</span>
+						<?php endif; ?>
+					</h3>
+					<?php foreach($comments as $comment): ?>
+						<section class="media">
+							<?php $_member = Member::find_by_id($comment->member_id); ?>
+							<img class="img-circle pull-right" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50" alt="<?php echo $_member->email; ?>">
+							<div class="media-body arial">
+								<span class="label label-as-badge label-success yekan"><?php echo htmlentities($_member->full_name()); ?></span>
+								<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
+								<a class="label label-as-badge label-danger" href="admin_delete_comment.php?id=<?php echo urlencode($comment->id); ?>">
+									<i class="fa fa-times"></i>
+								</a>
+								<p><?php echo nl2br(strip_tags($comment->body, '<strong><em><p><pre>')); ?></p>
+							</div>
+						</section>
+					<?php endforeach; ?>
+					<?php echo paginate($pagination, $page, "admin_courses.php", "category={$current_category->id}", "&course={$current_course->id}#comments"); ?>
+				</article>
 			<?php elseif($current_category): ?>
 				<h2><i class="fa fa-list-alt"></i>&nbsp;تنظیم موضوع</h2>
 				<dl class="dl-horizontal">

@@ -1385,7 +1385,6 @@ function active()
 		case "author_add_video.php":
 		case "author_edit_video_description.php":
 		case "edit_video_description.php":
-		case "admin_comments.php":
 		case "edit_course.php":
 		case "member-courses.php":
 		case "member-articles.php":

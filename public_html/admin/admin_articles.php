@@ -2,12 +2,6 @@
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
 find_selected_article();
-// Pagination
-$page        = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
-$per_page    = 10;
-$total_count = ArticleComment::count_comments_for_article($current_article->id);
-$pagination  = new pagination($page, $per_page, $total_count);
-$comments    = ArticleComment::find_comments($current_article->id, $per_page, $pagination->offset());
 include_layout_template("admin_header.php");
 include("../_/components/php/admin_nav.php");
 echo output_message($message);
@@ -37,9 +31,20 @@ echo output_message($message);
 					<dt>مطالب:</dt>
 					<dd><?php echo nl2br(strip_tags($current_article->content, ARTICLE_ALLOWABLE_TAGS)); ?></dd>
 				</dl>
+				<?php // Pagination
+				$page        = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
+				$pagination  = new pagination($page, 10, ArticleComment::count_comments_for_article($current_article->id));
+				$comments    = ArticleComment::find_comments($current_article->id, 10, $pagination->offset());
+				?>
 				<hr><?php echo output_message($message); ?>
 				<article id="comments">
-					<h3><?php echo convert(count($current_article->comments())); ?> نظر </h3>
+					<h3>
+						<?php if( ! empty($comments)): ?>
+							<span class="label label-as-badge label-info"><?php echo convert(count($current_article->comments())); ?> نظر</span>
+						<?php else: ?>
+							<span class="label label-as-badge label-danger">نظری نیست</span>
+						<?php endif; ?>
+					</h3>
 					<?php foreach($comments as $comment): ?>
 						<section class="media">
 							<?php $_member = Member::find_by_id($comment->member_id); ?>
@@ -56,9 +61,6 @@ echo output_message($message);
 						</section>
 					<?php endforeach; ?>
 					<?php echo paginate($pagination, $page, "admin_articles.php", "subject={$current_subject->id}", "&article={$current_article->id}#comments"); ?>
-					<?php if(empty($comments)): ?>
-						<h3><span class="label label-default">نظری نیست</span></h3>
-					<?php endif; ?>
 				</article>
 				<?php //include('../_/components/php/article-disqus-comment.php'); ?>
 			<?php elseif($current_subject): ?>
