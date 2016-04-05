@@ -52,23 +52,27 @@ echo output_message($message);
 					</div>
 					<div class="panel-footer">
 						<article id="comments">
-							<h2><i class="fa fa-comments-o"></i> نظرات</h2>
+							<h3>
+								<i class="fa fa-comments-o fa-2x"></i>
+								<?php if( ! empty($comments)): ?>
+									<span class="label label-as-badge"><?php echo convert(count($current_article->comments())); ?> نظر</span>
+								<?php else: ?>
+									<span class="label label-as-badge">نظری وجود ندارد</span>
+								<?php endif; ?>
+							</h3>
 							<?php foreach($comments as $comment): ?>
 								<section class="media">
 									<?php $_member = Member::find_by_id($comment->member_id); ?>
 									<img class="img-circle pull-right" width="50" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->email; ?>">
 									<div class="media-body">
-										<span class="badge"><?php echo htmlentities($_member->first_name); ?></span>
-										<span class="badge"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
+										<span class="label label-as-badge label-success"><?php echo htmlentities($_member->first_name); ?></span>
+										<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
 										<br/>
 										<?php echo nl2br(strip_tags($comment->body, '<strong><em><p><pre>')); ?>
 									</div>
 								</section>
 							<?php endforeach; ?>
 							<?php echo paginate($pagination, $page, "author_articles.php", "subject={$current_article->subject_id}", "&article={$current_article->id}#comments"); ?>
-							<?php if(empty($comments)): ?>
-								<h3><span class="badge">نظری وجود ندارد.</span></h3>
-							<?php endif; ?>
 						</article>
 						<?php //include('../_/components/php/article-disqus-comment.php'); ?>
 					</div>

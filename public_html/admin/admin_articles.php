@@ -39,6 +39,7 @@ echo output_message($message);
 				<hr><?php echo output_message($message); ?>
 				<article id="comments">
 					<h3>
+						<i class="fa fa-comments-o fa-2x"></i>
 						<?php if( ! empty($comments)): ?>
 							<span class="label label-as-badge label-info"><?php echo convert(count($current_article->comments())); ?> نظر</span>
 						<?php else: ?>
