@@ -46,8 +46,7 @@ if(isset($_POST["submit"])) {
 				$errors = "اسم کاربری، پسورد یا نوع خالی هستند.";
 			}
 		} else {
-			$errors = "شناسه CSRF معتبر نیست! روی آدرس اینترنتی کلیک کنید و اینتر را بزنید.";
-			//$session->die_on_csrf_token_failure();
+			$session->die_on_csrf_token_failure();
 		}
 	} else {
 		$errors = "درخواست معتبر نیست!";
@@ -58,7 +57,7 @@ include_layout_template("admin_header.php");
 ?>
 	<header class="clearfix">
 		<section id="branding">
-			<a href="index.php"><img src="../images/misc/admin-area.png" alt="Logo for Admin Area"></a>
+			<a href="/admin"><img src="../images/misc/admin-area.png" alt="Logo for Admin Area"></a>
 		</section>
 	</header>
 	<hr/>
