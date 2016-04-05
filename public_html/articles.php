@@ -49,7 +49,14 @@ if(isset($current_article)) {
 			<?php echo nl2br(strip_tags($current_article->content, ARTICLE_ALLOWABLE_TAGS)); ?>
 			<hr/>
 			<article id="comments">
-				<h2>نظرات</h2>
+				<h3>
+					<i class="fa fa-comments-o fa-2x"></i>
+					<?php if( ! empty($comments)): ?>
+						<span class="label label-as-badge label-info"><?php echo convert(count($current_article->comments())); ?> نظر</span>
+					<?php else: ?>
+						<span class="label label-as-badge label-danger">نظری وجود ندارد</span>
+					<?php endif; ?>
+				</h3>
 				<div class="badge">برای اظهار نظر لطفا عضو شوید.</div>
 				<?php foreach($comments as $comment): ?>
 					<section class="media">
@@ -64,9 +71,6 @@ if(isset($current_article)) {
 					</section>
 				<?php endforeach; ?>
 				<?php echo paginate($pagination, $page, "articles", "subject={$current_article->subject_id}", "article={$current_article->id}#comments"); ?>
-				<?php if(empty($comments)): ?>
-					<div class="badge">نظری وجود ندارد.</div>
-				<?php endif; ?>
 			</article>
 		<?php else: ?>
 			<?php $current_article = $current_subject = $newest_article; ?>
