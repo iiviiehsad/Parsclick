@@ -16,7 +16,7 @@
 		</ul><!-- nav -->
 	</section><!-- navbar -->
 
-	          <!-- Modal -->
+	<!-- Modal -->
 	<section id="modal" class="modal fade">
 		<div class="modal-body">
 			<img id="modalimage" src="" alt="Modal Photo">

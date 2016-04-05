@@ -1,5 +1,4 @@
 <?php //namespace Parsclick;
-
 /**
  * Class Session to help work with Sessions
  * In our case, primarily to manage logging members in and out
@@ -81,7 +80,7 @@ class Session
 	{
 		if( ! $this->is_logged_in() || ! $this->is_session_valid()) {
 			$this->logout();
-			redirect_to("login");
+			redirect_to("/login");
 		}
 	}
 
@@ -158,7 +157,7 @@ class Session
 	{
 		if( ! $this->is_admin_logged_in() || ! $this->is_session_valid()) {
 			$this->logout();
-			redirect_to("index.php");
+			redirect_to("/admin");
 		}
 	}
 
@@ -171,7 +170,7 @@ class Session
 	{
 		if( ! $this->is_author_logged_in() || ! $this->is_session_valid()) {
 			$this->logout();
-			redirect_to("index.php");
+			redirect_to("/admin");
 		}
 	}
 
@@ -229,7 +228,7 @@ class Session
 	{
 		$token = $this->create_csrf_token();
 
-		return '<input type="hidden" name="csrf_token" value="' . $token . '">';
+		return '<input type="hidden" name="csrf_token" value="' . $token . '" />';
 	}
 
 	private function create_csrf_token()
@@ -271,7 +270,10 @@ class Session
 	public function die_on_csrf_token_failure()
 	{
 		if( ! $this->csrf_token_is_valid()) {
-			die("CSRF token validation failed.");
+			$output1 = "خطای درخواست جعلی!";
+			$output2 = "شناسه درخواست میان وب گاهی معتبر نیست! برگردید و رفرش کنید.";
+			$output  = warning($output1, $output2);
+			die($output);
 		}
 	}
 
@@ -300,5 +302,3 @@ class Session
 	}
 
 } // END of CLASS
-// $session = new Session();
-// $message = $session->message();

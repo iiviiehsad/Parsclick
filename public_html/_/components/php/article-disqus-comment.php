@@ -2,9 +2,9 @@
 	<h2>نظرات</h2>
 	<div id="disqus_thread"></div>
 	<script>
-		//var disqus_config = function () {
-		//	this.page.url = <?php //echo DOMAIN . $_SERVER['REQUEST_URI']; ?>//;
-		//	this.page.identifier = <?php //echo  $_SERVER['REQUEST_URI']; ?>//;
+		//var disqus_config = function() {
+		//	this.page.url        = <?php //echo DOMAIN . $_SERVER['REQUEST_URI']; ?>//;
+		//	this.page.identifier = <?php //echo $_SERVER['REQUEST_URI'];; ?>//;
 		//};
 		(function() { // DON'T EDIT BELOW THIS LINE
 			var d = document, s = d.createElement('script');
