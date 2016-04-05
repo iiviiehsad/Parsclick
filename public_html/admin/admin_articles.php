@@ -36,6 +36,7 @@ echo output_message($message);
 					<dt>مطالب:</dt>
 					<dd><?php echo nl2br(strip_tags($current_article->content, ARTICLE_ALLOWABLE_TAGS)); ?></dd>
 				</dl>
+				<?php //include('../_/components/php/article-disqus-comment.php'); ?>
 			<?php elseif($current_subject): ?>
 				<h2><i class="fa fa-list-alt"></i> تنظیم موضوع </h2>
 				<dl class="dl-horizontal">

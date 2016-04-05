@@ -70,8 +70,10 @@ echo output_message($message);
 								<h3><span class="badge">نظری وجود ندارد.</span></h3>
 							<?php endif; ?>
 						</article>
+						<?php //include('../_/components/php/article-disqus-comment.php'); ?>
 					</div>
 				</div>
+
 			<?php elseif($current_subject): ?>
 				<?php if( ! $current_subject->visible) redirect_to("author_articles.php"); ?>
 				<div class="panel panel-info">

@@ -96,6 +96,7 @@ $body   = "";
 								<?php endif; ?>
 							</div> <!--AJAX Coomment-->
 						</article>
+						<?php //include('_/components/php/article-disqus-comment.php'); ?>
 					</div>
 				</div>
 			<?php else: ?>
