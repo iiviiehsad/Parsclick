@@ -2,6 +2,12 @@
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
 find_selected_article();
+// Pagination
+$page        = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
+$per_page    = 10;
+$total_count = ArticleComment::count_comments_for_article($current_article->id);
+$pagination  = new pagination($page, $per_page, $total_count);
+$comments    = ArticleComment::find_comments($current_article->id, $per_page, $pagination->offset());
 include_layout_template("admin_header.php");
 include("../_/components/php/admin_nav.php");
 echo output_message($message);
@@ -21,21 +27,39 @@ echo output_message($message);
 					<dt>نمایان:</dt>
 					<dd><?php echo $current_article->visible == 1 ? 'بله' : 'خیر'; ?></dd>
 					<dt>نویسنده:</dt>
-					<dd><?php echo isset($current_article->author_id) ? htmlentities(Author::find_by_id($current_article->author_id)
-					                                                                       ->full_name()) : '- '; ?></dd>
+					<dd><?php echo isset($current_article->author_id) ? htmlentities(Author::find_by_id($current_article->author_id)->full_name()) : '-'; ?></dd>
 					<dt>تغییرات</dt>
 					<dd>
 						<a class="btn btn-primary btn-small arial" href="edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>" data-toggle="tooltip" title="ویرایش">
 							<span class="glyphicon glyphicon-pencil"></span>
 						</a>
-						<a class="btn btn-primary btn-small arial" href="admin_article_comments.php?article=<?php echo urlencode($current_article->id); ?>" data-toggle="tooltip" title="نظرات">
-							<?php echo count($current_article->comments()); ?>
-							<span class="glyphicon glyphicon-comment"></span>
-						</a>
 					</dd>
 					<dt>مطالب:</dt>
 					<dd><?php echo nl2br(strip_tags($current_article->content, ARTICLE_ALLOWABLE_TAGS)); ?></dd>
 				</dl>
+				<hr><?php echo output_message($message); ?>
+				<article id="comments">
+					<h3><?php echo convert(count($current_article->comments())); ?> نظر </h3>
+					<?php foreach($comments as $comment): ?>
+						<section class="media">
+							<?php $_member = Member::find_by_id($comment->member_id); ?>
+							<img class="img-circle pull-right" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50" alt="<?php echo $_member->email; ?>">
+							<div class="media-body arial">
+						<span class="badge">
+							<span class="yekan"><?php echo htmlentities($_member->full_name()); ?></span>
+							<?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
+								<a class="badge label-danger" href="admin_delete_article_comment.php?id=<?php echo urlencode($comment->id); ?>">
+									<i class="fa fa-times"></i>
+								</a>
+								<p><?php echo strip_tags($comment->body, '<strong><em><p><pre>'); ?></p>
+							</div>
+						</section>
+					<?php endforeach; ?>
+					<?php echo paginate($pagination, $page, "admin_articles.php", "subject={$current_subject->id}", "&article={$current_article->id}#comments"); ?>
+					<?php if(empty($comments)): ?>
+						<h3><span class="label label-default">نظری نیست</span></h3>
+					<?php endif; ?>
+				</article>
 				<?php //include('../_/components/php/article-disqus-comment.php'); ?>
 			<?php elseif($current_subject): ?>
 				<h2><i class="fa fa-list-alt"></i> تنظیم موضوع </h2>

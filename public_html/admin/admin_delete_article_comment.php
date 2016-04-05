@@ -9,9 +9,9 @@ if(empty($comment_id)) {
 $comment = ArticleComment::find_by_id($comment_id);
 if($comment && $comment->delete()) {
 	$session->message("نظر حذف شد.");
-	redirect_to("admin_article_comments.php?article={$comment->article_id}");
+	redirect_to($_SERVER['HTTP_REFERER'] . '#comments');
 } else {
 	$session->message("نظر حذف نشد!");
-	redirect_to("admin_article_comments.php?article={$comment->article_id}");
+	redirect_to($_SERVER['HTTP_REFERER'] . '#comments');
 }
 if(isset($database)) $database->close_connection();
