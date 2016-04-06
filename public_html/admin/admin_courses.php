@@ -10,7 +10,7 @@ echo output_message($message);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<?php if($current_category && $current_course): ?>
-				<h2><i class="fa fa-film"></i> تنظیم درس</h2>
+				<h2><i class="fa fa-film fa-lg"></i> تنظیم درس</h2>
 				<h4>
 					<i class="fa fa-calendar arial"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_course->created_at)); ?>
 				</h4>
@@ -88,35 +88,33 @@ echo output_message($message);
 						$json = json_decode($content, TRUE);
 						//var_dump($json);
 						if($json['pageInfo']['totalResults'] > 0): ?>
-							<div class="alert">
-								<h3><i class="fa fa-video-camera"></i> ویدیوهای این درس</h3>
-								<div class="table-responsive">
-									<table class="table table-condensed table-hover">
-										<tbody>
-											<?php foreach($json['items'] as $item): ?>
-												<tr>
-													<td>
-														<a class="youtube visited" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
-														   title="پخش کنید">
-															<?php echo $item['snippet']['title']; ?>
-														</a>
-													</td>
-												</tr>
-											<?php endforeach; ?>
-										</tbody>
-									</table>
-								</div>
+							<h3><i class="fa fa-video-camera fa-lg"></i> ویدیوهای این درس</h3>
+							<div class="table-responsive">
+								<table class="table table-condensed table-hover">
+									<tbody>
+										<?php foreach($json['items'] as $item): ?>
+											<tr>
+												<td>
+													<a class="youtube visited" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
+													   title="پخش کنید">
+														<?php echo $item['snippet']['title']; ?>
+													</a>
+												</td>
+											</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
 							</div>
 							<div class="clearfix center">
 								<?php
-								if(isset($json["nextPageToken"])): ?>
-									<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json["nextPageToken"]; ?>">
-										<span class="arial">&lt;</span> صفحه بعدی
-									</a>
-								<?php endif;
 								if(isset($json["prevPageToken"])): ?>
 									<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json["prevPageToken"]; ?>">
-										صفحه قبلی <span class="arial">&gt;</span>
+										&nbsp;<span class="arial">&lt;</span>&nbsp;صفحه قبلی&nbsp;
+									</a>
+								<?php endif;
+								if(isset($json["nextPageToken"])): ?>
+									<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json["nextPageToken"]; ?>">
+										&nbsp;صفحه بعدی&nbsp;<span class="arial">&gt;</span>&nbsp;
 									</a>
 								<?php endif; ?>
 							</div>
@@ -138,7 +136,8 @@ echo output_message($message);
 					<h3>
 						<i class="fa fa-comments-o fa-2x"></i>
 						<?php if( ! empty($comments)): ?>
-							<span class="label label-as-badge label-info"><?php echo convert(count($current_course->comments())); ?> نظر</span>
+							<span class="label label-as-badge label-info"><?php echo convert(count($current_course->comments())); ?>
+								نظر</span>
 						<?php else: ?>
 							<span class="label label-as-badge label-danger">نظری نیست</span>
 						<?php endif; ?>
