@@ -71,7 +71,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 						</div>
 					</section>
 				<?php endforeach; ?>
-				<?php echo paginate($pagination, $page, "member-comments", "category={$current_course->category_id}", "course={$current_course->id}"); ?>
+				<?php echo paginate($pagination, $page, "forum", "category={$current_course->category_id}", "course={$current_course->id}"); ?>
 			</div>
 		</article>
 	</section>

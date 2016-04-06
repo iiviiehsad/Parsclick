@@ -1106,7 +1106,7 @@ function member_comments_for_course($category_array, $course_array)
 	foreach($category_set as $category) {
 		$output .= "<li class='list-group-item'>";
 		$output .= "<span class='badge'>" . convert(Course::count_courses_for_category($category->id, TRUE)) . "</span>";
-		$output .= "<a href='member-comments?category=";
+		$output .= "<a href='forum?category=";
 		$output .= urlencode($category->id) . "'";
 		if($category_array && $category->id == $category_array->id) {
 			$output .= " class='lead' ";
@@ -1124,7 +1124,7 @@ function member_comments_for_course($category_array, $course_array)
 				$output .= "<ul class='list-unstyled'>";
 				foreach($course_set as $course) {
 					$output .= "<li><p>- ";
-					$output .= "<a href='member-comments?category=";
+					$output .= "<a href='forum?category=";
 					$output .= urlencode($category->id) . "&course=";
 					$output .= urlencode($course->id) . "'";
 					if($course_array && $course->id == $course_array->id) {
@@ -1434,7 +1434,7 @@ function active()
 		case "member-playlist.php":
 			echo "<script>$(\"a:contains('لیست پخش')\").parent().addClass('active');</script>";
 			break;
-		case "member-comments.php":
+		case "forum.php":
 			echo "<script>$(\"a:contains('انجمن')\").parent().addClass('active');</script>";
 			break;
 		case "member_list.php":
