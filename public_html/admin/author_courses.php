@@ -26,7 +26,8 @@ echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if($current_category && $current_course): ?>
+			<?php
+			if($current_category && $current_course): ?>
 				<h1>
 					<?php echo $current_course->visible == 1 ? '<i class="fa fa-eye"></i>' : '<i class="text-danger fa fa-eye-slash"></i>'; ?>
 					<?php echo htmlentities(ucwords($current_course->name)); ?>
@@ -85,13 +86,13 @@ echo output_message($message, $errors);
 								<small><?php echo check_size($file_max_file_size); ?></small>
 							</h3>
 							<form enctype="multipart/form-data" action="author_courses.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" method="POST" class="form-horizontal fileForm" role="form">
-									<label style="cursor:pointer;" class="control-label btn btn-small btn-primary" for="single_file">
-										برای انتخاب فایل اینجا را کلیک کنید
-									</label>
-									<div class="controls">
-										<input name="MAX_FILE_SIZE" value="<?php echo $file_max_file_size; ?>" type="hidden"/>
-										<input type="file" name="single_file" class="form-control" id="single_file" accept="application/zip"/>
-									</div>
+								<label style="cursor:pointer;" class="control-label btn btn-small btn-primary" for="single_file">
+									برای انتخاب فایل اینجا را کلیک کنید
+								</label>
+								<div class="controls">
+									<input name="MAX_FILE_SIZE" value="<?php echo $file_max_file_size; ?>" type="hidden"/>
+									<input type="file" name="single_file" class="form-control" id="single_file" accept="application/zip"/>
+								</div>
 								<section class="row">
 									<div class="input-group col-xs-11 col-sm-11 col-md-11 col-lg-11">
 										<input type="text" name="description" class="form-control input-small" placeholder="اسم فایل " maxlength="255" required/>
@@ -151,19 +152,18 @@ echo output_message($message, $errors);
 										</tbody>
 									</table>
 								</div>
-							</div>
-							<div class="clearfix center">
-								<?php
-								if(isset($json["nextPageToken"])): ?>
-									<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json["nextPageToken"]; ?>">
-										<span class="arial">&lt;</span> صفحه بعدی
-									</a>
-								<?php endif;
-								if(isset($json["prevPageToken"])): ?>
-									<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json["prevPageToken"]; ?>">
-										صفحه قبلی <span class="arial">&gt;</span>
-									</a>
-								<?php endif; ?>
+								<div class="clearfix center">
+									<?php if(isset($json["prevPageToken"])): ?>
+										<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json["prevPageToken"]; ?>">
+											<span class="arial">&lt;</span> صفحه قبلی
+										</a>
+									<?php endif;
+									if(isset($json["nextPageToken"])): ?>
+										<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json["nextPageToken"]; ?>">
+											صفحه بعدی <span class="arial">&gt;</span>
+										</a>
+									<?php endif; ?>
+								</div>
 							</div>
 						<?php else: ?>
 							<div class='alert alert-danger'><i class='fa fa-exclamation-triangle'></i>
@@ -210,7 +210,7 @@ echo output_message($message, $errors);
 								</tbody>
 							</table>
 						</div>
-						<?php echo paginate($pagination, $page, "author_courses.php", "category={$current_category->id}", "&course={$current_course->id}#comments"); ?>
+						<?php echo paginate($pagination, $page, "author_courses.php", "category={$current_category->id}", "course={$current_course->id}" . get_prev_next_token() . "#comments"); ?>
 					</article>
 				</div>
 			<?php elseif($current_category): ?>

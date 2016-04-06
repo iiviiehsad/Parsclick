@@ -72,7 +72,7 @@ echo output_message($message);
 									</div>
 								</section>
 							<?php endforeach; ?>
-							<?php echo paginate($pagination, $page, "author_articles.php", "subject={$current_article->subject_id}", "&article={$current_article->id}#comments"); ?>
+							<?php echo paginate($pagination, $page, "author_articles.php", "subject={$current_article->subject_id}", "article={$current_article->id}#comments"); ?>
 						</article>
 						<?php //include('../_/components/php/article-disqus-comment.php'); ?>
 					</div>

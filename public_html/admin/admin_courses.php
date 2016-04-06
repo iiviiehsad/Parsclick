@@ -157,7 +157,7 @@ echo output_message($message);
 							</div>
 						</section>
 					<?php endforeach; ?>
-					<?php echo paginate($pagination, $page, "admin_courses.php", "category={$current_category->id}", "&course={$current_course->id}#comments"); ?>
+					<?php echo paginate($pagination, $page, "admin_courses.php", "category={$current_category->id}", "course={$current_course->id}" . get_prev_next_token() . "#comments"); ?>
 				</article>
 			<?php elseif($current_category): ?>
 				<h2><i class="fa fa-list-alt"></i>&nbsp;تنظیم موضوع</h2>

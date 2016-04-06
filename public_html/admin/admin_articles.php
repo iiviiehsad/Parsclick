@@ -61,7 +61,7 @@ echo output_message($message);
 							</div>
 						</section>
 					<?php endforeach; ?>
-					<?php echo paginate($pagination, $page, "admin_articles.php", "subject={$current_subject->id}", "&article={$current_article->id}#comments"); ?>
+					<?php echo paginate($pagination, $page, "admin_articles.php", "subject={$current_subject->id}", "article={$current_article->id}#comments"); ?>
 				</article>
 				<?php //include('../_/components/php/article-disqus-comment.php'); ?>
 			<?php elseif($current_subject): ?>
