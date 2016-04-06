@@ -49,7 +49,7 @@ echo output_message($message);
 					<?php foreach($comments as $comment): ?>
 						<section class="media">
 							<?php $_member = Member::find_by_id($comment->member_id); ?>
-							<img class="img-circle pull-right" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50" alt="<?php echo $_member->email; ?>">
+							<img class="img-circle pull-right" width="50" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->email; ?>">
 							<div class="media-body arial">
 						<span class="badge">
 							<span class="yekan"><?php echo htmlentities($_member->full_name()); ?></span>
