@@ -201,7 +201,7 @@ echo output_message($message, $errors);
 													<div class="media-body arial">
 														<span class="label label-as-badge label-success yekan"><?php echo htmlentities($_member->full_name()); ?></span>
 														<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
-														<p><?php echo nl2br(strip_tags($comment->body, '<strong><em><p><pre>')); ?></p>
+														<p><?php echo nl2br(strip_tags($comment->body, ARTICLE_ALLOWABLE_TAGS)); ?></p>
 													</div>
 												</section>
 											</td>

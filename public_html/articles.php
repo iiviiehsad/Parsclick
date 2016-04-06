@@ -66,7 +66,7 @@ if(isset($current_article)) {
 							<span class="label label-as-badge label-success"><?php echo htmlentities($_member->first_name); ?></span>
 							<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
 							<br/>
-							<?php echo nl2br(strip_tags($comment->body, '<strong><em><p><pre>')); ?>
+							<?php echo nl2br(strip_tags($comment->body, ARTICLE_ALLOWABLE_TAGS)); ?>
 						</div>
 					</section>
 				<?php endforeach; ?>

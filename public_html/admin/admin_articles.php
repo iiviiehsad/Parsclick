@@ -57,7 +57,7 @@ echo output_message($message);
 								<a class="badge label-danger" href="admin_delete_article_comment.php?id=<?php echo urlencode($comment->id); ?>">
 									<i class="fa fa-times"></i>
 								</a>
-								<p><?php echo strip_tags($comment->body, '<strong><em><p><pre>'); ?></p>
+								<p><?php echo strip_tags($comment->body, ARTICLE_ALLOWABLE_TAGS); ?></p>
 							</div>
 						</section>
 					<?php endforeach; ?>

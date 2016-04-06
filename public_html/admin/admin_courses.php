@@ -153,7 +153,7 @@ echo output_message($message);
 								<a class="label label-as-badge label-danger" href="admin_delete_comment.php?id=<?php echo urlencode($comment->id); ?>">
 									<i class="fa fa-times"></i>
 								</a>
-								<p><?php echo nl2br(strip_tags($comment->body, '<strong><em><p><pre>')); ?></p>
+								<p><?php echo nl2br(strip_tags($comment->body, ARTICLE_ALLOWABLE_TAGS)); ?></p>
 							</div>
 						</section>
 					<?php endforeach; ?>
