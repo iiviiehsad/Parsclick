@@ -82,11 +82,11 @@ echo output_message($message);
 					// check to see if the url exists
 					$file_headers = get_headers($url);
 					if($file_headers[0] != 'HTTP/1.0 404 Not Found'):
-						//get the playlist from JSON file
+						// get the playlist from JSON file
 						$content = file_get_contents($url);
 						// decode the JSON file
 						$json = json_decode($content, TRUE);
-						//var_dump($json);
+						// var_dump($json);
 						if($json['pageInfo']['totalResults'] > 0): ?>
 							<h3><i class="fa fa-video-camera fa-lg"></i> ویدیوهای این درس</h3>
 							<div class="table-responsive">
