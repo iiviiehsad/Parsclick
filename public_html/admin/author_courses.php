@@ -38,7 +38,8 @@ echo output_message($message, $errors);
 					<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo datetime_to_shamsi($current_course->created_at); ?>
 				</h4>
 				<h4 class="text-success">
-					<?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)->full_name()) : ''; ?>
+					<?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)
+					                                                                  ->full_name()) : ''; ?>
 				</h4>
 				<?php if(check_ownership($current_course->author_id, $session->id)): ?>
 					<a class="btn btn-small btn-primary" href="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" title="ویرایش">
@@ -80,18 +81,18 @@ echo output_message($message, $errors);
 				<?php if(File::num_files_for_course($current_course->id) == 0): ?>
 					<?php if(check_ownership($current_course->author_id, $session->id)): ?>
 						<div class="alert alert-info">
-							<h3><i class="fa fa-upload"></i> آپلود فایل تمرینی زیپ
+							<h3><span class="label label-as-badge label-info"><i class="fa fa-upload fa-lg"></i> آپلود فایل تمرینی زیپ</span>
 								<small><?php echo check_size($file_max_file_size); ?></small>
 							</h3>
 							<form enctype="multipart/form-data" action="author_courses.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" method="POST" class="form-horizontal fileForm" role="form">
-								<section class="row">
-									<label style="cursor:pointer;" class="control-label btn btn-small btn-info" for="single_file">
+									<label style="cursor:pointer;" class="control-label btn btn-small btn-primary" for="single_file">
 										برای انتخاب فایل اینجا را کلیک کنید
 									</label>
 									<div class="controls">
 										<input name="MAX_FILE_SIZE" value="<?php echo $file_max_file_size; ?>" type="hidden"/>
 										<input type="file" name="single_file" class="form-control" id="single_file" accept="application/zip"/>
 									</div>
+								<section class="row">
 									<div class="input-group col-xs-11 col-sm-11 col-md-11 col-lg-11">
 										<input type="text" name="description" class="form-control input-small" placeholder="اسم فایل " maxlength="255" required/>
 										<span class="input-group-btn">
@@ -128,7 +129,12 @@ echo output_message($message, $errors);
 						//var_dump($json);
 						if($json['pageInfo']['totalResults'] > 0): ?>
 							<div class="alert alert-success">
-								<h3><i class="fa fa-video-camera"></i> ویدیوهای این درس</h3>
+								<h3>
+									<span class="label label-as-badge label-success">
+										<i class="fa fa-video-camera fa-lg"></i>
+										ویدیوهای این درس
+									</span>
+								</h3>
 								<div class="table-responsive">
 									<table class="table table-condensed table-hover">
 										<tbody>
@@ -166,6 +172,47 @@ echo output_message($message, $errors);
 						<?php endif; ?>
 					<?php endif; ?>
 				<?php endif; ?>
+				<!--------------------------------------------COMMENTS--------------------------------------------------->
+				<?php // Pagination
+				$page       = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
+				$pagination = new pagination($page, 20, Comment::count_comments_for_course($current_course->id));
+				$comments   = Comment::find_comments($current_course->id, 20, $pagination->offset());
+				?>
+				<div class="alert alert-danger">
+					<article id="comments">
+						<h3>
+							<?php if( ! empty($comments)): ?>
+								<span class="label label-as-badge label-danger"><i class="fa fa-comment fa-lg"></i>
+									<?php echo convert(count($current_course->comments())); ?>
+									دیدگاه</span>
+							<?php else: ?>
+								<span class="label label-as-badge">دیدگاهی نیست</span>
+							<?php endif; ?>
+						</h3>
+						<div class="table-responsive">
+							<table class="table table-condensed table-hover">
+								<tbody>
+									<?php foreach($comments as $comment): ?>
+										<tr>
+											<td>
+												<section class="media">
+													<?php $_member = Member::find_by_id($comment->member_id); ?>
+													<img class="img-circle pull-right" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50" alt="<?php echo $_member->email; ?>">
+													<div class="media-body arial">
+														<span class="label label-as-badge label-success yekan"><?php echo htmlentities($_member->full_name()); ?></span>
+														<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
+														<p><?php echo nl2br(strip_tags($comment->body, '<strong><em><p><pre>')); ?></p>
+													</div>
+												</section>
+											</td>
+										</tr>
+									<?php endforeach; ?>
+								</tbody>
+							</table>
+						</div>
+						<?php echo paginate($pagination, $page, "author_courses.php", "category={$current_category->id}", "&course={$current_course->id}#comments"); ?>
+					</article>
+				</div>
 			<?php elseif($current_category): ?>
 				<?php if( ! $current_category->visible) redirect_to("author_courses.php"); ?>
 				<div class="panel panel-danger">
