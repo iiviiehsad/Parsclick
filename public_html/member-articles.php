@@ -14,14 +14,6 @@ $body   = '';
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article id="member_article">
 			<?php if($current_subject && $current_article): ?>
-				<?php
-				// Pagination
-				$page        = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
-				$per_page    = 10;
-				$total_count = ArticleComment::count_comments_for_article($current_article->id);
-				$pagination  = new pagination($page, $per_page, $total_count);
-				$comments    = ArticleComment::find_comments($current_article->id, $per_page, $pagination->offset());
-				?>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">
@@ -48,9 +40,9 @@ $body   = '';
 						<?php echo nl2br(strip_tags($current_article->content, ARTICLE_ALLOWABLE_TAGS)); ?>
 					</div>
 					<div class="panel-footer">
+						<h2>نظرات</h2>
+						<?php echo output_message($message); ?>
 						<article id="comments">
-							<h2>نظرات</h2>
-							<?php echo output_message($message); ?>
 							<fieldset>
 								<legend></legend>
 								<form class="form-horizontal submit-comment" action="add-article-comment.php" method="POST" role="form">
@@ -71,29 +63,9 @@ $body   = '';
 								</form>
 							</fieldset>
 							<hr>
-							<div class="comments">
+							<div id="forum">
 								<div id="ajax-comments">
-									<?php foreach($comments as $comment): ?>
-										<section class="media">
-											<?php $_member = Member::find_by_id($comment->member_id); ?>
-											<img class="img-circle pull-right" width="50" style="padding-right:0;" src="//www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->username; ?>">
-											<div class="media-body">
-												<span class="label label-as-badge label-success"><?php echo htmlentities($_member->first_name); ?></span>
-												<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
-												<?php if($comment->member_id === $session->id): ?>
-													<a href="member-delete-article-comment?id=<?php echo urlencode($comment->id); ?>" class="label label-as-badge label-danger confirmation" title="حذف" data-toggle="tooltip">
-														<i class="fa fa-times"></i>
-													</a>
-												<?php endif; ?>
-												<br/>
-												<?php echo nl2br(strip_tags($comment->body, ARTICLE_ALLOWABLE_TAGS)); ?>
-											</div>
-										</section>
-									<?php endforeach; ?>
-									<?php echo paginate($pagination, $page, 'member-articles', "subject={$current_article->subject_id}", "article={$current_article->id}"); ?>
-									<?php if(empty($comments)): ?>
-										<h3><span class="badge">نظری وجود ندارد. اولین نفری باشید که نظر می دهید.</span></h3>
-									<?php endif; ?>
+									<?php include_layout_template('article-comments.php'); ?>
 								</div> <!--AJAX Coomment-->
 							</div>
 						</article>

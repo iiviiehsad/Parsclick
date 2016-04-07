@@ -110,7 +110,7 @@ $(function() {
 			data    : data,
 			success : function(html) {
 				$('.submit-comment textarea').val('');
-				$('#comments').load(html + " #ajax-comments");
+				$('#forum').load(html + " #ajax-comments");
 			}
 		});
 		return false;

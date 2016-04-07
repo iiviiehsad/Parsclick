@@ -21,8 +21,7 @@ echo output_message($message);
 					<dt>نمایان:</dt>
 					<dd><?php echo $current_article->visible == 1 ? 'بله' : 'خیر'; ?></dd>
 					<dt>نویسنده:</dt>
-					<dd><?php echo isset($current_article->author_id) ? htmlentities(Author::find_by_id($current_article->author_id)
-					                                                                       ->full_name()) : '-'; ?></dd>
+					<dd><?php echo isset($current_article->author_id) ? htmlentities(Author::find_by_id($current_article->author_id)->full_name()) : '-'; ?></dd>
 					<dt>تغییرات</dt>
 					<dd>
 						<a class="btn btn-primary btn-small arial" href="edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>" data-toggle="tooltip" title="ویرایش">
@@ -32,40 +31,12 @@ echo output_message($message);
 					<dt>مطالب:</dt>
 					<dd><?php echo nl2br(strip_tags($current_article->content, ARTICLE_ALLOWABLE_TAGS)); ?></dd>
 				</dl>
-				<?php // Pagination
-				$page       = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
-				$pagination = new pagination($page, 10, ArticleComment::count_comments_for_article($current_article->id));
-				$comments   = ArticleComment::find_comments($current_article->id, 10, $pagination->offset());
-				?>
-				<hr><?php echo output_message($message); ?>
+				<hr>
+				<?php echo output_message($message); ?>
 				<article id="comments">
-					<h3>
-						<i class="fa fa-comments-o fa-2x"></i>
-						<?php if( ! empty($comments)): ?>
-							<span class="label label-as-badge label-info"><?php echo convert(count($current_article->comments())); ?>
-								نظر</span>
-						<?php else: ?>
-							<span class="label label-as-badge label-danger">نظری نیست</span>
-						<?php endif; ?>
-					</h3>
-					<?php foreach($comments as $comment): ?>
-						<section class="media">
-							<?php $_member = Member::find_by_id($comment->member_id); ?>
-							<img class="img-circle pull-right" width="50" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->email; ?>">
-							<div class="media-body arial">
-						<span class="badge">
-							<span class="yekan"><?php echo htmlentities($_member->full_name()); ?></span>
-							<?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
-								<a class="badge label-danger" href="admin_delete_article_comment.php?id=<?php echo urlencode($comment->id); ?>">
-									<i class="fa fa-times"></i>
-								</a>
-								<p><?php echo strip_tags($comment->body, ARTICLE_ALLOWABLE_TAGS); ?></p>
-							</div>
-						</section>
-					<?php endforeach; ?>
-					<?php echo paginate($pagination, $page, 'admin_articles.php', "subject={$current_subject->id}", "article={$current_article->id}#comments"); ?>
+					<?php include_layout_template('article-comments.php') ?>
 				</article>
-				<?php //include_layout_template('article-disqus-comment.php'); ?>
+				<?php // include_layout_template('article-disqus-comment.php'); ?>
 			<?php elseif($current_subject): ?>
 				<h2><i class="fa fa-list-alt"></i> تنظیم موضوع </h2>
 				<dl class="dl-horizontal">

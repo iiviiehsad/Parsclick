@@ -22,7 +22,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 <?php include_layout_template('member_nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
-		<article>
+		<article id="comments">
 			<h3><i class="fa fa-comments fa-lg"></i> انجمن
 				<a href="member-courses?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>"
 				   data-toggle="tooltip" title="برگردید به درس"><?php echo htmlentities($current_course->name); ?></a>
@@ -53,7 +53,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 				</form>
 			</fieldset>
 			<hr/>
-			<div id="comments">
+			<div id="forum">
 				<div id="ajax-comments">
 					<?php foreach($comments as $comment): ?>
 						<section class="media">
