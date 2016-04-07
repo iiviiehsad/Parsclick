@@ -12,7 +12,7 @@ $errors = "";
 <section class="main col-sm-12 col-md-9 col-lg-9">
 	<article>
 		<h2>
-			حساب کاربری <?php echo ucwords(strtolower($member->full_name())); ?></h2>
+			پروفایل  <?php echo ucwords(strtolower($member->full_name())); ?></h2>
 		<dl class="dl-horizontal">
 			<dt>اسم کاربری:</dt>
 			<dd class="arial"><?php echo htmlentities($member->username); ?></dd>
@@ -33,7 +33,7 @@ $errors = "";
 			<dt>&nbsp;</dt>
 			<dd>
 				<div class="alert alert-info">
-					<i class="fa fa-info-circle fa-lg"></i> اگر آواتار یا عکس پروفایل ندارید
+					<i class="fa fa-info-circle fa-3x"></i> اگر آواتار یا عکس پروفایل ندارید
 					<a target="_blank" data-toggle="tooltip" title="آپلود کنید" href="http://fa.gravatar.com/">
 						<span class="underline">اینجا رو کلیک کنید</span>
 					</a>تا آپلود کنید. از شما خواهش می کنم که حتما این کار را انجام دهید.
