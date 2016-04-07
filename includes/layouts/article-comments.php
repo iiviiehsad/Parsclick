@@ -20,7 +20,9 @@ $comments    = ArticleComment::find_comments($current_article->id, $per_page, $p
 <?php foreach($comments as $comment): ?>
 	<section class="media">
 		<?php $_member = Member::find_by_id($comment->member_id); ?>
-		<img class="img-circle pull-right" width="50" style="padding-right:0;" src="//www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->username; ?>">
+		<img class="img-circle pull-right" width="50" style="padding-right:0;" 
+		     src="//www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" 
+		     alt="<?php echo $_member->username; ?>">
 		<div class="media-body">
 			<span class="label label-as-badge label-success"><?php echo htmlentities($_member->first_name); ?></span>
 			<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
@@ -41,4 +43,7 @@ $comments    = ArticleComment::find_comments($current_article->id, $per_page, $p
 		</div>
 	</section>
 <?php endforeach; ?>
-<?php echo paginate($pagination, $page, parse_url($_SERVER['REQUEST_URI'])['path'], "subject={$current_article->subject_id}", "article={$current_article->id}#comments"); ?>
+<?php echo paginate($pagination, $page, [
+		"subject={$current_article->subject_id}",
+		"article={$current_article->id}#comments"
+]); ?>

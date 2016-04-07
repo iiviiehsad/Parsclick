@@ -485,13 +485,13 @@ function has_presence($value)
  */
 function has_length($value, $options = [])
 {
-	if(isset($options['max']) && (strlen($value) > (int)$options['max'])) {
+	if(isset($options['max']) && (strlen($value) > (int) $options['max'])) {
 		return FALSE;
 	}
-	if(isset($options['min']) && (strlen($value) < (int)$options['min'])) {
+	if(isset($options['min']) && (strlen($value) < (int) $options['min'])) {
 		return FALSE;
 	}
-	if(isset($options['exact']) && (strlen($value) != (int)$options['exact'])) {
+	if(isset($options['exact']) && (strlen($value) != (int) $options['exact'])) {
 		return FALSE;
 	}
 
@@ -527,10 +527,10 @@ function has_number($value, $options = [])
 	if( ! is_numeric($value)) {
 		return FALSE;
 	}
-	if(isset($options['max']) && ($value > (int)$options['max'])) {
+	if(isset($options['max']) && ($value > (int) $options['max'])) {
 		return FALSE;
 	}
-	if(isset($options['min']) && ($value < (int)$options['min'])) {
+	if(isset($options['min']) && ($value < (int) $options['min'])) {
 		return FALSE;
 	}
 
@@ -1291,27 +1291,25 @@ function get_prev_next_token()
 /**
  * Adds Bootstrap pagination under pages which need pagination*
  *
- * @param        $pagination
- * @param        $page
- * @param string $main_url
- * @param string $url1
- * @param string $url2
+ * @param       $pagination
+ * @param       $page
+ * @param array $urls
  * @return string
  */
-function paginate($pagination, $page, $main_url = '', $url1 = '', $url2 = '')
+function paginate($pagination, $page, $urls = [])
 {
-	$output = '';
+	$output   = '';
+	$main_url = parse_url($_SERVER['REQUEST_URI'])['path'];
 	if($pagination->total_page() > 1) {
 		$output .= '<nav class="clearfix center">';
 		$output .= '<ul class="pagination">';
 		if($pagination->has_previous_page()) {
 			$output .= '<li>';
 			$output .= '<a href="' . $main_url . '?page=' . urlencode($pagination->previous_page());
-			if( ! empty($url1)) {
-				$output .= '&' . $url1;
-			}
-			if( ! empty($url2)) {
-				$output .= '&' . $url2;
+			foreach($urls as $url) {
+				if( ! empty($url)) {
+					$output .= '&' . $url;
+				}
 			}
 			$output .= '" aria-label="Previous">';
 			$output .= '<span aria-hidden="true"> &lt;&lt; </span>';
@@ -1323,11 +1321,10 @@ function paginate($pagination, $page, $main_url = '', $url1 = '', $url2 = '')
 			} else {
 				$output .= '<li>';
 				$output .= '<a href="' . $main_url . '?page=' . urlencode($i);
-				if( ! empty($url1)) {
-					$output .= '&' . $url1;
-				}
-				if( ! empty($url2)) {
-					$output .= '&' . $url2;
+				foreach($urls as $url) {
+					if( ! empty($url)) {
+						$output .= '&' . $url;
+					}
 				}
 				$output .= '">' . convert($i) . '</a>';
 				$output .= '</li>';
@@ -1336,11 +1333,10 @@ function paginate($pagination, $page, $main_url = '', $url1 = '', $url2 = '')
 		if($pagination->has_next_page()) {
 			$output .= '<li>';
 			$output .= '<a href="' . $main_url . '?page=' . urlencode($pagination->next_page());
-			if( ! empty($url1)) {
-				$output .= '&' . $url1;
-			}
-			if( ! empty($url2)) {
-				$output .= '&' . $url2;
+			foreach($urls as $url) {
+				if( ! empty($url)) {
+					$output .= '&' . $url;
+				}
 			}
 			$output .= '" aria-label="Next">';
 			$output .= '<span aria-hidden="true">&gt;&gt;</span>';

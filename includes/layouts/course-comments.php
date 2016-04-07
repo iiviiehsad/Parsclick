@@ -41,4 +41,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 		</div>
 	</section>
 <?php endforeach; ?>
-<?php echo paginate($pagination, $page, parse_url($_SERVER['REQUEST_URI'])['path'], "category={$current_course->category_id}", "course={$current_course->id}#comments"); ?>
+<?php echo paginate($pagination, $page, [
+		"category={$current_course->category_id}",
+		"course={$current_course->id}#comments"
+]); ?>
