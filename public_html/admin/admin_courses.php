@@ -132,30 +132,7 @@ echo output_message($message);
 				?>
 				<hr><?php echo output_message($message); ?>
 				<article id="comments">
-					<h3>
-						<i class="fa fa-comments-o fa-2x"></i>
-						<?php if( ! empty($comments)): ?>
-							<span class="label label-as-badge label-info"><?php echo convert(count($current_course->comments())); ?>
-								نظر</span>
-						<?php else: ?>
-							<span class="label label-as-badge label-danger">نظری نیست</span>
-						<?php endif; ?>
-					</h3>
-					<?php foreach($comments as $comment): ?>
-						<section class="media">
-							<?php $_member = Member::find_by_id($comment->member_id); ?>
-							<img class="img-circle pull-right" width="50" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->email; ?>">
-							<div class="media-body arial">
-								<span class="label label-as-badge label-success yekan"><?php echo htmlentities($_member->full_name()); ?></span>
-								<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
-								<a class="label label-as-badge label-danger" href="admin_delete_comment.php?id=<?php echo urlencode($comment->id); ?>">
-									<i class="fa fa-times"></i>
-								</a>
-								<p><?php echo nl2br(strip_tags($comment->body, ARTICLE_ALLOWABLE_TAGS)); ?></p>
-							</div>
-						</section>
-					<?php endforeach; ?>
-					<?php echo paginate($pagination, $page, 'admin_courses.php', "category={$current_category->id}", "course={$current_course->id}" . get_prev_next_token() . '#comments'); ?>
+					<?php include_layout_template('course-comments.php'); ?>
 				</article>
 			<?php elseif($current_category): ?>
 				<h2><i class="fa fa-list-alt"></i>&nbsp;تنظیم موضوع</h2>

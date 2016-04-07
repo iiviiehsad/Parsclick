@@ -11,12 +11,6 @@ $body   = '';
 if( ! $current_course || ! $current_category) {
 	$current_course = $current_category = Course::find_newest_course();
 }
-// Pagination
-$page        = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
-$per_page    = 20;
-$total_count = Comment::count_comments_for_course($current_course->id);
-$pagination  = new pagination($page, $per_page, $total_count);
-$comments    = Comment::find_comments($current_course->id, $per_page, $pagination->offset());
 ?>
 <?php include_layout_template('header.php'); ?>
 <?php include_layout_template('member_nav.php'); ?>
@@ -27,9 +21,6 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 				<a href="member-courses?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>"
 				   data-toggle="tooltip" title="برگردید به درس"><?php echo htmlentities($current_course->name); ?></a>
 			</h3>
-			<?php if(empty($comments)): ?>
-				<h3><span class="badge">سوال یا نظری وجود ندارد. اولین نفری باشید که نظر می دهید.</span></h3>
-			<?php endif; ?>
 			<fieldset>
 				<legend></legend>
 				<form class="form-horizontal submit-comment" action="add-comment.php" method="POST" role="form">
@@ -55,24 +46,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 			<hr/>
 			<div id="forum">
 				<div id="ajax-comments">
-					<?php foreach($comments as $comment): ?>
-						<section class="media">
-							<?php $_member = Member::find_by_id($comment->member_id); ?>
-							<img class="img-circle pull-right" width="50" style="padding-right:0;" src="//www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->username; ?>">
-							<div class="media-body">
-								<span class="label label-as-badge label-success"><?php echo htmlentities($_member->first_name); ?></span>
-								<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
-								<?php if($comment->member_id === $session->id): ?>
-									<a href="member-delete-comment?id=<?php echo urlencode($comment->id); ?>" class="label label-as-badge label-danger confirmation">
-										<i class="fa fa-times"></i>
-									</a>
-								<?php endif; ?>
-								<br/>
-								<?php echo nl2br(strip_tags($comment->body, ARTICLE_ALLOWABLE_TAGS)); ?>
-							</div>
-						</section>
-					<?php endforeach; ?>
-					<?php echo paginate($pagination, $page, 'forum', "category={$current_course->category_id}", "course={$current_course->id}"); ?>
+					<?php include_layout_template('course-comments.php'); ?>
 				</div>
 			</div>
 		</article>

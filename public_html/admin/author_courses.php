@@ -172,44 +172,9 @@ echo output_message($message, $errors);
 					<?php endif; ?>
 				<?php endif; ?>
 				<!--------------------------------------------COMMENTS--------------------------------------------------->
-				<?php // Pagination
-				$page       = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
-				$pagination = new pagination($page, 20, Comment::count_comments_for_course($current_course->id));
-				$comments   = Comment::find_comments($current_course->id, 20, $pagination->offset());
-				?>
 				<div class="alert alert-danger">
 					<article id="comments">
-						<h3>
-							<?php if( ! empty($comments)): ?>
-								<span class="label label-as-badge label-danger"><i class="fa fa-comment fa-lg"></i>
-									<?php echo convert(count($current_course->comments())); ?>
-									دیدگاه</span>
-							<?php else: ?>
-								<span class="label label-as-badge">دیدگاهی نیست</span>
-							<?php endif; ?>
-						</h3>
-						<div class="table-responsive">
-							<table class="table table-condensed table-hover">
-								<tbody>
-									<?php foreach($comments as $comment): ?>
-										<tr>
-											<td>
-												<section class="media">
-													<?php $_member = Member::find_by_id($comment->member_id); ?>
-													<img class="img-circle pull-right" width="50" style="padding-right:0;" src="http://gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $_member->email; ?>">
-													<div class="media-body arial">
-														<span class="label label-as-badge label-success yekan"><?php echo htmlentities($_member->full_name()); ?></span>
-														<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_text($comment->created)); ?></span>
-														<p><?php echo nl2br(strip_tags($comment->body, ARTICLE_ALLOWABLE_TAGS)); ?></p>
-													</div>
-												</section>
-											</td>
-										</tr>
-									<?php endforeach; ?>
-								</tbody>
-							</table>
-						</div>
-						<?php echo paginate($pagination, $page, 'author_courses.php', "category={$current_category->id}", "course={$current_course->id}" . get_prev_next_token() . '#comments'); ?>
+						<?php include_layout_template('course-comments.php'); ?>
 					</article>
 				</div>
 			<?php elseif($current_category): ?>
