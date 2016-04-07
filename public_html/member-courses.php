@@ -1,13 +1,13 @@
-<?php require_once("../includes/initialize.php");
+<?php require_once('../includes/initialize.php');
 $filename = basename(__FILE__);
-$title    = "پارس کلیک - دروس";
+$title    = 'پارس کلیک - دروس';
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_course(TRUE);
 ?>
-<?php include_layout_template("header.php"); ?>
-<?php include("_/components/php/member_nav.php"); ?>
+<?php include_layout_template('header.php'); ?>
+<?php include('_/components/php/member_nav.php'); ?>
 <?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
@@ -71,16 +71,16 @@ find_selected_course(TRUE);
 				<?php endif; //num_files_for_course ?>
 				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php if(isset($current_course->youtubePlaylist)):
-					$googleapi = "https://www.googleapis.com/youtube/v3/playlistItems";
+					$googleapi = 'https://www.googleapis.com/youtube/v3/playlistItems';
 					$playListID = $current_course->youtubePlaylist;
 					if( ! isset($_GET['nextPageToken']) || ! isset($_GET['prevPageToken'])) {
 						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI;
 					}
 					if(isset($_GET['nextPageToken'])) {
-						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . "&pageToken=" . $_GET['nextPageToken'];
+						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['nextPageToken'];
 					}
 					if(isset($_GET['prevPageToken'])) {
-						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . "&pageToken=" . $_GET['prevPageToken'];
+						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['prevPageToken'];
 					}
 					// check to see if the url exists
 					$file_headers = get_headers($url);
@@ -121,13 +121,13 @@ find_selected_course(TRUE);
 									</div>
 									<div class="panel-footer">
 										<div class="clearfix center">
-											<?php if(isset($json["nextPageToken"])): ?>
-												<a class="btn btn-primary btn-block" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json["nextPageToken"]; ?>">
+											<?php if(isset($json['nextPageToken'])): ?>
+												<a class="btn btn-primary btn-block" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json['nextPageToken']; ?>">
 													<span class="arial">&laquo;</span> صفحه بعدی
 												</a>
 											<?php endif; ?>
-											<?php if(isset($json["prevPageToken"])): ?>
-												<a class="btn btn-primary btn-block" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json["prevPageToken"]; ?>">
+											<?php if(isset($json['prevPageToken'])): ?>
+												<a class="btn btn-primary btn-block" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json['prevPageToken']; ?>">
 													صفحه قبلی <span class="arial">&raquo;</span>
 												</a>
 											<?php endif; ?>
@@ -143,7 +143,7 @@ find_selected_course(TRUE);
 					<?php endif; ?>
 				<?php endif; ?>
 			<?php else: ?>
-				<div class="hidden-sm"><?php include_once("_/components/php/member_course_info.php"); ?></div>
+				<div class="hidden-sm"><?php include_once('_/components/php/member_course_info.php'); ?></div>
 			<?php endif; ?>
 		</article>
 	</section>
@@ -169,4 +169,4 @@ find_selected_course(TRUE);
 			</div>
 		</div>
 	</div>
-<?php include_layout_template("footer.php"); ?>
+<?php include_layout_template('footer.php'); ?>

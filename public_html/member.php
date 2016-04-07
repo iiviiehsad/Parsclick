@@ -1,18 +1,17 @@
-<?php
-require_once("../includes/initialize.php");
+<?php require_once('../includes/initialize.php');
 $filename = basename(__FILE__);
-$title    = "پارس کلیک - قسمت اعضا";
+$title    = 'پارس کلیک - قسمت اعضا';
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
 $newest_course  = Course::find_newest_course();
 $newest_article = Article::find_newest_article();
 ?>
-<?php include_layout_template("header.php"); ?>
-<?php include("_/components/php/member_nav.php"); ?>
+<?php include_layout_template('header.php'); ?>
+<?php include('_/components/php/member_nav.php'); ?>
 <?php echo output_message($message); ?>
 <div class="jumbotron hidden-sm wow fadeIn member-jumbotron">
-	<img class="pull-left img-circle" width="150" height="150" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=150&d=<?php echo 'http://' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>">
+	<img class="pull-left img-circle" width="150" height="150" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=150&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>">
 	<h1>خوش آمدید <?php echo ucwords(strtolower($member->full_name())); ?></h1>
 	<p>شما دسترسی به یکی از بزرگترین کتابخانه ویدئویی رایگان پارسی زبانان را دارید. لطفا از دوستان خود دعوت کنید که به ما
 	   بپیوندند.</p>
@@ -35,7 +34,7 @@ $newest_article = Article::find_newest_article();
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
 		<h3>
-			<span class="label label-success visible-sm"><?php echo "خوش آمدید  " . ucwords(strtolower($member->full_name())); ?></span>
+			<span class="label label-success visible-sm"><?php echo 'خوش آمدید  ' . ucwords(strtolower($member->full_name())); ?></span>
 		</h3>
 		<h2><?php echo htmlentities($newest_article->name); ?>&nbsp;<span class="badge">جدیدترین مقاله</span></h2>
 		<h5>
@@ -43,7 +42,7 @@ $newest_article = Article::find_newest_article();
 			if(isset($newest_article->author_id)):
 				$author = Author::find_by_id($newest_article->author_id);
 				?><i class="fa fa-user fa-lg"></i>&nbsp;
-				<?php echo "توسط: " . $author->full_name();
+				<?php echo 'توسط: ' . $author->full_name();
 			endif; ?>
 		</h5>
 		<h5>
@@ -72,7 +71,7 @@ $newest_article = Article::find_newest_article();
 		   مقاله ها درون موضوعات برای دسترسی آسانتر طبقه بندی شده اند.در اولین صفحه شما قادر به جستجو کردن مقاله ها
 		   هستید اگر دنبال مقاله ی خاصی می گردید.</p>
 		<p><a class="btn btn-small btn-danger" href="member-articles">دیدن مقالات</a></p>
-		<p><?php include('_/components/php/aside-ad.php'); ?></p>
+		<p><?php include("_/components/php/aside-ad.php"); ?></p>
 	</aside>
 </section>
-<?php include_layout_template("footer.php"); ?>
+<?php include_layout_template('footer.php'); ?>

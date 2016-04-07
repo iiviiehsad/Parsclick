@@ -1,4 +1,4 @@
-<?php require_once("../includes/initialize.php");
+<?php require_once('../includes/initialize.php');
 $filename = basename(__FILE__);
 $token    = $_GET['token'];
 // Confirm that the token sent is valid
@@ -7,34 +7,34 @@ if( ! $token || ! $user) {
 	// Token wasn't sent or didn't match a user.
 	redirect_to('forgot');
 }
-$errors = "";
-if(isset($_POST["submit"])) {
+$errors = '';
+if(isset($_POST['submit'])) {
 	$password         = $_POST['password'];
 	$password_confirm = $_POST['password_confirm'];
 	if( ! has_presence($password) || ! has_presence($password_confirm)) {
-		$errors = "جفت پسوردها را پر کنید و خالی نگذارید.";
+		$errors = 'جفت پسوردها را پر کنید و خالی نگذارید.';
 	} elseif( ! has_length($password, ['min' => 6])) {
-		$errors = "پسورد باید حداقل شش حروف یا بیشتر باشد.";
+		$errors = 'پسورد باید حداقل شش حروف یا بیشتر باشد.';
 	} elseif( ! has_format_matching($password, '/[^A-Za-z0-9]/')) {
-		$errors = "پسورد باید حداقل شامل یک حرفی باشد که نه حروف و نه عدد باشد: مثلا ستاره";
+		$errors = 'پسورد باید حداقل شامل یک حرفی باشد که نه حروف و نه عدد باشد: مثلا ستاره';
 	} elseif($password !== $password_confirm) {
-		$errors = "پسوردها با همدیگر یکی نیستند.";
+		$errors = 'پسوردها با همدیگر یکی نیستند.';
 	} else {
-		$user->hashed_password = $user->password_encrypt($_POST["password"]);
+		$user->hashed_password = $user->password_encrypt($_POST['password']);
 		$result                = $user->update();
 		if($result) {
 			$user->delete_reset_token($user->username);
-			$session->message("پسورد با موفقیت عوض شد.");
+			$session->message('پسورد با موفقیت عوض شد.');
 			//$session->login($user);
-			redirect_to("login");
+			redirect_to('login');
 		} else {
-			$errors = "متاسفانه نتوانستیم پسورد بروزرسانی کنیم!";
+			$errors = 'متاسفانه نتوانستیم پسورد بروزرسانی کنیم!';
 		}
 	}
 }
 ?>
-<?php include_layout_template("header.php"); ?>
-<?php include("_/components/php/nav.php"); ?>
+<?php include_layout_template('header.php'); ?>
+<?php include('_/components/php/nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
@@ -80,6 +80,6 @@ if(isset($_POST["submit"])) {
 		</article>
 	</section><!-- main -->
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
-		<?php include("_/components/php/aside-register.php"); ?>
+		<?php include('_/components/php/aside-register.php'); ?>
 	</section><!-- sidebar -->
-<?php include_layout_template("footer.php"); ?>
+<?php include_layout_template('footer.php'); ?>

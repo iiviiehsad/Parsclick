@@ -1,46 +1,47 @@
 <?php
-require_once("../includes/initialize.php");
+require_once('../includes/initialize.php');
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
-if($member->status == 2) redirect_to("blocked");
-$errors = "";
-if(isset($_POST["resend_email"])) {
+if($member->status == 2) redirect_to('blocked');
+$errors = '';
+if(isset($_POST['resend_email'])) {
 	if(is_temp_mail($member->email)) {
-		$errors = "ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!";
+		$errors = 'ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!';
 	} else {
 		$member->create_reset_token($member->username);
 		$result = $member->email_confirmation_details($member->username);
 		if($result) {
-			$session->message("ایمیل برای فعال کردن عضویت دوباره فرستاده شد. لطفا ایمیل خود را چک کنید و از اینجا خارج شوید.");
-			redirect_to("freezed");
+			$session->message('ایمیل برای فعال کردن عضویت دوباره فرستاده شد. لطفا ایمیل خود را چک کنید و از اینجا خارج شوید.');
+			redirect_to('freezed');
 		} else {
-			$errors = "نتوانستیم ایمیل بفرستیم! لطفا بعدا سعی کنید یا با مدیر سایت تماس بگیرید.";
+			$errors = 'نتوانستیم ایمیل بفرستیم! لطفا بعدا سعی کنید یا با مدیر سایت تماس بگیرید.';
 		}
 	}
-} elseif(isset($_POST["update_email"])) {
+} elseif(isset($_POST['update_email'])) {
 	if(request_is_post() && $session->request_is_same_domain()) {
 		if($session->csrf_token_is_valid() && $session->csrf_token_is_recent()) {
-			if(is_temp_mail(trim($_POST["email"]))) {
-				$errors = "ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!";
+			if(is_temp_mail(trim($_POST['email']))) {
+				$errors = 'ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!';
 			} else {
-				$member->email = trim($_POST["email"]);
+				$member->email = trim($_POST['email']);
 				$result        = $member->save();
 				if($result) {
-					$session->message("شما ایمیل خود را بروز رساندید. حالا روی دوباره ایمیل را بفرست کلیک کنید.");
-					redirect_to("freezed");
+					$session->message('شما ایمیل خود را بروز رساندید. حالا روی دوباره ایمیل را بفرست کلیک کنید.');
+					redirect_to('freezed');
 				} else {
-					$errors = "بروزرسانی ایمیل موفقیت آمیز نبود!";
+					$errors = 'بروزرسانی ایمیل موفقیت آمیز نبود!';
 				}
 			}
 		} else {
-			$errors = "شناسه CSRF معتبر نیست!";
+			// $errors = "شناسه CSRF معتبر نیست!";
+			$session->die_on_csrf_token_failure();
 		}
 	} else {
-		$errors = "درخواست معتبر نیست!";
+		$errors = 'درخواست معتبر نیست!';
 	}
 }
 ?>
-<?php include("../includes/layouts/header.php"); ?>
+<?php include('../includes/layouts/header.php'); ?>
 	<style type="text/css">
 		.jumbotron {
 			padding     : 50px;
@@ -90,4 +91,4 @@ if(isset($_POST["resend_email"])) {
 		<small><span class="pull-left wow flash infinite" data-wow-duration="2s" id="confirmMessage"></span></small>
 		<br/>
 	</div>
-<?php include("../includes/layouts/footer.php"); ?>
+<?php include('../includes/layouts/footer.php'); ?>

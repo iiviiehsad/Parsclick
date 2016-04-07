@@ -1,8 +1,8 @@
 <?php
-require_once("../includes/initialize.php");
-$title    = "پارس کلیک - فراموشی پسورد";
+require_once('../includes/initialize.php');
+$title    = 'پارس کلیک - فراموشی پسورد';
 $filename = basename(__FILE__);
-if(isset($_POST["submit"])) {
+if(isset($_POST['submit'])) {
 	$username = $_POST['username'];
 	if(has_presence($username)) {
 		// Search our fake database to retrieve the user data
@@ -12,9 +12,9 @@ if(isset($_POST["submit"])) {
 			$user->create_reset_token($username);
 			$email = $user->email_reset_token($username);
 			if($email) {
-				$message = "ایمیل فرستاده شد.";
+				$message = 'ایمیل فرستاده شد.';
 			} else {
-				$message = "خطا! ایمیل فرستاده نشد.";
+				$message = 'خطا! ایمیل فرستاده نشد.';
 			}
 		} else {
 			// Username was not found; don't do anything
@@ -22,16 +22,16 @@ if(isset($_POST["submit"])) {
 		// Message returned is the same whether the user
 		// was found or not, so that we don't reveal which
 		// user names exist and which do not.
-		$message = "لینکی برای باز نشاندن پسورد به ایمیل آدرسی فرستاده شد که در دیتابیس موجود است. تا ۱۰ دقیقه دیگه ایمیلتون رو چک کنید.";
+		$message = 'لینکی برای باز نشاندن پسورد به ایمیل آدرسی فرستاده شد که در دیتابیس موجود است. تا ۱۰ دقیقه دیگه ایمیلتون رو چک کنید.';
 	} else {
-		$message = "لطفا اسم کاربری را وارد کنید.";
+		$message = 'لطفا اسم کاربری را وارد کنید.';
 	}
 } else {
-	$username = "";
+	$username = '';
 }
 ?>
-<?php include_layout_template("header.php"); ?>
-<?php include "_/components/php/nav.php"; ?>
+<?php include_layout_template('header.php'); ?>
+<?php include '_/components/php/nav.php'; ?>
 <?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
@@ -68,6 +68,6 @@ if(isset($_POST["submit"])) {
 		</article>
 	</section><!-- main -->
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
-		<?php include "_/components/php/aside-register.php"; ?>
+		<?php include '_/components/php/aside-register.php'; ?>
 	</section><!-- sidebar -->
-<?php include_layout_template("footer.php"); ?>
+<?php include_layout_template('footer.php'); ?>

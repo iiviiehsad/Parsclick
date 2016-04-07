@@ -1,18 +1,17 @@
-<?php
-require_once("../includes/initialize.php");
+<?php require_once('../includes/initialize.php');
 $filename = basename(__FILE__);
-$title    = "پارس کلیک - لیست پخش اعضا";
+$title    = 'پارس کلیک - لیست پخش اعضا';
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
 $playlist_set = Playlist::find_playlist_for_member($member->id);
 ?>
-<?php include_layout_template("header.php"); ?>
-<?php include("_/components/php/member_nav.php"); ?>
+<?php include_layout_template('header.php'); ?>
+<?php include('_/components/php/member_nav.php'); ?>
 <?php echo output_message($message); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article class="member_profile">
-		<h3><i class="fa fa-floppy-o fa-lg"></i> لیست پخش <?php if( ! $playlist_set): echo "خالی است."; endif; ?></h3>
+		<h3><i class="fa fa-floppy-o fa-lg"></i> لیست پخش <?php if( ! $playlist_set): echo 'خالی است.'; endif; ?></h3>
 		<?php if($playlist_set): ?>
 			<span class='badge'>تعداد <?php echo convert(Playlist::count_playlist_for_member($member->id)); ?> درس داخل لیست پخش شماست.</span>
 		<?php else: ?>
@@ -44,4 +43,4 @@ $playlist_set = Playlist::find_playlist_for_member($member->id);
 		<p>لیست پخش شما به ترتیب تاریخ اضافه شدن مرتب می شوند.</p>
 	</aside>
 </section>
-<?php include_layout_template("footer.php"); ?>
+<?php include_layout_template('footer.php'); ?>

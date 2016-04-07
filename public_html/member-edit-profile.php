@@ -1,47 +1,46 @@
-<?php
-require_once("../includes/initialize.php");
+<?php require_once('../includes/initialize.php');
 $filename = basename(__FILE__);
-$title    = "پارس کلیک - ویرایش حساب کاربری";
+$title    = 'پارس کلیک - ویرایش حساب کاربری';
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
-$errors = "";
+$errors = '';
 if(isset($_POST['submit'])) {
 	$member->id = $session->id;
 	//$member->username = trim($_POST["username"]);
-	if( ! empty($_POST["password"])) {
-		if( ! has_length($_POST["password"], ['min' => 6])) {
-			$errors = "پسورد باید حداقل ۶ حروف یا بیشتر باشد!";
-		} elseif( ! has_format_matching($_POST["password"], '/[^A-Za-z0-9]/')) {
-			$errors = "حداقل از یک حرف مخصوص استفاده کنید!";
+	if( ! empty($_POST['password'])) {
+		if( ! has_length($_POST['password'], ['min' => 6])) {
+			$errors = 'پسورد باید حداقل ۶ حروف یا بیشتر باشد!';
+		} elseif( ! has_format_matching($_POST['password'], '/[^A-Za-z0-9]/')) {
+			$errors = 'حداقل از یک حرف مخصوص استفاده کنید!';
 		} else {
-			$member->hashed_password = $member->password_encrypt(trim($_POST["password"]));
+			$member->hashed_password = $member->password_encrypt(trim($_POST['password']));
 		}
 	}
-	$member->first_name = trim($_POST["first_name"]);
-	$member->last_name  = trim($_POST["last_name"]);
-	$member->last_name  = trim($_POST["last_name"]);
-	$member->gender     = trim($_POST["gender"]);
-	$member->address    = trim($_POST["address"]);
-	$member->city       = trim($_POST["city"]);
-	if( ! has_presence($_POST["email"])) {
-		$errors = "ایمیل را خالی نگذارید!";
-	} elseif(is_temp_mail(trim(strtolower($_POST["email"])))) {
-		$errors = "ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!";
+	$member->first_name = trim($_POST['first_name']);
+	$member->last_name  = trim($_POST['last_name']);
+	$member->last_name  = trim($_POST['last_name']);
+	$member->gender     = trim($_POST['gender']);
+	$member->address    = trim($_POST['address']);
+	$member->city       = trim($_POST['city']);
+	if( ! has_presence($_POST['email'])) {
+		$errors = 'ایمیل را خالی نگذارید!';
+	} elseif(is_temp_mail(trim(strtolower($_POST['email'])))) {
+		$errors = 'ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!';
 	} else {
-		$member->email = trim(strtolower($_POST["email"]));
+		$member->email = trim(strtolower($_POST['email']));
 		$result        = $member->save();
 		if($result) {
-			$session->message("پروفایل بروزرسانی شد.");
-			redirect_to("member-profile");
+			$session->message('پروفایل بروزرسانی شد.');
+			redirect_to('member-profile');
 		} else {
-			$errors = "بروزرسانی پروفایل موفقیت آمیز نبود یا چیزی اصلا تغییر داده نشد!";
+			$errors = 'بروزرسانی پروفایل موفقیت آمیز نبود یا چیزی اصلا تغییر داده نشد!';
 		}
 	}
 }
 ?>
-<?php include_layout_template("header.php"); ?>
-<?php include("_/components/php/member_nav.php"); ?>
+<?php include_layout_template('header.php'); ?>
+<?php include('_/components/php/member_nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 <section class="main col-sm-12 col-md-9 col-lg-9">
 	<article>
@@ -80,10 +79,10 @@ if(isset($_POST['submit'])) {
 					<div class="controls">
 						<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="gender" id="gender">
 							<?php echo htmlentities($member->gender); ?>
-							<?php if($member->gender === "مرد"): ?>
+							<?php if($member->gender === 'مرد'): ?>
 								<option selected value="مرد">مرد</option>
 								<option value="زن">زن</option>
-							<?php elseif($member->gender === "زن"): ?>
+							<?php elseif($member->gender === 'زن'): ?>
 								<option selected value="زن">زن</option>
 								<option value="مرد">مرد</option>
 							<?php else: ?>
@@ -143,4 +142,4 @@ if(isset($_POST['submit'])) {
 		</div>
 	</aside>
 </section>
-<?php include_layout_template("footer.php"); ?>
+<?php include_layout_template('footer.php'); ?>

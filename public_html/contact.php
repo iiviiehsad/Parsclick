@@ -1,18 +1,18 @@
 <?php
-require_once("../includes/initialize.php");
-require_once("../includes/vendor/autoload.php");
+require_once('../includes/initialize.php');
+require_once('../includes/vendor/autoload.php');
 $filename = basename(__FILE__);
 if($session->is_logged_in()) {
 	$member = Member::find_by_id($session->id);
 }
-$title   = "پارس کلیک - تماس با ما";
-$errors  = "";
-$message = "";
+$title   = 'پارس کلیک - تماس با ما';
+$errors  = '';
+$message = '';
 // reCAPTCHA supported 40+ languages listed here: https://developers.google.com/recaptcha/docs/language
 $lang = 'fa';
-if(isset($_POST["submit"])) {
+if(isset($_POST['submit'])) {
 	if(empty(RECAPTCHASITEKEY) || empty(RECAPTCHASECRETKEY)) {
-		$errors = "کدهای تایید reCaptcha API خالی هستند. لطفا مدیر سایت را در جریان بگذارید.";
+		$errors = 'کدهای تایید reCaptcha API خالی هستند. لطفا مدیر سایت را در جریان بگذارید.';
 	} elseif(isset($_POST['g-recaptcha-response'])) {
 		$recaptcha = new \ReCaptcha\ReCaptcha(RECAPTCHASECRETKEY);
 		$resp      = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
@@ -27,17 +27,17 @@ if(isset($_POST["submit"])) {
 			$mail->SMTPAuth   = TRUE;
 			$mail->Username   = EMAILUSER;
 			$mail->Password   = EMAILPASS;
-			$mail->FromName   = $_POST["name"];
+			$mail->FromName   = $_POST['name'];
 			$mail->From       = EMAILUSER;
 			$mail->Subject    = $_POST['name'];
-			$mail->addAddress("parsclickmail@gmail.com", DOMAIN);
+			$mail->addAddress('parsclickmail@gmail.com', DOMAIN);
 			$content    = nl2br($_POST['message']);
 			$mail->Body = email($_POST['name'], DOMAIN, $_POST['email'], $content);
 			$result     = $mail->send();
 			if($result) {
-				$message = "با تشکر، پیام شما فرستاده شد.";
+				$message = 'با تشکر، پیام شما فرستاده شد.';
 			} else {
-				$errors = "خطا در فرستادن پیام!" . $mail->ErrorInfo;
+				$errors = 'خطا در فرستادن پیام!' . $mail->ErrorInfo;
 			}
 		} else {
 			foreach($resp->getErrorCodes() as $code) {
@@ -47,8 +47,8 @@ if(isset($_POST["submit"])) {
 	} // end: elseif(isset($_POST['g-recaptcha-response']))
 } // end: if(isset($_POST["submit"]))
 ?>
-<?php include_layout_template("header.php"); ?>
-<?php include "_/components/php/nav.php"; ?>
+<?php include_layout_template('header.php'); ?>
+<?php include '_/components/php/nav.php'; ?>
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
@@ -103,4 +103,4 @@ if(isset($_POST["submit"])) {
 			ممنون از همگی
 		</aside>
 	</section>
-<?php include_layout_template("footer.php"); ?>
+<?php include_layout_template('footer.php'); ?>

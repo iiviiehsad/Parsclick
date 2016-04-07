@@ -1,23 +1,22 @@
-<?php
-require_once("../includes/initialize.php");
+<?php require_once('../includes/initialize.php');
 $filename = basename(__FILE__);
-$title    = "پارس کلیک - مقالات";
+$title    = 'پارس کلیک - مقالات';
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_article(TRUE);
-$errors = "";
-$body   = "";
+$errors = '';
+$body   = '';
 ?>
-<?php include_layout_template("header.php"); ?>
-<?php include("_/components/php/member_nav.php"); ?>
+<?php include_layout_template('header.php'); ?>
+<?php include('_/components/php/member_nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article id="member_article">
 			<?php if($current_subject && $current_article): ?>
 				<?php
 				// Pagination
-				$page        = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
+				$page        = ! empty($_GET['page']) ? (int)$_GET['page'] : 1;
 				$per_page    = 10;
 				$total_count = ArticleComment::count_comments_for_article($current_article->id);
 				$pagination  = new pagination($page, $per_page, $total_count);
@@ -32,7 +31,7 @@ $body   = "";
 							<?php if(isset($current_article->author_id)): ?>
 								<i class="fa fa-user fa-lg"></i>&nbsp;
 								<?php $author = Author::find_by_id($current_article->author_id);
-								echo "توسط: " . $author->full_name();
+								echo 'توسط: ' . $author->full_name();
 								if( ! empty($author->photo)): ?>
 									<img class="author-photo img-circle pull-left" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
 								<?php endif; ?>
@@ -90,7 +89,7 @@ $body   = "";
 										</div>
 									</section>
 								<?php endforeach; ?>
-								<?php echo paginate($pagination, $page, "member-articles", "subject={$current_article->subject_id}", "article={$current_article->id}"); ?>
+								<?php echo paginate($pagination, $page, 'member-articles', "subject={$current_article->subject_id}", "article={$current_article->id}"); ?>
 								<?php if(empty($comments)): ?>
 									<h3><span class="badge">نظری وجود ندارد. اولین نفری باشید که نظر می دهید.</span></h3>
 								<?php endif; ?>
@@ -100,7 +99,7 @@ $body   = "";
 					</div>
 				</div>
 			<?php else: ?>
-				<div class="visible-lg"><?php include_once("_/components/php/member_article_info.php"); ?></div>
+				<div class="visible-lg"><?php include_once('_/components/php/member_article_info.php'); ?></div>
 			<?php endif; ?>
 		</article>
 	</section>
@@ -126,4 +125,4 @@ $body   = "";
 			<p><?php include('_/components/php/aside-ad.php'); ?></p>
 		</aside>
 	</section>
-<?php include_layout_template("footer.php"); ?>
+<?php include_layout_template('footer.php'); ?>

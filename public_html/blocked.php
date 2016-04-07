@@ -1,10 +1,9 @@
-<?php
-require_once("../includes/initialize.php");
+<?php require_once('../includes/initialize.php');
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
-if($member->status == 0) redirect_to("freezed");
+if($member->status == 0) redirect_to('freezed');
 ?>
-<?php include("../includes/layouts/header.php"); ?>
+<?php include('../includes/layouts/header.php'); ?>
 	<style type="text/css">
 		.jumbotron {
 			padding     : 50px;
@@ -36,4 +35,4 @@ if($member->status == 0) redirect_to("freezed");
 			</a>
 		</p>
 	</div>
-<?php include("../includes/layouts/footer.php"); ?>
+<?php include('../includes/layouts/footer.php'); ?>

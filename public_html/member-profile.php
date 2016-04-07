@@ -1,14 +1,13 @@
-<?php
-require_once("../includes/initialize.php");
+<?php require_once('../includes/initialize.php');
 $filename = basename(__FILE__);
-$title    = "پارس کلیک - حساب کاربری";
+$title    = 'پارس کلیک - حساب کاربری';
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
 $errors = "";
 ?>
-<?php include_layout_template("header.php"); ?>
-<?php include("_/components/php/member_nav.php"); ?>
+<?php include_layout_template('header.php'); ?>
+<?php include('_/components/php/member_nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 <section class="main col-sm-12 col-md-9 col-lg-9">
 	<article>
@@ -57,4 +56,4 @@ $errors = "";
 		</a>
 	</aside>
 </section>
-<?php include_layout_template("footer.php"); ?>
+<?php include_layout_template('footer.php'); ?>

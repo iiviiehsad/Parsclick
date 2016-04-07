@@ -1,28 +1,27 @@
 <?php
-require_once("../includes/initialize.php");
-require_once("../includes/vendor/autoload.php");
-$title    = "پارس کلیک - کمک به ما";
+require_once('../includes/initialize.php');
+require_once('../includes/vendor/autoload.php');
+$title    = 'پارس کلیک - کمک به ما';
 $filename = basename(__FILE__);
-$title    = "پارس کلیک - کمک به ما";
-$errors   = "";
+$errors   = '';
 \Stripe\Stripe::setApiKey(SECRETKEY);
 if(isset($_POST['stripeToken'])) {
 	try {
 		\Stripe\Charge::create(array(
-				"amount"      => 1000,
-				"currency"    => "gbp",
-				"source"      => $_POST['stripeToken'],
-				"description" => "کمک به پارس کلیک"
+				'amount'      => 1000,
+				'currency'    => 'gbp',
+				'source'      => $_POST['stripeToken'],
+				'description' => 'کمک به پارس کلیک'
 		));
 	} catch(\Stripe\Error\Card $e) {
 		$errors = $e->getMessage();
 	}
-	$session->message("خیلی متشکریم از کمک شما.");
-	redirect_to("help");
+	$session->message('خیلی متشکریم از کمک شما.');
+	redirect_to('help');
 }
 ?>
-<?php include_layout_template("header.php"); ?>
-<?php include "_/components/php/nav.php"; ?>
+<?php include_layout_template('header.php'); ?>
+<?php include '_/components/php/nav.php'; ?>
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
@@ -37,9 +36,9 @@ if(isset($_POST['stripeToken'])) {
 			   ثبت نام خواهیم کرد.</p>
 		</article>
 		<?php include('_/components/php/aside-ad.php'); ?>
-		<?php include("_/components/php/aside-share.php"); ?>
+		<?php include('_/components/php/aside-share.php'); ?>
 	</section><!-- main -->
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
-		<?php include "_/components/php/aside-help.php"; ?>
+		<?php include '_/components/php/aside-help.php'; ?>
 	</section><!-- sidebar -->
-<?php include_layout_template("footer.php"); ?>
+<?php include_layout_template('footer.php'); ?>

@@ -1,20 +1,20 @@
-<?php require_once("../includes/initialize.php"); ?>
+<?php require_once('../includes/initialize.php'); ?>
 <?php $session->confirm_logged_in(); ?>
 <?php $filename = basename(__FILE__);
-$title          = "پارس کلیک - جستجوی دروس";
+$title          = 'پارس کلیک - جستجوی دروس';
 $member         = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_course(TRUE);
-$search_query = trim($_GET["q"]);
+$search_query = trim($_GET['q']);
 if(isset($search_query) && ! empty($search_query)) {
 	$course_set = Course::search($search_query);
 } else { // this is a $_GET request
-	$session->message("شما چیزی جستجو نکردید.");
-	redirect_to("member-courses");
+	$session->message('شما چیزی جستجو نکردید.');
+	redirect_to('member-courses');
 }
 ?>
-<?php include_layout_template("header.php"); ?>
-<?php include("_/components/php/member_nav.php"); ?>
+<?php include_layout_template('header.php'); ?>
+<?php include('_/components/php/member_nav.php'); ?>
 <?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
@@ -67,4 +67,4 @@ if(isset($search_query) && ! empty($search_query)) {
 		</aside>
 	</section>
 
-<?php include_layout_template("footer.php"); ?>
+<?php include_layout_template('footer.php'); ?>

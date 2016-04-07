@@ -1,8 +1,8 @@
 <?php
-require_once("../includes/initialize.php");
+require_once('../includes/initialize.php');
 $session->confirm_logged_in();
 $filename = basename(__FILE__);
-$title    = "پارس کلیک - جستجوی مقالات";
+$title    = 'پارس کلیک - جستجوی مقالات';
 $member   = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_article(TRUE);
@@ -10,12 +10,12 @@ $search_query = trim($_GET['q']);
 if(isset($search_query) && ! empty($search_query)) {
 	$article_set = Article::search($search_query);
 } else { // this is a $_GET request
-	$session->message("شما چیزی جستجو نکردید.");
-	redirect_to("member-articles");
+	$session->message('شما چیزی جستجو نکردید.');
+	redirect_to('member-articles');
 }
 ?>
-<?php include_layout_template("header.php"); ?>
-<?php include("_/components/php/member_nav.php"); ?>
+<?php include_layout_template('header.php'); ?>
+<?php include('_/components/php/member_nav.php'); ?>
 <?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
@@ -68,4 +68,4 @@ if(isset($search_query) && ! empty($search_query)) {
 			<?php echo member_articles($current_subject, $current_article); ?>
 		</aside>
 	</section>
-<?php include_layout_template("footer.php"); ?>
+<?php include_layout_template('footer.php'); ?>

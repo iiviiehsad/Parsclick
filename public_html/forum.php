@@ -1,25 +1,25 @@
 <?php
-require_once("../includes/initialize.php");
+require_once('../includes/initialize.php');
 $filename = basename(__FILE__);
 $title    = 'پارس کلیک - انجمن';
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_course(TRUE);
-$errors = "";
-$body   = "";
+$errors = '';
+$body   = '';
 if( ! $current_course || ! $current_category) {
 	$current_course = $current_category = Course::find_newest_course();
 }
 // Pagination
-$page        = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
+$page        = ! empty($_GET['page']) ? (int)$_GET['page'] : 1;
 $per_page    = 20;
 $total_count = Comment::count_comments_for_course($current_course->id);
 $pagination  = new pagination($page, $per_page, $total_count);
 $comments    = Comment::find_comments($current_course->id, $per_page, $pagination->offset());
 ?>
-<?php include_layout_template("header.php"); ?>
-<?php include("_/components/php/member_nav.php"); ?>
+<?php include_layout_template('header.php'); ?>
+<?php include('_/components/php/member_nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
@@ -71,7 +71,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 						</div>
 					</section>
 				<?php endforeach; ?>
-				<?php echo paginate($pagination, $page, "forum", "category={$current_course->category_id}", "course={$current_course->id}"); ?>
+				<?php echo paginate($pagination, $page, 'forum', "category={$current_course->category_id}", "course={$current_course->id}"); ?>
 			</div>
 		</article>
 	</section>
@@ -81,4 +81,4 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 			<?php echo member_comments_for_course($current_category, $current_course); ?>
 		</aside>
 	</section>
-<?php include_layout_template("footer.php"); ?>
+<?php include_layout_template('footer.php'); ?>

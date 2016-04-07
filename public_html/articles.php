@@ -1,29 +1,25 @@
 <?php
-require_once("../includes/initialize.php");
-if($session->is_logged_in()) redirect_to("member-articles.php");
+require_once('../includes/initialize.php');
+if($session->is_logged_in()) redirect_to('member-articles.php');
 $filename = basename(__FILE__);
 find_selected_article(TRUE);
 $newest_article = Article::find_newest_article();
-$errors         = "";
-$body           = "";
+$errors         = '';
+$body           = '';
 if(isset($current_article->author_id)) {
 	$author = Author::find_by_id($current_article->author_id);
 }
-if(isset($current_article)) {
-	$title = "پارس کلیک - " . $current_article->name;
-} else {
-	$title = "پارس کلیک - " . $newest_article->name;
-}
+$title = isset($current_article) ? 'پارس کلیک - ' . $current_article->name : 'پارس کلیک - ' . $newest_article->name;
 ?>
-<?php include_layout_template("header.php"); ?>
-<?php include("_/components/php/nav.php"); ?>
+<?php include_layout_template('header.php'); ?>
+<?php include('_/components/php/nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article id="member_article">
 		<?php if($current_subject && $current_article): ?>
 			<?php
 			// Pagination
-			$page        = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
+			$page        = ! empty($_GET['page']) ? (int)$_GET['page'] : 1;
 			$per_page    = 10;
 			$total_count = ArticleComment::count_comments_for_article($current_article->id);
 			$pagination  = new pagination($page, $per_page, $total_count);
@@ -70,7 +66,7 @@ if(isset($current_article)) {
 						</div>
 					</section>
 				<?php endforeach; ?>
-				<?php echo paginate($pagination, $page, "articles", "subject={$current_article->subject_id}", "article={$current_article->id}#comments"); ?>
+				<?php echo paginate($pagination, $page, 'articles', "subject={$current_article->subject_id}", "article={$current_article->id}#comments"); ?>
 			</article>
 		<?php else: ?>
 			<?php $current_article = $current_subject = $newest_article; ?>
@@ -102,7 +98,7 @@ if(isset($current_article)) {
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<aside class="members_menu">
-		<?php include("_/components/php/aside-share.php"); ?>
+		<?php include('_/components/php/aside-share.php'); ?>
 		<h2>موضوعات و مقالات</h2>
 		<?php echo public_articles($current_subject, $current_article); ?>
 		<h2>وبلاگ پارس کلیک</h2>
@@ -114,8 +110,8 @@ if(isset($current_article)) {
 				<span class="label label-as-badge label-danger pull-left">اخبار</span>
 			</li>
 		</ul>
-		<?php include("_/components/php/aside-read.php"); ?>
-		<?php include("_/components/php/aside-ad.php"); ?>
+		<?php include('_/components/php/aside-read.php'); ?>
+		<?php include('_/components/php/aside-ad.php'); ?>
 	</aside>
 </section>
-<?php include_layout_template("footer.php"); ?>
+<?php include_layout_template('footer.php'); ?>
