@@ -7,11 +7,11 @@
 	<?php foreach($authors as $author) : ?>
 		<div class="col-sm-12 col-md-3 col-lg-3">
 			<div class="center">
-				<?php if( ! empty($author->photo)) { ?>
+				<?php if( ! empty($author->photo)): ?>
 					<img class="img-circle" style="width:120px;height:120px;" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
-				<?php } else { ?>
+				<?php else: ?>
 					<img class="img-circle" width="120" alt="No Profile Picture" src="images/misc/default-gravatar-pic.png"/>
-				<?php } ?>
+				<?php endif; ?>
 			</div>
 			<div class="center">
 				<span class="label label-as-badge label-danger"><?php echo $author->full_name(); ?></span><br/>

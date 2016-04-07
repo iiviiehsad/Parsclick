@@ -20,8 +20,8 @@
 			<li><a href="logout.php"><i class="fa fa-sign-out fa-lg"></i> خروج</a></li>
 		</ul><!-- nav -->
 	</section><!-- navbar -->
-
-	          <!-- Modal -->
+	
+	<!-- Modal -->
 	<section id="modal" class="modal fade">
 		<div class="modal-body">
 			<img id="modalimage" src="" alt="Modal Photo">

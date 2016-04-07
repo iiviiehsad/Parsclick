@@ -1,5 +1,4 @@
-<?php
-require_once('../includes/initialize.php');
+<?php require_once('../includes/initialize.php');
 $token = $_GET['token'];
 $user  = Member::find_by_token($token);
 if( ! $user || ! $token) {

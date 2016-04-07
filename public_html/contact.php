@@ -44,8 +44,8 @@ if(isset($_POST['submit'])) {
 				$errors = "لطفا ثابت کنید ربات نیستید!   کد خطا: {$code}";
 			}
 		}
-	} // end: elseif(isset($_POST['g-recaptcha-response']))
-} // end: if(isset($_POST["submit"]))
+	}
+}
 ?>
 <?php include_layout_template('header.php'); ?>
 <?php include '_/components/php/nav.php'; ?>
