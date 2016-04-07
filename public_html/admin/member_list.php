@@ -79,7 +79,7 @@ echo output_message($message);
 							</td>
 							<td>
 								<a class="btn btn-small btn-primary arial" href="edit_member.php?id=<?php echo urlencode($member->id); ?>" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
-								<a class="btn btn-small btn-danger arial" href="delete_member.php?id=<?php echo urlencode($member->id); ?>" onclick="return confirm('آیا مطمئن به حذف این عضو هستید؟');" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
+								<a class="btn btn-small btn-danger arial confirmation" href="delete_member.php?id=<?php echo urlencode($member->id); ?>" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
 							</td>
 						</tr>
 					<?php endforeach; ?>

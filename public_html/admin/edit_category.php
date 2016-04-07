@@ -72,7 +72,7 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit">&nbsp;</label>
 						<div class="controls">
 							<a class="btn btn-danger" href="admin_courses.php?category=<?php echo urlencode($current_category->id); ?>">لغو</a>
-							<a class="btn btn-info" href="delete_category.php?category=<?php echo urlencode($current_category->id); ?>" onclick="return confirm('آیا مطمئن هستید؟');">
+							<a class="btn btn-info confirmation" href="delete_category.php?category=<?php echo urlencode($current_category->id); ?>">
 								حذف
 							</a>
 							<button class="btn btn-success" name="submit" id="submit" type="submit">

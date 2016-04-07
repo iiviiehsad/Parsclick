@@ -62,7 +62,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 							<span class="label label-as-badge label-success"><?php echo htmlentities($_member->first_name); ?></span>
 							<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
 							<?php if($comment->member_id === $session->id): ?>
-								<a href="member-delete-comment?id=<?php echo urlencode($comment->id); ?>" class="label label-as-badge label-danger" onclick="return confirm('آیا مطمئن هستید؟')">
+								<a href="member-delete-comment?id=<?php echo urlencode($comment->id); ?>" class="label label-as-badge label-danger confirmation">
 									<i class="fa fa-times"></i>
 								</a>
 							<?php endif; ?>

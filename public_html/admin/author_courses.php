@@ -61,7 +61,7 @@ echo output_message($message, $errors);
 								<a class="btn btn-primary btn-small" href="../files/<?php echo urlencode($file->name); ?>">
 									<?php echo htmlentities($file->description); ?>
 								</a>
-								<a class="btn btn-danger btn-small" href="author_delete_file.php?id=<?php echo urlencode($file->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید این فایل حذف شود؟')">
+								<a class="btn btn-danger btn-small confirmation" href="author_delete_file.php?id=<?php echo urlencode($file->id); ?>">
 									<i class="fa fa-trash fa-lg"></i>
 								</a>
 							</div>

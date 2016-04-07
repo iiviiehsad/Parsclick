@@ -54,7 +54,7 @@ echo output_message($message);
 									<a class="btn btn-primary btn-small" href="../files/<?php echo urlencode($file->name); ?>">
 										<?php echo htmlentities($file->name); ?>
 									</a>
-									<a class="btn btn-danger btn-small" href="delete_file.php?id=<?php echo urlencode($file->id); ?>" onclick="return confirm('آیا مطمئن به حذف این فایل هستید؟')">
+									<a class="btn btn-danger btn-small confirmation" href="delete_file.php?id=<?php echo urlencode($file->id); ?>">
 										<i class="fa fa-trash fa-lg"></i>
 									</a>
 								</div>

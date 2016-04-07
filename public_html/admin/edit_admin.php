@@ -81,7 +81,7 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<a class="btn btn-danger" href="admin_list.php">لغو</a>
 							<?php if($yourself != $admin): ?>
-								<a class="btn btn-info" href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید مدیر  <?php echo htmlentities(ucwords(strtolower($admin->full_name()))); ?> را حذف کنید؟');">
+								<a class="btn btn-info confirmation" href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>">
 									حذف
 								</a>
 							<?php endif; ?>

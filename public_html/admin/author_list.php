@@ -41,7 +41,7 @@ echo output_message($message);
 								</td>
 								<td>
 									<a class="btn btn-small btn-primary arial" href="edit_author.php?id=<?php echo urlencode($author->id); ?>" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
-									<a class="btn btn-small btn-danger arial" href="delete_author.php?id=<?php echo urlencode($author->id); ?>" title="Delete" onclick="return confirm('آیا مطمئن به حذف این نویسنده هستید؟');"><span class="glyphicon glyphicon-trash"></span></a>
+									<a class="btn btn-small btn-danger arial confirmation" href="delete_author.php?id=<?php echo urlencode($author->id); ?>" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
 								</td>
 							</tr>
 						<?php endforeach; ?>

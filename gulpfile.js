@@ -11,6 +11,7 @@ elixir(function(mix) {
 		.styles([
 			'app.css',
 			'font-awesome.min.css',
+			'sweetalert.css',
 			'prism.css'
 		])
 		.scripts([
@@ -30,6 +31,7 @@ elixir(function(mix) {
 			'prism.js',
 			'wow.min.js',
 			'youtubeplayer.js',
+		    'sweetalert.js',
 			// 'jquery.countdown.min.js',
 			'_myscript.js'
 		])

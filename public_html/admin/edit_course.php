@@ -113,7 +113,7 @@ echo output_message($message, $errors);
 					<section class="row">
 						<div class="controls col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
 							<a class="btn btn-danger" href="admin_courses.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>">لغو</a>
-							<a class="btn btn-info" href="delete_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" onclick="return confirm('آیا مطمئن هستید؟')">
+							<a class="btn btn-info confirmation" href="delete_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>">
 								حذف
 							</a>
 							<button class="btn btn-success" name="submit" id="submit" type="submit">

@@ -101,7 +101,7 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit">&nbsp;</label>
 						<div class="controls">
 							<a class="btn btn-danger" href="author_list.php">لغو</a>
-							<a class="btn btn-info" href="delete_author.php?id=<?php echo urlencode($author->id); ?>" onclick="return confirm('Are you sure you want to delete <?php echo htmlentities(ucwords(strtolower($author->full_name()))); ?>?');">
+							<a class="btn btn-info confirmation" href="delete_author.php?id=<?php echo urlencode($author->id); ?>">
 								حذف
 							</a>
 							<button class="btn btn-success" name="submit" id="submit" type="submit">
@@ -121,7 +121,7 @@ echo output_message($message, $errors);
 			<?php else: ?>
 				<img class="img-thumbnail center" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 				<div class="center">
-					<a class="btn btn-default btn-small" href="remove_author_photo.php?id=<?php echo urlencode($author->id); ?>" onclick="return confirm('آیا مطمئن به حذف کردن عکس پروفایل این نویسنده هستید؟')">
+					<a class="btn btn-default btn-small confirmation" href="remove_author_photo.php?id=<?php echo urlencode($author->id); ?>">
 						حذف آواتار
 					</a>
 				</div>

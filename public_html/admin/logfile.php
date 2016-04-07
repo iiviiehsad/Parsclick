@@ -37,7 +37,7 @@ echo output_message($message);
 		<aside class="register">
 			<h2><i class="fa fa-trash-o"></i> پاک کردن فایل ثبت</h2>
 			<p>لطفا اگر تمایل به پاک کردن اطلاعات فایل ثبت دارید روی دگمه ی زیر کلیک کنید.</p>
-			<a class="btn btn-danger" href="logfile.php?clear=true" onclick="return confirm('آیا مطمئن هستید؟')"><i class="fa fa-trash"></i>
+			<a class="btn btn-danger confirmation" href="logfile.php?clear=true"><i class="fa fa-trash"></i>
 				فایل ثبت را پاک کن </a>
 		</aside>
 	</section><!-- sidebar -->

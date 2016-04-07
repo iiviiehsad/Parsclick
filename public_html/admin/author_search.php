@@ -36,7 +36,7 @@ echo output_message($message);
 									<td><?php echo htmlentities(strtolower($author->email)); ?></td>
 									<td>
 										<a class="btn btn-small btn-primary arial" href="edit_author.php?id=<?php echo urlencode($author->id); ?>" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
-										<a class="btn btn-small btn-danger arial" href="delete_author.php?id=<?php echo urlencode($author->id); ?>" onclick="return confirm('آیا مطمئن هستید که می خواهید این نویسنده را حذف کنید؟');" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
+										<a class="btn btn-small btn-danger arial confirmation" href="delete_author.php?id=<?php echo urlencode($author->id); ?>" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
 									</td>
 								</tr>
 							<?php endforeach; ?>

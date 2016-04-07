@@ -131,7 +131,7 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit">&nbsp;</label>
 						<div class="controls">
 							<a class="btn btn-danger" href="member_list.php">لغو</a>
-							<a class="btn btn-info" href="delete_member.php?id=<?php echo urlencode($member->id); ?>" onclick="return confirm('آیا مطمئن به پاک کردن <?php echo htmlentities(ucwords(strtolower($member->full_name()))); ?> هستید؟');">
+							<a class="btn btn-info confirmation" href="delete_member.php?id=<?php echo urlencode($member->id); ?>">
 								حذف
 							</a>
 							<button class="btn btn-success" name="submit" id="submit" type="submit">

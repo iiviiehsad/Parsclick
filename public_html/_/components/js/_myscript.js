@@ -146,6 +146,28 @@ $(function() {
 	// this.hash.slice(1) + ']'); if(target.length) { $('html,body').animate({scrollTop : target.offset().top}, 1000);
 	// return false; } } });
 
+	$('.confirmation').click(function(e) {
+		var href = $(this).attr('href');
+
+		swal({
+				title              : "آیا مطمئن هستید؟",
+				type               : "warning",
+				showCancelButton   : true,
+				confirmButtonColor : "#E74C3C",
+				confirmButtonText  : "بله",
+				cancelButtonText   : "خیر",
+				closeOnConfirm     : true,
+				closeOnCancel      : true
+			},
+			function(isConfirm) {
+				if(isConfirm) {
+					window.location.href = href;
+				}
+			});
+
+		return false;
+	});
+
 }); //jQuery IS LOADED -----------------------------------------------------------------------------------------------
 
 /**
@@ -303,6 +325,15 @@ function checkEmail() {
 		return true;
 	}
 }
+
+// function vex_confirm(text) {
+// 	vex.dialog.confirm({
+// 		message: text,
+// 		callback: function(value) {
+// 			return console.log(value);
+// 		}
+// 	});
+// }
 
 /**
  * Initializing WOW animation:
