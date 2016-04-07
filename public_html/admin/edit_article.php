@@ -1,19 +1,18 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_article();
-$errors = "";
+$errors = '';
 if( ! $current_article || ! $current_subject) {
-	redirect_to("author_articles.php");
+	redirect_to('author_articles.php');
 }
 if(isset($_POST['submit'])) {
 	global $database;
 	$article    = Article::find_by_id($current_article->id, FALSE);
-	$name       = ucfirst($_POST["article_name"]);
-	$subject_id = (int)$_POST["subject_id"];
-	$position   = (int)$_POST["position"];
-	$visible    = (int)$_POST["visible"];
+	$name       = ucfirst($_POST['article_name']);
+	$subject_id = (int) $_POST['subject_id'];
+	$position   = (int) $_POST['position'];
+	$visible    = (int) $_POST['visible'];
 	$content    = $_POST["content"];
 	$sql        = "UPDATE articles SET ";
 	$sql .= "subject_id = " . $database->escape_value($subject_id) . ", ";
@@ -25,15 +24,15 @@ if(isset($_POST['submit'])) {
 	$database->query($sql);
 	$result = $database->affected_rows();
 	if($result == 1) {
-		$session->message("مقاله بروزرسانی شد.");
+		$session->message('مقاله بروزرسانی شد.');
 		redirect_to("admin_articles.php?subject=" . $current_subject->id . "&article=" . $current_article->id);
 	} else {
-		$errors = "مقاله بروزرسانی نشد!";
+		$errors = 'مقاله بروزرسانی نشد!';
 	}
 } else {
 }
-include_layout_template("admin_header.php");
-include("../_/components/php/admin_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/admin_nav.php');
 echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
@@ -90,11 +89,11 @@ echo output_message($message, $errors);
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" value="0"
-										<?php if($current_article->visible == 0) echo "checked"; ?> > خیر
+										<?php if($current_article->visible == 0) echo 'checked'; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" value="1"
-										<?php if($current_article->visible == 1) echo "checked"; ?> > بله
+										<?php if($current_article->visible == 1) echo 'checked'; ?> > بله
 							</label>
 						</div>
 					</section>
@@ -127,4 +126,4 @@ echo output_message($message, $errors);
 			<?php echo admin_articles($current_subject, $current_article); ?>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

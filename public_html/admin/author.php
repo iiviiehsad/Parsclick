@@ -1,5 +1,4 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
@@ -8,8 +7,8 @@ $articles_under_edit = Article::find_articles_for_author($author->id, FALSE);
 $articles_for_author = Article::find_articles_for_author($author->id, TRUE);
 $courses_under_edit  = Course::find_courses_for_author($author->id, FALSE);
 $courses_for_author  = Course::find_courses_for_author($author->id, TRUE);
-include_layout_template("admin_header.php");
-include("../_/components/php/author_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/author_nav.php');
 echo output_message($message);
 ?>
 <div class="jumbotron hidden-sm wow fadeIn author-jumbotron">
@@ -19,7 +18,8 @@ echo output_message($message);
 		<img class="img-circle pull-left" height="150" width="150" src="../images/misc/default-gravatar-pic.png" alt="No Profile Picture">
 	<?php endif; ?>
 	<h1> نویسنده: <?php echo $author->full_name(); ?></h1>
-	<p class="bright">به عنوان نویسنده شما قادر به درست کردن مقاله و درس هستید. شما همینطور قادر به تغییر مقالات و دروس خود هستید.</p>
+	<p class="bright">به عنوان نویسنده شما قادر به درست کردن مقاله و درس هستید. شما همینطور قادر به تغییر مقالات و دروس
+	                  خود هستید.</p>
 	<p class="bright">برای تماس مستقیم با مدیر از این آدرس استفاده کنید (روی آن کلیک کنید):
 		<a class="lead" href="mailto:info@parsclick.net" data-toggle="tooltip" data-placement="left" title="ایمیل به ما" target="_blank">
 			<kbd>info@parsclick.net</kbd>
@@ -135,4 +135,4 @@ echo output_message($message);
 		</div>
 	</aside>
 </section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

@@ -1,9 +1,8 @@
-<?php
-require_once("../../includes/initialize.php");
-require_once("../../includes/vendor/autoload.php");
+<?php require_once('../../includes/initialize.php');
+require_once('../../includes/vendor/autoload.php');
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
-$title   = "پارس کلیک - ایمیل به نویسندگان";
+$title   = 'پارس کلیک - ایمیل به نویسندگان';
 $errors  = '';
 $message = '';
 if(isset($_POST['submit'])) {
@@ -20,23 +19,22 @@ if(isset($_POST['submit'])) {
 	$mail->FromName   = DOMAIN;
 	$mail->From       = EMAILUSER;
 	$mail->Subject    = $_POST['subject'];
-	$mail->addAddress("do-not-reply@parsclick.net", "Parsclick Authors");
+	$mail->addAddress('do-not-reply@parsclick.net', 'Parsclick Authors');
 	foreach(Author::find_all() as $authors) {
 		$mail->addBCC($authors->email, $authors->full_name());
 	}
-	$mail->Body = email("نویسندگان محترم پارس کلیک", DOMAIN, nl2br($_POST['important']), nl2br($_POST['message']));
-
+	$mail->Body = email('نویسندگان محترم پارس کلیک', DOMAIN, nl2br($_POST['important']), nl2br($_POST['message']));
 	$result = $mail->send();
 	if($result) {
-		$message = "پیام به همه نویسندگان فرستاده شد.";
+		$message = 'پیام به همه نویسندگان فرستاده شد.';
 	} else {
-		$errors = "خطا در فرستادن پیام!";
+		$errors = 'خطا در فرستادن پیام!';
 	}
 } else {
 }
 ?>
-<?php include_layout_template("admin_header.php"); ?>
-<?php include "../_/components/php/admin_nav.php"; ?>
+<?php include_layout_template('admin_header.php'); ?>
+<?php include '../_/components/php/admin_nav.php'; ?>
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
@@ -73,4 +71,4 @@ if(isset($_POST['submit'])) {
 			</div>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

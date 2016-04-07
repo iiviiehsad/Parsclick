@@ -1,4 +1,3 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $session->logout();
-redirect_to("/admin");
+redirect_to('/admin');

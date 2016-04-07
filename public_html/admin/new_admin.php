@@ -1,27 +1,25 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 if(isset($_POST['submit'])) {
 	$admin             = new Admin();
-	$admin->id         = (int)'';
-	$admin->username   = trim(strtolower($_POST["username"]));
-	$admin->password   = $admin->password_encrypt($_POST["password"]);
-	$admin->first_name = trim(ucwords(strtolower($_POST["first_name"])));
-	$admin->last_name  = trim(ucwords(strtolower($_POST["last_name"])));
-	$admin->email      = trim(strtolower($_POST["email"]));
+	$admin->id         = (int) '';
+	$admin->username   = trim(strtolower($_POST['username']));
+	$admin->password   = $admin->password_encrypt($_POST['password']);
+	$admin->first_name = trim(ucwords(strtolower($_POST['first_name'])));
+	$admin->last_name  = trim(ucwords(strtolower($_POST['last_name'])));
+	$admin->email      = trim(strtolower($_POST['email']));
 	$result            = $admin->create();
 	if($result) { // Success
-		$session->message("مدیر با اسم کاربری " . strtoupper($admin->username) . " ساخته شد.");
-		redirect_to("admin_list.php");
+		$session->message('مدیر با اسم کاربری ' . strtoupper($admin->username) . ' ساخته شد.');
+		redirect_to('admin_list.php');
 	} else { // Failure
-		$session->message("مدیر ساخته نشد!");
-		redirect_to("admin_list.php");
+		$session->message('مدیر ساخته نشد!');
+		redirect_to('admin_list.php');
 	}
-} else {
 }
-include_layout_template("admin_header.php");
-include("../_/components/php/admin_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/admin_nav.php');
 echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
@@ -84,4 +82,4 @@ echo output_message($message);
 		<aside>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

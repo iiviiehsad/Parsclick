@@ -1,43 +1,37 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 find_selected_course();
 if( ! $current_category) {
-	redirect_to("author_courses.php");
+	redirect_to('author_courses.php');
 }
-$errors = "";
+$errors = '';
 if(isset($_POST['submit'])) {
 	$author                  = Author::find_by_id($session->id);
 	$course                  = new Course();
-	$course->id              = (int)'';
+	$course->id              = (int) '';
 	$course->category_id     = $current_category->id; //$_GET['category'];
 	$course->author_id       = $author->id;
-	$course->name            = $_POST["course_name"];
-	$course->youtubePlaylist = $_POST["youtubePlaylist"];
-	$course->file_link       = $_POST["file_link"];
-	$course->position        = (int)$_POST["position"];
-	if($author->id == 1) {
-		$course->visible = (int)$_POST["visible"];
-	} else {
-		$course->visible = 0;
-	}
-	$course->content    = $_POST["description"];
-	$course->created_at = strftime("%Y-%m-%d %H:%M:%S", time());
-	$result             = $course->create();
+	$course->name            = $_POST['course_name'];
+	$course->youtubePlaylist = $_POST['youtubePlaylist'];
+	$course->file_link       = $_POST['file_link'];
+	$course->position        = (int) $_POST['position'];
+	$course->visible         = $author->id == 1 ? (int) $_POST['visible'] : 0;
+	$course->content         = $_POST['description'];
+	$course->created_at      = strftime("%Y-%m-%d %H:%M:%S", time());
+	$result                  = $course->create();
 	if($result) {
 		send_email('info@parsclick.net', 'New Course!', 'New Course Added');
-		$session->message("درس ساخته شد. درس قبل از نشر باید توسط مدیران بازبینی شود.");
-		redirect_to("author_courses.php");
+		$session->message('درس ساخته شد. درس قبل از نشر باید توسط مدیران بازبینی شود.');
+		redirect_to('author_courses.php');
 	} else {
-		$errors = "درس ساخته نشد!";
+		$errors = 'درس ساخته نشد!';
 	}
-} else {
 }
-include_layout_template("admin_header.php");
-include("../_/components/php/author_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/author_nav.php');
 echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
@@ -79,8 +73,7 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position">
 								<?php $page_count = Course::num_courses_for_category($current_category->id);
-								echo "<option selected value=" . ++$page_count . ">" . $page_count . "</option>";
-								?>
+								echo '<option selected value=' . ++$page_count . '>' . $page_count . '</option>'; ?>
 							</select>
 						</div>
 					</section>
@@ -123,4 +116,4 @@ echo output_message($message, $errors);
 			<?php echo author_courses($current_category, $current_course); ?>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

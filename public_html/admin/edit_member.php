@@ -1,34 +1,33 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
-$member   = Member::find_by_id($_GET["id"]);
+$member   = Member::find_by_id($_GET['id']);
 if( ! $member) {
-	$session->message("Member could not be found!");
-	redirect_to("manage_members.php");
+	$session->message('عضو پیدا نشد!');
+	redirect_to('manage_members.php');
 }
-$errors = "";
+$errors = '';
 if(isset($_POST['submit'])) {
-	$member->id         = (int)$_GET["id"];
-	$member->username   = strtolower($_POST["username"]);
-	$member->first_name = ucwords(strtolower($_POST["first_name"]));
-	$member->last_name  = ucwords(strtolower($_POST["last_name"]));
-	$member->gender     = ucfirst($_POST["gender"]);
-	$member->address    = ucwords(strtolower($_POST["address"]));
-	$member->city       = ucwords(strtolower($_POST["city"]));
-	$member->email      = strtolower($_POST["email"]);
-	$member->status     = (int)$_POST["status"];
+	$member->id         = (int) $_GET['id'];
+	$member->username   = strtolower($_POST['username']);
+	$member->first_name = ucwords(strtolower($_POST['first_name']));
+	$member->last_name  = ucwords(strtolower($_POST['last_name']));
+	$member->gender     = ucfirst($_POST['gender']);
+	$member->address    = ucwords(strtolower($_POST['address']));
+	$member->city       = ucwords(strtolower($_POST['city']));
+	$member->email      = strtolower($_POST['email']);
+	$member->status     = (int) $_POST['status'];
 	$result             = $member->save();
 	if($result) { // Success
-		$session->message("عضویت بروزرسانی شد.");
-		redirect_to("member_list.php");
+		$session->message('عضویت بروزرسانی شد.');
+		redirect_to('member_list.php');
 	} else { // Failure
-		$errors = "عضویت بروزرسانی نشد.";
+		$errors = 'عضویت بروزرسانی نشد.';
 	}
 } else {
 }
-include_layout_template("admin_header.php");
-include("../_/components/php/admin_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/admin_nav.php');
 echo output_message($message, $errors);
 ?>
 	<section class="main col-xs-12 col-sm-12 col-md-9 col-lg-9">
@@ -74,10 +73,10 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="gender" id="gender">
 								<?php echo htmlentities($member->gender); ?>
-								<?php if($member->gender === "مرد"): ?>
+								<?php if($member->gender === 'مرد'): ?>
 									<option value="مرد">مرد</option>
 									<option value="زن">زن</option>
-								<?php elseif($member->gender === "زن"): ?>
+								<?php elseif($member->gender === 'زن'): ?>
 									<option value="زن">زن</option>
 									<option value="مرد">مرد</option>
 								<?php else: ?>
@@ -115,15 +114,15 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="status" id="inlineRadioNo" value="0"
-										<?php if($member->status == 0) echo "checked"; ?> /> منتظر دریافت ایمیل
+										<?php if($member->status == 0) echo 'checked'; ?> /> منتظر دریافت ایمیل
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="status" id="inlineRadioYes" value="1"
-										<?php if($member->status == 1) echo "checked"; ?> /> بله
+										<?php if($member->status == 1) echo 'checked'; ?> /> بله
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="status" id="inlineRadioYes" value="2"
-										<?php if($member->status == 2) echo "checked"; ?> /> خیر
+										<?php if($member->status == 2) echo 'checked'; ?> /> خیر
 							</label>
 						</div>
 						<!--buttons-->
@@ -147,7 +146,7 @@ echo output_message($message, $errors);
 	<section class="sidebar col-xs-12 col-sm-12 col-md-3 col-lg-3">
 		<aside>
 			<h2>آواتار</h2>
-			<img class="img-circle center" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=300&d=<?php echo 'http://' . DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->email; ?>">
+			<img class="img-circle center" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=300&d=<?php echo '//' . DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->email; ?>">
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

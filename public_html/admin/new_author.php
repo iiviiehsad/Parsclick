@@ -1,29 +1,27 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 if(isset($_POST['submit'])) {
 	$author             = new Author();
-	$author->id         = (int)"";
-	$author->username   = trim(strtolower($_POST["username"]));
-	$author->password   = $author->password_encrypt($_POST["password"]);
-	$author->first_name = trim(ucwords(strtolower($_POST["first_name"])));
-	$author->last_name  = trim(ucwords(strtolower($_POST["last_name"])));
-	$author->email      = trim(strtolower($_POST["email"]));
-	$author->status     = (int)$_POST["status"];
+	$author->id         = (int) '';
+	$author->username   = trim(strtolower($_POST['username']));
+	$author->password   = $author->password_encrypt($_POST['password']);
+	$author->first_name = trim(ucwords(strtolower($_POST['first_name'])));
+	$author->last_name  = trim(ucwords(strtolower($_POST['last_name'])));
+	$author->email      = trim(strtolower($_POST['email']));
+	$author->status     = (int) $_POST['status'];
 	$author->token      = md5(uniqid(rand()));
 	$result             = $author->create();
 	if($result && $author->email_confirmation_details($author->username)) { // Success
-		$session->message("نویسنده با اسم کاربری " . $author->username . " ساخته شد.");
-		redirect_to("author_list.php");
+		$session->message('نویسنده با اسم کاربری ' . $author->username . ' ساخته شد.');
+		redirect_to('author_list.php');
 	} else { // Failure
-		$session->message("نویسنده ساخته نشد!");
-		redirect_to("author_list.php");
+		$session->message('نویسنده ساخته نشد!');
+		redirect_to('author_list.php');
 	}
-} else {
 }
-include_layout_template("admin_header.php");
-include("../_/components/php/admin_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/admin_nav.php');
 echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
@@ -100,4 +98,4 @@ echo output_message($message); ?>
 		<aside>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

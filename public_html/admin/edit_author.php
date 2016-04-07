@@ -1,32 +1,31 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
-$author   = Author::find_by_id($_GET["id"]);
+$author   = Author::find_by_id($_GET['id']);
 $errors   = "";
 if( ! $author) {
-	$session->message("نویسنده پیدا نشد!");
-	redirect_to("author_list.php");
+	$session->message('نویسنده پیدا نشد!');
+	redirect_to('author_list.php');
 }
 if(isset($_POST['submit'])) {
-	$author->id            = (int)$_GET["id"];
-	$author->username      = strtolower($_POST["username"]);
-	$author->first_name    = ucwords(strtolower($_POST["first_name"]));
-	$author->last_name     = ucwords(strtolower($_POST["last_name"]));
-	$author->email         = strtolower($_POST["email"]);
-	$author->parsclickmail = strtolower($_POST["parsclickmail"]);
-	$author->status        = (int)$_POST["status"];
+	$author->id            = (int) $_GET['id'];
+	$author->username      = strtolower($_POST['username']);
+	$author->first_name    = ucwords(strtolower($_POST['first_name']));
+	$author->last_name     = ucwords(strtolower($_POST['last_name']));
+	$author->email         = strtolower($_POST['email']);
+	$author->parsclickmail = strtolower($_POST['parsclickmail']);
+	$author->status        = (int) $_POST['status'];
 	$result                = $author->save();
 	if($result) { // Success
-		$session->message("نویسنده بروزرسانی شد.");
-		redirect_to("author_list.php");
+		$session->message('نویسنده بروزرسانی شد.');
+		redirect_to('author_list.php');
 	} else { // Failure
-		$errors = "نتوانستیم نویسنده را بروزرسانی کنیم یا اینکه شما چیزی عوض نکردید.";
+		$errors = 'نتوانستیم نویسنده را بروزرسانی کنیم یا اینکه شما چیزی عوض نکردید.';
 	}
 } else {
 }
-include_layout_template("admin_header.php");
-include("../_/components/php/admin_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/admin_nav.php');
 echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-9 col-lg-9">
@@ -84,13 +83,16 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="status">فعال</label>
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="status" id="inlineRadioNo" value="0" <?php if($author->status == 0): echo "checked"; endif; ?> /> خیر
+								<input type="radio" name="status" id="inlineRadioNo" value="0" <?php if($author->status == 0): echo 'checked'; endif; ?> />
+								خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
-								<input type="radio" name="status" id="inlineRadioYes" value="1" <?php if($author->status == 1): echo "checked"; endif; ?> /> بله
+								<input type="radio" name="status" id="inlineRadioYes" value="1" <?php if($author->status == 1): echo 'checked'; endif; ?> />
+								بله
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
-								<input type="radio" name="status" id="inlineRadioYes" value="2" <?php if($author->status == 2): echo "checked"; endif; ?> /> مسدود
+								<input type="radio" name="status" id="inlineRadioYes" value="2" <?php if($author->status == 2): echo 'checked'; endif; ?> />
+								مسدود
 							</label>
 						</div>
 					</section>
@@ -114,16 +116,16 @@ echo output_message($message, $errors);
 	<section class="sidebar col-sm-12 col-md-3 col-lg-3">
 		<aside>
 			<h2>آواتار</h2>
-			<?php if(empty($author->photo)) { ?>
+			<?php if(empty($author->photo)): ?>
 				<p class="text-muted center">عکس پروفایل موجود نیست.</p>
-			<?php } else { ?>
+			<?php else: ?>
 				<img class="img-thumbnail center" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 				<div class="center">
 					<a class="btn btn-default btn-small" href="remove_author_photo.php?id=<?php echo urlencode($author->id); ?>" onclick="return confirm('آیا مطمئن به حذف کردن عکس پروفایل این نویسنده هستید؟')">
 						حذف آواتار
 					</a>
 				</div>
-			<?php } ?>
+			<?php endif; ?>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

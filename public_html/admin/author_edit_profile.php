@@ -1,5 +1,4 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
@@ -11,49 +10,49 @@ $allowed_extensions = ['png', 'gif', 'jpg', 'jpeg', 'PNG', 'GIF', 'JPG', 'JPEG']
 if(isset($_POST['submit'])) {
 	$author->id = $session->id;
 	//$author->username = trim($_POST["username"]);
-	if( ! empty($_POST["password"])) {
-		$author->password = $author->password_encrypt(trim($_POST["password"]));
+	if( ! empty($_POST['password'])) {
+		$author->password = $author->password_encrypt(trim($_POST['password']));
 	}
-	$author->first_name = trim($_POST["first_name"]);
-	$author->last_name  = trim($_POST["last_name"]);
-	$author->email      = trim($_POST["email"]);
-	if($_FILES["photo"]['name']) {
-		$file_extension = file_extension($_FILES["photo"]['name']);
-		if($_FILES["photo"]['error'] > 0) {
-			$errors = "خطا: " . file_upload_error($_FILES["photo"]['error']);
-		} elseif( ! is_uploaded_file($_FILES["photo"]["tmp_name"])) {
-			$errors = "مرجع فایل شامل فایلی که بتازگی آپلود کردید نیست!";
-		} elseif($_FILES["photo"]["size"] > $MAX_FILE_SIZE) {
-			$errors = "اندازه فایل بزرگ است!";
-		} elseif( ! in_array($_FILES["photo"]["type"], $allowed_mime_types)) {
-			$errors = "فایل عکس نیست!";
+	$author->first_name = trim($_POST['first_name']);
+	$author->last_name  = trim($_POST['last_name']);
+	$author->email      = trim($_POST['email']);
+	if($_FILES['photo']['name']) {
+		$file_extension = file_extension($_FILES['photo']['name']);
+		if($_FILES['photo']['error'] > 0) {
+			$errors = 'خطا: ' . file_upload_error($_FILES['photo']['error']);
+		} elseif( ! is_uploaded_file($_FILES['photo']['tmp_name'])) {
+			$errors = 'مرجع فایل شامل فایلی که بتازگی آپلود کردید نیست!';
+		} elseif($_FILES['photo']['size'] > $MAX_FILE_SIZE) {
+			$errors = 'اندازه فایل بزرگ است!';
+		} elseif( ! in_array($_FILES['photo']['type'], $allowed_mime_types)) {
+			$errors = 'فایل عکس نیست!';
 		} elseif( ! in_array($file_extension, $allowed_extensions)) {
-			$errors = "فایل عکس نیست!";
-		} elseif(file_contains_php($_FILES["photo"]["tmp_name"])) {
-			$errors = "فایل دارای پی اچ پی است!";
+			$errors = 'فایل عکس نیست!';
+		} elseif(file_contains_php($_FILES['photo']['tmp_name'])) {
+			$errors = 'فایل دارای پی اچ پی است!';
 		} else {
-			$author->photo = file_get_contents($_FILES["photo"]["tmp_name"]);
+			$author->photo = file_get_contents($_FILES['photo']['tmp_name']);
 			$result        = $author->save();
 			if($result) {
-				$session->message("پروفایل بروزرسانی شد.");
-				redirect_to("author_profile.php");
+				$session->message('پروفایل بروزرسانی شد.');
+				redirect_to('author_profile.php');
 			} else {
-				$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
+				$errors = 'بروزرسانی پروفایل موفقیت آمیز نبود!';
 			}
 		}
 	} else {
 		$result = $author->save();
 		if($result) {
-			$session->message("پروفایل بروزرسانی شد.");
-			redirect_to("author_profile.php");
+			$session->message('پروفایل بروزرسانی شد.');
+			redirect_to('author_profile.php');
 		} else {
-			$errors = "بروزرسانی پروفایل موفقیت آمیز نبود!";
+			$errors = 'بروزرسانی پروفایل موفقیت آمیز نبود!';
 		}
 	}
 } else {
 } // end: if (isset($_POST['submit']))
-include_layout_template("admin_header.php");
-include("../_/components/php/author_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/author_nav.php');
 echo output_message($message, $errors);
 ?>
 <section class="main col-sm-12 col-md-9 col-lg-9">
@@ -138,4 +137,4 @@ echo output_message($message, $errors);
 		<?php endif; ?>
 	</aside>
 </section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

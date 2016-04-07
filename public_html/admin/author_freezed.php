@@ -1,40 +1,38 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
-if($author->status == 2) {
-	redirect_to("deactivated.php");
-}
-$errors = "";
-if(isset($_POST["resend_email"])) {
+if($author->status == 2) redirect_to('deactivated.php');
+$errors = '';
+if(isset($_POST['resend_email'])) {
 	$author->create_reset_token($author->username);
 	$result = $author->email_confirmation_details($author->username);
 	if($result) {
-		$session->message("ایمیل برای فعال کردن عضویت دوباره فرستاده شد. لطفا ایمیل خود را چک کنید و از اینجا خارج شوید.");
-		redirect_to("author_freezed.php");
+		$session->message('ایمیل برای فعال کردن عضویت دوباره فرستاده شد. لطفا ایمیل خود را چک کنید و از اینجا خارج شوید.');
+		redirect_to('author_freezed.php');
 	} else {
-		$errors = "درخواست معتبر نیست!";
+		$errors = 'درخواست معتبر نیست!';
 	}
-} elseif(isset($_POST["update_email"])) {
+} elseif(isset($_POST['update_email'])) {
 	if(request_is_post() && $session->request_is_same_domain()) {
 		if($session->csrf_token_is_valid() && $session->csrf_token_is_recent()) {
-			$author->email = trim($_POST["email"]);
+			$author->email = trim($_POST['email']);
 			$result        = $author->save();
 			if($result) {
-				$session->message("شما ایمیل خود را بروز رساندید. حالا روی دوباره ایمیل را بفرست کلیک کنید.");
-				redirect_to("author_freezed.php");
+				$session->message('شما ایمیل خود را بروز رساندید. حالا روی دوباره ایمیل را بفرست کلیک کنید.');
+				redirect_to('author_freezed.php');
 			} else {
-				$errors = "بروزرسانی ایمیل موفقیت آمیز نبود!";
+				$errors = 'بروزرسانی ایمیل موفقیت آمیز نبود!';
 			}
 		} else {
-			$errors = "شناسه CSRF معتبر نیست!";
+			// $errors = "شناسه CSRF معتبر نیست!"
+			$session->die_on_csrf_token_failure();;
 		}
 	} else {
-		$errors = "درخواست معتبر نیست!";
+		$errors = 'درخواست معتبر نیست!';
 	}
 } else {
 }
-include_layout_template("admin_header.php");
+include_layout_template('admin_header.php');
 ?>
 	<style type="text/css">
 		.jumbotron {
@@ -85,4 +83,4 @@ include_layout_template("admin_header.php");
 		<small><span class="pull-left wow flash infinite" data-wow-duration="2s" id="confirmMessage"></span></small>
 		<br/>
 	</div>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

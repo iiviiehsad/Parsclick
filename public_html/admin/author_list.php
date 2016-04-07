@@ -1,10 +1,9 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
 $filename   = basename(__FILE__);
 $author_set = Author::find_all();
-include_layout_template("admin_header.php");
-include("../_/components/php/admin_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/admin_nav.php');
 echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
@@ -66,4 +65,4 @@ echo output_message($message);
 			   لطفا تا آنجاییکه ممکن هست سعی کنید تمام جزئیات را پر کنید.</p>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

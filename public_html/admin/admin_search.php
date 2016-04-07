@@ -1,16 +1,15 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
 $filename     = basename(__FILE__);
-$search_query = trim($_GET["q"]);
+$search_query = trim($_GET['q']);
 if(isset($search_query) && ! empty($search_query)) {
 	$admin_set = Admin::search($search_query);
 } else {
-	$session->message("شما چیزی جستجو نکردید!");
-	redirect_to("admin_list.php");
+	$session->message('شما چیزی جستجو نکردید!');
+	redirect_to('admin_list.php');
 }
-include_layout_template("admin_header.php");
-include("../_/components/php/admin_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/admin_nav.php');
 echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
@@ -68,4 +67,4 @@ echo output_message($message);
 			   لطفا تا آنجاییکه ممکن هست سعی کنید تمام جزئیات را پر کنید.</p>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

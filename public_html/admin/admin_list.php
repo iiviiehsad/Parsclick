@@ -1,15 +1,15 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
 $filename  = basename(__FILE__);
 $admin_set = Admin::find_all();
-include_layout_template("admin_header.php");
-include("../_/components/php/admin_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/admin_nav.php');
 echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<h2><i class="fa fa-users"></i> لیست مدیران ارشد<span class="badge arial"><?php echo count($admin_set); ?></span>
+			<h2><i class="fa fa-users"></i> لیست مدیران
+			                                ارشد<span class="badge arial"><?php echo convert(count($admin_set)); ?></span>
 			</h2>
 			<br/>
 			<div class="table-responsive">
@@ -63,4 +63,4 @@ echo output_message($message);
 			   لطفا تا آنجاییکه ممکن هست سعی کنید تمام جزئیات را پر کنید.</p>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

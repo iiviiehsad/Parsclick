@@ -12,5 +12,4 @@ if( ! $result) {
 }
 $session->logout();
 redirect_to('login');
-
 if(isset($database)) $database->close_connection();

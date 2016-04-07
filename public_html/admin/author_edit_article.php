@@ -1,36 +1,35 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 find_selected_article();
-$errors = "";
+$errors = '';
 if( ! $current_article || ! $current_subject) {
-	redirect_to("author_articles.php");
+	redirect_to('author_articles.php');
 	// check to see the article belong to this author in order to edit
 } elseif( ! check_ownership($current_article->author_id, $session->id)) {
-	$session->message("شما اجازه تغییر این مقاله را ندارید!");
-	redirect_to("author_articles.php");
+	$session->message('شما اجازه تغییر این مقاله را ندارید!');
+	redirect_to('author_articles.php');
 }
 if(isset($_POST['submit'])) {
 	$current_article->subject_id = $current_subject->id;
-	$current_article->name       = $_POST["article_name"];
-	$current_article->content    = $_POST["content"];
+	$current_article->name       = $_POST['article_name'];
+	$current_article->content    = $_POST['content'];
 	if($author->id == 1) {
-		$current_article->visible = $_POST["visible"];
+		$current_article->visible = $_POST['visible'];
 	}
 	$result = $current_article->save();
 	if($result) { // Success
-		$session->message("مقاله بروزرسانی شد.");
+		$session->message('مقاله بروزرسانی شد.');
 		redirect_to("author_articles.php?subject=" . $current_subject->id . "&article=" . $current_article->id);
 	} else { // Failure
-		$errors = "مقاله بروزرسانی نشد!";
+		$errors = 'مقاله بروزرسانی نشد!';
 	}
 } else {
 }
-include_layout_template("admin_header.php");
-include("../_/components/php/author_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/author_nav.php');
 echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
@@ -52,7 +51,7 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="position">محل</label>
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position" disabled>
-								<?php echo "<option value='" . $current_article->position . "' selected>" . $current_article->position . "</option>"; ?>
+								<?php echo '<option value="' . $current_article->position . '" selected>' . $current_article->position . '</option>'; ?>
 							</select>
 						</div>
 					</section>
@@ -62,11 +61,11 @@ echo output_message($message, $errors);
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled '; ?>
-										<?php if($current_article->visible == 0) echo "checked"; ?> > خیر
+										<?php if($current_article->visible == 0) echo 'checked'; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled '; ?>
-										<?php if($current_article->visible == 1) echo "checked"; ?> > بله
+										<?php if($current_article->visible == 1) echo 'checked'; ?> > بله
 							</label>
 						</div>
 					</section>
@@ -101,4 +100,4 @@ echo output_message($message, $errors);
 			<?php echo author_articles($current_subject, $current_article); ?>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

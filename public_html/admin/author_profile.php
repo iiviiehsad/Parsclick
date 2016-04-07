@@ -1,11 +1,10 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
-include_layout_template("admin_header.php");
-include("../_/components/php/author_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/author_nav.php');
 echo output_message($message);
 ?>
 <section class="main col-sm-12 col-md-9 col-lg-9">
@@ -25,7 +24,7 @@ echo output_message($message);
 			<dt>ایمیل اختصاصی</dt>
 			<dd class="arial"><?php echo ! empty($author->parsclickmail) ? htmlentities(strtolower($author->parsclickmail)) : "-"; ?></dd>
 			<dt>وضعیت:</dt>
-			<dd><?php echo htmlentities($author->status == 1) ? "فعال" : "معوق"; ?></dd>
+			<dd><?php echo htmlentities($author->status == 1) ? 'فعال' : 'معوق'; ?></dd>
 			<dt>&nbsp;</dt>
 			<dd><a href="author_edit_profile.php" class="btn btn-primary"> ویرایش</a></dd>
 		</dl>
@@ -43,4 +42,4 @@ echo output_message($message);
 		<?php endif; ?>
 	</aside>
 </section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

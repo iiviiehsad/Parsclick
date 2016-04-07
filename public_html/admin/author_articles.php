@@ -1,19 +1,18 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 $filename = basename(__FILE__);
 find_selected_article();
-include_layout_template("admin_header.php");
-include("../_/components/php/author_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/author_nav.php');
 echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<?php if($current_subject && $current_article): ?>
 				<?php
-				$page        = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
+				$page        = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
 				$per_page    = 10;
 				$total_count = ArticleComment::count_comments_for_article($current_article->id);
 				$pagination  = new pagination($page, $per_page, $total_count);
@@ -29,7 +28,7 @@ echo output_message($message);
 							<?php if(isset($current_article->author_id)): ?>
 								<?php $_author = Author::find_by_id($current_article->author_id); ?>
 								<i class="fa fa-user fa-lg"></i>&nbsp;
-								<?php echo "توسط: " . $_author->full_name();
+								<?php echo 'توسط: ' . $_author->full_name();
 								if( ! empty($_author->photo)): ?>
 									<img class="author-photo img-circle pull-left" alt="<?php echo $_author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($_author->photo); ?>"/>
 								<?php endif; ?>
@@ -55,7 +54,8 @@ echo output_message($message);
 							<h3>
 								<i class="fa fa-comments-o fa-2x"></i>
 								<?php if( ! empty($comments)): ?>
-									<span class="label label-as-badge"><?php echo convert(count($current_article->comments())); ?> نظر</span>
+									<span class="label label-as-badge"><?php echo convert(count($current_article->comments())); ?>
+										نظر</span>
 								<?php else: ?>
 									<span class="label label-as-badge">نظری وجود ندارد</span>
 								<?php endif; ?>
@@ -72,14 +72,14 @@ echo output_message($message);
 									</div>
 								</section>
 							<?php endforeach; ?>
-							<?php echo paginate($pagination, $page, "author_articles.php", "subject={$current_article->subject_id}", "article={$current_article->id}#comments"); ?>
+							<?php echo paginate($pagination, $page, 'author_articles.php', "subject={$current_article->subject_id}", "article={$current_article->id}#comments"); ?>
 						</article>
 						<?php //include('../_/components/php/article-disqus-comment.php'); ?>
 					</div>
 				</div>
 
 			<?php elseif($current_subject): ?>
-				<?php if( ! $current_subject->visible) redirect_to("author_articles.php"); ?>
+				<?php if( ! $current_subject->visible) redirect_to('author_articles.php'); ?>
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h2 class="panel-title">
@@ -96,16 +96,16 @@ echo output_message($message);
 							foreach($subject_articles as $article):
 								echo "<li class='list-group-item-text'>";
 								$safe_article_id = urlencode($article->id);
-								echo "<a href='author_articles.php?subject=" . $current_subject->id . "&article={$safe_article_id}'";
+								echo '<a href="author_articles.php?subject=' . $current_subject->id . '&article=' . $safe_article_id . '"';
 								if($article->comments()):
-									echo "data-toggle='tooltip' data-placement='left' title='";
-									echo count($article->comments()) . " دیدگاه";
-									echo "'";
+									echo 'data-toggle="tooltip" data-placement="left" title="';
+									echo convert(count($article->comments())) . ' دیدگاه';
+									echo '"';
 								endif;
-								echo ">";
+								echo '>';
 								echo htmlentities(ucwords($article->name));
-								echo "</a>";
-								echo "</li>";
+								echo '</a>';
+								echo '</li>';
 							endforeach; ?>
 						</ul>
 					</div>
@@ -140,12 +140,14 @@ echo output_message($message);
 							<li>دور کلمات انگلیسی از تگ <code>&lt;code&gt;</code> استفاده کنید</li>
 							<li>دور کد های چند خطه از تگ <code>&lt;pre&gt;</code> استفاده کنید</li>
 							<li>اگر لیست اضافه می کنید از تگ های زیر استفاده کنید:
-								<pre class="line-numbers"><code class="language-html">&lt;ul&gt;<br>&lt;li&gt;لیست اول&lt;/li&gt;&lt;li&gt;لیست دوم&lt;/li&gt;&lt;/ul&gt;</code></pre>
+								<pre class="line-numbers"><code class="language-html">&lt;ul&gt;<br>&lt;li&gt;لیست اول&lt;/li&gt;&lt;li&gt;لیست
+								                                                      دوم&lt;/li&gt;&lt;/ul&gt;</code></pre>
 							</li>
 							<li>تگ های <code>HTML</code> قابل رویت نیست یعنی وقتی مطلبی رو می سازید که می خواهید کدهای
 								<code>HTML</code> رو نشون بدید این کدها دیده نخواهند شد چون کدهای <code>HTML</code> تبدیل میشوند. برای
 							    نشون دادن این کدها باید <code>&lt;&gt;</code> ها را به این صورت تبدیل کنید:
-								<pre class="line-numbers"><code class="language-html">&lt;html&gt; => &amp;lt;html&amp;gt; &lt;/html&gt; => &amp;lt;/html&amp;gt;</code></pre>
+								<pre class="line-numbers"><code class="language-html">&lt;html&gt; => &amp;lt;html&amp;gt; &lt;/html&gt;
+								                                                      => &amp;lt;/html&amp;gt;</code></pre>
 							</li>
 							<li>برای رنگ گرفتن کد های شما ما از <a href="http://prismjs.com/" title="prism" target="_blank">
 									<mark>prism</mark>
@@ -153,7 +155,8 @@ echo output_message($message);
 							    بعد داخل تگ <code>code</code> قرار میدهید و به تگ کد کلاس <code>language-{html}</code> میدهید و به تگ
 								<code>pre</code> کلاس <code>line-numbers</code> می دهید. توجه داشته باشید که به جای <code>{html}</code>
 							    می تونید از هر زبانی دیگر استفاده کنید. مثال زیر مثالی هست که معمولا ما از آن استفاده می کنیم
-								<pre class="line-numbers"><code class="language-html">&lt;pre class="line-numbers"&gt;&lt;code class="language-php"&gt; کدهای شما &lt;/code&gt;&lt;/pre&gt;</code></pre>
+								<pre class="line-numbers"><code class="language-html">&lt;pre class="line-numbers"&gt;&lt;code
+								                                                      class="language-php"&gt; کدهای شما &lt;/code&gt;&lt;/pre&gt;</code></pre>
 							</li>
 						</ul>
 					</li>
@@ -175,4 +178,4 @@ echo output_message($message);
 			   قرار بگیرند.</p>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

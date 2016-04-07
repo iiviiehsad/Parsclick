@@ -19,7 +19,7 @@ $title = isset($current_article) ? 'پارس کلیک - ' . $current_article->na
 		<?php if($current_subject && $current_article): ?>
 			<?php
 			// Pagination
-			$page        = ! empty($_GET['page']) ? (int)$_GET['page'] : 1;
+			$page        = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
 			$per_page    = 10;
 			$total_count = ArticleComment::count_comments_for_article($current_article->id);
 			$pagination  = new pagination($page, $per_page, $total_count);
@@ -48,7 +48,8 @@ $title = isset($current_article) ? 'پارس کلیک - ' . $current_article->na
 				<h3>
 					<i class="fa fa-comments-o fa-2x"></i>
 					<?php if( ! empty($comments)): ?>
-						<span class="label label-as-badge label-info"><?php echo convert(count($current_article->comments())); ?> نظر</span>
+						<span class="label label-as-badge label-info"><?php echo convert(count($current_article->comments())); ?>
+							نظر</span>
 					<?php else: ?>
 						<span class="label label-as-badge label-danger">نظری وجود ندارد</span>
 					<?php endif; ?>

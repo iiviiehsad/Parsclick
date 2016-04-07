@@ -1,41 +1,39 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 find_selected_article();
 if( ! $current_subject) {
-	redirect_to("author_articles.php");
+	redirect_to('author_articles.php');
 }
-$errors = "";
+$errors = '';
 if(isset($_POST['submit'])) {
 	$author              = Author::find_by_id($session->id);
 	$article             = new Article();
-	$article->id         = (int)'';
+	$article->id         = (int) '';
 	$article->subject_id = $current_subject->id; //$_GET['subject'];
 	$article->author_id  = $author->id;
-	$article->name       = $_POST["article_name"];
-	$article->position   = (int)$_POST["position"];
+	$article->name       = $_POST['article_name'];
+	$article->position   = (int) $_POST['position'];
 	if($author->id == 1) {
-		$article->visible = (int)$_POST["visible"];
+		$article->visible = (int) $_POST['visible'];
 	} else {
 		$article->visible = 0;
 	}
-	$article->content    = $_POST["content"];
+	$article->content    = $_POST['content'];
 	$article->created_at = strftime("%Y-%m-%d %H:%M:%S", time());
 	$result              = $article->create();
 	if($result) { // Success
 		send_email('info@parsclick.net', 'New Article!', 'New Article Added');
-		$session->message("مقاله ساخته شد.");
-		redirect_to("author_articles.php");
+		$session->message('مقاله ساخته شد.');
+		redirect_to('author_articles.php');
 	} else { // Failure
-		$errors = "مقاله شاخته نشد!";
+		$errors = 'مقاله شاخته نشد!';
 	}
-} else {
 }
-include_layout_template("admin_header.php");
-include("../_/components/php/author_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/author_nav.php');
 echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
@@ -55,7 +53,7 @@ echo output_message($message, $errors); ?>
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position">
 								<?php $page_count = Article::num_articles_for_subject($current_subject->id, FALSE);
-								echo "<option selected value=" . ++$page_count . ">" . $page_count . "</option>";
+								echo '<option selected value=' . ++$page_count . '>' . $page_count . '</option>';
 								?>
 							</select>
 						</div>
@@ -100,4 +98,4 @@ echo output_message($message, $errors); ?>
 			<?php echo author_articles($current_subject, $current_article); ?>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

@@ -1,53 +1,53 @@
-<?php require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $token  = $_GET['token'];
-$errors = "";
+$errors = '';
 // Confirm that the token sent is valid
 $admin  = Admin::find_by_token($token);
 $author = Author::find_by_token($token);
 if( ! $token) {
 	redirect_to('forgot_password.php');
 }
-if(isset($_POST["submit"])) {
+if(isset($_POST['submit'])) {
 	$password         = $_POST['password'];
 	$password_confirm = $_POST['password_confirm'];
 	if( ! has_presence($password) || ! has_presence($password_confirm)) {
-		$errors = "جفت پسوردها را پر کنید و خالی نگذارید.";
+		$errors = 'جفت پسوردها را پر کنید و خالی نگذارید.';
 	} elseif( ! has_length($password, ['min' => 6])) {
-		$errors = "پسورد باید حداقل شش حروف یا بیشتر باشد.";
+		$errors = 'پسورد باید حداقل شش حروف یا بیشتر باشد.';
 	} elseif( ! has_format_matching($password, '/[^A-Za-z0-9]/')) {
-		$errors = "پسورد باید حداقل شامل یک حرفی باشد که نه حروف و نه عدد باشد: مثلا ستاره";
+		$errors = 'پسورد باید حداقل شامل یک حرفی باشد که نه حروف و نه عدد باشد: مثلا ستاره';
 	} elseif($password !== $password_confirm) {
-		$errors = "پسوردها با همدیگر یکی نیستند.";
+		$errors = 'پسوردها با همدیگر یکی نیستند.';
 	} else {
 		if($admin) {
-			$admin->password = $admin->password_encrypt($_POST["password"]);
+			$admin->password = $admin->password_encrypt($_POST['password']);
 			$result          = $admin->update();
 			if($result) {
 				$admin->delete_reset_token($admin->username);
-				$session->message("متشکریم! پسورد با موفقیت عوض شد. شما الآن قادر به ورود هستید.");
+				$session->message('متشکریم! پسورد با موفقیت عوض شد. شما الآن قادر به ورود هستید.');
 				redirect_to('index.php');
 			} else {
-				$errors = "متاسفانه نتوانستیم پسورد بروزرسانی کنیم!";
+				$errors = 'متاسفانه نتوانستیم پسورد بروزرسانی کنیم!';
 			}
 		} elseif($author) {
-			$author->password = $author->password_encrypt($_POST["password"]);
+			$author->password = $author->password_encrypt($_POST['password']);
 			$result           = $author->update();
 			if($result) {
 				$author->delete_reset_token($author->username);
-				$session->message("متشکریم! پسورد با موفقیت عوض شد. شما الآن قادر به ورود هستید.");
+				$session->message('متشکریم! پسورد با موفقیت عوض شد. شما الآن قادر به ورود هستید.');
 				redirect_to('index.php');
 			} else {
-				$errors = "متاسفانه نتوانستیم پسورد بروزرسانی کنیم!";
+				$errors = 'متاسفانه نتوانستیم پسورد بروزرسانی کنیم!';
 			}
 		} else {
 			// if couldn't find any admin based in the token in URL
-			$session->message("مدت زمانی رمز بپایان رسید! لطفا بعدا دوباره سعی کنید.");
+			$session->message('مدت زمانی رمز بپایان رسید! لطفا بعدا دوباره سعی کنید.');
 			redirect_to('forgot_password.php');
 		}
 	}
 } else { // end: if(isset($_POST["submit"]))
 }
-include_layout_template("admin_header.php");
+include_layout_template('admin_header.php');
 ?>
 	<header class="clearfix">
 		<section id="branding">
@@ -98,4 +98,4 @@ include_layout_template("admin_header.php");
 	</section><!-- main -->
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	</section><!-- sidebar -->
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

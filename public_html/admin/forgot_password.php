@@ -1,7 +1,6 @@
-<?php
-require_once("../../includes/initialize.php");
-$errors = "";
-if(isset($_POST["submit"])) {
+<?php require_once('../../includes/initialize.php');
+$errors = '';
+if(isset($_POST['submit'])) {
 	$username = $_POST['username'];
 	if(has_presence($username)) {
 		$admin  = Admin::find_by_username($username);
@@ -10,17 +9,17 @@ if(isset($_POST["submit"])) {
 			$admin->create_reset_token($username);
 			$email = $admin->email_reset_token($username);
 			if($email) {
-				$message = "خطا! ایمیل فرستاده نشد!";
+				$message = 'خطا! ایمیل فرستاده نشد!';
 			} else {
-				$errors = "خطا! ایمیل فرستاده نشد!";
+				$errors = 'خطا! ایمیل فرستاده نشد!';
 			}
 		} elseif($author) {
 			$author->create_reset_token($username);
 			$email = $author->email_reset_token($username);
 			if($email) {
-				$message = "خطا! ایمیل فرستاده نشد!";
+				$message = 'خطا! ایمیل فرستاده نشد!';
 			} else {
-				$errors = "خطا! ایمیل فرستاده نشد!";
+				$errors = 'خطا! ایمیل فرستاده نشد!';
 			}
 		} else {
 			// Username was not found; don't do anything for security reasons
@@ -30,15 +29,15 @@ if(isset($_POST["submit"])) {
 		// Message returned is the same whether the user
 		// was found or not, so that we don't reveal which
 		// usernames exist and which do not.
-		$message = "لینکی برای بازیافت پسورد شما به آدرس ایمیلی فرستاده شد که هنگام ثبت نام وارد کردید. تا ۱۰ دقیقه دیگه ایمیلتون رو چک کنید.";
+		$message = 'لینکی برای بازیافت پسورد شما به آدرس ایمیلی فرستاده شد که هنگام ثبت نام وارد کردید. تا ۱۰ دقیقه دیگه ایمیلتون رو چک کنید.';
 	} else {
-		$message = "لطفا اسم کاربری را وارد کنید.";
+		$message = 'لطفا اسم کاربری را وارد کنید.';
 	}
 } else {
-	$username = "";
+	$username = '';
 }
 ?>
-<?php include_layout_template("admin_header.php"); ?>
+<?php include_layout_template('admin_header.php'); ?>
 	<header class="clearfix">
 		<section id="branding">
 			<a href="index.php"><img src="../images/misc/admin-area.png" alt="Logo for Admin Area"></a>
@@ -82,4 +81,4 @@ if(isset($_POST["submit"])) {
 	</section><!-- main -->
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	</section><!-- sidebar -->
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

@@ -16,7 +16,7 @@ $body   = '';
 			<?php if($current_subject && $current_article): ?>
 				<?php
 				// Pagination
-				$page        = ! empty($_GET['page']) ? (int)$_GET['page'] : 1;
+				$page        = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
 				$per_page    = 10;
 				$total_count = ArticleComment::count_comments_for_article($current_article->id);
 				$pagination  = new pagination($page, $per_page, $total_count);

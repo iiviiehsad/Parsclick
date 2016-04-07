@@ -1,27 +1,26 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 $filename = basename(__FILE__);
 find_selected_course();
-include_layout_template("admin_header.php");
+include_layout_template('admin_header.php');
 $file_max_file_size = File::$max_file_size; // 32MB
-$errors             = "";
-if(isset($_POST["submit_file"])) {
+$errors             = '';
+if(isset($_POST['submit_file'])) {
 	$file              = new File();
-	$file->id          = (int)"";
-	$file->course_id   = (int)$current_course->id;
-	$file->description = $_POST["description"];
-	$file->attach_file($_FILES["single_file"]);
+	$file->id          = (int) '';
+	$file->course_id   = (int) $current_course->id;
+	$file->description = $_POST['description'];
+	$file->attach_file($_FILES['single_file']);
 	if($file->save()) {
 		$session->message("فایل {$file->description} با موفقیت آپلود شد.");
-		redirect_to("author_courses.php?category=" . urlencode($current_category->id) . "&course=" . urlencode($current_course->id));
+		redirect_to('author_courses.php?category=' . urlencode($current_category->id) . '&course=' . urlencode($current_course->id));
 	} else {
-		$errors = join(" ", $file->errors);
+		$errors = join(' ', $file->errors);
 	}
 }
-include("../_/components/php/author_nav.php");
+include('../_/components/php/author_nav.php');
 echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
@@ -110,16 +109,16 @@ echo output_message($message, $errors);
 				<!-- ------------------------------------------VIDEOS------------------------------------------------- -->
 				<?php
 				if(isset($current_course->youtubePlaylist)):
-					$googleapi = "https://www.googleapis.com/youtube/v3/playlistItems";
+					$googleapi = 'https://www.googleapis.com/youtube/v3/playlistItems';
 					$playListID = $current_course->youtubePlaylist;
 					if( ! isset($_GET['nextPageToken']) || ! isset($_GET['prevPageToken'])) {
 						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI;
 					}
 					if(isset($_GET['nextPageToken'])) {
-						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . "&pageToken=" . $_GET['nextPageToken'];
+						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['nextPageToken'];
 					}
 					if(isset($_GET['prevPageToken'])) {
-						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . "&pageToken=" . $_GET['prevPageToken'];
+						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['prevPageToken'];
 					}
 					$file_headers = get_headers($url);
 					if($file_headers[0] != 'HTTP/1.0 404 Not Found'):
@@ -153,12 +152,12 @@ echo output_message($message, $errors);
 									</table>
 								</div>
 								<div class="clearfix center">
-									<?php if(isset($json["prevPageToken"])): ?>
+									<?php if(isset($json['prevPageToken'])): ?>
 										<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json["prevPageToken"]; ?>">
 											<span class="arial">&lt;</span> صفحه قبلی
 										</a>
 									<?php endif;
-									if(isset($json["nextPageToken"])): ?>
+									if(isset($json['nextPageToken'])): ?>
 										<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json["nextPageToken"]; ?>">
 											صفحه بعدی <span class="arial">&gt;</span>
 										</a>
@@ -174,7 +173,7 @@ echo output_message($message, $errors);
 				<?php endif; ?>
 				<!--------------------------------------------COMMENTS--------------------------------------------------->
 				<?php // Pagination
-				$page       = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
+				$page       = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
 				$pagination = new pagination($page, 20, Comment::count_comments_for_course($current_course->id));
 				$comments   = Comment::find_comments($current_course->id, 20, $pagination->offset());
 				?>
@@ -210,7 +209,7 @@ echo output_message($message, $errors);
 								</tbody>
 							</table>
 						</div>
-						<?php echo paginate($pagination, $page, "author_courses.php", "category={$current_category->id}", "course={$current_course->id}" . get_prev_next_token() . "#comments"); ?>
+						<?php echo paginate($pagination, $page, 'author_courses.php', "category={$current_category->id}", "course={$current_course->id}" . get_prev_next_token() . '#comments'); ?>
 					</article>
 				</div>
 			<?php elseif($current_category): ?>
@@ -231,17 +230,16 @@ echo output_message($message, $errors);
 							$category_courses = Course::find_courses_for_category($current_category->id, FALSE);
 							foreach($category_courses as $course):
 								echo "<li class='list-group-item-text'>";
-								$safe_course_id = urlencode($course->id);
-								echo "<a href='author_courses.php?category=" . urlencode($current_category->id) . "&course={$safe_course_id}'";
+								echo '<a href="author_courses.php?category=' . urlencode($current_category->id) . '&course=' . urlencode($course->id) . '"';
 								if($course->comments()):
-									echo "data-toggle='tooltip' data-placement='left' title='";
-									echo count($course->comments()) . " دیدگاه";
-									echo "'";
+									echo 'data-toggle="tooltip" data-placement="left" title="';
+									echo count($course->comments()) . ' دیدگاه';
+									echo '"';
 								endif;
-								echo ">";
+								echo '>';
 								echo htmlentities(ucwords($course->name));
-								echo "</a>";
-								echo "</li>";
+								echo '</a>';
+								echo '</li>';
 							endforeach; ?>
 						</ul>
 					</div>
@@ -289,4 +287,4 @@ echo output_message($message, $errors);
 			</div>
 		</div>
 	</div>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

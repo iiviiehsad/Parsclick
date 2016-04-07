@@ -1,5 +1,4 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 $author  = Admin::find_by_id($session->id);
@@ -7,11 +6,11 @@ $logfile = SITE_ROOT . DS . 'logs' . DS . 'log.txt';
 if(isset($_GET['clear'])) {
 	file_put_contents($logfile, '');
 	// Add the first log entry
-	log_action('Logs Cleared By User', "<span class='badge' style='float:right;'>" . $author->full_name() . "</span>");
+	log_action('Logs Cleared By User', '<span class="badge" style="float:right;">' . $author->full_name() . '</span>');
 	redirect_to('logfile.php');
 }
-include_layout_template("admin_header.php");
-include("../_/components/php/admin_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/admin_nav.php');
 echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
@@ -19,14 +18,14 @@ echo output_message($message);
 			<h2><i class="fa fa-list"></i> جزئیات ثبت</h2>
 			<?php
 			if(file_exists($logfile) && is_readable($logfile) && $handle = fopen($logfile, 'r')):  // read
-				echo "<ul class=\"list-group arial\" style='direction: ltr;'>";
+				echo '<ul class="list-group arial" style="direction: ltr;">';
 				while( ! feof($handle)):
 					$entry = fgets($handle);
-					if(trim($entry) != ""):
-						echo "<li class=\"list-group-item\">{$entry}</li>";
+					if(trim($entry) != ''):
+						echo "<li class='list-group-item'>{$entry}</li>";
 					endif;
 				endwhile;
-				echo "</ul>";
+				echo '</ul>';
 				fclose($handle);
 			else:
 				echo "Could not read from {$logfile}.";
@@ -42,4 +41,4 @@ echo output_message($message);
 				فایل ثبت را پاک کن </a>
 		</aside>
 	</section><!-- sidebar -->
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

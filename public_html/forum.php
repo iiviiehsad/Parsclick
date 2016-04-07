@@ -12,7 +12,7 @@ if( ! $current_course || ! $current_category) {
 	$current_course = $current_category = Course::find_newest_course();
 }
 // Pagination
-$page        = ! empty($_GET['page']) ? (int)$_GET['page'] : 1;
+$page        = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
 $per_page    = 20;
 $total_count = Comment::count_comments_for_course($current_course->id);
 $pagination  = new pagination($page, $per_page, $total_count);

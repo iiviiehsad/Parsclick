@@ -1,8 +1,7 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
-include_layout_template("admin_header.php");
+include_layout_template('admin_header.php');
 ?>
 <header class="clearfix">
 	<section id="branding">
@@ -21,4 +20,4 @@ include_layout_template("admin_header.php");
 		</a>
 	</p>
 </div>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

@@ -1,28 +1,27 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_article();
-$errors = "";
+$errors = '';
 if( ! $current_subject) {
-	redirect_to("admin_articles.php");
+	redirect_to('admin_articles.php');
 }
 if(isset($_POST['submit'])) {
 	$subject           = Subject::find_by_id($current_subject->id, FALSE);
-	$subject->name     = ucwords(strtolower($_POST["subject_name"]));
-	$subject->position = (int)$_POST["position"];
-	$subject->visible  = (int)$_POST["visible"];
+	$subject->name     = ucwords(strtolower($_POST['subject_name']));
+	$subject->position = (int) $_POST['position'];
+	$subject->visible  = (int) $_POST['visible'];
 	$result            = $subject->save();
 	if($result) { // Success
-		$session->message("موضوع بروزرسانی شد.");
+		$session->message('موضوع بروزرسانی شد.');
 		redirect_to("edit_subject.php?subject=" . $current_subject->id);
 	} else { // Failure
-		$errors = "موضوع بروزرسانی نشد!";
+		$errors = 'موضوع بروزرسانی نشد!';
 	}
 } else {
 }
-include_layout_template("admin_header.php");
-include("../_/components/php/admin_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/admin_nav.php');
 echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
@@ -46,7 +45,7 @@ echo output_message($message, $errors);
 								<option disabled value="">انتخاب کنید</option>
 								<?php
 								for($count = 1; $count <= Subject::num_rows(); $count++):
-									echo "<option value=\"{$count}\"";
+									echo "<option value='{$count}'";
 									if($current_subject->position == $count): echo " selected"; endif;
 									echo ">{$count}</option>";
 								endfor; ?>
@@ -59,11 +58,11 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" value="0"
-										<?php if($current_subject->visible == 0) echo "checked"; ?> > خیر
+										<?php if($current_subject->visible == 0) echo 'checked'; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" value="1"
-										<?php if($current_subject->visible == 1) echo "checked"; ?> > بله
+										<?php if($current_subject->visible == 1) echo 'checked'; ?> > بله
 							</label>
 						</div>
 					</section>
@@ -90,4 +89,4 @@ echo output_message($message, $errors);
 			<?php echo admin_articles($current_subject, $current_article); ?>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

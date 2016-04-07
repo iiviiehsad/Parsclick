@@ -9,9 +9,9 @@ if(empty($course_id)) {
 	redirect_to('member-courses');
 }
 $playlist            = new Playlist();
-$playlist->id        = (int)'';
-$playlist->member_id = (int)$member->id;
-$playlist->course_id = (int)$course_id;
+$playlist->id        = (int) '';
+$playlist->member_id = (int) $member->id;
+$playlist->course_id = (int) $course_id;
 $result              = $playlist->create();
 if($result) {
 	$session->message('درس موفقیت آمیز به لیست پخش اضافه شد.');

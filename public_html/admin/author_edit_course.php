@@ -1,36 +1,35 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 find_selected_course();
-$errors = "";
+$errors = '';
 if( ! $current_course || ! $current_category) {
-	redirect_to("author_courses.php");
+	redirect_to('author_courses.php');
 	// check to see the course belong to this author in order to edit
 } elseif( ! check_ownership($current_course->author_id, $session->id)) {
-	$session->message("شما قادر به تغییر این درس نیستید");
-	redirect_to("author_courses.php");
+	$session->message('شما قادر به تغییر این درس نیستید');
+	redirect_to('author_courses.php');
 }
 if(isset($_POST['submit'])) {
 	$current_course->category_id     = $current_category->id;
-	$current_course->name            = $_POST["course_name"];
-	$current_course->youtubePlaylist = $_POST["youtubePlaylist"];
-	$current_course->file_link       = $_POST["file_link"];
-	$current_course->visible         = $_POST["visible"];
-	$current_course->content         = $_POST["description"];
+	$current_course->name            = $_POST['course_name'];
+	$current_course->youtubePlaylist = $_POST['youtubePlaylist'];
+	$current_course->file_link       = $_POST['file_link'];
+	$current_course->visible         = $_POST['visible'];
+	$current_course->content         = $_POST['description'];
 	$result                          = $current_course->save();
 	if($result) { // Success
-		$session->message("درس بروزرسانی شد.");
+		$session->message('درس بروزرسانی شد.');
 		redirect_to("author_courses.php?category=" . $current_category->id . "&course=" . $current_course->id);
 	} else { // Failure
-		$errors = "درس بروزرسانی نشد یا چیزی تغییر نیافت!";
+		$errors = 'درس بروزرسانی نشد یا چیزی تغییر نیافت!';
 	}
 } else {
 }
-include_layout_template("admin_header.php");
-include("../_/components/php/author_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/author_nav.php');
 echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
@@ -73,7 +72,7 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="position">محل</label>
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position" disabled>
-								<?php echo "<option value='" . $current_course->position . "' selected>" . $current_course->position . "</option>"; ?>
+								<?php echo '<option value="' . $current_course->position . '" selected>' . $current_course->position . '</option>'; ?>
 							</select>
 						</div>
 					</section>
@@ -83,11 +82,11 @@ echo output_message($message, $errors);
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled '; ?>
-										<?php if($current_course->visible == 0) echo "checked"; ?> > خیر
+										<?php if($current_course->visible == 0) echo 'checked'; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled '; ?>
-										<?php if($current_course->visible == 1) echo "checked"; ?> > بله
+										<?php if($current_course->visible == 1) echo 'checked'; ?> > بله
 							</label>
 						</div>
 					</section>
@@ -120,4 +119,4 @@ echo output_message($message, $errors);
 			<?php echo author_courses($current_category, $current_course); ?>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

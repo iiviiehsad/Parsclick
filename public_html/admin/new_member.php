@@ -1,38 +1,36 @@
-<?php
-require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
-$errors = "";
+$errors = '';
 if(isset($_POST['submit'])) {
-	if(Member::find_by_username(trim($_POST["username"]))) {
-		$errors = "اسم کاربری موجود نیست! لطفا از اسم کاربری دیگری استفاده کنید.";
-	} elseif(Member::find_by_email(trim($_POST["email"]))) {
-		$errors = "این ایمیل قبلا ثبت شده!";
+	if(Member::find_by_username(trim($_POST['username']))) {
+		$errors = 'اسم کاربری موجود نیست! لطفا از اسم کاربری دیگری استفاده کنید.';
+	} elseif(Member::find_by_email(trim($_POST['email']))) {
+		$errors = 'این ایمیل قبلا ثبت شده!';
 	} else {
 		$member                  = new Member();
-		$member->id              = (int)"";
-		$member->username        = trim($_POST["username"]);
-		$member->hashed_password = $member->password_encrypt($_POST["password"]);
-		$member->first_name      = trim(ucwords(strtolower($_POST["first_name"])));
-		$member->last_name       = trim(ucwords(strtolower($_POST["last_name"])));
-		$member->gender          = trim($_POST["gender"]);
-		$member->address         = trim(ucwords(strtolower($_POST["address"])));
-		$member->city            = trim(ucwords(strtolower($_POST["city"])));
-		$member->email           = trim(strtolower($_POST["email"]));
-		$member->status          = (int)$_POST["status"];
+		$member->id              = (int) '';
+		$member->username        = trim($_POST['username']);
+		$member->hashed_password = $member->password_encrypt($_POST['password']);
+		$member->first_name      = trim(ucwords(strtolower($_POST['first_name'])));
+		$member->last_name       = trim(ucwords(strtolower($_POST['last_name'])));
+		$member->gender          = trim($_POST['gender']);
+		$member->address         = trim(ucwords(strtolower($_POST['address'])));
+		$member->city            = trim(ucwords(strtolower($_POST['city'])));
+		$member->email           = trim(strtolower($_POST['email']));
+		$member->status          = (int) $_POST['status'];
 		$member->token           = NULL;
 		$result                  = $member->create();
 		if($result) { // Success
-			$session->message("Member with the username " . strtoupper($member->username) . " was created.");
-			redirect_to("member_list.php");
+			$session->message('Member with the username ' . strtoupper($member->username) . ' was created.');
+			redirect_to('member_list.php');
 		} else { // Failure
-			$errors = "Member creation failed.";
+			$errors = 'Member creation failed.';
 		}
 	}
-} else {
 }
-include_layout_template("admin_header.php");
-include("../_/components/php/admin_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/admin_nav.php');
 echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-8 col-xs-12 col-sm-8 col-md-8 col-lg-8">
@@ -137,4 +135,4 @@ echo output_message($message, $errors);
 			<p>همینطور آنها احتیاج دارند که عضویت آنها فعال شود قبل از اینکه بخواهند با سیستم کار کنند.</p>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

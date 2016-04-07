@@ -1,9 +1,9 @@
-<?php require_once("../../includes/initialize.php");
+<?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
 find_selected_article();
-include_layout_template("admin_header.php");
-include("../_/components/php/admin_nav.php");
+include_layout_template('admin_header.php');
+include('../_/components/php/admin_nav.php');
 echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
@@ -21,7 +21,8 @@ echo output_message($message);
 					<dt>نمایان:</dt>
 					<dd><?php echo $current_article->visible == 1 ? 'بله' : 'خیر'; ?></dd>
 					<dt>نویسنده:</dt>
-					<dd><?php echo isset($current_article->author_id) ? htmlentities(Author::find_by_id($current_article->author_id)->full_name()) : '-'; ?></dd>
+					<dd><?php echo isset($current_article->author_id) ? htmlentities(Author::find_by_id($current_article->author_id)
+					                                                                       ->full_name()) : '-'; ?></dd>
 					<dt>تغییرات</dt>
 					<dd>
 						<a class="btn btn-primary btn-small arial" href="edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>" data-toggle="tooltip" title="ویرایش">
@@ -32,16 +33,17 @@ echo output_message($message);
 					<dd><?php echo nl2br(strip_tags($current_article->content, ARTICLE_ALLOWABLE_TAGS)); ?></dd>
 				</dl>
 				<?php // Pagination
-				$page        = ! empty($_GET["page"]) ? (int)$_GET["page"] : 1;
-				$pagination  = new pagination($page, 10, ArticleComment::count_comments_for_article($current_article->id));
-				$comments    = ArticleComment::find_comments($current_article->id, 10, $pagination->offset());
+				$page       = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
+				$pagination = new pagination($page, 10, ArticleComment::count_comments_for_article($current_article->id));
+				$comments   = ArticleComment::find_comments($current_article->id, 10, $pagination->offset());
 				?>
 				<hr><?php echo output_message($message); ?>
 				<article id="comments">
 					<h3>
 						<i class="fa fa-comments-o fa-2x"></i>
 						<?php if( ! empty($comments)): ?>
-							<span class="label label-as-badge label-info"><?php echo convert(count($current_article->comments())); ?> نظر</span>
+							<span class="label label-as-badge label-info"><?php echo convert(count($current_article->comments())); ?>
+								نظر</span>
 						<?php else: ?>
 							<span class="label label-as-badge label-danger">نظری نیست</span>
 						<?php endif; ?>
@@ -61,7 +63,7 @@ echo output_message($message);
 							</div>
 						</section>
 					<?php endforeach; ?>
-					<?php echo paginate($pagination, $page, "admin_articles.php", "subject={$current_subject->id}", "article={$current_article->id}#comments"); ?>
+					<?php echo paginate($pagination, $page, 'admin_articles.php', "subject={$current_subject->id}", "article={$current_article->id}#comments"); ?>
 				</article>
 				<?php //include('../_/components/php/article-disqus-comment.php'); ?>
 			<?php elseif($current_subject): ?>
@@ -88,18 +90,17 @@ echo output_message($message);
 							<?php
 							$subject_articles = Article::find_articles_for_subject($current_subject->id, FALSE);
 							foreach($subject_articles as $article):
-								echo "<li class='list-group-item-text'>";
-								$safe_article_id = urlencode($article->id);
-								echo "<a href='admin_articles.php?subject=" . $current_subject->id . "&article={$safe_article_id}'";
+								echo '<li class="list-group-item-text">';
+								echo '<a href="admin_articles.php?subject=' . $current_subject->id . '&article=' . urlencode($article->id) . '"';
 								if($article->comments()):
-									echo "data-toggle='tooltip' data-placement='left' title='";
-									echo count($article->comments()) . " دیدگاه";
-									echo "'";
+									echo 'data-toggle="tooltip" data-placement="left" title="';
+									echo convert(count($article->comments())) . ' دیدگاه';
+									echo '"';
 								endif;
-								echo ">";
+								echo '>';
 								echo htmlentities(ucwords($article->name));
-								echo "</a>";
-								echo "</li>";
+								echo '</a>';
+								echo '</li>';
 							endforeach; ?>
 						</ul>
 					</div>
@@ -116,4 +117,4 @@ echo output_message($message);
 			<?php echo admin_articles($current_subject, $current_article); ?>
 		</aside>
 	</section>
-<?php include_layout_template("admin_footer.php"); ?>
+<?php include_layout_template('admin_footer.php'); ?>

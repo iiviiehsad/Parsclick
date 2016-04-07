@@ -35,7 +35,8 @@ if(isset($search_query) && ! empty($search_query)) {
 											<i>
 												<a href="member-courses?category=<?php echo urlencode($course->category_id); ?>&course=<?php echo urlencode($course->id); ?>">
 													<mark><?php echo htmlentities($course->name); ?></mark>
-													<small>&nbsp;توسط <?php echo htmlentities(Author::find_by_id($course->author_id)->full_name()); ?></small>
+													<small>&nbsp;توسط <?php echo htmlentities(Author::find_by_id($course->author_id)
+													                                                ->full_name()); ?></small>
 												</a>
 											</i>
 										</strong>
