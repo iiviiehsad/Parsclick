@@ -2,7 +2,7 @@
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 include_layout_template('admin_header.php');
-include('../_/components/php/admin_nav.php');
+include_layout_template('admin_nav.php');
 $admin = Admin::find_by_id($session->id);
 ?>
 <div class="jumbotron hidden-sm wow fadeIn admin-jumbotron">

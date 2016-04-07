@@ -8,7 +8,7 @@ $articles_for_author = Article::find_articles_for_author($author->id, TRUE);
 $courses_under_edit  = Course::find_courses_for_author($author->id, FALSE);
 $courses_for_author  = Course::find_courses_for_author($author->id, TRUE);
 include_layout_template('admin_header.php');
-include('../_/components/php/author_nav.php');
+include_layout_template('author_nav.php');
 echo output_message($message);
 ?>
 <div class="jumbotron hidden-sm wow fadeIn author-jumbotron">

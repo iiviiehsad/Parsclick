@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-	<title><?php global $title;
-		echo isset($title) ? $title : "پارس کلیک - سینمای برنامه نویسان"; ?></title>
+	<title><?php global $title; echo isset($title) ? $title : "پارس کلیک - سینمای برنامه نویسان"; ?></title>
 	<meta charset="UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<meta name="description" content="کامل ترین سینمای برنامه نویسان و آموزش های برنامه نویسی وب، مدیریت محتوا، طراحی وب، نرم افزار، آدوبی، دیتابیس و اپلیکیشن های روز دنیا به صورت ویدئویی برای پارسی زبانان و ایرانیان"/>

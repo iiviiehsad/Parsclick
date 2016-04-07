@@ -11,7 +11,7 @@ if(isset($current_article->author_id)) {
 $title = isset($current_article) ? 'پارس کلیک - ' . $current_article->name : 'پارس کلیک - ' . $newest_article->name;
 ?>
 <?php include_layout_template('header.php'); ?>
-<?php include('_/components/php/nav.php'); ?>
+<?php include_layout_template('nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article id="member_article">
@@ -98,7 +98,7 @@ $title = isset($current_article) ? 'پارس کلیک - ' . $current_article->na
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<aside class="members_menu">
-		<?php include('_/components/php/aside-share.php'); ?>
+		<?php include_layout_template('aside-share.php'); ?>
 		<h2>موضوعات و مقالات</h2>
 		<?php echo public_articles($current_subject, $current_article); ?>
 		<h2>وبلاگ پارس کلیک</h2>
@@ -110,8 +110,8 @@ $title = isset($current_article) ? 'پارس کلیک - ' . $current_article->na
 				<span class="label label-as-badge label-danger pull-left">اخبار</span>
 			</li>
 		</ul>
-		<?php include('_/components/php/aside-read.php'); ?>
-		<?php include('_/components/php/aside-ad.php'); ?>
+		<?php include_layout_template('aside-read.php'); ?>
+		<?php include_layout_template('aside-ad.php'); ?>
 	</aside>
 </section>
 <?php include_layout_template('footer.php'); ?>

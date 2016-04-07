@@ -34,7 +34,7 @@ if(isset($_POST['submit'])) {
 }
 ?>
 <?php include_layout_template('admin_header.php'); ?>
-<?php include '../_/components/php/admin_nav.php'; ?>
+<?php include_layout_template('admin_nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>

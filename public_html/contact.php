@@ -48,7 +48,7 @@ if(isset($_POST['submit'])) {
 }
 ?>
 <?php include_layout_template('header.php'); ?>
-<?php include '_/components/php/nav.php'; ?>
+<?php include_layout_template('nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>

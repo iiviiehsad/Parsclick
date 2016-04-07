@@ -9,7 +9,7 @@ if(isset($search_query) && ! empty($search_query)) {
 	redirect_to('member_list.php');
 }
 include_layout_template('admin_header.php');
-include('../_/components/php/admin_nav.php');
+include_layout_template('admin_nav.php');
 echo output_message($message);
 ?>
 	<section class="main">

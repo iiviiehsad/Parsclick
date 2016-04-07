@@ -61,8 +61,8 @@ function init($files = [])
 init([
 	'vendor' . DS . 'autoload.php',
 	'config.php',
-	'functions.php',
 	'Session.php',
+	'functions.php',
 	'Database.php',
 	'MySQLDatabase.php',
 	'DatabaseObject.php',

@@ -1,7 +1,5 @@
 <?php require_once('../includes/initialize.php');
-if($session->is_logged_in()) {
-	redirect_to('member');
-}
+if($session->is_logged_in()) redirect_to('member');
 $title    = 'پارس کلیک - ورود به سایت';
 $filename = basename(__FILE__);
 $username = '';
@@ -41,12 +39,12 @@ if(isset($_POST['submit'])) { // if form submitted
 }
 ?>
 <?php include_layout_template('header.php'); ?>
-<?php include '_/components/php/nav.php'; ?>
+<?php include_layout_template('nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
-		<?php include '_/components/php/article-login.php'; ?>
+		<?php include_layout_template('article-login.php'); ?>
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
-		<?php include '_/components/php/aside-register.php'; ?>
+		<?php include_layout_template('aside-register.php'); ?>
 	</section>
 <?php include_layout_template('footer.php'); ?>

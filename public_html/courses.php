@@ -4,15 +4,15 @@ $title    = 'پارس کلیک - درس ها و ویدئو ها';
 $filename = basename(__FILE__);
 ?>
 <?php include_layout_template('header.php'); ?>
-<?php include('_/components/php/nav.php'); ?>
+<?php include_layout_template('nav.php'); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
 		<?php echo public_courses(); ?>
 	</article>
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
-	<?php include('_/components/php/aside-share.php'); ?>
-	<?php include('_/components/php/aside-watch.php'); ?>
-	<?php include('_/components/php/aside-courses.php'); ?>
+	<?php include_layout_template('aside-share.php'); ?>
+	<?php include_layout_template('aside-watch.php'); ?>
+	<?php include_layout_template('aside-courses.php'); ?>
 </section>
 <?php include_layout_template('footer.php'); ?>

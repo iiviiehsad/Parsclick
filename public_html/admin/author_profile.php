@@ -4,7 +4,7 @@ $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 include_layout_template('admin_header.php');
-include('../_/components/php/author_nav.php');
+include_layout_template('author_nav.php');
 echo output_message($message);
 ?>
 <section class="main col-sm-12 col-md-9 col-lg-9">

@@ -3,7 +3,7 @@ $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
 find_selected_article();
 include_layout_template('admin_header.php');
-include('../_/components/php/admin_nav.php');
+include_layout_template('admin_nav.php');
 echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
@@ -65,7 +65,7 @@ echo output_message($message);
 					<?php endforeach; ?>
 					<?php echo paginate($pagination, $page, 'admin_articles.php', "subject={$current_subject->id}", "article={$current_article->id}#comments"); ?>
 				</article>
-				<?php //include('../_/components/php/article-disqus-comment.php'); ?>
+				<?php //include_layout_template('article-disqus-comment.php'); ?>
 			<?php elseif($current_subject): ?>
 				<h2><i class="fa fa-list-alt"></i> تنظیم موضوع </h2>
 				<dl class="dl-horizontal">

@@ -27,7 +27,7 @@ if(isset($_POST['submit'])) {
 } else {
 }
 include_layout_template('admin_header.php');
-include('../_/components/php/admin_nav.php');
+include_layout_template('admin_nav.php');
 echo output_message($message, $errors);
 ?>
 	<section class="main col-xs-12 col-sm-12 col-md-9 col-lg-9">

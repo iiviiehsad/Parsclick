@@ -96,7 +96,7 @@
 		</blockquote>
 	</article>
 </article>
-<?php include "_/components/php/aside-share.php"; ?>
+<?php include_layout_template('aside-share.php'); ?>
 <article class="about edit">
 	<h2 style="text-align: left;">About The Owner</h2>
 	<article class="media">

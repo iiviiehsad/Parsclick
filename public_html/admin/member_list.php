@@ -8,7 +8,7 @@ $total_count = Member::count_all();
 $pagination  = new pagination($page, $per_page, $total_count);
 $member_set  = Member::find_members($per_page, $pagination->offset());
 include_layout_template('admin_header.php');
-include('../_/components/php/admin_nav.php');
+include_layout_template('admin_nav.php');
 echo output_message($message);
 ?>
 	<section class="sidebar col col-lg-4 pull-right">

@@ -40,7 +40,7 @@ if(isset($_POST['submit'])) {
 }
 ?>
 <?php include_layout_template('header.php'); ?>
-<?php include('_/components/php/member_nav.php'); ?>
+<?php include_layout_template('member_nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 <section class="main col-sm-12 col-md-9 col-lg-9">
 	<article>

@@ -8,7 +8,7 @@ $newest_course  = Course::find_newest_course();
 $newest_article = Article::find_newest_article();
 ?>
 <?php include_layout_template('header.php'); ?>
-<?php include('_/components/php/member_nav.php'); ?>
+<?php include_layout_template('member_nav.php'); ?>
 <?php echo output_message($message); ?>
 <div class="jumbotron hidden-sm wow fadeIn member-jumbotron">
 	<img class="pull-left img-circle" width="150" height="150" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=150&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>">
@@ -71,7 +71,7 @@ $newest_article = Article::find_newest_article();
 		   مقاله ها درون موضوعات برای دسترسی آسانتر طبقه بندی شده اند.در اولین صفحه شما قادر به جستجو کردن مقاله ها
 		   هستید اگر دنبال مقاله ی خاصی می گردید.</p>
 		<p><a class="btn btn-small btn-danger" href="member-articles">دیدن مقالات</a></p>
-		<p><?php include("_/components/php/aside-ad.php"); ?></p>
+		<p><?php include_layout_template('aside-ad.php'); ?></p>
 	</aside>
 </section>
 <?php include_layout_template('footer.php'); ?>

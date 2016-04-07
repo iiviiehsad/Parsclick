@@ -50,7 +50,6 @@ if(isset($_POST['submit'])) {
 	} else {
 		$errors = 'درخواست معتبر نیست!';
 	}
-} else { // form has not been submitted
 }
 include_layout_template('admin_header.php');
 ?>
@@ -62,7 +61,7 @@ include_layout_template('admin_header.php');
 	<hr/>
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
-		<?php include('../_/components/php/admin_login.php'); ?>
+		<?php include_layout_template('admin_login.php'); ?>
 	</section><!-- main -->
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>

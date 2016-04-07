@@ -9,7 +9,7 @@ $errors = '';
 $body   = '';
 ?>
 <?php include_layout_template('header.php'); ?>
-<?php include('_/components/php/member_nav.php'); ?>
+<?php include_layout_template('member_nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article id="member_article">
@@ -95,11 +95,11 @@ $body   = '';
 								<?php endif; ?>
 							</div> <!--AJAX Coomment-->
 						</article>
-						<?php //include('_/components/php/article-disqus-comment.php'); ?>
+						<?php //include_layout_template('article-disqus-comment.php'); ?>
 					</div>
 				</div>
 			<?php else: ?>
-				<div class="visible-lg"><?php include_once('_/components/php/member_article_info.php'); ?></div>
+				<div class="visible-lg"><?php include_layout_template('member_article_info.php'); ?></div>
 			<?php endif; ?>
 		</article>
 	</section>
@@ -122,7 +122,7 @@ $body   = '';
 					<span class="label label-as-badge label-danger pull-left">اخبار</span>
 				</li>
 			</ul>
-			<p><?php include('_/components/php/aside-ad.php'); ?></p>
+			<p><?php include_layout_template('aside-ad.php'); ?></p>
 		</aside>
 	</section>
 <?php include_layout_template('footer.php'); ?>

@@ -11,7 +11,7 @@
 				<div class="controls">
 					<div class="input-group">
 						<span class="input-group-addon arial"><span class="glyphicon glyphicon-user"></span></span>
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" autofocus placeholder="Username" value="<?php echo htmlentities($username); ?>" maxlength="30" required/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" autofocus placeholder="Username" value="<?php echo isset($username) ? htmlentities($username) : ''; ?>" maxlength="30" required/>
 					</div>
 				</div><!-- controls -->
 			</section><!-- row -->
@@ -20,7 +20,7 @@
 				<div class="controls">
 					<div class="input-group">
 						<span class="input-group-addon arial"><span class="glyphicon glyphicon-lock"></span></span>
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="Password" value="<?php echo htmlentities($password); ?>" maxlength="30" required/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="Password" value="<?php echo isset($password) ? htmlentities($password) : ''; ?>" maxlength="30" required/>
 					</div>
 				</div><!-- controls -->
 			</section><!-- row -->
@@ -35,7 +35,7 @@
 					</label>
 				</div><!-- controls -->
 			</section><!-- row -->
-			<?php echo $session->csrf_token_tag(); ?>
+			<?php global $session; echo $session->csrf_token_tag(); ?>
 			<section class="row">
 				<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit"></label>
 				<div class="controls">
@@ -43,8 +43,7 @@
 				</div><!-- controls -->
 			</section><!-- row -->
 			<section class="row">
-				<a href="forgot_password.php" class="col-sm-offset-4 col-md-offset-4 col-lg-offset-4">اسم کاربری یا پسورد یادتان
-				                                                                                      نیست؟</a><br/>
+				<a href="forgot_password.php" class="col-sm-offset-4 col-md-offset-4 col-lg-offset-4">اسم کاربری یا پسورد یادتان نیست؟</a><br/>
 			</section>
 		</fieldset><!-- personal info -->
 	</form>

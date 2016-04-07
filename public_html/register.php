@@ -79,13 +79,13 @@ if($_POST) {
 	$_POST['city']       = '';
 }
 ?>
-<?php include('../includes/layouts/header.php'); ?>
-<?php include '_/components/php/nav.php'; ?>
+<?php include_layout_template('header.php'); ?>
+<?php include_layout_template('nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
-		<?php include '_/components/php/article-register.php'; ?>
+		<?php include_layout_template('article-register.php'); ?>
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
-		<?php include '_/components/php/aside-login.php'; ?>
+		<?php include_layout_template('aside-login.php'); ?>
 	</section>
 <?php include_layout_template('footer.php'); ?>

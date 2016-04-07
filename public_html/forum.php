@@ -19,7 +19,7 @@ $pagination  = new pagination($page, $per_page, $total_count);
 $comments    = Comment::find_comments($current_course->id, $per_page, $pagination->offset());
 ?>
 <?php include_layout_template('header.php'); ?>
-<?php include('_/components/php/member_nav.php'); ?>
+<?php include_layout_template('member_nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>

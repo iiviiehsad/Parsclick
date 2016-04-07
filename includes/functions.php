@@ -1375,7 +1375,7 @@ function active()
 			break;
 		case "faq.php":
 			echo "<script>$(\"a:contains('سوالات شما')\").parent().addClass('active');</script>";
-			include('_/components/php/smoothscrolling.php');
+			include_layout_template('smoothscrolling.php');
 			break;
 		case "help.php":
 			echo "<script>$(\"a:contains('کمک به ما')\").parent().addClass('active');</script>";

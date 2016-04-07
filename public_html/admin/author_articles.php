@@ -5,7 +5,7 @@ $author->check_status();
 $filename = basename(__FILE__);
 find_selected_article();
 include_layout_template('admin_header.php');
-include('../_/components/php/author_nav.php');
+include_layout_template('author_nav.php');
 echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
@@ -74,7 +74,7 @@ echo output_message($message);
 							<?php endforeach; ?>
 							<?php echo paginate($pagination, $page, 'author_articles.php', "subject={$current_article->subject_id}", "article={$current_article->id}#comments"); ?>
 						</article>
-						<?php //include('../_/components/php/article-disqus-comment.php'); ?>
+						<?php //include_layout_template('article-disqus-comment.php'); ?>
 					</div>
 				</div>
 

@@ -7,7 +7,7 @@ $member->check_status();
 $errors = "";
 ?>
 <?php include_layout_template('header.php'); ?>
-<?php include('_/components/php/member_nav.php'); ?>
+<?php include_layout_template('member_nav.php'); ?>
 <?php echo output_message($message, $errors); ?>
 <section class="main col-sm-12 col-md-9 col-lg-9">
 	<article>
@@ -35,9 +35,8 @@ $errors = "";
 				<div class="alert alert-info">
 					<i class="fa fa-info-circle fa-lg"></i> اگر آواتار یا عکس پروفایل ندارید
 					<a target="_blank" data-toggle="tooltip" title="آپلود کنید" href="http://fa.gravatar.com/">
-						<mark>اینجا رو کلیک کنید</mark>
+						<span class="underline">اینجا رو کلیک کنید</span>
 					</a>تا آپلود کنید. از شما خواهش می کنم که حتما این کار را انجام دهید.
-					<span class="underline">نداشتن گراواتار یعنی شما کاربر درستی نیستید!</span>
 				</div>
 			</dd>
 		</dl>

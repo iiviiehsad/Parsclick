@@ -29,7 +29,7 @@ if(isset($_POST['submit'])) {
 } else {
 }
 include_layout_template('admin_header.php');
-include('../_/components/php/author_nav.php');
+include_layout_template('author_nav.php');
 echo output_message($message, $errors);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">

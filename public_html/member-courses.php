@@ -7,7 +7,7 @@ $member->check_status();
 find_selected_course(TRUE);
 ?>
 <?php include_layout_template('header.php'); ?>
-<?php include('_/components/php/member_nav.php'); ?>
+<?php include_layout_template('member_nav.php'); ?>
 <?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
@@ -143,7 +143,7 @@ find_selected_course(TRUE);
 					<?php endif; ?>
 				<?php endif; ?>
 			<?php else: ?>
-				<div class="hidden-sm"><?php include_once('_/components/php/member_course_info.php'); ?></div>
+				<div class="hidden-sm"><?php include_layout_template('member_course_info.php'); ?></div>
 			<?php endif; ?>
 		</article>
 	</section>
