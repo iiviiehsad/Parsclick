@@ -161,7 +161,7 @@ echo output_message($message);
 							echo '<a href="admin_courses.php?category=' . $current_category->id . '&course=' . urlencode($course->id) . '"';
 							if($course->comments()):
 								echo 'data-toggle="tooltip" data-placement="left" title="';
-								echo count($course->comments()) . ' دیدگاه';
+								echo convert(count($course->comments())) . ' دیدگاه';
 								echo '"';
 							endif;
 							echo '>';
@@ -179,9 +179,9 @@ echo output_message($message);
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>
-			<h2>موضوعات و دروس</h2>
 			<a class="btn btn-success pull-left arial" href="new_category.php" data-toggle="tooltip" title="موضوع جدید اضافه کنید"><span class="glyphicon glyphicon-plus"></span></a>
-			<?php echo admin_courses($current_category, $current_course); ?>
+			<h2>موضوعات و دروس</h2>
+			<?php echo courses($current_category, $current_course); ?>
 		</aside>
 	</section>
 	<!-- Video / Generic Modal -->

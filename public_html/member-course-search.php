@@ -64,7 +64,7 @@ if(isset($search_query) && ! empty($search_query)) {
 				</div>
 			</form>
 			<h2>موضوعات</h2>
-			<?php echo member_courses($current_category, $current_course); ?>
+			<?php echo courses($current_category, $current_course, TRUE); ?>
 		</aside>
 	</section>
 

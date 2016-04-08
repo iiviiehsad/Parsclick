@@ -75,7 +75,7 @@ echo output_message($message); ?>
 	<section class="sidebar col-xs-12 col-sm-4 col-md-4 col-lg-4">
 		<aside>
 			<h2>موضوعات و مقالات</h2>
-			<?php echo admin_articles($current_subject, $current_article); ?>
+			<?php echo articles($current_subject, $current_article); ?>
 		</aside>
 	</section>
 <?php include_layout_template('admin_footer.php'); ?>

@@ -66,7 +66,7 @@ if(isset($search_query) && ! empty($search_query)) {
 				</div>
 			</form>
 			<h2>موضوعات</h2>
-			<?php echo member_articles($current_subject, $current_article); ?>
+			<?php echo articles($current_subject, $current_article, TRUE); ?>
 		</aside>
 	</section>
 <?php include_layout_template('footer.php'); ?>

@@ -48,7 +48,7 @@ $title = isset($current_article) ? 'پارس کلیک - ' . $current_article->na
 	<aside class="members_menu">
 		<?php include_layout_template('aside-share.php'); ?>
 		<h2>موضوعات و مقالات</h2>
-		<?php echo public_articles($current_subject, $current_article); ?>
+		<?php echo articles($current_subject, $current_article, TRUE); ?>
 		<h2>وبلاگ پارس کلیک</h2>
 		<p>برای اخبار، کوپن های یودمی، خبر از درس های آینده، پادکست، صحبت از نویسندگان، صحبت از مقالات خوب، لینک دانلود
 		   ویدیو و خیلی چیزهای دیگه به وبلاگ پارس کلیک سر بزنید.</p>

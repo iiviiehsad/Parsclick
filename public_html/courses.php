@@ -1,8 +1,7 @@
 <?php require_once('../includes/initialize.php');
 if($session->is_logged_in()) redirect_to('member-courses.php');
 $title    = 'پارس کلیک - درس ها و ویدئو ها';
-$filename = basename(__FILE__);
-?>
+$filename = basename(__FILE__); ?>
 <?php include_layout_template('header.php'); ?>
 <?php include_layout_template('nav.php'); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">

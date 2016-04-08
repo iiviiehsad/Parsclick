@@ -83,9 +83,9 @@ echo output_message($message);
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>
-			<h2>موضوعات و مقالات</h2>
 			<a class="arial btn btn-success pull-left" href="new_subject.php" title="Add New Subject"><span class="glyphicon glyphicon-plus"></span></a>
-			<?php echo admin_articles($current_subject, $current_article); ?>
+			<h2>موضوعات و مقالات</h2>
+			<?php echo articles($current_subject, $current_article); ?>
 		</aside>
 	</section>
 <?php include_layout_template('admin_footer.php'); ?>

@@ -701,119 +701,46 @@ function log_action($action, $message = "")
 }
 
 /**
- * Function for super admins to show the subjects and articles
- *
- * @param $subject_array array gets the subject ID form URL and return it as an array
- * @param $article_array array gets the article ID form URL and return it as an array
- * @return string subjects as an HTML ordered list along with articles as an HTML unordered list
+ * @return string
  */
-function admin_articles($subject_array, $article_array)
+function article_url()
 {
-	$output      = "<ol type='persian'>";
-	$subject_set = Subject::find_all(FALSE);
-	foreach($subject_set as $subject) {
-		$output .= "<li>";
-		$output .= "<div class='lead'>";
-		$output .= "<a href='admin_articles.php?subject=";
-		$output .= urlencode($subject->id) . "'";
-		if($subject_array && $subject->id == $subject_array->id) {
-			$output .= " class='selected'";
-		}
-		$output .= ">";
-		$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
-		$output .= "</a>";
-		if( ! $subject->visible) {
-			$output .= "&nbsp;<i class='text-danger fa fa-eye-slash fa-lg'></i>";
-		}
-		$output .= "</div>";
-		$article_set = Article::find_articles_for_subject($subject->id, FALSE);
-		$output .= "<ol style='margin-right:20px;'>";
-		foreach($article_set as $article) {
-			$output .= "<li value='" . $article->position . "'>";
-			$output .= "<a href='admin_articles.php?subject=";
-			$output .= urlencode($subject->id) . "&article=";
-			$output .= $article->id . "'";
-			if($article_array && $article->id == $article_array->id) {
-				$output .= " class='selected'";
-			}
-			if($article->comments()) {
-				$output .= "data-toggle='tooltip' data-placement='left' title='";
-				$output .= convert(count($article->comments())) . " دیدگاه";
-				$output .= "'";
-			}
-			$output .= ">";
-			if( ! $article->visible) {
-				$output = ! empty($article->name) ? $output . ('<del>' . $article->name . '</del>') : $output . '-';
-			} else {
-				$output = ! empty($article->name) ? $output . $article->name : $output . '-';
-			}
-			$output .= "</a>";
-			if($article->recent()) {
-				$output .= "&nbsp;<kbd>تازه</kbd>";
-			}
-			$output .= "</li>";
-		}
-		$output .= "</ol></li>";
+	global $session;
+	if($session->is_logged_in()) {
+		return 'member-articles';
 	}
-	$output .= "</ol>";
+	if($session->is_author_logged_in()) {
+		return 'author_articles.php';
+	}
+	if($session->is_admin_logged_in()) {
+		return 'admin_articles.php';
+	}
 
-	return $output;
+	return 'articles';
 }
 
 /**
- * Function for authors to show the subjects and articles
- *
- * @param $subject_array array gets the subject ID form URL and return it as an array
- * @param $article_array array gets the article ID form URL and return it as an array
- * @return string subjects as an HTML ordered list along with articles as an HTML unordered list
+ * @return string
  */
-function author_articles($subject_array, $article_array)
+function course_url()
 {
-	$output      = "<ul class='list-group'>";
-	$subject_set = Subject::find_all(TRUE);
-	foreach($subject_set as $subject) {
-		$output .= "<li class='list-group-item'>";
-		$output .= "<div class='lead'>";
-		$output .= "<a href='author_articles.php?subject=";
-		$output .= urlencode($subject->id) . "'";
-		if($subject_array && $subject->id == $subject_array->id) {
-			$output .= " class='selected'";
+	global $session;
+	global $filename;
+	if($session->is_logged_in()) {
+		if($filename == 'forum.php') {
+			return 'forum';
 		}
-		$output .= ">";
-		$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
-		$output .= "</a>";
-		$output .= "</div>";
-		$article_set = Article::find_articles_for_subject($subject->id, FALSE);
-		$output .= "<ul class='list-unstyled'>";
-		foreach($article_set as $article) {
-			$output .= "<li><p>- ";
-			$output .= "<a href='author_articles.php?subject=";
-			$output .= urlencode($subject->id) . "&article=";
-			$output .= $article->id . "'";
-			if($article_array && $article->id == $article_array->id) {
-				$output .= " class='selected'";
-			}
-			if($article->comments()) {
-				$output .= "data-toggle='tooltip' data-placement='left' title='";
-				$output .= convert(count($article->comments())) . " دیدگاه";
-				$output .= "'";
-			}
-			$output .= ">";
-			$output = ! empty($article->name) ? $output . $article->name : $output . '-';
-			$output .= "</a>";
-			if( ! $article->visible) {
-				$output .= " <i class='text-danger fa fa-eye-slash fa-lg'></i>";
-			}
-			if($article->recent()) {
-				$output .= "&nbsp;<kbd>تازه</kbd>";
-			}
-			$output .= "</p></li>";
-		}
-		$output .= "</ul></li>";
-	}
-	$output .= "</ul>";
 
-	return $output;
+		return 'member-courses';
+	}
+	if($session->is_author_logged_in()) {
+		return 'author_courses.php';
+	}
+	if($session->is_admin_logged_in()) {
+		return 'admin_courses.php';
+	}
+
+	return 'courses';
 }
 
 /**
@@ -821,37 +748,38 @@ function author_articles($subject_array, $article_array)
  * functions are instead of all articles to be open for every subjects, the members actually have to click on subjects
  * in order for articles to be open underneath subjects and this happens once for every subject.
  *
- * @param $subject_array array gets the subject ID form URL and return it as an array
- * @param $article_array array gets the article ID form URL and return it as an array
+ * @param      $subject_array array gets the subject ID form URL and return it as an array
+ * @param      $article_array array gets the article ID form URL and return it as an array
+ * @param bool $public
  * @return string subjects as an HTML ordered list along with articles as an HTML unordered list
  */
-function member_articles($subject_array, $article_array)
+function articles($subject_array, $article_array, $public = FALSE)
 {
 	$output      = "<ul class='list-group'>";
-	$subject_set = Subject::find_all(TRUE);
+	$subject_set = Subject::find_all($public);
 	foreach($subject_set as $subject) {
 		if(Article::num_articles_for_subject($subject->id)) {
 			$output .= "<li class='list-group-item'>";
-			$output .= "<span class='badge'>" . convert(Article::count_articles_for_subject($subject->id, TRUE)) . "</span>";
-			$output .= "<a href='member-articles?subject=";
-			$output .= urlencode($subject->id) . "'";
+			$output .= "<span class='badge'>" . convert(Article::count_articles_for_subject($subject->id, $public)) . "</span>";
+			$output .= "<a href='" . article_url();
+			$output .= "?subject=" . urlencode($subject->id) . "'";
 			if($subject_array && $subject->id == $subject_array->id) {
 				$output .= " class='lead selected' ";
 			}
 			$output .= ">";
 			$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
 			$output .= "</a>";
-			if(Article::count_recent_articles_for_subject($subject->id, TRUE) > 0) {
+			if(Article::count_recent_articles_for_subject($subject->id, $public) > 0) {
 				$output .= "&nbsp;&nbsp;";
-				$output .= "<small><span class='label label-as-badge label-info'>" . convert(Article::count_recent_articles_for_subject($subject->id, TRUE)) . " مقاله جدید</span></small>";
+				$output .= "<small><span class='label label-as-badge label-info'>" . convert(Article::count_recent_articles_for_subject($subject->id, $public)) . " مقاله جدید</span></small>";
 			}
-			if($subject_array && $article_array) {
-				if($subject_array->id == $subject->id || $article_array->subject_id == $subject->id) {
-					$article_set = Article::find_articles_for_subject($subject->id, TRUE);
+			if($subject_array) {
+				$article_set = Article::find_articles_for_subject($subject->id, $public);
+				if($subject_array->id == $subject->id || $article_set[0]->subject_id == $subject->id) {
 					$output .= "<ul class='list-unstyled'>";
 					foreach($article_set as $article) {
 						$output .= "<li><p>- ";
-						$output .= "<a href='member-articles?subject=";
+						$output .= "<a href='" . article_url() . "?subject=";
 						$output .= urlencode($subject->id) . "&article=";
 						$output .= urlencode($article->id) . "'";
 						if($article_array && $article->id == $article_array->id) {
@@ -881,187 +809,41 @@ function member_articles($subject_array, $article_array)
 }
 
 /**
- * Finds all articles for subjects
- *
- * @param bool $public is a condition to select the first article (the default one) for every subject upon clicking on
- *                     subjects and by default is equals to FALSE.
- */
-function find_selected_article($public = FALSE)
-{
-	global $current_subject;
-	global $current_article;
-	if(isset($_GET["subject"]) && isset($_GET["article"])) {
-		$current_subject = Subject::find_by_id($_GET["subject"], $public);
-		$current_article = Article::find_by_id($_GET["article"], $public);
-	} elseif(isset($_GET["subject"])) {
-		$current_subject = Subject::find_by_id($_GET["subject"], $public);
-		if($current_subject && $public) {
-			$current_article = Article::find_default_article_for_subject($current_subject->id);
-		} else {
-			$current_article = NULL;
-		}
-	} elseif(isset($_GET["article"])) {
-		$current_article = Article::find_by_id($_GET["article"], $public);
-		$current_subject = NULL;
-	} else {
-		$current_subject = NULL;
-		$current_article = NULL;
-	}
-}
-
-/**
- * Function for super admins to show the categories and courses
- *
- * @param $category_array array gets the subject ID form URL and return it as an array
- * @param $course_array   array gets the article ID form URL and return it as an array
- * @return string categories as an HTML ordered list along with courses as an HTML unordered list
- */
-function admin_courses($category_array, $course_array)
-{
-	$output       = "<ol type='persian'>";
-	$category_set = Category::find_all(FALSE);
-	foreach($category_set as $category) {
-		$output .= "<li>";
-		$output .= "<div class='lead'>";
-		$output .= "<a href='admin_courses.php?category=";
-		$output .= urlencode($category->id) . "'";
-		if($category_array && $category->id == $category_array->id) {
-			$output .= " class='selected'";
-		}
-		$output .= ">";
-		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
-		$output .= "</a>";
-		if( ! $category->visible) {
-			$output .= "&nbsp;<i class='text-danger fa fa-eye-slash'></i>";
-		} else {
-			$output .= "&nbsp;<i class='text-success fa fa-eye'></i>";
-		}
-		$output .= "</div>";
-		$course_set = Course::find_courses_for_category($category->id, FALSE);
-		$output .= "<ol style='margin-right:20px;'>";
-		foreach($course_set as $course) {
-			$output .= "<li value='" . $course->position . "'>";
-			$output .= "<a href='admin_courses.php?category=";
-			$output .= urlencode($category->id) . "&course=";
-			$output .= $course->id . "'";
-			if($course_array && $course->id == $course_array->id) {
-				$output .= " class='selected'";
-			}
-			if($course->comments()) {
-				$output .= "data-toggle='tooltip' data-placement='left' title='";
-				$output .= convert(count($course->comments())) . " دیدگاه";
-				$output .= "'";
-			}
-			$output .= ">";
-			if( ! $course->visible) {
-				$output = ! empty($course->name) ? $output . ('<del>' . $course->name . '</del>') : $output . '-';
-			} else {
-				$output = ! empty($course->name) ? $output . $course->name : $output . '-';
-			}
-			$output .= "</a>";
-			if($course->recent()) {
-				$output .= "&nbsp;<kbd>تازه</kbd>";
-			}
-			$output .= "</li>";
-		}
-		$output .= "</ol></li>";
-	}
-	$output .= "</ol>";
-
-	return $output;
-}
-
-/**
- * Function for authors to show the categories and courses
- *
- * @param $category_array array gets the category ID form URL and return it as an array
- * @param $course_array   array gets the course ID form URL and return it as an array
- * @return string categories as an HTML ordered list along with courses as an HTML unordered list
- */
-function author_courses($category_array, $course_array)
-{
-	$output       = "<ul class='list-group'>";
-	$category_set = Category::find_all(TRUE);
-	foreach($category_set as $category):
-		$output .= "<li class='list-group-item'>";
-		$output .= "<div class='lead'>";
-		$output .= "<a href='author_courses.php?category=";
-		$output .= urlencode($category->id) . "'";
-		if($category_array && $category->id == $category_array->id) {
-			$output .= " class='selected'";
-		}
-		$output .= ">";
-		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
-		$output .= "</a>";
-		$output .= "</div>";
-		$course_set = Course::find_courses_for_category($category->id, FALSE);
-		$output .= "<ul class='list-unstyled'>";
-		foreach($course_set as $course):
-			$output .= "<li><p>- ";
-			$output .= "<a href='author_courses.php?category=";
-			$output .= urlencode($category->id) . "&course=";
-			$output .= $course->id . "'";
-			if($course_array && $course->id == $course_array->id) {
-				$output .= " class='selected'";
-			}
-			if($course->comments()) {
-				$output .= "data-toggle='tooltip' data-placement='left' title='";
-				$output .= convert(count($course->comments())) . " دیدگاه";
-				$output .= "'";
-			}
-			$output .= ">";
-			$output = ! empty($course->name) ? $output . $course->name : $output . '-';
-			$output .= "</a>";
-			if( ! $course->visible) {
-				$output .= "&nbsp;<i class='text-danger fa fa-eye-slash fa-lg'></i>";
-			}
-			if($course->recent()) {
-				$output .= "&nbsp;<kbd>تازه</kbd>";
-			}
-			$output .= "</p></li>";
-		endforeach;
-		$output .= "</ul></li>";
-	endforeach;
-	$output .= "</ul>";
-
-	return $output;
-}
-
-/**
  * Function for members to show the categories and courses. The difference between this function with administrators
  * functions are instead of all courses to be open for every categories, the members actually have to click on
  * categories in order for courses to be open underneath categories and this happens once for every category.
  *
- * @param $category_array array gets the category ID form URL and return it as an array
- * @param $course_array   array gets the course ID form URL and return it as an array
+ * @param      $category_array array gets the category ID form URL and return it as an array
+ * @param      $course_array   array gets the course ID form URL and return it as an array
+ * @param bool $public
  * @return string categories as an HTML ordered list along with courses as an HTML unordered list
  */
-function member_courses($category_array, $course_array)
+function courses($category_array, $course_array, $public = FALSE)
 {
 	$output       = "<ul class='list-group'>";
-	$category_set = Category::find_all(TRUE);
+	$category_set = Category::find_all($public);
 	foreach($category_set as $category) {
 		$output .= "<li class='list-group-item'>";
-		$output .= "<span class='badge'>" . convert(Course::count_courses_for_category($category->id, TRUE)) . "</span>";
-		$output .= "<a href='member-courses?category=";
-		$output .= urlencode($category->id) . "'";
+		$output .= "<span class='badge'>" . convert(Course::count_courses_for_category($category->id, $public)) . "</span>";
+		$output .= "<a href='" . course_url();
+		$output .= "?category=" . urlencode($category->id) . "'";
 		if($category_array && $category->id == $category_array->id) {
 			$output .= " class='lead' ";
 		}
 		$output .= ">";
 		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
 		$output .= "</a>";
-		if(Course::count_recent_course_for_category($category->id, TRUE) > 0) {
+		if(Course::count_recent_course_for_category($category->id, $public) > 0) {
 			$output .= "&nbsp;&nbsp;";
-			$output .= "<small><span class='label label-as-badge label-info'>" . convert(Course::count_recent_course_for_category($category->id, TRUE)) . " درس جدید</span></small>";
+			$output .= "<small><span class='label label-as-badge label-info'>" . convert(Course::count_recent_course_for_category($category->id, $public)) . " درس جدید</span></small>";
 		}
-		if($category_array && $course_array) {
-			if($category_array->id == $category->id || $course_array->category_id == $category->id) {
-				$course_set = Course::find_courses_for_category($category->id);
+		if($category_array) {
+			$course_set = Course::find_courses_for_category($category->id);
+			if($category_array->id == $category->id || $course_set[0]->category_id == $category->id) {
 				$output .= "<ul class='list-unstyled'>";
 				foreach($course_set as $course) {
 					$output .= "<li><p>- ";
-					$output .= "<a href='member-courses?category=";
+					$output .= "<a href='" . course_url() . "?category=";
 					$output .= urlencode($category->id) . "&course=";
 					$output .= urlencode($course->id) . "'";
 					if($course_array && $course->id == $course_array->id) {
@@ -1079,68 +861,6 @@ function member_courses($category_array, $course_array)
 						$output .= "&nbsp;<kbd>تازه</kbd>";
 					}
 					$output .= "</p></li>";
-				}
-				$output .= "</ul>";
-			}
-		}
-		$output .= "</li>";
-	}
-	$output .= "</ul>";
-
-	return $output;
-}
-
-/**
- * Function for members to show the categories and courses. The difference between this function with administrators
- * functions are instead of all courses to be open for every categories, the members actually have to click on
- * categories in order for courses to be open underneath categories and this happens once for every category.
- *
- * @param $category_array array gets the category ID form URL and return it as an array
- * @param $course_array   array gets the course ID form URL and return it as an array
- * @return string categories as an HTML ordered list along with courses as an HTML unordered list
- */
-function member_comments_for_course($category_array, $course_array)
-{
-	$output       = "<ul class='list-group'>";
-	$category_set = Category::find_all(TRUE);
-	foreach($category_set as $category) {
-		$output .= "<li class='list-group-item'>";
-		$output .= "<span class='badge'>" . convert(Course::count_courses_for_category($category->id, TRUE)) . "</span>";
-		$output .= "<a href='forum?category=";
-		$output .= urlencode($category->id) . "'";
-		if($category_array && $category->id == $category_array->id) {
-			$output .= " class='lead' ";
-		}
-		$output .= ">";
-		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
-		$output .= "</a>";
-		if(Course::count_recent_course_for_category($category->id, TRUE) > 0) {
-			$output .= "&nbsp;&nbsp;";
-			$output .= "<small><span class='label label-as-badge'>" . convert(Course::count_recent_course_for_category($category->id, TRUE)) . " درس جدید</span></small>";
-		}
-		if($category_array && $course_array) {
-			if($category_array->id == $category->id || $course_array->category_id == $category->id) {
-				$course_set = Course::find_courses_for_category($category->id);
-				$output .= "<ul class='list-unstyled'>";
-				foreach($course_set as $course) {
-					$output .= "<li><p>- ";
-					$output .= "<a href='forum?category=";
-					$output .= urlencode($category->id) . "&course=";
-					$output .= urlencode($course->id) . "'";
-					if($course_array && $course->id == $course_array->id) {
-						$output .= " class='selected'";
-					}
-					if($course->comments()) {
-						$output .= "data-toggle='tooltip' data-placement='left' title='";
-						$output .= convert(count($course->comments())) . " دیدگاه";
-						$output .= "'";
-					}
-					$output .= ">";
-					$output = ! empty($course->name) ? $output . $course->name : $output . '-';
-					if($course->recent()) {
-						$output .= "&nbsp;<kbd>تازه</kbd>";
-					}
-					$output .= "</a></p></li>";
 				}
 				$output .= "</ul>";
 			}
@@ -1188,57 +908,32 @@ function public_courses()
 }
 
 /**
- * Function for public to show the subjects and articles
+ * Finds all articles for subjects
  *
- * @param $subject_array
- * @param $article_array
- * @return string subject as an HTML ordered list along with courses as an HTML unordered list
+ * @param bool $public is a condition to select the first article (the default one) for every subject upon clicking on
+ *                     subjects and by default is equals to FALSE.
  */
-function public_articles($subject_array, $article_array)
+function find_selected_article($public = FALSE)
 {
-	$output      = "<ul class='list-group'>";
-	$subject_set = Subject::find_all(TRUE);
-	foreach($subject_set as $subject) {
-		if(Article::num_articles_for_subject($subject->id)) {
-			$output .= "<li class='list-group-item'>";
-			$output .= "<span class='badge'>" . convert(Article::count_articles_for_subject($subject->id, TRUE)) . "</span>";
-			$output .= "<a href='/articles?subject=" . urlencode($subject->id) . "'";
-			if($subject_array && $subject->id == $subject_array->id) {
-				$output .= " class='lead selected' ";
-			}
-			$output .= ">";
-			$output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
-			$output .= "</a>";
-			if(Article::count_recent_articles_for_subject($subject->id, TRUE) > 0) {
-				$output .= "&nbsp;&nbsp;";
-				$output .= "<span class='label label-as-badge label-primary'>" . convert(Article::count_recent_articles_for_subject($subject->id, TRUE)) . " مقاله جدید</span>";
-			}
-			if($subject_array && $article_array) {
-				if($subject_array->id == $subject->id || $article_array->subject_id == $subject->id) {
-					$article_set = Article::find_articles_for_subject($subject->id, TRUE);
-					$output .= "<ul class='list-unstyled'>";
-					foreach($article_set as $article) {
-						$output .= "<li><p>- ";
-						$output .= "<a href='/articles?subject=" . urlencode($subject->id) . "&article=" . urlencode($article->id) . "'";
-						if($article_array && $article->id == $article_array->id) {
-							$output .= " class='selected'";
-						}
-						$output .= ">";
-						$output = ! empty($article->name) ? $output . $article->name : $output . '-';
-						if($article->recent()) {
-							$output .= "&nbsp;<kbd>تازه</kbd>";
-						}
-						$output .= "</a></p></li>";
-					}
-					$output .= "</ul>";
-				}
-			}
-			$output .= "</li>";
+	global $current_subject;
+	global $current_article;
+	if(isset($_GET["subject"]) && isset($_GET["article"])) {
+		$current_subject = Subject::find_by_id($_GET["subject"], $public);
+		$current_article = Article::find_by_id($_GET["article"], $public);
+	} elseif(isset($_GET["subject"])) {
+		$current_subject = Subject::find_by_id($_GET["subject"], $public);
+		if($current_subject && $public) {
+			$current_article = Article::find_default_article_for_subject($current_subject->id);
+		} else {
+			$current_article = NULL;
 		}
+	} elseif(isset($_GET["article"])) {
+		$current_article = Article::find_by_id($_GET["article"], $public);
+		$current_subject = NULL;
+	} else {
+		$current_subject = NULL;
+		$current_article = NULL;
 	}
-	$output .= "</ul>";
-
-	return $output;
 }
 
 /**

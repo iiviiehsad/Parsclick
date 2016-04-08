@@ -156,7 +156,7 @@ find_selected_course(TRUE);
 				</div>
 			</form>
 			<h2>موضوعات و دروس</h2>
-			<?php echo member_courses($current_category, $current_course); ?>
+			<?php echo courses($current_category, $current_course, TRUE); ?>
 		</aside>
 	</section>
 	<!-- Video / Generic Modal -->

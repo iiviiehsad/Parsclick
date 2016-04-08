@@ -74,7 +74,7 @@ echo output_message($message);
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>
 			<h2>موضوعات و دروس</h2>
-			<?php echo admin_courses($current_category, $current_course); ?>
+			<?php echo courses($current_category, $current_course); ?>
 		</aside>
 	</section>
 <?php include_layout_template('admin_footer.php'); ?>

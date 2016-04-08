@@ -89,7 +89,7 @@ echo output_message($message);
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>
 			<h2>موضوعات و مقالات</h2>
-			<?php echo author_articles($current_subject, $current_article); ?>
+			<?php echo articles($current_subject, $current_article); ?>
 			<h2>موضوع جدید</h2>
 			<p>نویسندگان عزیز اگر موضوع خاصی مد نظرتان هست که در موضوعات نیست، بدون هیچ تعارفی یک ایمیل کوتاه به نویسنده
 			   بزنید، (از ایمیل نویسندگی تون) و اشاره کنید چه موضوعی می خواهید. مطالب شما حتما نباید زیر یکی از موضوعات بالا

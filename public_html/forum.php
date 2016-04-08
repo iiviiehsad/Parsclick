@@ -54,7 +54,7 @@ if( ! $current_course || ! $current_category) {
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside class="members_menu">
 			<h2>انجمن ها</h2>
-			<?php echo member_comments_for_course($current_category, $current_course); ?>
+			<?php echo courses($current_category, $current_course, TRUE); ?>
 		</aside>
 	</section>
 <?php include_layout_template('footer.php'); ?>
