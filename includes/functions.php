@@ -730,6 +730,9 @@ function course_url()
 		if($filename == 'forum.php') {
 			return 'forum';
 		}
+		if($filename == 'member-forum-search.php') {
+			return 'forum';
+		}
 
 		return 'member-courses';
 	}

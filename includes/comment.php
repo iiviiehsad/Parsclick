@@ -74,4 +74,18 @@ class Comment extends DatabaseObject
 		return self::find_by_sql($sql);
 	}
 
+	/**
+	 * @param string $search
+	 * @return array|null
+	 */
+	public static function search($search = "")
+	{
+		global $database;
+		$sql = "SELECT * FROM " . self::$table_name . " WHERE ";
+		$sql .= "body LIKE '%{$database->escape_value($search)}%'";
+		$result_set = self::find_by_sql($sql);
+
+		return ! empty($result_set) ? $result_set : NULL;
+	}
+
 } // END of CLASS

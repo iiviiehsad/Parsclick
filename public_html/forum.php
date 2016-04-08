@@ -17,9 +17,10 @@ $body   = '';
 			<?php if( ! $current_course && ! $current_category): ?>
 				<?php include_layout_template('member-forum-info.php'); ?>
 			<?php else: ?>
-				<h3><i class="fa fa-comments fa-lg"></i> انجمن
+				<h3><i class="fa fa-comments fa-lg"></i>
+					<a href="forum" data-toggle="tooltip" data-placement="bottom" title="اطلاعات انجمن">انجمن</a>
 					<a href="member-courses?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>"
-					   data-toggle="tooltip" title="برگردید به درس"><?php echo htmlentities($current_course->name); ?></a>
+					   data-toggle="tooltip" title="برگردید به درس"  data-placement="left"><?php echo htmlentities($current_course->name); ?></a>
 				</h3>
 				<fieldset>
 					<legend></legend>
@@ -52,6 +53,12 @@ $body   = '';
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside class="members_menu">
+			<form class="form-inline" action="member-forum-search" method="GET">
+				<div class="input-group">
+					<span class="input-group-addon"><span class="arial glyphicon glyphicon-search"></span></span>
+					<input type="text" name="q" class="form-control" size="30" maxlength="50" data-toggle="tooltip" data-placement="top" title="جستجو کنید و اینتر بزنید" placeholder="جستجوی موضوع در انجمن"/>
+				</div>
+			</form>
 			<h2>انجمن ها</h2>
 			<?php echo courses($current_category, $current_course, TRUE); ?>
 		</aside>
