@@ -125,12 +125,7 @@ echo output_message($message);
 					<?php endif; ?>
 				<?php endif; ?>
 				<!--------------------------------------------COMMENTS--------------------------------------------------->
-				<?php // Pagination
-				$page       = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
-				$pagination = new pagination($page, 20, Comment::count_comments_for_course($current_course->id));
-				$comments   = Comment::find_comments($current_course->id, 20, $pagination->offset());
-				?>
-				<hr><?php echo output_message($message); ?>
+				<?php echo output_message($message); ?>
 				<article id="comments">
 					<?php include_layout_template('course-comments.php'); ?>
 				</article>

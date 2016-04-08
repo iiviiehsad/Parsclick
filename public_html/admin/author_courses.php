@@ -172,11 +172,9 @@ echo output_message($message, $errors);
 					<?php endif; ?>
 				<?php endif; ?>
 				<!--------------------------------------------COMMENTS--------------------------------------------------->
-				<div class="alert alert-danger">
-					<article id="comments">
-						<?php include_layout_template('course-comments.php'); ?>
-					</article>
-				</div>
+				<article id="comments">
+					<?php include_layout_template('course-comments.php'); ?>
+				</article>
 			<?php elseif($current_category): ?>
 				<?php if( ! $current_category->visible) redirect_to("author_courses.php"); ?>
 				<div class="panel panel-danger">
