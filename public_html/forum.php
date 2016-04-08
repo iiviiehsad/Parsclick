@@ -15,7 +15,6 @@ $body   = '';
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article id="comments">
 			<?php if( ! $current_course && ! $current_category): ?>
-				<h1><i class="fa fa-comments fa-lg"></i> انجمن، سوالات و نظرات</h1>
 				<?php include_layout_template('member-forum-info.php'); ?>
 			<?php else: ?>
 				<h3><i class="fa fa-comments fa-lg"></i> انجمن
@@ -32,9 +31,7 @@ $body   = '';
 						<input type="hidden" name="course" value="<?php echo urlencode($current_course->id); ?>">
 						<div class="controls">
 							<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" rows="3" required
-							          placeholder="سوال یا نظرتان را اینجا وارد کنید و کد ها را داخل تگ <pre> وارد کنید
-برای چپ چین کردن از <'p class='edit> استفاده کنید
-کلمات انگلیسی بین کلمات فارسی را داخل تگ <code> بیاندازید"></textarea>
+							          placeholder="سوال یا نظرتان را اینجا وارد کنید"></textarea>
 						</div>
 						<!--buttons-->
 						<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
