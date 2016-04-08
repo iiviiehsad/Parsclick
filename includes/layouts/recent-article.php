@@ -1,10 +1,9 @@
 <article>
 	<?php
 	global $current_article;
-	global $current_subject;
 	global $newest_article;
 	global $session;
-	$current_article = $current_subject = $newest_article;
+	$current_article = $newest_article;
 	?>
 	<h2>
 		<?php echo htmlentities($newest_article->name); ?>

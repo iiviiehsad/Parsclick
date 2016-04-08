@@ -774,8 +774,9 @@ function articles($subject_array, $article_array, $public = FALSE)
 				$output .= "<small><span class='label label-as-badge label-info'>" . convert(Article::count_recent_articles_for_subject($subject->id, $public)) . " مقاله جدید</span></small>";
 			}
 			if($subject_array) {
+				$default_article = Article::find_default_article_for_subject($subject->id);
+				if($subject_array->id == $subject->id && $default_article->subject_id == $subject->id) {
 				$article_set = Article::find_articles_for_subject($subject->id, $public);
-				if($subject_array->id == $subject->id || $article_set[0]->subject_id == $subject->id) {
 					$output .= "<ul class='list-unstyled'>";
 					foreach($article_set as $article) {
 						$output .= "<li><p>- ";
@@ -838,8 +839,9 @@ function courses($category_array, $course_array, $public = FALSE)
 			$output .= "<small><span class='label label-as-badge label-info'>" . convert(Course::count_recent_course_for_category($category->id, $public)) . " درس جدید</span></small>";
 		}
 		if($category_array) {
+			$default_course = Course::find_default_course_for_category($category->id);
+			if($category_array->id == $category->id && $default_course->category_id == $category->id) {
 			$course_set = Course::find_courses_for_category($category->id);
-			if($category_array->id == $category->id || $course_set[0]->category_id == $category->id) {
 				$output .= "<ul class='list-unstyled'>";
 				foreach($course_set as $course) {
 					$output .= "<li><p>- ";
