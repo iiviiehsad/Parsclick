@@ -34,26 +34,10 @@ $newest_article = Article::find_newest_article();
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
 		<h3>
-			<span class="label label-success visible-sm"><?php echo 'خوش آمدید  ' . ucwords(strtolower($member->full_name())); ?></span>
+			<span class="label label-info visible-sm"><?php echo 'خوش آمدید  ' . ucwords(strtolower($member->full_name())); ?></span>
 		</h3>
-		<h2><?php echo htmlentities($newest_article->name); ?>&nbsp;<span class="badge">جدیدترین مقاله</span></h2>
-		<h5>
-			<?php
-			if(isset($newest_article->author_id)):
-				$author = Author::find_by_id($newest_article->author_id);
-				?><i class="fa fa-user fa-lg"></i>&nbsp;
-				<?php echo 'توسط: ' . $author->full_name();
-			endif; ?>
-		</h5>
-		<h5>
-			<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($newest_article->created_at)); ?>
-		</h5>
-		<h5>
-			<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_shamsi($newest_article->created_at)); ?>
-		</h5>
-		<hr>
-		<?php echo nl2br(strip_tags($newest_article->content, ARTICLE_ALLOWABLE_TAGS)); ?>
 	</article>
+	<?php include_layout_template('recent-article.php'); ?>
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<aside>
