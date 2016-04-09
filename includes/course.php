@@ -1,5 +1,4 @@
 <?php //namespace Parsclick;
-
 class Course extends DatabaseObject
 {
 	protected static $table_name = "courses";
@@ -176,6 +175,23 @@ class Course extends DatabaseObject
 		if($public) {
 			$sql .= " AND visible = 1 ";
 		}
+		$result_set = $database->query($sql);
+		$row        = $database->fetch_assoc($result_set);
+
+		return array_shift($row);
+	}
+
+	/**
+	 * @param int  $category_id
+	 * @param bool $public
+	 * @return mixed
+	 */
+	public static function count_invisible_courses_for_category($category_id = 0)
+	{
+		global $database;
+		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
+		$sql .= " WHERE category_id = " . $category_id;
+		$sql .= " AND visible = 0 ";
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
 

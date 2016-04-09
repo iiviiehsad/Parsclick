@@ -1,9 +1,8 @@
 <?php //namespace Parsclick;
-
 class pagination
 {
-	public $current_pgae;
-	public $per_pgae;
+	public $current_page;
+	public $per_page;
 	public $total_count;
 
 	/**
@@ -13,9 +12,9 @@ class pagination
 	 */
 	public function __construct($page = 1, $per_page = 20, $total_count = 0)
 	{
-		$this->current_pgae = (int)$page;
-		$this->per_pgae     = (int)$per_page;
-		$this->total_count  = (int)$total_count;
+		$this->current_page = (int) $page;
+		$this->per_page     = (int) $per_page;
+		$this->total_count  = (int) $total_count;
 	}
 
 	/**
@@ -28,7 +27,7 @@ class pagination
 	 */
 	public function offset()
 	{
-		return ($this->current_pgae - 1) * $this->per_pgae;
+		return ($this->current_page - 1) * $this->per_page;
 	}
 
 	/**
@@ -44,7 +43,7 @@ class pagination
 	 */
 	public function previous_page()
 	{
-		return $this->current_pgae - 1;
+		return $this->current_page - 1;
 	}
 
 	/**
@@ -60,7 +59,7 @@ class pagination
 	 */
 	public function next_page()
 	{
-		return $this->current_pgae + 1;
+		return $this->current_page + 1;
 	}
 
 	/**
@@ -70,7 +69,7 @@ class pagination
 	 */
 	public function total_page()
 	{
-		return ceil($this->total_count / $this->per_pgae);
+		return ceil($this->total_count / $this->per_page);
 	}
 
 } // END of CLASS

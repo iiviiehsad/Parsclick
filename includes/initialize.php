@@ -47,12 +47,14 @@ defined('UDEMY') ? NULL : define('UDEMY', "https://www.udemy.com/u/amirhassanazi
  * To load the core objects
  *
  * @param array $files
+ * @return array
  */
 function init($files = [])
 {
 	foreach($files as $file) {
 		require_once(LIB_PATH . DS . $file);
 	}
+	return $files;
 }
 
 /**

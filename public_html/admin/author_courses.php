@@ -183,7 +183,17 @@ echo output_message($message, $errors);
 							<a class="arial btn btn-success btn-small" href="new_course.php?category=<?php echo urlencode($current_category->id); ?>" data-toggle="tooltip" title="درس جدید">
 								<i class="fa fa-plus fa-lg"></i>
 							</a>
-							<?php echo htmlentities(ucwords($current_category->name)); ?>
+							<?php
+							echo htmlentities(ucwords($current_category->name));
+							if(Course::count_recent_course_for_category($current_category->id, FALSE) > 0) {
+								echo "&nbsp;&nbsp;";
+								echo "<small><span class='label label-as-badge label-info'>" . convert(Course::count_recent_course_for_category($current_category->id, FALSE)) . " درس جدید</span></small>";
+							}
+							if(Course::count_invisible_courses_for_category($current_category->id) > 0) {
+								echo "&nbsp;&nbsp;";
+								echo "<small><span class='label label-as-badge label-danger'>" . convert(Course::count_invisible_courses_for_category($current_category->id)) . " درس مخفی</span></small>";
+							}
+							?>
 						</h2>
 					</div>
 					<div class="panel-body">
@@ -202,6 +212,12 @@ echo output_message($message, $errors);
 								echo '>';
 								echo htmlentities(ucwords($course->name));
 								echo '</a>';
+								if($course->recent()) {
+									echo "&nbsp;<kbd>تازه</kbd>";
+								}
+								if( ! $course->visible) {
+									echo '&nbsp;<kbd>مخفی</kbd>';
+								}
 								echo '</li>';
 							endforeach; ?>
 						</ul>

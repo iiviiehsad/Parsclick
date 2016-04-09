@@ -57,7 +57,18 @@ echo output_message($message);
 						<h2 class="panel-title">
 							<a class="btn btn-success btn-small arial" href="new_article.php?subject=<?php echo urlencode($current_subject->id); ?>" data-toggle="tooltip" title="مقاله جدید">
 								<i class="fa fa-plus fa-lg"></i>
-							</a> &nbsp;<?php echo htmlentities(ucwords($current_subject->name)); ?>&nbsp;
+							</a>
+							<?php
+							echo htmlentities(ucwords($current_subject->name));
+							if(Article::count_recent_articles_for_subject($current_subject->id, FALSE) > 0) {
+								echo "&nbsp;&nbsp;";
+								echo "<small><span class='label label-as-badge label-info'>" . convert(Article::count_recent_articles_for_subject($current_subject->id, FALSE)) . " مقاله جدید</span></small>";
+							}
+							if(Article::count_invisible_articles_for_subject($current_subject->id) > 0) {
+								echo "&nbsp;&nbsp;";
+								echo "<small><span class='label label-as-badge label-danger'>" . convert(Article::count_invisible_articles_for_subject($current_subject->id)) . " مقاله مخفی</span></small>";
+							}
+							?>
 						</h2>
 					</div>
 					<div class="panel-body">
@@ -76,6 +87,12 @@ echo output_message($message);
 								echo '>';
 								echo htmlentities(ucwords($article->name));
 								echo '</a>';
+								if($article->recent()) {
+									echo "&nbsp;<kbd>تازه</kbd>";
+								}
+								if( ! $article->visible) {
+									echo '&nbsp;<kbd>مخفی</kbd>';
+								}
 								echo '</li>';
 							endforeach; ?>
 						</ul>

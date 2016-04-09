@@ -776,33 +776,38 @@ function articles($subject_array, $article_array, $public = FALSE)
 				$output .= "&nbsp;&nbsp;";
 				$output .= "<small><span class='label label-as-badge label-info'>" . convert(Article::count_recent_articles_for_subject($subject->id, $public)) . " مقاله جدید</span></small>";
 			}
-			if($subject_array) {
-				$default_article = Article::find_default_article_for_subject($subject->id);
-				if($subject_array->id == $subject->id && $default_article->subject_id == $subject->id) {
+			if(Article::count_invisible_articles_for_subject($subject->id) > 0 && ! $public) {
+				$output .= "&nbsp;&nbsp;";
+				$output .= "<small><span class='label label-as-badge label-danger'>" . convert(Article::count_invisible_articles_for_subject($subject->id)) . " مقاله مخفی</span></small>";
+			}
+			$default_article = Article::find_default_article_for_subject($subject->id);
+			if($subject_array && $subject_array->id == $subject->id && $default_article->subject_id == $subject->id) {
 				$article_set = Article::find_articles_for_subject($subject->id, $public);
-					$output .= "<ul class='list-unstyled'>";
-					foreach($article_set as $article) {
-						$output .= "<li><p>- ";
-						$output .= "<a href='" . article_url() . "?subject=";
-						$output .= urlencode($subject->id) . "&article=";
-						$output .= urlencode($article->id) . "'";
-						if($article_array && $article->id == $article_array->id) {
-							$output .= " class='selected'";
-						}
-						if($article->comments()) {
-							$output .= "data-toggle='tooltip' data-placement='left' title='";
-							$output .= convert(count($article->comments())) . " دیدگاه";
-							$output .= "'";
-						}
-						$output .= ">";
-						$output = ! empty($article->name) ? $output . $article->name : $output . '-';
-						if($article->recent()) {
-							$output .= "&nbsp;<kbd>تازه</kbd>";
-						}
-						$output .= "</a></p></li>";
+				$output .= "<ul class='list-unstyled'>";
+				foreach($article_set as $article) {
+					$output .= "<li><p>- ";
+					$output .= "<a href='" . article_url() . "?subject=";
+					$output .= urlencode($subject->id) . "&article=";
+					$output .= urlencode($article->id) . "'";
+					if($article_array && $article->id == $article_array->id) {
+						$output .= " class='selected'";
 					}
-					$output .= "</ul>";
+					if($article->comments()) {
+						$output .= "data-toggle='tooltip' data-placement='left' title='";
+						$output .= convert(count($article->comments())) . " دیدگاه";
+						$output .= "'";
+					}
+					$output .= ">";
+					$output = ! empty($article->name) ? $output . $article->name : $output . '-';
+					if($article->recent()) {
+						$output .= "&nbsp;<kbd>تازه</kbd>";
+					}
+					if( ! $article->visible) {
+						$output .= '&nbsp;<kbd>مخفی</kbd>';
+					}
+					$output .= "</a></p></li>";
 				}
+				$output .= "</ul>";
 			}
 			$output .= "</li>";
 		}
@@ -841,34 +846,39 @@ function courses($category_array, $course_array, $public = FALSE)
 			$output .= "&nbsp;&nbsp;";
 			$output .= "<small><span class='label label-as-badge label-info'>" . convert(Course::count_recent_course_for_category($category->id, $public)) . " درس جدید</span></small>";
 		}
-		if($category_array) {
-			$default_course = Course::find_default_course_for_category($category->id);
-			if($category_array->id == $category->id && $default_course->category_id == $category->id) {
-			$course_set = Course::find_courses_for_category($category->id);
-				$output .= "<ul class='list-unstyled'>";
-				foreach($course_set as $course) {
-					$output .= "<li><p>- ";
-					$output .= "<a href='" . course_url() . "?category=";
-					$output .= urlencode($category->id) . "&course=";
-					$output .= urlencode($course->id) . "'";
-					if($course_array && $course->id == $course_array->id) {
-						$output .= " class='selected'";
-					}
-					if($course->comments()) {
-						$output .= "data-toggle='tooltip' data-placement='left' title='";
-						$output .= convert(count($course->comments())) . " دیدگاه";
-						$output .= "'";
-					}
-					$output .= ">";
-					$output = ! empty($course->name) ? $output . $course->name : $output . '-';
-					$output .= "</a>";
-					if($course->recent()) {
-						$output .= "&nbsp;<kbd>تازه</kbd>";
-					}
-					$output .= "</p></li>";
+		if(Course::count_invisible_courses_for_category($category->id) > 0 && ! $public) {
+			$output .= "&nbsp;&nbsp;";
+			$output .= "<small><span class='label label-as-badge label-danger'>" . convert(Course::count_invisible_courses_for_category($category->id)) . " درس مخفی</span></small>";
+		}
+		$default_course = Course::find_default_course_for_category($category->id);
+		if($category_array && $category_array->id == $category->id && $default_course->category_id == $category->id) {
+			$course_set = Course::find_courses_for_category($category->id, $public);
+			$output .= "<ul class='list-unstyled'>";
+			foreach($course_set as $course) {
+				$output .= "<li><p>- ";
+				$output .= "<a href='" . course_url() . "?category=";
+				$output .= urlencode($category->id) . "&course=";
+				$output .= urlencode($course->id) . "'";
+				if($course_array && $course->id == $course_array->id) {
+					$output .= " class='selected'";
 				}
-				$output .= "</ul>";
+				if($course->comments()) {
+					$output .= "data-toggle='tooltip' data-placement='left' title='";
+					$output .= convert(count($course->comments())) . " دیدگاه";
+					$output .= "'";
+				}
+				$output .= ">";
+				$output = ! empty($course->name) ? $output . $course->name : $output . '-';
+				$output .= "</a>";
+				if($course->recent()) {
+					$output .= "&nbsp;<kbd>تازه</kbd>";
+				}
+				if( ! $course->visible) {
+					$output .= '&nbsp;<kbd>مخفی</kbd>';
+				}
+				$output .= "</p></li>";
 			}
+			$output .= "</ul>";
 		}
 		$output .= "</li>";
 	}
