@@ -24,8 +24,7 @@ echo output_message($message);
 					<dt>نمایان:</dt>
 					<dd><?php echo $current_course->visible == 1 ? '<span class="text-success">بله</span>' : '<span class="text-danger">خیر</span>'; ?></dd>
 					<dt>نویسنده:</dt>
-					<dd><?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)
-					                                                                      ->full_name()) : '-'; ?></dd>
+					<dd><?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)->full_name()) : '-'; ?></dd>
 					<?php if( ! empty($current_course->content)): ?>
 						<dt>توضیحات:</dt>
 						<dd>
