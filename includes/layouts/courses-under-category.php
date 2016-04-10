@@ -1,7 +1,4 @@
-<?php
-global $current_category;
-global $current_course;
-?>
+<?php global $current_category; ?>
 <h3><i class="fa fa-film"></i>&nbsp;درس ها در این موضوع</h3>
 <h2>
 	<?php

@@ -35,41 +35,41 @@ echo output_message($message);
 						</div>
 					<?php endforeach; ?>
 				<?php else: ?>
-					فایل تمرینی نداریم
+					<p>فایل تمرینی نداریم</p>
 				<?php endif; ?>
 				<!--------------------------------------------VIDEOS--------------------------------------------------->
 				<?php include_layout_template('list-videos.php'); ?>
 				<!--------------------------------------------COMMENTS--------------------------------------------------->
-				<?php echo output_message($message); ?>
 				<article id="comments">
 					<?php include_layout_template('course-comments.php'); ?>
 				</article>
 			<?php elseif($current_category): ?>
-			<div class="panel panel-danger">
-				<div class="panel-heading">
-					<h2><i class="fa fa-list-alt"></i>&nbsp;تنظیم موضوع</h2>
+				<div class="panel panel-danger">
+					<div class="panel-heading">
+						<h2><i class="fa fa-list-alt"></i>&nbsp;تنظیم موضوع</h2>
+					</div>
+					<div class="panel-body">
+						<dl class="dl-horizontal">
+							<dt>اسم موضوع:</dt>
+							<dd><?php echo htmlentities(ucwords($current_category->name)); ?></dd>
+							<dt>محل:</dt>
+							<dd><?php echo $current_category->position; ?></dd>
+							<dt>نمایان:</dt>
+							<dd><?php echo $current_category->visible == 1 ? 'بله' : 'خیر'; ?></dd>
+							<dt>&nbsp;</dt>
+							<dd>
+								<a title="ویرایش" class="btn btn-primary btn-small" href="edit_category.php?category=<?php echo urlencode($current_category->id); ?>" data-toggle="tooltip">
+									<span class="glyphicon glyphicon-pencil"></span>
+								</a>
+							</dd>
+						</dl>
+						<hr/>
+						<?php include_layout_template('courses-under-category.php'); ?>
+					</div>
 				</div>
-				<dl class="dl-horizontal">
-					<dt>اسم موضوع:</dt>
-					<dd><?php echo htmlentities(ucwords($current_category->name)); ?></dd>
-					<dt>محل:</dt>
-					<dd><?php echo $current_category->position; ?></dd>
-					<dt>نمایان:</dt>
-					<dd><?php echo $current_category->visible == 1 ? 'بله' : 'خیر'; ?></dd>
-					<dt>&nbsp;</dt>
-					<dd>
-						<a title="ویرایش" class="btn btn-primary btn-small" href="edit_category.php?category=<?php echo urlencode($current_category->id); ?>" data-toggle="tooltip">
-							<span class="glyphicon glyphicon-pencil"></span>
-						</a>
-					</dd>
-				</dl>
-				<hr/>
-				<div class="panel-body">
-					<?php include_layout_template('courses-under-category.php'); ?>
-				</div>
-				<?php else: ?>
-					<h2>لطفا یک درس یا یک موضوع انتخاب کنید.</h2>
-				<?php endif; ?>
+			<?php else: ?>
+				<h2>لطفا یک درس یا یک موضوع انتخاب کنید.</h2>
+			<?php endif; ?>
 		</article>
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">

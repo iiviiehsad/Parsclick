@@ -14,64 +14,7 @@ $body   = '';
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article id="member_article">
 			<?php if($current_subject && $current_article): ?>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-							<?php echo htmlentities($current_article->name); ?>
-						</h3>
-						<h5 class="text-success">
-							<?php if(isset($current_article->author_id)): ?>
-								<i class="fa fa-user fa-lg"></i>&nbsp;
-								<?php $author = Author::find_by_id($current_article->author_id);
-								echo 'توسط: ' . $author->full_name();
-								if( ! empty($author->photo)): ?>
-									<img class="author-photo img-circle pull-left" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
-								<?php endif; ?>
-							<?php endif; ?>
-						</h5>
-						<h5 class="text-success">
-							<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
-						</h5>
-						<h5 class="text-success">
-							<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo datetime_to_shamsi($current_article->created_at); ?>
-						</h5>
-					</div>
-					<div class="panel-body">
-						<?php echo nl2br(strip_tags($current_article->content, ARTICLE_ALLOWABLE_TAGS)); ?>
-					</div>
-					<div class="panel-footer">
-						<h2>نظرات</h2>
-						<?php echo output_message($message); ?>
-						<article id="comments">
-							<fieldset>
-								<legend></legend>
-								<form class="form-horizontal submit-comment" action="add-article-comment.php" method="POST" role="form">
-									<!--content-->
-									<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
-										<img class="img-circle pull-left hidden-sm" width="100" style="padding-right:0;" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->username; ?>">
-									</label>
-									<div class="controls">
-										<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" required placeholder=" نظرتان را اینجا وارد کنید و این تگ ها هم قابل استفاده اند <strong><pre><em><p>"></textarea>
-									</div>
-									<input type="hidden" name="article" value="<?php echo urlencode($current_article->id); ?>">
-									<!--buttons-->
-									<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-										<button class="btn btn-primary" name="submit" id="submit" type="submit">
-											بفرست
-										</button>
-									</div>
-								</form>
-							</fieldset>
-							<hr>
-							<div id="forum">
-								<div id="ajax-comments">
-									<?php include_layout_template('article-comments.php'); ?>
-								</div> <!--AJAX Coomment-->
-							</div>
-						</article>
-						<?php // include_layout_template('article-disqus-comment.php'); ?>
-					</div>
-				</div>
+				<?php include_layout_template('article-info.php'); ?>
 			<?php else: ?>
 				<div class="visible-lg"><?php include_layout_template('member_article_info.php'); ?></div>
 			<?php endif; ?>

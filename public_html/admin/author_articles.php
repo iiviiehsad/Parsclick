@@ -11,45 +11,7 @@ echo output_message($message);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<?php if($current_subject && $current_article): ?>
-				<div class="panel panel-info">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-							<?php echo $current_article->visible == 1 ? '<i class="fa fa-eye"></i>' : '<i class="text-danger fa fa-eye-slash"></i>'; ?>
-							<?php echo htmlentities(ucwords($current_article->name)); ?>
-						</h3>
-						<h5>
-							<?php if(isset($current_article->author_id)): ?>
-								<?php $_author = Author::find_by_id($current_article->author_id); ?>
-								<i class="fa fa-user fa-lg"></i>&nbsp;
-								<?php echo 'توسط: ' . $_author->full_name();
-								if( ! empty($_author->photo)): ?>
-									<img class="author-photo img-circle pull-left" alt="<?php echo $_author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($_author->photo); ?>"/>
-								<?php endif; ?>
-							<?php endif; ?>
-						</h5>
-						<h5>
-							<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_shamsi($current_article->created_at)); ?>
-						</h5>
-						<h5>
-							<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
-						</h5>
-						<?php if(check_ownership($current_article->author_id, $session->id)): ?>&nbsp;
-							<a class="btn btn-primary btn-small" href="author_edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
-								ویرایش
-							</a>
-						<?php endif; ?>
-					</div>
-					<div class="panel-body">
-						<p><?php echo nl2br(strip_tags($current_article->content, ARTICLE_ALLOWABLE_TAGS)); ?></p>
-					</div>
-					<div class="panel-footer">
-						<article id="comments">
-							<?php include_layout_template('article-comments.php') ?>
-						</article>
-						<?php // include_layout_template('article-disqus-comment.php'); ?>
-					</div>
-				</div>
-
+				<?php include_layout_template('article-info.php'); ?>
 			<?php elseif($current_subject): ?>
 				<?php if( ! $current_subject->visible) redirect_to('author_articles.php'); ?>
 				<div class="panel panel-info">
@@ -58,44 +20,11 @@ echo output_message($message);
 							<a class="btn btn-success btn-small arial" href="new_article.php?subject=<?php echo urlencode($current_subject->id); ?>" data-toggle="tooltip" title="مقاله جدید">
 								<i class="fa fa-plus fa-lg"></i>
 							</a>
-							<?php
-							echo htmlentities(ucwords($current_subject->name));
-							if(Article::count_recent_articles_for_subject($current_subject->id, FALSE) > 0) {
-								echo "&nbsp;&nbsp;";
-								echo "<small><span class='label label-as-badge label-info'>" . convert(Article::count_recent_articles_for_subject($current_subject->id, FALSE)) . " مقاله جدید</span></small>";
-							}
-							if(Article::count_invisible_articles_for_subject($current_subject->id) > 0) {
-								echo "&nbsp;&nbsp;";
-								echo "<small><span class='label label-as-badge label-danger'>" . convert(Article::count_invisible_articles_for_subject($current_subject->id)) . " مقاله مخفی</span></small>";
-							}
-							?>
+							<?php echo htmlentities(ucwords($current_subject->name)); ?>
 						</h2>
 					</div>
 					<div class="panel-body">
-						<h4><i class="fa fa-newspaper-o"></i> مقالات در این موضوع: </h4><br>
-						<ul>
-							<?php $subject_articles = Article::find_articles_for_subject($current_subject->id, FALSE);
-							foreach($subject_articles as $article):
-								echo "<li class='list-group-item-text'>";
-								$safe_article_id = urlencode($article->id);
-								echo '<a href="author_articles.php?subject=' . $current_subject->id . '&article=' . $safe_article_id . '"';
-								if($article->comments()):
-									echo 'data-toggle="tooltip" data-placement="left" title="';
-									echo convert(count($article->comments())) . ' دیدگاه';
-									echo '"';
-								endif;
-								echo '>';
-								echo htmlentities(ucwords($article->name));
-								echo '</a>';
-								if($article->recent()) {
-									echo "&nbsp;<kbd>تازه</kbd>";
-								}
-								if( ! $article->visible) {
-									echo '&nbsp;<kbd>مخفی</kbd>';
-								}
-								echo '</li>';
-							endforeach; ?>
-						</ul>
+						<?php include_layout_template('article-under-subject.php'); ?>
 					</div>
 				</div>
 			<?php else: ?>

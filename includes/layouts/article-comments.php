@@ -1,6 +1,6 @@
 <?php
-global $current_article;
 global $session;
+global $current_article;
 // Pagination
 $page        = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
 $per_page    = 10;
