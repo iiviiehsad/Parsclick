@@ -27,27 +27,15 @@ echo output_message($message, $errors);
 		<article>
 			<?php
 			if($current_category && $current_course): ?>
-				<h1>
-					<?php echo $current_course->visible == 1 ? '<i class="fa fa-eye"></i>' : '<i class="text-danger fa fa-eye-slash"></i>'; ?>
-					<?php echo htmlentities(ucwords($current_course->name)); ?>
-				</h1>
-				<h4>
-					<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo htmlentities(datetime_to_text($current_course->created_at)); ?>
-				</h4>
-				<h4>
-					<i class="fa fa-calendar"></i>&nbsp;&nbsp;<?php echo datetime_to_shamsi($current_course->created_at); ?>
-				</h4>
-				<h4 class="text-success">
-					<?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)->full_name()) : ''; ?>
-				</h4>
+				<?php include_layout_template('course-info.php'); ?>
 				<?php if(check_ownership($current_course->author_id, $session->id)): ?>
-					<a class="btn btn-small btn-primary" href="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" title="ویرایش">
+					<a class="btn btn-primary" href="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" title="ویرایش">
 						ویرایش
 					</a>
 				<?php endif; ?>
 				<!-- -------------------------------------------FILE LINK--------------------------------------------- -->
 				<?php if( ! empty($current_course->file_link)): ?>
-					<a class="btn btn-primary btn-small" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" title="لینک فایل تمرینی">
+					<a class="btn btn-primary" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" title="لینک فایل تمرینی">
 						لینک فایل تمرینی
 					</a>
 				<?php endif; ?>
@@ -70,11 +58,6 @@ echo output_message($message, $errors);
 							</a>
 						<?php endif; ?>
 					<?php endforeach; ?>
-				<?php endif; ?>
-				<!-- --------------------------------------------Content---------------------------------------------- -->
-				<?php if( ! empty($current_course->content)): ?>
-					<h5>توضیحات:</h5>
-					<p><?php echo nl2br(strip_tags($current_course->content, '<strong><em><p><code><pre><mark><kbd><ul><ol><li><img><a>')); ?></p>
 				<?php endif; ?>
 				<!-- --------------------------------Check to see if there is any file-------------------------------- -->
 				<?php if(File::num_files_for_course($current_course->id) == 0): ?>
@@ -106,70 +89,7 @@ echo output_message($message, $errors);
 					<?php endif; ?>
 				<?php endif; ?>
 				<!-- ------------------------------------------VIDEOS------------------------------------------------- -->
-				<?php
-				if(isset($current_course->youtubePlaylist)):
-					$googleapi = 'https://www.googleapis.com/youtube/v3/playlistItems';
-					$playListID = $current_course->youtubePlaylist;
-					if( ! isset($_GET['nextPageToken']) || ! isset($_GET['prevPageToken'])) {
-						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI;
-					}
-					if(isset($_GET['nextPageToken'])) {
-						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['nextPageToken'];
-					}
-					if(isset($_GET['prevPageToken'])) {
-						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['prevPageToken'];
-					}
-					$file_headers = get_headers($url);
-					if($file_headers[0] != 'HTTP/1.0 404 Not Found'):
-						//get the playlist from JSON file
-						$content = file_get_contents($url);
-						// decode the JSON file
-						$json = json_decode($content, TRUE);
-						//var_dump($json);
-						if($json['pageInfo']['totalResults'] > 0): ?>
-							<div class="alert alert-success">
-								<h3>
-									<span class="label label-as-badge label-success">
-										<i class="fa fa-video-camera fa-lg"></i>
-										ویدیوهای این درس
-									</span>
-								</h3>
-								<div class="table-responsive">
-									<table class="table table-condensed table-hover">
-										<tbody>
-											<?php foreach($json['items'] as $item): ?>
-												<tr>
-													<td>
-														<a class="youtube visited" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
-														   title="Click to play">
-															<?php echo $item['snippet']['title']; ?>
-														</a>
-													</td>
-												</tr>
-											<?php endforeach; ?>
-										</tbody>
-									</table>
-								</div>
-								<div class="clearfix center">
-									<?php if(isset($json['prevPageToken'])): ?>
-										<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json["prevPageToken"]; ?>">
-											<span class="arial">&lt;</span> صفحه قبلی
-										</a>
-									<?php endif;
-									if(isset($json['nextPageToken'])): ?>
-										<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json["nextPageToken"]; ?>">
-											صفحه بعدی <span class="arial">&gt;</span>
-										</a>
-									<?php endif; ?>
-								</div>
-							</div>
-						<?php else: ?>
-							<div class='alert alert-danger'><i class='fa fa-exclamation-triangle'></i>
-								پلی لیست پیدا نشد، آدرس اینترنتی چیزی را بر نمی گرداند یا سِرور شلوغ است! لطفا بعدا بر گردید... 
-							</div>
-						<?php endif; ?>
-					<?php endif; ?>
-				<?php endif; ?>
+				<?php include_layout_template('list-videos.php'); ?>
 				<!--------------------------------------------COMMENTS--------------------------------------------------->
 				<article id="comments">
 					<?php include_layout_template('course-comments.php'); ?>
@@ -182,44 +102,11 @@ echo output_message($message, $errors);
 							<a class="arial btn btn-success btn-small" href="new_course.php?category=<?php echo urlencode($current_category->id); ?>" data-toggle="tooltip" title="درس جدید">
 								<i class="fa fa-plus fa-lg"></i>
 							</a>
-							<?php
-							echo htmlentities(ucwords($current_category->name));
-							if(Course::count_recent_course_for_category($current_category->id, FALSE) > 0) {
-								echo "&nbsp;&nbsp;";
-								echo "<small><span class='label label-as-badge label-info'>" . convert(Course::count_recent_course_for_category($current_category->id, FALSE)) . " درس جدید</span></small>";
-							}
-							if(Course::count_invisible_courses_for_category($current_category->id) > 0) {
-								echo "&nbsp;&nbsp;";
-								echo "<small><span class='label label-as-badge label-danger'>" . convert(Course::count_invisible_courses_for_category($current_category->id)) . " درس مخفی</span></small>";
-							}
-							?>
+							<?php echo htmlentities(ucwords($current_category->name)); ?>
 						</h2>
 					</div>
 					<div class="panel-body">
-						<h4><i class="fa fa-film"></i> درس ها در این موضوع:</h4>
-						<ul>
-							<?php
-							$category_courses = Course::find_courses_for_category($current_category->id, FALSE);
-							foreach($category_courses as $course):
-								echo "<li class='list-group-item-text'>";
-								echo '<a href="author_courses.php?category=' . urlencode($current_category->id) . '&course=' . urlencode($course->id) . '"';
-								if($course->comments()):
-									echo 'data-toggle="tooltip" data-placement="left" title="';
-									echo count($course->comments()) . ' دیدگاه';
-									echo '"';
-								endif;
-								echo '>';
-								echo htmlentities(ucwords($course->name));
-								echo '</a>';
-								if($course->recent()) {
-									echo "&nbsp;<kbd>تازه</kbd>";
-								}
-								if( ! $course->visible) {
-									echo '&nbsp;<kbd>مخفی</kbd>';
-								}
-								echo '</li>';
-							endforeach; ?>
-						</ul>
+						<?php include_layout_template('courses-under-category.php'); ?>
 					</div>
 				</div>
 			<?php else: ?>
@@ -255,14 +142,5 @@ echo output_message($message, $errors);
 			<?php echo courses($current_category, $current_course); ?>
 		</aside>
 	</section>
-	<!-- Video / Generic Modal -->
-	<div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<!-- content dynamically inserted -->
-				</div>
-			</div>
-		</div>
-	</div>
+<?php include_layout_template('video-modal.php'); ?>
 <?php include_layout_template('admin_footer.php'); ?>

@@ -999,6 +999,25 @@ function get_prev_next_token()
 }
 
 /**
+ * @param $playListID
+ * @return null|string
+ */
+function set_prev_next_page($playListID)
+{
+	if( ! isset($_GET['nextPageToken']) || ! isset($_GET['prevPageToken'])) {
+		$url = GOOGLEAPI . "?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI;
+	}
+	if(isset($_GET['nextPageToken'])) {
+		$url = GOOGLEAPI . "?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['nextPageToken'];
+	}
+	if(isset($_GET['prevPageToken'])) {
+		$url = GOOGLEAPI . "?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['prevPageToken'];
+	}
+
+	return ! empty($url) ? $url : NULL;
+}
+
+/**
  * Adds Bootstrap pagination under pages which need pagination
  *
  * @param       $pagination
