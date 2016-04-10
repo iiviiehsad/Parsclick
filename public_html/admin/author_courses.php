@@ -27,12 +27,12 @@ echo output_message($message, $errors);
 		<article>
 			<?php
 			if($current_category && $current_course): ?>
-				<?php include_layout_template('course-info.php'); ?>
 				<?php if(check_ownership($current_course->author_id, $session->id)): ?>
 					<a class="btn btn-primary" href="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" title="ویرایش">
 						ویرایش
 					</a>
 				<?php endif; ?>
+				<?php include_layout_template('course-info.php'); ?>
 				<!-- -------------------------------------------FILE LINK--------------------------------------------- -->
 				<?php if( ! empty($current_course->file_link)): ?>
 					<a class="btn btn-primary" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" title="لینک فایل تمرینی">

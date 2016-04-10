@@ -12,11 +12,23 @@ find_selected_course(TRUE);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<?php if($current_category && $current_course): ?>
-				<?php include_layout_template('course-info.php'); ?>
-				<a class="btn btn-primary pull-right" href="forum?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" data-placement="bottom" title="سوالات و نظرات"><i class="fa fa-comments fa-lg"></i>
-					انجمن<?php echo "<span class='badge'>" . convert(Comment::count_comments_for_course($current_course->id)) . "</span>"; ?>
-				</a>
-				&nbsp;
+				<?php if(empty($current_course->file_link) && File::num_files_for_course($current_course->id) == 0):
+					echo "<h4 class='text-danger'>این درس فایلی ندارد.</h4>";
+				endif; ?>
+				<?php if( ! empty($current_course->file_link)): ?>
+					<a class="btn btn-primary" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" data-toggle="tooltip" data-placement="left" title="دانلود کنید">
+						<i class="fa fa-files-o fa-lg"></i>&nbsp; دانلود فایل ها
+					</a>
+				<?php endif; ?>
+				<!-- ------------------------------------------------------------------------------------------------- -->
+				<?php if(File::num_files_for_course($current_course->id) > 0): ?>
+					<?php $files = File::find_files_for_course($current_course->id); ?>
+					<?php foreach($files as $file): ?>
+						<a class="btn btn-primary btn-small" href="<?php echo urlencode($file->file_path()); ?>">
+							<?php echo htmlentities($file->description); ?>
+						</a>
+					<?php endforeach; ?>
+				<?php endif; ?>
 				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php $playlist_set = Playlist::courses_playlist_for_member($current_course->id, $member->id); ?>
 				<?php if( ! $playlist_set): ?>
@@ -37,24 +49,10 @@ find_selected_course(TRUE);
 					&nbsp;
 				<?php endif; ?>
 				<!-- ------------------------------------------------------------------------------------------------- -->
-				<?php if(empty($current_course->file_link) && File::num_files_for_course($current_course->id) == 0):
-					echo "<h4 class='text-danger'>این درس فایلی ندارد.</h4>";
-				endif; ?>
-				<?php if( ! empty($current_course->file_link)): ?>
-					<a class="btn btn-default" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" data-toggle="tooltip" data-placement="left" title="دانلود کنید">
-						<i class="fa fa-files-o fa-lg"></i>&nbsp; دانلود فایل ها
-					</a>
-				<?php endif; ?>
-				<!-- ------------------------------------------------------------------------------------------------- -->
-				<?php if(File::num_files_for_course($current_course->id) > 0): ?>
-					<?php $files = File::find_files_for_course($current_course->id); ?>
-					<?php foreach($files as $file): ?>
-						<a class="btn btn-default btn-small" href="<?php echo urlencode($file->file_path()); ?>">
-							<?php echo htmlentities($file->description); ?>
-						</a>
-					<?php endforeach; ?>
-				<?php endif; ?>
-				<!-- ------------------------------------------------------------------------------------------------- -->
+				<?php include_layout_template('course-info.php'); ?>
+				<a class="btn btn-primary" href="forum?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" data-placement="bottom" title="سوالات و نظرات"><i class="fa fa-comments fa-lg"></i>
+					انجمن<?php echo "<span class='badge'>" . convert(Comment::count_comments_for_course($current_course->id)) . "</span>"; ?>
+				</a>
 				<?php include_layout_template('list-videos.php'); ?>
 			<?php else: ?>
 				<div class="hidden-sm"><?php include_layout_template('member_course_info.php'); ?></div>
