@@ -29,9 +29,6 @@
 	<?php echo nl2br(strip_tags($newest_article->content, ARTICLE_ALLOWABLE_TAGS)); ?>
 	<hr/>
 	<article id="comments">
-		<?php if( ! $session->is_logged_in()): ?>
-			<div class="badge">برای اظهار نظر لطفا عضو شوید.</div>
-		<?php endif ?>
 		<?php include_layout_template('article-comments.php'); ?>
 	</article>
 </article>

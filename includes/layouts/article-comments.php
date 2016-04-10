@@ -8,6 +8,9 @@ $total_count = ArticleComment::count_comments_for_article($current_article->id);
 $pagination  = new pagination($page, $per_page, $total_count);
 $comments    = ArticleComment::find_comments($current_article->id, $per_page, $pagination->offset());
 ?>
+<?php if( ! isset($session->id)): ?>
+	<h4><span class="badge">برای اظهار نظر لطفا عضو شوید</span></h4>
+<?php endif; ?>
 <h3>
 	<i class="fa fa-comments-o fa-2x"></i>
 	<?php if( ! empty($comments)): ?>

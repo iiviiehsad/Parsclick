@@ -3,7 +3,7 @@ global $session;
 global $current_article;
 global $current_subject;
 ?>
-<div class="panel panel-info">
+<div class="panel panel-default">
 	<div class="panel-heading">
 		<?php if($session->is_author_logged_in() && check_ownership($current_article->author_id, $session->id)): ?>&nbsp;
 			<a class="btn btn-primary" href="author_edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
