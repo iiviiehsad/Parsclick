@@ -3,16 +3,16 @@
 	<?php echo htmlentities(ucwords($current_course->name)); ?>
 </h3>
 <h5>
+	<i class="fa fa-user fa-lg"></i>&nbsp;
+	<?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)->full_name()) : ''; ?>
+</h5>
+<h5>
 	<i class="fa fa-calendar"></i>&nbsp;
 	<?php echo htmlentities(datetime_to_text($current_course->created_at)); ?>
 </h5>
 <h5>
 	<i class="fa fa-calendar"></i>&nbsp;
 	<?php echo datetime_to_shamsi($current_course->created_at); ?>
-</h5>
-<h5>
-	<i class="fa fa-user fa-lg"></i>&nbsp;
-	<?php echo isset($current_course->author_id) ? htmlentities(Author::find_by_id($current_course->author_id)->full_name()) : ''; ?>
 </h5>
 <?php if($session->is_admin_logged_in() || $session->is_author_logged_in()): ?>
 	<h5><i class="fa fa-eye fa-lg"></i>&nbsp;
