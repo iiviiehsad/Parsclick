@@ -31,6 +31,7 @@ defined('PUBLICKEY') ? NULL : define('PUBLICKEY', "pk_live_4VsTSyMBU0owS4GoclFSt
 /**
  * @YouTube API key: AIzaSyBHTFWKKWvYfxs9rP0fEgLlPo8K2V1MsoM
  */
+defined('GOOGLEAPI') ? NULL : define('GOOGLEAPI', "https://www.googleapis.com/youtube/v3/playlistItems");
 defined('YOUTUBEAPI') ? NULL : define('YOUTUBEAPI', "AIzaSyBHTFWKKWvYfxs9rP0fEgLlPo8K2V1MsoM");
 defined('MAXRESULTS') ? NULL : define('MAXRESULTS', "50");
 /**

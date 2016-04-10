@@ -66,16 +66,15 @@ echo output_message($message);
 				<!--------------------------------------------VIDEOS--------------------------------------------------->
 				<?php
 				if(isset($current_course->youtubePlaylist)):
-					$googleapi = 'https://www.googleapis.com/youtube/v3/playlistItems';
 					$playListID = $current_course->youtubePlaylist;
 					if( ! isset($_GET['nextPageToken']) || ! isset($_GET['prevPageToken'])) {
-						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI;
+						$url = GOOGLEAPI . "?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI;
 					}
 					if(isset($_GET['nextPageToken'])) {
-						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['nextPageToken'];
+						$url = GOOGLEAPI . "?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['nextPageToken'];
 					}
 					if(isset($_GET['prevPageToken'])) {
-						$url = "{$googleapi}?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['prevPageToken'];
+						$url = GOOGLEAPI . "?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['prevPageToken'];
 					}
 					// check to see if the url exists
 					$file_headers = get_headers($url);
@@ -104,13 +103,12 @@ echo output_message($message);
 								</table>
 							</div>
 							<div class="clearfix center">
-								<?php
-								if(isset($json['prevPageToken'])): ?>
+								<?php if(isset($json['prevPageToken'])): ?>
 									<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json['prevPageToken']; ?>">
 										&nbsp;<span class="arial">&lt;</span>&nbsp;صفحه قبلی&nbsp;
 									</a>
-								<?php endif;
-								if(isset($json['nextPageToken'])): ?>
+								<?php endif; ?>
+								<?php if(isset($json['nextPageToken'])): ?>
 									<a class="btn btn-primary" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json['nextPageToken']; ?>">
 										&nbsp;صفحه بعدی&nbsp;<span class="arial">&gt;</span>&nbsp;
 									</a>

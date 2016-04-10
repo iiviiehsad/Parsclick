@@ -987,19 +987,19 @@ function find_selected_course($public = FALSE)
  */
 function get_prev_next_token()
 {
-	if(isset($_GET["prevPageToken"])) {
-		return "&prevPageToken=" . $_GET["prevPageToken"];
-	} elseif(isset($_GET["nextPageToken"])) {
-		return "&nextPageToken=" . $_GET["nextPageToken"];
-	} elseif(isset($_GET["prevPageToken"]) && isset($_GET["nextPageToken"])) {
-		return "&prevPageToken=" . $_GET["prevPageToken"] . "&nextPageToken=" . $_GET["nextPageToken"];
+	if(isset($_GET['prevPageToken'])) {
+		return 'prevPageToken=' . $_GET['prevPageToken'];
+	} elseif(isset($_GET['nextPageToken'])) {
+		return 'nextPageToken=' . $_GET['nextPageToken'];
+	} elseif(isset($_GET['prevPageToken']) && isset($_GET['nextPageToken'])) {
+		return 'prevPageToken=' . $_GET['prevPageToken'] . 'nextPageToken=' . $_GET['nextPageToken'];
 	} else {
 		return NULL;
 	}
 }
 
 /**
- * Adds Bootstrap pagination under pages which need pagination*
+ * Adds Bootstrap pagination under pages which need pagination
  *
  * @param       $pagination
  * @param       $page
