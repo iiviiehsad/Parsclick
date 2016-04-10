@@ -19,14 +19,6 @@ global $current_subject;
 			<?php echo htmlentities(ucwords($current_article->name)); ?>
 		</h3>
 		<h5>
-			<i class="fa fa-calendar"></i>&nbsp;
-			<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
-		</h5>
-		<h5>
-			<i class="fa fa-calendar"></i>&nbsp;
-			<?php echo datetime_to_shamsi($current_article->created_at); ?>
-		</h5>
-		<h5>
 			<?php if(isset($current_article->author_id)): ?>
 				<?php $_author = Author::find_by_id($current_article->author_id); ?>
 				<i class="fa fa-user fa-lg"></i>&nbsp;
@@ -35,6 +27,14 @@ global $current_subject;
 					<img class="author-photo img-circle pull-left" alt="<?php echo $_author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($_author->photo); ?>"/>
 				<?php endif; ?>
 			<?php endif; ?>
+		</h5>
+		<h5>
+			<i class="fa fa-calendar"></i>&nbsp;
+			<?php echo htmlentities(datetime_to_text($current_article->created_at)); ?>
+		</h5>
+		<h5>
+			<i class="fa fa-calendar"></i>&nbsp;
+			<?php echo datetime_to_shamsi($current_article->created_at); ?>
 		</h5>
 		<?php if($session->is_admin_logged_in() || $session->is_author_logged_in()): ?>
 			<h5><i class="fa fa-eye fa-lg"></i>&nbsp;
