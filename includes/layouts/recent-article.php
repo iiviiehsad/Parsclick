@@ -6,8 +6,9 @@
 	$current_article = $newest_article;
 	?>
 	<h2>
-		<?php echo htmlentities($newest_article->name); ?>
-		<span class="badge">جدیدترین مقاله</span>
+		<a href="articles?subject=<?php echo urlencode($newest_article->subject_id); ?>&article=<?php echo urlencode($newest_article->id); ?>">
+			<?php echo htmlentities($newest_article->name); ?>
+		</a><span class="badge">جدیدترین مقاله</span>
 	</h2>
 	<h5>
 		<?php if(isset($newest_article->author_id)):
@@ -29,6 +30,7 @@
 	<?php echo nl2br(strip_tags($newest_article->content, ARTICLE_ALLOWABLE_TAGS)); ?>
 	<hr/>
 	<article id="comments">
+		<?php include_layout_template('disqus-comment.php'); ?>
 		<?php include_layout_template('article-comments.php'); ?>
 	</article>
 </article>

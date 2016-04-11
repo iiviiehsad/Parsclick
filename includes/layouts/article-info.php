@@ -50,6 +50,7 @@ global $current_subject;
 	</div>
 	<div class="panel-footer">
 		<article id="comments">
+			<?php include_layout_template('disqus-comment.php'); ?>
 			<?php if($session->is_logged_in()): ?>
 				<?php global $member; ?>
 				<form class="form-horizontal submit-comment" action="add-article-comment.php" method="POST" role="form">

@@ -2,22 +2,17 @@
 global $current_article;
 global $current_course;
 if($current_article) {
-	$identifier = 'subject' . $current_article->subject_id . 'article' . $current_article->id;
+	$identifier = 'sub' . $current_article->subject_id . 'art' . $current_article->id;
 } elseif($current_course) {
-	$identifier = 'category' . $current_course->category_id . 'course' . $current_course->id;
+	$identifier = 'cat' . $current_course->category_id . 'cou' . $current_course->id;
 } else {
 	$identifier = '';
 }
+// var_dump($identifier);
 ?>
 <article id="comments">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h2>نظرات</h2>
-		</div>
-		<div class="panel-body">
-			<div id="disqus_thread"></div>
-		</div>
-	</div>
+	<h2>نظرات</h2>
+	<div id="disqus_thread"></div>
 	<script>
 		var disqus_config = function() {
 			//this.page.url        = "<?php //echo DOMAIN . $_SERVER['REQUEST_URI']; ?>";
