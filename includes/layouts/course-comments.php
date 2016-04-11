@@ -59,6 +59,3 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 		</div>
 	</div>
 <?php endif; ?>
-
-<?php include_layout_template('disqus-comment.php') ?>
-
