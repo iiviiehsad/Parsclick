@@ -31,6 +31,6 @@
 	<hr/>
 	<article id="comments">
 		<?php include_layout_template('disqus-comment.php'); ?>
-		<?php include_layout_template('article-comments.php'); ?>
+		<?php //include_layout_template('article-comments.php'); ?>
 	</article>
 </article>
