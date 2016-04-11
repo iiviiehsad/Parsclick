@@ -46,24 +46,14 @@ echo output_message($message);
 			<?php elseif($current_category): ?>
 				<div class="panel panel-danger">
 					<div class="panel-heading">
-						<h2><i class="fa fa-list-alt"></i>&nbsp;تنظیم موضوع</h2>
+						<h2><?php echo htmlentities(ucwords($current_category->name)); ?></h2>
+						<h5>محل:&nbsp;<?php echo convert($current_category->position); ?></h5>
+						<h5>نمایان:&nbsp;<?php echo $current_category->visible == 1 ? 'بله' : 'خیر'; ?></h5>
+						<a class="btn btn-primary" href="edit_category.php?category=<?php echo urlencode($current_category->id); ?>">
+							ویرایش
+						</a>
 					</div>
 					<div class="panel-body">
-						<dl class="dl-horizontal">
-							<dt>اسم موضوع:</dt>
-							<dd><?php echo htmlentities(ucwords($current_category->name)); ?></dd>
-							<dt>محل:</dt>
-							<dd><?php echo $current_category->position; ?></dd>
-							<dt>نمایان:</dt>
-							<dd><?php echo $current_category->visible == 1 ? 'بله' : 'خیر'; ?></dd>
-							<dt>&nbsp;</dt>
-							<dd>
-								<a title="ویرایش" class="btn btn-primary btn-small" href="edit_category.php?category=<?php echo urlencode($current_category->id); ?>" data-toggle="tooltip">
-									<span class="glyphicon glyphicon-pencil"></span>
-								</a>
-							</dd>
-						</dl>
-						<hr/>
 						<?php include_layout_template('courses-under-category.php'); ?>
 					</div>
 				</div>

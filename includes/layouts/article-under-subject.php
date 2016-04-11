@@ -1,5 +1,5 @@
 <?php global $current_subject; ?>
-<h2><i class="fa fa-newspaper-o"></i> مقالات در این موضوع </h2>
+<h4> مقالات در این موضوع</h4>
 <h2>
 	<?php
 	if(Article::count_recent_articles_for_subject($current_subject->id, FALSE) > 0) {

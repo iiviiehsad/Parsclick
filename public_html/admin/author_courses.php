@@ -98,12 +98,12 @@ echo output_message($message, $errors);
 				<?php if( ! $current_category->visible) redirect_to("author_courses.php"); ?>
 				<div class="panel panel-danger">
 					<div class="panel-heading">
-						<h2 class="panel-title">
+						<h3 class="panel-title">
 							<a class="arial btn btn-success btn-small" href="new_course.php?category=<?php echo urlencode($current_category->id); ?>" data-toggle="tooltip" title="درس جدید">
 								<i class="fa fa-plus fa-lg"></i>
 							</a>
 							<?php echo htmlentities(ucwords($current_category->name)); ?>
-						</h2>
+						</h3>
 					</div>
 					<div class="panel-body">
 						<?php include_layout_template('courses-under-category.php'); ?>

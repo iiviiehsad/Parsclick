@@ -13,25 +13,15 @@ echo output_message($message);
 			<?php elseif($current_subject): ?>
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						<h2><i class="fa fa-list-alt"></i> تنظیم موضوع </h2>
+						<h2><?php echo htmlentities(ucwords($current_subject->name)); ?></h2>
+						<h5>محل:&nbsp;<?php echo convert($current_subject->position); ?></h5>
+						<h5>نمایان:&nbsp;<?php echo $current_subject->visible == 1 ? 'بله' : 'خیر'; ?></h5>
+						<a class="btn btn-primary" href="edit_subject.php?subject=<?php echo urlencode($current_subject->id); ?>">
+							ویرایش
+						</a>
 					</div>
 					<div class="panel-body">
-						<dl class="dl-horizontal">
-							<dt>اسم موضوع:</dt>
-							<dd><?php echo htmlentities(ucwords($current_subject->name)); ?></dd>
-							<dt>محل:</dt>
-							<dd><?php echo $current_subject->position; ?></dd>
-							<dt>نمایان:</dt>
-							<dd><?php echo $current_subject->visible == 1 ? 'بله' : 'خیر'; ?></dd>
-							<dt>&nbsp;</dt>
-							<dd>
-								<a class="btn btn-primary btn-small" href="edit_subject.php?subject=<?php echo urlencode($current_subject->id); ?>">
-									<span class="glyphicon glyphicon-pencil"></span>
-								</a>
-							</dd>
-						</dl>
 						<?php if(Article::num_articles_for_subject($current_subject->id, FALSE)): ?>
-						<hr>
 						<?php include_layout_template('article-under-subject.php'); ?>
 					</div>
 					<?php endif; ?>

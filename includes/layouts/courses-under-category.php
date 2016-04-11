@@ -1,5 +1,5 @@
 <?php global $current_category; ?>
-<h3><i class="fa fa-film"></i>&nbsp;درس ها در این موضوع</h3>
+<h4>درس ها در این موضوع</h4>
 <h2>
 	<?php
 	if(Course::count_recent_course_for_category($current_category->id, FALSE) > 0) {
