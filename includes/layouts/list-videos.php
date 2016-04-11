@@ -40,18 +40,24 @@ if(isset($current_course->youtubePlaylist)):
 					</div>
 				</div>
 				<div class="panel-footer">
-					<div class="clearfix center">
-						<?php if(isset($json['nextPageToken'])): ?>
-							<a class="btn btn-primary btn-block" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json['nextPageToken']; ?>">
-								<span class="arial">&laquo;</span> صفحه بعدی
-							</a>
-						<?php endif; ?>
-						<?php if(isset($json['prevPageToken'])): ?>
-							<a class="btn btn-primary btn-block" href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json['prevPageToken']; ?>">
-								صفحه قبلی <span class="arial">&raquo;</span>
-							</a>
-						<?php endif; ?>
-					</div>
+					<nav>
+						<ul class="pager">
+							<?php if(isset($json['prevPageToken'])): ?>
+								<li>
+									<a href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json['prevPageToken']; ?>">
+										<span aria-hidden="true">&rarr;</span>&nbsp;صفحه قبلی&nbsp;
+									</a>
+								</li>
+							<?php endif; ?>
+							<?php if(isset($json['nextPageToken'])): ?>
+								<li>
+									<a href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json['nextPageToken']; ?>">
+										&nbsp;صفحه بعدی&nbsp;<span aria-hidden="true">&larr;</span>
+									</a>
+								</li>
+							<?php endif; ?>
+						</ul>
+					</nav>
 				</div>
 			</div>
 		</article>
