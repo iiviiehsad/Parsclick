@@ -1,15 +1,23 @@
+<?php
+global $current_article;
+global $current_course;
+if($current_article) {
+	$identifier = 'subject' . $current_article->subject_id . 'article' . $current_article->id;
+} elseif($current_course) {
+	$identifier = 'category' . $current_course->category_id . 'course' . $current_course->id;
+} else {
+	$identifier = '';
+}
+?>
 <article id="comments">
-	<h2>نظرات</h2>
-	<?php
-	if($current_article) {
-		$identifier = 'subject' . $current_article->subject_id . 'article' . $current_article->id;
-	} elseif($current_course) {
-		$identifier = 'category' . $current_article->category_id . 'course' . $current_course->id;
-	} else {
-		$identifier = '';
-	}
-	?>
-	<div id="disqus_thread"></div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2>نظرات</h2>
+		</div>
+		<div class="panel-body">
+			<div id="disqus_thread"></div>
+		</div>
+	</div>
 	<script>
 		var disqus_config = function() {
 			//this.page.url        = "<?php //echo DOMAIN . $_SERVER['REQUEST_URI']; ?>";

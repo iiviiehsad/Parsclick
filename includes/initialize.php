@@ -55,6 +55,7 @@ function init($files = [])
 	foreach($files as $file) {
 		require_once(LIB_PATH . DS . $file);
 	}
+
 	return $files;
 }
 

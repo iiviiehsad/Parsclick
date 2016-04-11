@@ -18,7 +18,7 @@ echo output_message($message);
 			<h2><i class="fa fa-list"></i> جزئیات ثبت</h2>
 			<?php
 			if(file_exists($logfile) && is_readable($logfile) && $handle = fopen($logfile, 'r')):  // read
-				echo '<ul class="list-group arial" style="direction: ltr;">';
+				echo '<ul class="list-group arial" style="direction:ltr;">';
 				while( ! feof($handle)):
 					$entry = fgets($handle);
 					if(trim($entry) != ''):
