@@ -8,7 +8,6 @@ if($current_article) {
 } else {
 	$identifier = '';
 }
-// var_dump($identifier);
 ?>
 <article id="comments">
 	<h2>نظرات</h2>

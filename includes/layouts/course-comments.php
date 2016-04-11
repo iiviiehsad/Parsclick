@@ -1,6 +1,6 @@
 <?php
-global $current_course;
 global $session;
+global $current_course;
 // Pagination
 $page        = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
 $per_page    = 20;

@@ -1,10 +1,10 @@
+<?php
+global $session;
+global $current_article;
+global $newest_article;
+$current_article = $newest_article;
+?>
 <article>
-	<?php
-	global $current_article;
-	global $newest_article;
-	global $session;
-	$current_article = $newest_article;
-	?>
 	<h2>
 		<a href="articles?subject=<?php echo urlencode($newest_article->subject_id); ?>&article=<?php echo urlencode($newest_article->id); ?>">
 			<?php echo htmlentities($newest_article->name); ?>

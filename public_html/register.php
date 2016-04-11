@@ -7,7 +7,6 @@ if($session->is_logged_in()) {
 $title    = 'پارس کلیک - ثبت نام';
 $filename = basename(__FILE__);
 $errors   = '';
-$lang     = 'fa';
 if($_POST) {
 	if(empty(RECAPTCHASITEKEY) || empty(RECAPTCHASECRETKEY)) {
 		$errors = 'کدهای تایید reCaptcha API خالی هستند. لطفا مدیر سایت را در جریان بگذارید.';
