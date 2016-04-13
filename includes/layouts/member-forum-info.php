@@ -1,6 +1,5 @@
 <h1><i class="fa fa-comments fa-lg"></i> انجمن، سوالات و نظرات</h1>
 <p><em class="text-success">برای آنکه نظر، سوال و دیدکاهتان را مطرح کنید، لطفا به این نکات توجه کنید.</em></p>
-<p class="alert alert-info"><strong class="lead">توجه:</strong> بزودی <code><a href="https://disqus.com/" title="DISQUS" target="_blank"><mark>DISQUS</mark></a></code> جایگذین این انجمن خواهد شد.</p>
 <p class="lead text-danger"><i class="fa fa-info-circle"></i> نکات مهم:</p>
 <ul>
 	<li>از تگ های <code>&lt;strong&gt;&lt;em&gt;&lt;i&gt;&lt;p&gt;&lt;code&gt;&lt;pre&gt;&lt;mark&gt;&lt;span&gt;&lt;ul&gt;&lt;ol&gt;&lt;li&gt;&lt;a&gt;&lt;img&gt;</code>

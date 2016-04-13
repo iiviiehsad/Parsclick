@@ -17,12 +17,14 @@ $body   = '';
 			<?php if( ! $current_course && ! $current_category): ?>
 				<?php include_layout_template('member-forum-info.php'); ?>
 			<?php else: ?>
-				<div class="panel">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title"><i class="fa fa-comments fa-lg"></i>
-							<a href="forum" data-toggle="tooltip" data-placement="bottom" title="اطلاعات انجمن">انجمن</a>
-							<a href="member-courses?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>"
-							   data-toggle="tooltip" title="برگردید به درس" data-placement="left"><?php echo htmlentities($current_course->name); ?></a>
+						<h3 class="panel-title text-warning">
+							<a class="text-warning" href="forum" data-toggle="tooltip" data-placement="bottom" title="اطلاعات انجمن">انجمن</a>
+							<a class="text-warning" href="member-courses?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>"
+							   data-toggle="tooltip" title="برگردید به درس"><?php echo htmlentities($current_course->name); ?></a>
+							<span class="label label-as-badge label-warning"><?php echo convert(count($current_course->comments())); ?>
+								دیدگاه</span>
 						</h3>
 					</div>
 					<div class="panel-body">

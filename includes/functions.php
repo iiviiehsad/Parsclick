@@ -902,7 +902,7 @@ function public_courses()
 		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
 		$output .= "</h2>";
 		$course_set = Course::find_courses_for_category($category->id, TRUE);
-		$output .= "<ul class='list-group'>";
+		$output .= "<ul class='list-group>";
 		foreach($course_set as $course) {
 			// $url     = "https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=" . $course->youtubePlaylist . "&key=" . YOUTUBEAPI;
 			$output .= "<li class='list-group-item'>";

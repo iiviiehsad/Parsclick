@@ -11,17 +11,10 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 <?php if(empty($comments)): ?>
 	<h3>
 		<i class="fa fa-comments-o fa-2x"></i>
-		<span class="label label-as-badge label-danger">نظری وجود ندارد</span>
+		<span class="label label-as-badge label-danger">دیدگاهی وجود ندارد</span>
 	</h3>
 <?php else: ?>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3>
-				<i class="fa fa-comments-o fa-2x"></i>
-				<span class="label label-as-badge label-info"><?php echo convert(count($current_course->comments())); ?>
-					نظر</span>
-			</h3>
-		</div>
+	<div class="panel panel-primary">
 		<div class="panel-body">
 			<div class="table-responsive">
 				<?php foreach($comments as $comment): ?>

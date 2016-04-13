@@ -10,7 +10,6 @@ if($current_article) {
 }
 ?>
 <article id="comments">
-	<h2>نظرات</h2>
 	<div id="disqus_thread"></div>
 	<script>
 		var disqus_config = function() {

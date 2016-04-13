@@ -30,7 +30,8 @@ $current_article = $newest_article;
 	<?php echo nl2br(strip_tags($newest_article->content, ARTICLE_ALLOWABLE_TAGS)); ?>
 	<hr/>
 	<article id="comments">
-		<?php include_layout_template('disqus-comment.php'); ?>
-		<?php //include_layout_template('article-comments.php'); ?>
+		<?php include_layout_template('article-comments.php'); ?>
+		<hr/>
+		<?php //include_layout_template('disqus-comment.php'); ?>
 	</article>
 </article>
