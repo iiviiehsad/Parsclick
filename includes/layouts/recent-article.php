@@ -31,7 +31,6 @@ $current_article = $newest_article;
 	<hr/>
 	<article id="comments">
 		<?php include_layout_template('article-comments.php'); ?>
-		<hr/>
 		<?php //include_layout_template('disqus-comment.php'); ?>
 	</article>
 </article>
