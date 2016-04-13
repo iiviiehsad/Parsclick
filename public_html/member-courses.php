@@ -5,7 +5,6 @@ $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_course(TRUE);
-$json = get_playlist_content($current_course->youtubePlaylist);
 ?>
 <?php include_layout_template('header.php'); ?>
 <?php include_layout_template('member_nav.php'); ?>
@@ -13,6 +12,7 @@ $json = get_playlist_content($current_course->youtubePlaylist);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<?php if($current_category && $current_course): ?>
+				<?php $json = get_playlist_content($current_course->youtubePlaylist); ?>
 				<?php $playlist_set = Playlist::courses_playlist_for_member($current_course->id, $member->id); ?>
 				<?php if( ! $playlist_set): ?>
 					<form action="add-to-playlist" method="POST" class="addtoplaylist">

@@ -4,7 +4,6 @@ $author = Author::find_by_id($session->id);
 $author->check_status();
 $filename = basename(__FILE__);
 find_selected_course();
-$json = get_playlist_content($current_course->youtubePlaylist);
 include_layout_template('admin_header.php');
 $file_max_file_size = File::$max_file_size; // 32MB
 $errors             = '';
@@ -28,6 +27,7 @@ echo output_message($message, $errors);
 		<article>
 			<?php
 			if($current_category && $current_course): ?>
+				<?php $json = get_playlist_content($current_course->youtubePlaylist); ?>
 				<?php if(check_ownership($current_course->author_id, $session->id)): ?>
 					<a class="btn btn-primary" href="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" title="ویرایش">
 						ویرایش

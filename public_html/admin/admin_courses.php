@@ -2,7 +2,6 @@
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
 find_selected_course();
-$json = get_playlist_content($current_course->youtubePlaylist);
 include_layout_template('admin_header.php');
 include_layout_template('admin_nav.php');
 echo output_message($message);
@@ -10,6 +9,7 @@ echo output_message($message);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<?php if($current_category && $current_course): ?>
+				<?php $json = get_playlist_content($current_course->youtubePlaylist); ?>
 				<?php include_layout_template('course-info.php'); ?>
 				<!-----------------------------------------------EDIT------------------------------------------>
 				<a class="btn btn-primary btn-small" href="edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" title="ویرایش درس">
