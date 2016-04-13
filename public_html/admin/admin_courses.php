@@ -2,6 +2,7 @@
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
 find_selected_course();
+$json = get_playlist_content($current_course->youtubePlaylist);
 include_layout_template('admin_header.php');
 include_layout_template('admin_nav.php');
 echo output_message($message);
