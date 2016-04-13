@@ -904,6 +904,7 @@ function public_courses()
 		$course_set = Course::find_courses_for_category($category->id, TRUE);
 		$output .= "<ul class='list-group'>";
 		foreach($course_set as $course) {
+			// $url     = "https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=" . $course->youtubePlaylist . "&key=" . YOUTUBEAPI;
 			$output .= "<li class='list-group-item'>";
 			$output .= "<a target='_blank' data-toggle='tooltip' data-placement='left' title='برو به یوتیوب' href='https://www.youtube.com/playlist?list=";
 			$output .= $course->youtubePlaylist;
@@ -1015,6 +1016,20 @@ function set_prev_next_page($playListID)
 	}
 
 	return ! empty($url) ? $url : NULL;
+}
+
+/**
+ * @param $playlist_id
+ * @return mixed
+ */
+function get_playlist_content($playlist_id)
+{
+	if(isset($playlist_id)) {
+		$url     = set_prev_next_page($playlist_id);
+		$content = @file_get_contents($url);
+
+		return json_decode($content, TRUE);
+	}
 }
 
 /**

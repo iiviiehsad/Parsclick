@@ -1,5 +1,8 @@
-<?php global $current_course; global $session; ?>
+<?php global $session; global $current_course; global $json; ?>
 <h3>
+	<img class="img-rounded pull-left screenshot" width="30%"
+	     src="<?= $json['items'][0]['snippet']['thumbnails']['maxres']['url']; ?>"
+	     alt="<?php echo $current_course->name; ?>">
 	<?php echo htmlentities(ucwords($current_course->name)); ?>
 </h3>
 <h5>
