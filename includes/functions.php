@@ -747,14 +747,10 @@ function course_url()
 }
 
 /**
- * Function for members to show the subjects and articles. The difference between this function with administrators
- * functions are instead of all articles to be open for every subjects, the members actually have to click on subjects
- * in order for articles to be open underneath subjects and this happens once for every subject.
- *
- * @param      $subject_array array gets the subject ID form URL and return it as an array
- * @param      $article_array array gets the article ID form URL and return it as an array
+ * @param      $subject_array
+ * @param      $article_array
  * @param bool $public
- * @return string subjects as an HTML ordered list along with articles as an HTML unordered list
+ * @return string
  */
 function articles($subject_array, $article_array, $public = FALSE)
 {
@@ -823,6 +819,12 @@ function articles($subject_array, $article_array, $public = FALSE)
 	return $output;
 }
 
+/**
+ * @param      $category_array
+ * @param      $course_array
+ * @param bool $public
+ * @return string
+ */
 function courses($category_array, $course_array, $public = FALSE)
 {
 	$output = '<div id="accordion">';
@@ -897,31 +899,30 @@ function courses($category_array, $course_array, $public = FALSE)
  */
 function public_courses()
 {
-	$output       = "<ol class='list-unstyled'>";
+	$output       = '<ol class="list-unstyled">';
 	$category_set = Category::find_all(TRUE);
 	foreach($category_set as $category) {
-		$output .= "<li>";
-		$output .= "<h2>";
+		$output .= '<li>';
+		$output .= '<h2>';
 		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
-		$output .= "</h2>";
+		$output .= '</h2>';
 		$course_set = Course::find_courses_for_category($category->id, TRUE);
-		$output .= "<ul class='list-group>";
+		$output .= '<div class="list-group">';
 		foreach($course_set as $course) {
 			// $url     = "https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=" . $course->youtubePlaylist . "&key=" . YOUTUBEAPI;
-			$output .= "<li class='list-group-item'>";
-			$output .= "<a target='_blank' data-toggle='tooltip' data-placement='left' title='برو به یوتیوب' href='https://www.youtube.com/playlist?list=";
+			$output .= '<a class="list-group-item" target="_blank" title="برو به یوتیوب" href="https://www.youtube.com/playlist?list=';
 			$output .= $course->youtubePlaylist;
-			$output .= "'>";
+			$output .= '">';
 			$output = ! empty($course->name) ? $output . $course->name : $output . '-';
-			$output .= "</a>";
 			if($course->recent()) {
-				$output .= "&nbsp;&nbsp;&nbsp;<kbd>تازه</kbd>";
+				$output .= '&nbsp;&nbsp;&nbsp;<kbd>تازه</kbd>';
 			}
-			$output .= "</li>";
+			$output .= '</a>';
 		}
-		$output .= "</ul></li>";
+		$output .= '</div>';
+		$output .= '</li>';
 	}
-	$output .= "</ol>";
+	$output .= '</ol>';
 
 	return $output;
 }
