@@ -27,7 +27,7 @@
 						<i title="Master Card" class="pull-left visible-lg fa fa-cc-mastercard fa-3x"></i>
 						<i title="Stripe" class="pull-left visible-lg fa fa-cc-stripe fa-3x"></i>
 					</ul>
-					<div class="col-lg-3 col-lg-offset-9 col-md-4 col-md-offset-8 col-sm-4 col-sm-offset-8 col-xs-12">
+					<div class="col-lg-4 col-lg-offset-8 col-md-4 col-md-offset-8 col-sm-4 col-sm-offset-8 col-xs-12">
 						<?php include_layout_template('aside-news.php'); ?>
 					</div>
 				</nav><!-- nav -->
