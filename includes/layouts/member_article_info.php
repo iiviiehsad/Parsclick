@@ -1,5 +1,4 @@
-<h2>به قسمت مقالات خوش آمدید.</h2>
-<section>
+<article>
 	<p class="lead">تعداد نویسندگان:
 		<span class="label label-as-badge"><?php echo convert(count(Author::find_active_authors())); ?></span></p>
 	<br/>
@@ -22,4 +21,4 @@
 			</div>
 		</div>
 	<?php endforeach; ?>
-</section>
+</article>
