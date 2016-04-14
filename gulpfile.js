@@ -10,6 +10,7 @@ elixir(function(mix) {
 		], "public_html/_/components/css")
 		.styles([
 			'app.css',
+			// 'jquery-ui.css',
 			'font-awesome.min.css',
 			'sweetalert.css',
 			'prism.css'
@@ -32,6 +33,7 @@ elixir(function(mix) {
 			'wow.min.js',
 			'youtubeplayer.js',
 		    'sweetalert.js',
+		    // 'jquery-ui.js',
 			// 'jquery.countdown.min.js',
 			'_myscript.js'
 		])

@@ -4,6 +4,7 @@ $filename = basename(__FILE__);
 ?>
 <?php include_layout_template('header.php'); ?>
 <?php include_layout_template('nav.php'); ?>
+
 <?php include_layout_template('snippet-carousel.php'); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<?php include_layout_template('article-intro.php'); ?>

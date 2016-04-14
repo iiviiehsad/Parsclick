@@ -6,7 +6,7 @@ $(function() {
 	// YOUTUBE INIT VIDEO PLAY
 	$(".youtube").YouTubeModal({width : 640, height : 360});
 
-	$('.collapse').collapse();
+	$('.collapse').css({'transition' : 'height .5s', 'overflow' : 'hidden'});
 
 	//ACTIVATE COURSE TABS
 	var hash = window.location.hash;
@@ -137,15 +137,6 @@ $(function() {
 		}, 300000); //1000*60*5 (5 min)
 	});
 
-	/**
-	 * Function to perform smooth scrolling
-	 */
-	//$('a[href*=#]:not([href=#myCarousel], [href=#comments])').click(function() {
-	//	if(location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname ==
-	// this.hostname) { var target = $(this.hash); target     = target.length ? target : $('[name=' +
-	// this.hash.slice(1) + ']'); if(target.length) { $('html,body').animate({scrollTop : target.offset().top}, 1000);
-	// return false; } } });
-
 	$('.confirmation').click(function(e) {
 		var href = $(this).attr('href');
 
@@ -170,15 +161,6 @@ $(function() {
 
 }); //jQuery IS LOADED -----------------------------------------------------------------------------------------------
 
-/**
- * Function opens the new window without address bar
- * @param url gets the URL
- */
-function shareButton(url) {
-	var x = screen.width / 2 - 700 / 2;
-	var y = screen.height / 2 - 450 / 2;
-	window.open(url.href, 'sharegplus', 'width=640, height=360,left=' + x + ',top=' + y + 'toolbar=no,scrollbars=no,location=0,resizable=yes');
-}
 
 /**
  * Variables to get the registration fields
@@ -325,15 +307,6 @@ function checkEmail() {
 		return true;
 	}
 }
-
-// function vex_confirm(text) {
-// 	vex.dialog.confirm({
-// 		message: text,
-// 		callback: function(value) {
-// 			return console.log(value);
-// 		}
-// 	});
-// }
 
 /**
  * Initializing WOW animation:
