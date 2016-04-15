@@ -1,10 +1,3 @@
-/* http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+apacheconf+aspnet+bash+c+csharp+cpp+coffeescript+ruby+css-extras+git+http+ini+java+json+less+markdown+nginx+perl+php+php-extras+python+jsx+sass+scss+scala+sql+swift+typescript+yaml&plugins=line-numbers+command-line */
-/**
- * okaidia theme for JavaScript, CSS and HTML
- * Loosely based on Monokai textmate theme by http://www.monokai.nl/
- * @author ocodia
- */
-
 code[class*="language-"],
 pre[class*="language-"] {
 	color           : #F8F8F2;
