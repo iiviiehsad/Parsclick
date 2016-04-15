@@ -1,8 +1,4 @@
-<?php
-global $session;
-global $current_article;
-global $current_subject;
-?>
+<?php global $session; global $current_article; global $current_subject; ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<?php if($session->is_author_logged_in() && check_ownership($current_article->author_id, $session->id)): ?>&nbsp;
@@ -17,6 +13,9 @@ global $current_subject;
 		<?php endif ?>
 		<h3>
 			<?php echo htmlentities(ucwords($current_article->name)); ?>
+			<?php if($current_article->recent()): ?>
+				<kbd>تازه</kbd>
+			<?php endif; ?>
 		</h3>
 		<h5>
 			<?php if(isset($current_article->author_id)): ?>

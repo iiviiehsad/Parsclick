@@ -207,12 +207,14 @@ class Article extends DatabaseObject
 	}
 
 	/**
+	 * @param null $date
 	 * @return bool TRUE if article is new and FALSE if old
 	 */
-	public function recent()
+	public function recent($date = NULL)
 	{
+		$date       = $date ?: $this->created_at;
 		$this->time = 60 * 60 * 24 * 7 * 2; // 2 weeks
-		if(strtotime($this->created_at) + $this->time > time()) {
+		if(strtotime($date) + $this->time > time()) {
 			return TRUE;
 		} else {
 			return FALSE;
