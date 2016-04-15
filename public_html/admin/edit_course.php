@@ -10,12 +10,14 @@ if(isset($_POST["submit"])) {
 	global $database;
 	$course          = Course::find_by_id($current_course->id, FALSE);
 	$name            = ucfirst($_POST['course_name']);
+	$category_id     = (int) $_POST['category_id'];
 	$youtubePlaylist = $_POST['youtubePlaylist'];
 	$file_link       = $_POST['file_link'];
 	$position        = (int) $_POST['position'];
 	$visible         = (int) $_POST['visible'];
 	$content         = $_POST['content'];
 	$sql             = "UPDATE courses SET ";
+	$sql .= "category_id = " . $database->escape_value($category_id) . ", ";
 	$sql .= "name = '" . $database->escape_value($name) . "', ";
 	$sql .= "youtubePlaylist = '" . $database->escape_value($youtubePlaylist) . "', ";
 	$sql .= "file_link = '" . $database->escape_value($file_link) . "', ";
@@ -84,6 +86,23 @@ echo output_message($message, $errors);
 									if($current_course->position == $count): echo " selected"; endif;
 									echo ">{$count}</option>";
 								endfor;
+								?>
+							</select>
+						</div>
+					</section>
+					<!--subject-->
+					<section class="row">
+						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="category_id">زیر موضوع</label>
+						<div class="controls">
+							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="category_id" id="category_id">
+								<?php
+								foreach(Category::find_all(FALSE) as $category):
+									echo "<option value='{$category->id}'";
+									if($current_course->category_id == $category->id):
+										echo "selected";
+									endif;
+									echo ">{$category->name}</option>";
+								endforeach;
 								?>
 							</select>
 						</div>

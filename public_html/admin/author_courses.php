@@ -100,7 +100,7 @@ echo output_message($message, $errors);
 				<div class="panel panel-danger">
 					<div class="panel-heading">
 						<h3 class="panel-title">
-							<a class="arial btn btn-success btn-small" href="new_course.php?category=<?php echo urlencode($current_category->id); ?>" data-toggle="tooltip" title="درس جدید">
+							<a class="arial btn btn-danger btn-small" href="new_course.php?category=<?php echo urlencode($current_category->id); ?>" data-toggle="tooltip" title="درس جدید">
 								<i class="fa fa-plus fa-lg"></i>
 							</a>
 							<?php echo htmlentities(ucwords($current_category->name)); ?>

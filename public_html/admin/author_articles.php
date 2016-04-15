@@ -17,7 +17,7 @@ echo output_message($message);
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h2 class="panel-title">
-							<a class="btn btn-success btn-small arial" href="new_article.php?subject=<?php echo urlencode($current_subject->id); ?>" data-toggle="tooltip" title="مقاله جدید">
+							<a class="btn btn-info btn-small arial" href="new_article.php?subject=<?php echo urlencode($current_subject->id); ?>" data-toggle="tooltip" title="مقاله جدید">
 								<i class="fa fa-plus fa-lg"></i>
 							</a>
 							<?php echo htmlentities(ucwords($current_subject->name)); ?>
