@@ -1,10 +1,10 @@
 <?php global $session; global $current_course; global $json; ?>
 <h3>
 	<img class="img-rounded pull-left screenshot" width="30%"
-	     src="<?php echo array_shift($json['items'])['snippet']['thumbnails']['maxres']['url']; ?>"
+	     src="<?php echo reset($json['items'])['snippet']['thumbnails']['maxres']['url']; ?>"
 	     alt="<?php echo $current_course->name; ?>">
 	<?php echo htmlentities(ucwords($current_course->name)); ?>
-	<?php if($current_course->recent(array_pop($json['items'])['snippet']['publishedAt']) && ! $current_course->recent()): ?>
+	<?php if($current_course->recent(end($json['items'])['snippet']['publishedAt']) && ! $current_course->recent()): ?>
 		<kbd>بروز شد</kbd>
 	<?php endif; ?>
 	<?php if($current_course->recent()): ?>

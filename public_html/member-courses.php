@@ -33,7 +33,7 @@ find_selected_course(TRUE);
 				<?php endif; ?>
 				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php if(empty($current_course->file_link) && File::num_files_for_course($current_course->id) == 0): ?>
-					<a class="btn btn-success disabled" href="#" disabled>
+					<a class="btn btn-danger disabled" href="#" disabled>
 						فایلی موجود نیست
 					</a>
 				<?php endif; ?>
