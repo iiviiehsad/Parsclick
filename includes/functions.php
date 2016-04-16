@@ -251,9 +251,9 @@ function send_email($email, $subject, $message)
 	$headers = 'MIME-Version: 1.0' . "\r\n";
 	$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 	$headers .= 'From: Parsclick <do-not-reply@parsclick.net>' . "\r\n";
-	//$headers .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
-	//$headers .= 'Cc: birthdayarchive@example.com' . "\r\n";
-	//$headers .= 'Bcc: birthdaycheck@example.com' . "\r\n";
+	// $headers .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
+	// $headers .= 'Cc: birthdayarchive@example.com' . "\r\n";
+	// $headers .= 'Bcc: birthdaycheck@example.com' . "\r\n";
 	return mail($email, $subject, $message, $headers);
 }
 
