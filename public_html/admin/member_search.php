@@ -42,8 +42,12 @@ echo output_message($message);
 									</td>
 									<td class="arial"><?php echo htmlentities(strtolower($member->email)); ?></td>
 									<td>
-										<a class="btn btn-small btn-primary arial" href="edit_member.php?id=<?php echo urlencode($member->id); ?>" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
-										<a class="btn btn-small btn-danger arial confirmation" href="delete_member.php?id=<?php echo urlencode($member->id); ?>" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
+										<a class="btn btn-small btn-primary arial"
+										   href="edit_member.php?id=<?php echo urlencode($member->id); ?>" title="Edit"><span
+													class="glyphicon glyphicon-edit"></span></a>
+										<a class="btn btn-small btn-danger arial confirmation"
+										   href="delete_member.php?id=<?php echo urlencode($member->id); ?>" title="Delete"><span
+													class="glyphicon glyphicon-trash"></span></a>
 									</td>
 								</tr>
 							<?php endforeach; ?>

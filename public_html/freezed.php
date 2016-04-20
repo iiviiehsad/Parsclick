@@ -80,7 +80,10 @@ if(isset($_POST['resend_email'])) {
 		<form action="freezed" method="POST">
 			<div class="input-group col-xs-12 col-sm-8 col-md-6 col-lg-5">
 				<?php echo $session->csrf_token_tag(); ?>
-				<input onblur="checkEmail();" onkeyup="checkEmail();" class="edit col-xs-12 col-sm-8 col-md-8 col-lg-8 input-small" type="email" name="email" id="email" placeholder="Email" required value="<?php echo htmlentities($member->email); ?>" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"/>
+				<input onblur="checkEmail();" onkeyup="checkEmail();" 
+				       class="edit col-xs-12 col-sm-8 col-md-8 col-lg-8 input-small" type="email" name="email" id="email"
+				       placeholder="Email" required value="<?php echo htmlentities($member->email); ?>"
+				       pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"/>
 					<span class="input-group-btn">
 						<button class="btn btn-primary btn-small" type="submit" name="update_email">
 							تغییر بده

@@ -27,7 +27,8 @@ echo output_message($message);
 						<?php foreach($admin_set as $admin): ?>
 							<tr>
 								<td class="arial">
-									<img class="img-circle" src="http://gravatar.com/avatar/<?php echo md5($admin->email); ?>?s=30" alt="<?php echo $admin->email; ?>">
+									<img class="img-circle" src="http://gravatar.com/avatar/<?php echo md5($admin->email); ?>?s=30"
+									     alt="<?php echo $admin->email; ?>">
 									<?php echo htmlentities($admin->username); ?>
 								</td>
 								<td><?php echo htmlentities(ucfirst(strtolower($admin->first_name))); ?></td>
@@ -36,9 +37,13 @@ echo output_message($message);
 									<small><?php echo htmlentities(strtolower($admin->email)); ?></small>
 								</td>
 								<td>
-									<a class="btn btn-small btn-primary arial" href="edit_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+									<a class="btn btn-small btn-primary arial"
+									   href="edit_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Edit"><span
+												class="glyphicon glyphicon-pencil"></span></a>
 									<?php if($admin->id != $session->id): ?>
-										<a class="btn btn-small btn-danger arial confirmation" href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
+										<a class="btn btn-small btn-danger arial confirmation"
+										   href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Delete"><span
+													class="glyphicon glyphicon-trash"></span></a>
 									<?php endif; ?>
 								</td>
 							</tr>

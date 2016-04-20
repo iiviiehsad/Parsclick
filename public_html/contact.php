@@ -58,7 +58,8 @@ if(isset($_POST['submit'])) {
 					<legend>لطفا از فرم زیر برای تماس با ما استفاده کنید.</legend>
 					<div class="form-group">
 						<label for="name">اسم کامل</label>
-						<input type="text" name="name" class="form-control" id="name" placeholder="لطفا اسم خود را اینجا وارد کنید" required
+						<input type="text" name="name" class="form-control" id="name" placeholder="لطفا اسم خود را اینجا وارد کنید"
+						       required
 						       value="<?php echo $session->is_logged_in() ? $member->full_name() : ''; ?>"/>
 					</div>
 					<br/>
@@ -70,7 +71,8 @@ if(isset($_POST['submit'])) {
 					<br/><br/><br/>
 					<div class="form-group">
 						<label for="message">پیغام</label>
-						<textarea class="form-control" name="message" id="message" rows="9" placeholder="لطفا پیام کوتاه خود را اینجا وارد کنید" required></textarea>
+						<textarea class="form-control" name="message" id="message" rows="9"
+						          placeholder="لطفا پیام کوتاه خود را اینجا وارد کنید" required></textarea>
 					</div>
 					<br/>
 					<!--reCaptcha-->
@@ -78,7 +80,8 @@ if(isset($_POST['submit'])) {
 					<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>"></script>
 					<!--End of reCaptcha-->
 					<div class="form-group">
-						<button type="submit" id="contactbtn" name="submit" class="btn btn-primary" data-loading-text="در حال ارسال <i class='fa fa-spinner fa-pulse'></i>">
+						<button type="submit" id="contactbtn" name="submit" class="btn btn-primary"
+						        data-loading-text="در حال ارسال <i class='fa fa-spinner fa-pulse'></i>">
 							بفرست
 						</button>
 					</div>

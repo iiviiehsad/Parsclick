@@ -45,7 +45,8 @@ if(isset($_POST['submit'])) {
 <section class="main col-sm-12 col-md-9 col-lg-9">
 	<article>
 		<h2><i class="fa fa-pencil-square"></i> ویرایش پروفایل </h2>
-		<form class="registration form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
+		<form class="registration form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST"
+		      enctype="multipart/form-data">
 			<fieldset id="login">
 				<legend><i class="fa fa-user"></i> <?php echo ucwords(strtolower($member->full_name())); ?>
 					<span class="pull-left wow flash infinite" data-wow-duration="3s" id="confirmMessage"></span>
@@ -53,25 +54,31 @@ if(isset($_POST['submit'])) {
 				<section class="row">
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="username"> اسم کاربری &nbsp;</label>
 					<div class="controls">
-						<input onblur="checkUser();" onkeyup="checkUser();" class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" placeholder="Username" disabled required value="<?php echo htmlentities($member->username); ?>"/>
+						<input onblur="checkUser();" onkeyup="checkUser();" class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8 edit"
+						       type="text" name="username" id="username" placeholder="Username" disabled required
+						       value="<?php echo htmlentities($member->username); ?>"/>
 					</div>
 				</section>
 				<section class="row">
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="password"> پسورد جدید&nbsp;</label>
 					<div class="controls">
-						<input onblur="checkPass();" onkeyup="checkPass();" class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="New password" value="" pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
+						<input onblur="checkPass();" onkeyup="checkPass();" class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8 edit"
+						       type="password" name="password" id="password" placeholder="New password" value=""
+						       pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
 					</div>
 				</section>
 				<section class="row">
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="first_name"> نام &nbsp;</label>
 					<div class="controls">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="first_name" id="first_name" placeholder="نام" required value="<?php echo htmlentities($member->first_name); ?>"/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="first_name" id="first_name"
+						       placeholder="نام" required value="<?php echo htmlentities($member->first_name); ?>"/>
 					</div>
 				</section>
 				<section class="row">
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="last_name"> نام خانوادگی &nbsp;</label>
 					<div class="controls">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name" placeholder="نام خانوادگی" required value="<?php echo htmlentities($member->last_name); ?>"/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name"
+						       placeholder="نام خانوادگی" required value="<?php echo htmlentities($member->last_name); ?>"/>
 					</div>
 				</section>
 				<section class="row">
@@ -96,19 +103,24 @@ if(isset($_POST['submit'])) {
 				<section class="row">
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="address"> کشور &nbsp;</label>
 					<div class="controls">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="address" id="address" placeholder="کشور" value="<?php echo htmlentities($member->address); ?>"/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="address" id="address"
+						       placeholder="کشور" value="<?php echo htmlentities($member->address); ?>"/>
 					</div>
 				</section>
 				<section class="row">
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="city"> شهر &nbsp;</label>
 					<div class="controls">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="city" id="city" placeholder="شهر" value="<?php echo htmlentities($member->city); ?>"/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="city" id="city" placeholder="شهر"
+						       value="<?php echo htmlentities($member->city); ?>"/>
 					</div>
 				</section>
 				<section class="row">
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="email"> ایمیل &nbsp;</label>
 					<div class="controls">
-						<input onblur="checkEmail();" onkeyup="checkEmail();" class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="email" name="email" id="email" placeholder="Email" required value="<?php echo htmlentities($member->email); ?>" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"/>
+						<input onblur="checkEmail();" onkeyup="checkEmail();"
+						       class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="email" name="email" id="email"
+						       placeholder="Email" required value="<?php echo htmlentities($member->email); ?>"
+						       pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"/>
 					</div>
 				</section>
 				<section class="row">
@@ -125,7 +137,9 @@ if(isset($_POST['submit'])) {
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside class="members_menu">
 		<h2><i class="fa fa-picture-o"></i> آواتار</h2>
-		<img class="img-thumbnail center" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=250&d=<?php echo DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->email; ?>">
+		<img class="img-thumbnail center"
+		     src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=250&d=<?php echo DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>"
+		     alt="<?php echo $member->email; ?>">
 		<h2><i class="fa fa-info-circle"></i> اطلاعات</h2>
 		<div class="alert alert-info">
 			<small>

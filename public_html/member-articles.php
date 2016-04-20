@@ -26,7 +26,8 @@ $body   = '';
 			<form class="form-inline" action="member-article-search" method="GET">
 				<div class="input-group">
 					<span class="input-group-addon"><span class="arial glyphicon glyphicon-search"></span></span>
-					<input type="text" name="q" class="form-control" size="30" maxlength="50" data-toggle="tooltip" data-placement="top" title="جستجو کنید و اینتر بزنید" placeholder="جستجوی مقالات"/>
+					<input type="text" name="q" class="form-control" size="30" maxlength="50" data-toggle="tooltip"
+					       data-placement="top" title="جستجو کنید و اینتر بزنید" placeholder="جستجوی مقالات"/>
 				</div>
 			</form>
 			<h2>موضوعات و مقالات</h2>

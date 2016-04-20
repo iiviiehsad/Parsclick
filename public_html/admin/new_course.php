@@ -37,7 +37,8 @@ echo output_message($message, $errors);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-film"></i> درس جدید</h2>
-			<form class="form-horizontal" method="POST" role="form" action="new_course.php?category=<?php echo urlencode($current_category->id); ?>">
+			<form class="form-horizontal" method="POST" role="form"
+			      action="new_course.php?category=<?php echo urlencode($current_category->id); ?>">
 				<fieldset>
 					<!--course name-->
 					<legend><?php echo ucfirst($current_category->name); ?></legend>
@@ -46,7 +47,8 @@ echo output_message($message, $errors);
 							اسم درس
 						</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="course_name" id="course_name" placeholder="اسم درس" value="" required/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="course_name" id="course_name"
+							       placeholder="اسم درس" value="" required/>
 						</div>
 					</section>
 					<!--YouTube playlist ID-->
@@ -55,7 +57,8 @@ echo output_message($message, $errors);
 							لیست پخش یوتیوب
 						</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="youtubePlaylist" id="youtubePlaylist" placeholder="YouTube Playlist ID" value=""/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="youtubePlaylist"
+							       id="youtubePlaylist" placeholder="YouTube Playlist ID" value=""/>
 						</div>
 					</section>
 					<!--Exercise File Link-->
@@ -64,7 +67,8 @@ echo output_message($message, $errors);
 							لینک فایل تمرینی
 						</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="file_link" id="file_link" placeholder="Exercise File Link" value=""/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="file_link" id="file_link"
+							       placeholder="Exercise File Link" value=""/>
 						</div>
 					</section>
 					<!--position-->
@@ -82,11 +86,13 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="visible">نشر شد</label>
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="visible" id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled'; ?> >
+								<input type="radio" name="visible"
+								       id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled'; ?> >
 								خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="visible" id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled'; ?> >
+								<input type="radio" name="visible"
+								       id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled'; ?> >
 								بله
 							</label>
 						</div>
@@ -94,7 +100,8 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="desc">توضیحات</label>
 						<div class="controls">
-							<textarea class="col-xs-12 col-sm-8 col-md-8 col-lg-8" name="description" id="desc" cols="30" rows="10" placeholder="توضیحات" required></textarea>
+							<textarea class="col-xs-12 col-sm-8 col-md-8 col-lg-8" name="description" id="desc" cols="30" rows="10"
+							          placeholder="توضیحات" required></textarea>
 						</div>
 					</section>
 					<!--buttons-->

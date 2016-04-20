@@ -31,7 +31,8 @@ echo output_message($message);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="category_name">اسم موضوع</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="category_name" id="category_name" placeholder="اسم موضوع" value="" required/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="category_name" id="category_name"
+							       placeholder="اسم موضوع" value="" required/>
 						</div>
 					</section>
 					<!--position-->

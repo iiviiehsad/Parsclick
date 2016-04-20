@@ -38,7 +38,8 @@ find_selected_course(TRUE);
 					</a>
 				<?php endif; ?>
 				<?php if( ! empty($current_course->file_link)): ?>
-					<a class="btn btn-success" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" data-toggle="tooltip" data-placement="left" title="دانلود کنید">
+					<a class="btn btn-success" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank"
+					   data-toggle="tooltip" data-placement="left" title="دانلود کنید">
 						<i class="fa fa-files-o fa-lg"></i>&nbsp; دانلود فایل ها
 					</a>
 				<?php endif; ?>
@@ -54,7 +55,9 @@ find_selected_course(TRUE);
 				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php include_layout_template('course-info.php'); ?>
 				<!-- ------------------------------------------------------------------------------------------------- -->
-				<a class="btn btn-primary" href="forum?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" data-placement="bottom" title="سوالات و نظرات"><i class="fa fa-comments fa-lg"></i>
+				<a class="btn btn-primary"
+				   href="forum?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>"
+				   data-toggle="tooltip" data-placement="bottom" title="سوالات و نظرات"><i class="fa fa-comments fa-lg"></i>
 					انجمن<?php echo "<span class='badge'>" . convert(Comment::count_comments_for_course($current_course->id)) . "</span>"; ?>
 				</a>
 				<!-- ------------------------------------------------------------------------------------------------- -->
@@ -70,7 +73,8 @@ find_selected_course(TRUE);
 			<form class="form-inline" action="member-course-search" method="GET">
 				<div class="input-group">
 					<span class="input-group-addon"><span class="arial glyphicon glyphicon-search"></span></span>
-					<input type="text" name="q" class="form-control" size="30" maxlength="50" data-toggle="tooltip" data-placement="top" title="جستجو کنید و اینتر بزنید" placeholder="جستجوی درس"/>
+					<input type="text" name="q" class="form-control" size="30" maxlength="50" data-toggle="tooltip"
+					       data-placement="top" title="جستجو کنید و اینتر بزنید" placeholder="جستجوی درس"/>
 				</div>
 			</form>
 			<h2>موضوعات و دروس</h2>

@@ -31,7 +31,8 @@ echo output_message($message); ?>
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="subject_name">اسم موضوع
 						                                                                                     &nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="subject_name" id="subject_name" autofocus placeholder="اسم موضوع" value="" required/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="subject_name" id="subject_name"
+							       autofocus placeholder="اسم موضوع" value="" required/>
 						</div>
 					</section>
 					<!--position-->

@@ -36,7 +36,8 @@ echo output_message($message, $errors);
 		<article>
 			<h2><i class="fa fa-pencil-square-o"></i> ویرایش مدیر</h2>
 
-			<form class="form-horizontal" action="edit_admin.php?id=<?php echo urlencode($admin->id); ?>" method="post" role="form">
+			<form class="form-horizontal" action="edit_admin.php?id=<?php echo urlencode($admin->id); ?>" method="post"
+			      role="form">
 				<fieldset>
 					<legend><i class="fa fa-user"></i> <?php echo htmlentities(ucwords(strtolower($admin->full_name()))); ?>
 					</legend>
@@ -44,35 +45,41 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="username">اسم کاربری</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" placeholder="Username" value="<?php echo htmlentities($admin->username); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username"
+							       placeholder="Username" value="<?php echo htmlentities($admin->username); ?>"/>
 						</div>
 					</section>
 					<!--password-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="password">پسورد</label>
 						<div class="controls">
-							<input <?php if($session->id != $admin->id): echo 'disabled'; endif; ?> class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="New Password"/>
+							<input <?php if($session->id != $admin->id): echo 'disabled'; endif; ?>
+									class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password"
+									placeholder="New Password"/>
 						</div>
 					</section>
 					<!--first_name-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="first_name">نام</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="first_name" id="first_name" placeholder="نام" value="<?php echo htmlentities($admin->first_name); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="first_name" id="first_name"
+							       placeholder="نام" value="<?php echo htmlentities($admin->first_name); ?>"/>
 						</div>
 					</section>
 					<!--last_name-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name">نام خانوادگی</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name" placeholder="نام خانوادگی" value="<?php echo htmlentities($admin->last_name); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name"
+							       placeholder="نام خانوادگی" value="<?php echo htmlentities($admin->last_name); ?>"/>
 						</div>
 					</section>
 					<!--email-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="email">ایمیل</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="email" name="email" id="email" placeholder="Email" value="<?php echo htmlentities($admin->email); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="email" name="email" id="email"
+							       placeholder="Email" value="<?php echo htmlentities($admin->email); ?>"/>
 						</div>
 					</section>
 					<!--buttons-->

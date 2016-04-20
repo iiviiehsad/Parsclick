@@ -29,14 +29,17 @@ echo output_message($message, $errors);
 			if($current_category && $current_course): ?>
 				<?php $json = get_playlist_content($current_course->youtubePlaylist); ?>
 				<?php if(check_ownership($current_course->author_id, $session->id)): ?>
-					<a class="btn btn-primary" href="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" title="ویرایش">
+					<a class="btn btn-primary"
+					   href="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>"
+					   title="ویرایش">
 						ویرایش
 					</a>
 				<?php endif; ?>
 				<?php include_layout_template('course-info.php'); ?>
 				<!-- -------------------------------------------FILE LINK--------------------------------------------- -->
 				<?php if( ! empty($current_course->file_link)): ?>
-					<a class="btn btn-primary" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" title="لینک فایل تمرینی">
+					<a class="btn btn-primary" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank"
+					   title="لینک فایل تمرینی">
 						لینک فایل تمرینی
 					</a>
 				<?php endif; ?>
@@ -49,7 +52,8 @@ echo output_message($message, $errors);
 								<a class="btn btn-primary btn-small" href="../files/<?php echo urlencode($file->name); ?>">
 									<?php echo htmlentities($file->description); ?>
 								</a>
-								<a class="btn btn-danger btn-small confirmation" href="author_delete_file.php?id=<?php echo urlencode($file->id); ?>">
+								<a class="btn btn-danger btn-small confirmation"
+								   href="author_delete_file.php?id=<?php echo urlencode($file->id); ?>">
 									<i class="fa fa-trash fa-lg"></i>
 								</a>
 							</div>
@@ -67,7 +71,9 @@ echo output_message($message, $errors);
 							<h3><span class="label label-as-badge label-info"><i class="fa fa-upload fa-lg"></i> آپلود فایل تمرینی زیپ</span>
 								<small><?php echo check_size($file_max_file_size); ?></small>
 							</h3>
-							<form enctype="multipart/form-data" action="author_courses.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" method="POST" class="form-horizontal fileForm" role="form">
+							<form enctype="multipart/form-data"
+							      action="author_courses.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>"
+							      method="POST" class="form-horizontal fileForm" role="form">
 								<label style="cursor:pointer;" class="control-label btn btn-small btn-primary" for="single_file">
 									برای انتخاب فایل اینجا را کلیک کنید
 								</label>
@@ -77,9 +83,11 @@ echo output_message($message, $errors);
 								</div>
 								<section class="row">
 									<div class="input-group col-xs-11 col-sm-11 col-md-11 col-lg-11">
-										<input type="text" name="description" class="form-control input-small" placeholder="اسم فایل " maxlength="255" required/>
+										<input type="text" name="description" class="form-control input-small" placeholder="اسم فایل "
+										       maxlength="255" required/>
 										<span class="input-group-btn">
-											<button class="btn btn-primary  btn-small" type="submit" name="submit_file" id="fileSubmit" data-loading-text="<i class='fa fa-spinner fa-pulse'></i> Loading...">
+											<button class="btn btn-primary  btn-small" type="submit" name="submit_file" id="fileSubmit"
+											        data-loading-text="<i class='fa fa-spinner fa-pulse'></i> Loading...">
 												آپلود
 											</button>
 										</span>
@@ -100,7 +108,9 @@ echo output_message($message, $errors);
 				<div class="panel panel-danger">
 					<div class="panel-heading">
 						<h3 class="panel-title">
-							<a class="arial btn btn-danger btn-small" href="new_course.php?category=<?php echo urlencode($current_category->id); ?>" data-toggle="tooltip" title="درس جدید">
+							<a class="arial btn btn-danger btn-small"
+							   href="new_course.php?category=<?php echo urlencode($current_category->id); ?>" data-toggle="tooltip"
+							   title="درس جدید">
 								<i class="fa fa-plus fa-lg"></i>
 							</a>
 							<?php echo htmlentities(ucwords($current_category->name)); ?>
@@ -127,7 +137,8 @@ echo output_message($message, $errors);
 						<li><p>پاک کردن درسی بدون دلیل باعث معلق شدن عضویت شما به عنوان نویسنده خواهد شد.</p></li>
 						<li><p>هنگام اضافه کردن درس شناسه لیست پخش یوتیوب فراموشتان نشود.</p></li>
 						<li><p>اگر کانال یوتیوب دارید، لطفا به
-								<a href="https://developers.google.com/youtube/v3/getting-started" target="_blank" title="YouTube Data API Overview">
+								<a href="https://developers.google.com/youtube/v3/getting-started" target="_blank"
+								   title="YouTube Data API Overview">
 									این آدرس</a> روید و مدیر وبسایت را از
 								<a href="https://developers.google.com/youtube/v3/getting-started">YouTube API Key</a>
 						       با خبر کنید. این کلید به کاربران اجازه می دهد که با سرعت بیشتری به لیست پخش یوتیوب شما

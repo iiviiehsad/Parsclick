@@ -44,21 +44,24 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="username">اسم کاربری &nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 arial" type="text" name="username" id="username" placeholder="Username in English" required/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 arial" type="text" name="username" id="username"
+							       placeholder="Username in English" required/>
 						</div>
 					</section>
 					<!--password-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="password">پسورد &nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="password" name="password" id="password" placeholder="پسورد" required/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="password" name="password" id="password"
+							       placeholder="پسورد" required/>
 						</div>
 					</section>
 					<!--first_name-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="first_name">نام &nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="first_name" id="first_name" placeholder="نام"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="first_name" id="first_name"
+							       placeholder="نام"/>
 						</div>
 					</section>
 					<!--last_name-->
@@ -66,7 +69,8 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name">نام خانوادگی
 						                                                                                  &nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name" placeholder="نام خانوادگی"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name"
+							       placeholder="نام خانوادگی"/>
 						</div>
 					</section>
 					<!--gender-->
@@ -84,21 +88,24 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="address">کشور &nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="address" id="address" placeholder="کشور"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="address" id="address"
+							       placeholder="کشور"/>
 						</div>
 					</section>
 					<!--city-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="city">شهر &nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="city" id="address" placeholder="شهر"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="city" id="address"
+							       placeholder="شهر"/>
 						</div>
 					</section>
 					<!--email-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="email">ایمیل &nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 arial" type="text" name="email" id="post_code" placeholder="Email"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 arial" type="text" name="email" id="post_code"
+							       placeholder="Email"/>
 						</div>
 					</section>
 					<!--status-->

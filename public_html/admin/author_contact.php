@@ -18,7 +18,8 @@ echo output_message($message);
 			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
 				<div class="center">
 					<?php if( ! empty($author->photo)): ?>
-						<img class="img-circle" style="width:200px;height:200px;" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
+						<img class="img-circle" style="width:200px;height:200px;" alt="<?php echo $author->full_name(); ?>"
+						     src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
 					<?php else: ?>
 						<img class="img-circle" width="200" alt="No Profile Picture" src="../images/misc/default-gravatar-pic.png"/>
 					<?php endif; ?>
@@ -33,7 +34,8 @@ echo output_message($message);
 					<?php if(isset($author->parsclickmail)): ?>
 						<br/>
 						<p class="label label-as-badge label-warning">
-							<a data-toggle="tooltip" target="_blank" title="<?php echo $author->parsclickmail; ?>" href="mailto:<?php echo $author->parsclickmail; ?>">
+							<a data-toggle="tooltip" target="_blank" title="<?php echo $author->parsclickmail; ?>"
+							   href="mailto:<?php echo $author->parsclickmail; ?>">
 								ایمیل پارس کلیکی
 							</a>
 						</p>

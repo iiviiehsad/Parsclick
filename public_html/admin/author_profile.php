@@ -38,7 +38,8 @@ echo output_message($message);
 				<span class="glyphicon glyphicon-user center" style="font-size: 150px;"></span>
 			</div>
 		<?php else: ?>
-			<img class="img-circle" height="200" width="200" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
+			<img class="img-circle" height="200" width="200" alt="Profile Picture"
+			     src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 		<?php endif; ?>
 	</aside>
 </section>

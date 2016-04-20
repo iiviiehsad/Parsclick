@@ -38,13 +38,15 @@ echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-newspaper-o"></i> مقاله جدید</h2>
-			<form class="form-horizontal" action="new_article.php?subject=<?php echo urlencode($current_subject->id); ?>" method="POST" role="form">
+			<form class="form-horizontal" action="new_article.php?subject=<?php echo urlencode($current_subject->id); ?>"
+			      method="POST" role="form">
 				<fieldset id="login">
 					<legend><?php echo ucfirst($current_subject->name); ?></legend>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="article_name">اسم مقاله</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="article_name" id="article_name" autofocus placeholder="اسم مقاله" value="" required/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="article_name" id="article_name"
+							       autofocus placeholder="اسم مقاله" value="" required/>
 						</div>
 					</section>
 					<!--position-->
@@ -63,11 +65,13 @@ echo output_message($message, $errors); ?>
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="visible">نشر شد</label>
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="visible" id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled'; ?> >
+								<input type="radio" name="visible"
+								       id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled'; ?> >
 								خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="visible" id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled'; ?> >
+								<input type="radio" name="visible"
+								       id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled'; ?> >
 								بله
 							</label>
 						</div>
@@ -76,7 +80,8 @@ echo output_message($message, $errors); ?>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="content">مطالب</label>
 						<div class="controls">
-							<textarea class="col-xs-12 col-sm-8 col-md-8 col-lg-8" name="content" id="content" rows="30" required></textarea>
+							<textarea class="col-xs-12 col-sm-8 col-md-8 col-lg-8" name="content" id="content" rows="30"
+							          required></textarea>
 						</div>
 					</section>
 					<!--buttons-->

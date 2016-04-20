@@ -11,7 +11,8 @@ $newest_article = Article::find_newest_article();
 <?php include_layout_template('member_nav.php'); ?>
 <?php echo output_message($message); ?>
 <div class="jumbotron hidden-sm wow fadeIn member-jumbotron">
-	<img class="pull-left img-circle" width="150" height="150" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=150&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>">
+	<img class="pull-left img-circle" width="150" height="150"
+	     src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=150&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>">
 	<h1>خوش آمدید <?php echo ucwords(strtolower($member->full_name())); ?></h1>
 	<p>شما دسترسی به یکی از بزرگترین کتابخانه ویدئویی رایگان پارسی زبانان را دارید. لطفا از دوستان خود دعوت کنید که به ما
 	   بپیوندند.</p>

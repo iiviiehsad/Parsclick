@@ -59,43 +59,51 @@ echo output_message($message, $errors);
 	<article>
 		<h2>ویرایش پروفایل</h2>
 
-		<form class="registration form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
+		<form class="registration form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST"
+		      enctype="multipart/form-data">
 			<fieldset id="login">
 				<legend><?php echo ucwords(strtolower($author->full_name())); ?></legend>
 				<section class="row">
 					<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="username">اسم کاربری</label>
 					<div class="controls">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" placeholder="Username" disabled required value="<?php echo htmlentities($author->username); ?>"/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username"
+						       placeholder="Username" disabled required value="<?php echo htmlentities($author->username); ?>"/>
 					</div>
 				</section>
 				<section class="row">
 					<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="password">پسورد</label>
 					<div class="controls">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="New Password" value=""/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password"
+						       placeholder="New Password" value=""/>
 					</div>
 				</section>
 				<section class="row">
 					<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="first_name">نام</label>
 					<div class="controls">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="first_name" id="first_name" placeholder="نام" required value="<?php echo htmlentities($author->first_name); ?>"/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="first_name" id="first_name"
+						       placeholder="نام" required value="<?php echo htmlentities($author->first_name); ?>"/>
 					</div>
 				</section>
 				<section class="row">
 					<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name">نام خانوادگی</label>
 					<div class="controls">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name" placeholder="نام خانوادگی" required value="<?php echo htmlentities($author->last_name); ?>"/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name"
+						       placeholder="نام خانوادگی" required value="<?php echo htmlentities($author->last_name); ?>"/>
 					</div>
 				</section>
 				<section class="row">
 					<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="email">ایمیل</label>
 					<div class="controls">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="email" name="email" id="email" placeholder="Email" required value="<?php echo htmlentities($author->email); ?>"/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="email" name="email" id="email"
+						       placeholder="Email" required value="<?php echo htmlentities($author->email); ?>"/>
 					</div>
 				</section>
 				<section class="row">
 					<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="parsclickmail">ایمیل اختصاصی</label>
 					<div class="controls">
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" disabled type="email" name="parsclickmail" id="parsclickmail" placeholder="Parsclick Email" required value="<?php echo htmlentities($author->parsclickmail); ?>"/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" disabled type="email" name="parsclickmail"
+						       id="parsclickmail" placeholder="Parsclick Email" required
+						       value="<?php echo htmlentities($author->parsclickmail); ?>"/>
 					</div>
 				</section>
 				<section class="row">
@@ -128,7 +136,8 @@ echo output_message($message, $errors);
 			<span class="glyphicon glyphicon-user center" style="font-size: 150px; margin: 0; padding: 0;"></span>
 			<span class="text-muted center">عکس پروفایل موجود نیست</span>
 		<?php else: ?>
-			<img class="img-thumbnail center" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
+			<img class="img-thumbnail center" alt="Profile Picture"
+			     src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 			<div class="center">
 				<a class="btn btn-default btn-small confirmation" href="author_remove_photo.php">
 					حذف آواتار

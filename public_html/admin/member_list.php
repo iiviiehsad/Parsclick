@@ -78,8 +78,12 @@ echo output_message($message);
 								<small><?php echo htmlentities($member->email); ?></small>
 							</td>
 							<td>
-								<a class="btn btn-small btn-primary arial" href="edit_member.php?id=<?php echo urlencode($member->id); ?>" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
-								<a class="btn btn-small btn-danger arial confirmation" href="delete_member.php?id=<?php echo urlencode($member->id); ?>" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
+								<a class="btn btn-small btn-primary arial"
+								   href="edit_member.php?id=<?php echo urlencode($member->id); ?>" title="Edit"><span
+											class="glyphicon glyphicon-edit"></span></a>
+								<a class="btn btn-small btn-danger arial confirmation"
+								   href="delete_member.php?id=<?php echo urlencode($member->id); ?>" title="Delete"><span
+											class="glyphicon glyphicon-trash"></span></a>
 							</td>
 						</tr>
 					<?php endforeach; ?>

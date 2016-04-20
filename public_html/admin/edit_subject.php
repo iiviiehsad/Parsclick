@@ -28,13 +28,15 @@ echo output_message($message, $errors);
 		<article>
 			<h2><i class="fa fa-pencil-square-o"></i> ویرایش موضوع</h2>
 
-			<form class="form-horizontal" action="edit_subject.php?subject=<?php echo urlencode($current_subject->id); ?>" method="post" role="form">
+			<form class="form-horizontal" action="edit_subject.php?subject=<?php echo urlencode($current_subject->id); ?>"
+			      method="post" role="form">
 				<fieldset>
 					<legend><?php echo htmlentities(ucfirst($current_subject->name)); ?></legend>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="subject_name">اسم موضوع</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="subject_name" id="subject_name" autofocus placeholder="اسم موضوع" value="<?php echo htmlentities($current_subject->name); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="subject_name" id="subject_name"
+							       autofocus placeholder="اسم موضوع" value="<?php echo htmlentities($current_subject->name); ?>"/>
 						</div>
 					</section>
 					<!--position-->
@@ -70,8 +72,10 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit">&nbsp;</label>
 						<div class="controls">
-							<a class="btn btn-danger" href="admin_articles.php?subject=<?php echo urlencode($current_subject->id); ?>">لغو</a>
-							<a class="btn btn-info confirmation" href="delete_subject.php?subject=<?php echo urlencode($current_subject->id); ?>">
+							<a class="btn btn-danger"
+							   href="admin_articles.php?subject=<?php echo urlencode($current_subject->id); ?>">لغو</a>
+							<a class="btn btn-info confirmation"
+							   href="delete_subject.php?subject=<?php echo urlencode($current_subject->id); ?>">
 								حذف
 							</a>
 							<button class="btn btn-success" name="submit" id="submit" type="submit">

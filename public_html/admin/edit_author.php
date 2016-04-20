@@ -31,7 +31,8 @@ echo output_message($message, $errors);
 	<section class="main col-sm-12 col-md-9 col-lg-9">
 		<article>
 			<h2><i class="fa fa-pencil-square"></i> ویرایش نویسنده</h2>
-			<form class="form-horizontal" action="edit_author.php?id=<?php echo urlencode($author->id); ?>" method="post" role="form">
+			<form class="form-horizontal" action="edit_author.php?id=<?php echo urlencode($author->id); ?>" method="post"
+			      role="form">
 				<fieldset>
 					<legend><i class="fa fa-user"></i> <?php echo htmlentities(ucwords(strtolower($author->full_name()))); ?>
 					</legend>
@@ -39,35 +40,40 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="username">اسم کاربری</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" placeholder="Username" value="<?php echo htmlentities($author->username); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username"
+							       placeholder="Username" value="<?php echo htmlentities($author->username); ?>"/>
 						</div>
 					</section>
 					<!--password-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="password">پسورد</label>
 						<div class="controls">
-							<input disabled class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="Password encrypted"/>
+							<input disabled class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password"
+							       id="password" placeholder="Password encrypted"/>
 						</div>
 					</section>
 					<!--first_name-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="first_name">نام</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="first_name" id="first_name" placeholder="نام" value="<?php echo htmlentities($author->first_name); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="first_name" id="first_name"
+							       placeholder="نام" value="<?php echo htmlentities($author->first_name); ?>"/>
 						</div>
 					</section>
 					<!--last_name-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name">نام خانوادگی</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name" placeholder="نام خانوادگی" value="<?php echo htmlentities($author->last_name); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name"
+							       placeholder="نام خانوادگی" value="<?php echo htmlentities($author->last_name); ?>"/>
 						</div>
 					</section>
 					<!--email-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="email">ایمیل</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="email" id="email" placeholder="Email" value="<?php echo htmlentities($author->email); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="email" id="email"
+							       placeholder="Email" value="<?php echo htmlentities($author->email); ?>"/>
 						</div>
 					</section>
 					<!--parsclickmail-->
@@ -75,7 +81,9 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="parsclickmail">ایمیل پارس
 						                                                                                      کلیک</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="parsclickmail" id="parsclickmail" placeholder="Parsclick Mail" value="<?php echo htmlentities($author->parsclickmail); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="parsclickmail"
+							       id="parsclickmail" placeholder="Parsclick Mail"
+							       value="<?php echo htmlentities($author->parsclickmail); ?>"/>
 						</div>
 					</section>
 					<!--status-->
@@ -83,15 +91,18 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="status">فعال</label>
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="status" id="inlineRadioNo" value="0" <?php if($author->status == 0): echo 'checked'; endif; ?> />
+								<input type="radio" name="status" id="inlineRadioNo"
+								       value="0" <?php if($author->status == 0): echo 'checked'; endif; ?> />
 								خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
-								<input type="radio" name="status" id="inlineRadioYes" value="1" <?php if($author->status == 1): echo 'checked'; endif; ?> />
+								<input type="radio" name="status" id="inlineRadioYes"
+								       value="1" <?php if($author->status == 1): echo 'checked'; endif; ?> />
 								بله
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
-								<input type="radio" name="status" id="inlineRadioYes" value="2" <?php if($author->status == 2): echo 'checked'; endif; ?> />
+								<input type="radio" name="status" id="inlineRadioYes"
+								       value="2" <?php if($author->status == 2): echo 'checked'; endif; ?> />
 								مسدود
 							</label>
 						</div>
@@ -119,9 +130,11 @@ echo output_message($message, $errors);
 			<?php if(empty($author->photo)): ?>
 				<p class="text-muted center">عکس پروفایل موجود نیست.</p>
 			<?php else: ?>
-				<img class="img-thumbnail center" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
+				<img class="img-thumbnail center" alt="Profile Picture"
+				     src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 				<div class="center">
-					<a class="btn btn-default btn-small confirmation" href="remove_author_photo.php?id=<?php echo urlencode($author->id); ?>">
+					<a class="btn btn-default btn-small confirmation"
+					   href="remove_author_photo.php?id=<?php echo urlencode($author->id); ?>">
 						حذف آواتار
 					</a>
 				</div>

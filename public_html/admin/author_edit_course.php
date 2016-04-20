@@ -36,7 +36,9 @@ echo output_message($message, $errors);
 		<article>
 			<h2><i class="fa fa-pencil-square"></i> ویرایش درس</h2>
 
-			<form class="form-horizontal" action="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id) ?>" method="post" role="form">
+			<form class="form-horizontal"
+			      action="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id) ?>"
+			      method="post" role="form">
 				<fieldset>
 					<legend><?php echo htmlentities(ucfirst($current_course->name)); ?>
 					</legend>
@@ -46,7 +48,8 @@ echo output_message($message, $errors);
 							اسم درس
 						</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="course_name" id="course_name" placeholder="اسم درس" maxlength="255" value="<?php echo htmlentities($current_course->name); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="course_name" id="course_name"
+							       placeholder="اسم درس" maxlength="255" value="<?php echo htmlentities($current_course->name); ?>"/>
 						</div>
 					</section>
 					<!--YouTube Playlist ID-->
@@ -55,7 +58,9 @@ echo output_message($message, $errors);
 							لیست پخش یوتیوب
 						</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="youtubePlaylist" id="youtubePlaylist" placeholder="YouTube Playlist ID" maxlength="255" value="<?php echo htmlentities($current_course->youtubePlaylist); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="youtubePlaylist"
+							       id="youtubePlaylist" placeholder="YouTube Playlist ID" maxlength="255"
+							       value="<?php echo htmlentities($current_course->youtubePlaylist); ?>"/>
 						</div>
 					</section>
 					<!--Exercise File Link-->
@@ -64,14 +69,17 @@ echo output_message($message, $errors);
 							لینک فایل تمرینی
 						</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="file_link" id="file_link" placeholder="Exercise File Link" maxlength="255" value="<?php echo htmlentities($current_course->file_link); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="file_link" id="file_link"
+							       placeholder="Exercise File Link" maxlength="255"
+							       value="<?php echo htmlentities($current_course->file_link); ?>"/>
 						</div>
 					</section>
 					<!--position-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="position">محل</label>
 						<div class="controls">
-							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position" disabled>
+							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position"
+							        disabled>
 								<?php echo '<option value="' . $current_course->position . '" selected>' . $current_course->position . '</option>'; ?>
 							</select>
 						</div>
@@ -81,11 +89,13 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="visible">نشر شد</label>
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
-								<input type="radio" name="visible" id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled '; ?>
+								<input type="radio" name="visible"
+								       id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled '; ?>
 										<?php if($current_course->visible == 0) echo 'checked'; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
-								<input type="radio" name="visible" id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled '; ?>
+								<input type="radio" name="visible"
+								       id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled '; ?>
 										<?php if($current_course->visible == 1) echo 'checked'; ?> > بله
 							</label>
 						</div>
@@ -94,14 +104,18 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="desc">توضیحات</label>
 						<div class="controls">
-							<textarea class="yekan col-xs-12 col-sm-8 col-md-8 col-lg-8" name="description" id="desc" cols="30" rows="10" placeholder="Description" required><?php echo htmlentities($current_course->content); ?></textarea>
+							<textarea class="yekan col-xs-12 col-sm-8 col-md-8 col-lg-8" name="description" id="desc" cols="30"
+							          rows="10" placeholder="Description"
+							          required><?php echo htmlentities($current_course->content); ?></textarea>
 						</div>
 					</section>
 					<!--buttons-->
 					<section class="row">
 						<div class="controls col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
-							<a class="btn btn-danger" href="author_courses.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>">لغو</a>
-							<a class="btn btn-info confirmation" href="author_delete_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>">
+							<a class="btn btn-danger"
+							   href="author_courses.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>">لغو</a>
+							<a class="btn btn-info confirmation"
+							   href="author_delete_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>">
 								حذف
 							</a>
 							<button class="btn btn-success" name="submit" id="submit" type="submit">

@@ -38,13 +38,16 @@ echo output_message($message, $errors);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-pencil-square"></i> ویرایش مقاله</h2>
-			<form class="form-horizontal" action="edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id) ?>" method="post" role="form">
+			<form class="form-horizontal"
+			      action="edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id) ?>"
+			      method="post" role="form">
 				<fieldset>
 					<legend><?php echo htmlentities(ucfirst($current_article->name)); ?></legend>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="article_name">اسم مقاله</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="article_name" id="article_name" autofocus placeholder="اسم مقاله" value="<?php echo htmlentities($current_article->name); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="article_name" id="article_name"
+							       autofocus placeholder="اسم مقاله" value="<?php echo htmlentities($current_article->name); ?>"/>
 						</div>
 					</section>
 					<!--position-->
@@ -101,14 +104,17 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="content">مطالب</label>
 						<div class="controls">
-							<textarea class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="content" id="content" rows="50" required placeholder="مطالب"><?php echo(htmlentities($current_article->content)); ?></textarea>
+							<textarea class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="content" id="content" rows="50" required
+							          placeholder="مطالب"><?php echo(htmlentities($current_article->content)); ?></textarea>
 						</div>
 					</section>
 					<!--buttons-->
 					<section class="row">
 						<div class="controls col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
-							<a class="btn btn-danger" href="admin_articles.php?subject=<?php echo urlencode($current_subject->id) ?>&article=<?php echo urlencode($current_article->id) ?>">لغو</a>
-							<a class="btn btn-info confirmation" href="delete_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
+							<a class="btn btn-danger"
+							   href="admin_articles.php?subject=<?php echo urlencode($current_subject->id) ?>&article=<?php echo urlencode($current_article->id) ?>">لغو</a>
+							<a class="btn btn-info confirmation"
+							   href="delete_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
 								حذف
 							</a>
 							<button class="btn btn-success" name="submit" id="submit" type="submit">

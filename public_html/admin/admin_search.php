@@ -35,8 +35,12 @@ echo output_message($message);
 									<td><?php echo htmlentities(ucfirst(strtolower($admin->last_name))); ?></td>
 									<td><?php echo htmlentities(strtolower($admin->email)); ?></td>
 									<td>
-										<a class="btn btn-small btn-primary arial" href="edit_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
-										<a class="btn btn-small btn-danger arial confirmation" href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
+										<a class="btn btn-small btn-primary arial"
+										   href="edit_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Edit"><span
+													class="glyphicon glyphicon-edit"></span></a>
+										<a class="btn btn-small btn-danger arial confirmation"
+										   href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Delete"><span
+													class="glyphicon glyphicon-trash"></span></a>
 									</td>
 								</tr>
 							<?php endforeach; ?>

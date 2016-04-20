@@ -66,7 +66,8 @@ include_layout_template('admin_header.php');
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>
 			<h2>نویسندگی در پارس کلیک </h2>
-			<iframe src="https://www.youtube.com/embed/G0TY36VCODc?modestbranding=1&rel=0&showinfo=0&controls=0&hl=fa-ir" style="width: 100%; height: 197px;" frameborder="0" allowfullscreen></iframe>
+			<iframe src="https://www.youtube.com/embed/G0TY36VCODc?modestbranding=1&rel=0&showinfo=0&controls=0&hl=fa-ir"
+			        style="width: 100%; height: 197px;" frameborder="0" allowfullscreen></iframe>
 			<p>برای بزرگ کردن ویدئو روی ویدئو ۲ بار کلیک کنید.</p>
 			<h2>فرم نویسندگی</h2>
 			<p>فرم نویسندگی را پر کرده، ذخیره کنید و برای مدیر بفرستید. همه ملزم به پر کردن این فرم هستند.</p>

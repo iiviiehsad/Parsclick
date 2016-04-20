@@ -62,7 +62,8 @@ include_layout_template('admin_header.php');
 			<p class="text-success">پسورد باید حداقل شش حروف یا بیشتر باشد.</p>
 			<p class="text-success">پسورد باید حداقل شامل یک حرفی باشد که نه حروف و نه عدد باشد مثل: (!@£$%^&*-+)</p>
 
-			<form class="form-horizontal" action="reset_password.php?token=<?php echo urlencode($token); ?>" method="POST" accept-charset="utf-8">
+			<form class="form-horizontal" action="reset_password.php?token=<?php echo urlencode($token); ?>" method="POST"
+			      accept-charset="utf-8">
 				<fieldset>
 					<legend>پسورد جدید را قرار دهید
 						<span class="pull-left wow infinite flash" data-wow-duration="3s" id="confirmMessage"></span></legend>
@@ -71,7 +72,9 @@ include_layout_template('admin_header.php');
 						<div class="controls">
 							<div class="input-group">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-								<input onkeyup="checkPass();" class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" autofocus placeholder="New Password" required pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
+								<input onkeyup="checkPass();" class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password"
+								       name="password" id="password" autofocus placeholder="New Password" required
+								       pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
 							</div>
 						</div>
 					</section>
@@ -80,7 +83,9 @@ include_layout_template('admin_header.php');
 						<div class="controls">
 							<div class="input-group">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-								<input onkeyup="checkConfirmPass();" class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password_confirm" id="confirm_pass" placeholder="Confirm New Password" required pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
+								<input onkeyup="checkConfirmPass();" class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password"
+								       name="password_confirm" id="confirm_pass" placeholder="Confirm New Password" required
+								       pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
 							</div>
 						</div>
 					</section>

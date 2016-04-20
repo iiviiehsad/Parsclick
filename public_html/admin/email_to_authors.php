@@ -24,7 +24,7 @@ if(isset($_POST['submit'])) {
 		$mail->addBCC($authors->email, $authors->full_name());
 	}
 	$mail->Body = email('نویسندگان محترم پارس کلیک', DOMAIN, nl2br($_POST['important']), nl2br($_POST['message']));
-	$result = $mail->send();
+	$result     = $mail->send();
 	if($result) {
 		$message = 'پیام به همه نویسندگان فرستاده شد.';
 	} else {
@@ -44,7 +44,8 @@ if(isset($_POST['submit'])) {
 					<legend>لطفا از فرم زیر برای تماس با اعضا استفاده کنید</legend>
 					<div class="form-group">
 						<label for="name">موضوع</label>
-						<input type="text" name="subject" class="form-control" id="name" placeholder="موضوع ایمیل" required value=""/>
+						<input type="text" name="subject" class="form-control" id="name" placeholder="موضوع ایمیل" required
+						       value=""/>
 					</div>
 					<div class="form-group">
 						<label for="message">پیغام</label>
@@ -52,7 +53,8 @@ if(isset($_POST['submit'])) {
 					</div>
 					<div class="form-group">
 						<label for="name">مطلب مهم</label>
-						<textarea class="form-control" name="important" id="important" rows="2" placeholder="مطلب کوتاه و مهم: این مطلب هایلایت میشود پس باید کوتاه باشد"></textarea>
+						<textarea class="form-control" name="important" id="important" rows="2"
+						          placeholder="مطلب کوتاه و مهم: این مطلب هایلایت میشود پس باید کوتاه باشد"></textarea>
 					</div>
 					<br/>
 					<div class="form-group">
@@ -67,7 +69,8 @@ if(isset($_POST['submit'])) {
 			<h2><i class="fa fa-info-circle"></i> اطلاعات</h2>
 			<div class="form-group">
 				<label for="emails">ایمیل ها</label>
-				<textarea class="form-control edit" name="emails" id="emails" rows="15" placeholder="ایمیل ها" disabled><?php foreach(Author::find_all() as $authors) echo $authors->email, ", \n"; ?></textarea>
+				<textarea class="form-control edit" name="emails" id="emails" rows="15" placeholder="ایمیل ها"
+				          disabled><?php foreach(Author::find_all() as $authors) echo $authors->email, ", \n"; ?></textarea>
 			</div>
 		</aside>
 	</section>

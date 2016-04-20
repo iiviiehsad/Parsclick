@@ -28,13 +28,15 @@ echo output_message($message, $errors);
 		<article>
 			<h2><i class="fa fa-pencil-square"></i> ویرایش موضوع</h2>
 
-			<form class="form-horizontal" action="edit_category.php?category=<?php echo urlencode($current_category->id); ?>" method="POST" role="form">
+			<form class="form-horizontal" action="edit_category.php?category=<?php echo urlencode($current_category->id); ?>"
+			      method="POST" role="form">
 				<fieldset>
 					<legend><?php echo htmlentities(ucfirst($current_category->name)); ?></legend>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="category_name">اسم موضوع</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="category_name" id="category_name" autofocus placeholder="اسم موضوع" value="<?php echo htmlentities($current_category->name); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="category_name" id="category_name"
+							       autofocus placeholder="اسم موضوع" value="<?php echo htmlentities($current_category->name); ?>"/>
 						</div>
 					</section>
 					<!--position-->
@@ -71,8 +73,10 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit">&nbsp;</label>
 						<div class="controls">
-							<a class="btn btn-danger" href="admin_courses.php?category=<?php echo urlencode($current_category->id); ?>">لغو</a>
-							<a class="btn btn-info confirmation" href="delete_category.php?category=<?php echo urlencode($current_category->id); ?>">
+							<a class="btn btn-danger"
+							   href="admin_courses.php?category=<?php echo urlencode($current_category->id); ?>">لغو</a>
+							<a class="btn btn-info confirmation"
+							   href="delete_category.php?category=<?php echo urlencode($current_category->id); ?>">
 								حذف
 							</a>
 							<button class="btn btn-success" name="submit" id="submit" type="submit">

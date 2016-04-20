@@ -13,20 +13,24 @@ echo output_message($message);
 ?>
 <div class="jumbotron hidden-sm wow fadeIn author-jumbotron">
 	<?php if( ! empty($author->photo)): ?>
-		<img class="img-circle pull-left" height="150" width="150" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
+		<img class="img-circle pull-left" height="150" width="150" alt="<?php echo $author->full_name(); ?>"
+		     src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 	<?php else: ?>
-		<img class="img-circle pull-left" height="150" width="150" src="../images/misc/default-gravatar-pic.png" alt="No Profile Picture">
+		<img class="img-circle pull-left" height="150" width="150" src="../images/misc/default-gravatar-pic.png"
+		     alt="No Profile Picture">
 	<?php endif; ?>
 	<h1> نویسنده: <?php echo $author->full_name(); ?></h1>
 	<p class="bright">به عنوان نویسنده شما قادر به درست کردن مقاله و درس هستید. شما همینطور قادر به تغییر مقالات و دروس
 	                  خود هستید.</p>
 	<p class="bright">برای تماس مستقیم با مدیر از این آدرس استفاده کنید (روی آن کلیک کنید):
-		<a class="lead" href="mailto:info@parsclick.net" data-toggle="tooltip" data-placement="left" title="ایمیل به ما" target="_blank">
+		<a class="lead" href="mailto:info@parsclick.net" data-toggle="tooltip" data-placement="left" title="ایمیل به ما"
+		   target="_blank">
 			<kbd>info@parsclick.net</kbd>
 		</a>
 	</p>
 	<p class="bright">همه نویسندگان ملزم به عضویت گروه فیسبوکی نویسندگان پارس کلیک هستند.
-		<a class="lead" href="https://www.facebook.com/groups/175905176126750/" data-toggle="tooltip" data-placement="left" title="گروه نویسندگان پارس کلیک" target="_blank">
+		<a class="lead" href="https://www.facebook.com/groups/175905176126750/" data-toggle="tooltip" data-placement="left"
+		   title="گروه نویسندگان پارس کلیک" target="_blank">
 			<kbd>کلیک کنید</kbd>
 		</a>
 	</p>
@@ -127,11 +131,14 @@ echo output_message($message);
 		<h2>آموزش نویسندگی</h2>
 		<div class="center">
 			<h4>ویدیو اول: نویسندگی</h4>
-			<iframe src="https://www.youtube.com/embed/G0TY36VCODc?modestbranding=1&rel=0&showinfo=0&hl=fa-ir" width="320" height="180" frameborder="0" allowfullscreen></iframe>
+			<iframe src="https://www.youtube.com/embed/G0TY36VCODc?modestbranding=1&rel=0&showinfo=0&hl=fa-ir" width="320"
+			        height="180" frameborder="0" allowfullscreen></iframe>
 			<h4>ویدیو دوم: ویرایش کردن</h4>
-			<iframe src="https://www.youtube.com/embed/9Wxoo2DgUYw?modestbranding=1&rel=0&showinfo=0&&hl=fa-ir" width="320" height="180" frameborder="0" allowfullscreen></iframe>
+			<iframe src="https://www.youtube.com/embed/9Wxoo2DgUYw?modestbranding=1&rel=0&showinfo=0&&hl=fa-ir" width="320"
+			        height="180" frameborder="0" allowfullscreen></iframe>
 			<h4>ویدیو سوم: پاراگراف، عکس ها و کدها </h4>
-			<iframe src="https://www.youtube.com/embed/er470cSnl-M?modestbranding=1&rel=0&showinfo=0&&hl=fa-ir" width="320" height="180" frameborder="0" allowfullscreen></iframe>
+			<iframe src="https://www.youtube.com/embed/er470cSnl-M?modestbranding=1&rel=0&showinfo=0&&hl=fa-ir" width="320"
+			        height="180" frameborder="0" allowfullscreen></iframe>
 		</div>
 	</aside>
 </section>

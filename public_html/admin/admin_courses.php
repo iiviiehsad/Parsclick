@@ -12,13 +12,16 @@ echo output_message($message);
 				<?php $json = get_playlist_content($current_course->youtubePlaylist); ?>
 				<?php include_layout_template('course-info.php'); ?>
 				<!-----------------------------------------------EDIT------------------------------------------>
-				<a class="btn btn-primary btn-small" href="edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>" data-toggle="tooltip" title="ویرایش درس">
+				<a class="btn btn-primary btn-small"
+				   href="edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>"
+				   data-toggle="tooltip" title="ویرایش درس">
 					ویرایش
 				</a>
 				&nbsp;
 				<!---------------------------------------------FILE LINK--------------------------------------->
 				<?php if( ! empty($current_course->file_link)): ?>
-					<a class="btn btn-primary btn-small" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank" data-toggle="tooltip" title="لینک فایل تمرینی">
+					<a class="btn btn-primary btn-small" href="<?php echo htmlentities($current_course->file_link); ?>"
+					   target="_blank" data-toggle="tooltip" title="لینک فایل تمرینی">
 						لینک فایل تمرینی
 					</a>
 				<?php endif; ?>
@@ -30,7 +33,8 @@ echo output_message($message);
 							<a class="btn btn-primary btn-small" href="../files/<?php echo urlencode($file->name); ?>">
 								<?php echo htmlentities($file->name); ?>
 							</a>
-							<a class="btn btn-danger btn-small confirmation" href="delete_file.php?id=<?php echo urlencode($file->id); ?>">
+							<a class="btn btn-danger btn-small confirmation"
+							   href="delete_file.php?id=<?php echo urlencode($file->id); ?>">
 								<i class="fa fa-trash fa-lg"></i>
 							</a>
 						</div>
@@ -50,7 +54,8 @@ echo output_message($message);
 						<h2><?php echo htmlentities(ucwords($current_category->name)); ?></h2>
 						<h5>محل:&nbsp;<?php echo convert($current_category->position); ?></h5>
 						<h5>نمایان:&nbsp;<?php echo $current_category->visible == 1 ? 'بله' : 'خیر'; ?></h5>
-						<a class="btn btn-primary" href="edit_category.php?category=<?php echo urlencode($current_category->id); ?>">
+						<a class="btn btn-primary"
+						   href="edit_category.php?category=<?php echo urlencode($current_category->id); ?>">
 							ویرایش
 						</a>
 					</div>
@@ -65,7 +70,8 @@ echo output_message($message);
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>
-			<a class="btn btn-success pull-left arial" href="new_category.php" data-toggle="tooltip" title="موضوع جدید اضافه کنید"><span class="glyphicon glyphicon-plus"></span></a>
+			<a class="btn btn-success pull-left arial" href="new_category.php" data-toggle="tooltip"
+			   title="موضوع جدید اضافه کنید"><span class="glyphicon glyphicon-plus"></span></a>
 			<h2>موضوعات و دروس</h2>
 			<?php echo courses($current_category, $current_course); ?>
 		</aside>

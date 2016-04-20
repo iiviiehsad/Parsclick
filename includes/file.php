@@ -1,14 +1,13 @@
 <?php //namespace Parsclick;
-
 /**
  * File: php.ini -------------
- * file_upload = on, true, 1
- * upload_tmp_dir = NULL
- * post_max_size = 500M
- * upload_max_filesize = 500M
- * memory_limit = 128M
- * max_execution_time = 30
- * max_input_time = -1
+ * file_upload          = on, true, 1
+ * upload_tmp_dir       = NULL
+ * post_max_size        = 500M
+ * upload_max_filesize  = 500M
+ * memory_limit         = 128M
+ * max_execution_time   = 30
+ * max_input_time       = -1
  * File: .htaccess -----------
  * php_value post_max_size 500M
  * php_value upload_max_filesize 500M

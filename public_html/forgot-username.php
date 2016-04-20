@@ -46,7 +46,8 @@ if(isset($_POST['submit'])) {
 						<div class="controls">
 							<div class="input-group">
 								<span class="input-group-addon arial"><span class="glyphicon glyphicon-user"></span></span>
-								<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="email" name="email" id="email" autofocus placeholder="Email" maxlength="50" required/>
+								<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="email" name="email" id="email" autofocus
+								       placeholder="Email" maxlength="50" required/>
 							</div>
 						</div>
 					</section>

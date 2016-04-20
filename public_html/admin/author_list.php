@@ -27,9 +27,11 @@ echo output_message($message);
 							<tr>
 								<td class="arial">
 									<?php if( ! empty($author->photo)): ?>
-										<img class="img-circle pull-right" width="30" alt="Profile Picture" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
+										<img class="img-circle pull-right" width="30" alt="Profile Picture"
+										     src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
 									<?php else: ?>
-										<img class="img-circle pull-right" width="30" alt="Profile Picture" src="../images/misc/default-gravatar-pic.png"/>
+										<img class="img-circle pull-right" width="30" alt="Profile Picture"
+										     src="../images/misc/default-gravatar-pic.png"/>
 									<?php endif; ?>
 									&nbsp;
 									<?php echo htmlentities($author->username); ?>
@@ -40,8 +42,12 @@ echo output_message($message);
 									<small><?php echo htmlentities(strtolower($author->email)); ?></small>
 								</td>
 								<td>
-									<a class="btn btn-small btn-primary arial" href="edit_author.php?id=<?php echo urlencode($author->id); ?>" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
-									<a class="btn btn-small btn-danger arial confirmation" href="delete_author.php?id=<?php echo urlencode($author->id); ?>" title="Delete"><span class="glyphicon glyphicon-trash"></span></a>
+									<a class="btn btn-small btn-primary arial"
+									   href="edit_author.php?id=<?php echo urlencode($author->id); ?>" title="Edit"><span
+												class="glyphicon glyphicon-pencil"></span></a>
+									<a class="btn btn-small btn-danger arial confirmation"
+									   href="delete_author.php?id=<?php echo urlencode($author->id); ?>" title="Delete"><span
+												class="glyphicon glyphicon-trash"></span></a>
 								</td>
 							</tr>
 						<?php endforeach; ?>

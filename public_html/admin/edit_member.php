@@ -34,7 +34,8 @@ echo output_message($message, $errors);
 		<article>
 			<h2><i class="fa fa-pencil-square"></i> ویرایش عضویت </h2>
 
-			<form class="form-horizontal" action="edit_member.php?id=<?php echo urlencode($member->id); ?>" method="post" role="form">
+			<form class="form-horizontal" action="edit_member.php?id=<?php echo urlencode($member->id); ?>" method="post"
+			      role="form">
 				<fieldset>
 					<legend><i class="fa fa-user"></i> <?php echo htmlentities(ucwords(strtolower($member->full_name()))); ?>
 					</legend>
@@ -42,21 +43,24 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="username"> اسم کاربری &nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" placeholder="Username in English" value="<?php echo htmlentities($member->username); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username"
+							       placeholder="Username in English" value="<?php echo htmlentities($member->username); ?>"/>
 						</div>
 					</section>
 					<!--password-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="password"> پسورد &nbsp;</label>
 						<div class="controls">
-							<input disabled class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="Password is encrypted"/>
+							<input disabled class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password"
+							       id="password" placeholder="Password is encrypted"/>
 						</div>
 					</section>
 					<!--first_name-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="first_name"> نام &nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="first_name" id="first_name" placeholder="نام" value="<?php echo htmlentities($member->first_name); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="first_name" id="first_name"
+							       placeholder="نام" value="<?php echo htmlentities($member->first_name); ?>"/>
 						</div>
 					</section>
 					<!--last_name-->
@@ -64,7 +68,8 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name"> نام
 						                                                                                   خانوادگی&nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name" placeholder="نام خانوادگی" value="<?php echo htmlentities($member->last_name); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name"
+							       placeholder="نام خانوادگی" value="<?php echo htmlentities($member->last_name); ?>"/>
 						</div>
 					</section>
 					<!--gender-->
@@ -91,21 +96,24 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="address"> کشور &nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="address" id="address" placeholder="کشور" value="<?php echo htmlentities($member->address); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="address" id="address"
+							       placeholder="کشور" value="<?php echo htmlentities($member->address); ?>"/>
 						</div>
 					</section>
 					<!--city-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="city"> شهر &nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="city" id="address" placeholder="شهر" value="<?php echo htmlentities($member->city); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="city" id="address" placeholder="شهر"
+							       value="<?php echo htmlentities($member->city); ?>"/>
 						</div>
 					</section>
 					<!--email-->
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="email"> ایمیل &nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="email" id="post_code" placeholder="ایمیل" value="<?php echo htmlentities($member->email); ?>"/>
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="email" id="post_code"
+							       placeholder="ایمیل" value="<?php echo htmlentities($member->email); ?>"/>
 						</div>
 					</section>
 					<!--status-->
@@ -146,7 +154,9 @@ echo output_message($message, $errors);
 	<section class="sidebar col-xs-12 col-sm-12 col-md-3 col-lg-3">
 		<aside>
 			<h2>آواتار</h2>
-			<img class="img-circle center" src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=300&d=<?php echo '//' . DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>" alt="<?php echo $member->email; ?>">
+			<img class="img-circle center"
+			     src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=300&d=<?php echo '//' . DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>"
+			     alt="<?php echo $member->email; ?>">
 		</aside>
 	</section>
 <?php include_layout_template('admin_footer.php'); ?>
