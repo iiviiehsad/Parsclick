@@ -1,5 +1,4 @@
 <?php // namespace Parsclick;
-
 abstract class DatabaseObject
 {
 	// OPTIONAL
@@ -62,6 +61,14 @@ abstract class DatabaseObject
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
+	public static function find_by_username($username = "")
+	{
+		global $database;
+		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE username = '" . $database->escape_value($username) . "' LIMIT 1");
+
+		return ! empty($result_array) ? array_shift($result_array) : FALSE;
+	}
+
 	public static function find_by_email($email = "")
 	{
 		global $database;
@@ -88,6 +95,11 @@ abstract class DatabaseObject
 		return array_shift($row);
 	}
 
+	public function full_name()
+	{
+		return isset($this->first_name) && isset($this->last_name) ? $this->first_name . " " . $this->last_name : "";
+	}
+
 	public static function num_rows()
 	{
 		global $database;
@@ -97,6 +109,31 @@ abstract class DatabaseObject
 		$subject_set = $database->query($sql);
 
 		return $database->num_rows($subject_set);
+	}
+
+	public static function search($search = "")
+	{
+		global $database;
+		$sql = "SELECT * FROM " . Admin::$table_name . " WHERE ";
+		$sql .= "username LIKE '%{$database->escape_value($search)}%' ";
+		$sql .= "OR first_name LIKE '%{$database->escape_value($search)}%' ";
+		$sql .= "OR last_name LIKE '%{$database->escape_value($search)}%' ";
+		$sql .= "OR email LIKE '%{$database->escape_value($search)}%' ";
+		$result_set = static::find_by_sql($sql);
+
+		return ! empty($result_set) ? $result_set : NULL;
+	}
+
+	public static function authenticate($username = "", $password = "")
+	{
+		$user = static::find_by_username($username);
+
+		return $user ? (password_verify($password, $user->password) ? $user : FALSE) : FALSE;
+	}
+
+	public function password_encrypt($password)
+	{
+		return password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
 	}
 
 	public function save()
@@ -185,14 +222,6 @@ abstract class DatabaseObject
 		}
 	}
 
-	public static function find_by_username($username = "")
-	{
-		global $database;
-		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE username = '" . $database->escape_value($username) . "' LIMIT 1");
-
-		return ! empty($result_array) ? array_shift($result_array) : FALSE;
-	}
-
 	public function delete_reset_token($username)
 	{
 		$token = NULL;
@@ -222,7 +251,7 @@ abstract class DatabaseObject
 				<p>آیا اخیرا درخواست بازیافت پسوردتان را کردید؟</p>
 				<p>اگر جواب مثبت است لطفا از لینک زیر برای بازیافت پسوردتان استفاده کنید:</p>
 			";
-			$mail->Body = email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content);
+			$mail->Body    = email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content);
 
 			//return send_email($user->email, "Reset Password Request", email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content));
 			return $mail->send();

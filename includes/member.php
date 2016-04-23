@@ -7,7 +7,7 @@ class Member extends DatabaseObject
 	protected static $db_fields  = [
 		'id',
 		'username',
-		'hashed_password',
+		'password',
 		'first_name',
 		'last_name',
 		'gender',
@@ -19,7 +19,7 @@ class Member extends DatabaseObject
 	];
 	public           $id;
 	public           $username;
-	public           $hashed_password;
+	public           $password;
 	public           $first_name;
 	public           $last_name;
 	public           $gender;
@@ -51,41 +51,6 @@ class Member extends DatabaseObject
 	}
 
 	/**
-	 * @param string $username gets username
-	 * @param string $password gets the password
-	 * @return bool|mixed TRUE if matches and FALSE if not
-	 */
-	public static function authenticate($username = "", $password = "")
-	{
-		$user = self::find_by_username($username);
-		if($user) {
-			if(self::password_check($password, $user->hashed_password)) {
-				return $user;
-			} else {
-				return FALSE;
-			}
-		} else {
-			return FALSE;
-		}
-	}
-
-	/**
-	 * @param $password      string gets the password
-	 * @param $existing_hash string has the existing hash
-	 * @return bool TRUE if existing hash matches the password and FALSE if not
-	 */
-	private static function password_check($password, $existing_hash)
-	{
-		// existing hash contains format and salt at start
-		$hash = crypt($password, $existing_hash);
-		if($hash === $existing_hash) {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
-	}
-
-	/**
 	 * @param int $limit  limits members per page
 	 * @param int $offset the pagination offset
 	 * @return array of members in each page
@@ -95,56 +60,6 @@ class Member extends DatabaseObject
 		$sql = "SELECT * FROM " . self::$table_name . " ORDER BY id DESC LIMIT {$limit} OFFSET {$offset}";
 
 		return self::find_by_sql($sql);
-	}
-
-	/**
-	 * @return string jones the first name and last name with an space
-	 */
-	public function full_name()
-	{
-		if(isset($this->first_name) && isset($this->last_name)) {
-			return $this->first_name . " " . $this->last_name;
-		} else {
-			return "";
-		}
-	}
-
-	/**
-	 * Important: This function needs needs PHP v5.5+
-	 *
-	 * @param $password string gets the password from the user
-	 * @return string encrypts the password using Blowfish
-	 */
-	public function password_encrypt($password)
-	{
-		// Newer version PHP v5.5+
-		// password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
-		$hash_format     = "$2y$10$";   // Tells PHP to use Blowfish with a "cost" of 10
-		$salt_length     = 22;   // Blowfish salts should be 22-characters or more
-		$salt            = $this->generate_salt($salt_length);
-		$format_and_salt = $hash_format . $salt;
-		$hash            = crypt($password, $format_and_salt);
-
-		return $hash;
-	}
-
-	/**
-	 * @param $length int length of salt
-	 * @return string the salt
-	 */
-	private function generate_salt($length)
-	{
-		// Not 100% unique, not 100% random, but good enough for a salt
-		// MD5 returns 32 characters
-		$unique_random_string = md5(uniqid(mt_rand(), TRUE));
-		// Valid characters for a salt are [a-zA-Z0-9./]
-		$base64_string = base64_encode($unique_random_string);
-		// But not '+' which is valid in base64 encoding
-		$modified_base64_string = str_replace('+', '.', $base64_string);
-		// Truncate string to the correct length
-		$salt = substr($modified_base64_string, 0, $length);
-
-		return $salt;
 	}
 
 	/**
