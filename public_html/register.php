@@ -34,19 +34,19 @@ if($_POST) {
 					$errors = 'نه دیگه! ثبت نام با ایمیل موقت نداشتیم! ایمیل معتبر وارد کنید.';
 				} else {
 					global $database;
-					$member                  = new Member();
-					$member->id              = $database->insert_id();
-					$member->username        = trim(strtolower($_POST['username']));
-					$member->password = $member->password_encrypt($_POST['password']);
-					$member->first_name      = trim(ucwords(strtolower($_POST['first_name'])));
-					$member->last_name       = trim(ucwords(strtolower($_POST['last_name'])));
-					$member->gender          = trim($_POST['gender']);
-					$member->address         = trim(ucwords(strtolower($_POST['address'])));
-					$member->city            = trim(ucwords(strtolower($_POST['city'])));
-					$member->email           = trim(strtolower($_POST['email']));
-					$member->status          = 0;
-					$member->token           = md5(uniqid(rand()));
-					$result                  = $member->create();
+					$member             = new Member();
+					$member->id         = $database->insert_id();
+					$member->username   = trim(strtolower($_POST['username']));
+					$member->password   = $member->password_encrypt($_POST['password']);
+					$member->first_name = trim(ucwords(strtolower($_POST['first_name'])));
+					$member->last_name  = trim(ucwords(strtolower($_POST['last_name'])));
+					$member->gender     = trim($_POST['gender']);
+					$member->address    = trim(ucwords(strtolower($_POST['address'])));
+					$member->city       = trim(ucwords(strtolower($_POST['city'])));
+					$member->email      = trim(strtolower($_POST['email']));
+					$member->status     = 0;
+					$member->token      = md5(uniqid(rand()));
+					$result             = $member->create();
 					if($result) {
 						if( ! $member->email_confirmation_details($member->username)) {
 							$errors = 'ثبت نام موفقیت آمیز بود اما ایمیل فرستاده نشد! ادمین را این موضوع باخبر کنید';
