@@ -20,7 +20,7 @@ if(isset($_POST['submit'])) {
 	} elseif($password !== $password_confirm) {
 		$errors = 'پسوردها با همدیگر یکی نیستند.';
 	} else {
-		$user->hashed_password = $user->password_encrypt($_POST['password']);
+		$user->password = $user->password_encrypt($_POST['password']);
 		$result                = $user->update();
 		if($result) {
 			$user->delete_reset_token($user->username);

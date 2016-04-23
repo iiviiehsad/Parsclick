@@ -14,7 +14,7 @@ if(isset($_POST['submit'])) {
 		} elseif( ! has_format_matching($_POST['password'], '/[^A-Za-z0-9]/')) {
 			$errors = 'حداقل از یک حرف مخصوص استفاده کنید!';
 		} else {
-			$member->hashed_password = $member->password_encrypt(trim($_POST['password']));
+			$member->password = $member->password_encrypt(trim($_POST['password']));
 		}
 	}
 	$member->first_name = trim($_POST['first_name']);

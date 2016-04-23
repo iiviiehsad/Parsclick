@@ -11,7 +11,7 @@ if(isset($_POST['submit'])) {
 		$member                  = new Member();
 		$member->id              = (int) '';
 		$member->username        = trim($_POST['username']);
-		$member->hashed_password = $member->password_encrypt($_POST['password']);
+		$member->password = $member->password_encrypt($_POST['password']);
 		$member->first_name      = trim(ucwords(strtolower($_POST['first_name'])));
 		$member->last_name       = trim(ucwords(strtolower($_POST['last_name'])));
 		$member->gender          = trim($_POST['gender']);
