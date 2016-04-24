@@ -760,7 +760,7 @@ function articles($subject_array, $article_array, $public = FALSE)
 	foreach($subject_set as $subject) {
 		$output .= '<li class="list-group-item">';
 		$output .= '<span class="badge">' . convert(Article::count_articles_for_subject($subject->id, $public)) . '</span>';
-		if(!$public) {
+		if( ! $public) {
 			$output .= '<small><a class="label label-as-badge label-info glyphicon glyphicon-pencil" href="' . article_url() . '?subject=' . urlencode($subject->id) . '"></a></small>&nbsp;';
 		}
 		$output .= '<a class="accordion-toggle ';
@@ -834,7 +834,7 @@ function courses($category_array, $course_array, $public = FALSE)
 	foreach($category_set as $category) {
 		$output .= '<li class="list-group-item">';
 		$output .= '<span class="badge">' . convert(Course::count_courses_for_category($category->id, $public)) . '</span>';
-		if(!$public) {
+		if( ! $public) {
 			$output .= '<small><a class="label label-as-badge label-danger glyphicon glyphicon-pencil" href="' . course_url() . '?category=' . urlencode($category->id) . '"></a></small>&nbsp;';
 		}
 		$output .= '<a class="accordion-toggle ';
@@ -1006,19 +1006,19 @@ function get_prev_next_token()
 }
 
 /**
- * @param $playListID
+ * @param $playlist_id
  * @return null|string
  */
-function set_prev_next_page($playListID)
+function set_prev_next_page($playlist_id)
 {
 	if( ! isset($_GET['nextPageToken']) || ! isset($_GET['prevPageToken'])) {
-		$url = GOOGLEAPI . "?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI;
+		$url = GOOGLEAPI . "?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playlist_id}&key=" . YOUTUBEAPI;
 	}
 	if(isset($_GET['nextPageToken'])) {
-		$url = GOOGLEAPI . "?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['nextPageToken'];
+		$url = GOOGLEAPI . "?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playlist_id}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['nextPageToken'];
 	}
 	if(isset($_GET['prevPageToken'])) {
-		$url = GOOGLEAPI . "?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playListID}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['prevPageToken'];
+		$url = GOOGLEAPI . "?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playlist_id}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['prevPageToken'];
 	}
 
 	return ! empty($url) ? $url : NULL;
@@ -1033,7 +1033,12 @@ function get_playlist_content($playlist_id)
 	if(isset($playlist_id)) {
 		$url     = set_prev_next_page($playlist_id);
 		$content = @file_get_contents($url);
-
+		// TODO: You can do this if you prefer cURL
+		// $ch = curl_init($url);
+		// curl_setopt($ch, CURLOPT_HTTPGET, 1);
+		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true)
+		// $content = curl_exec($ch);
+		// curl_close($ch);
 		return json_decode($content, TRUE);
 	}
 }

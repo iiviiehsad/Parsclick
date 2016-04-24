@@ -7,9 +7,9 @@ if($json && $json['pageInfo']['totalResults'] > 0): ?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">
-						<span class="label label-as-badge label-success">
-							<i class="fa fa-video-camera"></i> <?php echo convert($json['pageInfo']['totalResults']); ?> ویدیو
-						</span>
+							<span class="label label-as-badge label-success">
+								<i class="fa fa-video-camera"></i> <?php echo convert($json['pageInfo']['totalResults']); ?> ویدیو
+							</span>
 				</h3>
 			</div>
 			<div class="panel-body">
@@ -17,12 +17,15 @@ if($json && $json['pageInfo']['totalResults'] > 0): ?>
 					<table class="table table-condensed table-hover">
 						<tbody>
 							<div class="embed-responsive embed-responsive-16by9">
-								<iframe width="640" height="360" src="https://www.youtube.com/embed/?list=<?php echo $current_course->youtubePlaylist; ?>&hl=fa-ir" frameborder="0" allowfullscreen></iframe>
+								<iframe width="640" height="360"
+								        src="https://www.youtube.com/embed/?list=<?php echo $current_course->youtubePlaylist; ?>&hl=fa-ir"
+								        frameborder="0" allowfullscreen></iframe>
 							</div>
 							<?php foreach($json['items'] as $item): ?>
 								<tr>
 									<td>
-										<a class="youtube" href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
+										<a class="youtube"
+										   href="https://www.youtube.com/embed/<?php echo $item['snippet']['resourceId']['videoId']; // hl=fa-ir&theme=light&showinfo=0&autoplay=1 ?>"
 										   title="Click to play">
 											<?php echo $item['snippet']['title']; ?>
 										</a>

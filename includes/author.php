@@ -114,17 +114,5 @@ class Author extends DatabaseObject
 			return FALSE;
 		}
 	}
-
-	/**
-	 * @return string containing first_name and last_name joined with an empty space
-	 */
-	public function full_name()
-	{
-		if(isset($this->first_name) && isset($this->last_name)) {
-			return $this->first_name . " " . $this->last_name;
-		} else {
-			return "";
-		}
-	}
-
+	
 } // END of CLASS

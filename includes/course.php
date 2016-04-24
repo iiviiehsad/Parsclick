@@ -24,8 +24,7 @@ class Course extends DatabaseObject
 	public           $visible;
 	public           $content;
 	public           $created_at;
-	private          $time;
-
+	
 	/**
 	 * @param int  $course_id gets the course ID
 	 * @param bool $public    TRUE is default and will display the hidden and FALSE will not display the hidden
@@ -37,7 +36,7 @@ class Course extends DatabaseObject
 		$sql = "SELECT * ";
 		$sql .= " FROM " . self::$table_name;
 		$sql .= " WHERE id = " . $database->escape_value($course_id);
-		if($public) {
+		if($public) { // && in_array('visible', self::$db_fields)
 			$sql .= " AND visible = 1 ";
 		}
 		$sql .= " LIMIT 1";
@@ -229,8 +228,22 @@ class Course extends DatabaseObject
 	public function recent($date = NULL)
 	{
 		$date       = $date ?: $this->created_at;
-		$this->time = 60 * 60 * 24 * 7 * 6; // 6 weeks
-		if(strtotime($date) + $this->time > time()) {
+		$time = 60 * 60 * 24 * 7 * 6; // 6 weeks
+		if(strtotime($date) + $time > time()) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	/**
+	 * @param null $date
+	 * @return bool
+	 */
+	public function updated($date = NULL)
+	{
+		$time = 60 * 60 * 24 * 2; // 2 days
+		if(strtotime($date) + $time > time()) {
 			return TRUE;
 		} else {
 			return FALSE;

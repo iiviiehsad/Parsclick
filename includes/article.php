@@ -20,7 +20,6 @@ class Article extends DatabaseObject
 	public           $visible;
 	public           $content;
 	public           $created_at;
-	private          $time;
 
 	/**
 	 * @param int  $subject_id gets the subject ID
@@ -213,7 +212,21 @@ class Article extends DatabaseObject
 	public function recent($date = NULL)
 	{
 		$date       = $date ?: $this->created_at;
-		$this->time = 60 * 60 * 24 * 7 * 2; // 2 weeks
+		$time = 60 * 60 * 24 * 7 * 2; // 2 weeks
+		if(strtotime($date) + $time > time()) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	/**
+	 * @param null $date
+	 * @return bool
+	 */
+	public function updated($date = NULL)
+	{
+		$this->time = 60 * 60 * 24 * 1; // 1 day
 		if(strtotime($date) + $this->time > time()) {
 			return TRUE;
 		} else {
