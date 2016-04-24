@@ -1031,14 +1031,14 @@ function set_prev_next_page($playlist_id)
 function get_playlist_content($playlist_id)
 {
 	if(isset($playlist_id)) {
-		$url     = set_prev_next_page($playlist_id);
-		$content = @file_get_contents($url);
-		// TODO: You can do this if you prefer cURL
-		// $ch = curl_init($url);
-		// curl_setopt($ch, CURLOPT_HTTPGET, 1);
-		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		// $content = curl_exec($ch);
-		// curl_close($ch);
+		$url = set_prev_next_page($playlist_id);
+		// $content = @file_get_contents($url);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		$content = curl_exec($ch);
+		curl_close($ch);
+
 		return json_decode($content, TRUE);
 	}
 }
