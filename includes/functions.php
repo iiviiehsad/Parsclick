@@ -1036,7 +1036,7 @@ function get_playlist_content($playlist_id)
 		// TODO: You can do this if you prefer cURL
 		// $ch = curl_init($url);
 		// curl_setopt($ch, CURLOPT_HTTPGET, 1);
-		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true)
+		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		// $content = curl_exec($ch);
 		// curl_close($ch);
 		return json_decode($content, TRUE);
