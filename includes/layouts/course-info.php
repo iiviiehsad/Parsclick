@@ -8,9 +8,6 @@ global $json; ?>
 			     alt="<?php echo $current_course->name; ?>">
 		<?php endif; ?>
 		<?php echo htmlentities(ucwords($current_course->name)); ?>
-		<?php if($json && $current_course->updated(end($json['items'])['snippet']['publishedAt']) && ! $current_course->recent()): ?>
-			<kbd>بروز شد</kbd>
-		<?php endif; ?>
 		<?php if($current_course->recent()): ?>
 			<kbd>تازه</kbd>
 		<?php endif; ?>

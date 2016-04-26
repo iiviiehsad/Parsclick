@@ -4,8 +4,8 @@
 	<title>Parsclick - Admin</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="کامل ترین سینمای برنامه نویسان و آموزش های برنامه نویسی وب، مدیریت محتوا، طراحی وب، نرم افزار، آدوبی، دیتابیس و اپلیکیشن های روز دنیا به صورت ویدئویی برای پارسی زبانان و ایرانیان"/>
-	<meta name="keywords" content="آموزش، کامپیوتر، برنامه نویسی، وب، طراحی، ویرایش، جاوا، روبی، پایتون، پی‌اچ‌پی، سی‌اس‌اس، اچ‌تی‌ام‌ال، جاوااسکریپت، گیت، آیفون، اندروید، وردپرس، جوملا، دروپال، بوتسترپ، جی‌کوئری، ای‌جکس، آدوبی"/>
+	<meta name="description" content="سینمای برنامه نویسان آموزش رایگان ویدیویی توسعه وب"/>
+	<meta name="keywords" content="برنامه نویسی, وب, جاوا, روبی, پایتون, پی اچ پی, سی اس اس, اچ تی ام ال, جاوااسکریپت, گیت"/>
 	<meta name="language" content="fa-IR"/>
 	<meta name="geo.region" content="IR-07"/>
 	<meta name="geo.region" content="IR"/>
@@ -16,5 +16,5 @@
 	<link rel="stylesheet" href="../_/css/all.css" media="screen">
 </head>
 <body>
-	<section class="container"><!-- container -->
-		<div class="content row"><!-- content -->
+	<section class="container">
+		<div class="content row">
