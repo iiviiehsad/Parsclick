@@ -3,7 +3,7 @@ global $session;
 global $current_course;
 // Pagination
 $page        = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
-$per_page    = 20;
+$per_page    = 30;
 $total_count = Comment::count_comments_for_course($current_course->id);
 $pagination  = new pagination($page, $per_page, $total_count);
 $comments    = Comment::find_comments($current_course->id, $per_page, $pagination->offset());
