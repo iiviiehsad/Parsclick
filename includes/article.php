@@ -22,6 +22,24 @@ class Article extends DatabaseObject
 	public           $created_at;
 
 	/**
+	 * @param string $search gets the search query
+	 * @param bool   $public sets TRUE if article is visible and FALSE if article is not visible
+	 * @return array|null the result
+	 */
+	public static function search($search = "", $public = TRUE)
+	{
+		global $database;
+		$sql = "SELECT * FROM " . self::$table_name . " WHERE ";
+		$sql .= "name LIKE '%{$database->escape_value($search)}%'";
+		if($public) {
+			$sql .= " AND visible = 1";
+		}
+		$result_set = self::find_by_sql($sql);
+
+		return ! empty($result_set) ? $result_set : NULL;
+	}
+
+	/**
 	 * @param int  $subject_id gets the subject ID
 	 * @param bool $public     sets TRUE if article is visible and FALSE if article is not visible
 	 * @return mixed counts the number of articles for subject given
@@ -57,24 +75,6 @@ class Article extends DatabaseObject
 		return array_shift($row);
 	}
 
-	/**
-	 * @param string $search gets the search query
-	 * @param bool   $public sets TRUE if article is visible and FALSE if article is not visible
-	 * @return array|null the result
-	 */
-	public static function search($search = "", $public = TRUE)
-	{
-		global $database;
-		$sql = "SELECT * FROM " . self::$table_name . " WHERE ";
-		$sql .= "name LIKE '%{$database->escape_value($search)}%'";
-		if($public) {
-			$sql .= " AND visible = 1";
-		}
-		$result_set = self::find_by_sql($sql);
-
-		return ! empty($result_set) ? $result_set : NULL;
-	}
-	
 	/**
 	 * @param      $subject_id integer gets the subject ID
 	 * @param bool $public
@@ -191,7 +191,7 @@ class Article extends DatabaseObject
 	 */
 	public function recent($date = NULL)
 	{
-		$date       = $date ?: $this->created_at;
+		$date = $date ?: $this->created_at;
 		$time = 60 * 60 * 24 * 7 * 2; // 2 weeks
 		if(strtotime($date) + $time > time()) {
 			return TRUE;
