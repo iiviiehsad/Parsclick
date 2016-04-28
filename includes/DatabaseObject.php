@@ -1,13 +1,22 @@
-<?php // namespace Parsclick;
+<?php
+
+// namespace Parsclick;
 abstract class DatabaseObject
 {
 	// OPTIONAL
 	protected static $table_name;
 	protected static $db_fields;
 
-	public static function find_all()
+	public static function find_all($public = TRUE)
 	{
-		return static::find_by_sql("SELECT * FROM " . static::$table_name);
+		$sql = "SELECT * ";
+		$sql .= " FROM " . static::$table_name;
+		if($public && in_array('visible', static::$db_fields)) {
+			$sql .= " WHERE visible = 1 ";
+		}
+		$sql .= " ORDER BY position ASC ";
+
+		return static::find_by_sql($sql);
 	}
 
 	public static function find_by_sql($sql = "")
@@ -53,10 +62,17 @@ abstract class DatabaseObject
 		return $attributes;
 	}
 
-	public static function find_by_id($id = 0)
+	public static function find_by_id($id = 0, $public = TRUE)
 	{
 		global $database;
-		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE id = " . $database->escape_value($id) . " LIMIT 1");
+		$sql = "SELECT * ";
+		$sql .= " FROM " . static::$table_name;
+		$sql .= " WHERE id = " . $database->escape_value($id);
+		if($public && in_array('visible', static::$db_fields)) {
+			$sql .= " AND visible = 1 ";
+		}
+		$sql .= " LIMIT 1";
+		$result_array = static::find_by_sql($sql);
 
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}

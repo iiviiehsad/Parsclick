@@ -26,42 +26,6 @@ class Course extends DatabaseObject
 	public           $created_at;
 	
 	/**
-	 * @param int  $course_id gets the course ID
-	 * @param bool $public    TRUE is default and will display the hidden and FALSE will not display the hidden
-	 * @return bool|mixed set of courses
-	 */
-	public static function find_by_id($course_id = 0, $public = TRUE)
-	{
-		global $database;
-		$sql = "SELECT * ";
-		$sql .= " FROM " . self::$table_name;
-		$sql .= " WHERE id = " . $database->escape_value($course_id);
-		if($public) { // && in_array('visible', self::$db_fields)
-			$sql .= " AND visible = 1 ";
-		}
-		$sql .= " LIMIT 1";
-		$course_set = self::find_by_sql($sql);
-
-		return ! empty($course_set) ? array_shift($course_set) : FALSE;
-	}
-
-	/**
-	 * @param bool $public TRUE is default and will display the hidden and FALSE will not display the hidden
-	 * @return array of courses
-	 */
-	public static function find_all($public = TRUE)
-	{
-		$sql = "SELECT * ";
-		$sql .= " FROM " . self::$table_name;
-		if($public) {
-			$sql .= " WHERE visible = 1 ";
-		}
-		$sql .= " ORDER BY position DESC ";
-
-		return self::find_by_sql($sql);
-	}
-
-	/**
 	 * @param string $search gets the search query
 	 * @param bool   $public TRUE is default and will display the hidden and FALSE will not display the hidden
 	 * @return array|null result

@@ -74,27 +74,7 @@ class Article extends DatabaseObject
 
 		return ! empty($result_set) ? $result_set : NULL;
 	}
-
-	/**
-	 * @param int  $article_id gets the article ID
-	 * @param bool $public     sets TRUE if subject is visible and FALSE if subject is not visible
-	 * @return bool|mixed set of articles
-	 */
-	public static function find_by_id($article_id = 0, $public = TRUE)
-	{
-		global $database;
-		$sql = "SELECT * ";
-		$sql .= " FROM " . self::$table_name;
-		$sql .= " WHERE id = " . $database->escape_value($article_id);
-		if($public) {
-			$sql .= " AND visible = 1 ";
-		}
-		$sql .= " LIMIT 1";
-		$article_set = self::find_by_sql($sql);
-
-		return ! empty($article_set) ? array_shift($article_set) : FALSE;
-	}
-
+	
 	/**
 	 * @param      $subject_id integer gets the subject ID
 	 * @param bool $public
