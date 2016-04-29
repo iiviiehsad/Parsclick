@@ -7,30 +7,6 @@ abstract class DatabaseObject
 	protected static $table_name;
 	protected static $db_fields;
 
-	public static function find_all($public = TRUE)
-	{
-		$sql = "SELECT * ";
-		$sql .= " FROM " . static::$table_name;
-		if($public && in_array('visible', static::$db_fields)) {
-			$sql .= " WHERE visible = 1 ";
-		}
-		$sql .= " ORDER BY position ASC ";
-
-		return static::find_by_sql($sql);
-	}
-
-	public static function find_by_sql($sql = "")
-	{
-		global $database;
-		$result_set   = $database->query($sql);
-		$object_array = [];
-		while($row = $database->fetch_assoc($result_set)) {
-			$object_array[] = static::instantiate($row);
-		}
-
-		return $object_array;
-	}
-
 	private static function instantiate($record)
 	{
 		$object = new static;
@@ -45,9 +21,7 @@ abstract class DatabaseObject
 
 	private function has_attribute($attribute)
 	{
-		$object_vars = $this->attributes();
-
-		return array_key_exists($attribute, $object_vars);
+		return array_key_exists($attribute, $this->attributes());
 	}
 
 	protected function attributes()
@@ -60,6 +34,51 @@ abstract class DatabaseObject
 		}
 
 		return $attributes;
+	}
+
+	protected function sanitized_attributes()
+	{
+		global $database;
+		$clean_attributes = [];
+		foreach($this->attributes() as $key => $value) {
+			$clean_attributes[$key] = $database->escape_value($value);
+		}
+
+		return $clean_attributes;
+	}
+
+	public static function find_all($public = TRUE)
+	{
+		$sql = "SELECT * ";
+		$sql .= " FROM " . static::$table_name;
+		if($public && in_array('visible', static::$db_fields)) {
+			$sql .= " WHERE visible = 1 ";
+		}
+		$sql .= " ORDER BY position ASC ";
+
+		return static::find_by_sql($sql);
+	}
+
+	public static function count_all()
+	{
+		global $database;
+		$sql        = "SELECT COUNT(*) FROM " . static::$table_name;
+		$result_set = $database->query($sql);
+		$row        = $database->fetch_assoc($result_set);
+
+		return array_shift($row);
+	}
+
+	public static function find_by_sql($sql = "")
+	{
+		global $database;
+		$result_set   = $database->query($sql);
+		$object_array = [];
+		while($row = $database->fetch_assoc($result_set)) {
+			$object_array[] = static::instantiate($row);
+		}
+
+		return $object_array;
 	}
 
 	public static function find_by_id($id = 0, $public = TRUE)
@@ -80,7 +99,11 @@ abstract class DatabaseObject
 	public static function find_by_username($username = "")
 	{
 		global $database;
-		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE username = '" . $database->escape_value($username) . "' LIMIT 1");
+		$sql = "SELECT * ";
+		$sql .= " FROM " . static::$table_name;
+		$sql .= " WHERE username = '" . $database->escape_value($username) . "'";
+		$sql .= " LIMIT 1";
+		$result_array = static::find_by_sql($sql);
 
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
@@ -88,7 +111,11 @@ abstract class DatabaseObject
 	public static function find_by_email($email = "")
 	{
 		global $database;
-		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE email = '" . $database->escape_value($email) . "' LIMIT 1");
+		$sql = "SELECT * ";
+		$sql .= " FROM " . static::$table_name;
+		$sql .= " WHERE email = '" . $database->escape_value($email) . "'";
+		$sql .= " LIMIT 1";
+		$result_array = static::find_by_sql($sql);
 
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
@@ -96,24 +123,18 @@ abstract class DatabaseObject
 	public static function find_by_token($token = "")
 	{
 		global $database;
-		$result_array = static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE token = '" . $database->escape_value($token) . "' LIMIT 1");
+		$sql = "SELECT * ";
+		$sql .= " FROM " . static::$table_name;
+		$sql .= " WHERE token = '" . $database->escape_value($token) . "'";
+		$sql .= " LIMIT 1";
+		$result_array = static::find_by_sql($sql);
 
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
-	public static function count_all()
-	{
-		global $database;
-		$sql        = "SELECT COUNT(*) FROM " . static::$table_name;
-		$result_set = $database->query($sql);
-		$row        = $database->fetch_assoc($result_set);
-
-		return array_shift($row);
-	}
-
 	public function full_name()
 	{
-		return isset($this->first_name) && isset($this->last_name) ? $this->first_name . " " . $this->last_name : "";
+		return isset($this->first_name) && isset($this->last_name) ? $this->first_name . ' ' . $this->last_name : '';
 	}
 
 	public static function num_rows()
@@ -130,7 +151,7 @@ abstract class DatabaseObject
 	public static function search($search = "")
 	{
 		global $database;
-		$sql = "SELECT * FROM " . Admin::$table_name . " WHERE ";
+		$sql = "SELECT * FROM " . static::$table_name . " WHERE ";
 		$sql .= "username LIKE '%{$database->escape_value($search)}%' ";
 		$sql .= "OR first_name LIKE '%{$database->escape_value($search)}%' ";
 		$sql .= "OR last_name LIKE '%{$database->escape_value($search)}%' ";
@@ -152,36 +173,20 @@ abstract class DatabaseObject
 		return password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
 	}
 
-	public function save()
-	{
-		return isset($this->id) ? $this->update() : $this->create();
-	}
-
 	public function update()
 	{
 		global $database;
 		$attributes      = $this->sanitized_attributes();
 		$attribute_pairs = [];
 		foreach($attributes as $key => $value) {
-			$attribute_pairs[] = "{$key}='{$value}'";
+			$attribute_pairs[] = "{$key} = '{$value}'";
 		}
 		$sql = "UPDATE " . static::$table_name . " SET ";
 		$sql .= join(", ", $attribute_pairs);
-		$sql .= " WHERE id=" . $database->escape_value($this->id);
+		$sql .= " WHERE id = " . $database->escape_value($this->id);
 		$database->query($sql);
 
 		return ($database->affected_rows() == 1) ? TRUE : FALSE;
-	}
-
-	protected function sanitized_attributes()
-	{
-		global $database;
-		$clean_attributes = [];
-		foreach($this->attributes() as $key => $value) {
-			$clean_attributes[$key] = $database->escape_value($value);
-		}
-
-		return $clean_attributes;
 	}
 
 	public function create()
@@ -202,6 +207,11 @@ abstract class DatabaseObject
 		}
 	}
 
+	public function save()
+	{
+		return isset($this->id) ? $this->update() : $this->create();
+	}
+
 	public function delete()
 	{
 		global $database;
@@ -215,9 +225,7 @@ abstract class DatabaseObject
 
 	public function create_reset_token($username)
 	{
-		$token = $this->reset_token();
-
-		return $this->set_user_reset_token($username, $token);
+		return $this->set_user_reset_token($username, $this->reset_token());
 	}
 
 	private function reset_token()
@@ -225,11 +233,11 @@ abstract class DatabaseObject
 		return md5(uniqid(mt_rand()));
 	}
 
-	public function set_user_reset_token($username, $token_value)
+	public function set_user_reset_token($username, $token)
 	{
 		$user = static::find_by_username($username);
 		if($user) {
-			$user->token = $token_value;
+			$user->token = $token;
 			$user->update();
 
 			return TRUE;
@@ -240,9 +248,7 @@ abstract class DatabaseObject
 
 	public function delete_reset_token($username)
 	{
-		$token = NULL;
-
-		return $this->set_user_reset_token($username, $token);
+		return $this->set_user_reset_token($username, NULL);
 	}
 
 	public function email_reset_token($username)

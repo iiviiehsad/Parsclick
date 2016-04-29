@@ -145,9 +145,9 @@ class Course extends DatabaseObject
 	}
 
 	/**
-	 * @param int  $category_id
-	 * @param bool $public
+	 * @param int $category_id
 	 * @return mixed
+	 * @internal param bool $public
 	 */
 	public static function count_invisible_courses_for_category($category_id = 0)
 	{
