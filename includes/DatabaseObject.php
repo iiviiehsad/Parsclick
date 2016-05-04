@@ -66,7 +66,11 @@ abstract class DatabaseObject
 		if($public && in_array('visible', static::$db_fields)) {
 			$sql .= " WHERE visible = 1 ";
 		}
-		$sql .= " ORDER BY position ASC ";
+		if(in_array('position', static::$db_fields)) {
+			$sql .= " ORDER BY position ASC ";
+		} else {
+			$sql .= " ORDER BY id ASC ";
+		}
 
 		return static::find_by_sql($sql);
 	}
@@ -142,7 +146,11 @@ abstract class DatabaseObject
 		global $database;
 		$sql = "SELECT * ";
 		$sql .= " FROM " . static::$table_name;
-		$sql .= " ORDER BY position ASC";
+		if(in_array('position', static::$db_fields)) {
+			$sql .= " ORDER BY position ASC ";
+		} else {
+			$sql .= " ORDER BY id ASC ";
+		}
 		$subject_set = $database->query($sql);
 
 		return $database->num_rows($subject_set);
