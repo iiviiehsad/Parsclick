@@ -47,6 +47,18 @@ abstract class DatabaseObject
 		return $clean_attributes;
 	}
 
+	public static function find_by_sql($sql = "")
+	{
+		global $database;
+		$result_set   = $database->query($sql);
+		$object_array = [];
+		while($row = $database->fetch_assoc($result_set)) {
+			$object_array[] = static::instantiate($row);
+		}
+
+		return $object_array;
+	}
+
 	public static function find_all($public = TRUE)
 	{
 		$sql = "SELECT * ";
@@ -67,18 +79,6 @@ abstract class DatabaseObject
 		$row        = $database->fetch_assoc($result_set);
 
 		return array_shift($row);
-	}
-
-	public static function find_by_sql($sql = "")
-	{
-		global $database;
-		$result_set   = $database->query($sql);
-		$object_array = [];
-		while($row = $database->fetch_assoc($result_set)) {
-			$object_array[] = static::instantiate($row);
-		}
-
-		return $object_array;
 	}
 
 	public static function find_by_id($id = 0, $public = TRUE)
