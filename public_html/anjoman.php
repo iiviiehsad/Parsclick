@@ -17,7 +17,8 @@ if( ! $current_course) $current_course = $newest_course;
 					<span class="badge">
 						<?php echo convert(count($current_course->comments())); ?> دیدگاه
 					</span>
-				</h3 class="panel-title">
+				</h3>
+				<h4 class="label label-as-badge label-danger">برای شرکت در انجمن لطفا عضو شوید</h4>
 			</div>
 			<div id="forum">
 				<div id="ajax-comments">
