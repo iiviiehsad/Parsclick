@@ -55,7 +55,7 @@ class Comment extends DatabaseObject
 	{
 		global $database;
 		$sql = "SELECT * FROM " . self::$table_name;
-		$sql .= " WHERE course_id=" . $database->escape_value($course_id);
+		$sql .= " WHERE course_id = " . $database->escape_value($course_id);
 		$sql .= " ORDER BY created DESC";
 
 		return self::find_by_sql($sql);

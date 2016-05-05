@@ -742,6 +742,9 @@ function course_url()
 	if($session->is_admin_logged_in()) {
 		return 'admin_courses.php';
 	}
+	if( ! isset($session->id)) {
+		return 'anjoman';
+	}
 
 	return 'courses';
 }
@@ -1186,6 +1189,7 @@ function active()
 			echo "<script>$(\"a:contains('لیست پخش')\").parent().addClass('active');</script>";
 			break;
 		case "forum.php":
+		case "anjoman.php":
 			echo "<script>$(\"a:contains('انجمن')\").parent().addClass('active');</script>";
 			break;
 		case "member_list.php":

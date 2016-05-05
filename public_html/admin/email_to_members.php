@@ -30,7 +30,6 @@ if(isset($_POST['submit'])) {
 	} else {
 		$errors = 'خطا در فرستادن پیام!';
 	}
-} else {
 }
 ?>
 <?php include_layout_template('admin_header.php'); ?>

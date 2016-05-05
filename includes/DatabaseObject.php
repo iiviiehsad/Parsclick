@@ -156,6 +156,18 @@ abstract class DatabaseObject
 		return $database->num_rows($subject_set);
 	}
 
+	public static function find_newest($public = TRUE)
+	{
+		$sql = "SELECT * FROM " . static::$table_name;
+		if($public && in_array('visible', static::$db_fields)) {
+			$sql .= " WHERE visible = 1 ";
+		}
+		$sql .= " ORDER BY id DESC LIMIT 1";
+		$array_result = static::find_by_sql($sql);
+
+		return ! empty($array_result) ? array_shift($array_result) : FALSE;
+	}
+
 	public static function search($search = "")
 	{
 		global $database;

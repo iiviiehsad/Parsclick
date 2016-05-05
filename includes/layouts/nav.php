@@ -10,6 +10,7 @@
 			<li><a href="/"> خانه</a></li>
 			<li><a href="/articles">مقالات</a></li>
 			<li><a href="/courses">دروس</a></li>
+			<li><a href="/anjoman">انجمن</a></li>
 			<li><a href="/faq"> سوالات شما</a></li>
 			<li><a href="/help"> کمک به ما</a></li>
 			<li><a href="/login"> ورود</a></li>
