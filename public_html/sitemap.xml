@@ -20,6 +20,11 @@
 		<priority>0.80</priority>
 	</url>
 	<url>
+		<loc>http://parsclick.net/anjoman</loc>
+		<changefreq>weekly</changefreq>
+		<priority>0.80</priority>
+	</url>
+	<url>
 		<loc>http://parsclick.net/faq</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
@@ -61,31 +66,6 @@
 	</url>
 	<url>
 		<loc>http://parsclick.net/forgot-username</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.51</priority>
-	</url>
-	<url>
-		<loc>http://parsclick.net/member</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.51</priority>
-	</url>
-	<url>
-		<loc>http://parsclick.net/member-profile</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.51</priority>
-	</url>
-	<url>
-		<loc>http://parsclick.net/member-edit-profile</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.51</priority>
-	</url>
-	<url>
-		<loc>http://parsclick.net/member-courses</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.51</priority>
-	</url>
-	<url>
-		<loc>http://parsclick.net/member-articles</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.51</priority>
 	</url>
