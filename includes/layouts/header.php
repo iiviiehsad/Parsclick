@@ -14,7 +14,6 @@
 	<meta name="geo.position" content="32.427908;53.688046"/>
 	<meta name="ICBM" content="32.427908, 53.688046"/>
 	<meta name="image" content="images/misc/logo.png"/>
-	<link rel="alternate" href="/" hreflang="fa-IR"/>
 	<!--Facebook Tags-->
 	<meta property="og:url" content="<?php echo DOMAIN . $_SERVER['REQUEST_URI']; ?>"/>
 	<meta property="og:title" content="<?php echo isset($title) ? $title : "پارس کلیک - سینمای برنامه نویسان"; ?>"/>

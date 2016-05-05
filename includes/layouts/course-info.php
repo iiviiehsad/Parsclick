@@ -2,10 +2,10 @@
 global $current_course;
 global $json; ?>
 	<h3>
-		<?php if($json): ?>
+		<?php if(isset(reset($json['items'])['snippet']['thumbnails']['maxres'])): ?>
 			<img class="img-rounded pull-left screenshot" width="30%"
 			     src="<?php echo reset($json['items'])['snippet']['thumbnails']['maxres']['url']; ?>"
-			     alt="<?php echo $current_course->name; ?>">
+			>
 		<?php endif; ?>
 		<?php echo htmlentities(ucwords($current_course->name)); ?>
 		<?php if($current_course->recent()): ?>
