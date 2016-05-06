@@ -32,7 +32,7 @@ function redirect_to($location = NULL)
 function output_message($message = "", $errors = "")
 {
 	if( ! empty($message)) {
-		return bootstrap_alert($message, 'success');
+		return bootstrap_alert($message, 'info');
 	} elseif( ! empty($errors)) {
 		return bootstrap_alert($errors, 'danger');
 	}
@@ -52,7 +52,7 @@ function bootstrap_alert($message = "", $kind = "info")
 	$output .= "<span aria-hidden='true'>&times;</span>";
 	$output .= "<span class='sr-only'></span>";
 	$output .= "</button>";
-	$output .= "<i class='fa fa-check-circle-o fa-fw fa-lg'></i>";
+	$output .= "<i class='fa fa-info-circle fa-fw fa-lg'></i>";
 	$output .= "<strong>" . htmlentities($message) . "</strong>";
 	$output .= "</div>";
 

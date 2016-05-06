@@ -134,7 +134,7 @@ class Course extends DatabaseObject
 		global $database;
 		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
 		$sql .= " WHERE category_id = " . $category_id;
-		$sql .= " AND created_at > NOW() - INTERVAL 6 WEEK ";
+		$sql .= " AND created_at > NOW() - INTERVAL 8 WEEK ";
 		if($public) {
 			$sql .= " AND visible = 1 ";
 		}
@@ -191,7 +191,7 @@ class Course extends DatabaseObject
 	public function recent($date = NULL)
 	{
 		$date       = $date ?: $this->created_at;
-		$time = 60 * 60 * 24 * 7 * 6; // 6 weeks
+		$time = 60 * 60 * 24 * 7 * 8; // 8 weeks
 		if(strtotime($date) + $time > time()) {
 			return TRUE;
 		} else {
