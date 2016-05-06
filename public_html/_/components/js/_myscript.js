@@ -1,7 +1,7 @@
 $(function() {
 
 	//SLIDE UO MESSAGES AFTER 5 SECONDS
-	$('.alert').fadeIn(500).delay(7000).fadeOut(500).addClass('animated tada');
+	$('.alert-dismissible').fadeIn(500).delay(7000).fadeOut(500).addClass('animated tada');
 	
 	// YOUTUBE INIT VIDEO PLAY
 	$(".youtube").YouTubeModal({width : 640, height : 360});
