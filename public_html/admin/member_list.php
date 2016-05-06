@@ -1,6 +1,15 @@
 <?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
+$errors = '';
+if(isset($_POST['delete_inactive'])) {
+	if(Member::delete_inactives()) {
+		$session->message('حذف اعضای معوق موفق بود.');
+		redirect_to($_SERVER['HTTP_REFERER']);
+	} else {
+		$errors = 'عضوی حذف نشد.';
+	}
+}
 // Pagination
 $page        = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
 $per_page    = 50;
@@ -9,7 +18,7 @@ $pagination  = new pagination($page, $per_page, $total_count);
 $member_set  = Member::find_members($per_page, $pagination->offset());
 include_layout_template('admin_header.php');
 include_layout_template('admin_nav.php');
-echo output_message($message);
+echo output_message($message, $errors);
 ?>
 	<section class="sidebar col col-lg-4 pull-right">
 		<aside>
@@ -25,10 +34,17 @@ echo output_message($message);
 	</section>
 	<section class="sidebar col col-lg-4 pull-left">
 		<aside>
-			<a class="btn btn-success btn-block" href="new_member.php"><i class="fa fa-plus"></i> اضافه کردن عضو جدید</a>
+			<div class="btn-group pull-left">
+				<form action="member_list.php" method="POST">
+					<a class="btn btn-success" href="new_member.php"><i class="fa fa-plus"></i></a>
+					<button type="submit" name="delete_inactive" class="btn btn-danger">حذف اعضای معوق</button>
+				</form>
+			</div>
+			<div class="clearfix"></div>
 			<?php if(isset($_GET['page'])): ?>
 				<h2 class="pull-left">
-					<span class="label label-as-badge label-info">صفحه <?php echo convert($_GET['page']); ?></span></h2>
+					<span class="label label-as-badge label-info">صفحه <?php echo convert($_GET['page']); ?></span>
+				</h2>
 			<?php endif ?>
 		</aside>
 	</section>
@@ -89,7 +105,7 @@ echo output_message($message);
 					<?php endforeach; ?>
 				</tbody>
 			</table>
-			<?php echo paginate($pagination, $page, 'member_list.php'); ?>
+			<?php echo paginate($pagination, $page, ['member_list.php']); ?>
 		</div>
 	</section>
 <?php include_layout_template('admin_footer.php'); ?>

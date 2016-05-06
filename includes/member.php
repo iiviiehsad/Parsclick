@@ -108,7 +108,7 @@ class Member extends DatabaseObject
 				<p>اگر شما این درخواست را نکردید هول نکنید, هیچ اقدامی لازم نیست انجام دهید. پسورد شما بدون کلیک کردن به لینک بالا قابل تغییر نخواهد بود.</p>
 				<p>از لینک زیر برای عوض کردن پسورد خود استفاده کنید:</p>
 			";
-			$mail->Body = email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content);
+			$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content);
 
 			//return send_email($this->email, "Reset Password Request", email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content));
 			return $mail->send();
@@ -148,7 +148,7 @@ class Member extends DatabaseObject
 				<p>لطفا به خاطر بسپارید که اسم کاربری را در جایی امن نگه داری کنید و این ایمیل را پاک کنید. این ایمیل را از سطل زباله ایمیل هم پاک کنید.</p>
 				<p>اسم کاربری شما هست:</p>
 			";
-			$mail->Body = email($user->full_name(), DOMAIN, $user->username, $content);
+			$mail->Body       = email($user->full_name(), DOMAIN, $user->username, $content);
 
 			//return send_email($this->email, "Username Reminder Request", email($user->full_name(), DOMAIN, $user->username, $content));
 			return $mail->send();
@@ -161,8 +161,7 @@ class Member extends DatabaseObject
 	 * This method will send a confirmation email to the recently registered members.
 	 *
 	 * @param $username
-	 * @return bool TRUE if email is sent and FALSE if not
-	 * @throws \Exception
+	 * @return bool
 	 * @throws \phpmailerException
 	 */
 	public function email_confirmation_details($username)
@@ -193,13 +192,26 @@ class Member extends DatabaseObject
 				</ul>
 				<p>لطفا روی لینک زیر جهت تایید ایمیل خود استفاده کنید:</p>
 			";
-			$mail->Body = email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content);
+			$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content);
 
 			//return send_email($this->email, "به پارس کلیک خوش آمدید", email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content));
 			return $mail->send();
 		} else {
 			return FALSE;
 		}
+	}
+
+	/**
+	 * Deletes inactive users
+	 * @return bool
+	 */
+	public static function delete_inactives()
+	{
+		global $database;
+		$sql = "DELETE FROM " . self::$table_name . " WHERE status = 0";
+		$database->query($sql);
+
+		return ($database->affected_rows() > 0) ? TRUE : FALSE;
 	}
 
 } // END of CLASS
