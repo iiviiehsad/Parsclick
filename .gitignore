@@ -1,6 +1,8 @@
 Database
 /index.php
 logs
+htaccess
+htpasswd
 
 # package.json
 # gulpfile.js
