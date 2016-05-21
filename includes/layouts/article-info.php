@@ -72,6 +72,6 @@
 				</div>
 			</div>
 		</article>
-		<?php //include_layout_template('disqus-comment.php'); ?>
+		<?php // include_layout_template('disqus-comment.php'); ?>
 	</div>
 </div>

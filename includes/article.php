@@ -171,16 +171,16 @@ class Article extends DatabaseObject
 	public static function find_articles_for_author($author_id = 0, $public = TRUE)
 	{
 		global $database;
-		$sql = "SELECT * ";
-		$sql .= " FROM " . self::$table_name;
-		$sql .= " WHERE author_id = " . $database->escape_value($author_id);
+		$sql = 'SELECT * ';
+		$sql .= ' FROM ' . self::$table_name;
+		$sql .= ' WHERE author_id = ' . $database->escape_value($author_id);
 		if($public) {
-			$sql .= " AND visible = 1 ";
+			$sql .= ' AND visible = 1 ';
 		}
 		if( ! $public) {
-			$sql .= " AND visible = 0 ";
+			$sql .= ' AND visible = 0 ';
 		}
-		$sql .= " ORDER BY position DESC";
+		$sql .= ' ORDER BY position DESC';
 
 		return self::find_by_sql($sql);
 	}

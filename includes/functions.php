@@ -6,7 +6,7 @@
  */
 function __autoload($class_name)
 {
-	$path = LIB_PATH . DS . $class_name . ".php";
+	$path = LIB_PATH . DS . $class_name . '.php';
 	if( ! file_exists($path)) {
 		die("The file {$class_name}.php could not be found!");
 	}
@@ -18,8 +18,8 @@ function __autoload($class_name)
  */
 function redirect_to($location = NULL)
 {
-	if($location != NULL) {
-		header("Location: " . $location);
+	if($location) {
+		header('Location: ' . $location);
 		exit;
 	}
 }
@@ -29,7 +29,7 @@ function redirect_to($location = NULL)
  * @param string $errors  string shows the errors
  * @return string
  */
-function output_message($message = "", $errors = "")
+function output_message($message = '', $errors = '')
 {
 	if( ! empty($message)) {
 		return bootstrap_alert($message, 'info');
@@ -45,61 +45,59 @@ function output_message($message = "", $errors = "")
  * @param $kind
  * @return string
  */
-function bootstrap_alert($message = "", $kind = "info")
+function bootstrap_alert($message = '', $kind = 'info')
 {
 	$output = "<div class='alert alert-{$kind} alert-dismissible' role='alert'>";
-	$output .= "<button type='button' class='close' data-dismiss='alert'>";
-	$output .= "<span aria-hidden='true'>&times;</span>";
-	$output .= "<span class='sr-only'></span>";
-	$output .= "</button>";
-	$output .= "<i class='fa fa-info-circle fa-fw fa-lg'></i>";
-	$output .= "<strong>" . htmlentities($message) . "</strong>";
-	$output .= "</div>";
+	$output .= '<button type="button" class="close" data-dismiss="alert">';
+	$output .= '<span aria-hidden="true">&times;</span>';
+	$output .= '<span class="sr-only"></span>';
+	$output .= '</button>';
+	$output .= '<i class="fa fa-info-circle fa-fw fa-lg"></i>';
+	$output .= '<strong>' . htmlentities($message) . '</strong>';
+	$output .= '</div>';
 
 	return $output;
 }
 
 /**
- * Replaces the associate layout for footer or header inside includes folder
+ * Replaces the associate layout for footer
+ * or header inside includes folder
  *
- * @param string $template
+*@param string $template
  * @return mixed
  */
-function include_layout_template($template = "")
+function include_layout_template($template = '')
 {
 	return include(LIB_PATH . DS . 'layouts' . DS . $template);
 }
 
 /**
- * is the marked string and the date you need to pas in which first removes the marked zeros, then removes any
+ * is the marked string and the date you need to pas in
+ * which first removes the marked zeros, then removes any
  * remaining marks.
+
  *
- * @param string $marked_string
+*@param string $marked_string
  * @return mixed the clean date output
  */
-function strip_zeros_from_date($marked_string = "")
+function strip_zeros_from_date($marked_string = '')
 {
 	if(strpos($marked_string, '۰')) {
-		$no_zeros       = str_replace('*۰', '', $marked_string);
-		$cleaned_string = str_replace('*', '', $no_zeros);
-
-		return $cleaned_string;
+		return str_replace('*', '', str_replace('*۰', '', $marked_string));
 	}
-	$no_zeros       = str_replace('*0', '', $marked_string);
-	$cleaned_string = str_replace('*', '', $no_zeros);
 
-	return $cleaned_string;
+	return str_replace('*', '', str_replace('*0', '', $marked_string));
 }
 
 /**
  * @param string $datetime will get the date and time as a simple text
  * @return string ready format to insert into MySQL
  */
-function datetime_to_text($datetime = "")
+function datetime_to_text($datetime = '')
 {
 	$unixdatetime = strtotime($datetime);
 
-	return strip_zeros_from_date(strftime("*%B *%d, %Y at *%I:%M %p", $unixdatetime));
+	return strip_zeros_from_date(strftime('*%B *%d, %Y at *%I:%M %p', $unixdatetime));
 }
 
 /**
@@ -108,9 +106,9 @@ function datetime_to_text($datetime = "")
  * @param string $datetime
  * @return mixed
  */
-function datetime_to_shamsi($datetime = "")
+function datetime_to_shamsi($datetime = '')
 {
-	return strip_zeros_from_date(Miladr\Jalali\jDate::forge($datetime)->format("*%d *%B، %Y ساعت *%H:%M"));
+	return strip_zeros_from_date(Miladr\Jalali\jDate::forge($datetime)->format('*%d *%B، %Y ساعت *%H:%M'));
 }
 
 /**
@@ -132,11 +130,11 @@ function convert($string)
 function check_size($size)
 {
 	if($size > 1024000) {
-		return round($size / 1024000) . " مگابایت";
+		return round($size / 1024000) . ' مگابایت';
 	} elseif($size > 1024) {
-		return round($size / 1024) . " کیلوبایت";
+		return round($size / 1024) . ' کیلوبایت';
 	} else {
-		return $size . " بایت";
+		return $size . ' بایت';
 	}
 }
 
@@ -146,7 +144,7 @@ function check_size($size)
  * @param string $dots   string default (...) to show immediately after the string
  * @return string from 0 character to length and ... after it
  */
-function truncate($string, $length, $dots = "... ... ...")
+function truncate($string, $length, $dots = '... ... ...')
 {
 	return (strlen($string) > $length) ? substr($string, 0, $length - strlen($dots)) . $dots : $string;
 }
@@ -169,11 +167,11 @@ function truncate($string, $length, $dots = "... ... ...")
  * @param bool   $deep_detect TRUE is user is using proxy and FALSE otherwise
  * @return array|null|string of location details
  */
-function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE)
+function ip_info($ip = NULL, $purpose = 'location', $deep_detect = TRUE)
 {
 	$output = NULL;
 	if(filter_var($ip, FILTER_VALIDATE_IP) === FALSE) {
-		$ip = $_SERVER["REMOTE_ADDR"];
+		$ip = $_SERVER['REMOTE_ADDR'];
 		if($deep_detect) {
 			if(filter_var(@$_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP)) {
 				$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
@@ -183,32 +181,32 @@ function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE)
 			}
 		}
 	}
-	$purpose    = str_replace(array("name", "\n", "\t", " ", "-", "_"), NULL, strtolower(trim($purpose)));
-	$support    = array("country", "countrycode", "state", "region", "city", "location", "address");
+	$purpose    = str_replace(array('name', "\n", "\t", ' ', '-', '_'), NULL, strtolower(trim($purpose)));
+	$support    = array('country', 'countrycode', 'state', 'region', 'city', 'location', 'address');
 	$continents = array(
-		"AF" => "Africa",
-		"AN" => "Antarctica",
-		"AS" => "Asia",
-		"EU" => "Europe",
-		"OC" => "Australia (Oceania)",
-		"NA" => "North America",
-		"SA" => "South America"
+		'AF' => 'Africa',
+		'AN' => 'Antarctica',
+		'AS' => 'Asia',
+		'EU' => 'Europe',
+		'OC' => 'Australia (Oceania)',
+		'NA' => 'North America',
+		'SA' => 'South America'
 	);
-	if(filter_var($ip, FILTER_VALIDATE_IP) && in_array($purpose, $support)) {
-		$ipdat = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
+	if(filter_var($ip, FILTER_VALIDATE_IP) && in_array($purpose, $support, FALSE)) {
+		$ipdat = @json_decode(file_get_contents('http://www.geoplugin.net/json.gp?ip=' . $ip));
 		if(@strlen(trim($ipdat->geoplugin_countryCode)) == 2) {
 			switch($purpose) {
-				case "location":
+				case 'location':
 					$output = array(
-						"city"           => @$ipdat->geoplugin_city,
-						"state"          => @$ipdat->geoplugin_regionName,
-						"country"        => @$ipdat->geoplugin_countryName,
-						"country_code"   => @$ipdat->geoplugin_countryCode,
-						"continent"      => @$continents[strtoupper($ipdat->geoplugin_continentCode)],
-						"continent_code" => @$ipdat->geoplugin_continentCode
+						'city'           => @$ipdat->geoplugin_city,
+						'state'          => @$ipdat->geoplugin_regionName,
+						'country'        => @$ipdat->geoplugin_countryName,
+						'country_code'   => @$ipdat->geoplugin_countryCode,
+						'continent'      => @$continents[strtoupper($ipdat->geoplugin_continentCode)],
+						'continent_code' => @$ipdat->geoplugin_continentCode
 					);
 					break;
-				case "address":
+				case 'address':
 					$address = array($ipdat->geoplugin_countryName);
 					if(@strlen($ipdat->geoplugin_regionName) >= 1) {
 						$address[] = $ipdat->geoplugin_regionName;
@@ -216,21 +214,21 @@ function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE)
 					if(@strlen($ipdat->geoplugin_city) >= 1) {
 						$address[] = $ipdat->geoplugin_city;
 					}
-					$output = implode(", ", array_reverse($address));
+					$output = implode(', ', array_reverse($address));
 					break;
-				case "city":
+				case 'city':
 					$output = @$ipdat->geoplugin_city;
 					break;
-				case "state":
+				case 'state':
 					$output = @$ipdat->geoplugin_regionName;
 					break;
-				case "region":
+				case 'region':
 					$output = @$ipdat->geoplugin_regionName;
 					break;
-				case "country":
+				case 'country':
 					$output = @$ipdat->geoplugin_countryName;
 					break;
-				case "countrycode":
+				case 'countrycode':
 					$output = @$ipdat->geoplugin_countryCode;
 					break;
 			}
@@ -266,7 +264,7 @@ function send_email($email, $subject, $message)
  * @param string $content
  * @return string
  */
-function email($full_name = "", $site_root = DOMAIN, $highlight = "", $content = "")
+function email($full_name = '', $site_root = DOMAIN, $highlight = '', $content = '')
 {
 	return <<<EMAILBODY
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -445,6 +443,7 @@ EMAILBODY;
 /******************************************************************************************************/
 /*                                    SECURITY FUNCTIONS                                              */
 /******************************************************************************************************/
+
 /**
  * @return bool TRUE if request is GET and FALSE otherwise
  */
@@ -473,7 +472,7 @@ function has_presence($value)
 {
 	$trimmed_value = trim($value);
 
-	return isset($trimmed_value) && $trimmed_value !== "";
+	return isset($trimmed_value) && $trimmed_value !== '';
 }
 
 /**
@@ -546,7 +545,7 @@ function has_number($value, $options = [])
  */
 function has_inclusion_in($value, $set = [])
 {
-	return in_array($value, $set);
+	return in_array($value, $set, FALSE);
 }
 
 /**
@@ -558,7 +557,7 @@ function has_inclusion_in($value, $set = [])
  */
 function has_exclusion_from($value, $set = [])
 {
-	return ! in_array($value, $set);
+	return ! in_array($value, $set, FALSE);
 }
 
 /**
@@ -604,14 +603,14 @@ function file_upload_error($error_integer)
 {
 	$upload_errors = [
 		// http://php.net/manual/en/features.file-upload.errors.php
-		UPLOAD_ERR_OK         => "خطایی نیست.",
-		UPLOAD_ERR_INI_SIZE   => "فایل بزرگتر از تنظیمات پی اچ پی است!",
-		UPLOAD_ERR_FORM_SIZE  => "اندازه فایل بزرگ است!",
-		UPLOAD_ERR_PARTIAL    => "فایل نصفه آپلود شد!",
-		UPLOAD_ERR_NO_FILE    => "هیچ فایلی انتخاب نشد!",
-		UPLOAD_ERR_NO_TMP_DIR => "پوشه موقت موجود نیست!",
-		UPLOAD_ERR_CANT_WRITE => "نمیشه روی دیسک نوشت!",
-		UPLOAD_ERR_EXTENSION  => "آپلود فایل بخاطر نوع آن متوقف شد!"
+		UPLOAD_ERR_OK         => 'خطایی نیست.',
+		UPLOAD_ERR_INI_SIZE   => 'فایل بزرگتر از تنظیمات پی اچ پی است!',
+		UPLOAD_ERR_FORM_SIZE  => 'اندازه فایل بزرگ است!',
+		UPLOAD_ERR_PARTIAL    => 'فایل نصفه آپلود شد!',
+		UPLOAD_ERR_NO_FILE    => 'هیچ فایلی انتخاب نشد!',
+		UPLOAD_ERR_NO_TMP_DIR => 'پوشه موقت موجود نیست!',
+		UPLOAD_ERR_CANT_WRITE => 'نمیشه روی دیسک نوشت!',
+		UPLOAD_ERR_EXTENSION  => 'آپلود فایل بخاطر نوع آن متوقف شد!'
 	];
 
 	return $upload_errors[$error_integer];
@@ -681,12 +680,12 @@ function warning($output1, $output2)
  * @param        $action  string represents the login or logout action for each user
  * @param string $message represent the message for every user
  */
-function log_action($action, $message = "")
+function log_action($action, $message = '')
 {
 	$logfile = SITE_ROOT . DS . 'logs' . DS . 'log.txt';
 	$new     = file_exists($logfile) ? FALSE : TRUE;
 	if($handle = fopen($logfile, 'a')) { //appends
-		$timestamp = datetime_to_text(strftime("%Y-%m-%d %H:%M:%S", time()));
+		$timestamp = datetime_to_text(strftime('%Y-%m-%d %H:%M:%S', time()));
 		// $country   = ip_info("Visitor", "Country");
 		// $content   = "{$timestamp} | {$country} | {$action}: {$message}" . PHP_EOL;
 		$content = "{$timestamp} | {$action}: {$message}" . PHP_EOL;
@@ -696,7 +695,7 @@ function log_action($action, $message = "")
 			chmod($logfile, 0777);
 		}
 	} else {
-		echo "فایل ثبت قابل نوشتن نیست!";
+		echo 'فایل ثبت قابل نوشتن نیست!';
 	}
 }
 
@@ -779,7 +778,7 @@ function articles($subject_array, $article_array, $public = FALSE)
 		if(Article::count_recent_articles_for_subject($subject->id, $public) > 0) {
 			$output .= '<small>&nbsp;<kbd>' . convert(Article::count_recent_articles_for_subject($subject->id, $public)) . ' مقاله جدید</kbd></small>';
 		}
-		if(Article::count_invisible_articles_for_subject($subject->id) > 0 && ! $public) {
+		if( ! $public && Article::count_invisible_articles_for_subject($subject->id) > 0) {
 			$output .= '<small>&nbsp;<kbd>' . convert(Article::count_invisible_articles_for_subject($subject->id)) . ' مقاله مخفی</kbd></small>';
 		}
 		$article_set = Article::find_articles_for_subject($subject->id, $public);
@@ -800,7 +799,7 @@ function articles($subject_array, $article_array, $public = FALSE)
 			}
 			if($article->comments()) {
 				$output .= 'data-toggle="tooltip" data-placement="left" title="';
-				$output .= convert(count($article->comments())) . " دیدگاه";
+				$output .= convert(count($article->comments())) . ' دیدگاه';
 				$output .= '"';
 			}
 			$output .= '>';
@@ -809,7 +808,7 @@ function articles($subject_array, $article_array, $public = FALSE)
 				$output .= '&nbsp;<kbd>تازه</kbd>';
 			}
 			if( ! $article->visible) {
-				$output .= "&nbsp;<kbd>مخفی</kbd>";
+				$output .= '&nbsp;<kbd>مخفی</kbd>';
 			}
 			$output .= '</a></p>';
 		}
@@ -853,7 +852,7 @@ function courses($category_array, $course_array, $public = FALSE)
 		if(Course::count_recent_course_for_category($category->id, $public) > 0) {
 			$output .= '<small>&nbsp;<kbd>' . convert(Course::count_recent_course_for_category($category->id, $public)) . 'درس جدید</kbd></small>';
 		}
-		if(Course::count_invisible_courses_for_category($category->id) > 0 && ! $public) {
+		if( ! $public && Course::count_invisible_courses_for_category($category->id) > 0) {
 			$output .= '<small>&nbsp;<kbd>' . convert(Course::count_invisible_courses_for_category($category->id)) . 'درس مخفی</kbd></small>';
 		}
 		$course_set = Course::find_courses_for_category($category->id, $public);
@@ -874,7 +873,7 @@ function courses($category_array, $course_array, $public = FALSE)
 			}
 			if($course->comments()) {
 				$output .= 'data-toggle="tooltip" data-placement="left" title="';
-				$output .= convert(count($course->comments())) . " دیدگاه";
+				$output .= convert(count($course->comments())) . ' دیدگاه';
 				$output .= '"';
 			}
 			$output .= '>';
@@ -883,7 +882,7 @@ function courses($category_array, $course_array, $public = FALSE)
 				$output .= '&nbsp;<kbd>تازه</kbd>';
 			}
 			if( ! $course->visible) {
-				$output .= "&nbsp;<kbd>مخفی</kbd>";
+				$output .= '&nbsp;<kbd>مخفی</kbd>';
 			}
 			$output .= '</a></p>';
 		}
@@ -942,18 +941,18 @@ function find_selected_article($public = FALSE)
 {
 	global $current_subject;
 	global $current_article;
-	if(isset($_GET["subject"]) && isset($_GET["article"])) {
-		$current_subject = Subject::find_by_id($_GET["subject"], $public);
-		$current_article = Article::find_by_id($_GET["article"], $public);
-	} elseif(isset($_GET["subject"])) {
-		$current_subject = Subject::find_by_id($_GET["subject"], $public);
+	if(isset($_GET['subject']) && isset($_GET['article'])) {
+		$current_subject = Subject::find_by_id($_GET['subject'], $public);
+		$current_article = Article::find_by_id($_GET['article'], $public);
+	} elseif(isset($_GET['subject'])) {
+		$current_subject = Subject::find_by_id($_GET['subject'], $public);
 		if($current_subject && $public) {
 			$current_article = Article::find_default_article_for_subject($current_subject->id);
 		} else {
 			$current_article = NULL;
 		}
-	} elseif(isset($_GET["article"])) {
-		$current_article = Article::find_by_id($_GET["article"], $public);
+	} elseif(isset($_GET['article'])) {
+		$current_article = Article::find_by_id($_GET['article'], $public);
 		$current_subject = NULL;
 	} else {
 		$current_subject = NULL;
@@ -971,18 +970,18 @@ function find_selected_course($public = FALSE)
 {
 	global $current_category;
 	global $current_course;
-	if(isset($_GET["category"]) && isset($_GET["course"])) {
-		$current_category = Category::find_by_id($_GET["category"], $public);
-		$current_course   = Course::find_by_id($_GET["course"], $public);
-	} elseif(isset($_GET["category"])) {
-		$current_category = Category::find_by_id($_GET["category"], $public);
+	if(isset($_GET['category'], $_GET['course'])) {
+		$current_category = Category::find_by_id($_GET['category'], $public);
+		$current_course   = Course::find_by_id($_GET['course'], $public);
+	} elseif(isset($_GET['category'])) {
+		$current_category = Category::find_by_id($_GET['category'], $public);
 		if($current_category && $public) {
 			$current_course = Course::find_default_course_for_category($current_category->id);
 		} else {
 			$current_course = NULL;
 		}
-	} elseif(isset($_GET["course"])) {
-		$current_course   = Course::find_by_id($_GET["course"], $public);
+	} elseif(isset($_GET['course'])) {
+		$current_course   = Course::find_by_id($_GET['course'], $public);
 		$current_category = NULL;
 	} else {
 		$current_category = NULL;
@@ -1001,7 +1000,7 @@ function get_prev_next_token()
 		return 'prevPageToken=' . $_GET['prevPageToken'];
 	} elseif(isset($_GET['nextPageToken'])) {
 		return 'nextPageToken=' . $_GET['nextPageToken'];
-	} elseif(isset($_GET['prevPageToken']) && isset($_GET['nextPageToken'])) {
+	} elseif(isset($_GET['prevPageToken'], $_GET['nextPageToken'])) {
 		return 'prevPageToken=' . $_GET['prevPageToken'] . 'nextPageToken=' . $_GET['nextPageToken'];
 	} else {
 		return NULL;
@@ -1014,14 +1013,14 @@ function get_prev_next_token()
  */
 function set_prev_next_page($playlist_id)
 {
-	if( ! isset($_GET['nextPageToken']) || ! isset($_GET['prevPageToken'])) {
-		$url = GOOGLEAPI . "?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playlist_id}&key=" . YOUTUBEAPI;
+	if( ! isset($_GET['nextPageToken'], $_GET['prevPageToken'])) {
+		$url = GOOGLEAPI . '?part=snippet&hl=fa&maxResults=' . MAXRESULTS . "&playlistId={$playlist_id}&key=" . YOUTUBEAPI;
 	}
 	if(isset($_GET['nextPageToken'])) {
-		$url = GOOGLEAPI . "?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playlist_id}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['nextPageToken'];
+		$url = GOOGLEAPI . '?part=snippet&hl=fa&maxResults=' . MAXRESULTS . "&playlistId={$playlist_id}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['nextPageToken'];
 	}
 	if(isset($_GET['prevPageToken'])) {
-		$url = GOOGLEAPI . "?part=snippet&hl=fa&maxResults=" . MAXRESULTS . "&playlistId={$playlist_id}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['prevPageToken'];
+		$url = GOOGLEAPI . '?part=snippet&hl=fa&maxResults=' . MAXRESULTS . "&playlistId={$playlist_id}&key=" . YOUTUBEAPI . '&pageToken=' . $_GET['prevPageToken'];
 	}
 
 	return ! empty($url) ? $url : NULL;
@@ -1115,118 +1114,118 @@ function active()
 {
 	global $filename;
 	switch($filename) {
-		case "index.php":
-		case "member.php":
-		case "admin.php":
-		case "author.php":
+		case 'index.php':
+		case 'member.php':
+		case 'admin.php':
+		case 'author.php':
 			echo "<script>$(\"a:contains('خانه')\").parent().addClass('active');</script>";
 			break;
-		case "authors.php":
+		case 'authors.php':
 			echo "<script>$(\"a:contains('نویسندگان')\").parent().addClass('active');</script>";
 			break;
-		case "about.php":
+		case 'about.php':
 			echo "<script>$(\"a:contains('درباره ما')\").parent().addClass('active');</script>";
 			break;
-		case "faq.php":
+		case 'faq.php':
 			echo "<script>$(\"a:contains('سوالات شما')\").parent().addClass('active');</script>";
 			include_layout_template('smoothscrolling.php');
 			break;
-		case "help.php":
+		case 'help.php':
 			echo "<script>$(\"a:contains('کمک به ما')\").parent().addClass('active');</script>";
 			break;
-		case "login.php":
-		case "register.php":
-		case "forgot.php":
-		case "reset-password.php":
-		case "forgot-username.php":
+		case 'login.php':
+		case 'register.php':
+		case 'forgot.php':
+		case 'reset-password.php':
+		case 'forgot-username.php':
 			echo "<script>$(\"a:contains('ورود')\").parent().addClass('active');</script>";
 			break;
-		case "admin_courses.php":
-		case "admin_articles.php":
-		case "new_subject.php":
-		case "author_articles.php":
-		case "author_courses.php":
-		case "new_courses.php":
-		case "edit_courses.php":
-		case "new_article.php":
-		case "edit_article.php":
-		case "author_edit_article.php":
-		case "new_course.php":
-		case "author_edit_course.php":
-		case "author_add_video.php":
-		case "author_edit_video_description.php":
-		case "edit_video_description.php":
-		case "edit_course.php":
-		case "member-courses.php":
-		case "member-articles.php":
+		case 'admin_courses.php':
+		case 'admin_articles.php':
+		case 'new_subject.php':
+		case 'author_articles.php':
+		case 'author_courses.php':
+		case 'new_courses.php':
+		case 'edit_courses.php':
+		case 'new_article.php':
+		case 'edit_article.php':
+		case 'author_edit_article.php':
+		case 'new_course.php':
+		case 'author_edit_course.php':
+		case 'author_add_video.php':
+		case 'author_edit_video_description.php':
+		case 'edit_video_description.php':
+		case 'edit_course.php':
+		case 'member-courses.php':
+		case 'member-articles.php':
 			echo "<script>$(\"a:contains('محتوی')\").parent().addClass('active');</script>";
 			switch($filename) {
-				case "member-courses.php":
-				case "admin_courses.php":
-				case "author_courses.php":
+				case 'member-courses.php':
+				case 'admin_courses.php':
+				case 'author_courses.php':
 					echo "<script>$(\"a:contains('دروس')\").parent().addClass('active');</script>";
 					break;
-				case "admin_articles.php":
-				case "author_articles.php":
-				case "member-articles.php":
+				case 'admin_articles.php':
+				case 'author_articles.php':
+				case 'member-articles.php':
 					echo "<script>$(\"a:contains('مقالات')\").parent().addClass('active');</script>";
 					break;
 			}
 			break;
-		case "articles.php":
+		case 'articles.php':
 			echo "<script>$(\"a:contains('مقالات')\").parent().addClass('active');</script>";
 			break;
-		case "courses.php":
+		case 'courses.php':
 			echo "<script>$(\"a:contains('دروس')\").parent().addClass('active');</script>";
 			break;
-		case "member-profile.php":
-		case "member-edit-profile.php":
-		case "author_profile.php":
-		case "author_edit_profile.php":
+		case 'member-profile.php':
+		case 'member-edit-profile.php':
+		case 'author_profile.php':
+		case 'author_edit_profile.php':
 			echo "<script>$(\"a:contains('حساب کاربری')\").parent().addClass('active');</script>";
 			break;
-		case "member-playlist.php":
+		case 'member-playlist.php':
 			echo "<script>$(\"a:contains('لیست پخش')\").parent().addClass('active');</script>";
 			break;
-		case "forum.php":
-		case "anjoman.php":
+		case 'forum.php':
+		case 'anjoman.php':
 			echo "<script>$(\"a:contains('انجمن')\").parent().addClass('active');</script>";
 			break;
-		case "member_list.php":
-		case "edit_member.php":
-		case "new_member.php":
-		case "email_to_members.php":
+		case 'member_list.php':
+		case 'edit_member.php':
+		case 'new_member.php':
+		case 'email_to_members.php':
 			echo "<script>$(\"a:contains('اعضا')\").parent().addClass('active');</script>";
 			switch($filename) {
-				case "email_to_members.php":
+				case 'email_to_members.php':
 					echo "<script>$(\"a:contains(' ایمیل به عضوها')\").parent().addClass('active');</script>";
 					break;
-				case "member_list.php":
+				case 'member_list.php':
 					echo "<script>$(\"a:contains(' لیست عضوها')\").parent().addClass('active');</script>";
 					break;
 			}
 			break;
-		case "admin_list.php":
-		case "author_list.php":
-		case "new_admin.php":
-		case "new_author.php":
-		case "edit_admin.php":
-		case "edit_author.php":
-		case "email_to_authors.php":
+		case 'admin_list.php':
+		case 'author_list.php':
+		case 'new_admin.php':
+		case 'new_author.php':
+		case 'edit_admin.php':
+		case 'edit_author.php':
+		case 'email_to_authors.php':
 			echo "<script>$(\"a:contains('کارکنان')\").parent().addClass('active');</script>";
 			switch($filename) {
-				case "admin_list.php":
+				case 'admin_list.php':
 					echo "<script>$(\"a:contains('لیست مدیران')\").parent().addClass('active');</script>";
 					break;
-				case "author_list.php":
+				case 'author_list.php':
 					echo "<script>$(\"a:contains('لیست نویسندگان')\").parent().addClass('active');</script>";
 					break;
-				case "email_to_authors.php":
+				case 'email_to_authors.php':
 					echo "<script>$(\"a:contains('ایمیل به نویسندگان')\").parent().addClass('active');</script>";
 					break;
 			}
 			break;
-		case "author_contact.php":
+		case 'author_contact.php':
 			echo "<script>$(\"a:contains('ارتباط با همکاران')\").parent().addClass('active');</script>";
 			break;
 		//case "contact.php":
@@ -1306,7 +1305,7 @@ function sign_string($string)
 {
 	// Using $salt makes it hard to guess how $checksum is generated
 	// Caution: changing salt will invalidate all signed strings
-	$salt     = "Simple salt";
+	$salt     = 'Simple salt';
 	$checksum = sha1($string . $salt); // Any hash algorithm would work
 	// return the string with the checksum at the end
 	return $string . '--' . $checksum;
