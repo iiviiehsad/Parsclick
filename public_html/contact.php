@@ -1,5 +1,5 @@
 <?php
-require_once('../includes/initialize.php');
+/*require_once('../includes/initialize.php');
 require_once('../includes/vendor/autoload.php');
 $filename = basename(__FILE__);
 if($session->is_logged_in()) {
@@ -8,7 +8,6 @@ if($session->is_logged_in()) {
 $title   = 'پارس کلیک - تماس با ما';
 $errors  = '';
 $message = '';
-// reCAPTCHA supported 40+ languages listed here: https://developers.google.com/recaptcha/docs/language
 $lang = 'fa';
 if(isset($_POST['submit'])) {
 	if(empty(RECAPTCHASITEKEY) || empty(RECAPTCHASECRETKEY)) {
@@ -46,10 +45,9 @@ if(isset($_POST['submit'])) {
 		}
 	}
 }
-?>
-<?php include_layout_template('header.php'); ?>
-<?php include_layout_template('nav.php'); ?>
-<?php echo output_message($message, $errors); ?>
+include_layout_template('header.php');
+include_layout_template('nav.php');
+echo output_message($message, $errors); */?><!--
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2>تماس با ما</h2>
@@ -60,13 +58,13 @@ if(isset($_POST['submit'])) {
 						<label for="name">اسم کامل</label>
 						<input type="text" name="name" class="form-control" id="name" placeholder="لطفا اسم خود را اینجا وارد کنید"
 						       required
-						       value="<?php echo $session->is_logged_in() ? $member->full_name() : ''; ?>"/>
+						       value="<?php /*echo $session->is_logged_in() ? $member->full_name() : ''; */?>"/>
 					</div>
 					<br/>
 					<div class="form-group">
 						<label for="email">ایمیل</label>
 						<input type="text" name="email" class="form-control arial edit" id="email" placeholder="email" required
-						       value="<?php echo $session->is_logged_in() ? $member->email : ''; ?>"/>
+						       value="<?php /*echo $session->is_logged_in() ? $member->email : ''; */?>"/>
 					</div>
 					<br/><br/><br/>
 					<div class="form-group">
@@ -75,10 +73,8 @@ if(isset($_POST['submit'])) {
 						          placeholder="لطفا پیام کوتاه خود را اینجا وارد کنید" required></textarea>
 					</div>
 					<br/>
-					<!--reCaptcha-->
-					<div class="g-recaptcha" data-sitekey="<?php echo RECAPTCHASITEKEY; ?>"></div>
-					<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>"></script>
-					<!--End of reCaptcha-->
+					<div class="g-recaptcha" data-sitekey="<?php /*echo RECAPTCHASITEKEY; */?>"></div>
+					<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php /*echo $lang; */?>"></script>
 					<div class="form-group">
 						<button type="submit" id="contactbtn" name="submit" class="btn btn-primary"
 						        data-loading-text="در حال ارسال <i class='fa fa-spinner fa-pulse'></i>">
@@ -106,4 +102,4 @@ if(isset($_POST['submit'])) {
 			ممنون از همگی
 		</aside>
 	</section>
-<?php include_layout_template('footer.php'); ?>
+--><?php /*include_layout_template('footer.php'); */?>

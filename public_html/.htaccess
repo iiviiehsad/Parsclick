@@ -16,15 +16,15 @@ ErrorDocument 500 /500
     Options -MultiViews
 
     RewriteEngine On
-    ## TODO: Production:
+    ## TODO: Development (comment it):
     RewriteBase /Parsclick/public_html
-    ## TODO: Development:
+    ## TODO: Production (uncomment it):
     # RewriteBase /
 
     ## TODO: Remove WWW:
     # RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
     # RewriteRule ^(.*)$ http://%1/$1 [R=301,NC,L]
-    ## TODO: Force WWW (development):
+    ## TODO: Force WWW Production (uncomment it):
     # RewriteCond %{HTTP_HOST} !^www\. [NC]
 		# RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L,NC]
 
@@ -111,7 +111,3 @@ ErrorDocument 500 /500
     BrowserMatch ^Mozilla/4\.0[678] no-gzip
     BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
 </IfModule>
-
-##################################################################################
-# Uncomment to use Username: amirhassanazimi and Password: 1234-asdf for the site
-##################################################################################

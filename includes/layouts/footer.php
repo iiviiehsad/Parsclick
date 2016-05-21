@@ -10,7 +10,7 @@
 						<li><a href="articles">مقاله ها</a></li>
 						<li><a href="faq">سوالات شما</a></li>
 						<li><a href="help">کمک به سایت</a></li>
-						<li><a href="contact">تماس با ما</a></li>
+						<!--<li><a href="contact">تماس با ما</a></li>-->
 						<li><a href="login">ورود</a></li>
 						<li><a href="register">ثبت نام</a></li>
 						<li class="pull-left arial">Copyright &copy; <?php echo strftime("%Y", time()); ?> Parsclick</li>
@@ -30,8 +30,8 @@
 					<div class="col-lg-4 col-lg-offset-8 col-md-4 col-md-offset-8 col-sm-4 col-sm-offset-8 col-xs-12">
 						<?php include_layout_template('aside-news.php'); ?>
 					</div>
-				</nav><!-- nav -->
-			</footer><!-- footer -->
+				</nav>
+			</footer>
 		</section><!-- footer container -->
 	</section><!-- container -->
 <script src="_/js/all.js"></script>
