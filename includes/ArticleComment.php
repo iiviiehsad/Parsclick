@@ -2,7 +2,7 @@
 
 class ArticleComment extends DatabaseObject
 {
-	protected static $table_name = "article_comments";
+	protected static $table_name = 'article_comments';
 	protected static $db_fields  = ['id', 'member_id', 'article_id', 'created', 'body'];
 	public           $id;
 	public           $member_id;
@@ -17,8 +17,8 @@ class ArticleComment extends DatabaseObject
 	public static function count_comments_for_article($course_id = 0)
 	{
 		global $database;
-		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
-		$sql .= " WHERE article_id = " . $database->escape_value($course_id);
+		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
+		$sql .= ' WHERE article_id = ' . $database->escape_value($course_id);
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
 
@@ -38,7 +38,7 @@ class ArticleComment extends DatabaseObject
 			$comment->id         = (int)'';
 			$comment->member_id  = (int)$member_id;
 			$comment->article_id = (int)$article_id;
-			$comment->created    = strftime("%Y-%m-%d %H:%M:%S", time());
+			$comment->created    = strftime('%Y-%m-%d %H:%M:%S', time());
 			$comment->body       = $body;
 
 			return $comment;
@@ -54,9 +54,9 @@ class ArticleComment extends DatabaseObject
 	public static function find_comments_for_article($article_id = 0)
 	{
 		global $database;
-		$sql = "SELECT * FROM " . self::$table_name;
-		$sql .= " WHERE article_id=" . $database->escape_value($article_id);
-		$sql .= " ORDER BY created DESC";
+		$sql = 'SELECT * FROM ' . self::$table_name;
+		$sql .= ' WHERE article_id=' . $database->escape_value($article_id);
+		$sql .= ' ORDER BY created DESC';
 
 		return self::find_by_sql($sql);
 	}
@@ -69,7 +69,7 @@ class ArticleComment extends DatabaseObject
 	 */
 	public static function find_comments($article_id = 0, $limit = 0, $offset = 0)
 	{
-		$sql = "SELECT * FROM " . self::$table_name . " WHERE article_id = {$article_id} ORDER BY created DESC LIMIT {$limit} OFFSET {$offset}";
+		$sql = 'SELECT * FROM ' . self::$table_name . " WHERE article_id = {$article_id} ORDER BY created DESC LIMIT {$limit} OFFSET {$offset}";
 
 		return self::find_by_sql($sql);
 	}

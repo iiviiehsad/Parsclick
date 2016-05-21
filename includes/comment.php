@@ -2,7 +2,7 @@
 
 class Comment extends DatabaseObject
 {
-	protected static $table_name = "comments";
+	protected static $table_name = 'comments';
 	protected static $db_fields  = ['id', 'member_id', 'course_id', 'created', 'body'];
 	public           $id;
 	public           $member_id;
@@ -17,8 +17,8 @@ class Comment extends DatabaseObject
 	public static function count_comments_for_course($course_id = 0)
 	{
 		global $database;
-		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
-		$sql .= " WHERE course_id = " . $database->escape_value($course_id);
+		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
+		$sql .= ' WHERE course_id = ' . $database->escape_value($course_id);
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
 
@@ -38,7 +38,7 @@ class Comment extends DatabaseObject
 			$comment->id        = (int)'';
 			$comment->member_id = (int)$member_id;
 			$comment->course_id = (int)$course_id;
-			$comment->created   = strftime("%Y-%m-%d %H:%M:%S", time());
+			$comment->created   = strftime('%Y-%m-%d %H:%M:%S', time());
 			$comment->body      = $body;
 
 			return $comment;
@@ -54,9 +54,9 @@ class Comment extends DatabaseObject
 	public static function find_comments_for_course($course_id = 0)
 	{
 		global $database;
-		$sql = "SELECT * FROM " . self::$table_name;
-		$sql .= " WHERE course_id = " . $database->escape_value($course_id);
-		$sql .= " ORDER BY created DESC";
+		$sql = 'SELECT * FROM ' . self::$table_name;
+		$sql .= ' WHERE course_id = ' . $database->escape_value($course_id);
+		$sql .= ' ORDER BY created DESC';
 
 		return self::find_by_sql($sql);
 	}
@@ -69,7 +69,7 @@ class Comment extends DatabaseObject
 	 */
 	public static function find_comments($course_id = 0, $limit = 0, $offset = 0)
 	{
-		$sql = "SELECT * FROM " . self::$table_name . " WHERE course_id = {$course_id} ORDER BY created DESC LIMIT {$limit} OFFSET {$offset}";
+		$sql = 'SELECT * FROM ' . self::$table_name . " WHERE course_id = {$course_id} ORDER BY created DESC LIMIT {$limit} OFFSET {$offset}";
 
 		return self::find_by_sql($sql);
 	}
@@ -81,7 +81,7 @@ class Comment extends DatabaseObject
 	public static function search($search = "")
 	{
 		global $database;
-		$sql = "SELECT * FROM " . self::$table_name . " WHERE ";
+		$sql = 'SELECT * FROM ' . self::$table_name . ' WHERE ';
 		$sql .= "body LIKE '%{$database->escape_value($search)}%'";
 		$result_set = self::find_by_sql($sql);
 

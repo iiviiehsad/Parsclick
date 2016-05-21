@@ -63,7 +63,7 @@ function bootstrap_alert($message = '', $kind = 'info')
  * Replaces the associate layout for footer
  * or header inside includes folder
  *
-*@param string $template
+ * @param string $template
  * @return mixed
  */
 function include_layout_template($template = '')
@@ -75,9 +75,8 @@ function include_layout_template($template = '')
  * is the marked string and the date you need to pas in
  * which first removes the marked zeros, then removes any
  * remaining marks.
-
  *
-*@param string $marked_string
+ * @param string $marked_string
  * @return mixed the clean date output
  */
 function strip_zeros_from_date($marked_string = '')
@@ -899,7 +898,7 @@ function courses($category_array, $course_array, $public = FALSE)
 /**
  * Function for public to show the categories and courses
  *
- * @return string categories as an HTML ordered list along with courses as an HTML unordered list
+ * @return string
  */
 function public_courses()
 {
@@ -934,14 +933,13 @@ function public_courses()
 /**
  * Finds all articles for subjects
  *
- * @param bool $public is a condition to select the first article (the default one) for every subject upon clicking on
- *                     subjects and by default is equals to FALSE.
+ * @param bool $public
  */
 function find_selected_article($public = FALSE)
 {
 	global $current_subject;
 	global $current_article;
-	if(isset($_GET['subject']) && isset($_GET['article'])) {
+	if(isset($_GET['subject'], $_GET['article'])) {
 		$current_subject = Subject::find_by_id($_GET['subject'], $public);
 		$current_article = Article::find_by_id($_GET['article'], $public);
 	} elseif(isset($_GET['subject'])) {
@@ -963,8 +961,7 @@ function find_selected_article($public = FALSE)
 /**
  * Finds all courses for categories
  *
- * @param bool $public is a condition to select the first course (the default one) for every category upon clicking on
- *                     categories and by default is equals to FALSE.
+ * @param bool $public
  */
 function find_selected_course($public = FALSE)
 {
@@ -1030,7 +1027,7 @@ function set_prev_next_page($playlist_id)
  * @param $playlist_id
  * @return mixed
  */
-function get_playlist_content($playlist_id)
+function get_playlist_content($playlist_id = 0)
 {
 	if(isset($playlist_id)) {
 		$url = set_prev_next_page($playlist_id);
@@ -1043,6 +1040,8 @@ function get_playlist_content($playlist_id)
 
 		return json_decode($content, TRUE);
 	}
+
+	return NULL;
 }
 
 /**

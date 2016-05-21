@@ -19,4 +19,3 @@ $filename = basename(__FILE__);
 	</aside>
 </section><!-- sidebar -->
 <?php include_layout_template('footer.php'); ?>
-

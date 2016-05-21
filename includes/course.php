@@ -1,7 +1,7 @@
 <?php //namespace Parsclick;
 class Course extends DatabaseObject
 {
-	protected static $table_name = "courses";
+	protected static $table_name = 'courses';
 	protected static $db_fields  = [
 		'id',
 		'category_id',
@@ -30,13 +30,13 @@ class Course extends DatabaseObject
 	 * @param bool   $public TRUE is default and will display the hidden and FALSE will not display the hidden
 	 * @return array|null result
 	 */
-	public static function search($search = "", $public = TRUE)
+	public static function search($search = '', $public = TRUE)
 	{
 		global $database;
-		$sql = "SELECT * FROM " . self::$table_name . " WHERE ";
+		$sql = 'SELECT * FROM ' . self::$table_name . ' WHERE ';
 		$sql .= "name LIKE '%{$database->escape_value($search)}%'";
 		if($public) {
-			$sql .= " AND visible = 1";
+			$sql .= ' AND visible = 1';
 		}
 		$result_set = self::find_by_sql($sql);
 
@@ -51,10 +51,10 @@ class Course extends DatabaseObject
 	public static function count_courses_for_category($category_id = 0, $public = TRUE)
 	{
 		global $database;
-		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
-		$sql .= " WHERE category_id = " . $category_id;
+		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
+		$sql .= ' WHERE category_id = ' . $category_id;
 		if($public) {
-			$sql .= " AND visible = 1 ";
+			$sql .= ' AND visible = 1 ';
 		}
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
@@ -69,10 +69,10 @@ class Course extends DatabaseObject
 	public static function num_courses_for_category($category_id = 0)
 	{
 		global $database;
-		$sql = "SELECT * ";
-		$sql .= " FROM " . self::$table_name;
-		$sql .= " WHERE category_id = " . $database->escape_value($category_id);
-		$sql .= " ORDER BY position ASC";
+		$sql = 'SELECT * ';
+		$sql .= ' FROM ' . self::$table_name;
+		$sql .= ' WHERE category_id = ' . $database->escape_value($category_id);
+		$sql .= ' ORDER BY position ASC';
 		$article_set = $database->query($sql);
 
 		return $database->num_rows($article_set);
@@ -97,13 +97,13 @@ class Course extends DatabaseObject
 	public static function find_courses_for_category($category_id = 0, $public = TRUE)
 	{
 		global $database;
-		$sql = "SELECT * ";
-		$sql .= " FROM " . self::$table_name;
-		$sql .= " WHERE category_id = " . $database->escape_value($category_id);
+		$sql = 'SELECT * ';
+		$sql .= ' FROM ' . self::$table_name;
+		$sql .= ' WHERE category_id = ' . $database->escape_value($category_id);
 		if($public) {
-			$sql .= " AND visible = 1 ";
+			$sql .= ' AND visible = 1 ';
 		}
-		$sql .= " ORDER BY position DESC";
+		$sql .= ' ORDER BY position DESC';
 
 		return self::find_by_sql($sql);
 	}
@@ -114,11 +114,11 @@ class Course extends DatabaseObject
 	 */
 	public static function find_newest_course($public = TRUE)
 	{
-		$sql = "SELECT * FROM " . self::$table_name;
+		$sql = 'SELECT * FROM ' . self::$table_name;
 		if($public) {
-			$sql .= " WHERE visible = 1 ";
+			$sql .= ' WHERE visible = 1 ';
 		}
-		$sql .= " ORDER BY id DESC LIMIT 1";
+		$sql .= ' ORDER BY id DESC LIMIT 1';
 		$course_set = self::find_by_sql($sql);
 
 		return ! empty($course_set) ? array_shift($course_set) : FALSE;
@@ -132,11 +132,11 @@ class Course extends DatabaseObject
 	public static function count_recent_course_for_category($category_id = 0, $public = TRUE)
 	{
 		global $database;
-		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
-		$sql .= " WHERE category_id = " . $category_id;
-		$sql .= " AND created_at > NOW() - INTERVAL 8 WEEK ";
+		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
+		$sql .= ' WHERE category_id = ' . $category_id;
+		$sql .= ' AND created_at > NOW() - INTERVAL 8 WEEK ';
 		if($public) {
-			$sql .= " AND visible = 1 ";
+			$sql .= ' AND visible = 1 ';
 		}
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
@@ -151,9 +151,9 @@ class Course extends DatabaseObject
 	public static function count_invisible_courses_for_category($category_id = 0)
 	{
 		global $database;
-		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
-		$sql .= " WHERE category_id = " . $category_id;
-		$sql .= " AND visible = 0 ";
+		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
+		$sql .= ' WHERE category_id = ' . $category_id;
+		$sql .= ' AND visible = 0 ';
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
 
@@ -170,16 +170,16 @@ class Course extends DatabaseObject
 	public static function find_courses_for_author($author_id = 0, $public = TRUE)
 	{
 		global $database;
-		$sql = "SELECT * ";
-		$sql .= " FROM " . self::$table_name;
-		$sql .= " WHERE author_id = " . $database->escape_value($author_id);
+		$sql = 'SELECT * ';
+		$sql .= ' FROM ' . self::$table_name;
+		$sql .= ' WHERE author_id = ' . $database->escape_value($author_id);
 		if($public) {
-			$sql .= " AND visible = 1 ";
+			$sql .= ' AND visible = 1 ';
 		}
 		if( ! $public) {
-			$sql .= " AND visible = 0 ";
+			$sql .= ' AND visible = 0 ';
 		}
-		$sql .= " ORDER BY position DESC";
+		$sql .= ' ORDER BY position DESC';
 
 		return self::find_by_sql($sql);
 	}

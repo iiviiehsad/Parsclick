@@ -3,7 +3,7 @@
 class FailedLogins extends DatabaseObject
 {
 
-	protected static $table_name = "failed_logins";
+	protected static $table_name = 'failed_logins';
 	protected static $db_fields  = ['id', 'username', 'count', 'last_time'];
 	public           $id;
 	public           $username;
@@ -39,10 +39,9 @@ class FailedLogins extends DatabaseObject
 		// Once failure count is over $throttle_at value,
 		// user must wait for the $delay period to pass.
 		if($failed_login && $failed_login->count >= $throttle_at) {
-			$remaining_delay            = ($failed_login->last_time + $delay) - time();
-			$remaining_delay_in_minutes = ceil($remaining_delay / 60);
+			$remaining_delay = ($failed_login->last_time + $delay) - time();
 
-			return $remaining_delay_in_minutes;
+			return ceil($remaining_delay / 60);
 		} else {
 			return 0;
 		}
@@ -63,7 +62,7 @@ class FailedLogins extends DatabaseObject
 			$this->last_time = time();
 			$this->create();
 		} else {
-			$failed_login->count += 1;
+			$failed_login->count++;
 			$failed_login->last_time = time();
 			$failed_login->update();
 		}

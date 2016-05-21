@@ -1,7 +1,7 @@
 <?php //namespace Parsclick;
 class Article extends DatabaseObject
 {
-	protected static $table_name = "articles";
+	protected static $table_name = 'articles';
 	protected static $db_fields  = [
 		'id',
 		'subject_id',
@@ -26,13 +26,13 @@ class Article extends DatabaseObject
 	 * @param bool   $public sets TRUE if article is visible and FALSE if article is not visible
 	 * @return array|null the result
 	 */
-	public static function search($search = "", $public = TRUE)
+	public static function search($search = '', $public = TRUE)
 	{
 		global $database;
-		$sql = "SELECT * FROM " . self::$table_name . " WHERE ";
+		$sql = 'SELECT * FROM ' . self::$table_name . ' WHERE ';
 		$sql .= "name LIKE '%{$database->escape_value($search)}%'";
 		if($public) {
-			$sql .= " AND visible = 1";
+			$sql .= ' AND visible = 1';
 		}
 		$result_set = self::find_by_sql($sql);
 
@@ -47,10 +47,10 @@ class Article extends DatabaseObject
 	public static function count_articles_for_subject($subject_id = 0, $public = TRUE)
 	{
 		global $database;
-		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
-		$sql .= " WHERE subject_id = " . $subject_id;
+		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
+		$sql .= ' WHERE subject_id = ' . $subject_id;
 		if($public) {
-			$sql .= " AND visible = 1 ";
+			$sql .= ' AND visible = 1 ';
 		}
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
@@ -59,16 +59,16 @@ class Article extends DatabaseObject
 	}
 
 	/**
-	 * @param int  $subject_id
-	 * @param bool $public
+	 * @param int $subject_id
 	 * @return mixed
+	 * @internal param bool $public
 	 */
 	public static function count_invisible_articles_for_subject($subject_id = 0)
 	{
 		global $database;
-		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
-		$sql .= " WHERE subject_id = " . $subject_id;
-		$sql .= " AND visible = 0 ";
+		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
+		$sql .= ' WHERE subject_id = ' . $subject_id;
+		$sql .= ' AND visible = 0 ';
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
 
@@ -83,13 +83,13 @@ class Article extends DatabaseObject
 	public static function num_articles_for_subject($subject_id = 0, $public = TRUE)
 	{
 		global $database;
-		$sql = "SELECT * ";
-		$sql .= " FROM " . self::$table_name;
-		$sql .= " WHERE subject_id = " . $database->escape_value($subject_id);
+		$sql = 'SELECT * ';
+		$sql .= ' FROM ' . self::$table_name;
+		$sql .= ' WHERE subject_id = ' . $database->escape_value($subject_id);
 		if($public) {
-			$sql .= " AND visible = 1 ";
+			$sql .= ' AND visible = 1 ';
 		}
-		$sql .= " ORDER BY position ASC";
+		$sql .= ' ORDER BY position ASC';
 		$article_set = $database->query($sql);
 
 		return $database->num_rows($article_set);
@@ -114,13 +114,13 @@ class Article extends DatabaseObject
 	public static function find_articles_for_subject($subject_id = 0, $public = TRUE)
 	{
 		global $database;
-		$sql = "SELECT * ";
-		$sql .= " FROM " . self::$table_name;
-		$sql .= " WHERE subject_id = " . $database->escape_value($subject_id);
+		$sql = 'SELECT * ';
+		$sql .= ' FROM ' . self::$table_name;
+		$sql .= ' WHERE subject_id = ' . $database->escape_value($subject_id);
 		if($public) {
-			$sql .= " AND visible = 1 ";
+			$sql .= ' AND visible = 1 ';
 		}
-		$sql .= " ORDER BY position DESC";
+		$sql .= ' ORDER BY position DESC';
 
 		return self::find_by_sql($sql);
 	}
@@ -131,11 +131,11 @@ class Article extends DatabaseObject
 	 */
 	public static function find_newest_article($public = TRUE)
 	{
-		$sql = "SELECT * FROM " . self::$table_name;
+		$sql = 'SELECT * FROM ' . self::$table_name;
 		if($public) {
-			$sql .= " WHERE visible = 1 ";
+			$sql .= ' WHERE visible = 1 ';
 		}
-		$sql .= " ORDER BY id DESC LIMIT 1";
+		$sql .= ' ORDER BY id DESC LIMIT 1';
 		$course_set = self::find_by_sql($sql);
 
 		return ! empty($course_set) ? array_shift($course_set) : FALSE;
@@ -149,11 +149,11 @@ class Article extends DatabaseObject
 	public static function count_recent_articles_for_subject($subject_id = 0, $public = TRUE)
 	{
 		global $database;
-		$sql = "SELECT COUNT(*) FROM " . self::$table_name;
-		$sql .= " WHERE subject_id = " . $subject_id;
-		$sql .= " AND created_at > NOW() - INTERVAL 2 WEEK ";
+		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
+		$sql .= ' WHERE subject_id = ' . $subject_id;
+		$sql .= ' AND created_at > NOW() - INTERVAL 2 WEEK ';
 		if($public) {
-			$sql .= " AND visible = 1 ";
+			$sql .= ' AND visible = 1 ';
 		}
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
@@ -206,8 +206,8 @@ class Article extends DatabaseObject
 	 */
 	public function updated($date = NULL)
 	{
-		$this->time = 60 * 60 * 24 * 1; // 1 day
-		if(strtotime($date) + $this->time > time()) {
+		$time = 60 * 60 * 24 * 1; // 1 day
+		if(strtotime($date) + $time > time()) {
 			return TRUE;
 		} else {
 			return FALSE;

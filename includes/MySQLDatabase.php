@@ -1,6 +1,6 @@
 <?php //namespace Parsclick;
 
-require_once(LIB_PATH . DS . "config.php");
+require_once(LIB_PATH . DS . 'config.php');
 
 class MySQLDatabase implements Database
 {
@@ -16,7 +16,7 @@ class MySQLDatabase implements Database
 	{
 		$this->open_connection();
 		$this->magic_quotes_active       = get_magic_quotes_gpc();
-		$this->real_escape_string_exists = function_exists("mysqli_real_escape_string");
+		$this->real_escape_string_exists = function_exists('mysqli_real_escape_string');
 	}
 
 	/**
@@ -26,11 +26,11 @@ class MySQLDatabase implements Database
 	{
 		$this->connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 		if( ! $this->connection) {
-			die("Database connection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . " )");
+			die('Database connection failed: ' . mysqli_connect_error() . ' (' . mysqli_connect_errno() . ' )');
 		} else {
 			$db_select = mysqli_select_db($this->connection, DB_NAME);
 			if( ! $db_select) {
-				die("Database selection failed: " . mysqli_connect_error() . " (" . mysqli_connect_errno() . " )");
+				die('Database selection failed: ' . mysqli_connect_error() . ' (' . mysqli_connect_errno() . ' )');
 			}
 		}
 	}
@@ -71,12 +71,12 @@ class MySQLDatabase implements Database
 			$ip1 = '127.0.0.1';
 			$ip2 = '::1';
 			if($_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2) {
-				$output1 = "Database query failed! " . mysqli_error($this->connection) . "<br/><br/>";
-				$output2 = "Last SQL Query: " . $this->last_query;
+				$output1 = 'Database query failed! ' . mysqli_error($this->connection) . '<br/><br/>';
+				$output2 = 'Last SQL Query: ' . $this->last_query;
 				$output  = warning($output1, $output2);
 			} else {
-				$output1 = "اوخ!";
-				$output2 = "درخواست شما ناقص یا ناهنجار است.";
+				$output1 = 'اوخ!';
+				$output2 = 'درخواست شما ناقص یا ناهنجار است.';
 				$output  = warning($output1, $output2);
 			}
 			die($output);

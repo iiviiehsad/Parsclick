@@ -18,7 +18,7 @@ class PostgresSQLDatabase implements Database
 	{
 		$this->open_connection();
 		$this->magic_quotes_active       = get_magic_quotes_gpc();
-		$this->real_escape_string_exists = function_exists("pg_escape_string");
+		$this->real_escape_string_exists = function_exists('pg_escape_string');
 	}
 
 	/**
@@ -26,9 +26,9 @@ class PostgresSQLDatabase implements Database
 	 */
 	public function open_connection()
 	{
-		$this->connection = pg_connect("host=" . PG_SERVER . " port=" . PG_PORT . " dbname=" . PG_NAME . " user=" . PG_USER . " password=" . PG_PASS);
+		$this->connection = pg_connect('host=' . PG_SERVER . ' port=' . PG_PORT . ' dbname=' . PG_NAME . ' user=' . PG_USER . ' password=' . PG_PASS);
 		if( ! $this->connection) {
-			die("Database connection failed!");
+			die('Database connection failed!');
 		}
 	}
 
@@ -65,12 +65,12 @@ class PostgresSQLDatabase implements Database
 			$ip1 = '127.0.0.1';
 			$ip2 = '::1';
 			if($_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2) {
-				$output1 = "Database query failed! " . "<br/><br/>";
-				$output2 = "Last SQL Query: " . $this->last_query;
+				$output1 = 'Database query failed! ' . '<br/><br/>';
+				$output2 = 'Last SQL Query: ' . $this->last_query;
 				$output  = warning($output1, $output2);
 			} else {
-				$output1 = "اوخ!";
-				$output2 = "درخواست شما ناقص یا ناهنجار است.";
+				$output1 = 'اوخ!';
+				$output2 = 'درخواست شما ناقص یا ناهنجار است.';
 				$output  = warning($output1, $output2);
 			}
 			die($output);

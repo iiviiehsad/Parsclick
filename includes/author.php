@@ -2,7 +2,7 @@
 
 class Author extends DatabaseObject
 {
-	protected static $table_name = "authors";
+	protected static $table_name = 'authors';
 	protected static $db_fields  = [
 		'id',
 		'username',
@@ -33,7 +33,7 @@ class Author extends DatabaseObject
 	 */
 	public static function find_active_authors()
 	{
-		return self::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE status = 1");
+		return self::find_by_sql('SELECT * FROM ' . static::$table_name . ' WHERE status = 1');
 	}
 	
 	/**
@@ -42,9 +42,9 @@ class Author extends DatabaseObject
 	public function check_status()
 	{
 		if($this->status == 0) {
-			redirect_to("author_freezed.php");
+			redirect_to('author_freezed.php');
 		} elseif($this->status == 2) {
-			redirect_to("deactivated.php");
+			redirect_to('deactivated.php');
 		}
 	}
 
@@ -54,12 +54,12 @@ class Author extends DatabaseObject
 	public function remove_photo()
 	{
 		global $database;
-		$sql = "UPDATE " . self::$table_name . " SET ";
-		$sql .= " photo = NULL ";
-		$sql .= " WHERE id=" . $database->escape_value($this->id);
+		$sql = 'UPDATE ' . self::$table_name . ' SET ';
+		$sql .= ' photo = NULL ';
+		$sql .= ' WHERE id=' . $database->escape_value($this->id);
 		$database->query($sql);
 
-		return ($database->affected_rows() == 1) ? TRUE : FALSE;
+		return $database->affected_rows() ? TRUE : FALSE;
 	}
 
 	/**
@@ -78,7 +78,7 @@ class Author extends DatabaseObject
 			$mail = new PHPMailer();
 			$mail->isSMTP();
 			$mail->isHTML(TRUE);
-			$mail->addAddress($user->email, "Welcome to Parsclick, Confirm Your Email");
+			$mail->addAddress($user->email, 'Welcome to Parsclick, Confirm Your Email');
 			$mail->CharSet    = 'UTF-8';
 			$mail->Host       = SMTP;
 			$mail->SMTPSecure = TLS;
@@ -86,9 +86,9 @@ class Author extends DatabaseObject
 			$mail->SMTPAuth   = TRUE;
 			$mail->Username   = EMAILUSER;
 			$mail->Password   = EMAILPASS;
-			$mail->FromName   = "do-not-reply@parsclick.net";
+			$mail->FromName   = 'do-not-reply@parsclick.net';
 			$mail->From       = EMAILUSER;
-			$mail->Subject    = "به پارس کلیک خوش آمدید";
+			$mail->Subject    = 'به پارس کلیک خوش آمدید';
 			$content          = "
 				<p>ثبت نام شما به عنوان نویسنده مورد قبول مدیر واقع شد.</p>
 				<p>خوب یک خوش آمد و استقبال گرم را از طرف پارس کلیک بپذیرید و ممنونیم که ما را انتخاب کردید.</p>

@@ -2,7 +2,7 @@
 
 class Admin extends DatabaseObject
 {
-	protected static $table_name = "super_admin";
+	protected static $table_name = 'super_admin';
 	protected static $db_fields  = ['id', 'username', 'password', 'first_name', 'last_name', 'email', 'token'];
 	public           $id;
 	public           $username;
