@@ -43,3 +43,37 @@ bower_components
 # General CodeKit files to ignore
 config.codekit
 /min
+
+### GoDaddy Specifics ###
+
+.bash_history
+.bash_logout
+.bash_profile
+.bashrc
+.cagefs
+.cl.selector
+.contactemail
+.cpanel
+.cphorde
+.fontconfig
+.ftpquota
+.gemrc
+.gnupg
+.htpasswds
+.lastlogin
+.md5sum
+.mysql_backup
+.pearrc
+.rnd
+.ssh
+.trash
+.viminfo
+.zshrc
+bin
+etc
+mail
+perl5
+php
+public_ftp
+ssl
+tmp
