@@ -47,7 +47,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 			<?php echo paginate($pagination, $page, [
 					"category={$current_course->category_id}",
 					"course={$current_course->id}",
-					get_prev_next_token() . "#comments"
+					get_prev_next_token() . '#comments'
 			]); ?>
 		</div>
 	</div>

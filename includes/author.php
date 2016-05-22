@@ -41,9 +41,9 @@ class Author extends DatabaseObject
 	 */
 	public function check_status()
 	{
-		if($this->status == 0) {
+		if ($this->status == 0) {
 			redirect_to('author_freezed.php');
-		} elseif($this->status == 2) {
+		} elseif ($this->status == 2) {
 			redirect_to('deactivated.php');
 		}
 	}
@@ -56,7 +56,7 @@ class Author extends DatabaseObject
 		global $database;
 		$sql = 'UPDATE ' . self::$table_name . ' SET ';
 		$sql .= ' photo = NULL ';
-		$sql .= ' WHERE id=' . $database->escape_value($this->id);
+		$sql .= ' WHERE id = ' . $database->escape_value($this->id);
 		$database->query($sql);
 
 		return $database->affected_rows() ? TRUE : FALSE;
@@ -74,7 +74,7 @@ class Author extends DatabaseObject
 	{
 		$user      = self::find_by_username($username);
 		$site_root = DOMAIN;
-		if($user && isset($user->token)) {
+		if ($user && isset($user->token)) {
 			$mail = new PHPMailer();
 			$mail->isSMTP();
 			$mail->isHTML(TRUE);
@@ -114,5 +114,5 @@ class Author extends DatabaseObject
 			return FALSE;
 		}
 	}
-	
+
 } // END of CLASS

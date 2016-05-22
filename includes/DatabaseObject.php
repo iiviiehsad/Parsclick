@@ -1,10 +1,22 @@
 <?php // namespace Parsclick;
+
 abstract class DatabaseObject
 {
-	// OPTIONAL
+	/**
+	 * Optional
+	 * 
+	 * @var
+	 */
 	protected static $table_name;
+	/**
+	 * @var
+	 */
 	protected static $db_fields;
 
+	/**
+	 * @param $record
+	 * @return static
+	 */
 	private static function instantiate($record)
 	{
 		$object = new static;
@@ -17,11 +29,18 @@ abstract class DatabaseObject
 		return $object;
 	}
 
+	/**
+	 * @param $attribute
+	 * @return bool
+	 */
 	private function has_attribute($attribute)
 	{
 		return array_key_exists($attribute, $this->attributes());
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function attributes()
 	{
 		$attributes = [];
@@ -34,6 +53,9 @@ abstract class DatabaseObject
 		return $attributes;
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function sanitized_attributes()
 	{
 		global $database;
@@ -45,6 +67,10 @@ abstract class DatabaseObject
 		return $clean_attributes;
 	}
 
+	/**
+	 * @param string $sql
+	 * @return array
+	 */
 	public static function find_by_sql($sql = '')
 	{
 		global $database;
@@ -57,6 +83,10 @@ abstract class DatabaseObject
 		return $object_array;
 	}
 
+	/**
+	 * @param bool $public
+	 * @return array
+	 */
 	public static function find_all($public = TRUE)
 	{
 		$sql = 'SELECT * ';
@@ -73,6 +103,9 @@ abstract class DatabaseObject
 		return static::find_by_sql($sql);
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public static function count_all()
 	{
 		global $database;
@@ -83,6 +116,11 @@ abstract class DatabaseObject
 		return array_shift($row);
 	}
 
+	/**
+	 * @param int  $id
+	 * @param bool $public
+	 * @return bool|mixed
+	 */
 	public static function find_by_id($id = 0, $public = TRUE)
 	{
 		global $database;
@@ -98,6 +136,10 @@ abstract class DatabaseObject
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
+	/**
+	 * @param string $username
+	 * @return bool|mixed
+	 */
 	public static function find_by_username($username = '')
 	{
 		global $database;
@@ -110,6 +152,10 @@ abstract class DatabaseObject
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
+	/**
+	 * @param string $email
+	 * @return bool|mixed
+	 */
 	public static function find_by_email($email = '')
 	{
 		global $database;
@@ -122,6 +168,10 @@ abstract class DatabaseObject
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
+	/**
+	 * @param string $token
+	 * @return bool|mixed
+	 */
 	public static function find_by_token($token = '')
 	{
 		global $database;
@@ -134,11 +184,17 @@ abstract class DatabaseObject
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function full_name()
 	{
 		return isset($this->first_name, $this->last_name) ? $this->first_name . ' ' . $this->last_name : '';
 	}
 
+	/**
+	 * @return int
+	 */
 	public static function num_rows()
 	{
 		global $database;
@@ -154,6 +210,10 @@ abstract class DatabaseObject
 		return $database->num_rows($subject_set);
 	}
 
+	/**
+	 * @param bool $public
+	 * @return bool|mixed
+	 */
 	public static function find_newest($public = TRUE)
 	{
 		$sql = 'SELECT * FROM ' . static::$table_name;
@@ -166,6 +226,10 @@ abstract class DatabaseObject
 		return ! empty($array_result) ? array_shift($array_result) : FALSE;
 	}
 
+	/**
+	 * @param string $search
+	 * @return array|null
+	 */
 	public static function search($search = '')
 	{
 		global $database;
@@ -179,6 +243,11 @@ abstract class DatabaseObject
 		return ! empty($result_set) ? $result_set : NULL;
 	}
 
+	/**
+	 * @param string $username
+	 * @param string $password
+	 * @return bool|mixed
+	 */
 	public static function authenticate($username = '', $password = '')
 	{
 		$user = static::find_by_username($username);
@@ -186,11 +255,18 @@ abstract class DatabaseObject
 		return $user ? (password_verify($password, $user->password) ? $user : FALSE) : FALSE;
 	}
 
+	/**
+	 * @param $password
+	 * @return bool|string
+	 */
 	public function password_encrypt($password)
 	{
 		return password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function update()
 	{
 		global $database;
@@ -207,6 +283,9 @@ abstract class DatabaseObject
 		return $database->affected_rows() ? TRUE : FALSE;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function create()
 	{
 		global $database;
@@ -225,11 +304,17 @@ abstract class DatabaseObject
 		return FALSE;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function save()
 	{
 		return isset($this->id) ? $this->update() : $this->create();
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function delete()
 	{
 		global $database;
@@ -241,16 +326,28 @@ abstract class DatabaseObject
 		return $database->affected_rows() ? TRUE : FALSE;
 	}
 
+	/**
+	 * @param $username
+	 * @return bool
+	 */
 	public function create_reset_token($username)
 	{
 		return $this->set_user_reset_token($username, $this->reset_token());
 	}
 
+	/**
+	 * @return string
+	 */
 	private function reset_token()
 	{
 		return md5(uniqid(mt_rand(), TRUE));
 	}
 
+	/**
+	 * @param $username
+	 * @param $token
+	 * @return bool
+	 */
 	public function set_user_reset_token($username, $token)
 	{
 		$user = static::find_by_username($username);
@@ -264,11 +361,20 @@ abstract class DatabaseObject
 		return FALSE;
 	}
 
+	/**
+	 * @param $username
+	 * @return bool
+	 */
 	public function delete_reset_token($username)
 	{
 		return $this->set_user_reset_token($username, NULL);
 	}
 
+	/**
+	 * @param $username
+	 * @return bool
+	 * @throws \phpmailerException
+	 */
 	public function email_reset_token($username)
 	{
 		$user = static::find_by_username($username);

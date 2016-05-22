@@ -37,8 +37,7 @@ if(isset($search_query) && ! empty($search_query)) {
 												<a href="member-articles?subject=<?php echo urlencode($article->subject_id); ?>&article=<?php echo urlencode($article->id); ?>">
 													<mark><?php echo htmlentities($article->name); ?></mark>
 													<small>
-														&nbsp;توسط <?php echo isset($article->author_id) ? htmlentities(Author::find_by_id($article->author_id)
-														                                                                      ->full_name()) : '-'; ?></small>
+														&nbsp;توسط <?php echo isset($article->author_id) ? htmlentities(Author::find_by_id($article->author_id)->full_name()) : '-'; ?></small>
 												</a>
 											</i>
 										</strong>
@@ -62,7 +61,7 @@ if(isset($search_query) && ! empty($search_query)) {
 			<form class="form-inline" action="member-article-search" method="get">
 				<div class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-					<input type="text" name="q" class="form-control" size="40" maxlength="50" placeholder="جستجوی مقالات"/>
+					<input type="text" name="q" class="form-control" size="40" maxlength="50" placeholder="جستجوی مقالات یا نام خانوادگی نویسنده"/>
 				</div>
 			</form>
 			<h2>موضوعات</h2>

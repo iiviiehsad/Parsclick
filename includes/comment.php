@@ -78,7 +78,7 @@ class Comment extends DatabaseObject
 	 * @param string $search
 	 * @return array|null
 	 */
-	public static function search($search = "")
+	public static function search($search = '')
 	{
 		global $database;
 		$sql = 'SELECT * FROM ' . self::$table_name . ' WHERE ';

@@ -30,7 +30,6 @@ if(isset($_POST['submit'])) { // if form submitted
 				$errors = 'اسم کاربری یا پسورد خالی نمی توانند باشند!';
 			}
 		} else {
-			// $errors = "شناسه CSRF معتبر نیست! روی آدرس اینترنتی کلیک کنید و اینتر را بزنید.";
 			$session->die_on_csrf_token_failure();
 		}
 	} else {

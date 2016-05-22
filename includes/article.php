@@ -29,10 +29,17 @@ class Article extends DatabaseObject
 	public static function search($search = '', $public = TRUE)
 	{
 		global $database;
-		$sql = 'SELECT * FROM ' . self::$table_name . ' WHERE ';
-		$sql .= "name LIKE '%{$database->escape_value($search)}%'";
-		if($public) {
-			$sql .= ' AND visible = 1';
+		$sql = "
+			SELECT articles.id, articles.subject_id, articles.author_id, articles.name 
+			FROM articles 
+				JOIN authors ON articles.author_id = authors.id
+			WHERE articles.name LIKE '%{$database->escape_value($search)}%'
+				OR authors.first_name LIKE '%{$database->escape_value($search)}%'
+				OR authors.last_name LIKE '%{$database->escape_value($search)}%'
+				
+		";
+		if ($public) {
+			$sql .= 'AND articles.visible = 1';
 		}
 		$result_set = self::find_by_sql($sql);
 
@@ -49,7 +56,7 @@ class Article extends DatabaseObject
 		global $database;
 		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
 		$sql .= ' WHERE subject_id = ' . $subject_id;
-		if($public) {
+		if ($public) {
 			$sql .= ' AND visible = 1 ';
 		}
 		$result_set = $database->query($sql);
@@ -61,7 +68,6 @@ class Article extends DatabaseObject
 	/**
 	 * @param int $subject_id
 	 * @return mixed
-	 * @internal param bool $public
 	 */
 	public static function count_invisible_articles_for_subject($subject_id = 0)
 	{
@@ -86,7 +92,7 @@ class Article extends DatabaseObject
 		$sql = 'SELECT * ';
 		$sql .= ' FROM ' . self::$table_name;
 		$sql .= ' WHERE subject_id = ' . $database->escape_value($subject_id);
-		if($public) {
+		if ($public) {
 			$sql .= ' AND visible = 1 ';
 		}
 		$sql .= ' ORDER BY position ASC';
@@ -117,7 +123,7 @@ class Article extends DatabaseObject
 		$sql = 'SELECT * ';
 		$sql .= ' FROM ' . self::$table_name;
 		$sql .= ' WHERE subject_id = ' . $database->escape_value($subject_id);
-		if($public) {
+		if ($public) {
 			$sql .= ' AND visible = 1 ';
 		}
 		$sql .= ' ORDER BY position DESC';
@@ -132,7 +138,7 @@ class Article extends DatabaseObject
 	public static function find_newest_article($public = TRUE)
 	{
 		$sql = 'SELECT * FROM ' . self::$table_name;
-		if($public) {
+		if ($public) {
 			$sql .= ' WHERE visible = 1 ';
 		}
 		$sql .= ' ORDER BY id DESC LIMIT 1';
@@ -152,7 +158,7 @@ class Article extends DatabaseObject
 		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
 		$sql .= ' WHERE subject_id = ' . $subject_id;
 		$sql .= ' AND created_at > NOW() - INTERVAL 2 WEEK ';
-		if($public) {
+		if ($public) {
 			$sql .= ' AND visible = 1 ';
 		}
 		$result_set = $database->query($sql);
@@ -174,10 +180,10 @@ class Article extends DatabaseObject
 		$sql = 'SELECT * ';
 		$sql .= ' FROM ' . self::$table_name;
 		$sql .= ' WHERE author_id = ' . $database->escape_value($author_id);
-		if($public) {
+		if ($public) {
 			$sql .= ' AND visible = 1 ';
 		}
-		if( ! $public) {
+		if ( ! $public) {
 			$sql .= ' AND visible = 0 ';
 		}
 		$sql .= ' ORDER BY position DESC';
@@ -193,7 +199,7 @@ class Article extends DatabaseObject
 	{
 		$date = $date ?: $this->created_at;
 		$time = 60 * 60 * 24 * 7 * 2; // 2 weeks
-		if(strtotime($date) + $time > time()) {
+		if (strtotime($date) + $time > time()) {
 			return TRUE;
 		} else {
 			return FALSE;
@@ -207,7 +213,7 @@ class Article extends DatabaseObject
 	public function updated($date = NULL)
 	{
 		$time = 60 * 60 * 24 * 1; // 1 day
-		if(strtotime($date) + $time > time()) {
+		if (strtotime($date) + $time > time()) {
 			return TRUE;
 		} else {
 			return FALSE;

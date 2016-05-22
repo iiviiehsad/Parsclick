@@ -74,26 +74,6 @@ class Session
 	}
 
 	/**
-	 * Allowable parameters to use
-	 *
-	 * @param array $allowed_params
-	 * @return array
-	 */
-	private function allowed_get_params($allowed_params = [])
-	{
-		$allowed_array = [];
-		foreach($allowed_params as $param) {
-			if(isset($_GET[$param])) {
-				$allowed_array[$param] = $_GET[$param];
-			} else {
-				$allowed_array[$param] = NULL;
-			}
-		}
-
-		return $allowed_array;
-	}
-
-	/**
 	 * Logs out and redirects if member isn't logged in
 	 */
 	public function confirm_logged_in()
@@ -159,7 +139,7 @@ class Session
 	 */
 	private function request_user_agent_matches_session()
 	{
-		// return false if either value is not set
+		# return false if either value is not set
 		if( ! isset($_SESSION['user_agent'], $_SERVER['HTTP_USER_AGENT'])) {
 			return FALSE;
 		}
@@ -310,7 +290,7 @@ class Session
 	 */
 	public function csrf_token_tag()
 	{
-		return '<input type="hidden" name="csrf_token" value="' . $this->create_csrf_token() . '">';
+		return '<input type="hidden" name="csrf_token" value="' . $this->create_csrf_token() . '" />';
 	}
 
 	/**
@@ -320,10 +300,12 @@ class Session
 	 */
 	private function create_csrf_token()
 	{
-		$_SESSION['csrf_token']      = $this->csrf_token();
+		# Note: Do not try to inline $token !
+		$token                       = $this->csrf_token();
+		$_SESSION['csrf_token']      = $token;
 		$_SESSION['csrf_token_time'] = time();
 
-		return $this->csrf_token();
+		return $token;
 	}
 
 	/**
@@ -380,9 +362,9 @@ class Session
 			$stored_token = $_SESSION['csrf_token'];
 
 			return $user_token === $stored_token;
+		} else {
+			return FALSE;
 		}
-
-		return FALSE;
 	}
 
 	/**
