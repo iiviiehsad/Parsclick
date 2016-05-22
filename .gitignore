@@ -71,7 +71,6 @@ config.codekit
 .trash
 .viminfo
 .zshrc
-bin
 etc
 mail
 perl5
