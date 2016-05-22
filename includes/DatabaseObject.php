@@ -1,6 +1,4 @@
-<?php
-
-// namespace Parsclick;
+<?php // namespace Parsclick;
 abstract class DatabaseObject
 {
 	// OPTIONAL
@@ -100,7 +98,7 @@ abstract class DatabaseObject
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
-	public static function find_by_username($username = "")
+	public static function find_by_username($username = '')
 	{
 		global $database;
 		$sql = 'SELECT * ';
@@ -112,7 +110,7 @@ abstract class DatabaseObject
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
-	public static function find_by_email($email = "")
+	public static function find_by_email($email = '')
 	{
 		global $database;
 		$sql = 'SELECT * ';
@@ -124,7 +122,7 @@ abstract class DatabaseObject
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
 	}
 
-	public static function find_by_token($token = "")
+	public static function find_by_token($token = '')
 	{
 		global $database;
 		$sql = 'SELECT * ';
@@ -138,7 +136,7 @@ abstract class DatabaseObject
 
 	public function full_name()
 	{
-		return isset($this->first_name) && isset($this->last_name) ? $this->first_name . ' ' . $this->last_name : '';
+		return isset($this->first_name, $this->last_name) ? $this->first_name . ' ' . $this->last_name : '';
 	}
 
 	public static function num_rows()
@@ -168,7 +166,7 @@ abstract class DatabaseObject
 		return ! empty($array_result) ? array_shift($array_result) : FALSE;
 	}
 
-	public static function search($search = "")
+	public static function search($search = '')
 	{
 		global $database;
 		$sql = 'SELECT * FROM ' . static::$table_name . ' WHERE ';
@@ -222,9 +220,9 @@ abstract class DatabaseObject
 			$this->id = $database->insert_id();
 
 			return TRUE;
-		} else {
-			return FALSE;
 		}
+
+		return FALSE;
 	}
 
 	public function save()
@@ -261,9 +259,9 @@ abstract class DatabaseObject
 			$user->update();
 
 			return TRUE;
-		} else {
-			return FALSE;
 		}
+
+		return FALSE;
 	}
 
 	public function delete_reset_token($username)
@@ -295,11 +293,11 @@ abstract class DatabaseObject
 			';
 			$mail->Body    = email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content);
 
-			//return send_email($user->email, "Reset Password Request", email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content));
+			// return send_email($user->email, 'Reset Password Request', email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content));
 			return $mail->send();
-		} else {
-			return FALSE;
 		}
+
+		return FALSE;
 	}
 
 } // END of CLASS

@@ -14,7 +14,7 @@ class PostgresSQLDatabase implements Database
 	/**
 	 * Constructor will open the connection automatically whe the class is called or instantiated.
 	 */
-	function __construct()
+	public function __construct()
 	{
 		$this->open_connection();
 		$this->magic_quotes_active       = get_magic_quotes_gpc();
