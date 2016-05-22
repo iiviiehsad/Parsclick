@@ -14,7 +14,6 @@
  */
 class File extends DatabaseObject
 {
-
 	public static    $max_file_size  = 33554432;
 	protected static $table_name     = 'files';
 	protected static $db_fields      = ['id', 'course_id', 'name', 'type', 'size', 'description'];

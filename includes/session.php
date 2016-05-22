@@ -14,13 +14,15 @@ class Session
 	private $admin_logged_in  = FALSE;
 	private $author_logged_in = FALSE;
 
-	function __construct()
+	/**
+	 * Session constructor.
+	 */
+	public function __construct()
 	{
 		session_start();
 		$this->check_message();
 		$this->check_login();
 		if($this->logged_in) {
-			$this->allowed_get_params(['subject', 'article', 'category', 'course', 'q']);
 			// actions to take right away if member is logged in
 		} elseif($this->admin_logged_in) {
 			// actions to take right away if admin is logged in
@@ -31,6 +33,9 @@ class Session
 		}
 	}
 
+	/**
+	 * Checks to see if there's any message to show
+	 */
 	private function check_message()
 	{
 		// Is there a message stored in the session?
@@ -43,6 +48,12 @@ class Session
 		}
 	}
 
+	/**
+	 * Checks to see who is logged in
+	 * Admin
+	 * Author
+	 * Member
+	 */
 	private function check_login()
 	{
 		if(isset($_SESSION['id'])) {
@@ -62,6 +73,12 @@ class Session
 		}
 	}
 
+	/**
+	 * Allowable parameters to use
+	 *
+	 * @param array $allowed_params
+	 * @return array
+	 */
 	private function allowed_get_params($allowed_params = [])
 	{
 		$allowed_array = [];
@@ -76,6 +93,9 @@ class Session
 		return $allowed_array;
 	}
 
+	/**
+	 * Logs out and redirects if member isn't logged in
+	 */
 	public function confirm_logged_in()
 	{
 		if( ! $this->is_logged_in() || ! $this->is_session_valid()) {
@@ -84,11 +104,21 @@ class Session
 		}
 	}
 
+	/**
+	 * Confirms if member is logged in
+	 *
+	 * @return bool
+	 */
 	public function is_logged_in()
 	{
 		return (isset($this->logged_in) && $this->logged_in);
 	}
 
+	/**
+	 * Checks to see if the session is valid
+	 *
+	 * @return bool
+	 */
 	private function is_session_valid()
 	{
 		$check_ip         = FALSE; // FALSE because everybody uses proxy
@@ -107,32 +137,41 @@ class Session
 		return TRUE;
 	}
 
+	/**
+	 * Checks to see if IP matches the IP stored in the session
+	 *
+	 * @return bool
+	 */
 	private function request_ip_matches_session()
 	{
 		// return false if either value is not set
-		if( ! isset($_SESSION['ip']) || ! isset($_SERVER['REMOTE_ADDR'])) {
+		if( ! isset($_SESSION['ip'], $_SERVER['REMOTE_ADDR'])) {
 			return FALSE;
 		}
-		if($_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
+
+		return $_SESSION['ip'] === $_SERVER['REMOTE_ADDR'];
 	}
 
+	/**
+	 * Checks to see if user agent matches the agent matches stored in the session
+	 *
+	 * @return bool
+	 */
 	private function request_user_agent_matches_session()
 	{
 		// return false if either value is not set
 		if( ! isset($_SESSION['user_agent'], $_SERVER['HTTP_USER_AGENT'])) {
 			return FALSE;
 		}
-		if($_SESSION['user_agent'] === $_SERVER['HTTP_USER_AGENT']) {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
+
+		return $_SESSION['user_agent'] === $_SERVER['HTTP_USER_AGENT'];
 	}
 
+	/**
+	 * Checks to see if last login is recent
+	 *
+	 * @return bool
+	 */
 	private function last_login_is_recent()
 	{
 		$max_elapsed = 60 * 60 * 24 * 3; // 3 days
@@ -147,12 +186,18 @@ class Session
 		}
 	}
 
+	/**
+	 * Destroys the session
+	 */
 	public function logout()
 	{
 		session_unset();
 		session_destroy();
 	}
 
+	/**
+	 * Logs out and redirects if admin isn't logged in
+	 */
 	public function confirm_admin_logged_in()
 	{
 		if( ! $this->is_admin_logged_in() || ! $this->is_session_valid()) {
@@ -161,11 +206,19 @@ class Session
 		}
 	}
 
+	/**
+	 * Confirms if admin is logged in
+	 *
+	 * @return bool
+	 */
 	public function is_admin_logged_in()
 	{
 		return (isset($this->admin_logged_in) && $this->admin_logged_in);
 	}
 
+	/**
+	 * Logs out and redirects if author isn't logged in
+	 */
 	public function confirm_author_logged_in()
 	{
 		if( ! $this->is_author_logged_in() || ! $this->is_session_valid()) {
@@ -174,11 +227,21 @@ class Session
 		}
 	}
 
+	/**
+	 * Confirms if author is logged in
+	 *
+	 * @return bool
+	 */
 	public function is_author_logged_in()
 	{
 		return (isset($this->author_logged_in) && $this->author_logged_in);
 	}
 
+	/**
+	 * Logs in the member and assigns some sessions
+	 *
+	 * @param $member
+	 */
 	public function login($member)
 	{
 		if($member) {
@@ -191,6 +254,11 @@ class Session
 		}
 	}
 
+	/**
+	 * Logs in the admin and assigns some sessions
+	 *
+	 * @param $admin
+	 */
 	public function admin_login($admin)
 	{
 		if($admin) {
@@ -203,6 +271,11 @@ class Session
 		}
 	}
 
+	/**
+	 * Logs in the author and assigns some sessions
+	 *
+	 * @param $author
+	 */
 	public function author_login($author)
 	{
 		if($author) {
@@ -215,36 +288,59 @@ class Session
 		}
 	}
 
+	/**
+	 * Checks the message and assigns it to the session
+	 *
+	 * @param string $msg
+	 * @return mixed
+	 */
 	public function message($msg = '')
 	{
 		if( ! empty($msg)) {
 			$_SESSION['message'] = $msg;
-		} else {
-			return $this->message;
 		}
+
+		return $this->message;
 	}
 
+	/**
+	 * Creates a HTML input tag to use it for CSRF attacks
+	 *
+	 * @return string
+	 */
 	public function csrf_token_tag()
 	{
-		$token = $this->create_csrf_token();
-
-		return '<input type="hidden" name="csrf_token" value="' . $token . '" />';
+		return '<input type="hidden" name="csrf_token" value="' . $this->create_csrf_token() . '">';
 	}
 
+	/**
+	 * Assigns the CSRF token to the session
+	 *
+	 * @return string
+	 */
 	private function create_csrf_token()
 	{
-		$token                       = $this->csrf_token();
-		$_SESSION['csrf_token']      = $token;
+		$_SESSION['csrf_token']      = $this->csrf_token();
 		$_SESSION['csrf_token_time'] = time();
 
-		return $token;
+		return $this->csrf_token();
 	}
 
+	/**
+	 * Creates a CSRF token
+	 *
+	 * @return string
+	 */
 	private function csrf_token()
 	{
-		return md5(uniqid(rand(), TRUE));
+		return md5(uniqid(mt_rand(), TRUE));
 	}
 
+	/**
+	 * Checks to see if CSRF token is recent
+	 *
+	 * @return bool
+	 */
 	public function csrf_token_is_recent()
 	{
 		$max_elapsed = 60 * 60 * 24 * 3; // 3 days
@@ -259,6 +355,11 @@ class Session
 		}
 	}
 
+	/**
+	 * Destroys the CSRF token
+	 *
+	 * @return bool
+	 */
 	private function destroy_csrf_token()
 	{
 		$_SESSION['csrf_token']      = NULL;
@@ -267,6 +368,26 @@ class Session
 		return TRUE;
 	}
 
+	/**
+	 * Checks to see if CSRF token is valid
+	 *
+	 * @return bool
+	 */
+	public function csrf_token_is_valid()
+	{
+		if(isset($_POST['csrf_token'])) {
+			$user_token   = $_POST['csrf_token'];
+			$stored_token = $_SESSION['csrf_token'];
+
+			return $user_token === $stored_token;
+		}
+
+		return FALSE;
+	}
+
+	/**
+	 * Shuts down the communication if CSRF token isn't valid
+	 */
 	public function die_on_csrf_token_failure()
 	{
 		if( ! $this->csrf_token_is_valid()) {
@@ -277,18 +398,11 @@ class Session
 		}
 	}
 
-	public function csrf_token_is_valid()
-	{
-		if(isset($_POST['csrf_token'])) {
-			$user_token   = $_POST['csrf_token'];
-			$stored_token = $_SESSION['csrf_token'];
-
-			return $user_token === $stored_token;
-		} else {
-			return FALSE;
-		}
-	}
-
+	/**
+	 * Checks to see if HTTP request is from the same domain
+	 *
+	 * @return bool
+	 */
 	public function request_is_same_domain()
 	{
 		if( ! isset($_SERVER['HTTP_REFERER'])) {
@@ -297,7 +411,7 @@ class Session
 			$referer_host = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
 			$server_host  = $_SERVER['HTTP_HOST'];
 
-			return ($referer_host == $server_host) ? TRUE : FALSE;
+			return $referer_host == $server_host;
 		}
 	}
 
