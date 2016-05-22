@@ -6,7 +6,7 @@ if( ! $current_course || ! $current_category) {
 	redirect_to('author_courses.php');
 }
 $errors = '';
-if(isset($_POST["submit"])) {
+if(isset($_POST['submit'])) {
 	global $database;
 	$course          = Course::find_by_id($current_course->id, FALSE);
 	$name            = ucfirst($_POST['course_name']);
@@ -16,15 +16,15 @@ if(isset($_POST["submit"])) {
 	$position        = (int) $_POST['position'];
 	$visible         = (int) $_POST['visible'];
 	$content         = $_POST['content'];
-	$sql             = "UPDATE courses SET ";
-	$sql .= "category_id = " . $database->escape_value($category_id) . ", ";
+	$sql             = 'UPDATE courses SET ';
+	$sql .= 'category_id = ' . $database->escape_value($category_id) . ', ';
 	$sql .= "name = '" . $database->escape_value($name) . "', ";
 	$sql .= "youtubePlaylist = '" . $database->escape_value($youtubePlaylist) . "', ";
 	$sql .= "file_link = '" . $database->escape_value($file_link) . "', ";
-	$sql .= "position = " . $database->escape_value($position) . ", ";
-	$sql .= "visible = " . $database->escape_value($visible) . ", ";
+	$sql .= 'position = ' . $database->escape_value($position) . ', ';
+	$sql .= 'visible = ' . $database->escape_value($visible) . ', ';
 	$sql .= "content = '" . $database->escape_value($content) . "' ";
-	$sql .= "WHERE id = " . $database->escape_value($course->id);
+	$sql .= 'WHERE id = ' . $database->escape_value($course->id);
 	$database->query($sql);
 	$result = $database->affected_rows();
 	if($result == 1) {
@@ -90,7 +90,7 @@ echo output_message($message, $errors);
 								$page_set = Course::num_courses_for_category($current_course->category_id);
 								for($count = 1; $count <= $page_set; $count++):
 									echo "<option value='{$count}'";
-									if($current_course->position == $count): echo " selected"; endif;
+									if($current_course->position == $count): echo ' selected'; endif;
 									echo ">{$count}</option>";
 								endfor;
 								?>
@@ -107,7 +107,7 @@ echo output_message($message, $errors);
 								foreach(Category::find_all(FALSE) as $category):
 									echo "<option value='{$category->id}'";
 									if($current_course->category_id == $category->id):
-										echo "selected";
+										echo 'selected';
 									endif;
 									echo ">{$category->name}</option>";
 								endforeach;

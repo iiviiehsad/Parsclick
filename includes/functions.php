@@ -1237,6 +1237,7 @@ function active()
 /******************************************************************************************************/
 /*                                       COOKIE FUNCTIONS                                             */
 /******************************************************************************************************/
+
 /**
  * @param $salt   string gets the salt to add to the @param $string
  * @param $string $string string gets the text

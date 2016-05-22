@@ -22,7 +22,7 @@ if(isset($_POST['submit'])) {
 	$result = $current_article->save();
 	if($result) { // Success
 		$session->message('مقاله بروزرسانی شد.');
-		redirect_to("author_articles.php?subject=" . $current_subject->id . "&article=" . $current_article->id);
+		redirect_to('author_articles.php?subject=' . $current_subject->id . '&article=' . $current_article->id);
 	} else { // Failure
 		$errors = 'مقاله بروزرسانی نشد!';
 	}

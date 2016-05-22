@@ -60,7 +60,8 @@
 			];
 
 		this.forHtmlScript(SyntaxHighlighter.regexLib.phpScriptTags);
-	}
+	};
+
 	Brush.prototype	= new SyntaxHighlighter.Highlighter();
 	Brush.aliases	= ['php'];
 

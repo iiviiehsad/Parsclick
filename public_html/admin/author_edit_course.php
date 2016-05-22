@@ -22,7 +22,7 @@ if(isset($_POST['submit'])) {
 	$result                          = $current_course->save();
 	if($result) { // Success
 		$session->message('درس بروزرسانی شد.');
-		redirect_to("author_courses.php?category=" . $current_category->id . "&course=" . $current_course->id);
+		redirect_to('author_courses.php?category=' . $current_category->id . '&course=' . $current_course->id);
 	} else { // Failure
 		$errors = 'درس بروزرسانی نشد یا چیزی تغییر نیافت!';
 	}

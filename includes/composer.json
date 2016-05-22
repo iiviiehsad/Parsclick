@@ -8,11 +8,33 @@
 			"email" : "hazz.azimi@gmail.com"
 		}
 	],
-
 	"require"     : {
 		"stripe/stripe-php"   : "v3.5.0",
 		"google/recaptcha"    : "1.1.2",
 		"phpmailer/phpmailer" : "^5.2",
 		"miladr/jalali"       : "^0.0.7"
+	},
+	"autoload"    : {
+		"files" : [
+			"config.php",
+			"Session.php",
+			"functions.php",
+			"Database.php",
+			"MySQLDatabase.php",
+			"DatabaseObject.php",
+			"Pagination.php",
+			"Member.php",
+			"Admin.php",
+			"Author.php",
+			"Subject.php",
+			"Article.php",
+			"Category.php",
+			"Course.php",
+			"File.php",
+			"Playlist.php",
+			"Comment.php",
+			"ArticleComment.php",
+			"FailedLogins.php"
+		]
 	}
 }

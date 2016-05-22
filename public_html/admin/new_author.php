@@ -10,7 +10,7 @@ if(isset($_POST['submit'])) {
 	$author->last_name  = trim(ucwords(strtolower($_POST['last_name'])));
 	$author->email      = trim(strtolower($_POST['email']));
 	$author->status     = (int) $_POST['status'];
-	$author->token      = md5(uniqid(rand()));
+	$author->token      = md5(uniqid(mt_rand(), TRUE));
 	$result             = $author->create();
 	if($result && $author->email_confirmation_details($author->username)) { // Success
 		$session->message('نویسنده با اسم کاربری ' . $author->username . ' ساخته شد.');

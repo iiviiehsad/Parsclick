@@ -39,7 +39,7 @@ class Session
 			$this->message = $_SESSION['message'];
 			unset($_SESSION['message']);
 		} else {
-			$this->message = "";
+			$this->message = '';
 		}
 	}
 
@@ -80,7 +80,7 @@ class Session
 	{
 		if( ! $this->is_logged_in() || ! $this->is_session_valid()) {
 			$this->logout();
-			redirect_to("/login");
+			redirect_to('/login');
 		}
 	}
 
@@ -123,7 +123,7 @@ class Session
 	private function request_user_agent_matches_session()
 	{
 		// return false if either value is not set
-		if( ! isset($_SESSION['user_agent']) || ! isset($_SERVER['HTTP_USER_AGENT'])) {
+		if( ! isset($_SESSION['user_agent'], $_SERVER['HTTP_USER_AGENT'])) {
 			return FALSE;
 		}
 		if($_SESSION['user_agent'] === $_SERVER['HTTP_USER_AGENT']) {
@@ -157,7 +157,7 @@ class Session
 	{
 		if( ! $this->is_admin_logged_in() || ! $this->is_session_valid()) {
 			$this->logout();
-			redirect_to("/admin");
+			redirect_to('/admin');
 		}
 	}
 
@@ -170,7 +170,7 @@ class Session
 	{
 		if( ! $this->is_author_logged_in() || ! $this->is_session_valid()) {
 			$this->logout();
-			redirect_to("/admin");
+			redirect_to('/admin');
 		}
 	}
 
@@ -215,7 +215,7 @@ class Session
 		}
 	}
 
-	public function message($msg = "")
+	public function message($msg = '')
 	{
 		if( ! empty($msg)) {
 			$_SESSION['message'] = $msg;
@@ -270,8 +270,8 @@ class Session
 	public function die_on_csrf_token_failure()
 	{
 		if( ! $this->csrf_token_is_valid()) {
-			$output1 = "خطای درخواست جعلی!";
-			$output2 = "شناسه درخواست میان وب گاهی معتبر نیست! برگردید و رفرش کنید.";
+			$output1 = 'خطای درخواست جعلی!';
+			$output2 = 'شناسه درخواست میان وب گاهی معتبر نیست! برگردید و رفرش کنید.';
 			$output  = warning($output1, $output2);
 			die($output);
 		}

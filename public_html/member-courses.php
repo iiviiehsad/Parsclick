@@ -58,7 +58,7 @@ find_selected_course(TRUE);
 				<a class="btn btn-primary"
 				   href="forum?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>"
 				   data-toggle="tooltip" data-placement="bottom" title="سوالات و نظرات"><i class="fa fa-comments fa-lg"></i>
-					انجمن<?php echo "<span class='badge'>" . convert(Comment::count_comments_for_course($current_course->id)) . "</span>"; ?>
+					انجمن<?php echo '<span class="badge">' . convert(Comment::count_comments_for_course($current_course->id)) . '</span>'; ?>
 				</a>
 				<!-- ------------------------------------------------------------------------------------------------- -->
 				<?php include_layout_template('list-videos.php'); ?>

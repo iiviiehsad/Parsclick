@@ -20,7 +20,7 @@ if(isset($_POST['submit'])) {
 	$course->position        = (int) $_POST['position'];
 	$course->visible         = $author->id == 1 ? (int) $_POST['visible'] : 0;
 	$course->content         = $_POST['description'];
-	$course->created_at      = strftime("%Y-%m-%d %H:%M:%S", time());
+	$course->created_at      = strftime('%Y-%m-%d %H:%M:%S', time());
 	$result                  = $course->create();
 	if($result) {
 		send_email('hazz.azimi@gmail.com', 'New Course!', 'New Course Added');

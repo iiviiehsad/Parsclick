@@ -30,7 +30,7 @@ $newest_article = Article::find_newest_article();
 	<?php endif; ?>
 	<p class="edit"> GMT امروز <?php echo datetime_to_shamsi(time()); ?></p>
 	<div class="clearfix"></div>
-	<p class="edit">Today is <?php echo datetime_to_text(date("Y-m-d H:i:s")); ?></p>
+	<p class="edit">Today is <?php echo datetime_to_text(date('Y-m-d H:i:s')); ?></p>
 </div><!--.jumbotron-->
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>

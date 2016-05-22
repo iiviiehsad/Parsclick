@@ -45,7 +45,7 @@ if($_POST) {
 					$member->city       = trim(ucwords(strtolower($_POST['city'])));
 					$member->email      = trim(strtolower($_POST['email']));
 					$member->status     = 0;
-					$member->token      = md5(uniqid(rand()));
+					$member->token      = md5(uniqid(mt_rand(), TRUE));
 					$result             = $member->create();
 					if($result) {
 						if( ! $member->email_confirmation_details($member->username)) {

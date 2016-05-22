@@ -25,7 +25,7 @@ if(isset($_POST['resend_email'])) {
 			}
 		} else {
 			// $errors = "شناسه CSRF معتبر نیست!"
-			$session->die_on_csrf_token_failure();;
+			$session->die_on_csrf_token_failure();
 		}
 	} else {
 		$errors = 'درخواست معتبر نیست!';

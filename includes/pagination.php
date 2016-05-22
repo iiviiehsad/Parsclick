@@ -35,7 +35,7 @@ class pagination
 	 */
 	public function has_previous_page()
 	{
-		return $this->previous_page() >= 1 ? TRUE : FALSE;
+		return $this->previous_page() ? TRUE : FALSE;
 	}
 
 	/**

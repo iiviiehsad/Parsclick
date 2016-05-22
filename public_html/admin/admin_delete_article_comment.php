@@ -10,7 +10,7 @@ if($comment && $comment->delete()) {
 	$session->message('نظر حذف شد.');
 	redirect_to($_SERVER['HTTP_REFERER'] . '#comments');
 } else {
-	$session->message("نظر حذف نشد!");
+	$session->message('نظر حذف نشد!');
 	redirect_to($_SERVER['HTTP_REFERER'] . '#comments');
 }
 if(isset($database)) $database->close_connection();

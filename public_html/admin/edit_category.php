@@ -14,7 +14,7 @@ if(isset($_POST['submit'])) {
 	$result             = $category->save();
 	if($result) {
 		$session->message('موضوع بروزرسانی شد.');
-		redirect_to("edit_category.php?category=" . $current_category->id);
+		redirect_to('edit_category.php?category=' . $current_category->id);
 	} else {
 		$errors = 'موضوع بروزرسانی نشد!';
 	}
@@ -48,7 +48,7 @@ echo output_message($message, $errors);
 								<?php for($count = 1; $count <= Category::num_rows(); $count++):
 									echo "<option value='{$count}'";
 									if($current_category->position == $count):
-										echo " selected";
+										echo ' selected';
 									endif;
 									echo ">{$count}</option>";
 								endfor; ?>

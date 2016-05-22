@@ -22,7 +22,7 @@ if(isset($_POST['submit'])) {
 		$article->visible = 0;
 	}
 	$article->content    = $_POST['content'];
-	$article->created_at = strftime("%Y-%m-%d %H:%M:%S", time());
+	$article->created_at = strftime('%Y-%m-%d %H:%M:%S', time());
 	$result              = $article->create();
 	if($result) { // Success
 		send_email('hazz.azimi@gmail.com', 'New Article!', 'New Article Added');

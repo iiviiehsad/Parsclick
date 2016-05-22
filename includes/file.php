@@ -16,7 +16,7 @@ class File extends DatabaseObject
 {
 
 	public static    $max_file_size  = 33554432;
-	protected static $table_name     = "files";
+	protected static $table_name     = 'files';
 	protected static $db_fields      = ['id', 'course_id', 'name', 'type', 'size', 'description'];
 	public           $id;
 	public           $course_id;
@@ -25,17 +25,17 @@ class File extends DatabaseObject
 	public           $size;
 	public           $description;
 	public           $errors         = [];
-	protected        $upload_dir     = "files";
+	protected        $upload_dir     = 'files';
 	protected        $permittedTypes = ['application/zip']; //32MB
 	protected        $upload_errors  = [
-		UPLOAD_ERR_OK         => "خطایی نیست.",
-		UPLOAD_ERR_INI_SIZE   => "فایل بسیار بزرگ است.",
-		UPLOAD_ERR_FORM_SIZE  => "فایل بزرگ است.",
-		UPLOAD_ERR_PARTIAL    => "مقداری از فایل آپلود شد.",
-		UPLOAD_ERR_NO_FILE    => "فایلی نیست.",
-		UPLOAD_ERR_NO_TMP_DIR => "پوشه موقت نیست.",
-		UPLOAD_ERR_CANT_WRITE => "قادر به نوشتن روی دیسک نیست.",
-		UPLOAD_ERR_EXTENSION  => "آپلود فایل بخاطر فرمت فایل جلوگیری شد."
+		UPLOAD_ERR_OK         => 'خطایی نیست.',
+		UPLOAD_ERR_INI_SIZE   => 'فایل بسیار بزرگ است.',
+		UPLOAD_ERR_FORM_SIZE  => 'فایل بزرگ است.',
+		UPLOAD_ERR_PARTIAL    => 'مقداری از فایل آپلود شد.',
+		UPLOAD_ERR_NO_FILE    => 'فایلی نیست.',
+		UPLOAD_ERR_NO_TMP_DIR => 'پوشه موقت نیست.',
+		UPLOAD_ERR_CANT_WRITE => 'قادر به نوشتن روی دیسک نیست.',
+		UPLOAD_ERR_EXTENSION  => 'آپلود فایل بخاطر فرمت فایل جلوگیری شد.'
 	];
 	private          $temp_path;
 
@@ -46,9 +46,9 @@ class File extends DatabaseObject
 	public static function num_files_for_course($course_id)
 	{
 		global $database;
-		$sql = "SELECT * ";
-		$sql .= " FROM " . self::$table_name;
-		$sql .= " WHERE course_id = " . $database->escape_value($course_id);
+		$sql = 'SELECT * ';
+		$sql .= ' FROM ' . self::$table_name;
+		$sql .= ' WHERE course_id = ' . $database->escape_value($course_id);
 		$video_set = $database->query($sql);
 
 		return $database->num_rows($video_set);
@@ -61,9 +61,9 @@ class File extends DatabaseObject
 	public static function find_files_for_course($course_id)
 	{
 		global $database;
-		$sql = "SELECT * ";
-		$sql .= " FROM " . self::$table_name;
-		$sql .= " WHERE course_id = " . $database->escape_value($course_id);
+		$sql = 'SELECT * ';
+		$sql .= ' FROM ' . self::$table_name;
+		$sql .= ' WHERE course_id = ' . $database->escape_value($course_id);
 
 		return self::find_by_sql($sql);
 	}
@@ -75,7 +75,7 @@ class File extends DatabaseObject
 	public function attach_file($file)
 	{
 		if( ! $file || empty($file) || ! is_array($file)) {
-			$this->errors[] = "هیچ فایلی آپلود نشد!";
+			$this->errors[] = 'هیچ فایلی آپلود نشد!';
 
 			return FALSE;
 		} elseif($file['error'] != 0) {
@@ -100,7 +100,7 @@ class File extends DatabaseObject
 	 */
 	protected function checkType($file)
 	{
-		if(in_array($file['type'], $this->permittedTypes)) {
+		if(in_array($file['type'], $this->permittedTypes, FALSE)) {
 			return TRUE;
 		} else {
 			$this->errors[] = $file['name'] . ' نوعی نیست که باید آپلود شود!';
@@ -118,7 +118,7 @@ class File extends DatabaseObject
 		// Remove characters that could alter file path.
 		// I disallowed spaces because they cause other headaches.
 		// "." is allowed (e.g. "photo.jpg") but ".." is not.
-		$filename = preg_replace("/([^A-Za-z0-9_\-\.]|[\.]{2})/", "", $filename);
+		$filename = preg_replace("/([^A-Za-z0-9_\-\.]|[\.]{2})/", '', $filename);
 		// basename() ensures a file name and not a path
 		$filename = basename($filename);
 
@@ -139,22 +139,22 @@ class File extends DatabaseObject
 	public function save()
 	{
 		if( ! empty($this->errors)) {
-			$this->errors[] = "مشکلی پیش آمد!";
+			$this->errors[] = 'مشکلی پیش آمد!';
 
 			return FALSE;
 		}
 		if(strlen($this->description) > 255) {
-			$this->errors[] = "خطا! توضیحات بیشتر ار ۲۵۵ حروف نباید باشد.";
+			$this->errors[] = 'خطا! توضیحات بیشتر ار ۲۵۵ حروف نباید باشد.';
 
 			return FALSE;
 		}
 		if(empty($this->name) || empty($this->temp_path)) {
-			$this->errors[] = "خطا! محل قرار دادن فایل موجود نیست.";
+			$this->errors[] = 'خطا! محل قرار دادن فایل موجود نیست.';
 
 			return FALSE;
 		}
 		if($this->size > self::$max_file_size) {
-			$this->errors[] = "خطا! اندازه فایل بیش از حد بزرگ است.";
+			$this->errors[] = 'خطا! اندازه فایل بیش از حد بزرگ است.';
 
 			return FALSE;
 		}
@@ -179,7 +179,7 @@ class File extends DatabaseObject
 				return TRUE;
 			}
 		} else {
-			$this->errors[] = "خطا! آپلود فایل انجام نشد, به احتمال نداشتن اجازه آپلود برای پوشه مورد نظر.";
+			$this->errors[] = 'خطا! آپلود فایل انجام نشد, به احتمال نداشتن اجازه آپلود برای پوشه مورد نظر.';
 
 			return FALSE;
 		}

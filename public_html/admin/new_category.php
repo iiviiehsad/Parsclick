@@ -11,7 +11,7 @@ if(isset($_POST['submit'])) {
 	$result             = $category->create();
 	if($result) { // Success
 		$session->message('موضوع درست شد.');
-		redirect_to("admin_courses.php");
+		redirect_to('admin_courses.php');
 	} else { // Failure
 		$session->message('موضوع درست نشد!');
 		redirect_to('new_category.php');

@@ -16,11 +16,11 @@ echo output_message($message);
 			<dt>پسورد:</dt>
 			<dd>&#x25cf;&#x25cf;&#x25cf;&#x25cf;&#x25cf;&#x25cf;</dd>
 			<dt>نام:</dt>
-			<dd><?php echo ! empty($author->first_name) ? htmlentities(ucfirst($author->first_name)) : "-"; ?></dd>
+			<dd><?php echo ! empty($author->first_name) ? htmlentities(ucfirst($author->first_name)) : '-'; ?></dd>
 			<dt>نام خانوادگی:</dt>
-			<dd><?php echo ! empty($author->last_name) ? htmlentities(ucfirst($author->last_name)) : "-"; ?></dd>
+			<dd><?php echo ! empty($author->last_name) ? htmlentities(ucfirst($author->last_name)) : '-'; ?></dd>
 			<dt>ایمیل:</dt>
-			<dd class="arial"><?php echo ! empty($author->email) ? htmlentities(strtolower($author->email)) : "-"; ?></dd>
+			<dd class="arial"><?php echo ! empty($author->email) ? htmlentities(strtolower($author->email)) : '-'; ?></dd>
 			<dt>ایمیل اختصاصی</dt>
 			<dd class="arial"><?php echo ! empty($author->parsclickmail) ? htmlentities(strtolower($author->parsclickmail)) : "-"; ?></dd>
 			<dt>وضعیت:</dt>

@@ -3,7 +3,7 @@ $filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
-$errors             = "";
+$errors             = '';
 $MAX_FILE_SIZE      = 100000;
 $allowed_mime_types = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg'];
 $allowed_extensions = ['png', 'gif', 'jpg', 'jpeg', 'PNG', 'GIF', 'JPG', 'JPEG'];

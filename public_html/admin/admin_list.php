@@ -9,7 +9,7 @@ echo output_message($message);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-users"></i> لیست مدیران
-			                                ارشد<span class="badge arial"><?php echo convert(count($admin_set)); ?></span>
+			 ارشد<span class="badge arial"><?php echo convert(count($admin_set)); ?></span>
 			</h2>
 			<br/>
 			<div class="table-responsive">

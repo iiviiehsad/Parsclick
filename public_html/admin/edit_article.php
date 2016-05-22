@@ -13,19 +13,19 @@ if(isset($_POST['submit'])) {
 	$subject_id = (int) $_POST['subject_id'];
 	$position   = (int) $_POST['position'];
 	$visible    = (int) $_POST['visible'];
-	$content    = $_POST["content"];
-	$sql        = "UPDATE articles SET ";
-	$sql .= "subject_id = " . $database->escape_value($subject_id) . ", ";
+	$content    = $_POST['content'];
+	$sql        = 'UPDATE articles SET ';
+	$sql .= 'subject_id = ' . $database->escape_value($subject_id) . ', ';
 	$sql .= "name = '" . $database->escape_value($name) . "', ";
-	$sql .= "position = " . $database->escape_value($position) . ", ";
-	$sql .= "visible = " . $database->escape_value($visible) . ", ";
+	$sql .= 'position = ' . $database->escape_value($position) . ', ';
+	$sql .= 'visible = ' . $database->escape_value($visible) . ', ';
 	$sql .= "content = '" . $database->escape_value($content) . "' ";
-	$sql .= "WHERE id = " . $database->escape_value($article->id);
+	$sql .= 'WHERE id = ' . $database->escape_value($article->id);
 	$database->query($sql);
 	$result = $database->affected_rows();
 	if($result == 1) {
 		$session->message('مقاله بروزرسانی شد.');
-		redirect_to("admin_articles.php?subject=" . $current_subject->id . "&article=" . $current_article->id);
+		redirect_to('admin_articles.php?subject=' . $current_subject->id . '&article=' . $current_article->id);
 	} else {
 		$errors = 'مقاله بروزرسانی نشد!';
 	}
@@ -61,7 +61,7 @@ echo output_message($message, $errors);
 								for($count = 1; $count <= $page_set; $count++):
 									echo "<option value='{$count}'";
 									if($current_article->position == $count):
-										echo " selected";
+										echo ' selected';
 									endif;
 									echo ">{$count}</option>";
 								endfor;
@@ -78,7 +78,7 @@ echo output_message($message, $errors);
 								foreach(Subject::find_all(FALSE) as $subject):
 									echo "<option value='{$subject->id}'";
 									if($current_article->subject_id == $subject->id):
-										echo "selected";
+										echo 'selected';
 									endif;
 									echo ">{$subject->name}</option>";
 								endforeach;

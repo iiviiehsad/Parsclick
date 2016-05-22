@@ -3,7 +3,7 @@
 class Member extends DatabaseObject
 {
 	// Really important: array and properties MUST be exactly the same name as db columns
-	protected static $table_name = "members";
+	protected static $table_name = 'members';
 	protected static $db_fields  = [
 		'id',
 		'username',
@@ -34,10 +34,10 @@ class Member extends DatabaseObject
 	 * @param string $search gets the search query
 	 * @return array|null the result
 	 */
-	public static function search($search = "")
+	public static function search($search = '')
 	{
 		global $database;
-		$sql = "SELECT * FROM " . self::$table_name . " WHERE ";
+		$sql = 'SELECT * FROM ' . self::$table_name . ' WHERE ';
 		$sql .= "username LIKE '%{$database->escape_value($search)}%' ";
 		$sql .= "OR first_name LIKE '%{$database->escape_value($search)}%' ";
 		$sql .= "OR last_name LIKE '%{$database->escape_value($search)}%' ";
@@ -57,7 +57,7 @@ class Member extends DatabaseObject
 	 */
 	public static function find_members($limit = 0, $offset = 0)
 	{
-		$sql = "SELECT * FROM " . self::$table_name . " ORDER BY id DESC LIMIT {$limit} OFFSET {$offset}";
+		$sql = 'SELECT * FROM ' . self::$table_name . " ORDER BY id DESC LIMIT {$limit} OFFSET {$offset}";
 
 		return self::find_by_sql($sql);
 	}
@@ -70,9 +70,9 @@ class Member extends DatabaseObject
 	public function check_status()
 	{
 		if($this->status == 0) {
-			redirect_to("freezed");
+			redirect_to('freezed');
 		} elseif($this->status == 2) {
-			redirect_to("blocked");
+			redirect_to('blocked');
 		}
 	}
 
@@ -92,7 +92,7 @@ class Member extends DatabaseObject
 			$mail = new PHPMailer();
 			$mail->isSMTP();
 			$mail->isHTML(TRUE);
-			$mail->addAddress($this->email, "Reset Password");
+			$mail->addAddress($this->email, 'Reset Password');
 			$mail->CharSet    = 'UTF-8';
 			$mail->Host       = SMTP;
 			$mail->SMTPSecure = TLS;
@@ -102,12 +102,12 @@ class Member extends DatabaseObject
 			$mail->Password   = EMAILPASS;
 			$mail->FromName   = DOMAIN;
 			$mail->From       = EMAILUSER;
-			$mail->Subject    = "Reset Password Request";
-			$content          = "
+			$mail->Subject    = 'Reset Password Request';
+			$content          = '
 				<p>اخیرا شما درخواست بازیافت پسوردتان را از ما نموده اید؟</p>
 				<p>اگر شما این درخواست را نکردید هول نکنید, هیچ اقدامی لازم نیست انجام دهید. پسورد شما بدون کلیک کردن به لینک بالا قابل تغییر نخواهد بود.</p>
 				<p>از لینک زیر برای عوض کردن پسورد خود استفاده کنید:</p>
-			";
+			';
 			$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content);
 
 			//return send_email($this->email, "Reset Password Request", email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content));
@@ -132,7 +132,7 @@ class Member extends DatabaseObject
 			$mail = new PHPMailer();
 			$mail->isSMTP();
 			$mail->isHTML(TRUE);
-			$mail->addAddress($this->email, "Forgot Username");
+			$mail->addAddress($this->email, 'Forgot Username');
 			$mail->CharSet    = 'UTF-8';
 			$mail->Host       = SMTP;
 			$mail->SMTPSecure = TLS;
@@ -142,12 +142,12 @@ class Member extends DatabaseObject
 			$mail->Password   = EMAILPASS;
 			$mail->FromName   = DOMAIN;
 			$mail->From       = EMAILUSER;
-			$mail->Subject    = "Username Reminder Request";
-			$content          = "
+			$mail->Subject    = 'Username Reminder Request';
+			$content          = '
 				<p>اسم کاربری را فراموش کردید؟</p>
 				<p>لطفا به خاطر بسپارید که اسم کاربری را در جایی امن نگه داری کنید و این ایمیل را پاک کنید. این ایمیل را از سطل زباله ایمیل هم پاک کنید.</p>
 				<p>اسم کاربری شما هست:</p>
-			";
+			';
 			$mail->Body       = email($user->full_name(), DOMAIN, $user->username, $content);
 
 			//return send_email($this->email, "Username Reminder Request", email($user->full_name(), DOMAIN, $user->username, $content));
@@ -171,7 +171,7 @@ class Member extends DatabaseObject
 			$mail = new PHPMailer();
 			$mail->isSMTP();
 			$mail->isHTML(TRUE);
-			$mail->addAddress($this->email, "Welcome to Parsclick, Confirm Your Email");
+			$mail->addAddress($this->email, 'Welcome to Parsclick, Confirm Your Email');
 			$mail->CharSet    = 'UTF-8';
 			$mail->Host       = SMTP;
 			$mail->SMTPSecure = TLS;
@@ -181,8 +181,8 @@ class Member extends DatabaseObject
 			$mail->Password   = EMAILPASS;
 			$mail->FromName   = DOMAIN;
 			$mail->From       = EMAILUSER;
-			$mail->Subject    = "به پارس کلیک خوش آمدید";
-			$content          = "
+			$mail->Subject    = 'به پارس کلیک خوش آمدید';
+			$content          = '
 				<p>خوب یک خوش آمد و استقبال گرم را از طرف بچه های پارس کلیک بپذیرید و ممنونیم که ما را انتخاب کردید.</p>
 				<ul>
 					<li>خیلی ضرورت دارد که اطلاعات شما بروز باشد مخصوصا تنها پل ارتباطی بین ما  و شما که ایمیلتان است.</li>
@@ -191,7 +191,7 @@ class Member extends DatabaseObject
 					<li>اگر سوالی در مورد دروس و مقالات داشتید در قسمت نظرات مربوط به هر کدام بنویسید.</li>
 				</ul>
 				<p>لطفا روی لینک زیر جهت تایید ایمیل خود استفاده کنید:</p>
-			";
+			';
 			$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content);
 
 			//return send_email($this->email, "به پارس کلیک خوش آمدید", email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content));
@@ -208,10 +208,10 @@ class Member extends DatabaseObject
 	public static function delete_inactives()
 	{
 		global $database;
-		$sql = "DELETE FROM " . self::$table_name . " WHERE status = 0";
+		$sql = 'DELETE FROM ' . self::$table_name . ' WHERE status = 0';
 		$database->query($sql);
 
-		return ($database->affected_rows() > 0) ? TRUE : FALSE;
+		return $database->affected_rows() ? TRUE : FALSE;
 	}
 
 } // END of CLASS

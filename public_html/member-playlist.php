@@ -16,7 +16,7 @@ $playlist_set = Playlist::find_playlist_for_member($member->id);
 			<h4>
 				<span
 						class='label label-as-badge label-info'>تعداد <?php echo convert(Playlist::count_playlist_for_member($member->id)); ?>
-				                                            درس داخل لیست پخش شماست.</span>
+				 درس داخل لیست پخش شماست.</span>
 			</h4>
 		<?php else: ?>
 			<h4>

@@ -17,7 +17,7 @@ if(isset($_POST['submit_file'])) {
 		$session->message("فایل {$file->description} با موفقیت آپلود شد.");
 		redirect_to('author_courses.php?category=' . urlencode($current_category->id) . '&course=' . urlencode($current_course->id));
 	} else {
-		$errors = join(' ', $file->errors);
+		$errors = implode(' ', $file->errors);
 	}
 }
 include_layout_template('author_nav.php');
@@ -104,7 +104,7 @@ echo output_message($message, $errors);
 					<?php include_layout_template('course-comments.php'); ?>
 				</article>
 			<?php elseif($current_category): ?>
-				<?php if( ! $current_category->visible) redirect_to("author_courses.php"); ?>
+				<?php if( ! $current_category->visible) redirect_to('author_courses.php'); ?>
 				<div class="panel panel-danger">
 					<div class="panel-heading">
 						<h3 class="panel-title">

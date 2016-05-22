@@ -14,7 +14,7 @@ if(isset($_POST['submit'])) {
 	$result            = $subject->save();
 	if($result) { // Success
 		$session->message('موضوع بروزرسانی شد.');
-		redirect_to("edit_subject.php?subject=" . $current_subject->id);
+		redirect_to('edit_subject.php?subject=' . $current_subject->id);
 	} else { // Failure
 		$errors = 'موضوع بروزرسانی نشد!';
 	}
