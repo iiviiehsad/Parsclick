@@ -197,13 +197,11 @@ class Article extends DatabaseObject
 	 */
 	public function recent($date = NULL)
 	{
-		$date = $date ?: $this->created_at;
-		$time = 60 * 60 * 24 * 7 * 2; // 2 weeks
-		if (strtotime($date) + $time > time()) {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
+		$date     = $date ?: $this->created_at;
+		$future   = (new DateTime('+2 weeks'))->getTimestamp();
+		$interval = $future - time();
+
+		return strtotime($date) + $interval > time();
 	}
 
 	/**
