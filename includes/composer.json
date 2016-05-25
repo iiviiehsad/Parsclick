@@ -15,26 +15,12 @@
 		"miladr/jalali"       : "^0.0.7"
 	},
 	"autoload"    : {
+		"classmap": [
+			"Parsclick/"
+		],
 		"files" : [
 			"config.php",
-			"Session.php",
-			"functions.php",
-			"Database.php",
-			"MySQLDatabase.php",
-			"DatabaseObject.php",
-			"Pagination.php",
-			"Member.php",
-			"Admin.php",
-			"Author.php",
-			"Subject.php",
-			"Article.php",
-			"Category.php",
-			"Course.php",
-			"File.php",
-			"Playlist.php",
-			"Comment.php",
-			"ArticleComment.php",
-			"FailedLogins.php"
+			"functions.php"
 		]
 	}
 }

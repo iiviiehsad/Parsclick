@@ -203,12 +203,11 @@ class Course extends DatabaseObject
 	 */
 	public function updated($date = NULL)
 	{
-		$time = 60 * 60 * 24 * 2; // 2 days
-		if(strtotime($date) + $time > time()) {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
+		// $date     = $date ?: $this->updated_at;
+		$future   = (new DateTime('+2 days'))->getTimestamp();
+		$interval = $future - time();
+
+		return strtotime($date) + $interval > time();
 	}
 
 	/**

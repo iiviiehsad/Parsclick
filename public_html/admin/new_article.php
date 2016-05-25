@@ -12,7 +12,7 @@ if(isset($_POST['submit'])) {
 	$author              = Author::find_by_id($session->id);
 	$article             = new Article();
 	$article->id         = (int) '';
-	$article->subject_id = $current_subject->id; //$_GET['subject'];
+	$article->subject_id = $current_subject->id; // $_GET['subject'];
 	$article->author_id  = $author->id;
 	$article->name       = $_POST['article_name'];
 	$article->position   = (int) $_POST['position'];

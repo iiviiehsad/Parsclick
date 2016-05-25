@@ -36,7 +36,6 @@ class Article extends DatabaseObject
 			WHERE articles.name LIKE '%{$database->escape_value($search)}%'
 				OR authors.first_name LIKE '%{$database->escape_value($search)}%'
 				OR authors.last_name LIKE '%{$database->escape_value($search)}%'
-				
 		";
 		if ($public) {
 			$sql .= 'AND articles.visible = 1';
@@ -205,23 +204,22 @@ class Article extends DatabaseObject
 	}
 
 	/**
-	 * @param null $date
+	 * @param null $date DateTime
 	 * @return bool
 	 */
 	public function updated($date = NULL)
 	{
-		$time = 60 * 60 * 24 * 1; // 1 day
-		if (strtotime($date) + $time > time()) {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
+		// $date     = $date ?: $this->updated_at;
+		$future   = (new DateTime('+1 day'))->getTimestamp();
+		$interval = $future - time();
+
+		return strtotime($date) + $interval > time();
 	}
 
 	/**
 	 * Finds the comments for the course by using the function find_comments_for_article
 	 *
-	 * @return array of comments for the article
+	 * @return array
 	 */
 	public function comments()
 	{
