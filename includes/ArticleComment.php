@@ -31,7 +31,7 @@ class ArticleComment extends DatabaseObject
 	 * @param string $body       gets the message body
 	 * @return bool|\Comment TRUE if comment inserted into database and FALSE if not
 	 */
-	public static function make($member_id, $article_id, $body = "")
+	public static function make($member_id, $article_id, $body = '')
 	{
 		if( ! empty($member_id) && ! empty($article_id) && ! empty($body)) {
 			$comment             = new ArticleComment();
@@ -39,7 +39,7 @@ class ArticleComment extends DatabaseObject
 			$comment->member_id  = (int)$member_id;
 			$comment->article_id = (int)$article_id;
 			$comment->created    = strftime('%Y-%m-%d %H:%M:%S', time());
-			$comment->body       = $body;
+			$comment->body      = preg_replace('/\`(.*?)\`/', '<code>$1</code>', $body);
 
 			return $comment;
 		} else {

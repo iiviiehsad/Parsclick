@@ -1,32 +1,32 @@
 $(function() {
 
-	//SLIDE UO MESSAGES AFTER 5 SECONDS
+	// SLIDE UO MESSAGES AFTER 5 SECONDS
 	$('.alert-dismissible').fadeIn(500).delay(7000).fadeOut(500).addClass('animated tada');
-	
+
 	// YOUTUBE INIT VIDEO PLAY
 	$(".youtube").YouTubeModal({width : 640, height : 360});
 
 	$('.collapse').css({'transition' : 'height .5s', 'overflow' : 'hidden'});
 
-	//ACTIVATE COURSE TABS
+	// ACTIVATE COURSE TABS
 	var hash = window.location.hash;
 	hash && $('ul.nav a[href="' + hash + '"]').tab('show');
 
 	/**
-	 This function will make menus drop automatically
-	 it targets the ul navigation and li drop-down
-	 and uses the jQuery hover() function to do that.
+	 * This function will make menus drop automatically
+	 * it targets the ul navigation and li drop-down
+	 * and uses the jQuery hover() function to do that.
 	 */
 	$('ul.nav li.dropdown').hover(function() {
 		$('.dropdown-menu', this).fadeIn();
 	}, function() {
 		$('.dropdown-menu', this).fadeOut('fast');
-	}); //HOVER
+	}); // HOVER
 
-	//SHOW TOOLTIPS
+	// SHOW TOOLTIPS
 	$("[data-toggle='tooltip']").tooltip({animation : true});
 
-	//SHOW MODALS
+	// SHOW MODALS
 	$('.modalphotos img').on('click', function() {
 		$('#modal').modal({show : true});
 		var mysrc      = this.src.substr(0, this.src.length - 7) + '.jpg';
@@ -38,8 +38,8 @@ $(function() {
 		modalimage.attr('src', mysrc);
 		modalimage.on('click', function() {
 			$('#modal').modal('hide');
-		}); //HIDE MODAL
-	}); //SHOW MODAL
+		}); // HIDE MODAL
+	}); // SHOW MODAL
 
 	// INPUT FILE STYLE
 	var wrapper = $('<label/>').css({height : 0, width : 0, 'overflow' : 'hidden'});
@@ -120,21 +120,21 @@ $(function() {
 		var $btn = $('#fileSubmit').button('loading');
 		setTimeout(function() {
 			$btn.button('reset');
-		}, 43200000); //1000*60*60*12 (0.5 day)
+		}, 43200000); // 1000*60*60*12 (0.5 day)
 	});
 
 	$('form.registration').on('submit', function() {
 		var $btn = $('#register').button('loading');
 		setTimeout(function() {
 			$btn.button('reset');
-		}, 3600000); //1000*60*60 (1 hour)
+		}, 3600000); // 1000*60*60 (1 hour)
 	});
 
 	$('form.contactus').on('submit', function() {
 		var $btn = $('#contactbtn').button('loading');
 		setTimeout(function() {
 			$btn.button('reset');
-		}, 300000); //1000*60*5 (5 min)
+		}, 300000); // 1000*60*5 (5 min)
 	});
 
 	$('.confirmation').click(function(e) {
@@ -159,7 +159,7 @@ $(function() {
 		return false;
 	});
 
-}); //jQuery IS LOADED -----------------------------------------------------------------------------------------------
+}); // jQuery IS LOADED -----------------------------------------------------------------------------------------------
 
 /**
  * Variables to get the registration fields

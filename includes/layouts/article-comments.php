@@ -27,7 +27,7 @@ $comments    = ArticleComment::find_comments($current_article->id, $per_page, $p
 		     src="//www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>" 
 		     alt="<?php echo $_member->username; ?>">
 		<div class="media-body">
-			<span class="label label-as-badge label-success"><?php echo htmlentities($_member->first_name); ?></span>
+			<span class="label label-as-badge label-<?php echo $_member->id == ADMIN_MEMBER_ID ? 'danger' : 'success'; ?>"><?php echo htmlentities($_member->first_name); ?></span>
 			<span class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
 			<?php if(isset($session->id)): ?>
 				<?php if($comment->member_id === $session->id): ?>

@@ -21,6 +21,12 @@ defined('LIB_PATH') ? NULL : define('LIB_PATH', SITE_ROOT . DS . 'includes');
 defined('PUB_PATH') ? NULL : define('PUB_PATH', SITE_ROOT . DS . 'public_html');
 /*
 |----------------------------------------------------------------
+| Admin Details
+|----------------------------------------------------------------
+*/
+defined('ADMIN_MEMBER_ID') ? NULL : define('ADMIN_MEMBER_ID', 100);
+/*
+|----------------------------------------------------------------
 | Allowable HTML tags to use in articles
 |----------------------------------------------------------------
 */
