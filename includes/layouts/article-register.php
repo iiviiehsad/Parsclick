@@ -3,9 +3,10 @@
 	<h2>فرم ثبت نام</h2>
 	<p>لطفا از فرم ثبت نام زیر استفاده کنید و اطلاعات خود را وارد نمایید <br/>
 		<span class="text-success"><i class="fa fa-info-circle fa-lg"></i> تمام فیلدهایی که با (*) علامت گذاری شده اند اجباری هستند.</span><br/>
-		<span class="text-success"><i class="fa fa-info-circle fa-lg"></i> پسورد باید ۶ حرف یا بیشتر باشد.</span><br/>
-		<span class="text-success"><i class="fa fa-info-circle fa-lg"></i> پسورد باید حداقل شامل یک حروف مخصوص باشد مثل <span style="font-family:Arial;">(!@£$%^&*[]{}<>-+=~±§#¢∞\|/)</span></span><br/>
-		<span class="text-success"><i class="fa fa-info-circle fa-lg"></i> قبل از ثبت نام شرایط و ضوابط را مطالعه کنید.
+		<span class="text-danger"><i class="fa fa-info-circle fa-lg"></i>
+			لطفا توجه کنید که سرور بعضی وقتها خیلی شلوغ هست پس فقط یک بار درخواست بدید ولی اگر تا ۱۰ دقیقه ایمیل دریافت
+			نکردید مدیر سایت رو آگاه کنید.
+		</span>
 	</p>
 
 	<form class="registration form-horizontal" action="register" method="POST" id="payment-form">

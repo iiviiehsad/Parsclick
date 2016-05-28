@@ -1,37 +1,39 @@
-<?php
-require_once('../includes/initialize.php');
+<?php require_once('../includes/initialize.php');
 $title    = 'پارس کلیک - فراموشی پسورد';
 $filename = basename(__FILE__);
 $username = '';
+$errors   = '';
 if (isset($_POST['submit'])) {
 	$username = trim($_POST['username']);
 	if (has_presence($username)) {
-		// Search our fake database to retrieve the user data
 		$user = Member::find_by_username($username);
 		if ($user) {
-			// Username was found; okay to reset
 			$user->create_reset_token($username);
 			if ( ! $user->email_reset_token($username)) {
-				$message = 'خطا! ایمیل فرستاده نشد.';
+				$errors = 'خطا! ایمیل فرستاده نشد.';
 			}
-			$message = 'لینکی برای باز نشاندن پسورد به ایمیل آدرسی فرستاده شد که در دیتابیس موجود است. تا ۱۰ دقیقه دیگه ایمیلتون رو چک کنید.';
 		}
 		# Message returned is the same whether the user
 		# was found or not, so that we don't reveal which
 		# user names exist and which do not.
+		$message = 'ایمیلی دارای اسم کاربری شما به آدرسی فرستاده شد که در دیتابیس موجود است. تا ۵ دقیقه دیگه ایمیلتون رو چک کنید.';
 	} else {
-		$message = 'لطفا اسم کاربری را وارد کنید.';
+		$errors = 'لطفا اسم کاربری را وارد کنید.';
 	}
 }
 ?>
 <?php include_layout_template('header.php'); ?>
 <?php include_layout_template('nav.php'); ?>
-<?php echo output_message($message); ?>
+<?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-key"></i> بازیافت پسورد </h2>
 			<br/>
 			<form class="form-horizontal" action="forgot" method="POST" accept-charset="utf-8">
+				<p class="text-danger">
+					لطفا توجه کنید که سرور بعضی وقتها خیلی شلوغ هست پس فقط یک بار درخواست بدید ولی اگر تا ۱۰ دقیقه ایمیل دریافت
+					نکردید مدیر سایت رو آگاه کنید.
+				</p>
 				<fieldset>
 					<legend>اسم کاربری شما چیست؟</legend>
 					<section class="row">
@@ -62,8 +64,8 @@ if (isset($_POST['submit'])) {
 				</fieldset>
 			</form>
 		</article>
-	</section><!-- main -->
+	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<?php include_layout_template('aside-register.php'); ?>
-	</section><!-- sidebar -->
+	</section>
 <?php include_layout_template('footer.php'); ?>

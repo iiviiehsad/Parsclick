@@ -1,22 +1,21 @@
 <?php require_once('../includes/initialize.php');
-if($session->is_logged_in()) redirect_to('member');
+if ($session->is_logged_in()) redirect_to('member');
 $title    = 'پارس کلیک - ورود به سایت';
 $filename = basename(__FILE__);
 $username = '';
 $errors   = '';
-if(isset($_POST['submit'])) { // if form submitted
-	if(request_is_post() && $session->request_is_same_domain()) {
-		if($session->csrf_token_is_valid() && $session->csrf_token_is_recent()) {
+if (isset($_POST['submit'])) {
+	if (request_is_post() && $session->request_is_same_domain()) {
+		if ($session->csrf_token_is_valid() && $session->csrf_token_is_recent()) {
 			$username = trim($_POST['username']);
 			$password = trim($_POST['password']);
-			if(has_presence($username) && has_presence($password)) {
+			if (has_presence($username) && has_presence($password)) {
 				$throttle_delay = FailedLogins::throttle_failed_logins($username);
-				if($throttle_delay > 0) {
+				if ($throttle_delay > 0) {
 					$errors = 'حساب کابری قفل شده. باید ' . convert($throttle_delay) . ' دقیقه صبر کنید و بعد دوباره سعی کنید.';
 				} else {
-					// check the database to see if username or password exist
 					$found_user = Member::authenticate($username, $password);
-					if($found_user) {
+					if ($found_user) {
 						$session->login($found_user);
 						FailedLogins::clear_failed_logins($username);
 						redirect_to('member');

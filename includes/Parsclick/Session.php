@@ -22,14 +22,14 @@ class Session
 		session_start();
 		$this->check_message();
 		$this->check_login();
-		if($this->logged_in) {
-			// actions to take right away if member is logged in
-		} elseif($this->admin_logged_in) {
-			// actions to take right away if admin is logged in
-		} elseif($this->author_logged_in) {
-			// actions to take right away if author is logged in
+		if ($this->logged_in) {
+			# actions to take right away if member is logged in
+		} elseif ($this->admin_logged_in) {
+			# actions to take right away if admin is logged in
+		} elseif ($this->author_logged_in) {
+			# actions to take right away if author is logged in
 		} else {
-			// actions to take right away if any user is not logged in
+			# actions to take right away if any user is not logged in
 		}
 	}
 
@@ -39,7 +39,7 @@ class Session
 	private function check_message()
 	{
 		// Is there a message stored in the session?
-		if(isset($_SESSION['message'])) {
+		if (isset($_SESSION['message'])) {
 			// Add it as an attribute and erase the stored version
 			$this->message = $_SESSION['message'];
 			unset($_SESSION['message']);
@@ -56,13 +56,13 @@ class Session
 	 */
 	private function check_login()
 	{
-		if(isset($_SESSION['id'])) {
+		if (isset($_SESSION['id'])) {
 			$this->id        = $_SESSION['id'];
 			$this->logged_in = TRUE;
-		} elseif(isset($_SESSION['admin_id'])) {
+		} elseif (isset($_SESSION['admin_id'])) {
 			$this->id              = $_SESSION['admin_id'];
 			$this->admin_logged_in = TRUE;
-		} elseif(isset($_SESSION['author_id'])) {
+		} elseif (isset($_SESSION['author_id'])) {
 			$this->id               = $_SESSION['author_id'];
 			$this->author_logged_in = TRUE;
 		} else {
@@ -78,7 +78,7 @@ class Session
 	 */
 	public function confirm_logged_in()
 	{
-		if( ! $this->is_logged_in() || ! $this->is_session_valid()) {
+		if ( ! $this->is_logged_in() || ! $this->is_session_valid()) {
 			$this->logout();
 			redirect_to('/login');
 		}
@@ -104,13 +104,13 @@ class Session
 		$check_ip         = FALSE; // FALSE because everybody uses proxy
 		$check_user_agent = TRUE;
 		$check_last_login = TRUE;
-		if($check_ip && ! $this->request_ip_matches_session()) {
+		if ($check_ip && ! $this->request_ip_matches_session()) {
 			return FALSE;
 		}
-		if($check_user_agent && ! $this->request_user_agent_matches_session()) {
+		if ($check_user_agent && ! $this->request_user_agent_matches_session()) {
 			return FALSE;
 		}
-		if($check_last_login && ! $this->last_login_is_recent()) {
+		if ($check_last_login && ! $this->last_login_is_recent()) {
 			return FALSE;
 		}
 
@@ -125,7 +125,7 @@ class Session
 	private function request_ip_matches_session()
 	{
 		// return false if either value is not set
-		if( ! isset($_SESSION['ip'], $_SERVER['REMOTE_ADDR'])) {
+		if ( ! isset($_SESSION['ip'], $_SERVER['REMOTE_ADDR'])) {
 			return FALSE;
 		}
 
@@ -140,7 +140,7 @@ class Session
 	private function request_user_agent_matches_session()
 	{
 		# return false if either value is not set
-		if( ! isset($_SESSION['user_agent'], $_SERVER['HTTP_USER_AGENT'])) {
+		if ( ! isset($_SESSION['user_agent'], $_SERVER['HTTP_USER_AGENT'])) {
 			return FALSE;
 		}
 
@@ -156,10 +156,10 @@ class Session
 	{
 		$max_elapsed = 60 * 60 * 24 * 3; // 3 days
 		// return false if value is not set
-		if( ! isset($_SESSION['last_login'])) {
+		if ( ! isset($_SESSION['last_login'])) {
 			return FALSE;
 		}
-		if(($_SESSION['last_login'] + $max_elapsed) >= time()) {
+		if (($_SESSION['last_login'] + $max_elapsed) >= time()) {
 			return TRUE;
 		} else {
 			return FALSE;
@@ -180,7 +180,7 @@ class Session
 	 */
 	public function confirm_admin_logged_in()
 	{
-		if( ! $this->is_admin_logged_in() || ! $this->is_session_valid()) {
+		if ( ! $this->is_admin_logged_in() || ! $this->is_session_valid()) {
 			$this->logout();
 			redirect_to('/admin');
 		}
@@ -201,7 +201,7 @@ class Session
 	 */
 	public function confirm_author_logged_in()
 	{
-		if( ! $this->is_author_logged_in() || ! $this->is_session_valid()) {
+		if ( ! $this->is_author_logged_in() || ! $this->is_session_valid()) {
 			$this->logout();
 			redirect_to('/admin');
 		}
@@ -224,7 +224,7 @@ class Session
 	 */
 	public function login($member)
 	{
-		if($member) {
+		if ($member) {
 			session_regenerate_id();
 			$this->id               = $_SESSION['id'] = $member->id;
 			$this->logged_in        = TRUE;
@@ -241,7 +241,7 @@ class Session
 	 */
 	public function admin_login($admin)
 	{
-		if($admin) {
+		if ($admin) {
 			session_regenerate_id();
 			$this->id               = $_SESSION['admin_id'] = $admin->id;
 			$this->admin_logged_in  = TRUE;
@@ -258,7 +258,7 @@ class Session
 	 */
 	public function author_login($author)
 	{
-		if($author) {
+		if ($author) {
 			session_regenerate_id();
 			$this->id               = $_SESSION['author_id'] = $author->id;
 			$this->author_logged_in = TRUE;
@@ -276,7 +276,7 @@ class Session
 	 */
 	public function message($msg = '')
 	{
-		if( ! empty($msg)) {
+		if ( ! empty($msg)) {
 			$_SESSION['message'] = $msg;
 		}
 
@@ -326,7 +326,7 @@ class Session
 	public function csrf_token_is_recent()
 	{
 		$max_elapsed = 60 * 60 * 24 * 3; // 3 days
-		if(isset($_SESSION['csrf_token_time'])) {
+		if (isset($_SESSION['csrf_token_time'])) {
 			$stored_time = $_SESSION['csrf_token_time'];
 
 			return ($stored_time + $max_elapsed) >= time();
@@ -357,7 +357,7 @@ class Session
 	 */
 	public function csrf_token_is_valid()
 	{
-		if(isset($_POST['csrf_token'])) {
+		if (isset($_POST['csrf_token'])) {
 			$user_token   = $_POST['csrf_token'];
 			$stored_token = $_SESSION['csrf_token'];
 
@@ -372,7 +372,7 @@ class Session
 	 */
 	public function die_on_csrf_token_failure()
 	{
-		if( ! $this->csrf_token_is_valid()) {
+		if ( ! $this->csrf_token_is_valid()) {
 			$output1 = 'خطای درخواست جعلی!';
 			$output2 = 'شناسه درخواست میان وب گاهی معتبر نیست! برگردید و رفرش کنید.';
 			$output  = warning($output1, $output2);
@@ -387,7 +387,7 @@ class Session
 	 */
 	public function request_is_same_domain()
 	{
-		if( ! isset($_SERVER['HTTP_REFERER'])) {
+		if ( ! isset($_SERVER['HTTP_REFERER'])) {
 			return FALSE;
 		} else {
 			$referer_host = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
