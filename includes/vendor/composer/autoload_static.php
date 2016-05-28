@@ -56,6 +56,7 @@ class ComposerStaticInit4d0ed314ef753fc5ee370e97f5587cd3
         'EasyPeasyICS' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
         'FailedLogins' => __DIR__ . '/../..' . '/Parsclick/FailedLogins.php',
         'File' => __DIR__ . '/../..' . '/Parsclick/File.php',
+        'Mail' => __DIR__ . '/../..' . '/Parsclick/Mail.php',
         'Member' => __DIR__ . '/../..' . '/Parsclick/Member.php',
         'MySQLDatabase' => __DIR__ . '/../..' . '/Parsclick/MySQLDatabase.php',
         'PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',

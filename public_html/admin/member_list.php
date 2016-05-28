@@ -17,7 +17,7 @@ if (isset($_POST['delete_inactive'])) {
 		$errors = 'رمزی تمیز نشد.';
 	}
 }
-// Pagination
+# Pagination
 $page        = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
 $per_page    = 50;
 $total_count = Member::count_all();

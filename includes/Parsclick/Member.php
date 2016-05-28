@@ -87,30 +87,18 @@ class Member extends DatabaseObject
 	public function email_reset_token($username)
 	{
 		$user = self::find_by_username($username);
-		if($user && isset($user->token)) {
-			$mail = new PHPMailer();
-			$mail->isSMTP();
-			$mail->isHTML(TRUE);
-			$mail->addAddress($user->email, 'Reset Password');
-			$mail->CharSet    = 'UTF-8';
-			$mail->Host       = SMTP;
-			$mail->SMTPSecure = TLS;
-			$mail->Port       = PORT;
-			$mail->SMTPAuth   = TRUE;
-			$mail->Username   = EMAILUSER;
-			$mail->Password   = EMAILPASS;
-			$mail->FromName   = DOMAIN;
-			$mail->From       = EMAILUSER;
-			$mail->Subject    = 'Reset Password Request';
-			$content          = '
+		if ($user && isset($user->token)) {
+			$mail    = new Mail();
+			$data    = 'http://www.parsclick.net/reset-password?token=' . $user->token;
+			$subject = 'Reset Password Request';
+			$content = '
 				<p>اخیرا شما درخواست بازیافت پسوردتان را از ما نموده اید؟</p>
 				<p>اگر شما این درخواست را نکردید هول نکنید, هیچ اقدامی لازم نیست انجام دهید. پسورد شما بدون کلیک کردن به لینک بالا قابل تغییر نخواهد بود.</p>
 				<p>از لینک زیر برای عوض کردن پسورد خود استفاده کنید:</p>
 			';
-			$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content);
 
-			return $mail->send();
-			// return send_email($this->email, 'Reset Password Request', email($this->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$this->token}", $content));
+			return $mail->sendEmailTo($user->email, $data, $content, $subject, $user->full_name());
+			// return send_email($this->email, 'Reset Password Request', email($this->full_name(), DOMAIN, $data, $content));
 		} else {
 			return FALSE;
 		}
@@ -128,29 +116,14 @@ class Member extends DatabaseObject
 	{
 		$user = self::find_by_email($email);
 		if ($user && isset($user->token)) {
-			$mail = new PHPMailer();
-			$mail->isSMTP();
-			$mail->isHTML(TRUE);
-			$mail->addAddress($this->email, 'Forgot Username');
-			$mail->CharSet    = 'UTF-8';
-			$mail->Host       = SMTP;
-			$mail->SMTPSecure = TLS;
-			$mail->Port       = PORT;
-			$mail->SMTPAuth   = TRUE;
-			$mail->Username   = EMAILUSER;
-			$mail->Password   = EMAILPASS;
-			$mail->FromName   = DOMAIN;
-			$mail->From       = EMAILUSER;
-			$mail->Subject    = 'Username Reminder Request';
-			$content          = '
-				<p>اسم کاربری را فراموش کردید؟</p>
-				<p>لطفا به خاطر بسپارید که اسم کاربری را در جایی امن نگه داری کنید و این ایمیل را پاک کنید. این ایمیل را از سطل زباله ایمیل هم پاک کنید.</p>
-				<p>اسم کاربری شما هست:</p>
-			';
-			$mail->Body       = email($user->full_name(), DOMAIN, $user->username, $content);
+			$mail    = new Mail();
+			$data    = $user->username;
+			$subject = 'Username Reminder Request';
+			$content = '<p>اسم کاربری را فراموش کردید؟</p>
+						<p>لطفا به خاطر بسپارید که اسم کاربری را در جایی امن نگه داری کنید و این ایمیل را پاک کنید. این ایمیل را از سطل زباله ایمیل هم پاک کنید.</p>
+						<p>اسم کاربری شما هست:</p>';
 
-			//return send_email($this->email, 'Username Reminder Request', email($user->full_name(), DOMAIN, $user->username, $content));
-			return $mail->send();
+			return $mail->sendEmailTo($user->email, $data, $content, $subject, $user->full_name());
 		} else {
 			return FALSE;
 		}
@@ -167,34 +140,15 @@ class Member extends DatabaseObject
 	{
 		$user = self::find_by_username($username);
 		if ($user && isset($user->token)) {
-			$mail = new PHPMailer();
-			$mail->isSMTP();
-			$mail->isHTML(TRUE);
-			$mail->addAddress($this->email, 'Welcome to Parsclick, Confirm Your Email');
-			$mail->CharSet    = 'UTF-8';
-			$mail->Host       = SMTP;
-			$mail->SMTPSecure = TLS;
-			$mail->Port       = PORT;
-			$mail->SMTPAuth   = TRUE;
-			$mail->Username   = EMAILUSER;
-			$mail->Password   = EMAILPASS;
-			$mail->FromName   = DOMAIN;
-			$mail->From       = EMAILUSER;
-			$mail->Subject    = 'به پارس کلیک خوش آمدید';
-			$content          = '
-				<p>خوب یک خوش آمد و استقبال گرم را از طرف بچه های پارس کلیک بپذیرید و ممنونیم که ما را انتخاب کردید.</p>
-				<ul>
-					<li>خیلی ضرورت دارد که اطلاعات شما بروز باشد مخصوصا تنها پل ارتباطی بین ما  و شما که ایمیلتان است.</li>
-					<li>به محض ورود به سیستم شما قادر به تغییر اطلاعات شخصی خود هستید. </li>
-					<li>از ایمیل آدرس شما برای بازیافت پسورد در موقعیت احتمالی گم کردن و فراموشی پسورد استفاده می شود. </li>
-					<li>اگر سوالی در مورد دروس و مقالات داشتید در قسمت نظرات مربوط به هر کدام بنویسید.</li>
-				</ul>
-				<p>لطفا روی لینک زیر جهت تایید ایمیل خود استفاده کنید:</p>
-			';
-			$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content);
+			$mail    = new Mail();
+			$data    = 'http://www.parsclick.net/confirm-email?token=' . $user->token;
+			$subject = 'به پارس کلیک خوش آمدید';
+			$content = '<p>خوب یک خوش آمد و استقبال گرم را از طرف بچه های پارس کلیک بپذیرید و ممنونیم که ما را انتخاب کردید.</p>
+						<ul><li>از ایمیل آدرس شما برای بازیافت پسورد در موقعیت احتمالی گم کردن و فراموشی پسورد استفاده می شود. </li>
+						<li>اگر سوالی در مورد دروس و مقالات داشتید در قسمت نظرات مربوط به هر کدام بنویسید.</li></ul>
+						<p>لطفا روی لینک زیر جهت تایید ایمیل خود استفاده کنید:</p>';
 
-			//return send_email($this->email, "به پارس کلیک خوش آمدید", email($user->full_name(), DOMAIN, "http://www.parsclick.net/confirm-email?token={$user->token}", $content));
-			return $mail->send();
+			return $mail->sendEmailTo($user->email, $data, $content, $subject, $user->full_name());
 		} else {
 			return FALSE;
 		}
@@ -209,20 +163,6 @@ class Member extends DatabaseObject
 	{
 		global $database;
 		$sql = 'DELETE FROM ' . self::$table_name . ' WHERE status = 0';
-		$database->query($sql);
-
-		return $database->affected_rows() ? TRUE : FALSE;
-	}
-
-	/**
-	 * Clears all reset tokens to NULL
-	 * 
-	 * @return bool
-	 */
-	public static function clear_tokens()
-	{
-		global $database;
-		$sql = 'UPDATE ' . self::$table_name . ' SET token = NULL';
 		$database->query($sql);
 
 		return $database->affected_rows() ? TRUE : FALSE;

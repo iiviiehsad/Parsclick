@@ -4,7 +4,7 @@ abstract class DatabaseObject
 {
 	/**
 	 * Optional
-	 * 
+	 *
 	 * @var
 	 */
 	protected static $table_name;
@@ -20,8 +20,8 @@ abstract class DatabaseObject
 	private static function instantiate($record)
 	{
 		$object = new static;
-		foreach($record as $attribute => $value) {
-			if($object->has_attribute($attribute)) {
+		foreach ($record as $attribute => $value) {
+			if ($object->has_attribute($attribute)) {
 				$object->$attribute = $value;
 			}
 		}
@@ -44,8 +44,8 @@ abstract class DatabaseObject
 	protected function attributes()
 	{
 		$attributes = [];
-		foreach(static::$db_fields as $field) {
-			if(property_exists($this, $field)) {
+		foreach (static::$db_fields as $field) {
+			if (property_exists($this, $field)) {
 				$attributes[$field] = $this->$field;
 			}
 		}
@@ -60,7 +60,7 @@ abstract class DatabaseObject
 	{
 		global $database;
 		$clean_attributes = [];
-		foreach($this->attributes() as $key => $value) {
+		foreach ($this->attributes() as $key => $value) {
 			$clean_attributes[$key] = $database->escape_value($value);
 		}
 
@@ -76,7 +76,7 @@ abstract class DatabaseObject
 		global $database;
 		$result_set   = $database->query($sql);
 		$object_array = [];
-		while($row = $database->fetch_assoc($result_set)) {
+		while ($row = $database->fetch_assoc($result_set)) {
 			$object_array[] = static::instantiate($row);
 		}
 
@@ -91,10 +91,10 @@ abstract class DatabaseObject
 	{
 		$sql = 'SELECT * ';
 		$sql .= ' FROM ' . static::$table_name;
-		if($public && in_array('visible', static::$db_fields, FALSE)) {
+		if ($public && in_array('visible', static::$db_fields, FALSE)) {
 			$sql .= ' WHERE visible = 1 ';
 		}
-		if(in_array('position', static::$db_fields, FALSE)) {
+		if (in_array('position', static::$db_fields, FALSE)) {
 			$sql .= ' ORDER BY position ASC ';
 		} else {
 			$sql .= ' ORDER BY id ASC ';
@@ -127,7 +127,7 @@ abstract class DatabaseObject
 		$sql = 'SELECT * ';
 		$sql .= ' FROM ' . static::$table_name;
 		$sql .= ' WHERE id = ' . $database->escape_value($id);
-		if($public && in_array('visible', static::$db_fields, FALSE)) {
+		if ($public && in_array('visible', static::$db_fields, FALSE)) {
 			$sql .= ' AND visible = 1 ';
 		}
 		$sql .= ' LIMIT 1';
@@ -200,7 +200,7 @@ abstract class DatabaseObject
 		global $database;
 		$sql = 'SELECT * ';
 		$sql .= ' FROM ' . static::$table_name;
-		if(in_array('position', static::$db_fields, FALSE)) {
+		if (in_array('position', static::$db_fields, FALSE)) {
 			$sql .= ' ORDER BY position ASC ';
 		} else {
 			$sql .= ' ORDER BY id ASC ';
@@ -217,7 +217,7 @@ abstract class DatabaseObject
 	public static function find_newest($public = TRUE)
 	{
 		$sql = 'SELECT * FROM ' . static::$table_name;
-		if($public && in_array('visible', static::$db_fields, FALSE)) {
+		if ($public && in_array('visible', static::$db_fields, FALSE)) {
 			$sql .= ' WHERE visible = 1 ';
 		}
 		$sql .= ' ORDER BY id DESC LIMIT 1';
@@ -241,6 +241,20 @@ abstract class DatabaseObject
 		$result_set = static::find_by_sql($sql);
 
 		return ! empty($result_set) ? $result_set : NULL;
+	}
+
+	/**
+	 * Clears all reset tokens to NULL
+	 *
+	 * @return bool
+	 */
+	public static function clear_tokens()
+	{
+		global $database;
+		$sql = 'UPDATE ' . static::$table_name . ' SET token = NULL';
+		$database->query($sql);
+
+		return $database->affected_rows() ? TRUE : FALSE;
 	}
 
 	/**
@@ -272,7 +286,7 @@ abstract class DatabaseObject
 		global $database;
 		$attributes      = $this->sanitized_attributes();
 		$attribute_pairs = [];
-		foreach($attributes as $key => $value) {
+		foreach ($attributes as $key => $value) {
 			$attribute_pairs[] = "{$key} = '{$value}'";
 		}
 		$sql = 'UPDATE ' . static::$table_name . ' SET ';
@@ -295,7 +309,7 @@ abstract class DatabaseObject
 		$sql .= ") VALUES ('";
 		$sql .= implode("', '", array_values($attributes));
 		$sql .= "')";
-		if($database->query($sql)) {
+		if ($database->query($sql)) {
 			$this->id = $database->insert_id();
 
 			return TRUE;
@@ -351,7 +365,7 @@ abstract class DatabaseObject
 	public function set_user_reset_token($username, $token)
 	{
 		$user = static::find_by_username($username);
-		if($user) {
+		if ($user) {
 			$user->token = $token;
 			$user->update();
 
@@ -378,29 +392,14 @@ abstract class DatabaseObject
 	public function email_reset_token($username)
 	{
 		$user = static::find_by_username($username);
-		if($user && isset($user->token)) {
-			$mail = new PHPMailer();
-			$mail->isSMTP();
-			$mail->isHTML(TRUE);
-			$mail->CharSet    = 'UTF-8';
-			$mail->Host       = SMTP;
-			$mail->SMTPSecure = TLS;
-			$mail->Port       = PORT;
-			$mail->SMTPAuth   = TRUE;
-			$mail->Username   = EMAILUSER;
-			$mail->Password   = EMAILPASS;
-			$mail->FromName   = DOMAIN;
-			$mail->From       = EMAILUSER;
-			$mail->addAddress($user->email, 'Reset Password');
-			$mail->Subject = 'Reset Password Request';
-			$content       = '
-				<p>آیا اخیرا درخواست بازیافت پسوردتان را کردید؟</p>
-				<p>اگر جواب مثبت است لطفا از لینک زیر برای بازیافت پسوردتان استفاده کنید:</p>
-			';
-			$mail->Body    = email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content);
+		if ($user && isset($user->token)) {
+			$mail    = new Mail();
+			$data    = "http://www.parsclick.net/admin/reset_password.php?token={$user->token}";
+			$subject = 'Reset Password Request';
+			$content = '<p>آیا اخیرا درخواست بازیافت پسوردتان را کردید؟</p>
+						<p>اگر جواب مثبت است لطفا از لینک زیر برای بازیافت پسوردتان استفاده کنید:</p>';
 
-			// return send_email($user->email, 'Reset Password Request', email($user->full_name(), DOMAIN, "http://www.parsclick.net/admin/reset_password.php?token={$user->token}", $content));
-			return $mail->send();
+			return $mail->sendEmailTo($user->email, $data, $content, $subject, $user->full_name());
 		}
 
 		return FALSE;

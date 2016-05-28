@@ -35,7 +35,7 @@ class Author extends DatabaseObject
 	{
 		return self::find_by_sql('SELECT * FROM ' . static::$table_name . ' WHERE status = 1');
 	}
-	
+
 	/**
 	 * This function checks the status to see if is TRUE or FALSE
 	 */
@@ -72,44 +72,26 @@ class Author extends DatabaseObject
 	 */
 	public function email_confirmation_details($username)
 	{
-		$user      = self::find_by_username($username);
-		$site_root = DOMAIN;
+		$user = self::find_by_username($username);
 		if ($user && isset($user->token)) {
-			$mail = new PHPMailer();
-			$mail->isSMTP();
-			$mail->isHTML(TRUE);
-			$mail->addAddress($user->email, 'Welcome to Parsclick, Confirm Your Email');
-			$mail->CharSet    = 'UTF-8';
-			$mail->Host       = SMTP;
-			$mail->SMTPSecure = TLS;
-			$mail->Port       = PORT;
-			$mail->SMTPAuth   = TRUE;
-			$mail->Username   = EMAILUSER;
-			$mail->Password   = EMAILPASS;
-			$mail->FromName   = 'do-not-reply@parsclick.net';
-			$mail->From       = EMAILUSER;
-			$mail->Subject    = 'به پارس کلیک خوش آمدید';
-			$content          = "
-				<p>ثبت نام شما به عنوان نویسنده مورد قبول مدیر واقع شد.</p>
+			$mail    = new Mail();
+			$data    = 'http://www.parsclick.net/admin/author_confirm_email.php?token=' . $user->token;
+			$subject = 'Welcome to Parsclick, Confirm Your Email';
+			$content = "<p>ثبت نام شما به عنوان نویسنده مورد قبول مدیر واقع شد.</p>
 				<p>خوب یک خوش آمد و استقبال گرم را از طرف پارس کلیک بپذیرید و ممنونیم که ما را انتخاب کردید.</p>
 				<p>باعث افتخار ماست که دعوت ما به عنوان نویسنده را می پذیرید و مقاله می نویسید.</p>
 				<h3>یارآوری مهم:</h3>
-				<ul>
-					<li>به محض کلیک کردن لینک، شما به قسمت نویسندگان وارد خواهید شد. اولین و مهمترین کاری که باید انجام بدهید این است که به قسمت ویرایش حساب کاربری روید و پسوردتان را تغییر دهید. </li>
-					<li>خیلی ضرورت دارد که اطلاعات شما بروز باشد مخصوصا تنها پل ارتباطی بین ما  و شما که ایمیلتان است. </li>
-					<li>به محض ورود به سیستم شما قادر به تغییر اطلاعات شخصی خود هستید. </li>
-					<li>از ایمیل آدرس شما برای بازیافت پسورد در موقعیت احتمالی گم کردن و فراموشی پسورد استفاده می شود. </li>
-					<li>اولین مقاله شما باعث محکم شدن جای شما در پارس کلیک یا باعث سقوط شماست. پس در اولین مقاله دقت کنید.</li>
-					<li>شما به عنوان نویسنده فعلا قادر به نوشتن مقاله هستید و درسی نسازید تا اینکه مدیر سایت به شما خبر دهد. چرا که ساخت درس حساب یوتیوب، و پلی لیست یا لیست پخش می خواهد، بعلاوه ی آنها فایل های تمرینی باید تهیه کنید. بنابراین فعلا فقط مقاله نویسی کنید. اگر دسترسی به یوتیوب برای شما آسان است و کانال یوتیوب دارید و مهمتر از همه اینکه دقیقا می توانید ازسیستم استفاده کنید پس می توانید درس هم بسازید.</li>
-					<li>در آخر اینکه حتما این ویدئو را تماشا کنید که همه چیز در مورد نویسندگی برای پارس کلیک را توضیح داده است: <a href='https://www.youtube.com/embed/G0TY36VCODc?modestbranding=1&rel=0&showinfo=0&controls=0&hl=fa-ir' target='_blank'>https://www.youtube.com/embed/G0TY36VCODc?showinfo=0</a></li>
-				</ul>
+				<ul><li>به محض کلیک کردن لینک، شما به قسمت نویسندگان وارد خواهید شد. اولین و مهمترین کاری که باید انجام بدهید این است که به قسمت ویرایش حساب کاربری روید و پسوردتان را تغییر دهید. </li>
+				<li>خیلی ضرورت دارد که اطلاعات شما بروز باشد مخصوصا تنها پل ارتباطی بین ما  و شما که ایمیلتان است. </li>
+				<li>به محض ورود به سیستم شما قادر به تغییر اطلاعات شخصی خود هستید. </li>
+				<li>از ایمیل آدرس شما برای بازیافت پسورد در موقعیت احتمالی گم کردن و فراموشی پسورد استفاده می شود. </li>
+				<li>اولین مقاله شما باعث محکم شدن جای شما در پارس کلیک یا باعث سقوط شماست. پس در اولین مقاله دقت کنید.</li>
+				<li>شما به عنوان نویسنده فعلا قادر به نوشتن مقاله هستید و درسی نسازید تا اینکه مدیر سایت به شما خبر دهد. چرا که ساخت درس حساب یوتیوب، و پلی لیست یا لیست پخش می خواهد، بعلاوه ی آنها فایل های تمرینی باید تهیه کنید. بنابراین فعلا فقط مقاله نویسی کنید. اگر دسترسی به یوتیوب برای شما آسان است و کانال یوتیوب دارید و مهمتر از همه اینکه دقیقا می توانید ازسیستم استفاده کنید پس می توانید درس هم بسازید.</li>
+				<li>در آخر اینکه حتما این ویدئو را تماشا کنید که همه چیز در مورد نویسندگی برای پارس کلیک را توضیح داده است: <a href='https://www.youtube.com/embed/G0TY36VCODc?modestbranding=1&rel=0&showinfo=0&controls=0&hl=fa-ir' target='_blank'>https://www.youtube.com/embed/G0TY36VCODc?showinfo=0</a></li></ul>
 				<br/>
-				<h3>عضویت شما به عنوان نویسنده ساخته شد و قبل از اینکه از سیستم استفاده کنید از لینک زیر برای تایید کردن ایمیل خود استفاده کنید:</h3>
-			";
-			$mail->Body       = email($user->full_name(), DOMAIN, "http://{$site_root}/admin/author_confirm_email.php?token={$user->token}", $content);
+				<h3>عضویت شما به عنوان نویسنده ساخته شد و قبل از اینکه از سیستم استفاده کنید از لینک زیر برای تایید کردن ایمیل خود استفاده کنید:</h3>";
 
-			return $mail->send();
-			//return send_email($user->email, "به پارس کلیک خوش آمدید", email($user->full_name(), DOMAIN, "http://{$site_root}/admin/author_confirm_email.php?token={$user->token}", $content));
+			return $mail->sendEmailTo($user->email, $data, $content, $subject, $user->full_name());
 		} else {
 			return FALSE;
 		}

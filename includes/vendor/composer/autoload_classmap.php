@@ -18,6 +18,7 @@ return array(
     'EasyPeasyICS' => $vendorDir . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
     'FailedLogins' => $baseDir . '/Parsclick/FailedLogins.php',
     'File' => $baseDir . '/Parsclick/File.php',
+    'Mail' => $baseDir . '/Parsclick/Mail.php',
     'Member' => $baseDir . '/Parsclick/Member.php',
     'MySQLDatabase' => $baseDir . '/Parsclick/MySQLDatabase.php',
     'PHPMailer' => $vendorDir . '/phpmailer/phpmailer/class.phpmailer.php',
