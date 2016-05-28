@@ -249,9 +249,7 @@ function send_email($email, $subject, $message)
 	$headers = 'MIME-Version: 1.0' . "\r\n";
 	$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 	$headers .= 'From: Parsclick <do-not-reply@parsclick.net>' . "\r\n";
-	// $headers .= 'To: Amir <infoe@parsclick.net>, Hassan <infoe@parsclick.net>' . "\r\n";
-	// $headers .= 'Cc: infoe@parsclick.net' . "\r\n";
-	// $headers .= 'Bcc: info@parsclick.net' . "\r\n";
+
 	return mail($email, $subject, $message, $headers);
 }
 

@@ -20,8 +20,6 @@ class Mail
 
 	/**
 	 * Mail constructor.
-	 *
-	 * @param \PHPMailer $mailer
 	 */
 	public function __construct()
 	{
@@ -69,7 +67,25 @@ class Mail
 		$this->mailer->Subject    = $this->subject;
 		$this->mailer->Body       = $this->template();
 
+		// return $this->send_email($this->to, $this->subject, $this->template());
 		return $this->mailer->send();
+	}
+
+	/**
+	 * @param $email
+	 * @param $subject
+	 * @param $message
+	 * @return bool
+	 */
+	public function send_email($email, $subject, $message)
+	{
+		$headers = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+		$headers .= 'From: Parsclick <do-not-reply@parsclick.net>' . "\r\n";
+		// $headers .= 'To: Amir <infoe@parsclick.net>, Hassan <infoe@parsclick.net>' . "\r\n";
+		// $headers .= 'Cc: infoe@parsclick.net' . "\r\n";
+		// $headers .= 'Bcc: info@parsclick.net' . "\r\n";
+		return mail($email, $subject, $message, $headers);
 	}
 
 	/**
