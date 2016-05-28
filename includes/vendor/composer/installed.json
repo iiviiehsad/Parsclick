@@ -149,17 +149,17 @@
     },
     {
         "name": "phpmailer/phpmailer",
-        "version": "v5.2.15",
-        "version_normalized": "5.2.15.0",
+        "version": "v5.2.10",
+        "version_normalized": "5.2.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/PHPMailer/PHPMailer.git",
-            "reference": "d0186171b28af4f06ac2ad8a84a8f3d6cbc3ba6c"
+            "reference": "07005ecbb80d11ec8c0f067bb37e8909cc7fcbb7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/d0186171b28af4f06ac2ad8a84a8f3d6cbc3ba6c",
-            "reference": "d0186171b28af4f06ac2ad8a84a8f3d6cbc3ba6c",
+            "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/07005ecbb80d11ec8c0f067bb37e8909cc7fcbb7",
+            "reference": "07005ecbb80d11ec8c0f067bb37e8909cc7fcbb7",
             "shasum": ""
         },
         "require": {
@@ -167,19 +167,14 @@
         },
         "require-dev": {
             "phpdocumentor/phpdocumentor": "*",
-            "phpunit/phpunit": "4.7.*"
+            "phpunit/phpunit": "4.3.*"
         },
-        "suggest": {
-            "league/oauth2-google": "Needed for Google XOAUTH2 authentication"
-        },
-        "time": "2016-05-10 18:39:36",
+        "time": "2015-05-04 12:37:21",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
             "classmap": [
                 "class.phpmailer.php",
-                "class.phpmaileroauth.php",
-                "class.phpmaileroauthgoogle.php",
                 "class.smtp.php",
                 "class.pop3.php",
                 "extras/EasyPeasyICS.php",

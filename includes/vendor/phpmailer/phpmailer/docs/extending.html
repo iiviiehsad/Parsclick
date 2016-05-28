@@ -18,9 +18,10 @@ require 'PHPMailerAutoload.php';
 
 $mail = new PHPMailer();
 
-$mail->setFrom('list@example.com', 'List manager');
-$mail->Host   = 'smtp1.example.com;smtp2.example.com';
-$mail->Mailer = 'smtp';
+$mail->From     = 'list@example.com';
+$mail->FromName = 'List manager';
+$mail->Host     = 'smtp1.example.com;smtp2.example.com';
+$mail->Mailer   = 'smtp';
 
 @mysqli_connect('localhost','root','password');
 @mysqli_select_db("my_company");

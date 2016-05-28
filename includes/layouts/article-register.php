@@ -17,7 +17,7 @@
 			<section class="row">
 				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="username">اسم کاربری * &nbsp;</label>
 				<div class="controls">
-					<input onblur="checkUser();" onkeyup="checkUser();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8 edit" type="text" maxlength="20" name="username" id="username" placeholder="Username (حروف انگلیسی)" required pattern="[a-zA-Z0-9_.]+" value="<?php echo $_POST["username"]; ?>"/>
+					<input onblur="checkUser();" onkeyup="checkUser();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8 edit" type="text" maxlength="20" name="username" id="username" placeholder="Username (حروف انگلیسی)" required pattern="[a-zA-Z0-9_.]+" value="<?php echo $_POST['username']; ?>"/>
 				</div><!-- controls -->
 			</section><!-- row -->
 
@@ -38,21 +38,21 @@
 			<section class="row">
 				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="email">ایمیل * &nbsp;</label>
 				<div class="controls">
-					<input onblur="checkEmail();" onkeyup="checkEmail();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8 edit" type="email" maxlength="50" name="email" id="email" placeholder="Email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" value="<?php echo $_POST["email"]; ?>"/>
+					<input onblur="checkEmail();" onkeyup="checkEmail();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8 edit" type="email" maxlength="50" name="email" id="email" placeholder="Email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$" value="<?php echo $_POST['email']; ?>"/>
 				</div><!-- controls -->
 			</section><!-- row -->
 
 			<section class="row">
 				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="first_name">نام * &nbsp;</label>
 				<div class="controls">
-					<input onblur="checkfirstname();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" maxlength="50" name="first_name" id="first_name" placeholder="نام" required value="<?php echo $_POST["first_name"]; ?>"/>
+					<input onblur="checkfirstname();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" maxlength="50" name="first_name" id="first_name" placeholder="نام" required value="<?php echo $_POST['first_name']; ?>"/>
 				</div><!-- controls -->
 			</section><!-- row -->
 
 			<section class="row">
 				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name">نام خانوادگی * &nbsp;</label>
 				<div class="controls">
-					<input onblur="checklastname();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" maxlength="50" name="last_name" id="last_name" placeholder="نام خانوادگی" required value="<?php echo $_POST["last_name"]; ?>"/>
+					<input onblur="checklastname();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" maxlength="50" name="last_name" id="last_name" placeholder="نام خانوادگی" required value="<?php echo $_POST['last_name']; ?>"/>
 				</div><!-- controls -->
 			</section><!-- row -->
 
@@ -75,14 +75,14 @@
 			<section class="row">
 				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="address">کشور &nbsp;</label>
 				<div class="controls">
-					<input class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" name="address" id="address" placeholder="کشور" value="<?php echo $_POST["address"]; ?>"/>
+					<input class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" name="address" id="address" placeholder="کشور" value="<?php echo $_POST['address']; ?>"/>
 				</div><!-- controls -->
 			</section><!-- row -->
 
 			<section class="row">
 				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="city">شهر &nbsp;</label>
 				<div class="controls">
-					<input class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" name="city" id="city" placeholder="شهر" value="<?php echo $_POST["city"]; ?>"/>
+					<input class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" name="city" id="city" placeholder="شهر" value="<?php echo $_POST['city']; ?>"/>
 				</div><!-- controls -->
 			</section><!-- row -->
 

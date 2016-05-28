@@ -59,8 +59,6 @@ class ComposerStaticInit4d0ed314ef753fc5ee370e97f5587cd3
         'Member' => __DIR__ . '/../..' . '/Parsclick/Member.php',
         'MySQLDatabase' => __DIR__ . '/../..' . '/Parsclick/MySQLDatabase.php',
         'PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
-        'PHPMailerOAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmaileroauth.php',
-        'PHPMailerOAuthGoogle' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmaileroauthgoogle.php',
         'POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.pop3.php',
         'Playlist' => __DIR__ . '/../..' . '/Parsclick/Playlist.php',
         'PostgresSQLDatabase' => __DIR__ . '/../..' . '/Parsclick/PostgresSQLDatabase.php',

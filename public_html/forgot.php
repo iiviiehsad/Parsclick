@@ -2,32 +2,26 @@
 require_once('../includes/initialize.php');
 $title    = 'پارس کلیک - فراموشی پسورد';
 $filename = basename(__FILE__);
-if(isset($_POST['submit'])) {
-	$username = $_POST['username'];
-	if(has_presence($username)) {
+$username = '';
+if (isset($_POST['submit'])) {
+	$username = trim($_POST['username']);
+	if (has_presence($username)) {
 		// Search our fake database to retrieve the user data
 		$user = Member::find_by_username($username);
-		if($user) {
+		if ($user) {
 			// Username was found; okay to reset
 			$user->create_reset_token($username);
-			$email = $user->email_reset_token($username);
-			if($email) {
-				$message = 'ایمیل فرستاده شد.';
-			} else {
+			if ( ! $user->email_reset_token($username)) {
 				$message = 'خطا! ایمیل فرستاده نشد.';
 			}
-		} else {
-			// Username was not found; don't do anything
+			$message = 'لینکی برای باز نشاندن پسورد به ایمیل آدرسی فرستاده شد که در دیتابیس موجود است. تا ۱۰ دقیقه دیگه ایمیلتون رو چک کنید.';
 		}
-		// Message returned is the same whether the user
-		// was found or not, so that we don't reveal which
-		// user names exist and which do not.
-		$message = 'لینکی برای باز نشاندن پسورد به ایمیل آدرسی فرستاده شد که در دیتابیس موجود است. تا ۱۰ دقیقه دیگه ایمیلتون رو چک کنید.';
+		# Message returned is the same whether the user
+		# was found or not, so that we don't reveal which
+		# user names exist and which do not.
 	} else {
 		$message = 'لطفا اسم کاربری را وارد کنید.';
 	}
-} else {
-	$username = '';
 }
 ?>
 <?php include_layout_template('header.php'); ?>

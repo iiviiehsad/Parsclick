@@ -25,6 +25,7 @@ defined('PUB_PATH') ? NULL : define('PUB_PATH', SITE_ROOT . DS . 'public_html');
 |----------------------------------------------------------------
 */
 defined('ADMIN_MEMBER_ID') ? NULL : define('ADMIN_MEMBER_ID', 100);
+defined('ADMIN_EMAIL') ? NULL : define('ADMIN_EMAIL', 'info@parsclick.net');
 /*
 |----------------------------------------------------------------
 | Allowable HTML tags to use in articles
@@ -36,12 +37,11 @@ defined('ARTICLE_ALLOWABLE_TAGS') ? NULL : define('ARTICLE_ALLOWABLE_TAGS', '<h3
 | Email details
 |----------------------------------------------------------------
 */
-defined('ADMIN_EMAIL') ? NULL : define('ADMIN_EMAIL', 'info@parsclick.net');
 defined('SMTP') ? NULL : define('SMTP', 'n1plcpnl0045.prod.ams1.secureserver.net');
-defined('PORT') ? NULL : define('PORT', 587);
+defined('PORT') ? NULL : define('PORT', 465);
 defined('EMAILUSER') ? NULL : define('EMAILUSER', 'do-not-reply@parsclick.net');
 defined('EMAILPASS') ? NULL : define('EMAILPASS', '1365@1986Ha');
-defined('TLS') ? NULL : define('TLS', 'tls');
+defined('TLS') ? NULL : define('TLS', 'ssl');
 /*
 |----------------------------------------------------------------
 | Stripe public and private Keys

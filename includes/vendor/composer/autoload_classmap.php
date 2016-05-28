@@ -21,8 +21,6 @@ return array(
     'Member' => $baseDir . '/Parsclick/Member.php',
     'MySQLDatabase' => $baseDir . '/Parsclick/MySQLDatabase.php',
     'PHPMailer' => $vendorDir . '/phpmailer/phpmailer/class.phpmailer.php',
-    'PHPMailerOAuth' => $vendorDir . '/phpmailer/phpmailer/class.phpmaileroauth.php',
-    'PHPMailerOAuthGoogle' => $vendorDir . '/phpmailer/phpmailer/class.phpmaileroauthgoogle.php',
     'POP3' => $vendorDir . '/phpmailer/phpmailer/class.pop3.php',
     'Playlist' => $baseDir . '/Parsclick/Playlist.php',
     'PostgresSQLDatabase' => $baseDir . '/Parsclick/PostgresSQLDatabase.php',

@@ -28,7 +28,6 @@ class Member extends DatabaseObject
 	public           $email;
 	public           $status;
 	public           $token;
-	public           $customer;
 
 	/**
 	 * @param string $search gets the search query
@@ -69,9 +68,9 @@ class Member extends DatabaseObject
 	 */
 	public function check_status()
 	{
-		if($this->status == 0) {
+		if ($this->status == 0) {
 			redirect_to('freezed');
-		} elseif($this->status == 2) {
+		} elseif ($this->status == 2) {
 			redirect_to('blocked');
 		}
 	}
@@ -92,7 +91,7 @@ class Member extends DatabaseObject
 			$mail = new PHPMailer();
 			$mail->isSMTP();
 			$mail->isHTML(TRUE);
-			$mail->addAddress($this->email, 'Reset Password');
+			$mail->addAddress($user->email, 'Reset Password');
 			$mail->CharSet    = 'UTF-8';
 			$mail->Host       = SMTP;
 			$mail->SMTPSecure = TLS;
@@ -110,8 +109,8 @@ class Member extends DatabaseObject
 			';
 			$mail->Body       = email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content);
 
-			//return send_email($this->email, "Reset Password Request", email($user->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$user->token}", $content));
 			return $mail->send();
+			// return send_email($this->email, 'Reset Password Request', email($this->full_name(), DOMAIN, "http://www.parsclick.net/reset-password?token={$this->token}", $content));
 		} else {
 			return FALSE;
 		}
@@ -128,7 +127,7 @@ class Member extends DatabaseObject
 	public function email_username($email)
 	{
 		$user = self::find_by_email($email);
-		if($user && isset($user->token)) {
+		if ($user && isset($user->token)) {
 			$mail = new PHPMailer();
 			$mail->isSMTP();
 			$mail->isHTML(TRUE);
@@ -150,7 +149,7 @@ class Member extends DatabaseObject
 			';
 			$mail->Body       = email($user->full_name(), DOMAIN, $user->username, $content);
 
-			//return send_email($this->email, "Username Reminder Request", email($user->full_name(), DOMAIN, $user->username, $content));
+			//return send_email($this->email, 'Username Reminder Request', email($user->full_name(), DOMAIN, $user->username, $content));
 			return $mail->send();
 		} else {
 			return FALSE;
@@ -167,7 +166,7 @@ class Member extends DatabaseObject
 	public function email_confirmation_details($username)
 	{
 		$user = self::find_by_username($username);
-		if($user && isset($user->token)) {
+		if ($user && isset($user->token)) {
 			$mail = new PHPMailer();
 			$mail->isSMTP();
 			$mail->isHTML(TRUE);
@@ -203,6 +202,7 @@ class Member extends DatabaseObject
 
 	/**
 	 * Deletes inactive users
+	 *
 	 * @return bool
 	 */
 	public static function delete_inactives()

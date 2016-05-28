@@ -11,12 +11,12 @@
 	"require"     : {
 		"stripe/stripe-php"   : "v3.5.0",
 		"google/recaptcha"    : "1.1.2",
-		"phpmailer/phpmailer" : "^5.2",
+		"phpmailer/phpmailer" : "5.2.10",
 		"miladr/jalali"       : "^0.0.7"
 	},
 	"autoload"    : {
 		"classmap": [
-			"Parsclick/"
+			"Parsclick"
 		],
 		"files" : [
 			"config.php",
