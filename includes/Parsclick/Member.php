@@ -214,4 +214,18 @@ class Member extends DatabaseObject
 		return $database->affected_rows() ? TRUE : FALSE;
 	}
 
+	/**
+	 * Clears all reset tokens to NULL
+	 * 
+	 * @return bool
+	 */
+	public static function clear_tokens()
+	{
+		global $database;
+		$sql = 'UPDATE ' . self::$table_name . ' SET token = NULL';
+		$database->query($sql);
+
+		return $database->affected_rows() ? TRUE : FALSE;
+	}
+
 } // END of CLASS

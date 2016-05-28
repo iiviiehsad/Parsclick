@@ -1,13 +1,20 @@
 <?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
-$errors = '';
-if(isset($_POST['delete_inactive'])) {
-	if(Member::delete_inactives()) {
+$errors   = '';
+if (isset($_POST['delete_inactive'])) {
+	if (Member::delete_inactives()) {
 		$session->message('حذف اعضای معوق موفق بود.');
 		redirect_to($_SERVER['HTTP_REFERER']);
 	} else {
 		$errors = 'عضوی حذف نشد.';
+	}
+} elseif (isset($_POST['clear_tokens'])) {
+	if (Member::clear_tokens()) {
+		$session->message('تمیز کاری رموز موفق بود.');
+		redirect_to($_SERVER['HTTP_REFERER']);
+	} else {
+		$errors = 'رمزی تمیز نشد.';
 	}
 }
 // Pagination
@@ -37,11 +44,12 @@ echo output_message($message, $errors);
 			<div class="btn-group pull-left">
 				<form action="member_list.php" method="POST">
 					<a class="btn btn-success" href="new_member.php"><i class="fa fa-plus"></i></a>
-					<button type="submit" name="delete_inactive" class="btn btn-danger">حذف اعضای معوق</button>
+					<button type="submit" name="delete_inactive" class="btn btn-danger">حذف معوق ها</button>
+					<button type="submit" name="clear_tokens" class="btn btn-danger">تمیز کاری رموز</button>
 				</form>
 			</div>
 			<div class="clearfix"></div>
-			<?php if(isset($_GET['page'])): ?>
+			<?php if (isset($_GET['page'])): ?>
 				<h2 class="pull-left">
 					<span class="label label-as-badge label-info">صفحه <?php echo convert($_GET['page']); ?></span>
 				</h2>
@@ -64,11 +72,11 @@ echo output_message($message, $errors);
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach($member_set as $member): ?>
+					<?php foreach ($member_set as $member): ?>
 						<tr class="
 					<?php
-						if($member->status == 0) echo 'warning'; elseif($member->status == 1) echo 'success';
-						elseif($member->status == 2) echo 'danger';
+						if ($member->status == 0) echo 'warning'; elseif ($member->status == 1) echo 'success';
+						elseif ($member->status == 2) echo 'danger';
 						else echo '';
 						?>">
 							<td><img class="img-circle" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=30"></td>

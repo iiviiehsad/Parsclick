@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
 	$email = trim(strtolower($_POST['email']));
 	if (has_presence($email)) {
 		$user = Member::find_by_email($email);
-		if ( ! $user || ! $user->email_username($email)) {
+		if ($user && ! $user->email_username($email)) {
 			$errors = 'خطا! ایمیل فرستاده نشد.';
 		}
 		# Message returned is the same whether the user

@@ -46,14 +46,14 @@
 			<section class="row">
 				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="first_name">نام * &nbsp;</label>
 				<div class="controls">
-					<input onblur="checkfirstname();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" maxlength="50" name="first_name" id="first_name" placeholder="نام" required value="<?php echo $_POST['first_name']; ?>"/>
+					<input onblur="checkfirstname();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" maxlength="50" name="first_name" id="first_name" placeholder="نام (فارسی)" required value="<?php echo $_POST['first_name']; ?>"/>
 				</div><!-- controls -->
 			</section><!-- row -->
 
 			<section class="row">
 				<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name">نام خانوادگی * &nbsp;</label>
 				<div class="controls">
-					<input onblur="checklastname();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" maxlength="50" name="last_name" id="last_name" placeholder="نام خانوادگی" required value="<?php echo $_POST['last_name']; ?>"/>
+					<input onblur="checklastname();" class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" maxlength="50" name="last_name" id="last_name" placeholder="نام خانوادگی (فارسی)" required value="<?php echo $_POST['last_name']; ?>"/>
 				</div><!-- controls -->
 			</section><!-- row -->
 
