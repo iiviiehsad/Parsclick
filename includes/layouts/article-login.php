@@ -22,7 +22,7 @@
 					<div class="input-group">
 						<span class="input-group-addon arial"><span class="glyphicon glyphicon-lock"></span></span>
 						<input class="col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password"
-						       placeholder="Password" value="<?php // echo isset($password) ? htmlentities($password) : ''; ?>" maxlength="30" required/>
+						       placeholder="Password" maxlength="30" required/>
 					</div>
 				</div><!-- controls -->
 			</section><!-- row -->

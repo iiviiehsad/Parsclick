@@ -1,10 +1,10 @@
-<?php global $session; global $lang; ?>
+<?php global $session; ?>
 <article>
 	<h2>فرم ثبت نام</h2>
 	<p>لطفا از فرم ثبت نام زیر استفاده کنید و اطلاعات خود را وارد نمایید <br/>
 		<span class="text-success"><i class="fa fa-info-circle fa-lg"></i> تمام فیلدهایی که با (*) علامت گذاری شده اند اجباری هستند.</span><br/>
 		<span class="text-danger"><i class="fa fa-info-circle fa-lg"></i>
-			لطفا توجه کنید که سرور بعضی وقتها خیلی شلوغ هست پس فقط یک بار درخواست بدید ولی اگر تا ۱۰ دقیقه ایمیل دریافت
+			لطفا توجه کنید که سرور بعضی وقتها خیلی شلوغ هست پس فقط یک بار ثبت نام کنید ولی اگر تا ۱۰ دقیقه ایمیل دریافت
 			نکردید مدیر سایت رو آگاه کنید.
 		</span>
 	</p>
@@ -104,7 +104,7 @@
 			<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="phone"></label>
 			<div class="controls">
 				<div class="g-recaptcha col-xs-8 col-sm-8 col-md-8 col-lg-8" data-sitekey="<?php echo RECAPTCHASITEKEY; ?>"></div>
-				<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang; ?>"></script>
+				<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=fa"></script>
 			</div><!-- controls -->
 		</section><!-- row -->
 		          <!--End of reCaptcha-->
