@@ -3,11 +3,11 @@
 class Mail
 {
 	protected $mailer;
-	protected $subject;
 	protected $data;
 	protected $content;
 	protected $to;
-	protected $fullName;
+	protected $subject  = 'پارس کلیک';
+	protected $fullName = 'کاربر گرامی';
 	protected $charset  = 'UTF-8';
 	protected $from     = EMAILUSER;
 	protected $host     = SMTP;
@@ -67,7 +67,7 @@ class Mail
 		$this->mailer->Subject    = $this->subject;
 		$this->mailer->Body       = $this->template();
 
-		// return $this->send_email($this->to, $this->subject, $this->template());
+		// return self::send_email($this->to, $this->subject, $this->template());
 		return $this->mailer->send();
 	}
 
@@ -77,13 +77,13 @@ class Mail
 	 * @param $message
 	 * @return bool
 	 */
-	public function send_email($email, $subject, $message)
+	public static function send_email($email, $subject, $message)
 	{
 		$headers = 'MIME-Version: 1.0' . "\r\n";
 		$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 		$headers .= 'From: Parsclick <do-not-reply@parsclick.net>' . "\r\n";
 		// $headers .= 'To: Amir <infoe@parsclick.net>, Hassan <infoe@parsclick.net>' . "\r\n";
-		// $headers .= 'Cc: infoe@parsclick.net' . "\r\n";
+		// $headers .= 'Cc: info@parsclick.net' . "\r\n";
 		// $headers .= 'Bcc: info@parsclick.net' . "\r\n";
 		return mail($email, $subject, $message, $headers);
 	}
@@ -193,8 +193,7 @@ class Mail
 													<table style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; overflow: hidden; padding: 0;">
 														<tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
 															<td style="word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse !important; vertical-align: top; text-align: center; color: #FFF; font-family: Tahoma, Helvetica, Arial, sans-serif; font-weight: normal; line-height: initial !important; font-size: 14px; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; display: block; width: auto !important; background: #DB4A39; margin: 0; padding: 5px 0; border: 1px solid #C00;" align="center" bgcolor="#DB4A39" valign="top">
-																<a href="https://plus.google.com/+PersianComputers" style="color: #FFF; text-decoration: none; font-weight: normal; font-family: Tahoma, Helvetica, Arial, sans-serif; font-size: 12px; display: block; height: 100%; width: 100%;">Google
-																                                                                                                                                                                                                                                    +</a>
+																<a href="https://plus.google.com/+PersianComputers" style="color: #FFF; text-decoration: none; font-weight: normal; font-family: Tahoma, Helvetica, Arial, sans-serif; font-size: 12px; display: block; height: 100%; width: 100%;">Google+</a>
 															</td>
 														</tr>
 													</table>

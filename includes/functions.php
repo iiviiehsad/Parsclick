@@ -238,21 +238,6 @@ function ip_info($ip = NULL, $purpose = 'location', $deep_detect = TRUE)
 	return $output;
 }
 
-/**
- * @param $email
- * @param $subject string gets the subject
- * @param $message string gets the message
- * @return bool TRUE if mail is sent and FALSE otherwise
- */
-function send_email($email, $subject, $message)
-{
-	$headers = 'MIME-Version: 1.0' . "\r\n";
-	$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-	$headers .= 'From: Parsclick <do-not-reply@parsclick.net>' . "\r\n";
-
-	return mail($email, $subject, $message, $headers);
-}
-
 /******************************************************************************************************/
 /*                                    SECURITY FUNCTIONS                                              */
 /******************************************************************************************************/

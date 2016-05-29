@@ -4,11 +4,11 @@ $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 find_selected_article();
-if( ! $current_subject) {
+if ( ! $current_subject) {
 	redirect_to('author_articles.php');
 }
 $errors = '';
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 	$author              = Author::find_by_id($session->id);
 	$article             = new Article();
 	$article->id         = (int) '';
@@ -16,7 +16,7 @@ if(isset($_POST['submit'])) {
 	$article->author_id  = $author->id;
 	$article->name       = $_POST['article_name'];
 	$article->position   = (int) $_POST['position'];
-	if($author->id == 1) {
+	if ($author->id == 1) {
 		$article->visible = (int) $_POST['visible'];
 	} else {
 		$article->visible = 0;
@@ -24,11 +24,11 @@ if(isset($_POST['submit'])) {
 	$article->content    = $_POST['content'];
 	$article->created_at = strftime('%Y-%m-%d %H:%M:%S', time());
 	$result              = $article->create();
-	if($result) { // Success
-		send_email('hazz.azimi@gmail.com', 'New Article!', 'New Article Added');
+	if ($result) {
+		Mail::send_email('hazz.azimi@gmail.com', 'New Article!', 'New Article Added');
 		$session->message('مقاله ساخته شد.');
 		redirect_to('author_articles.php');
-	} else { // Failure
+	} else {
 		$errors = 'مقاله شاخته نشد!';
 	}
 }
