@@ -131,11 +131,12 @@ function check_size($size)
 {
 	if ($size > 1024000) {
 		return round($size / 1024000) . ' مگابایت';
-	} elseif ($size > 1024) {
-		return round($size / 1024) . ' کیلوبایت';
-	} else {
-		return $size . ' بایت';
 	}
+	if ($size > 1024) {
+		return round($size / 1024) . ' کیلوبایت';
+	}
+
+	return $size . ' بایت';
 }
 
 /**

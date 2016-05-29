@@ -116,26 +116,13 @@ $(function() {
 		return false;
 	});
 
-	$('form.fileForm').on('submit', function() {
-		var $btn = $('#fileSubmit').button('loading');
-		setTimeout(function() {
-			$btn.button('reset');
-		}, 43200000); // 1000*60*60*12 (0.5 day)
-	});
-
-	$('form.registration').on('submit', function() {
-		var $btn = $('#register').button('loading');
+	$('form[data-remote]').on('submit', function(e) {
+		var $btn = $(this).find('button[name="submit"]').button('loading');
 		setTimeout(function() {
 			$btn.button('reset');
 		}, 3600000); // 1000*60*60 (1 hour)
 	});
 
-	$('form.contactus').on('submit', function() {
-		var $btn = $('#contactbtn').button('loading');
-		setTimeout(function() {
-			$btn.button('reset');
-		}, 300000); // 1000*60*5 (5 min)
-	});
 
 	$('.confirmation').click(function(e) {
 		var href = $(this).attr('href');

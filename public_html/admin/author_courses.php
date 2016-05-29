@@ -71,7 +71,7 @@ echo output_message($message, $errors);
 							<h3><span class="label label-as-badge label-info"><i class="fa fa-upload fa-lg"></i> آپلود فایل تمرینی زیپ</span>
 								<small><?php echo check_size($file_max_file_size); ?></small>
 							</h3>
-							<form enctype="multipart/form-data"
+							<form enctype="multipart/form-data" data-remote
 							      action="author_courses.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>"
 							      method="POST" class="form-horizontal fileForm" role="form">
 								<label style="cursor:pointer;" class="control-label btn btn-small btn-primary" for="single_file">
@@ -86,8 +86,8 @@ echo output_message($message, $errors);
 										<input type="text" name="description" class="form-control input-small" placeholder="اسم فایل "
 										       maxlength="255" required/>
 										<span class="input-group-btn">
-											<button class="btn btn-primary  btn-small" type="submit" name="submit_file" id="fileSubmit"
-											        data-loading-text="<i class='fa fa-spinner fa-pulse'></i> Loading...">
+											<button class="btn btn-primary btn-small" type="submit" name="submit_file"
+											        data-loading-text="در حال آپلود <i class='fa fa-spinner fa-pulse'></i>">
 												آپلود
 											</button>
 										</span>

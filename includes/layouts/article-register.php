@@ -9,7 +9,7 @@
 		</span>
 	</p>
 
-	<form class="registration form-horizontal" action="register" method="POST" id="payment-form">
+	<form class="registration form-horizontal" action="register" method="POST" id="payment-form" data-remote>
 		<fieldset>
 			<legend><i class="fa fa-credit-card fa-lg"></i> جزئیات ضروری
 				<small><span class="pull-left wow flash infinite" data-wow-duration="2s" id="confirmMessage"></span></small>
@@ -113,7 +113,7 @@
 			<label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label" for="submit"></label>
 			<div class="controls">
 				<a href="login" class="btn btn-danger">لغو کردن</a>
-				<button class="btn btn-primary" id="register" name="submit" type="submit" data-loading-text="صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
+				<button class="btn btn-primary" name="submit" type="submit" data-loading-text="صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
 					ثبت نام
 				</button>
 			</div><!-- controls -->

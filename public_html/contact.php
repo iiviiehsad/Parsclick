@@ -51,7 +51,7 @@ echo output_message($message, $errors); */?><!--
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2>تماس با ما</h2>
-			<form class="contactus" action="contact" method="POST" role="form">
+			<form class="contactus" action="contact" method="POST" role="form" data-remote>
 				<fieldset>
 					<legend>لطفا از فرم زیر برای تماس با ما استفاده کنید.</legend>
 					<div class="form-group">
@@ -76,7 +76,7 @@ echo output_message($message, $errors); */?><!--
 					<div class="g-recaptcha" data-sitekey="<?php /*echo RECAPTCHASITEKEY; */?>"></div>
 					<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php /*echo $lang; */?>"></script>
 					<div class="form-group">
-						<button type="submit" id="contactbtn" name="submit" class="btn btn-primary"
+						<button type="submit" name="submit" class="btn btn-primary"
 						        data-loading-text="در حال ارسال <i class='fa fa-spinner fa-pulse'></i>">
 							بفرست
 						</button>

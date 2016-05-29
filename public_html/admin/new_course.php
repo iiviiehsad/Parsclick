@@ -4,15 +4,13 @@ $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 find_selected_course();
-if( ! $current_category) {
-	redirect_to('author_courses.php');
-}
+if ( ! $current_category) redirect_to('author_courses.php');
 $errors = '';
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 	$author                  = Author::find_by_id($session->id);
 	$course                  = new Course();
 	$course->id              = (int) '';
-	$course->category_id     = $current_category->id; //$_GET['category'];
+	$course->category_id     = $current_category->id; // $_GET['category'];
 	$course->author_id       = $author->id;
 	$course->name            = $_POST['course_name'];
 	$course->youtubePlaylist = $_POST['youtubePlaylist'];
@@ -22,7 +20,7 @@ if(isset($_POST['submit'])) {
 	$course->content         = $_POST['description'];
 	$course->created_at      = strftime('%Y-%m-%d %H:%M:%S', time());
 	$result                  = $course->create();
-	if($result) {
+	if ($result) {
 		Mail::send_email('hazz.azimi@gmail.com', 'New Course!', 'New Course Added');
 		$session->message('درس ساخته شد. درس قبل از نشر باید توسط مدیران بازبینی شود.');
 		redirect_to('author_courses.php');
@@ -37,7 +35,7 @@ echo output_message($message, $errors);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-film"></i> درس جدید</h2>
-			<form class="form-horizontal" method="POST" role="form"
+			<form class="form-horizontal" method="POST" role="form" data-remote
 			      action="new_course.php?category=<?php echo urlencode($current_category->id); ?>">
 				<fieldset>
 					<!--course name-->

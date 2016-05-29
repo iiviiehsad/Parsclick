@@ -16,11 +16,7 @@ if (isset($_POST['submit'])) {
 	$article->author_id  = $author->id;
 	$article->name       = $_POST['article_name'];
 	$article->position   = (int) $_POST['position'];
-	if ($author->id == 1) {
-		$article->visible = (int) $_POST['visible'];
-	} else {
-		$article->visible = 0;
-	}
+	$article->visible    = $author->id == 1 ? (int) $_POST['visible'] : 0;
 	$article->content    = $_POST['content'];
 	$article->created_at = strftime('%Y-%m-%d %H:%M:%S', time());
 	$result              = $article->create();
@@ -39,7 +35,7 @@ echo output_message($message, $errors); ?>
 		<article>
 			<h2><i class="fa fa-newspaper-o"></i> مقاله جدید</h2>
 			<form class="form-horizontal" action="new_article.php?subject=<?php echo urlencode($current_subject->id); ?>"
-			      method="POST" role="form">
+			      method="POST" role="form" data-remote>
 				<fieldset id="login">
 					<legend><?php echo ucfirst($current_subject->name); ?></legend>
 					<section class="row">
@@ -88,7 +84,8 @@ echo output_message($message, $errors); ?>
 					<section class="row">
 						<div class="controls col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
 							<a class="btn btn-danger" href="author_articles.php">لغو</a>
-							<button class="btn btn-success" name="submit" id="submit" type="submit">
+							<button class="btn btn-success" name="submit" id="submit" type="submit"
+							        data-loading-text="در حال ساخت <i class='fa fa-spinner fa-pulse'></i>">
 								بساز
 							</button>
 						</div>
