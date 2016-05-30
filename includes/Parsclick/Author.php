@@ -91,7 +91,7 @@ class Author extends DatabaseObject
 				<br/>
 				<h3>عضویت شما به عنوان نویسنده ساخته شد و قبل از اینکه از سیستم استفاده کنید از لینک زیر برای تایید کردن ایمیل خود استفاده کنید:</h3>";
 
-			return $mail->sendEmailTo($user->email, $data, $content, $subject, $user->full_name());
+			return $mail->sendEmailTo([$user->email], $data, $content, $subject, $user->full_name());
 		} else {
 			return FALSE;
 		}

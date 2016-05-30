@@ -5,25 +5,14 @@ $title   = 'پارس کلیک - ایمیل به اعضا';
 $errors  = '';
 $message = '';
 if (isset($_POST['submit'])) {
-	$mail = new PHPMailer();
-	$mail->isSMTP();
-	$mail->isHTML(TRUE);
-	$mail->CharSet    = 'UTF-8';
-	$mail->Host       = SMTP;
-	$mail->SMTPSecure = TLS;
-	$mail->Port       = PORT;
-	$mail->SMTPAuth   = TRUE;
-	$mail->Username   = EMAILUSER;
-	$mail->Password   = EMAILPASS;
-	$mail->FromName   = DOMAIN;
-	$mail->From       = EMAILUSER;
-	$mail->Subject    = $_POST['subject'];
-	$mail->addAddress('do-not-reply@parsclick.net', 'اعضای پارس کلیک');
-	foreach (Member::find_all() as $members) {
-		$mail->addBCC($members->email, $members->full_name());
+	$subject = trim($_POST['subject']);
+	$data    = nl2br($_POST['important']);
+	$content = nl2br($_POST['message']);
+	$emails  = [];
+	foreach (Member::find_all() as $author) {
+		$emails[] = $author->email;
 	}
-	$mail->Body = email('اعضای محترم پارس کلیک', DOMAIN, nl2br($_POST['important']), nl2br($_POST['message']));
-	$result     = $mail->send();
+	$result = $mail->sendEmailTo($emails, $data, $content, $subject);
 	if ($result) {
 		$message = 'پیام به همه اعضا فرستاده شد.';
 	} else {
@@ -37,7 +26,7 @@ if (isset($_POST['submit'])) {
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2>تماس با اعضا</h2>
-			<form action="email_to_members.php" method="POST" role="form">
+			<form action="email_to_members.php" method="POST" role="form" data-remote>
 				<fieldset>
 					<legend>لطفا از فرم زیر برای تماس با اعضا استفاده کنید</legend>
 					<div class="form-group">
@@ -56,7 +45,10 @@ if (isset($_POST['submit'])) {
 					</div>
 					<br/>
 					<div class="form-group">
-						<button type="submit" name="submit" class="btn btn-primary">بفرست</button>
+						<button type="submit" name="submit" class="btn btn-primary"
+						        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
+							بفرست
+						</button>
 					</div>
 				</fieldset>
 			</form>

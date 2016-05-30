@@ -3,11 +3,11 @@
 class Mail
 {
 	protected $mailer;
-	protected $data;
-	protected $content;
-	protected $to;
-	protected $subject  = 'پارس کلیک';
-	protected $fullName = 'کاربر گرامی';
+	public    $data;
+	public    $content;
+	public    $to       = [];
+	public    $subject  = 'پارس کلیک';
+	public    $fullName = 'کاربر گرامی';
 	protected $charset  = 'UTF-8';
 	protected $from     = EMAILUSER;
 	protected $host     = SMTP;
@@ -27,7 +27,7 @@ class Mail
 	}
 
 	/**
-	 * @param string $email
+	 * @param array  $emails
 	 * @param string $data
 	 * @param string $content
 	 * @param string $subject
@@ -35,9 +35,9 @@ class Mail
 	 * @return bool
 	 * @throws \phpmailerException
 	 */
-	public function sendEmailTo($email = '', $data = '', $content = '', $subject = 'ایمیل از سایت پارس کلیک', $fullName = 'کاربر گرامی')
+	public function sendEmailTo($emails = [], $data = '', $content = '', $subject = 'ایمیل از سایت پارس کلیک', $fullName = 'کاربر گرامی')
 	{
-		$this->to       = $email;
+		$this->to       = $emails;
 		$this->fullName = $fullName;
 		$this->subject  = $subject;
 		$this->data     = $data;
@@ -54,7 +54,9 @@ class Mail
 	{
 		$this->mailer->isSMTP();
 		$this->mailer->isHTML(TRUE);
-		$this->mailer->addAddress($this->to, $this->subject);
+		foreach ($this->to as $address) {
+			$this->mailer->addBCC($address, $this->subject);
+		}
 		$this->mailer->CharSet    = $this->charset;
 		$this->mailer->Host       = $this->host;
 		$this->mailer->SMTPSecure = $this->secure;

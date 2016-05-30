@@ -97,7 +97,7 @@ class Member extends DatabaseObject
 				<p>از لینک زیر برای عوض کردن پسورد خود استفاده کنید:</p>
 			';
 
-			return $mail->sendEmailTo($user->email, $data, $content, $subject, $user->full_name());
+			return $mail->sendEmailTo([$user->email], $data, $content, $subject, $user->full_name());
 			// return send_email($this->email, 'Reset Password Request', email($this->full_name(), DOMAIN, $data, $content));
 		} else {
 			return FALSE;
@@ -123,7 +123,7 @@ class Member extends DatabaseObject
 						<p>لطفا به خاطر بسپارید که اسم کاربری را در جایی امن نگه داری کنید و این ایمیل را پاک کنید. این ایمیل را از سطل زباله ایمیل هم پاک کنید.</p>
 						<p>اسم کاربری شما هست:</p>';
 
-			return $mail->sendEmailTo($user->email, $data, $content, $subject, $user->full_name());
+			return $mail->sendEmailTo([$user->email], $data, $content, $subject, $user->full_name());
 		} else {
 			return FALSE;
 		}
@@ -148,7 +148,7 @@ class Member extends DatabaseObject
 						<li>اگر سوالی در مورد دروس و مقالات داشتید در قسمت نظرات مربوط به هر کدام بنویسید.</li></ul>
 						<p>لطفا روی لینک زیر جهت تایید ایمیل خود استفاده کنید:</p>';
 
-			return $mail->sendEmailTo($user->email, $data, $content, $subject, $user->full_name());
+			return $mail->sendEmailTo([$user->email], $data, $content, $subject, $user->full_name());
 		} else {
 			return FALSE;
 		}

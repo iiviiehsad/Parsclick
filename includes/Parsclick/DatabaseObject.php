@@ -399,7 +399,7 @@ abstract class DatabaseObject
 			$content = '<p>آیا اخیرا درخواست بازیافت پسوردتان را کردید؟</p>
 						<p>اگر جواب مثبت است لطفا از لینک زیر برای بازیافت پسوردتان استفاده کنید:</p>';
 
-			return $mail->sendEmailTo($user->email, $data, $content, $subject, $user->full_name());
+			return $mail->sendEmailTo([$user->email], $data, $content, $subject, $user->full_name());
 		}
 
 		return FALSE;
