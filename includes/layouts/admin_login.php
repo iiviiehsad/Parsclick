@@ -52,7 +52,7 @@
 			</section><!-- row -->
 			<section class="row">
 				<a href="forgot_password.php" class="col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
-					اسم کاربری یا پسورد یادتا نیست؟
+					اسم کاربری یا پسورد یادتان نیست؟
 				</a><br/>
 			</section>
 		</fieldset><!-- personal info -->

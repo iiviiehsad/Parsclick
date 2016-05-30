@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
 		<article>
 			<h2><i class="fa fa-user"></i> یادآوری اسم کاربری </h2>
 			<br/>
-			<form class="form-horizontal" action="forgot-username" method="POST" accept-charset="utf-8">
+			<form class="form-horizontal" action="forgot-username" method="POST" accept-charset="utf-8" data-remote>
 				<p class="text-danger">
 					لطفا توجه کنید که سرور بعضی وقتها خیلی شلوغ هست پس فقط یک بار درخواست بدید ولی اگر تا ۱۰ دقیقه ایمیل دریافت
 					نکردید مدیر سایت رو آگاه کنید.
@@ -47,7 +47,10 @@ if (isset($_POST['submit'])) {
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit"></label>
 						<div class="controls">
 							<a href="forgot" class="btn btn-danger">لغو</a>
-							<button class="btn btn-primary" name="submit" id="submit" type="submit">فرستادن</button>
+							<button class="btn btn-primary" name="submit" id="submit" type="submit"
+							        data-loading-text="چند لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
+								فرستادن
+							</button>
 						</div>
 					</section>
 				</fieldset>

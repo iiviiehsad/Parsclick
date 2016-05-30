@@ -1,40 +1,29 @@
 <?php require_once('../../includes/initialize.php');
-$errors = '';
-if(isset($_POST['submit'])) {
-	$username = $_POST['username'];
-	if(has_presence($username)) {
+$errors   = '';
+$username = '';
+if (isset($_POST['submit'])) {
+	$username = trim($_POST['username']);
+	if (has_presence($username)) {
 		$admin  = Admin::find_by_username($username);
 		$author = Author::find_by_username($username);
-		if($admin) {
+		if ($admin) {
 			$admin->create_reset_token($username);
-			$email = $admin->email_reset_token($username);
-			if($email) {
-				$message = 'خطا! ایمیل فرستاده نشد!';
-			} else {
+			if ( ! $admin->email_reset_token($username)) {
 				$errors = 'خطا! ایمیل فرستاده نشد!';
 			}
-		} elseif($author) {
+		} elseif ($author) {
 			$author->create_reset_token($username);
-			$email = $author->email_reset_token($username);
-			if($email) {
-				$message = 'خطا! ایمیل فرستاده نشد!';
-			} else {
+			if ( ! $author->email_reset_token($username)) {
 				$errors = 'خطا! ایمیل فرستاده نشد!';
 			}
-		} else {
-			// Username was not found; don't do anything for security reasons
-			// because if we notify user that username was not found,
-			// they can try to find out what username is a valid username.
 		}
-		// Message returned is the same whether the user
-		// was found or not, so that we don't reveal which
-		// usernames exist and which do not.
+		# Username was not found; don't do anything for security reasons
+		# because if we notify user that username was not found,
+		# they can try to find out what username is a valid username.
 		$message = 'لینکی برای بازیافت پسورد شما به آدرس ایمیلی فرستاده شد که هنگام ثبت نام وارد کردید. تا ۱۰ دقیقه دیگه ایمیلتون رو چک کنید.';
 	} else {
-		$message = 'لطفا اسم کاربری را وارد کنید.';
+		$errors = 'لطفا اسم کاربری را وارد کنید.';
 	}
-} else {
-	$username = '';
 }
 ?>
 <?php include_layout_template('admin_header.php'); ?>
@@ -49,7 +38,7 @@ if(isset($_POST['submit'])) {
 		<article>
 			<h2><i class="fa fa-key"></i> قسمت فراموش کردن پسورد</h2>
 			<br/>
-			<form class="form-horizontal" action="forgot_password.php" method="POST" accept-charset="utf-8">
+			<form class="form-horizontal" action="forgot_password.php" method="POST" accept-charset="utf-8" data-remote>
 				<fieldset>
 					<legend>اسم کاربری شما چیست؟</legend>
 					<section class="row">
@@ -67,7 +56,10 @@ if(isset($_POST['submit'])) {
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit"></label>
 						<div class="controls">
 							<a href="index.php" class="btn btn-danger">لغو</a>
-							<button class="btn btn-primary" name="submit" id="submit" type="submit">برو</button>
+							<button class="btn btn-primary" name="submit" id="submit" type="submit"
+							        data-loading-text="چند لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
+							برو
+							</button>
 						</div>
 					</section>
 					<section class="row">
