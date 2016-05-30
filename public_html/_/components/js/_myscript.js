@@ -123,7 +123,6 @@ $(function() {
 		}, 3600000); // 1000*60*60 (1 hour)
 	});
 
-
 	$('.confirmation').click(function(e) {
 		var href = $(this).attr('href');
 

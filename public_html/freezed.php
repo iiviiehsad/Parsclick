@@ -1,31 +1,28 @@
-<?php
-require_once('../includes/initialize.php');
+<?php require_once('../includes/initialize.php');
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
-if($member->status == 2) redirect_to('blocked');
+if ($member->status == 2) redirect_to('blocked');
 $errors = '';
-if(isset($_POST['resend_email'])) {
-	if(is_temp_mail($member->email)) {
+if (isset($_POST['resend_email'])) {
+	if (is_temp_mail($member->email)) {
 		$errors = 'ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!';
 	} else {
 		$member->create_reset_token($member->username);
-		$result = $member->email_confirmation_details($member->username);
-		if($result) {
+		if ($member->email_confirmation_details($member->username)) {
 			$session->message('ایمیل برای فعال کردن عضویت دوباره فرستاده شد. لطفا ایمیل خود را چک کنید و از اینجا خارج شوید.');
 			redirect_to('freezed');
 		} else {
 			$errors = 'نتوانستیم ایمیل بفرستیم! لطفا بعدا سعی کنید یا با مدیر سایت تماس بگیرید.';
 		}
 	}
-} elseif(isset($_POST['update_email'])) {
-	if(request_is_post() && $session->request_is_same_domain()) {
-		if($session->csrf_token_is_valid() && $session->csrf_token_is_recent()) {
-			if(is_temp_mail(trim($_POST['email']))) {
+} elseif (isset($_POST['update_email'])) {
+	if (request_is_post() && $session->request_is_same_domain()) {
+		if ($session->csrf_token_is_valid() && $session->csrf_token_is_recent()) {
+			if (is_temp_mail(trim($_POST['email']))) {
 				$errors = 'ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!';
 			} else {
 				$member->email = trim($_POST['email']);
-				$result        = $member->save();
-				if($result) {
+				if ($member->save()) {
 					$session->message('شما ایمیل خود را بروز رساندید. حالا روی دوباره ایمیل را بفرست کلیک کنید.');
 					redirect_to('freezed');
 				} else {
@@ -33,7 +30,6 @@ if(isset($_POST['resend_email'])) {
 				}
 			}
 		} else {
-			// $errors = "شناسه CSRF معتبر نیست!";
 			$session->die_on_csrf_token_failure();
 		}
 	} else {
@@ -80,7 +76,7 @@ if(isset($_POST['resend_email'])) {
 		<form action="freezed" method="POST">
 			<div class="input-group col-xs-12 col-sm-8 col-md-6 col-lg-5">
 				<?php echo $session->csrf_token_tag(); ?>
-				<input onblur="checkEmail();" onkeyup="checkEmail();" 
+				<input onblur="checkEmail();" onkeyup="checkEmail();"
 				       class="edit col-xs-12 col-sm-8 col-md-8 col-lg-8 input-small" type="email" name="email" id="email"
 				       placeholder="Email" required value="<?php echo htmlentities($member->email); ?>"
 				       pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"/>
