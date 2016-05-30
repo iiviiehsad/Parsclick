@@ -1,6 +1,5 @@
 <?php require_once('../includes/initialize.php'); ?>
 <?php $session->confirm_logged_in(); ?>
-<?php $filename = basename(__FILE__);
 $title          = 'پارس کلیک - جستجوی دروس';
 $member         = Member::find_by_id($session->id);
 $member->check_status();

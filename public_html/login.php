@@ -1,7 +1,6 @@
 <?php require_once('../includes/initialize.php');
 if ($session->is_logged_in()) redirect_to('member');
 $title    = 'پارس کلیک - ورود به سایت';
-$filename = basename(__FILE__);
 $username = '';
 $errors   = '';
 if (isset($_POST['submit'])) {

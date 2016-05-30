@@ -1,7 +1,6 @@
 <?php
 /*require_once('../includes/initialize.php');
 require_once('../includes/vendor/autoload.php');
-$filename = basename(__FILE__);
 if($session->is_logged_in()) {
 	$member = Member::find_by_id($session->id);
 }

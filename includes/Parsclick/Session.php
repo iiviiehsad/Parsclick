@@ -1,4 +1,4 @@
-<?php //namespace Parsclick;
+<?php // namespace Parsclick;
 /**
  * Class Session to help work with Sessions
  * In our case, primarily to manage logging members in and out

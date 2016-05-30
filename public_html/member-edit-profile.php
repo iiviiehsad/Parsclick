@@ -1,5 +1,4 @@
 <?php require_once('../includes/initialize.php');
-$filename = basename(__FILE__);
 $title    = 'پارس کلیک - ویرایش حساب کاربری';
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
@@ -7,7 +6,7 @@ $member->check_status();
 $errors = '';
 if (isset($_POST['submit'])) {
 	$member->id = $session->id;
-	//$member->username = trim($_POST["username"]);
+	// $member->username = trim($_POST['username']);
 	if ( ! empty($_POST['password'])) {
 		if ( ! has_length($_POST['password'], ['min' => 6])) {
 			$errors = 'پسورد باید حداقل ۶ حروف یا بیشتر باشد!';

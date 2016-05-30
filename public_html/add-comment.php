@@ -6,4 +6,4 @@ $member_id = (int) $member->id;
 $body      = trim($_POST['body']);
 $course_id = trim($_POST['course']);
 Comment::make($member_id, $course_id, $body)->create();
-if(isset($database)) $database->close_connection();
+if (isset($database)) $database->close_connection();

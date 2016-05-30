@@ -1,6 +1,5 @@
 <?php require_once('../includes/initialize.php'); ?>
-<?php $session->confirm_logged_in(); ?>
-<?php $filename = basename(__FILE__);
+<?php $session->confirm_logged_in();
 $title          = 'پارس کلیک - جستجوی بین انجمن';
 $member         = Member::find_by_id($session->id);
 $member->check_status();

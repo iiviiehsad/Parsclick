@@ -6,4 +6,4 @@ $member_id  = (int) $member->id;
 $body       = trim($_POST['body']);
 $article_id = trim($_POST['article']);
 ArticleComment::make($member_id, $article_id, $body)->create();
-if(isset($database)) $database->close_connection();
+if (isset($database)) $database->close_connection();

@@ -1,13 +1,10 @@
 <?php require_once('../includes/initialize.php');
-if($session->is_logged_in()) redirect_to('member-articles?' . $_SERVER['QUERY_STRING']);
-$filename = basename(__FILE__);
+if ($session->is_logged_in()) redirect_to('member-articles?' . $_SERVER['QUERY_STRING']);
 find_selected_article(TRUE);
 $newest_article = Article::find_newest_article();
 $errors         = '';
 $body           = '';
-if(isset($current_article->author_id)) {
-	$author = Author::find_by_id($current_article->author_id);
-}
+if (isset($current_article->author_id)) $author = Author::find_by_id($current_article->author_id);
 $title = isset($current_article) ? 'پارس کلیک - ' . $current_article->name : 'پارس کلیک - ' . $newest_article->name;
 ?>
 <?php include_layout_template('header.php'); ?>
@@ -15,7 +12,7 @@ $title = isset($current_article) ? 'پارس کلیک - ' . $current_article->na
 <?php echo output_message($message, $errors); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article id="member_article">
-		<?php if($current_subject && $current_article): ?>
+		<?php if ($current_subject && $current_article): ?>
 			<?php include_layout_template('article-info.php'); ?>
 		<?php else: ?>
 			<?php include_layout_template('recent-article.php'); ?>

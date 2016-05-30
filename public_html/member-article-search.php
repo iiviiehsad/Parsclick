@@ -1,13 +1,11 @@
-<?php
-require_once('../includes/initialize.php');
+<?php require_once('../includes/initialize.php');
 $session->confirm_logged_in();
-$filename = basename(__FILE__);
 $title    = 'پارس کلیک - جستجوی مقالات';
 $member   = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_article(TRUE);
 $search_query = trim($_GET['q']);
-if(isset($search_query) && ! empty($search_query)) {
+if (isset($search_query) && ! empty($search_query)) {
 	$article_set = Article::search($search_query);
 } else { // this is a $_GET request
 	$session->message('شما چیزی جستجو نکردید.');
@@ -19,7 +17,7 @@ if(isset($search_query) && ! empty($search_query)) {
 <?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if( ! empty($article_set)): ?>
+			<?php if ( ! empty($article_set)): ?>
 				<h2>نتیجه جستجو</h2>
 				<div class="table-responsive">
 					<table class="table">
@@ -29,7 +27,7 @@ if(isset($search_query) && ! empty($search_query)) {
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach($article_set as $article): ?>
+							<?php foreach ($article_set as $article): ?>
 								<tr>
 									<td>
 										<strong>
@@ -37,7 +35,8 @@ if(isset($search_query) && ! empty($search_query)) {
 												<a href="member-articles?subject=<?php echo urlencode($article->subject_id); ?>&article=<?php echo urlencode($article->id); ?>">
 													<mark><?php echo htmlentities($article->name); ?></mark>
 													<small>
-														&nbsp;توسط <?php echo isset($article->author_id) ? htmlentities(Author::find_by_id($article->author_id)->full_name()) : '-'; ?></small>
+														&nbsp;توسط <?php echo isset($article->author_id) ? htmlentities(Author::find_by_id($article->author_id)
+														                                                                      ->full_name()) : '-'; ?></small>
 												</a>
 											</i>
 										</strong>
@@ -61,7 +60,8 @@ if(isset($search_query) && ! empty($search_query)) {
 			<form class="form-inline" action="member-article-search" method="get">
 				<div class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-					<input type="text" name="q" class="form-control" size="40" maxlength="50" placeholder="جستجوی مقالات یا نام خانوادگی نویسنده"/>
+					<input type="text" name="q" class="form-control" size="40" maxlength="50"
+					       placeholder="جستجوی مقالات یا نام خانوادگی نویسنده"/>
 				</div>
 			</form>
 			<h2>موضوعات</h2>

@@ -1,11 +1,10 @@
 <?php
 require_once('../includes/initialize.php');
 require_once('../includes/vendor/autoload.php');
-$title    = 'پارس کلیک - کمک به ما';
-$filename = basename(__FILE__);
-$errors   = '';
+$title  = 'پارس کلیک - کمک به ما';
+$errors = '';
 \Stripe\Stripe::setApiKey(SECRETKEY);
-if(isset($_POST['stripeToken'])) {
+if (isset($_POST['stripeToken'])) {
 	try {
 		\Stripe\Charge::create(array(
 				'amount'      => 1000,
@@ -13,7 +12,7 @@ if(isset($_POST['stripeToken'])) {
 				'source'      => $_POST['stripeToken'],
 				'description' => 'کمک به پارس کلیک'
 		));
-	} catch(\Stripe\Error\Card $e) {
+	} catch (\Stripe\Error\Card $e) {
 		$errors = $e->getMessage();
 	}
 	$session->message('خیلی متشکریم از کمک شما.');

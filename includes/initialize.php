@@ -82,8 +82,9 @@ require_once(LIB_PATH . DS . 'vendor' . DS . 'autoload.php');
 | Initializing $session and $message to use everywhere
 |----------------------------------------------------------------
 */
-$session = new Session();
-$message = $session->message();
+$session  = new Session();
+$message  = $session->message();
+$filename = basename($_SERVER['PHP_SELF'], '.php');
 /*
 |----------------------------------------------------------------
 | Initializing $database and $db to use everywhere

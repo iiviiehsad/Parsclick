@@ -1,5 +1,4 @@
 <?php require_once('../includes/initialize.php');
-$filename = basename(__FILE__);
 $title    = 'پارس کلیک - لیست پخش اعضا';
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
@@ -11,12 +10,12 @@ $playlist_set = Playlist::find_playlist_for_member($member->id);
 <?php echo output_message($message); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article class="member_profile">
-		<h3><i class="fa fa-floppy-o fa-lg"></i> لیست پخش <?php if( ! $playlist_set): echo 'خالی است.'; endif; ?></h3>
-		<?php if($playlist_set): ?>
+		<h3><i class="fa fa-floppy-o fa-lg"></i> لیست پخش <?php if ( ! $playlist_set): echo 'خالی است.'; endif; ?></h3>
+		<?php if ($playlist_set): ?>
 			<h4>
 				<span
 						class='label label-as-badge label-info'>تعداد <?php echo convert(Playlist::count_playlist_for_member($member->id)); ?>
-				 درس داخل لیست پخش شماست.</span>
+				                                            درس داخل لیست پخش شماست.</span>
 			</h4>
 		<?php else: ?>
 			<h4>
@@ -25,7 +24,7 @@ $playlist_set = Playlist::find_playlist_for_member($member->id);
 		<?php endif; ?>
 		<br/><br/>
 		<ul class="list-group">
-			<?php foreach($playlist_set as $playlist): ?>
+			<?php foreach ($playlist_set as $playlist): ?>
 				<?php $course = Course::find_by_id($playlist->course_id); ?>
 				<li class="list-group-item">
 					<a href="member-courses?category=<?php echo urlencode($course->category_id); ?>&course=<?php echo urlencode($course->id); ?>">

@@ -1,7 +1,5 @@
 <?php require_once('../includes/initialize.php');
-$filename = basename(__FILE__);
-$title    = 'پارس کلیک - سوالات و جواب ها';
-?>
+$title    = 'پارس کلیک - سوالات و جواب ها'; ?>
 <?php include_layout_template('header.php'); ?>
 <?php include_layout_template('nav.php'); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">

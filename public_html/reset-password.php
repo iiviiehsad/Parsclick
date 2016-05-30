@@ -1,10 +1,9 @@
 <?php require_once('../includes/initialize.php');
 $filename = basename(__FILE__);
 $token    = $_GET['token'];
-// Confirm that the token sent is valid
 $user = Member::find_by_token($token);
 if( ! $token || ! $user) {
-	// Token wasn't sent or didn't match a user.
+	$session->message('شناسه یا توکن معتبر نیست!');
 	redirect_to('forgot');
 }
 $errors = '';
@@ -25,7 +24,7 @@ if(isset($_POST['submit'])) {
 		if($result) {
 			$user->delete_reset_token($user->username);
 			$session->message('پسورد با موفقیت عوض شد.');
-			//$session->login($user);
+			// $session->login($user);
 			redirect_to('login');
 		} else {
 			$errors = 'متاسفانه نتوانستیم پسورد بروزرسانی کنیم!';
