@@ -1,5 +1,4 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
@@ -19,8 +18,7 @@ if (isset($_POST['submit'])) {
 	$course->visible         = $author->id == 1 ? (int) $_POST['visible'] : 0;
 	$course->content         = $_POST['description'];
 	$course->created_at      = strftime('%Y-%m-%d %H:%M:%S', time());
-	$result                  = $course->create();
-	if ($result) {
+	if ($course->create()) {
 		Mail::send_email('hazz.azimi@gmail.com', 'New Course!', 'New Course Added');
 		$session->message('درس ساخته شد. درس قبل از نشر باید توسط مدیران بازبینی شود.');
 		redirect_to('author_courses.php');

@@ -1,5 +1,4 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
@@ -14,10 +13,10 @@ echo output_message($message);
 			<span class="label label-as-badge"><?php echo convert(count(Author::find_active_authors())); ?></span></p>
 		<br/>
 		<?php $authors = Author::find_active_authors(); ?>
-		<?php foreach($authors as $author): ?>
+		<?php foreach ($authors as $author): ?>
 			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
 				<div class="center">
-					<?php if( ! empty($author->photo)): ?>
+					<?php if ( ! empty($author->photo)): ?>
 						<img class="img-circle" style="width:200px;height:200px;" alt="<?php echo $author->full_name(); ?>"
 						     src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
 					<?php else: ?>
@@ -31,7 +30,7 @@ echo output_message($message);
 						<?php echo convert(count(Article::find_articles_for_author($author->id, TRUE))); ?>
 						مقاله منتشر شده
 					</span>
-					<?php if(isset($author->parsclickmail)): ?>
+					<?php if (isset($author->parsclickmail)): ?>
 						<br/>
 						<p class="label label-as-badge label-warning">
 							<a data-toggle="tooltip" target="_blank" title="<?php echo $author->parsclickmail; ?>"

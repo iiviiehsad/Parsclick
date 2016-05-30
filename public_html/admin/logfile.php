@@ -1,9 +1,8 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 $author  = Admin::find_by_id($session->id);
 $logfile = SITE_ROOT . DS . 'logs' . DS . 'log.txt';
-if(isset($_GET['clear'])) {
+if (isset($_GET['clear'])) {
 	file_put_contents($logfile, '');
 	// Add the first log entry
 	log_action('Logs Cleared By User', '<span class="badge" style="float:right;">' . $author->full_name() . '</span>');
@@ -17,11 +16,11 @@ echo output_message($message);
 		<article>
 			<h2><i class="fa fa-list"></i> جزئیات ثبت</h2>
 			<?php
-			if(file_exists($logfile) && is_readable($logfile) && $handle = fopen($logfile, 'r')):  // read
+			if (file_exists($logfile) && is_readable($logfile) && $handle = fopen($logfile, 'r')):  // read
 				echo '<ul class="list-group arial" style="direction:ltr;">';
-				while( ! feof($handle)):
+				while ( ! feof($handle)):
 					$entry = fgets($handle);
-					if(trim($entry) != ''):
+					if (trim($entry) != ''):
 						echo "<li class='list-group-item'>{$entry}</li>";
 					endif;
 				endwhile;

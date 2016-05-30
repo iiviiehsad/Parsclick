@@ -1,6 +1,5 @@
 <?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
-$filename = basename(__FILE__);
 $errors   = '';
 if (isset($_POST['delete_inactive'])) {
 	if (Member::delete_inactives()) {
@@ -42,14 +41,12 @@ echo output_message($message, $errors);
 	<section class="sidebar col col-lg-4 pull-left">
 		<aside>
 			<div class="btn-group pull-left">
-				<form action="member_list.php" method="POST" data-remote>
+				<form action="member_list.php" method="POST">
 					<a class="btn btn-success" href="new_member.php"><i class="fa fa-plus"></i></a>
-					<button type="submit" name="delete_inactive" class="btn btn-danger"
-					        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
+					<button type="submit" name="delete_inactive" class="btn btn-danger">
 						حذف معوق ها
 					</button>
-					<button type="submit" name="clear_tokens" class="btn btn-danger"
-					        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
+					<button type="submit" name="clear_tokens" class="btn btn-danger">
 						تمیز کاری رموز
 					</button>
 				</form>
@@ -82,10 +79,18 @@ echo output_message($message, $errors);
 						<tr class="
 					<?php
 						switch ($member->status) {
-							case 0: echo 'warning'; break;
-							case 1: echo 'success'; break;
-							case 2: echo 'danger'; break;
-							default: echo ''; break;
+							case 0:
+								echo 'warning';
+								break;
+							case 1:
+								echo 'success';
+								break;
+							case 2:
+								echo 'danger';
+								break;
+							default:
+								echo '';
+								break;
 						}
 						?>">
 							<td><img class="img-circle" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=30"></td>

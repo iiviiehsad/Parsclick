@@ -1,5 +1,4 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
@@ -12,7 +11,7 @@ include_layout_template('author_nav.php');
 echo output_message($message);
 ?>
 <div class="jumbotron hidden-sm wow fadeIn author-jumbotron">
-	<?php if( ! empty($author->photo)): ?>
+	<?php if ( ! empty($author->photo)): ?>
 		<img class="img-circle pull-left" height="150" width="150" alt="<?php echo $author->full_name(); ?>"
 		     src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 	<?php else: ?>
@@ -40,13 +39,13 @@ echo output_message($message);
 </div>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
-		<?php if($articles_under_edit): ?>
+		<?php if ($articles_under_edit): ?>
 			<h3>
 				<span class="label label-danger label-as-badge"><?php echo convert(count($articles_under_edit)); ?></span>
 				مقالات زیر بررسی:
 			</h3>
 			<ul class="fa-ul">
-				<?php foreach($articles_under_edit as $aue): ?>
+				<?php foreach ($articles_under_edit as $aue): ?>
 					<li>
 						<i class='fa fa-refresh fa-spin text-danger'></i>&nbsp;
 						<a href="author_articles.php?subject=<?php echo urlencode($aue->subject_id); ?>&article=<?php echo urlencode($aue->id); ?>">
@@ -56,13 +55,13 @@ echo output_message($message);
 				<?php endforeach; ?>
 			</ul>
 		<?php endif; ?>
-		<?php if($courses_under_edit): ?>
+		<?php if ($courses_under_edit): ?>
 			<h3>
 				<span class="label label-danger label-as-badge"><?php echo convert(count($courses_under_edit)); ?></span>
 				درس های زیر بررسی:
 			</h3>
 			<ul class="fa-ul">
-				<?php foreach($courses_under_edit as $cue): ?>
+				<?php foreach ($courses_under_edit as $cue): ?>
 					<li>
 						<i class='fa fa-refresh fa-spin text-danger'></i>&nbsp;
 						<a href="author_courses.php?category=<?php echo urlencode($cue->category_id); ?>&course=<?php echo urlencode($cue->id); ?>">
@@ -72,13 +71,13 @@ echo output_message($message);
 				<?php endforeach; ?>
 			</ul>
 		<?php endif; ?>
-		<?php if($articles_for_author): ?>
+		<?php if ($articles_for_author): ?>
 			<h3>
 				<span class="label label-success label-as-badge"><?php echo convert(count($articles_for_author)); ?></span>
 				مقاله منتشر شده توسط شما:
 			</h3>
 			<ul class="fa-ul">
-				<?php foreach($articles_for_author as $afa): ?>
+				<?php foreach ($articles_for_author as $afa): ?>
 					<li>
 						<i class="fa fa-check-square text-success"></i>
 						<a href="author_articles.php?subject=<?php echo urlencode($afa->subject_id); ?>&article=<?php echo urlencode($afa->id); ?>">
@@ -88,13 +87,13 @@ echo output_message($message);
 				<?php endforeach; ?>
 			</ul>
 		<?php endif; ?>
-		<?php if($courses_for_author): ?>
+		<?php if ($courses_for_author): ?>
 			<h3>
 				<span class="label label-success label-as-badge"><?php echo convert(count($courses_for_author)); ?></span>
 				درس منتشر شده توسط شما:
 			</h3>
 			<ul class="fa-ul">
-				<?php foreach($courses_for_author as $cfa): ?>
+				<?php foreach ($courses_for_author as $cfa): ?>
 					<li>
 						<i class="fa fa-check-square text-success"></i>
 						<a href="author_courses.php?category=<?php echo urlencode($cfa->category_id); ?>&course=<?php echo urlencode($cfa->id); ?>">
@@ -104,7 +103,7 @@ echo output_message($message);
 				<?php endforeach; ?>
 			</ul>
 		<?php endif; ?>
-		<?php if( ! $articles_under_edit && ! $articles_for_author): ?>
+		<?php if ( ! $articles_under_edit && ! $articles_for_author): ?>
 			<p>تشکر ویژه ما رو پذیرا باشید چون ما رو انتخاب کردید برای منتشر کردن مقالات خودتون. امیدوارم که بتونید به راحتی
 			   با کاربرای خودتوی در ارتباط باشید، و اگر قابلیتی از این سیستم می خواهید با ما در میون بگذارید. اما ...</p>
 			<p class="lead text-danger">توجه!</p>

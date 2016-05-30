@@ -1,38 +1,37 @@
 <?php require_once('../../includes/initialize.php');
 $token  = $_GET['token'];
 $errors = '';
-// Confirm that the token sent is valid
 $admin  = Admin::find_by_token($token);
 $author = Author::find_by_token($token);
-if( ! $token) {
+if ( ! $token) {
 	redirect_to('forgot_password.php');
 }
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 	$password         = $_POST['password'];
 	$password_confirm = $_POST['password_confirm'];
-	if( ! has_presence($password) || ! has_presence($password_confirm)) {
+	if ( ! has_presence($password) || ! has_presence($password_confirm)) {
 		$errors = 'جفت پسوردها را پر کنید و خالی نگذارید.';
-	} elseif( ! has_length($password, ['min' => 6])) {
+	} elseif ( ! has_length($password, ['min' => 6])) {
 		$errors = 'پسورد باید حداقل شش حروف یا بیشتر باشد.';
-	} elseif( ! has_format_matching($password, '/[^A-Za-z0-9]/')) {
+	} elseif ( ! has_format_matching($password, '/[^A-Za-z0-9]/')) {
 		$errors = 'پسورد باید حداقل شامل یک حرفی باشد که نه حروف و نه عدد باشد: مثلا ستاره';
-	} elseif($password !== $password_confirm) {
+	} elseif ($password !== $password_confirm) {
 		$errors = 'پسوردها با همدیگر یکی نیستند.';
 	} else {
-		if($admin) {
+		if ($admin) {
 			$admin->password = $admin->password_encrypt($_POST['password']);
 			$result          = $admin->update();
-			if($result) {
+			if ($result) {
 				$admin->delete_reset_token($admin->username);
 				$session->message('متشکریم! پسورد با موفقیت عوض شد. شما الآن قادر به ورود هستید.');
 				redirect_to('index.php');
 			} else {
 				$errors = 'متاسفانه نتوانستیم پسورد بروزرسانی کنیم!';
 			}
-		} elseif($author) {
+		} elseif ($author) {
 			$author->password = $author->password_encrypt($_POST['password']);
 			$result           = $author->update();
-			if($result) {
+			if ($result) {
 				$author->delete_reset_token($author->username);
 				$session->message('متشکریم! پسورد با موفقیت عوض شد. شما الآن قادر به ورود هستید.');
 				redirect_to('index.php');
@@ -45,7 +44,6 @@ if(isset($_POST['submit'])) {
 			redirect_to('forgot_password.php');
 		}
 	}
-} else { // end: if(isset($_POST["submit"]))
 }
 include_layout_template('admin_header.php');
 ?>

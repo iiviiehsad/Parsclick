@@ -1,5 +1,4 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 $errors = '';
 if (isset($_POST['submit'])) {
@@ -20,8 +19,7 @@ if (isset($_POST['submit'])) {
 		$member->email      = trim(strtolower($_POST['email']));
 		$member->status     = (int) $_POST['status'];
 		$member->token      = NULL;
-		$result             = $member->create();
-		if ($result) {
+		if ($member->create()) {
 			$session->message('Member with the username ' . strtoupper($member->username) . ' was created.');
 			redirect_to('member_list.php');
 		} else {

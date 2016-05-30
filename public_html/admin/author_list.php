@@ -1,6 +1,5 @@
 <?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
-$filename   = basename(__FILE__);
 $author_set = Author::find_all();
 include_layout_template('admin_header.php');
 include_layout_template('admin_nav.php');
@@ -8,7 +7,8 @@ echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<h2><i class="fa fa-users"></i> لیست نویسندگان<span class="badge"><?php echo convert(count($author_set)); ?></span>
+			<h2><i class="fa fa-users"></i> لیست نویسندگان<span
+						class="badge"><?php echo convert(count($author_set)); ?></span>
 			</h2>
 			<br/>
 			<div class="table-responsive">
@@ -23,10 +23,10 @@ echo output_message($message);
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach($author_set as $author): ?>
+						<?php foreach ($author_set as $author): ?>
 							<tr>
 								<td class="arial">
-									<?php if( ! empty($author->photo)): ?>
+									<?php if ( ! empty($author->photo)): ?>
 										<img class="img-circle pull-right" width="30" alt="Profile Picture"
 										     src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
 									<?php else: ?>

@@ -1,5 +1,4 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 if ($session->is_admin_logged_in()) {
 	redirect_to('admin.php');
 } elseif ($session->is_author_logged_in()) {

@@ -2,18 +2,17 @@
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
-$filename = basename(__FILE__);
 find_selected_course();
 include_layout_template('admin_header.php');
 $file_max_file_size = File::$max_file_size; // 32MB
 $errors             = '';
-if(isset($_POST['submit_file'])) {
+if (isset($_POST['submit_file'])) {
 	$file              = new File();
 	$file->id          = (int) '';
 	$file->course_id   = (int) $current_course->id;
 	$file->description = $_POST['description'];
 	$file->attach_file($_FILES['single_file']);
-	if($file->save()) {
+	if ($file->save()) {
 		$session->message("فایل {$file->description} با موفقیت آپلود شد.");
 		redirect_to('author_courses.php?category=' . urlencode($current_category->id) . '&course=' . urlencode($current_course->id));
 	} else {
@@ -26,9 +25,9 @@ echo output_message($message, $errors);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<?php
-			if($current_category && $current_course): ?>
+			if ($current_category && $current_course): ?>
 				<?php $json = get_playlist_content($current_course->youtubePlaylist); ?>
-				<?php if(check_ownership($current_course->author_id, $session->id)): ?>
+				<?php if (check_ownership($current_course->author_id, $session->id)): ?>
 					<a class="btn btn-primary"
 					   href="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>"
 					   title="ویرایش">
@@ -37,17 +36,17 @@ echo output_message($message, $errors);
 				<?php endif; ?>
 				<?php include_layout_template('course-info.php'); ?>
 				<!-- -------------------------------------------FILE LINK--------------------------------------------- -->
-				<?php if( ! empty($current_course->file_link)): ?>
+				<?php if ( ! empty($current_course->file_link)): ?>
 					<a class="btn btn-primary" href="<?php echo htmlentities($current_course->file_link); ?>" target="_blank"
 					   title="لینک فایل تمرینی">
 						لینک فایل تمرینی
 					</a>
 				<?php endif; ?>
 				<!-- -------------------------------------------FILES------------------------------------------------- -->
-				<?php if(File::num_files_for_course($current_course->id) > 0): ?>
+				<?php if (File::num_files_for_course($current_course->id) > 0): ?>
 					<?php $files = File::find_files_for_course($current_course->id); ?>
-					<?php foreach($files as $file): ?>
-						<?php if(check_ownership($current_course->author_id, $session->id)): ?>
+					<?php foreach ($files as $file): ?>
+						<?php if (check_ownership($current_course->author_id, $session->id)): ?>
 							<div class="btn-group">
 								<a class="btn btn-primary btn-small" href="../files/<?php echo urlencode($file->name); ?>">
 									<?php echo htmlentities($file->description); ?>
@@ -65,8 +64,8 @@ echo output_message($message, $errors);
 					<?php endforeach; ?>
 				<?php endif; ?>
 				<!-- --------------------------------Check to see if there is any file-------------------------------- -->
-				<?php if(File::num_files_for_course($current_course->id) == 0): ?>
-					<?php if(check_ownership($current_course->author_id, $session->id)): ?>
+				<?php if (File::num_files_for_course($current_course->id) == 0): ?>
+					<?php if (check_ownership($current_course->author_id, $session->id)): ?>
 						<div class="alert alert-info">
 							<h3><span class="label label-as-badge label-info"><i class="fa fa-upload fa-lg"></i> آپلود فایل تمرینی زیپ</span>
 								<small><?php echo check_size($file_max_file_size); ?></small>
@@ -103,8 +102,8 @@ echo output_message($message, $errors);
 				<article id="comments">
 					<?php include_layout_template('course-comments.php'); ?>
 				</article>
-			<?php elseif($current_category): ?>
-				<?php if( ! $current_category->visible) redirect_to('author_courses.php'); ?>
+			<?php elseif ($current_category): ?>
+				<?php if ( ! $current_category->visible) redirect_to('author_courses.php'); ?>
 				<div class="panel panel-danger">
 					<div class="panel-heading">
 						<h3 class="panel-title">

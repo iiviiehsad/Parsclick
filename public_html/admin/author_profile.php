@@ -1,5 +1,4 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
@@ -33,7 +32,7 @@ echo output_message($message);
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside class="members_menu">
 		<h2>آواتار</h2>
-		<?php if(empty($author->photo)): ?>
+		<?php if (empty($author->photo)): ?>
 			<div>
 				<span class="glyphicon glyphicon-user center" style="font-size: 150px;"></span>
 			</div>

@@ -1,5 +1,4 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
@@ -9,7 +8,7 @@ $allowed_mime_types = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg'];
 $allowed_extensions = ['png', 'gif', 'jpg', 'jpeg', 'PNG', 'GIF', 'JPG', 'JPEG'];
 if (isset($_POST['submit'])) {
 	$author->id = $session->id;
-	//$author->username = trim($_POST["username"]);
+	// $author->username = trim($_POST['username']);
 	if ( ! empty($_POST['password'])) {
 		$author->password = $author->password_encrypt(trim($_POST['password']));
 	}

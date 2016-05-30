@@ -1,5 +1,4 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
@@ -19,8 +18,7 @@ if (isset($_POST['submit'])) {
 	$article->visible    = $author->id == 1 ? (int) $_POST['visible'] : 0;
 	$article->content    = $_POST['content'];
 	$article->created_at = strftime('%Y-%m-%d %H:%M:%S', time());
-	$result              = $article->create();
-	if ($result) {
+	if ($article->create()) {
 		Mail::send_email('hazz.azimi@gmail.com', 'New Article!', 'New Article Added');
 		$session->message('مقاله ساخته شد.');
 		redirect_to('author_articles.php');

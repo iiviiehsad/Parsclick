@@ -1,5 +1,4 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_article();
 $errors = '';
@@ -27,7 +26,6 @@ if (isset($_POST['submit'])) {
 	} else {
 		$errors = 'مقاله بروزرسانی نشد!';
 	}
-} else {
 }
 include_layout_template('admin_header.php');
 include_layout_template('admin_nav.php');

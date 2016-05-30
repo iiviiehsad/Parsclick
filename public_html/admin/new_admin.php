@@ -1,5 +1,4 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 if (isset($_POST['submit'])) {
 	$admin             = new Admin();
@@ -9,8 +8,7 @@ if (isset($_POST['submit'])) {
 	$admin->first_name = trim(ucwords(strtolower($_POST['first_name'])));
 	$admin->last_name  = trim(ucwords(strtolower($_POST['last_name'])));
 	$admin->email      = trim(strtolower($_POST['email']));
-	$result            = $admin->create();
-	if ($result) {
+	if ($admin->create()) {
 		$session->message('مدیر با اسم کاربری ' . strtoupper($admin->username) . ' ساخته شد.');
 		redirect_to('admin_list.php');
 	} else {

@@ -1,5 +1,4 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
@@ -19,8 +18,7 @@ if (isset($_POST['submit'])) {
 	$current_course->file_link       = $_POST['file_link'];
 	$current_course->visible         = $_POST['visible'];
 	$current_course->content         = $_POST['description'];
-	$result                          = $current_course->save();
-	if ($result) {
+	if ($current_course->save()) {
 		$session->message('درس بروزرسانی شد.');
 		redirect_to('author_courses.php?category=' . $current_category->id . '&course=' . $current_course->id);
 	} else {

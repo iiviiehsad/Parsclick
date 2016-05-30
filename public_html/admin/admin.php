@@ -1,5 +1,4 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 include_layout_template('admin_header.php');
 include_layout_template('admin_nav.php');

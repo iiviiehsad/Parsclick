@@ -1,5 +1,4 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_course();
 if (isset($_POST['submit'])) {
@@ -8,8 +7,7 @@ if (isset($_POST['submit'])) {
 	$category->name     = ucwords(strtolower($_POST['category_name']));
 	$category->position = (int) $_POST['position'];
 	$category->visible  = (int) $_POST['visible'];
-	$result             = $category->create();
-	if ($result) {
+	if ($category->create()) {
 		$session->message('موضوع درست شد.');
 		redirect_to('admin_courses.php');
 	} else {

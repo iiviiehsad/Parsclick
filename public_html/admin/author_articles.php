@@ -2,7 +2,6 @@
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
-$filename = basename(__FILE__);
 find_selected_article();
 include_layout_template('admin_header.php');
 include_layout_template('author_nav.php');
@@ -10,10 +9,10 @@ echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if($current_subject && $current_article): ?>
+			<?php if ($current_subject && $current_article): ?>
 				<?php include_layout_template('article-info.php'); ?>
-			<?php elseif($current_subject): ?>
-				<?php if( ! $current_subject->visible) redirect_to('author_articles.php'); ?>
+			<?php elseif ($current_subject): ?>
+				<?php if ( ! $current_subject->visible) redirect_to('author_articles.php'); ?>
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h2 class="panel-title">

@@ -1,6 +1,5 @@
 <?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
-$filename = basename(__FILE__);
 $member   = Member::find_by_id($_GET['id']);
 if ( ! $member) {
 	$session->message('عضو پیدا نشد!');
@@ -65,7 +64,8 @@ echo output_message($message, $errors);
 					</section>
 					<!--last_name-->
 					<section class="row">
-						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name"> نام خانوادگی&nbsp;</label>
+						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name"> نام
+						                                                                                   خانوادگی&nbsp;</label>
 						<div class="controls">
 							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name"
 							       placeholder="نام خانوادگی" value="<?php echo htmlentities($member->last_name); ?>"/>

@@ -1,8 +1,7 @@
 <?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
-$filename = basename(__FILE__);
-$author   = Author::find_by_id($_GET['id']);
-$errors   = '';
+$author = Author::find_by_id($_GET['id']);
+$errors = '';
 if ( ! $author) {
 	$session->message('نویسنده پیدا نشد!');
 	redirect_to('author_list.php');

@@ -1,8 +1,7 @@
 <?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
-$filename     = basename(__FILE__);
 $search_query = trim($_GET['q']);
-if(isset($search_query) && ! empty($search_query)) {
+if (isset($search_query) && ! empty($search_query)) {
 	$author_set = Author::search($search_query);
 } else { // this is a $_GET request
 	$session->message('شما چیزی جستجو نکردید!');
@@ -14,7 +13,7 @@ echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if( ! empty($author_set)): ?>
+			<?php if ( ! empty($author_set)): ?>
 				<h2><i class="fa fa-search"></i> نتیجه جستجو نویسندگان</h2>
 				<div class="table-responsive">
 					<table class="table">
@@ -28,7 +27,7 @@ echo output_message($message);
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach($author_set as $author): ?>
+							<?php foreach ($author_set as $author): ?>
 								<tr>
 									<td><?php echo htmlentities($author->username); ?></td>
 									<td><?php echo htmlentities(ucfirst(strtolower($author->first_name))); ?></td>

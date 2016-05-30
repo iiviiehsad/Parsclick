@@ -1,8 +1,7 @@
 <?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
-$filename     = basename(__FILE__);
 $search_query = trim($_GET['q']);
-if(isset($search_query) && ! empty($search_query)) {
+if (isset($search_query) && ! empty($search_query)) {
 	$admin_set = Admin::search($search_query);
 } else {
 	$session->message('شما چیزی جستجو نکردید!');
@@ -14,7 +13,7 @@ echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if( ! empty($admin_set)): ?>
+			<?php if ( ! empty($admin_set)): ?>
 				<h2><i class="fa fa-search"></i> نتیجه جستجو مدیران</h2>
 				<div class="table-responsive">
 					<table class="table">
@@ -28,7 +27,7 @@ echo output_message($message);
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach($admin_set as $admin): ?>
+							<?php foreach ($admin_set as $admin): ?>
 								<tr>
 									<td><?php echo htmlentities($admin->username); ?></td>
 									<td><?php echo htmlentities(ucfirst(strtolower($admin->first_name))); ?></td>

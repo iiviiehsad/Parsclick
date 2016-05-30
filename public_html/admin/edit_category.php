@@ -1,5 +1,4 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_course();
 if ( ! $current_category) redirect_to('admin_courses.php');

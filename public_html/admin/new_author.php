@@ -1,5 +1,4 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 if (isset($_POST['submit'])) {
 	$author             = new Author();
@@ -11,8 +10,7 @@ if (isset($_POST['submit'])) {
 	$author->email      = trim(strtolower($_POST['email']));
 	$author->status     = (int) $_POST['status'];
 	$author->token      = md5(uniqid(mt_rand(), TRUE));
-	$result             = $author->create();
-	if ($result && $author->email_confirmation_details($author->username)) {
+	if ($author->create() && $author->email_confirmation_details($author->username)) {
 		$session->message('نویسنده با اسم کاربری ' . $author->username . ' ساخته شد.');
 		redirect_to('author_list.php');
 	} else {

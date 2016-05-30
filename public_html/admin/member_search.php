@@ -1,8 +1,7 @@
 <?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
-$filename     = basename(__FILE__);
 $search_query = trim($_GET['q']);
-if(isset($search_query) && ! empty($search_query)) {
+if (isset($search_query) && ! empty($search_query)) {
 	$member_set = Member::search($search_query);
 } else { // this is a $_GET request
 	$session->message('چیزی جستجو نکردید.');
@@ -14,7 +13,7 @@ echo output_message($message);
 ?>
 	<section class="main">
 		<article>
-			<?php if( ! empty($member_set)): ?>
+			<?php if ( ! empty($member_set)): ?>
 				<h2><i class="fa fa-search"></i> نتیجه جستجوی اعضا </h2>
 				<div class="table-responsive">
 					<table class="table">
@@ -30,7 +29,7 @@ echo output_message($message);
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach($member_set as $member): ?>
+							<?php foreach ($member_set as $member): ?>
 								<tr>
 									<td class="arial"><?php echo htmlentities($member->username); ?></td>
 									<td><?php echo htmlentities(ucfirst(strtolower($member->first_name))); ?></td>

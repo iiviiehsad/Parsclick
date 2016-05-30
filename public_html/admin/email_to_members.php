@@ -1,11 +1,10 @@
 <?php require_once('../../includes/initialize.php');
 require_once('../../includes/vendor/autoload.php');
-$filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 $title   = 'پارس کلیک - ایمیل به اعضا';
 $errors  = '';
 $message = '';
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 	$mail = new PHPMailer();
 	$mail->isSMTP();
 	$mail->isHTML(TRUE);
@@ -20,12 +19,12 @@ if(isset($_POST['submit'])) {
 	$mail->From       = EMAILUSER;
 	$mail->Subject    = $_POST['subject'];
 	$mail->addAddress('do-not-reply@parsclick.net', 'اعضای پارس کلیک');
-	foreach(Member::find_all() as $members) {
+	foreach (Member::find_all() as $members) {
 		$mail->addBCC($members->email, $members->full_name());
 	}
 	$mail->Body = email('اعضای محترم پارس کلیک', DOMAIN, nl2br($_POST['important']), nl2br($_POST['message']));
 	$result     = $mail->send();
-	if($result) {
+	if ($result) {
 		$message = 'پیام به همه اعضا فرستاده شد.';
 	} else {
 		$errors = 'خطا در فرستادن پیام!';
@@ -69,7 +68,7 @@ if(isset($_POST['submit'])) {
 			<div class="form-group">
 				<label for="emails">ایمیل ها</label>
 				<textarea class="form-control edit" name="emails" id="emails" rows="15" placeholder="ایمیل ها"
-				          disabled><?php foreach(Member::find_all() as $members) echo $members->email, ', '; ?></textarea>
+				          disabled><?php foreach (Member::find_all() as $members) echo $members->email, ', '; ?></textarea>
 			</div>
 		</aside>
 	</section>

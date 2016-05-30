@@ -1,18 +1,16 @@
 <?php require_once('../../includes/initialize.php');
-$filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_article();
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 	$subject           = new Subject();
 	$subject->id       = (int) '';
 	$subject->name     = ucwords(strtolower($_POST['subject_name']));
 	$subject->position = (int) $_POST['position'];
 	$subject->visible  = (int) $_POST['visible'];
-	$result            = $subject->create();
-	if($result) { // Success
+	if ($subject->create()) { 
 		$session->message('موضوع درست شد');
 		redirect_to('admin_articles.php');
-	} else { // Failure
+	} else { 
 		$session->message('موضوع درست نشد!');
 		redirect_to('new_subject.php');
 	}
@@ -41,7 +39,7 @@ echo output_message($message); ?>
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position">
 								<option disabled value="">--Please Select--</option>
-								<?php for($count = 1; $count <= (Subject::num_rows() + 1); $count++): ?>
+								<?php for ($count = 1; $count <= (Subject::num_rows() + 1); $count++): ?>
 									<option value="<?php echo $count; ?>"><?php echo $count; ?></option>
 								<?php endfor; ?>
 							</select>

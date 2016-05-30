@@ -1,6 +1,5 @@
 <?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
-$filename = basename(__FILE__);
 $yourself = Admin::find_by_id($session->id);
 $admin    = Admin::find_by_id($_GET['id']);
 $errors   = '';
@@ -19,8 +18,7 @@ if (isset($_POST['submit'])) {
 	$admin->first_name = ucwords(strtolower($_POST['first_name']));
 	$admin->last_name  = ucwords(strtolower($_POST['last_name']));
 	$admin->email      = strtolower($_POST['email']);
-	$result            = $admin->save();
-	if ($result) {
+	if ($admin->save()) {
 		$session->message('مدیر بروزرسانی شد.');
 		redirect_to('admin_list.php');
 	} else {
@@ -107,7 +105,8 @@ echo output_message($message, $errors);
 			<p>اسم شما <?php echo $yourself->full_name(); ?> است.</p>
 			<?php
 			if ($yourself->id == $admin->id): ?>
-				<p class='text-success'>شما قادر به عوض کردن پسورد هستید چون این اطلاعات خودتان است. لطفا هیچ چیزی را خالی نگذارید.</p>
+				<p class='text-success'>شما قادر به عوض کردن پسورد هستید چون این اطلاعات خودتان است. لطفا هیچ چیزی را خالی
+				                        نگذارید.</p>
 			<?php else: ?>
 				<p class='text-danger'>شما قادر به عوض کردن پسورد نیستید چون این اطلاعات شما نیست!</p>
 			<?php endif; ?>

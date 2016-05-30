@@ -1,6 +1,5 @@
 <?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
-$filename = basename(__FILE__);
 find_selected_course();
 include_layout_template('admin_header.php');
 include_layout_template('admin_nav.php');
@@ -8,7 +7,7 @@ echo output_message($message);
 ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if($current_category && $current_course): ?>
+			<?php if ($current_category && $current_course): ?>
 				<?php $json = get_playlist_content($current_course->youtubePlaylist); ?>
 				<?php include_layout_template('course-info.php'); ?>
 				<!-----------------------------------------------EDIT------------------------------------------>
@@ -19,16 +18,16 @@ echo output_message($message);
 				</a>
 				&nbsp;
 				<!---------------------------------------------FILE LINK--------------------------------------->
-				<?php if( ! empty($current_course->file_link)): ?>
+				<?php if ( ! empty($current_course->file_link)): ?>
 					<a class="btn btn-primary btn-small" href="<?php echo htmlentities($current_course->file_link); ?>"
 					   target="_blank" data-toggle="tooltip" title="لینک فایل تمرینی">
 						لینک فایل تمرینی
 					</a>
 				<?php endif; ?>
 				<h4>فایل های تمرینی:</h4>
-				<?php if(File::num_files_for_course($current_course->id) != 0): ?>
+				<?php if (File::num_files_for_course($current_course->id) != 0): ?>
 					<?php $files = File::find_files_for_course($current_course->id); ?>
-					<?php foreach($files as $file): ?>
+					<?php foreach ($files as $file): ?>
 						<div class="btn-group">
 							<a class="btn btn-primary btn-small" href="../files/<?php echo urlencode($file->name); ?>">
 								<?php echo htmlentities($file->name); ?>
@@ -48,7 +47,7 @@ echo output_message($message);
 				<article id="comments">
 					<?php include_layout_template('course-comments.php'); ?>
 				</article>
-			<?php elseif($current_category): ?>
+			<?php elseif ($current_category): ?>
 				<div class="panel panel-danger">
 					<div class="panel-heading">
 						<h2><?php echo htmlentities(ucwords($current_category->name)); ?></h2>

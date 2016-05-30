@@ -1,6 +1,5 @@
 <?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
-$filename  = basename(__FILE__);
 $admin_set = Admin::find_all();
 include_layout_template('admin_header.php');
 include_layout_template('admin_nav.php');
@@ -24,7 +23,7 @@ echo output_message($message);
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach($admin_set as $admin): ?>
+						<?php foreach ($admin_set as $admin): ?>
 							<tr>
 								<td class="arial">
 									<img class="img-circle" src="http://gravatar.com/avatar/<?php echo md5($admin->email); ?>?s=30"
