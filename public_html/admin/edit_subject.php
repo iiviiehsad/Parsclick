@@ -3,22 +3,19 @@ $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_article();
 $errors = '';
-if( ! $current_subject) {
-	redirect_to('admin_articles.php');
-}
-if(isset($_POST['submit'])) {
+if ( ! $current_subject) redirect_to('admin_articles.php');
+if (isset($_POST['submit'])) {
 	$subject           = Subject::find_by_id($current_subject->id, FALSE);
 	$subject->name     = ucwords(strtolower($_POST['subject_name']));
 	$subject->position = (int) $_POST['position'];
 	$subject->visible  = (int) $_POST['visible'];
 	$result            = $subject->save();
-	if($result) { // Success
+	if ($result) {
 		$session->message('موضوع بروزرسانی شد.');
 		redirect_to('edit_subject.php?subject=' . $current_subject->id);
-	} else { // Failure
+	} else {
 		$errors = 'موضوع بروزرسانی نشد!';
 	}
-} else {
 }
 include_layout_template('admin_header.php');
 include_layout_template('admin_nav.php');
@@ -29,7 +26,7 @@ echo output_message($message, $errors);
 			<h2><i class="fa fa-pencil-square-o"></i> ویرایش موضوع</h2>
 
 			<form class="form-horizontal" action="edit_subject.php?subject=<?php echo urlencode($current_subject->id); ?>"
-			      method="post" role="form">
+			      method="post" role="form" data-remote>
 				<fieldset>
 					<legend><?php echo htmlentities(ucfirst($current_subject->name)); ?></legend>
 					<section class="row">
@@ -46,9 +43,9 @@ echo output_message($message, $errors);
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position">
 								<option disabled value="">انتخاب کنید</option>
 								<?php
-								for($count = 1; $count <= Subject::num_rows(); $count++):
+								for ($count = 1; $count <= Subject::num_rows(); $count++):
 									echo "<option value='{$count}'";
-									if($current_subject->position == $count): echo " selected"; endif;
+									if ($current_subject->position == $count): echo ' selected'; endif;
 									echo ">{$count}</option>";
 								endfor; ?>
 							</select>
@@ -60,11 +57,11 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" value="0"
-										<?php if($current_subject->visible == 0) echo 'checked'; ?> > خیر
+										<?php echo ! $current_subject->visible ? 'checked' : ''; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" value="1"
-										<?php if($current_subject->visible == 1) echo 'checked'; ?> > بله
+										<?php echo $current_subject->visible ? 'checked' : ''; ?> > بله
 							</label>
 						</div>
 					</section>
@@ -78,7 +75,8 @@ echo output_message($message, $errors);
 							   href="delete_subject.php?subject=<?php echo urlencode($current_subject->id); ?>">
 								حذف
 							</a>
-							<button class="btn btn-success" name="submit" id="submit" type="submit">
+							<button class="btn btn-success" name="submit" id="submit" type="submit"
+							        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
 								ویرایش
 							</button>
 						</div>

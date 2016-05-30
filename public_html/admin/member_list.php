@@ -42,10 +42,16 @@ echo output_message($message, $errors);
 	<section class="sidebar col col-lg-4 pull-left">
 		<aside>
 			<div class="btn-group pull-left">
-				<form action="member_list.php" method="POST">
+				<form action="member_list.php" method="POST" data-remote>
 					<a class="btn btn-success" href="new_member.php"><i class="fa fa-plus"></i></a>
-					<button type="submit" name="delete_inactive" class="btn btn-danger">حذف معوق ها</button>
-					<button type="submit" name="clear_tokens" class="btn btn-danger">تمیز کاری رموز</button>
+					<button type="submit" name="delete_inactive" class="btn btn-danger"
+					        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
+						حذف معوق ها
+					</button>
+					<button type="submit" name="clear_tokens" class="btn btn-danger"
+					        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
+						تمیز کاری رموز
+					</button>
 				</form>
 			</div>
 			<div class="clearfix"></div>
@@ -75,9 +81,12 @@ echo output_message($message, $errors);
 					<?php foreach ($member_set as $member): ?>
 						<tr class="
 					<?php
-						if ($member->status == 0) echo 'warning'; elseif ($member->status == 1) echo 'success';
-						elseif ($member->status == 2) echo 'danger';
-						else echo '';
+						switch ($member->status) {
+							case 0: echo 'warning'; break;
+							case 1: echo 'success'; break;
+							case 2: echo 'danger'; break;
+							default: echo ''; break;
+						}
 						?>">
 							<td><img class="img-circle" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=30"></td>
 							<td class="arial">

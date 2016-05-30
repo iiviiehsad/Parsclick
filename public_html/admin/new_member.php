@@ -2,10 +2,10 @@
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 $errors = '';
-if(isset($_POST['submit'])) {
-	if(Member::find_by_username(trim($_POST['username']))) {
+if (isset($_POST['submit'])) {
+	if (Member::find_by_username(trim($_POST['username']))) {
 		$errors = 'اسم کاربری موجود نیست! لطفا از اسم کاربری دیگری استفاده کنید.';
-	} elseif(Member::find_by_email(trim($_POST['email']))) {
+	} elseif (Member::find_by_email(trim($_POST['email']))) {
 		$errors = 'این ایمیل قبلا ثبت شده!';
 	} else {
 		$member             = new Member();
@@ -21,10 +21,10 @@ if(isset($_POST['submit'])) {
 		$member->status     = (int) $_POST['status'];
 		$member->token      = NULL;
 		$result             = $member->create();
-		if($result) { // Success
+		if ($result) {
 			$session->message('Member with the username ' . strtoupper($member->username) . ' was created.');
 			redirect_to('member_list.php');
-		} else { // Failure
+		} else {
 			$errors = 'Member creation failed.';
 		}
 	}
@@ -37,7 +37,7 @@ echo output_message($message, $errors);
 		<article>
 			<h2><i class="fa fa-plus-square"></i> عضو جدید </h2>
 
-			<form class="form-horizontal" action="new_member.php" method="post" role="form">
+			<form class="form-horizontal" action="new_member.php" method="post" role="form" data-remote>
 				<fieldset>
 					<legend><i class="fa fa-user"></i> عضو جدید بسازید</legend>
 					<!--username-->
@@ -66,8 +66,7 @@ echo output_message($message, $errors);
 					</section>
 					<!--last_name-->
 					<section class="row">
-						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name">نام خانوادگی
-						                                                                                  &nbsp;</label>
+						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name">نام خانوادگی&nbsp;</label>
 						<div class="controls">
 							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name"
 							       placeholder="نام خانوادگی"/>
@@ -125,7 +124,8 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit">&nbsp;</label>
 						<div class="controls">
 							<a class="btn btn-danger" href="member_list.php">لغو</a>
-							<button class="btn btn-success" name="submit" id="submit" type="submit">
+							<button class="btn btn-success" name="submit" id="submit" type="submit"
+							        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
 								بساز
 							</button>
 						</div>

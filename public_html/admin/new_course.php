@@ -106,7 +106,8 @@ echo output_message($message, $errors);
 					<section class="row">
 						<div class="controls col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
 							<a class="btn btn-danger" href="author_courses.php">لغو</a>
-							<button class="btn btn-success" name="submit" id="submit" type="submit">
+							<button class="btn btn-success" name="submit" id="submit" type="submit"
+							        data-loading-text="در حال ساخت <i class='fa fa-spinner fa-pulse'></i>">
 								بساز
 							</button>
 						</div>

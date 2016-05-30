@@ -2,11 +2,9 @@
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_course();
-if( ! $current_course || ! $current_category) {
-	redirect_to('author_courses.php');
-}
+if ( ! $current_course || ! $current_category) redirect_to('author_courses.php');
 $errors = '';
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 	global $database;
 	$course          = Course::find_by_id($current_course->id, FALSE);
 	$name            = ucfirst($_POST['course_name']);
@@ -26,14 +24,12 @@ if(isset($_POST['submit'])) {
 	$sql .= "content = '" . $database->escape_value($content) . "' ";
 	$sql .= 'WHERE id = ' . $database->escape_value($course->id);
 	$database->query($sql);
-	$result = $database->affected_rows();
-	if($result == 1) {
+	if ($database->affected_rows()) {
 		$session->message('درس بروزرسانی شد.');
-		redirect_to("admin_courses.php?category=" . $current_category->id . "&course=" . $current_course->id);
+		redirect_to('admin_courses.php?category=' . $current_category->id . '&course=' . $current_course->id);
 	} else {
 		$errors = 'درس بروزرسانی نشد!';
 	}
-} else {
 }
 include_layout_template('admin_header.php');
 include_layout_template('admin_nav.php');
@@ -44,7 +40,7 @@ echo output_message($message, $errors);
 			<h2><i class="fa fa-pencil-square"></i> ویرایش درس</h2>
 			<form class="form-horizontal"
 			      action="edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id) ?>"
-			      method="POST" role="form">
+			      method="POST" role="form" data-remote>
 				<fieldset>
 					<!--name-->
 					<legend><?php echo htmlentities(ucfirst($current_course->name)); ?>
@@ -88,9 +84,9 @@ echo output_message($message, $errors);
 								<option value="" disabled>انتخاب کنید</option>
 								<?php
 								$page_set = Course::num_courses_for_category($current_course->category_id);
-								for($count = 1; $count <= $page_set; $count++):
+								for ($count = 1; $count <= $page_set; $count++):
 									echo "<option value='{$count}'";
-									if($current_course->position == $count): echo ' selected'; endif;
+									if ($current_course->position == $count): echo ' selected'; endif;
 									echo ">{$count}</option>";
 								endfor;
 								?>
@@ -104,9 +100,9 @@ echo output_message($message, $errors);
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="category_id"
 							        id="category_id">
 								<?php
-								foreach(Category::find_all(FALSE) as $category):
+								foreach (Category::find_all(FALSE) as $category):
 									echo "<option value='{$category->id}'";
-									if($current_course->category_id == $category->id):
+									if ($current_course->category_id == $category->id):
 										echo 'selected';
 									endif;
 									echo ">{$category->name}</option>";
@@ -121,11 +117,11 @@ echo output_message($message, $errors);
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" value="0"
-										<?php if($current_course->visible == 0) echo 'checked'; ?> > خیر
+										<?php echo ($current_course->visible == 0) ? 'checked' : ''; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" value="1"
-										<?php if($current_course->visible == 1) echo 'checked'; ?> > بله
+										<?php echo ($current_course->visible == 1) ? 'checked' : ''; ?> > بله
 							</label>
 						</div>
 					</section>
@@ -146,7 +142,8 @@ echo output_message($message, $errors);
 							   href="delete_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>">
 								حذف
 							</a>
-							<button class="btn btn-success" name="submit" id="submit" type="submit">
+							<button class="btn btn-success" name="submit" id="submit" type="submit"
+							        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
 								ویرایش
 							</button>
 						</div>

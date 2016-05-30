@@ -1,7 +1,7 @@
 <?php require_once('../../includes/initialize.php');
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 	$admin             = new Admin();
 	$admin->id         = (int) '';
 	$admin->username   = trim(strtolower($_POST['username']));
@@ -10,10 +10,10 @@ if(isset($_POST['submit'])) {
 	$admin->last_name  = trim(ucwords(strtolower($_POST['last_name'])));
 	$admin->email      = trim(strtolower($_POST['email']));
 	$result            = $admin->create();
-	if($result) { // Success
+	if ($result) {
 		$session->message('مدیر با اسم کاربری ' . strtoupper($admin->username) . ' ساخته شد.');
 		redirect_to('admin_list.php');
-	} else { // Failure
+	} else {
 		$session->message('مدیر ساخته نشد!');
 		redirect_to('admin_list.php');
 	}
@@ -26,7 +26,7 @@ echo output_message($message);
 		<article>
 			<h2><i class="fa fa-plus-square"></i> مدیر جدید</h2>
 
-			<form class="form-horizontal" action="new_admin.php" method="post" role="form">
+			<form class="form-horizontal" action="new_admin.php" method="post" role="form" data-remote>
 				<fieldset>
 					<legend><i class="fa fa-user"></i> مدیر جدید درست کنید</legend>
 					<!--username-->
@@ -74,7 +74,8 @@ echo output_message($message);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit">&nbsp;</label>
 						<div class="controls">
 							<a class="btn btn-danger" href="admin_list.php">لغو</a>
-							<button class="btn btn-success" name="submit" id="submit" type="submit">
+							<button class="btn btn-success" name="submit" id="submit" type="submit"
+							        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
 								بساز
 							</button>
 						</div>

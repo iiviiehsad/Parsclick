@@ -3,10 +3,8 @@ $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_article();
 $errors = '';
-if( ! $current_article || ! $current_subject) {
-	redirect_to('author_articles.php');
-}
-if(isset($_POST['submit'])) {
+if ( ! $current_article || ! $current_subject) redirect_to('author_articles.php');
+if (isset($_POST['submit'])) {
 	global $database;
 	$article    = Article::find_by_id($current_article->id, FALSE);
 	$name       = ucfirst($_POST['article_name']);
@@ -23,7 +21,7 @@ if(isset($_POST['submit'])) {
 	$sql .= 'WHERE id = ' . $database->escape_value($article->id);
 	$database->query($sql);
 	$result = $database->affected_rows();
-	if($result == 1) {
+	if ($result) {
 		$session->message('مقاله بروزرسانی شد.');
 		redirect_to('admin_articles.php?subject=' . $current_subject->id . '&article=' . $current_article->id);
 	} else {
@@ -40,7 +38,7 @@ echo output_message($message, $errors);
 			<h2><i class="fa fa-pencil-square"></i> ویرایش مقاله</h2>
 			<form class="form-horizontal"
 			      action="edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id) ?>"
-			      method="post" role="form">
+			      method="post" role="form" data-remote>
 				<fieldset>
 					<legend><?php echo htmlentities(ucfirst($current_article->name)); ?></legend>
 					<section class="row">
@@ -58,9 +56,9 @@ echo output_message($message, $errors);
 								<option value="" disabled> انتخاب کنید</option>
 								<?php
 								$page_set = Article::num_articles_for_subject($current_article->subject_id, FALSE);
-								for($count = 1; $count <= $page_set; $count++):
+								for ($count = 1; $count <= $page_set; $count++):
 									echo "<option value='{$count}'";
-									if($current_article->position == $count):
+									if ($current_article->position == $count):
 										echo ' selected';
 									endif;
 									echo ">{$count}</option>";
@@ -75,9 +73,9 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="subject_id" id="subject_id">
 								<?php
-								foreach(Subject::find_all(FALSE) as $subject):
+								foreach (Subject::find_all(FALSE) as $subject):
 									echo "<option value='{$subject->id}'";
-									if($current_article->subject_id == $subject->id):
+									if ($current_article->subject_id == $subject->id):
 										echo 'selected';
 									endif;
 									echo ">{$subject->name}</option>";
@@ -92,11 +90,11 @@ echo output_message($message, $errors);
 						<div class="controls radio-disabled">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" value="0"
-										<?php if($current_article->visible == 0) echo 'checked'; ?> > خیر
+										<?php echo ($current_article->visible == 0) ? 'checked' : ''; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" value="1"
-										<?php if($current_article->visible == 1) echo 'checked'; ?> > بله
+										<?php echo ($current_article->visible == 1) ? 'checked' : ''; ?> > بله
 							</label>
 						</div>
 					</section>
@@ -117,7 +115,8 @@ echo output_message($message, $errors);
 							   href="delete_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
 								حذف
 							</a>
-							<button class="btn btn-success" name="submit" id="submit" type="submit">
+							<button class="btn btn-success" name="submit" id="submit" type="submit"
+							        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
 								ویرایش
 							</button>
 						</div>

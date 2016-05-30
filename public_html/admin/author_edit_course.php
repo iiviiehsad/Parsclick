@@ -5,14 +5,14 @@ $author = Author::find_by_id($session->id);
 $author->check_status();
 find_selected_course();
 $errors = '';
-if( ! $current_course || ! $current_category) {
+if ( ! $current_course || ! $current_category) {
 	redirect_to('author_courses.php');
-	// check to see the course belong to this author in order to edit
-} elseif( ! check_ownership($current_course->author_id, $session->id)) {
+	# check to see the course belong to this author in order to edit
+} elseif ( ! check_ownership($current_course->author_id, $session->id)) {
 	$session->message('شما قادر به تغییر این درس نیستید');
 	redirect_to('author_courses.php');
 }
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 	$current_course->category_id     = $current_category->id;
 	$current_course->name            = $_POST['course_name'];
 	$current_course->youtubePlaylist = $_POST['youtubePlaylist'];
@@ -20,13 +20,12 @@ if(isset($_POST['submit'])) {
 	$current_course->visible         = $_POST['visible'];
 	$current_course->content         = $_POST['description'];
 	$result                          = $current_course->save();
-	if($result) { // Success
+	if ($result) {
 		$session->message('درس بروزرسانی شد.');
 		redirect_to('author_courses.php?category=' . $current_category->id . '&course=' . $current_course->id);
-	} else { // Failure
+	} else {
 		$errors = 'درس بروزرسانی نشد یا چیزی تغییر نیافت!';
 	}
-} else {
 }
 include_layout_template('admin_header.php');
 include_layout_template('author_nav.php');
@@ -38,7 +37,7 @@ echo output_message($message, $errors);
 
 			<form class="form-horizontal"
 			      action="author_edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id) ?>"
-			      method="post" role="form">
+			      method="post" role="form" data-remote>
 				<fieldset>
 					<legend><?php echo htmlentities(ucfirst($current_course->name)); ?>
 					</legend>
@@ -91,12 +90,12 @@ echo output_message($message, $errors);
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible"
 								       id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled '; ?>
-										<?php if($current_course->visible == 0) echo 'checked'; ?> > خیر
+										<?php echo $current_course->visible == 0 ? 'checked' : ''; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible"
 								       id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled '; ?>
-										<?php if($current_course->visible == 1) echo 'checked'; ?> > بله
+										<?php echo $current_course->visible == 1 ? 'checked' : ''; ?> > بله
 							</label>
 						</div>
 					</section>
@@ -118,7 +117,8 @@ echo output_message($message, $errors);
 							   href="author_delete_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>">
 								حذف
 							</a>
-							<button class="btn btn-success" name="submit" id="submit" type="submit">
+							<button class="btn btn-success" name="submit" id="submit" type="submit"
+							        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
 								ویرایش
 							</button>
 						</div>

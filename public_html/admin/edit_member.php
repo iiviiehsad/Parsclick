@@ -2,12 +2,12 @@
 $session->confirm_admin_logged_in();
 $filename = basename(__FILE__);
 $member   = Member::find_by_id($_GET['id']);
-if( ! $member) {
+if ( ! $member) {
 	$session->message('عضو پیدا نشد!');
 	redirect_to('manage_members.php');
 }
 $errors = '';
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 	$member->id         = (int) $_GET['id'];
 	$member->username   = strtolower($_POST['username']);
 	$member->first_name = ucwords(strtolower($_POST['first_name']));
@@ -18,13 +18,12 @@ if(isset($_POST['submit'])) {
 	$member->email      = strtolower($_POST['email']);
 	$member->status     = (int) $_POST['status'];
 	$result             = $member->save();
-	if($result) { // Success
+	if ($result) {
 		$session->message('عضویت بروزرسانی شد.');
 		redirect_to('member_list.php');
-	} else { // Failure
+	} else {
 		$errors = 'عضویت بروزرسانی نشد.';
 	}
-} else {
 }
 include_layout_template('admin_header.php');
 include_layout_template('admin_nav.php');
@@ -34,10 +33,11 @@ echo output_message($message, $errors);
 		<article>
 			<h2><i class="fa fa-pencil-square"></i> ویرایش عضویت </h2>
 
-			<form class="form-horizontal" action="edit_member.php?id=<?php echo urlencode($member->id); ?>" method="post"
-			      role="form">
+			<form class="form-horizontal" action="edit_member.php?id=<?php echo urlencode($member->id); ?>" method="POST"
+			      role="form" data-remote>
 				<fieldset>
-					<legend><i class="fa fa-user"></i> <?php echo htmlentities(ucwords(strtolower($member->full_name()))); ?>
+					<legend>
+						<i class="fa fa-user"></i> <?php echo htmlentities(ucwords(strtolower($member->full_name()))); ?>
 					</legend>
 					<!--username-->
 					<section class="row">
@@ -65,8 +65,7 @@ echo output_message($message, $errors);
 					</section>
 					<!--last_name-->
 					<section class="row">
-						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name"> نام
-						                                                                                   خانوادگی&nbsp;</label>
+						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name"> نام خانوادگی&nbsp;</label>
 						<div class="controls">
 							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name"
 							       placeholder="نام خانوادگی" value="<?php echo htmlentities($member->last_name); ?>"/>
@@ -78,10 +77,10 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="gender" id="gender">
 								<?php echo htmlentities($member->gender); ?>
-								<?php if($member->gender === 'مرد'): ?>
+								<?php if ($member->gender === 'مرد'): ?>
 									<option value="مرد">مرد</option>
 									<option value="زن">زن</option>
-								<?php elseif($member->gender === 'زن'): ?>
+								<?php elseif ($member->gender === 'زن'): ?>
 									<option value="زن">زن</option>
 									<option value="مرد">مرد</option>
 								<?php else: ?>
@@ -122,15 +121,15 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="status" id="inlineRadioNo" value="0"
-										<?php if($member->status == 0) echo 'checked'; ?> /> منتظر دریافت ایمیل
+										<?php echo ($member->status == 0) ? ' checked ' : ''; ?> /> منتظر دریافت ایمیل
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="status" id="inlineRadioYes" value="1"
-										<?php if($member->status == 1) echo 'checked'; ?> /> بله
+										<?php echo ($member->status == 1) ? ' checked ' : ''; ?> /> بله
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="status" id="inlineRadioYes" value="2"
-										<?php if($member->status == 2) echo 'checked'; ?> /> خیر
+										<?php echo ($member->status == 2) ? ' checked ' : ''; ?> /> خیر
 							</label>
 						</div>
 						<!--buttons-->
@@ -142,7 +141,8 @@ echo output_message($message, $errors);
 							<a class="btn btn-info confirmation" href="delete_member.php?id=<?php echo urlencode($member->id); ?>">
 								حذف
 							</a>
-							<button class="btn btn-success" name="submit" id="submit" type="submit">
+							<button class="btn btn-success" name="submit" id="submit" type="submit"
+							        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
 								ویرایش
 							</button>
 						</div>

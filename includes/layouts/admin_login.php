@@ -3,7 +3,7 @@
 	<p>لطفا به عنوان مدیر ارشد و یا نویسنده وارد شوید. <br/>
 	   برای ثبت نام به عنوان نویسنده با مدیر سایت تماس بگیرید. <br>
 	   اگر به عنوان کاربر وارد سیستم شدید به محض ورود به عنوان مدیر از قسمت اعضا خارج خواهید شد،</p>
-	<form class="login form-horizontal" action="index.php" method="post">
+	<form class="login form-horizontal" action="index.php" method="POST" data-remote>
 		<fieldset id="login">
 			<legend><i class="fa fa-unlock-alt"></i> فرم ورود</legend>
 			<section class="row">
@@ -11,7 +11,9 @@
 				<div class="controls">
 					<div class="input-group">
 						<span class="input-group-addon arial"><span class="glyphicon glyphicon-user"></span></span>
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" autofocus placeholder="Username" value="<?php echo isset($username) ? htmlentities($username) : ''; ?>" maxlength="30" required/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" autofocus
+						       placeholder="Username" value="<?php echo isset($username) ? htmlentities($username) : ''; ?>"
+						       maxlength="30" required/>
 					</div>
 				</div><!-- controls -->
 			</section><!-- row -->
@@ -20,7 +22,9 @@
 				<div class="controls">
 					<div class="input-group">
 						<span class="input-group-addon arial"><span class="glyphicon glyphicon-lock"></span></span>
-						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password" placeholder="Password" value="<?php echo isset($password) ? htmlentities($password) : ''; ?>" maxlength="30" required/>
+						<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password"
+						       placeholder="Password" value="<?php echo isset($password) ? htmlentities($password) : ''; ?>"
+						       maxlength="30" required/>
 					</div>
 				</div><!-- controls -->
 			</section><!-- row -->
@@ -35,15 +39,21 @@
 					</label>
 				</div><!-- controls -->
 			</section><!-- row -->
-			<?php global $session; echo $session->csrf_token_tag(); ?>
+			<?php global $session;
+			echo $session->csrf_token_tag(); ?>
 			<section class="row">
 				<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit"></label>
 				<div class="controls">
-					<button class="btn btn-primary" name="submit" id="submit" type="submit">ورود</button>
+					<button class="btn btn-primary" name="submit" id="submit" type="submit"
+					        data-loading-text="یک لحظه <i class='fa fa-spinner fa-pulse'></i>">
+					                                                                                    ورود
+					</button>
 				</div><!-- controls -->
 			</section><!-- row -->
 			<section class="row">
-				<a href="forgot_password.php" class="col-sm-offset-4 col-md-offset-4 col-lg-offset-4">اسم کاربری یا پسورد یادتان نیست؟</a><br/>
+				<a href="forgot_password.php" class="col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+					اسم کاربری یا پسورد یادتا نیست؟
+				</a><br/>
 			</section>
 		</fieldset><!-- personal info -->
 	</form>

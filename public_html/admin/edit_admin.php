@@ -4,29 +4,28 @@ $filename = basename(__FILE__);
 $yourself = Admin::find_by_id($session->id);
 $admin    = Admin::find_by_id($_GET['id']);
 $errors   = '';
-if( ! $admin) {
+if ( ! $admin) {
 	$session->message('مدیر پیدا نشد!');
 	redirect_to('admin_list.php');
 }
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 	$admin->id       = (int) $_GET['id'];
 	$admin->username = strtolower($_POST['username']);
-	if($yourself == $admin && ! empty($_POST['password'])) {
-		// if this is true means this is your profile
-		// and you can change your password
+	if ($yourself == $admin && ! empty($_POST['password'])) {
+		# if this is true means this is your profile
+		# and you can change your password
 		$admin->password = $admin->password_encrypt($_POST['password']);
 	}
 	$admin->first_name = ucwords(strtolower($_POST['first_name']));
 	$admin->last_name  = ucwords(strtolower($_POST['last_name']));
 	$admin->email      = strtolower($_POST['email']);
 	$result            = $admin->save();
-	if($result) {
+	if ($result) {
 		$session->message('مدیر بروزرسانی شد.');
 		redirect_to('admin_list.php');
 	} else {
 		$errors = 'نتوانستیم مدیر را بروزرسانی کنیم یا اینکه شما چیزی عوض نکردید.';
 	}
-} else {
 }
 include_layout_template('admin_header.php');
 include_layout_template('admin_nav.php');
@@ -37,7 +36,7 @@ echo output_message($message, $errors);
 			<h2><i class="fa fa-pencil-square-o"></i> ویرایش مدیر</h2>
 
 			<form class="form-horizontal" action="edit_admin.php?id=<?php echo urlencode($admin->id); ?>" method="post"
-			      role="form">
+			      role="form" data-remote>
 				<fieldset>
 					<legend><i class="fa fa-user"></i> <?php echo htmlentities(ucwords(strtolower($admin->full_name()))); ?>
 					</legend>
@@ -53,7 +52,7 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="password">پسورد</label>
 						<div class="controls">
-							<input <?php if($session->id != $admin->id): echo 'disabled'; endif; ?>
+							<input <?php if ($session->id != $admin->id): echo 'disabled'; endif; ?>
 									class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="password" name="password" id="password"
 									placeholder="New Password"/>
 						</div>
@@ -87,12 +86,13 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit">&nbsp;</label>
 						<div class="controls">
 							<a class="btn btn-danger" href="admin_list.php">لغو</a>
-							<?php if($yourself != $admin): ?>
+							<?php if ($yourself != $admin): ?>
 								<a class="btn btn-info confirmation" href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>">
 									حذف
 								</a>
 							<?php endif; ?>
-							<button class="btn btn-success" name="submit" id="submit" type="submit">
+							<button class="btn btn-success" name="submit" id="submit" type="submit"
+							        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
 								ویرایش
 							</button>
 						</div>
@@ -106,9 +106,8 @@ echo output_message($message, $errors);
 			<h2>عوض کردن پسورد</h2>
 			<p>اسم شما <?php echo $yourself->full_name(); ?> است.</p>
 			<?php
-			if($yourself->id == $admin->id): ?>
-				<p class='text-success'>شما قادر به عوض کردن پسورد هستید چون این اطلاعات خودتان است. لطفا هیچ چیزی را خالی
-				                        نگذارید.</p>
+			if ($yourself->id == $admin->id): ?>
+				<p class='text-success'>شما قادر به عوض کردن پسورد هستید چون این اطلاعات خودتان است. لطفا هیچ چیزی را خالی نگذارید.</p>
 			<?php else: ?>
 				<p class='text-danger'>شما قادر به عوض کردن پسورد نیستید چون این اطلاعات شما نیست!</p>
 			<?php endif; ?>

@@ -1,13 +1,17 @@
 var elixir = require('laravel-elixir');
 
+elixir.config.assetsPath = 'public_html/_/components';
+elixir.config.publicPath = 'public_html/_';
+elixir.config.appPath    = 'includes';
+
 elixir(function(mix) {
 	// mix.sass('app.scss' , "new_direcroty")
 	// mix.less('app.less' , "new_direcroty")
 	mix.less([
-			'bootstrap.less',
-			'bootstrap-rtl.min.less',
-			'_mystyles.less'
-		], "public_html/_/components/css")
+		'bootstrap.less',
+		'bootstrap-rtl.min.less',
+		'_mystyles.less'
+	], "public_html/_/components/css")
 		.styles([
 			'app.css',
 			// 'jquery-ui.css',
@@ -32,8 +36,8 @@ elixir(function(mix) {
 			'prism.js',
 			'wow.min.js',
 			'youtubeplayer.js',
-		    'sweetalert.js',
-		    // 'jquery-ui.js',
+			'sweetalert.js',
+			// 'jquery-ui.js',
 			// 'jquery.countdown.min.js',
 			'_myscript.js'
 		])

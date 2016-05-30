@@ -3,7 +3,7 @@
 	<p>از فرم زیر استفاده کنید تا وارد سیستم شوید. اگر اسم کاربری به همراه پسورد ندارید، لطفا روی لینک ثبت نام کلیک
 	   کنید. بعد از ثبت نام ایمیلی به شما فرستاده خواهد شد که تایید کنید.</p>
 
-	<form class="login form-horizontal" action="login" method="post">
+	<form class="login form-horizontal" action="login" method="post" data-remote>
 		<fieldset id="login">
 			<legend><i class="fa fa-unlock-alt fa-lg"></i> ورود به سیستم</legend>
 			<section class="row">
@@ -12,7 +12,8 @@
 					<div class="input-group">
 						<span class="input-group-addon arial"><span class="glyphicon glyphicon-user"></span></span>
 						<input class="col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username" autofocus
-						       placeholder="Username" value="<?php echo isset($username) ? htmlentities($username) : ''; ?>" maxlength="30" required/>
+						       placeholder="Username" value="<?php echo isset($username) ? htmlentities($username) : ''; ?>"
+						       maxlength="30" required/>
 					</div>
 				</div><!-- controls -->
 			</section><!-- row -->
@@ -26,11 +27,15 @@
 					</div>
 				</div><!-- controls -->
 			</section><!-- row -->
-			<?php global $session; echo $session->csrf_token_tag(); ?>
+			<?php global $session;
+			echo $session->csrf_token_tag(); ?>
 			<section class="row">
 				<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="submit"></label>
 				<div class="controls">
-					<button class="btn btn-primary" name="submit" id="submit" type="submit">ورود</button>
+					<button class="btn btn-primary" name="submit" id="submit" type="submit"
+					        data-loading-text="یک لحظه <i class='fa fa-spinner fa-pulse'></i>">
+						ورود
+					</button>
 				</div><!-- controls -->
 			</section><!-- row -->
 			<section class="row">

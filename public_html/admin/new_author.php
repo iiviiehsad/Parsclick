@@ -1,7 +1,7 @@
 <?php require_once('../../includes/initialize.php');
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 	$author             = new Author();
 	$author->id         = (int) '';
 	$author->username   = trim(strtolower($_POST['username']));
@@ -12,10 +12,10 @@ if(isset($_POST['submit'])) {
 	$author->status     = (int) $_POST['status'];
 	$author->token      = md5(uniqid(mt_rand(), TRUE));
 	$result             = $author->create();
-	if($result && $author->email_confirmation_details($author->username)) { // Success
+	if ($result && $author->email_confirmation_details($author->username)) {
 		$session->message('نویسنده با اسم کاربری ' . $author->username . ' ساخته شد.');
 		redirect_to('author_list.php');
-	} else { // Failure
+	} else {
 		$session->message('نویسنده ساخته نشد!');
 		redirect_to('author_list.php');
 	}
@@ -27,7 +27,7 @@ echo output_message($message); ?>
 		<article>
 			<h2><i class="fa fa-plus-square"></i> نویسنده جدید</h2>
 
-			<form class="form-horizontal" action="new_author.php" method="post" role="form">
+			<form class="form-horizontal" action="new_author.php" method="post" role="form" data-remote>
 				<fieldset>
 					<legend><i class="fa fa-user"></i> نویسنده جدید درست کنید</legend>
 					<!--username-->
@@ -51,7 +51,7 @@ echo output_message($message); ?>
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="first_name">نام</label>
 						<div class="controls">
 							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="first_name" id="first_name"
-							       placeholder="نام"/>
+							       placeholder="نام" required/>
 						</div>
 					</section>
 					<!--last_name-->
@@ -59,7 +59,7 @@ echo output_message($message); ?>
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="last_name">نام خانوادگی</label>
 						<div class="controls">
 							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="last_name" id="last_name"
-							       placeholder="نام خانوادگی"/>
+							       placeholder="نام خانوادگی" required/>
 						</div>
 					</section>
 					<!--email-->
@@ -67,7 +67,7 @@ echo output_message($message); ?>
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="email">ایمیل</label>
 						<div class="controls">
 							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="email" name="email" id="email"
-							       placeholder="Email"/>
+							       placeholder="Email" required/>
 						</div>
 					</section>
 					<!--status-->
@@ -90,7 +90,8 @@ echo output_message($message); ?>
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="submit">&nbsp;</label>
 						<div class="controls">
 							<a class="btn btn-danger" href="author_list.php">لغو</a>
-							<button class="btn btn-success" name="submit" id="submit" type="submit">
+							<button class="btn btn-success" name="submit" id="submit" type="submit"
+							        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
 								بساز
 							</button>
 						</div>

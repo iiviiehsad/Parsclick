@@ -2,23 +2,20 @@
 $filename = basename(__FILE__);
 $session->confirm_admin_logged_in();
 find_selected_course();
-if( ! $current_category) {
-	redirect_to('admin_courses.php');
-}
+if ( ! $current_category) redirect_to('admin_courses.php');
 $errors = '';
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 	$category           = Category::find_by_id($current_category->id, FALSE);
 	$category->name     = ucwords(strtolower($_POST['category_name']));
 	$category->position = (int) $_POST['position'];
 	$category->visible  = (int) $_POST['visible'];
 	$result             = $category->save();
-	if($result) {
+	if ($result) {
 		$session->message('موضوع بروزرسانی شد.');
 		redirect_to('edit_category.php?category=' . $current_category->id);
 	} else {
 		$errors = 'موضوع بروزرسانی نشد!';
 	}
-} else {
 }
 include_layout_template('admin_header.php');
 include_layout_template('admin_nav.php');
@@ -29,7 +26,7 @@ echo output_message($message, $errors);
 			<h2><i class="fa fa-pencil-square"></i> ویرایش موضوع</h2>
 
 			<form class="form-horizontal" action="edit_category.php?category=<?php echo urlencode($current_category->id); ?>"
-			      method="POST" role="form">
+			      method="POST" role="form" data-remote>
 				<fieldset>
 					<legend><?php echo htmlentities(ucfirst($current_category->name)); ?></legend>
 					<section class="row">
@@ -45,9 +42,9 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position">
 								<option disabled value="">انتخاب کنید</option>
-								<?php for($count = 1; $count <= Category::num_rows(); $count++):
+								<?php for ($count = 1; $count <= Category::num_rows(); $count++):
 									echo "<option value='{$count}'";
-									if($current_category->position == $count):
+									if ($current_category->position == $count):
 										echo ' selected';
 									endif;
 									echo ">{$count}</option>";
@@ -61,11 +58,11 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible" id="inlineRadioNo" value="0"
-										<?php if($current_category->visible == 0): echo 'checked'; endif; ?> > خیر
+										<?php echo ! $current_category->visible ? ' checked ' : ''; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible" id="inlineRadioYes" value="1"
-										<?php if($current_category->visible == 1): echo 'checked'; endif; ?> > بله
+										<?php echo $current_category->visible ? ' checked ' : ''; ?> > بله
 							</label>
 						</div>
 					</section>
@@ -79,7 +76,8 @@ echo output_message($message, $errors);
 							   href="delete_category.php?category=<?php echo urlencode($current_category->id); ?>">
 								حذف
 							</a>
-							<button class="btn btn-success" name="submit" id="submit" type="submit">
+							<button class="btn btn-success" name="submit" id="submit" type="submit"
+							        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
 								ویرایش
 							</button>
 						</div>

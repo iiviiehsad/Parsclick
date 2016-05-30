@@ -5,28 +5,27 @@ $author = Author::find_by_id($session->id);
 $author->check_status();
 find_selected_article();
 $errors = '';
-if( ! $current_article || ! $current_subject) {
+if ( ! $current_article || ! $current_subject) {
 	redirect_to('author_articles.php');
-	// check to see the article belong to this author in order to edit
-} elseif( ! check_ownership($current_article->author_id, $session->id)) {
+	# check to see the article belong to this author in order to edit
+} elseif ( ! check_ownership($current_article->author_id, $session->id)) {
 	$session->message('شما اجازه تغییر این مقاله را ندارید!');
 	redirect_to('author_articles.php');
 }
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 	$current_article->subject_id = $current_subject->id;
 	$current_article->name       = $_POST['article_name'];
 	$current_article->content    = $_POST['content'];
-	if($author->id == 1) {
+	if ($author->id == 1) {
 		$current_article->visible = $_POST['visible'];
 	}
 	$result = $current_article->save();
-	if($result) { // Success
+	if ($result) {
 		$session->message('مقاله بروزرسانی شد.');
 		redirect_to('author_articles.php?subject=' . $current_subject->id . '&article=' . $current_article->id);
-	} else { // Failure
+	} else {
 		$errors = 'مقاله بروزرسانی نشد!';
 	}
-} else {
 }
 include_layout_template('admin_header.php');
 include_layout_template('author_nav.php');
@@ -38,7 +37,7 @@ echo output_message($message, $errors);
 
 			<form class="form-horizontal"
 			      action="author_edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id) ?>"
-			      method="post" role="form">
+			      method="post" role="form" data-remote>
 				<fieldset>
 					<legend><i class="fa fa-newspaper"></i> <?php echo htmlentities(ucfirst($current_article->name)); ?>
 					</legend>
@@ -67,12 +66,12 @@ echo output_message($message, $errors);
 							<label class="radio-inline" for="inlineRadioNo">
 								<input type="radio" name="visible"
 								       id="inlineRadioNo" <?php echo $author->id == 1 ? ' value="0" ' : ' disabled '; ?>
-										<?php if($current_article->visible == 0) echo 'checked'; ?> > خیر
+										<?php echo $current_article->visible == 0 ? ' checked ' : ''; ?> > خیر
 							</label>
 							<label class="radio-inline" for="inlineRadioYes">
 								<input type="radio" name="visible"
 								       id="inlineRadioYes" <?php echo $author->id == 1 ? ' value="1" ' : ' disabled '; ?>
-										<?php if($current_article->visible == 1) echo 'checked'; ?> > بله
+										<?php echo $current_article->visible == 1 ? ' checked ' : ''; ?> > بله
 							</label>
 						</div>
 					</section>
@@ -89,13 +88,14 @@ echo output_message($message, $errors);
 						<div class="controls col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
 							<a class="btn btn-danger"
 							   href="author_articles.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">لغو</a>
-							<?php if($current_article->recent()): ?>
+							<?php if ($current_article->recent()): ?>
 								<a class="btn btn-default confirmation"
 								   href="author_delete_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
 									حذف
 								</a>
 							<?php endif; ?>
-							<button class="btn btn-success" name="submit" id="submit" type="submit">
+							<button class="btn btn-success" name="submit" id="submit" type="submit"
+							        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
 								ویرایش
 							</button>
 						</div>

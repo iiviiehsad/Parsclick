@@ -117,7 +117,7 @@ $(function() {
 	});
 
 	$('form[data-remote]').on('submit', function(e) {
-		var $btn = $(this).find('button[name="submit"]').button('loading');
+		var $btn = $(this).find('button').button('loading');
 		setTimeout(function() {
 			$btn.button('reset');
 		}, 3600000); // 1000*60*60 (1 hour)

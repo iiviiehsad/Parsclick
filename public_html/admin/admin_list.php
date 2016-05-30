@@ -9,7 +9,7 @@ echo output_message($message);
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
 			<h2><i class="fa fa-users"></i> لیست مدیران
-			 ارشد<span class="badge arial"><?php echo convert(count($admin_set)); ?></span>
+			 ارشد<span class="badge"><?php echo convert(count($admin_set)); ?></span>
 			</h2>
 			<br/>
 			<div class="table-responsive">
@@ -40,11 +40,11 @@ echo output_message($message);
 									<a class="btn btn-small btn-primary arial"
 									   href="edit_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Edit"><span
 												class="glyphicon glyphicon-pencil"></span></a>
-									<?php if($admin->id != $session->id): ?>
+									<?php /*if($admin->id != $session->id): */?><!--
 										<a class="btn btn-small btn-danger arial confirmation"
-										   href="delete_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Delete"><span
+										   href="delete_admin.php?id=<?php /*echo urlencode($admin->id); */?>" title="Delete"><span
 													class="glyphicon glyphicon-trash"></span></a>
-									<?php endif; ?>
+									--><?php /*endif; */?>
 								</td>
 							</tr>
 						<?php endforeach; ?>
