@@ -15,7 +15,7 @@ function __autoload($class_name)
 }
 
 /**
- * @param null $location is by default NULL which will redirect the article to a particular location
+ * @param null $location
  */
 function redirect_to($location = NULL)
 {
@@ -26,15 +26,16 @@ function redirect_to($location = NULL)
 }
 
 /**
- * @param string $message string shows the messages
- * @param string $errors  string shows the errors
+ * @param string $message
+ * @param string $errors
  * @return string
  */
 function output_message($message = '', $errors = '')
 {
 	if ( ! empty($message)) {
 		return bootstrap_alert($message, 'info');
-	} elseif ( ! empty($errors)) {
+	}
+	if ( ! empty($errors)) {
 		return bootstrap_alert($errors, 'danger');
 	}
 
@@ -78,7 +79,7 @@ function include_layout_template($template = '')
  * remaining marks.
  *
  * @param string $marked_string
- * @return mixed the clean date output
+ * @return mixed
  */
 function strip_zeros_from_date($marked_string = '')
 {
@@ -90,8 +91,8 @@ function strip_zeros_from_date($marked_string = '')
 }
 
 /**
- * @param string $datetime will get the date and time as a simple text
- * @return string ready format to insert into MySQL
+ * @param string $datetime
+ * @return mixed
  */
 function datetime_to_text($datetime = '')
 {
@@ -112,8 +113,8 @@ function datetime_to_shamsi($datetime = '')
 }
 
 /**
- * @param $string string gets the number as western
- * @return mixed string number as eastern
+ * @param $string
+ * @return mixed
  */
 function convert($string)
 {
@@ -124,8 +125,8 @@ function convert($string)
 }
 
 /**
- * @param $size integer parameter getting the size as bytes
- * @return string format for size
+ * @param $size
+ * @return string
  */
 function check_size($size)
 {
@@ -140,10 +141,10 @@ function check_size($size)
 }
 
 /**
- * @param        $string string text to truncate
- * @param        $length integer length to truncate from the string
- * @param string $dots   string default (...) to show immediately after the string
- * @return string from 0 character to length and ... after it
+ * @param        $string
+ * @param        $length
+ * @param string $dots
+ * @return string
  */
 function truncate($string, $length, $dots = '... ... ...')
 {
@@ -244,7 +245,7 @@ function ip_info($ip = NULL, $purpose = 'location', $deep_detect = TRUE)
 /******************************************************************************************************/
 
 /**
- * @return bool TRUE if request is GET and FALSE otherwise
+ * @return bool
  */
 function request_is_get()
 {
@@ -252,7 +253,7 @@ function request_is_get()
 }
 
 /**
- * @return bool TRUE if request is POST and FALSE otherwise
+ * @return bool
  */
 function request_is_post()
 {
@@ -280,12 +281,8 @@ function allowed_get_params($allowed_params = [])
 }
 
 /**
- * validate value has presence
- *
- * @param $value        string uses trim() so empty spaces don't count
- *                      use === to avoid false positives
- *                      empty() would consider "0" to be empty
- * @return bool true or false
+ * @param $value
+ * @return bool
  */
 function has_presence($value)
 {
@@ -295,11 +292,9 @@ function has_presence($value)
 }
 
 /**
- * @param       $value   string validate value has string length
- * @param array $options leading and trailing spaces will count
- * @return bool options: exact, max, min
- *                       has_length($first_name, ['exact' => 20])
- *                       has_length($first_name, ['min' => 5, 'max' => 100])
+ * @param       $value
+ * @param array $options
+ * @return bool
  */
 function has_length($value, $options = [])
 {
@@ -322,10 +317,8 @@ function has_length($value, $options = [])
  * has_format_matching('12345', '/\d{4}/') is also true
  * has_format_matching('12345', '/\A\d{4}\Z/') is false
  *
- * @param        $value string has a format matching
- * @param string $regex regular expression
- *                      Be sure to use anchor expressions to match start and end of string.
- *                      (Use \A and \Z, not ^ and $ which allow line returns.)
+ * @param        $value
+ * @param string $regex
  * @return int
  */
 function has_format_matching($value, $regex = '//')
@@ -334,11 +327,9 @@ function has_format_matching($value, $regex = '//')
 }
 
 /**
- * validate value is a number
- *
- * @param       $value   string so use is_numeric instead of is_int
- * @param array $options : max, min
- * @return bool has_number($items_to_order, ['min' => 1, 'max' => 5])
+ * @param       $value
+ * @param array $options
+ * @return bool
  */
 function has_number($value, $options = [])
 {
@@ -380,11 +371,9 @@ function has_exclusion_from($value, $set = [])
 }
 
 /**
- * This function will simply check if the parameters given are identical or not
- *
- * @param $id         integer to compare
- * @param $session_id integer to compare
- * @return bool return TRUE if two values are identical
+ * @param $id
+ * @param $session_id
+ * @return bool
  */
 function check_ownership($id, $session_id)
 {
@@ -392,8 +381,8 @@ function check_ownership($id, $session_id)
 }
 
 /**
- * @param $file string gets the file name
- * @return mixed of file extensions
+ * @param $file
+ * @return mixed
  */
 function file_extension($file)
 {
@@ -403,8 +392,8 @@ function file_extension($file)
 }
 
 /**
- * @param $file string gets the file name
- * @return bool TRUE if file contains PHP in it and FALSE otherwise
+ * @param $file
+ * @return bool
  */
 function file_contains_php($file)
 {
@@ -415,8 +404,8 @@ function file_contains_php($file)
 }
 
 /**
- * @param $error_integer integer gets the file error number
- * @return mixed of errors descriptions
+ * @param $error_integer
+ * @return mixed
  */
 function file_upload_error($error_integer)
 {
@@ -466,20 +455,20 @@ function warning($output1, $output2)
 		<html>
 		<head>
 			<title>پارس کلیک - Parsclick</title>
-			<meta charset='UTF-8'>
-			<meta name='viewport' content='width=device-width, initial-scale=1.0'/>
-			<link rel='shortcut icon' type='image/png' href='/images/favicon.png'/>
-			<link rel='stylesheet' href='/_/css/all.css' media='screen'/>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+			<link rel="stylesheet" href="/_/css/all.css" media="screen"/>
 			<style>
 				body { background-color : beige; }
 				.error-template { padding : 40px 15px; text-align : center; }
 			</style>
 		</head>
 		<body>
-			<div class=container'>
-				<div class='row'>
-					<section class='col col-md-12'>
-						<div class='error-template'>
+			<div class="container">
+				<div class="row">
+					<section class="col col-md-12">
+						<div class="error-template">
 							<h1>!Error</h1>
 							<h2>{$output1}</h2>
 							<h3>{$output2}</h3>
@@ -495,9 +484,10 @@ HTML;
 /******************************************************************************************************/
 /*                                       MEMBER'S FUNCTIONS                                           */
 /******************************************************************************************************/
+
 /**
- * @param        $action  string represents the login or logout action for each user
- * @param string $message represent the message for every user
+ * @param        $action
+ * @param string $message
  */
 function log_action($action, $message = '')
 {
@@ -1065,36 +1055,36 @@ function active()
 /******************************************************************************************************/
 
 /**
- * @param $salt   string gets the salt to add to the @param $string
- * @param $string $string string gets the text
- * @return string encrypts the string
+ * @param $salt
+ * @param $string
+ * @return string
  */
 function encrypt_string($salt, $string)
 {
-	// Configuration (must match decryption)
+	# Configuration (must match decryption)
 	$cipher_type = MCRYPT_RIJNDAEL_256;
 	$cipher_mode = MCRYPT_MODE_CBC;
-	// Using initialization vector adds more security
+	# Using initialization vector adds more security
 	$iv_size          = mcrypt_get_iv_size($cipher_type, $cipher_mode);
 	$iv               = mcrypt_create_iv($iv_size, MCRYPT_RAND);
 	$encrypted_string = mcrypt_encrypt($cipher_type, $salt, $string, $cipher_mode, $iv);
-	// Return initialization vector + encrypted string
-	// We'll need the $iv when decoding.
+	# Return initialization vector + encrypted string
+	# We'll need the $iv when decoding.
 	return $iv . $encrypted_string;
 }
 
 /**
- * @param $salt           string gets the salt to add to the @param $string
- * @param $iv_with_string string initialization vector
- * @return string decrypts the string
+ * @param $salt
+ * @param $iv_with_string
+ * @return string
  */
 function decrypt_string($salt, $iv_with_string)
 {
-	// Configuration (must match encryption)
+	# Configuration (must match encryption)
 	$cipher_type = MCRYPT_RIJNDAEL_256;
 	$cipher_mode = MCRYPT_MODE_CBC;
-	// Extract the initialization vector from the encrypted string.
-	// The $iv comes before encrypted string and has fixed size.
+	# Extract the initialization vector from the encrypted string.
+	# The $iv comes before encrypted string and has fixed size.
 	$iv_size          = mcrypt_get_iv_size($cipher_type, $cipher_mode);
 	$iv               = substr($iv_with_string, 0, $iv_size);
 	$encrypted_string = substr($iv_with_string, $iv_size);
@@ -1104,9 +1094,9 @@ function decrypt_string($salt, $iv_with_string)
 }
 
 /**
- * @param $salt   string gets the salt to add to the @param $string
- * @param $string string gets the text
- * @return string encode after encryption to ensure encrypted characters are savable
+ * @param $salt
+ * @param $string
+ * @return string
  */
 function encrypt_string_and_encode($salt, $string)
 {
@@ -1114,9 +1104,9 @@ function encrypt_string_and_encode($salt, $string)
 }
 
 /**
- * @param $salt   string gets the salt to add it to the @param $string
- * @param $string string gets the text
- * @return string and decodes before decryption
+ * @param $salt
+ * @param $string
+ * @return string
  */
 function decrypt_string_and_decode($salt, $string)
 {
@@ -1124,32 +1114,32 @@ function decrypt_string_and_decode($salt, $string)
 }
 
 /**
- * @param $string string gets the cookie or any text
- * @return string signs cookie or any string by applying hashing algorithm and salting
+ * @param $string
+ * @return string
  */
 function sign_string($string)
 {
-	// Using $salt makes it hard to guess how $checksum is generated
-	// Caution: changing salt will invalidate all signed strings
+	# Using $salt makes it hard to guess how $checksum is generated
+	# Caution: changing salt will invalidate all signed strings
 	$salt     = 'Simple salt';
-	$checksum = sha1($string . $salt); // Any hash algorithm would work
-	// return the string with the checksum at the end
+	$checksum = sha1($string . $salt); # Any hash algorithm would work
+	# return the string with the checksum at the end
 	return $string . '--' . $checksum;
 }
 
 /**
- * @param $signed_string string gets the cookie or any signed string signed by @function sign_string
- * @return bool TRUE if new signed string equals to the signed string and FALSE if otherwise
+ * @param $signed_string
+ * @return bool
  */
 function signed_string_is_valid($signed_string)
 {
 	$array = explode('--', $signed_string);
 	if (count($array) != 2) {
-		// string is malformed or not signed
+		# string is malformed or not signed
 		return FALSE;
 	}
-	// Sign the string portion again. Should create same
-	// checksum and therefore the same signed string.
+	# Sign the string portion again. Should create same
+	# checksum and therefore the same signed string.
 	$new_signed_string = sign_string($array[0]);
 	if ($new_signed_string == $signed_string) {
 		return TRUE;

@@ -62,8 +62,10 @@ class Member extends DatabaseObject
 	}
 
 	/**
-	 * This method checks the member's status to see if this property which represents the database status column
-	 * (BOOLEAN) is 0 or FALSE or 1 or TRUE. If the status is not TRUE then member will be redirected to the specific
+	 * This method checks the member's status to see if this property
+	 * which represents the database status column
+	 * (BOOLEAN) is 0 or FALSE or 1 or TRUE.
+	 * If the status is not TRUE then member will be redirected to the specific
 	 * page to prevent the member from using the system.
 	 */
 	public function check_status()
@@ -76,8 +78,10 @@ class Member extends DatabaseObject
 	}
 
 	/**
-	 * This method will send generate a token, stores it into the token database column and sends that to the member's
-	 * email address, where then this token will be checked to see if the member is legitimate or not.
+	 * This method will send generate a token, stores it into the token
+	 * database column and sends that to the member's email address,
+	 * where then this token will be checked to see if the member is
+	 * legitimate or not.
 	 *
 	 * @param $username string is taken from user by typing
 	 * @return bool TRUE if email is sent ond FALSE if not
@@ -105,7 +109,8 @@ class Member extends DatabaseObject
 	}
 
 	/**
-	 * This method will email the member's username to the member's email address on file.
+	 * This method will email the member's username
+	 * to the member's email address on file.
 	 *
 	 * @param $email string is taken from the member by typing in the input field
 	 * @return bool TRUE if email is sent and FALSE if not
@@ -130,7 +135,8 @@ class Member extends DatabaseObject
 	}
 
 	/**
-	 * This method will send a confirmation email to the recently registered members.
+	 * This method will send a confirmation email
+	 * to the recently registered members.
 	 *
 	 * @param $username
 	 * @return bool
