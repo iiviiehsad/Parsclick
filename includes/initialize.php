@@ -84,7 +84,7 @@ require_once(LIB_PATH . DS . 'vendor' . DS . 'autoload.php');
 */
 $session  = new Session();
 $message  = $session->message();
-$filename = basename($_SERVER['PHP_SELF'], '.php');
+// $filename = basename($_SERVER['PHP_SELF'], '.php');
 /*
 |----------------------------------------------------------------
 | Initializing $database and $db to use everywhere
