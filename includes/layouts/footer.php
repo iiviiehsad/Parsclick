@@ -3,17 +3,17 @@
 			<footer class="row">
 				<nav class="col-lg-12">
 					<ul class="breadcrumb">
-						<li><a href="/">خانه</a></li>
-						<li><a href="about">درباره ما</a></li>
-						<li><a href="privacypolicy">شرایط و ضوابط</a></li>
-						<li><a href="courses">درس ها</a></li>
-						<li><a href="articles">مقاله ها</a></li>
-						<li><a href="faq">سوالات شما</a></li>
-						<li><a href="help">کمک به سایت</a></li>
-						<!--<li><a href="contact">تماس با ما</a></li>-->
-						<li><a href="login">ورود</a></li>
-						<li><a href="register">ثبت نام</a></li>
-						<li class="pull-left arial">Copyright &copy; <?php echo strftime("%Y", time()); ?> Parsclick</li>
+						<li><a href="<?php echo is_local() ? '' : 'index'; ?>">خانه</a></li>
+						<li><a href="<?php echo is_local() ? '' : '/'; ?>about">درباره ما</a></li>
+						<li><a href="<?php echo is_local() ? '' : '/'; ?>privacypolicy">شرایط و ضوابط</a></li>
+						<li><a href="<?php echo is_local() ? '' : '/'; ?>courses">درس ها</a></li>
+						<li><a href="<?php echo is_local() ? '' : '/'; ?>articles">مقاله ها</a></li>
+						<li><a href="<?php echo is_local() ? '' : '/'; ?>faq">سوالات شما</a></li>
+						<li><a href="<?php echo is_local() ? '' : '/'; ?>help">کمک به سایت</a></li>
+						<!--<li><a href="--><?php //echo is_local() ? '' : '/'; ?><!--contact">تماس با ما</a></li>-->
+						<li><a href="<?php echo is_local() ? '' : '/'; ?>login">ورود</a></li>
+						<li><a href="<?php echo is_local() ? '' : '/'; ?>register">ثبت نام</a></li>
+						<li class="pull-left arial">Copyright &copy; <?php echo strftime('%Y', time()); ?> Parsclick</li>
 					</ul><!-- breadcrumb -->
 					<ul class="breadcrumb">
 						<li><a target="_blank" href="https://www.facebook.com/persiantc"><i title="Facebook" class="fa fa-facebook-square fa-3x"></i></a>
@@ -34,7 +34,7 @@
 			</footer>
 		</section><!-- footer container -->
 	</section><!-- container -->
-<script src="_/js/all.js"></script>
+<script src="<?php echo is_local() ? '' : '/'; ?>_/js/all.js"></script>
 <?php active(); ?>
 <?php // include_layout_template('google_analytic.php'); ?>
 </body>

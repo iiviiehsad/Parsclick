@@ -1,7 +1,5 @@
 <?php //namespace Parsclick;
 
-require_once(LIB_PATH . DS . 'config.php');
-
 class MySQLDatabase implements Database
 {
 	public  $last_query;
@@ -25,11 +23,11 @@ class MySQLDatabase implements Database
 	public function open_connection()
 	{
 		$this->connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-		if( ! $this->connection) {
+		if ( ! $this->connection) {
 			die('Database connection failed: ' . mysqli_connect_error() . ' (' . mysqli_connect_errno() . ' )');
 		} else {
 			$db_select = mysqli_select_db($this->connection, DB_NAME);
-			if( ! $db_select) {
+			if ( ! $db_select) {
 				die('Database selection failed: ' . mysqli_connect_error() . ' (' . mysqli_connect_errno() . ' )');
 			}
 		}
@@ -40,15 +38,18 @@ class MySQLDatabase implements Database
 	 */
 	public function close_connection()
 	{
-		if(isset($this->connection)) {
+		if (isset($this->connection)) {
 			mysqli_close($this->connection);
 			unset($this->connection);
 		}
 	}
 
 	/**
-	 * @param $sql string will get the SQL query
-	 * @return bool|mysqli_result will return the result if the SQL query is OK
+	 * Will get the SQL query and
+	 * return the result if the SQL query is OK
+	 *
+	 * @param $sql string
+	 * @return bool|mysqli_result
 	 */
 	public function query($sql)
 	{
@@ -63,14 +64,17 @@ class MySQLDatabase implements Database
 	}
 
 	/**
-	 * @param $result boolean checks if the query is OK
+	 * Checks if the query is OK
+	 *
+	 * @param $result boolean
 	 */
 	private function confirm_query($result)
 	{
-		if( ! $result) {
+		if ( ! $result) {
 			$ip1 = '127.0.0.1';
 			$ip2 = '::1';
-			if($_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2) {
+			if ($_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2) 
+			{
 				$output1 = 'Database query failed! ' . mysqli_error($this->connection) . '<br/><br/>';
 				$output2 = 'Last SQL Query: ' . $this->last_query;
 				$output  = warning($output1, $output2);
@@ -84,20 +88,23 @@ class MySQLDatabase implements Database
 	}
 
 	/**
-	 * @param $value string will get the value and prepare it to put in MySQL
-	 * @return string will return MySQL input got from somewhere else
+	 * Get the value and prepare it to put in MySQL and
+	 * will return MySQL input got from somewhere else
+	 *
+	 * @param $value string
+	 * @return string
 	 */
 	public function escape_value($value)
 	{
-		if($this->real_escape_string_exists) { // PHP v4.3.0+
+		if ($this->real_escape_string_exists) { // PHP v4.3.0+
 			// undo any magic quote effects so mysqli_real_escape_string can do the work
-			if($this->magic_quotes_active) {
+			if ($this->magic_quotes_active) {
 				$value = stripslashes($value);
 			}
 			$value = mysqli_real_escape_string($this->connection, $value); // PHP v5.0+
 		} else { // before PHP v4.3.0
 			// if magic quotes aren't already on then add slashes manually
-			if( ! $this->magic_quotes_active) {
+			if ( ! $this->magic_quotes_active) {
 				$value = addslashes($value);
 			} // if magic quotes are active, then the slashes already exist
 		}
@@ -124,7 +131,9 @@ class MySQLDatabase implements Database
 	}
 
 	/**
-	 * @return int|string gets the last id inserted over the current db connection
+	 * Gets the last id inserted over the current db connection
+	 *
+	 * @return int|string
 	 */
 	public function insert_id()
 	{
@@ -132,7 +141,9 @@ class MySQLDatabase implements Database
 	}
 
 	/**
-	 * @return int how many rows were affected by the last query
+	 * How many rows were affected by the last query
+	 *
+	 * @return int
 	 */
 	public function affected_rows()
 	{

@@ -152,6 +152,20 @@ function truncate($string, $length, $dots = '... ... ...')
 }
 
 /**
+ * Checks to see if environment is local
+ *
+ * @return bool
+ */
+function is_local()
+{
+	$ip1  = '::1';
+	$ip2  = '127.0.0.1';
+	$host = 'localhost';
+
+	return $_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2 || $_SERVER['HTTP_HOST'] == $host;
+}
+
+/**
  * echo ip_info("173.252.110.27", "Country");
  * echo ip_info("173.252.110.27", "Country Code");
  * echo ip_info("173.252.110.27", "State");
@@ -1141,10 +1155,7 @@ function signed_string_is_valid($signed_string)
 	# Sign the string portion again. Should create same
 	# checksum and therefore the same signed string.
 	$new_signed_string = sign_string($array[0]);
-	if ($new_signed_string == $signed_string) {
-		return TRUE;
-	} else {
-		return FALSE;
-	}
+
+	return $new_signed_string == $signed_string;
 }
 

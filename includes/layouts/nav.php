@@ -7,13 +7,13 @@
 
 	<section class="navbar">
 		<ul class="nav navbar-nav">
-			<li><a href="/"> خانه</a></li>
-			<li><a href="/articles">مقالات</a></li>
-			<li><a href="/courses">دروس</a></li>
-			<li><a href="/anjoman">انجمن</a></li>
-			<li><a href="/faq"> سوالات شما</a></li>
-			<li><a href="/help"> کمک به ما</a></li>
-			<li><a href="/login"> ورود</a></li>
+			<li><a href="<?php echo is_local() ? '' : 'index'; ?>"> خانه</a></li>
+			<li><a href="<?php echo is_local() ? '' : '/'; ?>articles">مقالات</a></li>
+			<li><a href="<?php echo is_local() ? '' : '/'; ?>courses">دروس</a></li>
+			<li><a href="<?php echo is_local() ? '' : '/'; ?>anjoman">انجمن</a></li>
+			<li><a href="<?php echo is_local() ? '' : '/'; ?>faq"> سوالات شما</a></li>
+			<li><a href="<?php echo is_local() ? '' : '/'; ?>help"> کمک به ما</a></li>
+			<li><a href="<?php echo is_local() ? '' : '/'; ?>login"> ورود</a></li>
 		</ul><!-- nav -->
 	</section><!-- navbar -->
 
