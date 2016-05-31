@@ -116,7 +116,7 @@ function datetime_to_shamsi($datetime = '')
  * @param $string
  * @return mixed
  */
-function convert($string)
+function convert($string = '')
 {
 	$eastern = ['۰', '١', '٢', '٣', '۴', '۵', '۶', '۷', '۸', '۹'];
 	$western = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -128,7 +128,7 @@ function convert($string)
  * @param $size
  * @return string
  */
-function check_size($size)
+function check_size($size = 0)
 {
 	if ($size > 1024000) {
 		return round($size / 1024000) . ' مگابایت';
