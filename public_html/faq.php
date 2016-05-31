@@ -4,12 +4,11 @@ $title    = 'پارس کلیک - سوالات و جواب ها'; ?>
 <?php include_layout_template('nav.php'); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<?php include_layout_template('article-faq.php'); ?>
-</section><!-- main -->
+</section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<?php include_layout_template('aside-register.php'); ?>
 	<?php include_layout_template('aside-twitter.php'); ?>
 	<?php include_layout_template('aside-twitter-embed.php'); ?>
 	<?php include_layout_template('aside-ad.php'); ?>
-</section><!-- sidebar -->
+</section>
 <?php include_layout_template('footer.php'); ?>
-

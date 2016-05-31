@@ -1,7 +1,7 @@
 Database
 /index.php
 logs
-htaccess
+public_html/.htaccess
 htpasswd
 
 # package.json

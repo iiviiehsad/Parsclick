@@ -137,13 +137,29 @@ $(function() {
 				closeOnCancel      : true
 			},
 			function(isConfirm) {
-				if(isConfirm) {
+				if (isConfirm) {
 					window.location.href = href;
 				}
 			});
 
 		return false;
 	});
+
+	var href     = document.location.href;
+	var basename = href.substr(href.lastIndexOf('/') + 1);
+
+	if (basename == 'faq') {
+		$('a[href*=#]:not([href=#])').click(function() {
+			if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+				var target = $(this.hash);
+				target     = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+				if (target.length) {
+					$('html,body').animate({scrollTop : target.offset().top}, 1000);
+					return false;
+				}
+			}
+		});
+	}
 
 }); // jQuery IS LOADED -----------------------------------------------------------------------------------------------
 
@@ -169,17 +185,17 @@ var passregex     = /[^A-Za-z0-9]/;
  * @returns {boolean} TRUE if validation passes and FALSE otherwise
  */
 function checkUser() {
-	if(usernameregex.test(username.value)) {
+	if (usernameregex.test(username.value)) {
 		username.style.backgroundColor = badColor;
 		message.style.color            = mBadColor;
 		message.innerHTML              = "اسم کاربری نباید دارای حروف مخصوص باشد";
 		return false;
-	} else if(username.value.indexOf(' ') >= 0) {
+	} else if (username.value.indexOf(' ') >= 0) {
 		username.style.backgroundColor = badColor;
 		message.style.color            = mBadColor;
 		message.innerHTML              = "در اسم کاربری نباید فاصله بکار رود";
 		return false;
-	} else if(username.value == '' || username.value == null) {
+	} else if (username.value == '' || username.value == null) {
 		username.style.backgroundColor = badColor;
 		message.style.color            = mBadColor;
 		message.innerHTML              = "اسم کاربری نباید خالی بماند";
@@ -196,7 +212,7 @@ function checkUser() {
  * @returns {boolean} TRUE if validation passes and FALSE otherwise
  */
 function checkfirstname() {
-	if(firstname.value == '' || firstname.value == null || firstname.value == ' ') {
+	if (firstname.value == '' || firstname.value == null || firstname.value == ' ') {
 		firstname.style.backgroundColor = badColor;
 		message.style.color             = mBadColor;
 		message.innerHTML               = "نام نباید خالی بماند";
@@ -213,7 +229,7 @@ function checkfirstname() {
  * @returns {boolean} TRUE if validation passes and FALSE otherwise
  */
 function checklastname() {
-	if(lastname.value == '' || lastname.value == null || lastname.value == ' ') {
+	if (lastname.value == '' || lastname.value == null || lastname.value == ' ') {
 		lastname.style.backgroundColor = badColor;
 		message.style.color            = mBadColor;
 		message.innerHTML              = "نام خانوادگی نباید خالی بماند";
@@ -230,12 +246,12 @@ function checklastname() {
  * @returns {boolean} TRUE if validation passes and FALSE otherwise
  */
 function checkPass() {
-	if(pass1.value.length < 6) {
+	if (pass1.value.length < 6) {
 		pass1.style.backgroundColor = badColor;
 		message.style.color         = mBadColor;
 		message.innerHTML           = "پسورد کمتر از ۶ کاراکتر است";
 		return false;
-	} else if(!passregex.test(pass1.value)) {
+	} else if (!passregex.test(pass1.value)) {
 		pass1.style.backgroundColor = badColor;
 		message.style.color         = mBadColor;
 		message.innerHTML           = "پسورد دارای حروف مخصوص نیست";
@@ -252,17 +268,17 @@ function checkPass() {
  * @returns {boolean} TRUE if validation passes and FALSE otherwise
  */
 function checkConfirmPass() {
-	if(pass2.value.length < 6) {
+	if (pass2.value.length < 6) {
 		pass2.style.backgroundColor = badColor;
 		message.style.color         = mBadColor;
 		message.innerHTML           = "پسورد کمتر از ۶ کاراکتر است";
 		return false;
-	} else if(!passregex.test(pass2.value)) {
+	} else if (!passregex.test(pass2.value)) {
 		pass2.style.backgroundColor = badColor;
 		message.style.color         = mBadColor;
 		message.innerHTML           = "پسوردها دارای حروف مخصوص نیستند";
 		return false;
-	} else if(pass1.value !== pass2.value) {
+	} else if (pass1.value !== pass2.value) {
 		pass2.style.backgroundColor = badColor;
 		message.style.color         = mBadColor;
 		message.innerHTML           = "پسوردها مطابقت ندارند";
@@ -280,7 +296,7 @@ function checkConfirmPass() {
  */
 function checkEmail() {
 	var regExp = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i;
-	if(regExp.test(email.value) == false) {
+	if (regExp.test(email.value) == false) {
 		email.style.backgroundColor = badColor;
 		message.style.color         = mBadColor;
 		message.innerHTML           = "ایمیل معتبر نیست";
