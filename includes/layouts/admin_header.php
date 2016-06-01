@@ -11,9 +11,9 @@
 	<meta name="geo.region" content="IR"/>
 	<meta name="geo.position" content="32.427908;53.688046"/>
 	<meta name="ICBM" content="32.427908, 53.688046"/>
-	<meta name="image" content="../images/misc/admin-area.png"/>
-	<link rel="shortcut icon" type="image/png" href="../images/favicon.png">
-	<link rel="stylesheet" href="../_/css/all.css" media="screen">
+	<meta name="image" content="<?php echo is_local() ? '../' : '/'; ?>images/misc/admin-area.png"/>
+	<link rel="shortcut icon" type="image/png" href="<?php echo is_local() ? '../' : '/'; ?>images/favicon.png">
+	<link rel="stylesheet" href="<?php echo is_local() ? '../' : '/'; ?>_/css/all.css" media="screen">
 </head>
 <body>
 	<section class="container">

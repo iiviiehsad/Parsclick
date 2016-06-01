@@ -19,6 +19,7 @@ defined('DOMAIN') ? NULL : define('DOMAIN', 'www.parsclick.net');
 */
 defined('LIB_PATH') ? NULL : define('LIB_PATH', SITE_ROOT . DS . 'includes');
 defined('PUB_PATH') ? NULL : define('PUB_PATH', SITE_ROOT . DS . 'public_html');
+defined('ADMIN_DIR') ? NULL : define('ADMIN_DIR', DS . 'admin' . DS);
 /*
 |----------------------------------------------------------------
 | Admin Details
@@ -82,9 +83,8 @@ require_once(LIB_PATH . DS . 'vendor' . DS . 'autoload.php');
 | Initializing $session and $message to use everywhere
 |----------------------------------------------------------------
 */
-$session  = new Session();
-$message  = $session->message();
-// $filename = basename($_SERVER['PHP_SELF'], '.php');
+$session = new Session();
+$message = $session->message();
 /*
 |----------------------------------------------------------------
 | Initializing $database and $db to use everywhere

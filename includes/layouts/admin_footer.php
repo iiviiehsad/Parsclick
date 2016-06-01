@@ -12,7 +12,7 @@
 	</footer>
 </section>
 </section>
-<script src="<?php echo is_local() ? '' : '/'; ?>../_/js/all.js"></script>
+<script src="<?php echo is_local() ? '../' : '/'; ?>_/js/all.js"></script>
 </body>
 </html>
 <?php if (isset($database)) $database->close_connection(); ?>

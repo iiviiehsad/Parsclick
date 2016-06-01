@@ -12,7 +12,7 @@
 	<section class="navbar">
 		<ul class="nav navbar-nav">
 			<li class="<?php echo active(['index']); ?>">
-				<a href="<?php echo is_local() ? '' : 'index'; ?>"> خانه</a>
+				<a href="<?php echo is_local() ? 'index' : '/'; ?>"> خانه</a>
 			</li>
 			<li class="<?php echo active(['articles']); ?>">
 				<a href="<?php echo is_local() ? '' : '/'; ?>articles">مقالات</a>

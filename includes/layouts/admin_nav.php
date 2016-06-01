@@ -1,11 +1,12 @@
 <header class="clearfix">
 	<section id="branding">
-		<a href="index.php"><img src="../images/misc/admin-area.png" alt="Logo for Admin Area"></a>
+		<a href="index.php"><img src="<?php echo is_local() ? '../' : '/'; ?>images/misc/admin-area.png"
+		                         alt="Logo for Admin Area"></a>
 	</section>
 	<section class="navbar">
 		<ul class="nav navbar-nav">
 			<li class="<?php echo active(['admin']); ?>">
-				<a href="admin.php"><i class="fa fa-home fa-lg"></i> خانه</a>
+				<a href="<?php echo is_local() ? '' : ADMIN_DIR; ?>admin.php"><i class="fa fa-home fa-lg"></i> خانه</a>
 			</li>
 
 			<li class="dropdown
@@ -22,10 +23,10 @@
 				</a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 					<li class="<?php echo active(['member_list', 'new_member', 'edit_member']); ?>">
-						<a href="member_list.php"> لیست عضوها</a>
+						<a href="<?php echo is_local() ? '' : ADMIN_DIR; ?>member_list.php"> لیست عضوها</a>
 					</li>
 					<li class="<?php echo active(['email_to_members']); ?>">
-						<a tabindex="-1" href="email_to_members.php"> ایمیل به عضوها</a>
+						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>email_to_members.php"> ایمیل به عضوها</a>
 					</li>
 				</ul>
 			</li>
@@ -45,12 +46,13 @@
 					کارکنان<span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 					<li class="<?php echo active(['admin_list', 'new_admin', 'edit_admin']); ?>">
-						<a tabindex="-1" href="admin_list.php"> لیست مدیران</a></li>
+						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>admin_list.php"> لیست مدیران</a>
+					</li>
 					<li class="<?php echo active(['author_list', 'new_author', 'edit_author']); ?>">
-						<a tabindex="-1" href="author_list.php"> لیست نویسندگان</a>
+						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>author_list.php"> لیست نویسندگان</a>
 					</li>
 					<li class="<?php echo active(['email_to_authors']); ?>">
-						<a tabindex="-1" href="email_to_authors.php"> ایمیل به نویسندگان</a>
+						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>email_to_authors.php"> ایمیل به نویسندگان</a>
 					</li>
 				</ul>
 			</li>
@@ -73,14 +75,22 @@
 				</a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 					<li class="<?php echo active(['admin_courses', 'new_category', 'edit_category', 'edit_course']); ?>">
-						<a tabindex="-1" href="admin_courses.php"><i class="fa fa-film fa-lg fa-lg"></i> دروس</a>
+						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>admin_courses.php">
+							<i class="fa fa-film fa-lg fa-lg"></i> دروس
+						</a>
 					</li>
 					<li class="<?php echo active(['admin_articles', 'new_subject', 'edit_subject', 'edit_article']); ?>">
-						<a tabindex="-1" href="admin_articles.php"><i class="fa fa-newspaper-o fa-lg"></i> مقالات</a>
+						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>admin_articles.php">
+							<i class="fa fa-newspaper-o fa-lg"></i> مقالات
+						</a>
 					</li>
 				</ul>
 			</li>
-			<li><a href="logout.php"><i class="fa fa-sign-out fa-lg"></i> خروج</a></li>
+			<li>
+				<a href="<?php echo is_local() ? '' : ADMIN_DIR; ?>logout.php">
+					<i class="fa fa-sign-out fa-lg"></i> خروج
+				</a>
+			</li>
 		</ul>
 	</section>
 	<section id="modal" class="modal fade">
