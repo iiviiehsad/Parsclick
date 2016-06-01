@@ -16,7 +16,7 @@ ErrorDocument 500 /504
     Options -MultiViews
 
     RewriteEngine On
-		# RewriteBase /
+		RewriteBase /
 
     ## TODO: Remove WWW
     # RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]

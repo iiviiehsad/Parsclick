@@ -548,14 +548,16 @@ function article_url()
 function course_url()
 {
 	global $session;
-	global $filename;
 
 	if ($session->is_logged_in()) {
-		if ($filename == 'forum.php' || $filename == 'member-forum-search.php') {
-			return 'forum';
+		switch (basename($_SERVER['PHP_SELF'], '.php')) {
+			case 'forum':
+			case 'member-forum-search':
+				return 'forum';
+			default:
+				return 'member-courses';
+				break;
 		}
-
-		return 'member-courses';
 	}
 	if ($session->is_author_logged_in()) {
 		return 'author_courses.php';

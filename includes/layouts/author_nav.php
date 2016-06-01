@@ -1,5 +1,4 @@
 <header class="clearfix">
-
 	<section id="branding">
 		<a href="<?php echo is_local() ? '' : ADMIN_DIR; ?>">
 			<img src="<?php echo is_local() ? '../' : '/'; ?>images/misc/admin-area.png" alt="Logo for Admin Area">
@@ -62,5 +61,4 @@
 			<img id="modalimage" src="" alt="Modal Photo">
 		</div>
 	</section>
-
 </header>
