@@ -615,9 +615,11 @@ function articles($subject_array, $article_array, $public = FALSE)
 		$output .= '<div style="margin-top: 1em;">';
 		foreach ($article_set as $article) {
 			$output .= '<p>';
-			$output .= '<a href="' . article_url() . '?subject=';
-			$output .= urlencode($subject->id) . '&article=';
-			$output .= urlencode($article->id) . '"';
+			$query = http_build_query([
+				'subject' => urlencode($subject->id),
+				'article' => urlencode($article->id)
+			]);
+			$output .= "<a href='?{$query}'";
 			if ($article_array && $article->id == $article_array->id) {
 				$output .= ' class="selected"';
 			}
@@ -689,9 +691,11 @@ function courses($category_array, $course_array, $public = FALSE)
 		$output .= '<div style="margin-top: 1em;">';
 		foreach ($course_set as $course) {
 			$output .= '<p>';
-			$output .= '<a href="' . course_url() . '?category=';
-			$output .= urlencode($category->id) . '&course=';
-			$output .= urlencode($course->id) . '"';
+			$query = http_build_query([
+				'category' => urlencode($category->id),
+				'course'   => urlencode($course->id)
+			]);
+			$output .= "<a href='?{$query}'";
 			if ($course_array && $course->id == $course_array->id) {
 				$output .= ' class="selected"';
 			}
@@ -947,6 +951,28 @@ function active($files = [], $active = 'active')
 		if ($file == $filename) {
 			return $active;
 		}
+	}
+}
+
+/**
+ * @param $user
+ * @return string
+ */
+function status($user)
+{
+	switch ($user->status) {
+		case 0:
+			return 'warning';
+			break;
+		case 1:
+			return 'success';
+			break;
+		case 2:
+			return 'danger';
+			break;
+		default:
+			return '';
+			break;
 	}
 }
 

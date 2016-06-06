@@ -18,12 +18,12 @@ if (isset($_POST['submit'])) {
 		$member->city       = trim(ucwords(strtolower($_POST['city'])));
 		$member->email      = trim(strtolower($_POST['email']));
 		$member->status     = (int) $_POST['status'];
-		$member->token      = NULL;
-		if ($member->create()) {
-			$session->message('Member with the username ' . strtoupper($member->username) . ' was created.');
+		$member->token      = md5(uniqid(mt_rand(), TRUE));
+		if ($member->create() && $member->email_confirmation_details($member->username)) {
+			$session->message('کاربری با اسم کاربری ' . strtoupper($member->username) . ' ساخته شد.');
 			redirect_to('member_list.php');
 		} else {
-			$errors = 'Member creation failed.';
+			$errors = 'موفق به ساخت کاربر نشدیم!';
 		}
 	}
 }

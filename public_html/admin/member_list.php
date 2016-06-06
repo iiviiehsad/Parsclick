@@ -1,6 +1,6 @@
 <?php require_once('../../includes/initialize.php');
 $session->confirm_admin_logged_in();
-$errors   = '';
+$errors = '';
 if (isset($_POST['delete_inactive'])) {
 	if (Member::delete_inactives()) {
 		$session->message('حذف اعضای معوق موفق بود.');
@@ -42,13 +42,15 @@ echo output_message($message, $errors);
 		<aside>
 			<div class="btn-group pull-left">
 				<form action="member_list.php" method="POST">
-					<a class="btn btn-success" href="new_member.php"><i class="fa fa-plus"></i></a>
-					<button type="submit" name="delete_inactive" class="btn btn-danger">
-						حذف معوق ها
-					</button>
-					<button type="submit" name="clear_tokens" class="btn btn-danger">
-						تمیز کاری رموز
-					</button>
+					<div class="btn-group">
+						<a class="btn btn-success" href="new_member.php"><i class="fa fa-plus"></i></a>
+						<button type="submit" name="delete_inactive" class="btn btn-danger">
+							حذف معوق ها
+						</button>
+						<button type="submit" name="clear_tokens" class="btn btn-warning">
+							تمیز کاری رموز
+						</button>
+					</div>
 				</form>
 			</div>
 			<div class="clearfix"></div>
@@ -76,23 +78,7 @@ echo output_message($message, $errors);
 				</thead>
 				<tbody>
 					<?php foreach ($member_set as $member): ?>
-						<tr class="
-					<?php
-						switch ($member->status) {
-							case 0:
-								echo 'warning';
-								break;
-							case 1:
-								echo 'success';
-								break;
-							case 2:
-								echo 'danger';
-								break;
-							default:
-								echo '';
-								break;
-						}
-						?>">
+						<tr class="<?php echo status($member); ?>">
 							<td><img class="img-circle" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=30"></td>
 							<td class="arial">
 								<small><?php echo htmlentities($member->username); ?></small>

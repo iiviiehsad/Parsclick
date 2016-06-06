@@ -23,8 +23,9 @@ echo output_message($message);
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($author_set as $author): ?>
-							<tr>
+						<?php
+						foreach ($author_set as $author): ?>
+							<tr class="<?php echo status($author); ?>">
 								<td class="arial">
 									<?php if ( ! empty($author->photo)): ?>
 										<img class="img-circle pull-right" width="30" alt="Profile Picture"
