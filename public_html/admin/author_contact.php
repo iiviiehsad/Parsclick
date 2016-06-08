@@ -26,11 +26,17 @@ echo output_message($message);
 				<div class="center">
 					<span class="label label-as-badge label-danger"><?php echo $author->full_name(); ?></span>
 					<br/>
-					<span class="label label-as-badge label-info">
-						<?php echo convert(count(Article::find_articles_for_author($author->id, TRUE))); ?>
-						مقاله منتشر شده
-					</span>
-					<?php if (isset($author->parsclickmail)): ?>
+					<?php if ( ! empty(Article::count_articles_for_author($author->id, TRUE))): ?>
+						<span class="label label-as-badge label-info">
+						<?php echo convert(Article::count_articles_for_author($author->id, TRUE)) ?>
+							مقاله منتشر شده
+						</span>
+					<?php else: ?>
+						<span class="label label-as-badge label-primary">
+							مقاله ای منتشر نشده
+						</span>
+					<?php endif; ?>
+					<?php if ( ! empty($author->parsclickmail)): ?>
 						<br/>
 						<p class="label label-as-badge label-warning">
 							<a data-toggle="tooltip" target="_blank" title="<?php echo $author->parsclickmail; ?>"

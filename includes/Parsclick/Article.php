@@ -65,6 +65,27 @@ class Article extends DatabaseObject
 	}
 
 	/**
+	 * Counts articles for authors
+	 *
+	 * @param int  $author_id
+	 * @param bool $public
+	 * @return mixed
+	 */
+	public static function count_articles_for_author($author_id = 0, $public = TRUE)
+	{
+		global $database;
+		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
+		$sql .= ' WHERE author_id = ' . $author_id;
+		if ($public) {
+			$sql .= ' AND visible = 1 ';
+		}
+		$result_set = $database->query($sql);
+		$row        = $database->fetch_assoc($result_set);
+
+		return array_shift($row);
+	}
+
+	/**
 	 * @param int $subject_id
 	 * @return mixed
 	 */

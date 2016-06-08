@@ -79,7 +79,7 @@ if (isset($_POST['resend_email'])) {
 				<input onblur="checkEmail();" onkeyup="checkEmail();"
 				       class="edit col-xs-12 col-sm-8 col-md-8 col-lg-8 input-small" type="email" name="email" id="email"
 				       placeholder="Email" required value="<?php echo htmlentities($member->email); ?>"
-				       pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"/>
+				       pattern="^[\w.%+-]+@[\w.-]+\.[\w]{2,6}$"/>
 					<span class="input-group-btn">
 						<button class="btn btn-primary btn-small" type="submit" name="update_email">
 							تغییر بده
