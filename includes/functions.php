@@ -741,10 +741,7 @@ function public_courses()
 		$course_set = Course::find_courses_for_category($category->id, TRUE);
 		$output .= '<div class="list-group">';
 		foreach ($course_set as $course) {
-			// $url     = "https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=" . $course->youtubePlaylist . "&key=" . YOUTUBEAPI;
-			$output .= '<a class="list-group-item" target="_blank" title="برو به یوتیوب" href="https://www.youtube.com/playlist?list=';
-			$output .= $course->youtubePlaylist;
-			$output .= '">';
+			$output .= "<a class='list-group-item' target='_blank' title='برو به یوتیوب' href='https://www.youtube.com/playlist?list={$course->youtubePlaylist}'>";
 			$output = ! empty($course->name) ? $output . $course->name : $output . '-';
 			if ($course->recent()) {
 				$output .= '&nbsp;&nbsp;&nbsp;<kbd>تازه</kbd>';
@@ -843,16 +840,23 @@ function get_prev_next_token()
  */
 function set_prev_next_page($playlist_id)
 {
-	$get = allowed_get_params(['prevPageToken', 'nextPageToken']);
+	$get   = allowed_get_params(['prevPageToken', 'nextPageToken']);
+	$query = http_build_query([
+		'part'       => 'snippet',
+		'hl'         => 'fa',
+		'maxResults' => MAXRESULTS,
+		'playlistId' => $playlist_id,
+		'key'        => YOUTUBEAPI
+	]);
 
 	if ( ! isset($get['nextPageToken'], $get['prevPageToken'])) {
-		$url = GOOGLEAPI . '?part=snippet&hl=fa&maxResults=' . MAXRESULTS . "&playlistId={$playlist_id}&key=" . YOUTUBEAPI;
+		$url = GOOGLEAPI . '?' . $query;
 	}
 	if (isset($get['nextPageToken'])) {
-		$url = GOOGLEAPI . '?part=snippet&hl=fa&maxResults=' . MAXRESULTS . "&playlistId={$playlist_id}&key=" . YOUTUBEAPI . '&pageToken=' . $get['nextPageToken'];
+		$url = GOOGLEAPI . '?' . $query . '&pageToken=' . $get['nextPageToken'];
 	}
 	if (isset($get['prevPageToken'])) {
-		$url = GOOGLEAPI . '?part=snippet&hl=fa&maxResults=' . MAXRESULTS . "&playlistId={$playlist_id}&key=" . YOUTUBEAPI . '&pageToken=' . $get['prevPageToken'];
+		$url = GOOGLEAPI . '?' . $query . '&pageToken=' . $get['prevPageToken'];
 	}
 
 	return ! empty($url) ? $url : NULL;
@@ -971,7 +975,7 @@ function status($user)
 			return 'danger';
 			break;
 		default:
-			return '';
+			return 'primary';
 			break;
 	}
 }
