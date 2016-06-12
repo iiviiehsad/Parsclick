@@ -113,7 +113,7 @@ echo output_message($message, $errors);
 					<?php endforeach; ?>
 				</tbody>
 			</table>
-			<?php echo paginate($pagination, $page, ['member_list.php']); ?>
+			<?php echo paginate($pagination, $page); ?>
 		</div>
 	</section>
 <?php include_layout_template('admin_footer.php'); ?>

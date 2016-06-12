@@ -1,13 +1,13 @@
 <?php require_once('../includes/initialize.php'); ?>
 <?php $session->confirm_logged_in();
-$title          = 'پارس کلیک - جستجوی بین انجمن';
-$member         = Member::find_by_id($session->id);
+$title  = 'پارس کلیک - جستجوی بین انجمن';
+$member = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_course(TRUE);
 $search_query = trim($_GET['q']);
-if(isset($search_query) && ! empty($search_query)) {
+if (isset($search_query) && ! empty($search_query)) {
 	$comment_set = Comment::search($search_query);
-} else { // this is a $_GET request
+} else { 
 	$session->message('شما چیزی جستجو نکردید.');
 	redirect_to('forum');
 }
@@ -17,7 +17,7 @@ if(isset($search_query) && ! empty($search_query)) {
 <?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if( ! empty($comment_set)): ?>
+			<?php if ( ! empty($comment_set)): ?>
 				<h2>نتیجه جستجو</h2>
 				<div class="table-responsive">
 					<table class="table">
@@ -27,7 +27,7 @@ if(isset($search_query) && ! empty($search_query)) {
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach($comment_set as $comment): ?>
+							<?php foreach ($comment_set as $comment): ?>
 								<tr>
 									<td>
 										<section class="media">
@@ -40,14 +40,14 @@ if(isset($search_query) && ! empty($search_query)) {
 														class="label label-as-badge label-success"><?php echo htmlentities($_member->first_name); ?></span>
 												<span
 														class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
-												<?php if(isset($session->id)): ?>
-													<?php if($comment->member_id === $session->id): ?>
+												<?php if (isset($session->id)): ?>
+													<?php if ($comment->member_id === $session->id): ?>
 														<a href="member-delete-comment?id=<?php echo urlencode($comment->id); ?>"
 														   class="label label-as-badge label-danger confirmation">
 															<i class="fa fa-times"></i>
 														</a>
 													<?php endif; ?>
-													<?php if($session->is_admin_logged_in()): ?>
+													<?php if ($session->is_admin_logged_in()): ?>
 														<a class="label label-as-badge label-danger"
 														   href="admin_delete_comment.php?id=<?php echo urlencode($comment->id); ?>">
 															<i class="fa fa-times"></i>

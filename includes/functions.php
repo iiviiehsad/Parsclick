@@ -619,7 +619,7 @@ function articles($subject_array, $article_array, $public = FALSE)
 				'subject' => urlencode($subject->id),
 				'article' => urlencode($article->id)
 			]);
-			$output .= "<a href='?{$query}'";
+			$output .= '<a href="' . article_url() . '?' . $query . '"';
 			if ($article_array && $article->id == $article_array->id) {
 				$output .= ' class="selected"';
 			}
@@ -695,7 +695,7 @@ function courses($category_array, $course_array, $public = FALSE)
 				'category' => urlencode($category->id),
 				'course'   => urlencode($course->id)
 			]);
-			$output .= "<a href='?{$query}'";
+			$output .= '<a href="' . course_url() . '?' . $query . '"';
 			if ($course_array && $course->id == $course_array->id) {
 				$output .= ' class="selected"';
 			}
@@ -824,13 +824,13 @@ function get_prev_next_token()
 	$get = allowed_get_params(['prevPageToken', 'nextPageToken']);
 
 	if (isset($get['prevPageToken'])) {
-		return 'prevPageToken=' . $get['prevPageToken'];
+		return ['prevPageToken' => $get['prevPageToken'] . '#comments'];
 	} elseif (isset($get['nextPageToken'])) {
-		return 'nextPageToken=' . $get['nextPageToken'];
+		return ['nextPageToken' => $get['nextPageToken'] . '#comments'];
 	} elseif (isset($get['prevPageToken'], $get['nextPageToken'])) {
-		return 'prevPageToken=' . $get['prevPageToken'] . 'nextPageToken=' . $get['nextPageToken'];
+		return ['prevPageToken=' . $get['prevPageToken'] . 'nextPageToken=' . $get['nextPageToken'] . '#comments'];
 	} else {
-		return NULL;
+		return [];
 	}
 }
 
@@ -901,10 +901,9 @@ function paginate($pagination, $page, $urls = [])
 		if ($pagination->has_previous_page()) {
 			$output .= '<li>';
 			$output .= '<a href="' . $main_url . '?page=' . urlencode($pagination->previous_page());
-			foreach ($urls as $url) {
-				if ( ! empty($url)) {
-					$output .= '&' . $url;
-				}
+			if ( ! empty($urls)) {
+				$output .= '&';
+				$output .= urldecode(http_build_query($urls));
 			}
 			$output .= '" aria-label="Previous">';
 			$output .= '<span aria-hidden="true"> &lt;&lt; </span>';
@@ -916,10 +915,9 @@ function paginate($pagination, $page, $urls = [])
 			} else {
 				$output .= '<li>';
 				$output .= '<a href="' . $main_url . '?page=' . urlencode($i);
-				foreach ($urls as $url) {
-					if ( ! empty($url)) {
-						$output .= '&' . $url;
-					}
+				if ( ! empty($urls)) {
+					$output .= '&';
+					$output .= urldecode(http_build_query($urls));
 				}
 				$output .= '">' . convert($i) . '</a>';
 				$output .= '</li>';
@@ -928,10 +926,9 @@ function paginate($pagination, $page, $urls = [])
 		if ($pagination->has_next_page()) {
 			$output .= '<li>';
 			$output .= '<a href="' . $main_url . '?page=' . urlencode($pagination->next_page());
-			foreach ($urls as $url) {
-				if ( ! empty($url)) {
-					$output .= '&' . $url;
-				}
+			if ( ! empty($urls)) {
+				$output .= '&';
+				$output .= urldecode(http_build_query($urls));
 			}
 			$output .= '" aria-label="Next">';
 			$output .= '<span aria-hidden="true">&gt;&gt;</span>';
