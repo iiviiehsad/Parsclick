@@ -101,7 +101,7 @@ class Session
 	 */
 	private function is_session_valid()
 	{
-		$check_ip         = FALSE; // FALSE because everybody uses proxy
+		$check_ip         = FALSE; # FALSE because everybody uses proxy
 		$check_user_agent = TRUE;
 		$check_last_login = TRUE;
 		if ($check_ip && ! $this->request_ip_matches_session()) {
@@ -154,8 +154,8 @@ class Session
 	 */
 	private function last_login_is_recent()
 	{
-		$max_elapsed = 60 * 60 * 24 * 3; // 3 days
-		// return false if value is not set
+		$max_elapsed = 60 * 60 * 24 * 3; # 3 days
+		# return false if value is not set
 		if ( ! isset($_SESSION['last_login'])) {
 			return FALSE;
 		}
@@ -203,7 +203,7 @@ class Session
 	{
 		if ( ! $this->is_author_logged_in() || ! $this->is_session_valid()) {
 			$this->logout();
-			redirect_to('/admin');
+			redirect_to('/admin/');
 		}
 	}
 
@@ -290,7 +290,7 @@ class Session
 	 */
 	public function csrf_token_tag()
 	{
-		return '<input type="hidden" name="csrf_token" value="' . $this->create_csrf_token() . '" />';
+		return '<input type="hidden" name="csrf_token" value="' . $this->create_csrf_token() . '">';
 	}
 
 	/**
@@ -325,7 +325,7 @@ class Session
 	 */
 	public function csrf_token_is_recent()
 	{
-		$max_elapsed = 60 * 60 * 24 * 3; // 3 days
+		$max_elapsed = 60 * 60 * 24 * 3; # 3 days
 		if (isset($_SESSION['csrf_token_time'])) {
 			$stored_time = $_SESSION['csrf_token_time'];
 
@@ -397,4 +397,4 @@ class Session
 		}
 	}
 
-} // END of CLASS
+} # END of CLASS
