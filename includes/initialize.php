@@ -32,7 +32,7 @@ defined('ADMIN_EMAIL') ? NULL : define('ADMIN_EMAIL', 'info@parsclick.net');
 | Allowable HTML tags to use in articles
 |----------------------------------------------------------------
 */
-defined('ARTICLE_ALLOWABLE_TAGS') ? NULL : define('ARTICLE_ALLOWABLE_TAGS', '<h3><h4><h5><h6><strong><em><i><p><code><pre><mark><span><ul><ol><li><dl><dt><dd><a><img><iframe><video><audio>');
+defined('ARTICLE_ALLOWABLE_TAGS') ? NULL : define('ARTICLE_ALLOWABLE_TAGS', '<h3><h4><h5><h6><blockquote><strong><em><i><p><code><pre><mark><span><ul><ol><li><dl><dt><dd><a><img><iframe><video><audio>');
 /*
 |----------------------------------------------------------------
 | Email details

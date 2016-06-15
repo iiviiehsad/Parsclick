@@ -14,4 +14,4 @@
 // return include __DIR__ . '/../github.php';
 // return `php -f ../github.php`;
 
-return `git pull`;
+`git pull`;
