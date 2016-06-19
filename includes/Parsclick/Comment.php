@@ -39,8 +39,14 @@ class Comment extends DatabaseObject
 			$comment->member_id = (int) $member_id;
 			$comment->course_id = (int) $course_id;
 			$comment->created   = strftime('%Y-%m-%d %H:%M:%S', time());
-			$comment->body      = preg_replace('/`(.*?)`/', '<code>$1</code>', $body);
-
+			$comment->body      = preg_replace([
+				'/`(.*?)`/',
+				'/\*(.*?)\*/'
+			], [
+				'<code>$1</code>',
+				'<strong>$1</strong>'
+			], $body);
+			
 			return $comment;
 		} else {
 			return FALSE;

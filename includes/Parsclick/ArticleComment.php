@@ -33,13 +33,19 @@ class ArticleComment extends DatabaseObject
 	 */
 	public static function make($member_id, $article_id, $body = '')
 	{
-		if( ! empty($member_id) && ! empty($article_id) && ! empty($body)) {
+		if ( ! empty($member_id) && ! empty($article_id) && ! empty($body)) {
 			$comment             = new ArticleComment();
-			$comment->id         = (int)'';
-			$comment->member_id  = (int)$member_id;
-			$comment->article_id = (int)$article_id;
+			$comment->id         = (int) '';
+			$comment->member_id  = (int) $member_id;
+			$comment->article_id = (int) $article_id;
 			$comment->created    = strftime('%Y-%m-%d %H:%M:%S', time());
-			$comment->body      = preg_replace('/`(.*?)`/', '<code>$1</code>', $body);
+			$comment->body       = preg_replace([
+				'/`(.*?)`/',
+				'/\*(.*?)\*/'
+			], [
+				'<code>$1</code>',
+				'<strong>$1</strong>'
+			], $body);
 
 			return $comment;
 		} else {
