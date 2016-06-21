@@ -67,6 +67,7 @@ $newest_article = Article::find_newest_article();
 		   مقاله ها درون موضوعات برای دسترسی آسانتر طبقه بندی شده اند.در اولین صفحه شما قادر به جستجو کردن مقاله ها
 		   هستید اگر دنبال مقاله ی خاصی می گردید.</p>
 		<p><a class="btn btn-small btn-danger" href="member-articles">دیدن مقالات</a></p>
+		<?php include_layout_template('weblog.php'); ?>
 		<p><?php include_layout_template('aside-ad.php'); ?></p>
 	</aside>
 </section>
