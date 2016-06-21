@@ -9,14 +9,14 @@ echo output_message($message);
 		<article>
 			<?php if ($current_category && $current_course): ?>
 				<?php $json = get_playlist_content($current_course->youtubePlaylist); ?>
-				<?php include_layout_template('course-info.php'); ?>
 				<!-----------------------------------------------EDIT------------------------------------------>
-				<a class="btn btn-primary btn-small"
+				<a class="btn btn-primary"
 				   href="edit_course.php?category=<?php echo urlencode($current_category->id); ?>&course=<?php echo urlencode($current_course->id); ?>"
 				   data-toggle="tooltip" title="ویرایش درس">
 					ویرایش
 				</a>
 				&nbsp;
+				<?php include_layout_template('course-info.php'); ?>
 				<!---------------------------------------------FILE LINK--------------------------------------->
 				<?php if ( ! empty($current_course->file_link)): ?>
 					<a class="btn btn-primary btn-small" href="<?php echo htmlentities($current_course->file_link); ?>"

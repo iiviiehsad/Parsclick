@@ -1,9 +1,5 @@
-<?php
-global $session;
-global $current_article;
-global $newest_article;
-$current_article = $newest_article;
-?>
+<?php global $session; global $current_article; global $newest_article;
+$current_article = $newest_article; ?>
 <article>
 	<h2>
 		<a href="articles?subject=<?php echo urlencode($newest_article->subject_id); ?>&article=<?php echo urlencode($newest_article->id); ?>">
@@ -14,7 +10,7 @@ $current_article = $newest_article;
 		<?php if(isset($newest_article->author_id)):
 			$author = Author::find_by_id($newest_article->author_id);
 			?><i class="fa fa-user fa-lg"></i>&nbsp;
-			<?php echo "توسط: " . $author->full_name();
+			<?php echo 'توسط: ' . $author->full_name();
 			if( ! empty($author->photo)): ?>
 				<img class="author-photo img-circle pull-left" alt="<?php echo $author->full_name(); ?>" src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
 			<?php endif; ?>
@@ -31,6 +27,6 @@ $current_article = $newest_article;
 	<hr/>
 	<article id="comments">
 		<?php include_layout_template('article-comments.php'); ?>
-		<?php //include_layout_template('disqus-comment.php'); ?>
+		<?php // include_layout_template('disqus-comment.php'); ?>
 	</article>
 </article>

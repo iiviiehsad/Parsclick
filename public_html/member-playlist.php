@@ -1,5 +1,5 @@
 <?php require_once('../includes/initialize.php');
-$title    = 'پارس کلیک - لیست پخش اعضا';
+$title = 'پارس کلیک - لیست پخش اعضا';
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
@@ -14,8 +14,9 @@ $playlist_set = Playlist::find_playlist_for_member($member->id);
 		<?php if ($playlist_set): ?>
 			<h4>
 				<span
-						class='label label-as-badge label-info'>تعداد <?php echo convert(Playlist::count_playlist_for_member($member->id)); ?>
-				                                            درس داخل لیست پخش شماست.</span>
+						class='label label-as-badge label-info'>
+					تعداد <?php echo convert(Playlist::count_playlist_for_member($member->id)); ?> درس داخل لیست پخش شماست.
+				</span>
 			</h4>
 		<?php else: ?>
 			<h4>
