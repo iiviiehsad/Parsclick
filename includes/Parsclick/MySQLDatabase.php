@@ -23,6 +23,8 @@ class MySQLDatabase implements Database
 	public function open_connection()
 	{
 		$this->connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+		mysqli_set_charset($this->connection, 'latin1');
+		$this->connection->set_charset('latin1');
 		if ( ! $this->connection) {
 			die('Database connection failed: ' . mysqli_connect_error() . ' (' . mysqli_connect_errno() . ' )');
 		} else {
@@ -73,8 +75,7 @@ class MySQLDatabase implements Database
 		if ( ! $result) {
 			$ip1 = '127.0.0.1';
 			$ip2 = '::1';
-			if ($_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2) 
-			{
+			if ($_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2) {
 				$output1 = 'Database query failed! ' . mysqli_error($this->connection) . '<br/><br/>';
 				$output2 = 'Last SQL Query: ' . $this->last_query;
 				$output  = warning($output1, $output2);

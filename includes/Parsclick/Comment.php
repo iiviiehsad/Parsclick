@@ -1,5 +1,4 @@
-<?php //namespace Parsclick; 
-
+<?php //namespace Parsclick;
 class Comment extends DatabaseObject
 {
 	protected static $table_name = 'comments';
@@ -46,7 +45,7 @@ class Comment extends DatabaseObject
 				'<code>$1</code>',
 				'<strong>$1</strong>'
 			], $body);
-			
+
 			return $comment;
 		} else {
 			return FALSE;

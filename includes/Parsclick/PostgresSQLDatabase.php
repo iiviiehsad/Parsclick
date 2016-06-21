@@ -27,7 +27,8 @@ class PostgresSQLDatabase implements Database
 	public function open_connection()
 	{
 		$this->connection = pg_connect('host=' . PG_SERVER . ' port=' . PG_PORT . ' dbname=' . PG_NAME . ' user=' . PG_USER . ' password=' . PG_PASS);
-		if( ! $this->connection) {
+		pg_set_client_encoding($this->connection, 'LATIN1');
+		if ( ! $this->connection) {
 			die('Database connection failed!');
 		}
 	}
@@ -37,7 +38,7 @@ class PostgresSQLDatabase implements Database
 	 */
 	public function close_connection()
 	{
-		if(isset($this->connection)) {
+		if (isset($this->connection)) {
 			pg_close($this->connection);
 			unset($this->connection);
 		}
@@ -61,10 +62,10 @@ class PostgresSQLDatabase implements Database
 	 */
 	private function confirm_query($result)
 	{
-		if( ! $result) {
+		if ( ! $result) {
 			$ip1 = '127.0.0.1';
 			$ip2 = '::1';
-			if($_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2) {
+			if ($_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2) {
 				$output1 = 'Database query failed! ' . '<br/><br/>';
 				$output2 = 'Last SQL Query: ' . $this->last_query;
 				$output  = warning($output1, $output2);
@@ -83,15 +84,15 @@ class PostgresSQLDatabase implements Database
 	 */
 	public function escape_value($value)
 	{
-		if($this->real_escape_string_exists) { // PHP v4.3.0+
+		if ($this->real_escape_string_exists) { // PHP v4.3.0+
 			// undo any magic quote effects so mysqli_real_escape_string can do the work
-			if($this->magic_quotes_active) {
+			if ($this->magic_quotes_active) {
 				$value = stripslashes($value);
 			}
 			$value = pg_escape_string($this->connection, $value); // PHP v5.0+
 		} else { // before PHP v4.3.0
 			// if magic quotes aren't already on then add slashes manually
-			if( ! $this->magic_quotes_active) {
+			if ( ! $this->magic_quotes_active) {
 				$value = addslashes($value);
 			} // if magic quotes are active, then the slashes already exist
 		}
