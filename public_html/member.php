@@ -35,7 +35,7 @@ $newest_article = Article::find_newest_article();
 				<?php echo convert(Playlist::count_playlist_for_member($member->id)); ?> درس
 			</a>
 		<?php else: ?>
-			هیچی!
+			هیچی !
 		<?php endif; ?>
 	</p>
 	<p class="edit bright"> GMT امروز <?php echo datetime_to_shamsi(time()); ?></p>
