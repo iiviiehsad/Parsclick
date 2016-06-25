@@ -14,7 +14,6 @@ if ($_POST) {
 		$resp      = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 		if ($resp->isSuccess()) {
 			if ($session->csrf_token_is_valid() && $session->csrf_token_is_recent()) {
-				//validations
 				if ( ! has_presence($_POST['username']) || ! has_presence($_POST['password'])) {
 					$errors = 'اسم کاربری و پسورد را خالی نگذارید!';
 				} elseif ( ! has_length($_POST['username'], ['max' => 20])) {

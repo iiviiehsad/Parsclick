@@ -32,12 +32,8 @@ function redirect_to($location = NULL)
  */
 function output_message($message = '', $errors = '')
 {
-	if ( ! empty($message)) {
-		return bootstrap_alert($message, 'info');
-	}
-	if ( ! empty($errors)) {
-		return bootstrap_alert($errors, 'danger');
-	}
+	if ( ! empty($message)) return bootstrap_alert($message, 'info');
+	if ( ! empty($errors)) return bootstrap_alert($errors, 'danger');
 
 	return '';
 }
@@ -130,12 +126,8 @@ function convert($string = '')
  */
 function check_size($size = 0)
 {
-	if ($size > 1024000) {
-		return round($size / 1024000) . ' مگابایت';
-	}
-	if ($size > 1024) {
-		return round($size / 1024) . ' کیلوبایت';
-	}
+	if ($size > 1024000) return round($size / 1024000) . ' مگابایت';
+	if ($size > 1024) return round($size / 1024) . ' کیلوبایت';
 
 	return $size . ' بایت';
 }
@@ -312,15 +304,9 @@ function has_presence($value)
  */
 function has_length($value, $options = [])
 {
-	if (isset($options['max']) && (strlen($value) > (int) $options['max'])) {
-		return FALSE;
-	}
-	if (isset($options['min']) && (strlen($value) < (int) $options['min'])) {
-		return FALSE;
-	}
-	if (isset($options['exact']) && (strlen($value) != (int) $options['exact'])) {
-		return FALSE;
-	}
+	if (isset($options['max']) && (strlen($value) > (int) $options['max'])) return FALSE;
+	if (isset($options['min']) && (strlen($value) < (int) $options['min'])) return FALSE;
+	if (isset($options['exact']) && (strlen($value) != (int) $options['exact'])) return FALSE;
 
 	return TRUE;
 }
@@ -347,15 +333,9 @@ function has_format_matching($value, $regex = '//')
  */
 function has_number($value, $options = [])
 {
-	if ( ! is_numeric($value)) {
-		return FALSE;
-	}
-	if (isset($options['max']) && ($value > (int) $options['max'])) {
-		return FALSE;
-	}
-	if (isset($options['min']) && ($value < (int) $options['min'])) {
-		return FALSE;
-	}
+	if ( ! is_numeric($value)) return FALSE;
+	if (isset($options['max']) && ($value > (int) $options['max'])) return FALSE;
+	if (isset($options['min']) && ($value < (int) $options['min'])) return FALSE;
 
 	return TRUE;
 }
@@ -424,7 +404,7 @@ function file_contains_php($file)
 function file_upload_error($error_integer)
 {
 	$upload_errors = [
-		// http://php.net/manual/en/features.file-upload.errors.php
+		# http://php.net/manual/en/features.file-upload.errors.php
 		UPLOAD_ERR_OK         => 'خطایی نیست.',
 		UPLOAD_ERR_INI_SIZE   => 'فایل بزرگتر از تنظیمات پی اچ پی است!',
 		UPLOAD_ERR_FORM_SIZE  => 'اندازه فایل بزرگ است!',
@@ -449,9 +429,7 @@ function is_temp_mail($mail)
 	$mail_domains_ko = file('https://gist.githubusercontent.com/hassanazimi/d6e49469258d7d06f9f4/raw/disposable_email_addresses');
 	foreach ($mail_domains_ko as $ko_mail) {
 		list(, $mail_domain) = explode('@', $mail);
-		if (strcasecmp($mail_domain, trim($ko_mail)) == 0) {
-			return TRUE;
-		}
+		if (strcasecmp($mail_domain, trim($ko_mail)) == 0) return TRUE;
 	}
 
 	return FALSE;
@@ -514,9 +492,7 @@ function log_action($action, $message = '')
 		$content = "{$timestamp} | {$action}: {$message}" . PHP_EOL;
 		fwrite($handle, $content);
 		fclose($handle);
-		if ($new) {
-			chmod($logfile, 0777);
-		}
+		if ($new) chmod($logfile, 0777);
 	} else {
 		echo 'فایل ثبت قابل نوشتن نیست!';
 	}
@@ -529,15 +505,9 @@ function article_url()
 {
 	global $session;
 
-	if ($session->is_logged_in()) {
-		return 'member-articles';
-	}
-	if ($session->is_author_logged_in()) {
-		return 'author_articles.php';
-	}
-	if ($session->is_admin_logged_in()) {
-		return 'admin_articles.php';
-	}
+	if ($session->is_logged_in()) return 'member-articles';
+	if ($session->is_author_logged_in()) return 'author_articles.php';
+	if ($session->is_admin_logged_in()) return 'admin_articles.php';
 
 	return 'articles';
 }
@@ -559,15 +529,9 @@ function course_url()
 				break;
 		}
 	}
-	if ($session->is_author_logged_in()) {
-		return 'author_courses.php';
-	}
-	if ($session->is_admin_logged_in()) {
-		return 'admin_courses.php';
-	}
-	if ( ! isset($session->id)) {
-		return 'anjoman';
-	}
+	if ($session->is_author_logged_in()) return 'author_courses.php';
+	if ($session->is_admin_logged_in()) return 'admin_courses.php';
+	if ( ! isset($session->id)) return 'anjoman';
 
 	return 'courses';
 }
@@ -949,9 +913,7 @@ function active($files = [], $active = 'active')
 {
 	$filename = basename($_SERVER['PHP_SELF'], '.php');
 	foreach ($files as $file) {
-		if ($file == $filename) {
-			return $active;
-		}
+		if ($file == $filename) return $active;
 	}
 }
 
