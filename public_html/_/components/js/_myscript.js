@@ -41,6 +41,8 @@ $(function() {
 		}); // HIDE MODAL
 	}); // SHOW MODAL
 
+	$('#notification').on('click', function() { $('#notifyModal').modal('show'); });
+
 	// INPUT FILE STYLE
 	var wrapper = $('<label/>').css({height : 0, width : 0, 'overflow' : 'hidden'});
 	$(':file').wrap(wrapper);

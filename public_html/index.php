@@ -2,6 +2,7 @@
 if ($session->is_logged_in()) redirect_to('member.php'); ?>
 <?php include_layout_template('header.php'); ?>
 <?php include_layout_template('nav.php'); ?>
+<button type="button" class="btn btn-small" id="notification"><i class="fa fa-bell"></i></button>
 <?php include_layout_template('snippet-carousel.php'); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<?php include_layout_template('article-intro.php'); ?>
@@ -16,3 +17,4 @@ if ($session->is_logged_in()) redirect_to('member.php'); ?>
 	</aside>
 </section>
 <?php include_layout_template('footer.php'); ?>
+

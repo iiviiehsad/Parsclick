@@ -913,7 +913,9 @@ function active($files = [], $active = 'active')
 {
 	$filename = basename($_SERVER['PHP_SELF'], '.php');
 	foreach ($files as $file) {
-		if ($file == $filename) return $active;
+		if ($file == $filename) {
+			return $active;
+		}
 	}
 }
 
