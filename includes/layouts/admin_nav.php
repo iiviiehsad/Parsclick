@@ -86,6 +86,9 @@
 					</li>
 				</ul>
 			</li>
+			<li class="<?php echo active(['admin_notifications', 'new_notification']); ?>">
+				<a href="<?php echo is_local() ? '' : ADMIN_DIR; ?>admin_notifications.php"><i class="fa fa-bell fa-lg"></i> اعلانات</a>
+			</li>
 			<li>
 				<a href="<?php echo is_local() ? '' : ADMIN_DIR; ?>logout.php">
 					<i class="fa fa-sign-out fa-lg"></i> خروج

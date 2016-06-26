@@ -347,14 +347,15 @@ footer {
 
 .navbar .nav > li > .dropdown-menu { top : 30px; }
 
-.media-left, .media>.pull-left { padding-left : 0; }
+.media-left, .media > .pull-left { padding-left : 0; }
 
-.media-right, .media>.pull-right { padding-right : 0; }
+.media-right, .media > .pull-right { padding-right : 0; }
 
 // Notification
 
 #notifyModal {
 	direction : rtl;
+	.media, .media .media { margin-top : 0; }
 	.modal-dialog { padding : 0; }
 	.modal-content { border-radius : 0; height : auto; min-height : 100%; }
 	@media screen and (min-width : 768px) {

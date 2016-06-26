@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 		$session->message('مقاله ساخته شد.');
 		redirect_to('author_articles.php');
 	} else {
-		$errors = 'مقاله شاخته نشد!';
+		$errors = 'مقاله ساخته نشد!';
 	}
 }
 include_layout_template('admin_header.php');
@@ -34,7 +34,7 @@ echo output_message($message, $errors); ?>
 			<h2><i class="fa fa-newspaper-o"></i> مقاله جدید</h2>
 			<form class="form-horizontal" action="new_article.php?subject=<?php echo urlencode($current_subject->id); ?>"
 			      method="POST" role="form" data-remote>
-				<fieldset id="login">
+				<fieldset>
 					<legend><?php echo ucfirst($current_subject->name); ?></legend>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="article_name">اسم مقاله</label>
