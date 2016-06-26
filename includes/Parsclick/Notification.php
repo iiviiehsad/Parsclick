@@ -10,7 +10,14 @@ class Notification extends DatabaseObject
 	public           $button_text;
 	public           $button_url;
 	public           $created;
-
+	
+	/**
+	 * @param        $admin_id
+	 * @param string $content
+	 * @param string $button_text
+	 * @param string $button_url
+	 * @return bool|\Notification
+	 */
 	public static function make($admin_id, $content = '', $button_text = '', $button_url = '')
 	{
 		if ( ! empty($content) && ! empty($admin_id)) {

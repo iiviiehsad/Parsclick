@@ -14,60 +14,6 @@ abstract class DatabaseObject
 	protected static $db_fields;
 
 	/**
-	 * @param $record
-	 * @return static
-	 */
-	private static function instantiate($record)
-	{
-		$object = new static;
-		foreach ($record as $attribute => $value) {
-			if ($object->has_attribute($attribute)) {
-				$object->$attribute = $value;
-			}
-		}
-
-		return $object;
-	}
-
-	/**
-	 * @param $attribute
-	 * @return bool
-	 */
-	private function has_attribute($attribute)
-	{
-		return array_key_exists($attribute, $this->attributes());
-	}
-
-	/**
-	 * @return array
-	 */
-	protected function attributes()
-	{
-		$attributes = [];
-		foreach (static::$db_fields as $field) {
-			if (property_exists($this, $field)) {
-				$attributes[$field] = $this->$field;
-			}
-		}
-
-		return $attributes;
-	}
-
-	/**
-	 * @return array
-	 */
-	protected function sanitized_attributes()
-	{
-		global $database;
-		$clean_attributes = [];
-		foreach ($this->attributes() as $key => $value) {
-			$clean_attributes[$key] = $database->escape_value($value);
-		}
-
-		return $clean_attributes;
-	}
-
-	/**
 	 * @param string $sql
 	 * @return array
 	 */
@@ -97,7 +43,7 @@ abstract class DatabaseObject
 		if (in_array('position', static::$db_fields, FALSE)) {
 			$sql .= ' ORDER BY position ASC ';
 		} else {
-			$sql .= ' ORDER BY id ASC ';
+			$sql .= ' ORDER BY id DESC ';
 		}
 
 		return static::find_by_sql($sql);
@@ -350,14 +296,6 @@ abstract class DatabaseObject
 	}
 
 	/**
-	 * @return string
-	 */
-	private function reset_token()
-	{
-		return md5(uniqid(mt_rand(), TRUE));
-	}
-
-	/**
 	 * @param $username
 	 * @param $token
 	 * @return bool
@@ -403,6 +341,68 @@ abstract class DatabaseObject
 		}
 
 		return FALSE;
+	}
+
+	/**
+	 * @return array
+	 */
+	protected function attributes()
+	{
+		$attributes = [];
+		foreach (static::$db_fields as $field) {
+			if (property_exists($this, $field)) {
+				$attributes[$field] = $this->$field;
+			}
+		}
+
+		return $attributes;
+	}
+
+	/**
+	 * @return array
+	 */
+	protected function sanitized_attributes()
+	{
+		global $database;
+		$clean_attributes = [];
+		foreach ($this->attributes() as $key => $value) {
+			$clean_attributes[$key] = $database->escape_value($value);
+		}
+
+		return $clean_attributes;
+	}
+
+	/**
+	 * @param $record
+	 * @return static
+	 */
+	private static function instantiate($record)
+	{
+		$object = new static;
+		foreach ($record as $attribute => $value) {
+			if ($object->has_attribute($attribute)) {
+				$object->$attribute = $value;
+			}
+		}
+
+		return $object;
+	}
+
+	/**
+	 * @param $attribute
+	 * @return bool
+	 */
+	private function has_attribute($attribute)
+	{
+		return array_key_exists($attribute, $this->attributes());
+	}
+
+	/**
+	 * @return string
+	 */
+	private function reset_token()
+	{
+		return md5(uniqid(mt_rand(), TRUE));
 	}
 
 } // END of CLASS

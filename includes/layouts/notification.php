@@ -32,7 +32,8 @@ $notifications = Notification::find_all();
 							<div class="media-body">
 								<p><?php echo nl2br(strip_tags($notification->content, ARTICLE_ALLOWABLE_TAGS)); ?></p>
 								<?php if ($notification->button_text && $notification->button_url): ?>
-									<a class="btn btn-small btn-info pull-left" href="<?php echo $notification->button_url; ?>">
+									<a class="btn btn-small btn-info pull-left" href="<?php echo $notification->button_url; ?>"
+									   target="_blank" title="<?php echo $notification->button_text; ?>">
 										<?php echo $notification->button_text; ?>
 									</a>
 								<?php endif; ?>
