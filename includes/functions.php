@@ -88,24 +88,26 @@ function strip_zeros_from_date($marked_string = '')
 
 /**
  * @param string $datetime
+ * @param string $format
  * @return mixed
  */
-function datetime_to_text($datetime = '')
+function datetime_to_text($datetime = '', $format = '*%B *%d, %Y at *%I:%M %p')
 {
 	$unixdatetime = strtotime($datetime);
 
-	return strip_zeros_from_date(strftime('*%B *%d, %Y at *%I:%M %p', $unixdatetime));
+	return strip_zeros_from_date(strftime($format, $unixdatetime));
 }
 
 /**
  * Converts Georgian to Shamsi date and time
  *
  * @param string $datetime
+ * @param string $format
  * @return mixed
  */
-function datetime_to_shamsi($datetime = '')
+function datetime_to_shamsi($datetime = '', $format = '*%d *%B، %Y ساعت *%H:%M')
 {
-	return strip_zeros_from_date(Miladr\Jalali\jDate::forge($datetime)->format('*%d *%B، %Y ساعت *%H:%M'));
+	return strip_zeros_from_date(Miladr\Jalali\jDate::forge($datetime)->format($format));
 }
 
 /**
