@@ -6,6 +6,8 @@ if (isset($_POST['submit'])) {
 		$errors = 'اسم کاربری موجود نیست! لطفا از اسم کاربری دیگری استفاده کنید.';
 	} elseif (Member::find_by_email(trim($_POST['email']))) {
 		$errors = 'این ایمیل قبلا ثبت شده!';
+	} elseif (! has_presence(trim($_POST['email']))) {
+		$errors = 'ایمیل یادت نره!';
 	} else {
 		$member             = new Member();
 		$member->id         = (int) '';
@@ -75,7 +77,6 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="gender">جنس &nbsp;</label>
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="gender" id="gender">
-								<option disabled selected value="">انتخاب کنید</option>
 								<option value="مرد">مرد</option>
 								<option value="زن">زن</option>
 							</select>
@@ -102,7 +103,7 @@ echo output_message($message, $errors);
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="email">ایمیل &nbsp;</label>
 						<div class="controls">
 							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 arial" type="text" name="email" id="post_code"
-							       placeholder="Email"/>
+							       placeholder="Email" required/>
 						</div>
 					</section>
 					<!--status-->

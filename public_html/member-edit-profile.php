@@ -28,8 +28,7 @@ if (isset($_POST['submit'])) {
 		$errors = 'ایمیل موقت خود را تغییر دهید! این ایمیل اعتبار ندارد!';
 	} else {
 		$member->email = trim(strtolower($_POST['email']));
-		$result        = $member->save();
-		if ($result) {
+		if ($member->save()) {
 			$session->message('پروفایل بروزرسانی شد.');
 			redirect_to('member-profile');
 		} else {
@@ -119,7 +118,7 @@ if (isset($_POST['submit'])) {
 						<input onblur="checkEmail();" onkeyup="checkEmail();"
 						       class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="email" name="email" id="email"
 						       placeholder="Email" required value="<?php echo htmlentities($member->email); ?>"
-						       pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"/>
+						       pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$"/>
 					</div>
 				</section>
 				<section class="row">

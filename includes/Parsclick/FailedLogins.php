@@ -17,7 +17,7 @@ class FailedLogins extends DatabaseObject
 	public static function clear_failed_logins($username)
 	{
 		$failed_login = self::find_by_username($username);
-		if($failed_login) {
+		if ($failed_login) {
 			$failed_login->count     = 0;
 			$failed_login->last_time = time();
 			$failed_login->update();
@@ -38,7 +38,7 @@ class FailedLogins extends DatabaseObject
 		$failed_login     = self::find_by_username($username);
 		// Once failure count is over $throttle_at value,
 		// user must wait for the $delay period to pass.
-		if($failed_login && $failed_login->count >= $throttle_at) {
+		if ($failed_login && $failed_login->count >= $throttle_at) {
 			$remaining_delay = ($failed_login->last_time + $delay) - time();
 
 			return ceil($remaining_delay / 60);
@@ -55,7 +55,7 @@ class FailedLogins extends DatabaseObject
 	{
 		global $database;
 		$failed_login = self::find_by_username($username);
-		if( ! $failed_login) {
+		if ( ! $failed_login) {
 			$this->id        = $database->insert_id();
 			$this->username  = $database->escape_value($username);
 			$this->count     = 1;
