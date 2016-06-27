@@ -1,6 +1,6 @@
 <form class="form-horizontal" role="form" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=parsclick/HGms', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
 	<div class="input-group">
-		<input style="text-align: center;" placeholder="ایمیل خود را برای اخبار سایت وارد کنید" class="form-control" type="text" name="email"/>
+		<input style="text-align: center;" dir="auto" placeholder="ایمیل خود را برای اخبار سایت وارد کنید" class="form-control" type="text" name="email"/>
 		<input type="hidden" value="parsclick/HGms" name="uri"/>
 		<input type="hidden" name="loc" value="en_US"/>
 		<span class="input-group-btn">
