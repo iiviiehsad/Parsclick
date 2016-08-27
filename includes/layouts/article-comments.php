@@ -28,7 +28,7 @@ $comments    = ArticleComment::find_comments($current_article->id, $per_page, $p
 		     alt="<?php echo $_member->username; ?>">
 		<div class="media-body">
 			<span
-					class="label label-as-badge label-<?php echo $_member->id == ADMIN_MEMBER_ID ? 'danger' : 'success'; ?>"><?php echo htmlentities($_member->full_name()); ?></span>
+					class="label label-as-badge label-<?php echo $_member->id == ADMIN_MEMBER_ID ? 'danger' : 'success'; ?>"><?php echo htmlentities($_member->username); ?></span>
 			<span
 					class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
 			<?php if (isset($session->id)): ?>

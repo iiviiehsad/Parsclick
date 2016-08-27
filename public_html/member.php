@@ -17,9 +17,7 @@ $newest_article = Article::find_newest_article();
 		<i class="fa fa-bell fa-lg"></i>
 	</a>
 
-	<h1>خوش آمدید <?php echo $member->full_name(); ?></h1>
-	<p>شما دسترسی به یکی از بزرگترین کتابخانه ویدئویی رایگان پارسی زبانان را دارید. لطفا از دوستان خود دعوت کنید که به ما
-	   بپیوندند.</p>
+	<h1><?php echo $member->full_name(); ?></h1>
 	<div class="clearfix"></div>
 	<?php if ($newest_course): ?>
 		<p>جدیدترین درس:&nbsp;

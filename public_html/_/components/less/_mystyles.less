@@ -9,6 +9,8 @@
 @red : #BA83D4;
 @shadow : #9B9B9B;
 
+@import "../fonts/FiraCode/fira_code.css";
+
 @font-face {
 	font-family : "yekan";
 	src         : url(../fonts/Yekan/Yekan.eot);
@@ -33,6 +35,7 @@
 @copyFontFamily : "yekan", "Helvetica Neue", Helvetica, Tahoma, Verdana, Arial, sans-serif;
 @englishFontFamily : "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
 @editFontFamily : "bbcnassim", "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+@code : "Fira Code", menlo, "Source Code Pro", Consolas, monospace;
 
 ::selection { color : @beige; background : @darkblack; }
 
@@ -62,21 +65,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 code {
-	display     : inline-block;
-	direction   : ltr;
-	text-align  : left;
-	font-size   : 80%;
-	text-shadow : none;
+	display                : inline-block;
+	direction              : ltr;
+	text-align             : left;
+	font-size              : 80%;
+	text-shadow            : none;
+	font-family            : @code !important;
+	text-rendering         : optimizeLegibility;
+	font-variant-ligatures : contextual;
+	font-feature-settings  : "calt" 1;
 }
 
 pre {
-	direction        : ltr;
-	float            : left;
-	text-align       : left;
-	width            : 100%;
-	border           : none;
-	background-color : #272822;
-	color            : @yellow;
+	direction              : ltr;
+	float                  : left;
+	text-align             : left;
+	width                  : 100%;
+	border                 : none;
+	background-color       : #272822;
+	color                  : @yellow;
+	font-family            : @code !important;
+	text-rendering         : optimizeLegibility;
+	font-variant-ligatures : contextual;
+	font-feature-settings  : "calt" 1;
 }
 
 blockquote {

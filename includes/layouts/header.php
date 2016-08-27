@@ -15,10 +15,10 @@
 	<meta name="ICBM" content="32.427908, 53.688046"/>
 	<meta name="image" content="<?php echo is_local() ? '' : '/'; ?>images/misc/logo.png"/>
 	<!--Facebook Tags-->
-	<meta property="og:url" content="<?php echo DOMAIN . $_SERVER['REQUEST_URI']; ?>"/>
+	<meta property="og:url" content="<?php echo 'http://' . DOMAIN . $_SERVER['REQUEST_URI']; ?>"/>
 	<meta property="og:title" content="<?php echo isset($title) ? $title : 'پارس کلیک - سینمای برنامه نویسان'; ?>"/>
 	<meta property="og:type" content="article"/>
-	<meta property="og:image" content="<?php echo DOMAIN . '/images/misc/parsclick-logo.png'; ?>"/>
+	<meta property="og:image" content="<?php echo 'http://' . DOMAIN . '/images/misc/parsclick-logo.png'; ?>"/>
 	<meta property="article:author" content="https://www.facebook.com/persiantc"/>
 	<meta property="og:locale" content="fa_IR"/>
 	<meta property="og:description" content="سینمای برنامه نویسان آموزش رایگان ویدیویی توسعه وب"/>
@@ -26,7 +26,7 @@
 	<meta name="twitter:card" content="summary"/>
 	<meta name="twitter:title" content="<?php echo isset($title) ? $title : 'پارس کلیک - سینمای برنامه نویسان'; ?>"/>
 	<meta name="twitter:description" content="سینمای برنامه نویسان آموزش رایگان ویدیویی توسعه وب"/>
-	<meta name="twitter:image" content="<?php echo DOMAIN . '/images/misc/parsclick-logo.png'; ?>"/>
+	<meta name="twitter:image" content="<?php echo 'http://' . DOMAIN . '/images/misc/parsclick-logo.png'; ?>"/>
 	<!--Apple Icons-->
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<link rel="apple-touch-icon" sizes="57x57" href="<?php echo is_local() ? '' : '/'; ?>images/icons/apple-touch-icon-57x57.png">

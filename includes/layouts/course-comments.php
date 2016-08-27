@@ -25,7 +25,7 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 						     alt="<?php echo $_member->username; ?>">
 						<div class="media-body">
 							<span class="label label-as-badge label-<?php echo $_member->id == ADMIN_MEMBER_ID ? 'danger' : 'success'; ?>">
-								<?php echo htmlentities($_member->full_name()); ?>
+								<?php echo htmlentities($_member->username); ?>
 							</span>
 							<span class="label label-as-badge label-info">
 								<?php echo htmlentities(datetime_to_shamsi($comment->created)); ?>
