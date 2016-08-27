@@ -24,11 +24,11 @@ class Course extends DatabaseObject
 	public           $visible;
 	public           $content;
 	public           $created_at;
-	
+
 	/**
-	 * @param string $search gets the search query
-	 * @param bool   $public TRUE is default and will display the hidden and FALSE will not display the hidden
-	 * @return array|null result
+	 * @param string $search
+	 * @param bool $public
+	 * @return array|null
 	 */
 	public static function search($search = '', $public = TRUE)
 	{
@@ -44,9 +44,9 @@ class Course extends DatabaseObject
 	}
 
 	/**
-	 * @param int  $category_id gets the category ID
-	 * @param bool $public      TRUE is default and will display the hidden and FALSE will not display the hidden
-	 * @return mixed number of courses for the category
+	 * @param int $category_id
+	 * @param bool $public
+	 * @return mixed
 	 */
 	public static function count_courses_for_category($category_id = 0, $public = TRUE)
 	{
@@ -63,8 +63,8 @@ class Course extends DatabaseObject
 	}
 
 	/**
-	 * @param int $category_id gets the category ID
-	 * @return int number of courses for category ID given
+	 * @param int $category_id
+	 * @return int
 	 */
 	public static function num_courses_for_category($category_id = 0)
 	{
@@ -79,8 +79,8 @@ class Course extends DatabaseObject
 	}
 
 	/**
-	 * @param int $category_id gets the category ID
-	 * @return bool|mixed set of articles
+	 * @param int $category_id
+	 * @return bool|mixed
 	 */
 	public static function find_default_course_for_category($category_id = 0)
 	{
@@ -90,9 +90,9 @@ class Course extends DatabaseObject
 	}
 
 	/**
-	 * @param int  $category_id get the category ID
-	 * @param bool $public      TRUE is default and will display the hidden and FALSE will not display the hidden
-	 * @return array of courses
+	 * @param int $category_id
+	 * @param bool $public
+	 * @return array
 	 */
 	public static function find_courses_for_category($category_id = 0, $public = TRUE)
 	{
@@ -109,8 +109,8 @@ class Course extends DatabaseObject
 	}
 
 	/**
-	 * @param bool|TRUE $public sets TRUE if subject is visible and FALSE if subject is not visible
-	 * @return bool|mixed newest course
+	 * @param bool $public
+	 * @return bool|mixed
 	 */
 	public static function find_newest_course($public = TRUE)
 	{
@@ -125,9 +125,9 @@ class Course extends DatabaseObject
 	}
 
 	/**
-	 * @param int  $category_id
-	 * @param bool $public if it is visible to public
-	 * @return mixed number of recent course(s) for category
+	 * @param int $category_id
+	 * @param bool $public
+	 * @return mixed
 	 */
 	public static function count_recent_course_for_category($category_id = 0, $public = TRUE)
 	{
@@ -161,10 +161,8 @@ class Course extends DatabaseObject
 	}
 
 	/**
-	 * Finds courses for specific author
-	 *
-	 * @param int       $author_id
-	 * @param bool|TRUE $public
+	 * @param int $author_id
+	 * @param bool $public
 	 * @return array
 	 */
 	public static function find_courses_for_author($author_id = 0, $public = TRUE)
@@ -186,7 +184,7 @@ class Course extends DatabaseObject
 
 	/**
 	 * @param null $date
-	 * @return bool TRUE if course is new and FALSE if old
+	 * @return bool
 	 */
 	public function recent($date = NULL)
 	{
@@ -211,9 +209,7 @@ class Course extends DatabaseObject
 	}
 
 	/**
-	 * Finds the comments for the course by using the function find_comments_for_course
-	 *
-	 * @return array of comments for the course
+	 * @return array
 	 */
 	public function comments()
 	{

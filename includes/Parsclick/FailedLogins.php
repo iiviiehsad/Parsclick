@@ -11,8 +11,8 @@ class FailedLogins extends DatabaseObject
 	public           $last_time;
 
 	/**
-	 * @param $username string gets from user input
-	 * @return bool TRUE if failed record is cleared and FALSE otherwise
+	 * @param $username
+	 * @return bool
 	 */
 	public static function clear_failed_logins($username)
 	{
@@ -27,8 +27,8 @@ class FailedLogins extends DatabaseObject
 	}
 
 	/**
-	 * @param $username string gets from user input
-	 * @return float|int number of minutes user needs to wait and re-enter credentials again
+	 * @param $username
+	 * @return float|int
 	 */
 	public static function throttle_failed_logins($username)
 	{
@@ -48,8 +48,8 @@ class FailedLogins extends DatabaseObject
 	}
 
 	/**
-	 * @param $username string gets from user input
-	 * @return bool TRUE if failed record is either created or updated and FALSE otherwise
+	 * @param $username
+	 * @return bool
 	 */
 	public function record_failed_login($username)
 	{

@@ -9,9 +9,9 @@ class Playlist extends DatabaseObject
 	public           $course_id;
 
 	/**
-	 * @param $course_id int gets the course ID and pass it in the parameter
-	 * @param $member_id int gets the member ID and pass it in the parameter
-	 * @return int number of courses for the member
+	 * @param $course_id
+	 * @param $member_id
+	 * @return bool|mixed
 	 */
 	public static function courses_playlist_for_member($course_id, $member_id)
 	{
@@ -26,8 +26,8 @@ class Playlist extends DatabaseObject
 	}
 
 	/**
-	 * @param $member_id int gets the members ID
-	 * @return array of playlist for the members
+	 * @param $member_id
+	 * @return array
 	 */
 	public static function find_playlist_for_member($member_id)
 	{
@@ -41,8 +41,8 @@ class Playlist extends DatabaseObject
 	}
 
 	/**
-	 * @param $member_id int gets the members ID
-	 * @return mixed number of playlist for every member
+	 * @param $member_id
+	 * @return mixed
 	 */
 	public static function count_playlist_for_member($member_id)
 	{

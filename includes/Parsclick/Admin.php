@@ -11,5 +11,4 @@ class Admin extends DatabaseObject
 	public           $last_name;
 	public           $email;
 	public           $token;
-
 } // END of CLASS

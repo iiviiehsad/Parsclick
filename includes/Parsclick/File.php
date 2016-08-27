@@ -39,8 +39,8 @@ class File extends DatabaseObject
 	private          $temp_path;
 
 	/**
-	 * @param $course_id int gets the course ID
-	 * @return int number of files related to the course
+	 * @param $course_id
+	 * @return int
 	 */
 	public static function num_files_for_course($course_id)
 	{
@@ -54,8 +54,8 @@ class File extends DatabaseObject
 	}
 
 	/**
-	 * @param $course_id int gets the course ID
-	 * @return array of files related to the course
+	 * @param $course_id
+	 * @return array
 	 */
 	public static function find_files_for_course($course_id)
 	{
@@ -68,8 +68,8 @@ class File extends DatabaseObject
 	}
 
 	/**
-	 * @param $file array gets the file details from that array
-	 * @return bool TRUE if file is attached and FALSE if not
+	 * @param $file
+	 * @return bool
 	 */
 	public function attach_file($file)
 	{
@@ -94,8 +94,8 @@ class File extends DatabaseObject
 	}
 
 	/**
-	 * @param $file array gets the file details from that array
-	 * @return bool TRUE if type is matched to the permitted types property and FALSE if not
+	 * @param $file
+	 * @return bool
 	 */
 	protected function checkType($file)
 	{
@@ -109,8 +109,8 @@ class File extends DatabaseObject
 	}
 
 	/**
-	 * @param $filename string gets the file name
-	 * @return mixed|string of sanitized file name
+	 * @param $filename
+	 * @return mixed|string
 	 */
 	public function sanitize_file_name($filename)
 	{
@@ -125,15 +125,7 @@ class File extends DatabaseObject
 	}
 
 	/**
-	 * @override the save function in DatabaseObject Class
-	 *           1- Checks the errors
-	 *           2- Checks if description characters are no more than 255
-	 *           3- Checks the file location whether exists or not
-	 *           4- Defines the target path to upload the file
-	 *           5- Checks uploaded file name if references the recent uploaded
-	 *           6- Checks whether the file exist in the target path directory
-	 *           7- Checks if file is moved from temporary to permanent path and sets the file permission to 644
-	 * @return bool TRUE if file is moved and FALSE if not and return the error
+	 * @return bool
 	 */
 	public function save()
 	{
@@ -185,8 +177,8 @@ class File extends DatabaseObject
 	}
 
 	/**
-	 * @param $file array gets the file details from that array
-	 * @return string of permission to use for every file
+	 * @param $file
+	 * @return string
 	 */
 	public function file_permissions($file)
 	{
@@ -199,9 +191,7 @@ class File extends DatabaseObject
 	}
 
 	/**
-	 * This function checks to see whether the file is deleted from the database first
-	 *
-	 * @return bool TRUE if file is deleted from the database and directory, FALSE if any of them did not happen
+	 * @return bool
 	 */
 	public function destroy()
 	{
@@ -215,7 +205,7 @@ class File extends DatabaseObject
 	}
 
 	/**
-	 * @return string dynamic uploading directory for ease of use in every View and Controller files
+	 * @return string
 	 */
 	public function file_path()
 	{
@@ -223,9 +213,7 @@ class File extends DatabaseObject
 	}
 
 	/**
-	 * This function is display the file size which is in bytes into KB or MB
-	 *
-	 * @return string file size in bytes, kilobytes or megabytes
+	 * @return string
 	 */
 	public function size_as_text()
 	{

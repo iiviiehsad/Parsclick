@@ -10,7 +10,7 @@ class Article extends DatabaseObject
 		'position',
 		'visible',
 		'content',
-		'created_at'
+		'created_at',
 	];
 	public           $id;
 	public           $subject_id;
@@ -22,9 +22,9 @@ class Article extends DatabaseObject
 	public           $created_at;
 
 	/**
-	 * @param string $search gets the search query
-	 * @param bool   $public sets TRUE if article is visible and FALSE if article is not visible
-	 * @return array|null the result
+	 * @param string $search
+	 * @param bool $public
+	 * @return array|null
 	 */
 	public static function search($search = '', $public = TRUE)
 	{
@@ -46,9 +46,9 @@ class Article extends DatabaseObject
 	}
 
 	/**
-	 * @param int  $subject_id gets the subject ID
-	 * @param bool $public     sets TRUE if article is visible and FALSE if article is not visible
-	 * @return mixed counts the number of articles for subject given
+	 * @param int $subject_id
+	 * @param bool $public
+	 * @return mixed
 	 */
 	public static function count_articles_for_subject($subject_id = 0, $public = TRUE)
 	{
@@ -65,9 +65,7 @@ class Article extends DatabaseObject
 	}
 
 	/**
-	 * Counts articles for authors
-	 *
-	 * @param int  $author_id
+	 * @param int $author_id
 	 * @param bool $public
 	 * @return mixed
 	 */
@@ -102,9 +100,9 @@ class Article extends DatabaseObject
 	}
 
 	/**
-	 * @param      $subject_id integer gets the subject ID
+	 * @param int $subject_id
 	 * @param bool $public
-	 * @return int number of articles for subject given
+	 * @return int
 	 */
 	public static function num_articles_for_subject($subject_id = 0, $public = TRUE)
 	{
@@ -122,8 +120,8 @@ class Article extends DatabaseObject
 	}
 
 	/**
-	 * @param int $subject_id gets the subject ID
-	 * @return bool|mixed set of articles
+	 * @param int $subject_id
+	 * @return bool|mixed
 	 */
 	public static function find_default_article_for_subject($subject_id = 0)
 	{
@@ -133,9 +131,9 @@ class Article extends DatabaseObject
 	}
 
 	/**
-	 * @param int  $subject_id integer gets the subject ID
-	 * @param bool $public     sets TRUE if subject is visible and FALSE if subject is not visible
-	 * @return array of articles for subjects given
+	 * @param int $subject_id
+	 * @param bool $public
+	 * @return array
 	 */
 	public static function find_articles_for_subject($subject_id = 0, $public = TRUE)
 	{
@@ -152,8 +150,8 @@ class Article extends DatabaseObject
 	}
 
 	/**
-	 * @param bool|TRUE $public sets TRUE if subject is visible and FALSE if subject is not visible
-	 * @return bool|mixed newest article
+	 * @param bool $public
+	 * @return bool|mixed
 	 */
 	public static function find_newest_article($public = TRUE)
 	{
@@ -168,9 +166,9 @@ class Article extends DatabaseObject
 	}
 
 	/**
-	 * @param int  $subject_id gets the subject ID
-	 * @param bool $public     if it is visible to public
-	 * @return mixed number of recent article(s) for subject
+	 * @param int $subject_id
+	 * @param bool $public
+	 * @return mixed
 	 */
 	public static function count_recent_articles_for_subject($subject_id = 0, $public = TRUE)
 	{
@@ -188,10 +186,8 @@ class Article extends DatabaseObject
 	}
 
 	/**
-	 * Finds articles for specific author
-	 *
-	 * @param int       $author_id
-	 * @param bool|TRUE $public
+	 * @param int $author_id
+	 * @param bool $public
 	 * @return array
 	 */
 	public static function find_articles_for_author($author_id = 0, $public = TRUE)
@@ -213,7 +209,7 @@ class Article extends DatabaseObject
 
 	/**
 	 * @param null $date
-	 * @return bool TRUE if article is new and FALSE if old
+	 * @return bool
 	 */
 	public function recent($date = NULL)
 	{
@@ -225,7 +221,7 @@ class Article extends DatabaseObject
 	}
 
 	/**
-	 * @param null $date DateTime
+	 * @param null $date
 	 * @return bool
 	 */
 	public function updated($date = NULL)
@@ -238,13 +234,10 @@ class Article extends DatabaseObject
 	}
 
 	/**
-	 * Finds the comments for the course by using the function find_comments_for_article
-	 *
 	 * @return array
 	 */
 	public function comments()
 	{
 		return ArticleComment::find_comments_for_article($this->id);
 	}
-
 } // END of CLASS

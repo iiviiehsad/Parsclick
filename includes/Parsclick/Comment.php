@@ -10,8 +10,8 @@ class Comment extends DatabaseObject
 	public           $body;
 
 	/**
-	 * @param int $course_id gets the course ID
-	 * @return mixed number of comments for the course
+	 * @param int $course_id
+	 * @return mixed
 	 */
 	public static function count_comments_for_course($course_id = 0)
 	{
@@ -25,10 +25,10 @@ class Comment extends DatabaseObject
 	}
 
 	/**
-	 * @param        $member_id int gets the member ID
-	 * @param        $course_id int gets the course ID
-	 * @param string $body      gets the message body
-	 * @return bool|\Comment TRUE if comment inserted into database and FALSE if not
+	 * @param $member_id
+	 * @param $course_id
+	 * @param string $body
+	 * @return bool|\Comment
 	 */
 	public static function make($member_id, $course_id, $body = '')
 	{
@@ -53,8 +53,8 @@ class Comment extends DatabaseObject
 	}
 
 	/**
-	 * @param int $course_id gets the course ID
-	 * @return array of comments for the course
+	 * @param int $course_id
+	 * @return array
 	 */
 	public static function find_comments_for_course($course_id = 0)
 	{
@@ -67,10 +67,10 @@ class Comment extends DatabaseObject
 	}
 
 	/**
-	 * @param int $course_id gets the course related ID
-	 * @param int $limit     limits comments per page
-	 * @param int $offset    the pagination offset
-	 * @return array of comments in each page
+	 * @param int $course_id
+	 * @param int $limit
+	 * @param int $offset
+	 * @return array
 	 */
 	public static function find_comments($course_id = 0, $limit = 0, $offset = 0)
 	{

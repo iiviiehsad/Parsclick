@@ -8,5 +8,4 @@ class Subject extends DatabaseObject
 	public           $name;
 	public           $position;
 	public           $visible;
-	
 } // END of CLASS

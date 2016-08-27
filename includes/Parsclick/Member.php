@@ -30,8 +30,8 @@ class Member extends DatabaseObject
 	public           $token;
 
 	/**
-	 * @param string $search gets the search query
-	 * @return array|null the result
+	 * @param string $search
+	 * @return array|null
 	 */
 	public static function search($search = '')
 	{
@@ -50,9 +50,9 @@ class Member extends DatabaseObject
 	}
 
 	/**
-	 * @param int $limit  limits members per page
-	 * @param int $offset the pagination offset
-	 * @return array of members in each page
+	 * @param int $limit
+	 * @param int $offset
+	 * @return array
 	 */
 	public static function find_members($limit = 0, $offset = 0)
 	{
@@ -62,11 +62,7 @@ class Member extends DatabaseObject
 	}
 
 	/**
-	 * This method checks the member's status to see if this property
-	 * which represents the database status column
-	 * (BOOLEAN) is 0 or FALSE or 1 or TRUE.
-	 * If the status is not TRUE then member will be redirected to the specific
-	 * page to prevent the member from using the system.
+	 *
 	 */
 	public function check_status()
 	{
@@ -78,15 +74,8 @@ class Member extends DatabaseObject
 	}
 
 	/**
-	 * This method will send generate a token, stores it into the token
-	 * database column and sends that to the member's email address,
-	 * where then this token will be checked to see if the member is
-	 * legitimate or not.
-	 *
-	 * @param $username string is taken from user by typing
-	 * @return bool TRUE if email is sent ond FALSE if not
-	 * @throws \Exception
-	 * @throws \phpMailerException
+	 * @param $username
+	 * @return bool
 	 */
 	public function email_reset_token($username)
 	{
@@ -109,13 +98,8 @@ class Member extends DatabaseObject
 	}
 
 	/**
-	 * This method will email the member's username
-	 * to the member's email address on file.
-	 *
-	 * @param $email string is taken from the member by typing in the input field
-	 * @return bool TRUE if email is sent and FALSE if not
-	 * @throws \Exception
-	 * @throws \phpMailerException
+	 * @param $email
+	 * @return bool
 	 */
 	public function email_username($email)
 	{
@@ -135,12 +119,8 @@ class Member extends DatabaseObject
 	}
 
 	/**
-	 * This method will send a confirmation email
-	 * to the recently registered members.
-	 *
 	 * @param $username
 	 * @return bool
-	 * @throws \phpmailerException
 	 */
 	public function email_confirmation_details($username)
 	{
@@ -161,8 +141,6 @@ class Member extends DatabaseObject
 	}
 
 	/**
-	 * Deletes inactive users
-	 *
 	 * @return bool
 	 */
 	public static function delete_inactives()

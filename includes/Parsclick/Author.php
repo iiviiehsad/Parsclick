@@ -27,8 +27,6 @@ class Author extends DatabaseObject
 	public           $token;
 
 	/**
-	 * Finds active authors
-	 *
 	 * @return array
 	 */
 	public static function find_active_authors()
@@ -37,7 +35,7 @@ class Author extends DatabaseObject
 	}
 
 	/**
-	 * This function checks the status to see if is TRUE or FALSE
+	 *
 	 */
 	public function check_status()
 	{
@@ -49,7 +47,7 @@ class Author extends DatabaseObject
 	}
 
 	/**
-	 * @return bool TRUE if photo is deleted and FALSE if not
+	 * @return bool
 	 */
 	public function remove_photo()
 	{
@@ -63,12 +61,8 @@ class Author extends DatabaseObject
 	}
 
 	/**
-	 * This method will send a confirmation email to the recently registered members.
-	 *
 	 * @param $username
-	 * @return bool TRUE if email is sent and FALSE if not
-	 * @throws \Exception
-	 * @throws \phpmailerException
+	 * @return bool
 	 */
 	public function email_confirmation_details($username)
 	{

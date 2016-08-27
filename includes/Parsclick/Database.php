@@ -3,46 +3,46 @@
 interface Database
 {
 	/**
-	 * This will open the connection
+	 * @return mixed
 	 */
 	public function open_connection();
 
 	/**
-	 * This will close the connection
+	 * @return mixed
 	 */
 	public function close_connection();
 
 	/**
-	 * @param $sql string will get the SQL query
-	 * @return bool|mysqli_result will return the result if the SQL query is OK
+	 * @param $sql
+	 * @return mixed
 	 */
 	public function query($sql);
 
 	/**
-	 * @param $value string will get the value and prepare it to put in MySQL
-	 * @return string will return MySQL input got from somewhere else
+	 * @param $value
+	 * @return mixed
 	 */
 	public function escape_value($value);
 
 	/**
 	 * @param $result_set
-	 * @return array|null associative array
+	 * @return mixed
 	 */
 	public function fetch_assoc($result_set);
 
 	/**
 	 * @param $result_set
-	 * @return int number of rows
+	 * @return mixed
 	 */
 	public function num_rows($result_set);
 
 	/**
-	 * @return int|string gets the last id inserted over the current db connection
+	 * @return mixed
 	 */
 	public function insert_id();
 
 	/**
-	 * @return int how many rows were affected by the last query
+	 * @return mixed
 	 */
 	public function affected_rows();
 }

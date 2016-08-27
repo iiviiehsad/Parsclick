@@ -8,7 +8,7 @@ class MySQLDatabase implements Database
 	private $real_escape_string_exists;
 
 	/**
-	 * Constructor will open the connection automatically whe the class is called or instantiated.
+	 * MySQLDatabase constructor.
 	 */
 	public function __construct()
 	{
@@ -18,7 +18,7 @@ class MySQLDatabase implements Database
 	}
 
 	/**
-	 * This will open the connection
+	 * Opens the Connection
 	 */
 	public function open_connection()
 	{
@@ -36,7 +36,7 @@ class MySQLDatabase implements Database
 	}
 
 	/**
-	 * This will close the connection
+	 * Close the connection
 	 */
 	public function close_connection()
 	{
@@ -47,11 +47,8 @@ class MySQLDatabase implements Database
 	}
 
 	/**
-	 * Will get the SQL query and
-	 * return the result if the SQL query is OK
-	 *
-	 * @param $sql string
-	 * @return bool|mysqli_result
+	 * @param $sql
+	 * @return bool|\mysqli_result
 	 */
 	public function query($sql)
 	{
@@ -66,9 +63,7 @@ class MySQLDatabase implements Database
 	}
 
 	/**
-	 * Checks if the query is OK
-	 *
-	 * @param $result boolean
+	 * @param $result
 	 */
 	private function confirm_query($result)
 	{
@@ -89,10 +84,7 @@ class MySQLDatabase implements Database
 	}
 
 	/**
-	 * Get the value and prepare it to put in MySQL and
-	 * will return MySQL input got from somewhere else
-	 *
-	 * @param $value string
+	 * @param $value
 	 * @return string
 	 */
 	public function escape_value($value)
@@ -115,7 +107,7 @@ class MySQLDatabase implements Database
 
 	/**
 	 * @param $result_set
-	 * @return array|null associative array
+	 * @return array|null
 	 */
 	public function fetch_assoc($result_set)
 	{
@@ -124,7 +116,7 @@ class MySQLDatabase implements Database
 
 	/**
 	 * @param $result_set
-	 * @return int number of rows
+	 * @return int
 	 */
 	public function num_rows($result_set)
 	{
@@ -132,8 +124,6 @@ class MySQLDatabase implements Database
 	}
 
 	/**
-	 * Gets the last id inserted over the current db connection
-	 *
 	 * @return int|string
 	 */
 	public function insert_id()
@@ -142,8 +132,6 @@ class MySQLDatabase implements Database
 	}
 
 	/**
-	 * How many rows were affected by the last query
-	 *
 	 * @return int
 	 */
 	public function affected_rows()

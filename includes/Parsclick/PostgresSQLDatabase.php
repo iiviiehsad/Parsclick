@@ -2,7 +2,8 @@
 require_once(LIB_PATH . DS . "config.php");
 
 /**
- * Class PostgresSQLDatabase is created to use PostgresSQL database and has only functions related to PostgresSQL
+ * Class PostgresSQLDatabase is created to use
+ * PostgresSQL database and has only functions related to PostgresSQL
  */
 class PostgresSQLDatabase implements Database
 {
@@ -12,7 +13,7 @@ class PostgresSQLDatabase implements Database
 	private $real_escape_string_exists;
 
 	/**
-	 * Constructor will open the connection automatically whe the class is called or instantiated.
+	 * PostgresSQLDatabase constructor.
 	 */
 	public function __construct()
 	{
@@ -22,7 +23,7 @@ class PostgresSQLDatabase implements Database
 	}
 
 	/**
-	 * This will open the connection
+	 * Opens the connection
 	 */
 	public function open_connection()
 	{
@@ -34,7 +35,7 @@ class PostgresSQLDatabase implements Database
 	}
 
 	/**
-	 * This will close the connection
+	 * Close the connection
 	 */
 	public function close_connection()
 	{
@@ -45,8 +46,8 @@ class PostgresSQLDatabase implements Database
 	}
 
 	/**
-	 * @param $sql string will get the SQL query
-	 * @return bool|mysqli_result will return the result if the SQL query is OK
+	 * @param $sql
+	 * @return resource
 	 */
 	public function query($sql)
 	{
@@ -58,7 +59,7 @@ class PostgresSQLDatabase implements Database
 	}
 
 	/**
-	 * @param $result boolean checks if the query is OK
+	 * @param $result
 	 */
 	private function confirm_query($result)
 	{
@@ -79,8 +80,8 @@ class PostgresSQLDatabase implements Database
 	}
 
 	/**
-	 * @param $value string will get the value and prepare it to put in MySQL
-	 * @return string will return MySQL input got from somewhere else
+	 * @param $value
+	 * @return string
 	 */
 	public function escape_value($value)
 	{
@@ -102,7 +103,7 @@ class PostgresSQLDatabase implements Database
 
 	/**
 	 * @param $result_set
-	 * @return array|null associative array
+	 * @return array
 	 */
 	public function fetch_assoc($result_set)
 	{
@@ -111,7 +112,7 @@ class PostgresSQLDatabase implements Database
 
 	/**
 	 * @param $result_set
-	 * @return int number of rows
+	 * @return int
 	 */
 	public function num_rows($result_set)
 	{
@@ -119,7 +120,7 @@ class PostgresSQLDatabase implements Database
 	}
 
 	/**
-	 * @return int|string gets the last id inserted over the current db connection
+	 * @return string
 	 */
 	public function insert_id()
 	{
@@ -127,7 +128,7 @@ class PostgresSQLDatabase implements Database
 	}
 
 	/**
-	 * @return int how many rows were affected by the last query
+	 * @return int
 	 */
 	public function affected_rows()
 	{
