@@ -1,11 +1,11 @@
 <?php require_once('../includes/initialize.php');
-$title    = 'پارس کلیک - انجمن';
 $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_course(TRUE);
-$errors = '';
-$body   = '';
+$errors      = '';
+$body        = '';
+$title       = 'پارس کلیک - انجمن ' . $current_course->name;
 $description = 'پارس کلیک - انجمن ' . $current_course->name;
 ?>
 <?php include_layout_template('header.php'); ?>
@@ -13,7 +13,7 @@ $description = 'پارس کلیک - انجمن ' . $current_course->name;
 <?php echo output_message($message, $errors); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article id="comments">
-			<?php if( ! $current_course && ! $current_category): ?>
+			<?php if ( ! $current_course && ! $current_category): ?>
 				<?php include_layout_template('member-forum-info.php'); ?>
 			<?php else: ?>
 				<div class="panel panel-primary">
@@ -35,12 +35,14 @@ $description = 'پارس کلیک - انجمن ' . $current_course->name;
 								<!--content-->
 								<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
 									<img class="img-circle pull-right hidden-sm" width="100"
-									     src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>"
+									     src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' .
+											     DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>"
 									     alt="<?php echo $member->username; ?>">
 								</label>
 								<input type="hidden" name="course" value="<?php echo urlencode($current_course->id); ?>">
 								<div class="controls">
-									<textarea dir="auto" class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" rows="3" required
+									<textarea dir="auto" class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" rows="3"
+									          required
 									          placeholder="سوال یا نظرتان را اینجا وارد کنید"></textarea>
 								</div>
 								<!--buttons-->

@@ -1,9 +1,9 @@
 <?php require_once('../includes/initialize.php');
 if ($session->is_logged_in()) redirect_to('forum');
-$title = 'پارس کلیک - انجمن';
 find_selected_course(TRUE);
 $newest_course = Course::find_newest_course(TRUE);
 if ( ! $current_course) $current_course = $newest_course;
+$title       = 'پارس کلیک - انجمن ' . $current_course->name;
 $description = 'پارس کلیک - انجمن ' . $current_course->name;
 ?>
 <?php include_layout_template('header.php'); ?>

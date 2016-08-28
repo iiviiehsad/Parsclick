@@ -35,11 +35,6 @@
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>http://parsclick.net/contact</loc>
-		<changefreq>weekly</changefreq>
-		<priority>0.80</priority>
-	</url>
-	<url>
 		<loc>http://parsclick.net/login</loc>
 		<changefreq>weekly</changefreq>
 		<priority>0.80</priority>
