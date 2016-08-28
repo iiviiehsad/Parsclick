@@ -23,12 +23,15 @@ $comments    = ArticleComment::find_comments($current_article->id, $per_page, $p
 <?php foreach ($comments as $comment): ?>
 	<section class="media">
 		<?php $_member = Member::find_by_id($comment->member_id); ?>
-		<img class="img-circle pull-right" width="50" style="padding-right:0;"
-		     src="//www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=50&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>"
-		     alt="<?php echo $_member->full_name(); ?>">
+		<img class="img-circle pull-right" width="70" style="padding-right:0;"
+		     src="//www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=70&d=<?php echo '//' . DOMAIN .
+				     '/images/misc/default-gravatar-pic.png'; ?>"
+		     alt="<?php echo $_member->username; ?>">
 		<div class="media-body">
-			<span
-					class="label label-as-badge label-<?php echo $_member->id == ADMIN_MEMBER_ID ? 'danger' : 'success'; ?>"><?php echo htmlentities($_member->full_name()); ?></span>
+			<a class="label label-as-badge label-success"
+			   href="<?php echo is_local() ? '' : '/'; ?>profile?q=<?php echo htmlentities($_member->username); ?>">
+				<?php echo htmlentities($_member->username); ?>
+			</a>
 			<span
 					class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
 			<?php if (isset($session->id)): ?>
@@ -52,5 +55,5 @@ $comments    = ArticleComment::find_comments($current_article->id, $per_page, $p
 <?php endforeach; ?>
 <?php echo paginate($pagination, $page, [
 		'subject' => $current_article->subject_id,
-		'article' => $current_article->id . '#comments'
+		'article' => $current_article->id . '#comments',
 ]); ?>

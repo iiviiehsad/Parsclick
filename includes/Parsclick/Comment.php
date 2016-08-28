@@ -25,6 +25,21 @@ class Comment extends DatabaseObject
 	}
 
 	/**
+	 * @param int $member_id
+	 * @return mixed
+	 */
+	public static function count_comments_for_member($member_id = 0)
+	{
+		global $database;
+		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
+		$sql .= ' WHERE member_id = ' . $database->escape_value($member_id);
+		$result_set = $database->query($sql);
+		$row        = $database->fetch_assoc($result_set);
+
+		return array_shift($row);
+	}
+
+	/**
 	 * @param $member_id
 	 * @param $course_id
 	 * @param string $body
@@ -40,10 +55,12 @@ class Comment extends DatabaseObject
 			$comment->created   = strftime('%Y-%m-%d %H:%M:%S', time());
 			$comment->body      = preg_replace([
 				'/`(.*?)`/',
-				'/\*(.*?)\*/'
+				'/\*(.*?)\*/',
+				'/(^|\s)@([a-z0-9_]+)/i',
 			], [
 				'<code>$1</code>',
-				'<strong>$1</strong>'
+				'<strong>$1</strong>',
+				'$1<a href="/profile?q=$2">@$2</a>',
 			], $body);
 
 			return $comment;
@@ -67,6 +84,20 @@ class Comment extends DatabaseObject
 	}
 
 	/**
+	 * @param int $member_id
+	 * @return array
+	 */
+	public static function find_comments_for_member($member_id = 0)
+	{
+		global $database;
+		$sql = 'SELECT * FROM ' . self::$table_name;
+		$sql .= ' WHERE member_id = ' . $database->escape_value($member_id);
+		$sql .= ' ORDER BY created DESC';
+
+		return self::find_by_sql($sql);
+	}
+
+	/**
 	 * @param int $course_id
 	 * @param int $limit
 	 * @param int $offset
@@ -74,7 +105,8 @@ class Comment extends DatabaseObject
 	 */
 	public static function find_comments($course_id = 0, $limit = 0, $offset = 0)
 	{
-		$sql = 'SELECT * FROM ' . self::$table_name . " WHERE course_id = {$course_id} ORDER BY created DESC LIMIT {$limit} OFFSET {$offset}";
+		$sql = 'SELECT * FROM ' . self::$table_name .
+			" WHERE course_id = {$course_id} ORDER BY created DESC LIMIT {$limit} OFFSET {$offset}";
 
 		return self::find_by_sql($sql);
 	}
@@ -92,5 +124,4 @@ class Comment extends DatabaseObject
 
 		return ! empty($result_set) ? $result_set : NULL;
 	}
-
 } // END of CLASS

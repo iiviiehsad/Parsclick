@@ -11,7 +11,7 @@ function __autoload($class_name)
 	if ( ! file_exists($path)) {
 		die("The file {$class_name}.php could not be found!");
 	}
-	require_once($path);
+	require_once $path;
 }
 
 /**
@@ -45,7 +45,7 @@ function output_message($message = '', $errors = '')
  */
 function bootstrap_alert($message = '', $kind = 'info')
 {
-	$output = "<div class='alert alert-{$kind} alert-dismissible' role='alert'>";
+	$output = "<div class=\"alert alert-{$kind} alert-dismissible\" role=\"alert\">";
 	$output .= '<button type="button" class="close" data-dismiss="alert">';
 	$output .= '<span aria-hidden="true">&times;</span>';
 	$output .= '<span class="sr-only"></span>';
@@ -66,7 +66,7 @@ function bootstrap_alert($message = '', $kind = 'info')
  */
 function include_layout_template($template = '')
 {
-	return include(LIB_PATH . DS . 'layouts' . DS . $template);
+	return include LIB_PATH . DS . 'layouts' . DS . $template;
 }
 
 /**

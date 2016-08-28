@@ -8,6 +8,7 @@
 @pink : #E74C3C;
 @red : #BA83D4;
 @shadow : #9B9B9B;
+@bright : #C8FF00;
 
 @import "../fonts/FiraCode/fira_code.css";
 
@@ -39,7 +40,15 @@
 
 ::selection { color : @beige; background : @darkblack; }
 
-.bright { color : #C8FF00 !important; }
+.bright { color : @bright !important; }
+
+.text-beige { color : @beige !important; }
+
+.text-purple { color : @red !important; }
+
+.text-parsclick { color : @parsclick !important; }
+
+.text-white { color : white; }
 
 .arial { font-family : @englishFontFamily; }
 
@@ -51,6 +60,8 @@
 	text-align  : left;
 	float       : left;
 }
+
+.large-text { font-size : 90px; font-weight : 900; margin : 0; }
 
 body {
 	background  : @purple;

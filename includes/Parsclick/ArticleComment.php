@@ -11,14 +11,29 @@ class ArticleComment extends DatabaseObject
 	public           $body;
 
 	/**
-	 * @param int $course_id
+	 * @param int $article_id
 	 * @return mixed
 	 */
-	public static function count_comments_for_article($course_id = 0)
+	public static function count_comments_for_article($article_id = 0)
 	{
 		global $database;
 		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
-		$sql .= ' WHERE article_id = ' . $database->escape_value($course_id);
+		$sql .= ' WHERE article_id = ' . $database->escape_value($article_id);
+		$result_set = $database->query($sql);
+		$row        = $database->fetch_assoc($result_set);
+
+		return array_shift($row);
+	}
+
+	/**
+	 * @param int $member_id
+	 * @return mixed
+	 */
+	public static function count_comments_for_member($member_id = 0)
+	{
+		global $database;
+		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
+		$sql .= ' WHERE member_id = ' . $database->escape_value($member_id);
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
 
@@ -41,10 +56,12 @@ class ArticleComment extends DatabaseObject
 			$comment->created    = strftime('%Y-%m-%d %H:%M:%S', time());
 			$comment->body       = preg_replace([
 				'/`(.*?)`/',
-				'/\*(.*?)\*/'
+				'/\*(.*?)\*/',
+				'/(^|\s)@([a-z0-9_]+)/i',
 			], [
 				'<code>$1</code>',
-				'<strong>$1</strong>'
+				'<strong>$1</strong>',
+				'$1<a href="/profile?$2">@$2</a>',
 			], $body);
 
 			return $comment;
@@ -68,6 +85,20 @@ class ArticleComment extends DatabaseObject
 	}
 
 	/**
+	 * @param int $member_id
+	 * @return array
+	 */
+	public static function find_comments_for_member($member_id = 0)
+	{
+		global $database;
+		$sql = 'SELECT * FROM ' . self::$table_name;
+		$sql .= ' WHERE member_id=' . $database->escape_value($member_id);
+		$sql .= ' ORDER BY created DESC';
+
+		return self::find_by_sql($sql);
+	}
+
+	/**
 	 * @param int $article_id
 	 * @param int $limit
 	 * @param int $offset
@@ -75,9 +106,9 @@ class ArticleComment extends DatabaseObject
 	 */
 	public static function find_comments($article_id = 0, $limit = 0, $offset = 0)
 	{
-		$sql = 'SELECT * FROM ' . self::$table_name . " WHERE article_id = {$article_id} ORDER BY created DESC LIMIT {$limit} OFFSET {$offset}";
+		$sql = 'SELECT * FROM ' . self::$table_name .
+			" WHERE article_id = {$article_id} ORDER BY created DESC LIMIT {$limit} OFFSET {$offset}";
 
 		return self::find_by_sql($sql);
 	}
-
 } // END of CLASS
