@@ -6,6 +6,7 @@ $member->check_status();
 find_selected_course(TRUE);
 $errors = '';
 $body   = '';
+$description = 'پارس کلیک - انجمن ' . $current_course->name;
 ?>
 <?php include_layout_template('header.php'); ?>
 <?php include_layout_template('member_nav.php'); ?>

@@ -8,14 +8,16 @@ if ( ! isset($search_query) && empty($search_query)) {
 }
 $member                 = Member::find_by_username($search_query);
 $count_article_comments = ArticleComment::count_comments_for_member($member->id);
-$article_comments       = ArticleComment::find_comments_for_member($member->id);
-$course_comments        = Comment::find_comments_for_member($member->id);
 $count_course_comments  = Comment::count_comments_for_member($member->id);
 $count_playlist         = Playlist::count_playlist_for_member($member->id);
 $experience             = ($count_article_comments + $count_course_comments + $count_playlist) * 100;
 ?>
 <?php include_layout_template('header.php'); ?>
-<?php include_layout_template('member_nav.php'); ?>
+<?php if (isset($session->id)): ?>
+	<?php include_layout_template('member_nav.php'); ?>
+<?php else: ?>
+	<?php include_layout_template('nav.php'); ?>
+<?php endif; ?>
 <?php echo output_message($message, $errors); ?>
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside class="center center-block">
@@ -28,13 +30,13 @@ $experience             = ($count_article_comments + $count_course_comments + $c
 </section>
 <section class="main col-sm-12 col-md-6 col-lg-6">
 	<article class="center center-block" style="min-height:300px;">
-		<h1 class="arial"><?php echo strtoupper($member->username); ?></h1>
+		<h1 class="arial"><?php echo $member->username; ?></h1>
 		<h3 class="text-success"><?php echo ucwords(strtolower($member->full_name())); ?></h3>
 		<p class="lead">تعداد نظرات در مورد مقالات:
 			<b><?php echo $count_article_comments ? convert($count_article_comments) : 'هیچی'; ?></b>
 		</p>
 		<p class="lead">تعداد نظرات در مورد دروس:
-			<b><?php echo $count_article_comments ? convert($count_course_comments) : 'هیچی'; ?></b>
+			<b><?php echo $count_course_comments ? convert($count_course_comments) : 'هیچی'; ?></b>
 		</p>
 		<p class="lead">تعداد درس های محبوب: <b><?php echo $count_playlist ? convert($count_playlist) : 'هیچی'; ?></b>
 		</p>

@@ -6,6 +6,7 @@ $errors         = '';
 $body           = '';
 if (isset($current_article->author_id)) $author = Author::find_by_id($current_article->author_id);
 $title = isset($current_article) ? 'پارس کلیک - ' . $current_article->name : 'پارس کلیک - ' . $newest_article->name;
+$description = isset($current_article) ? 'پارس کلیک - ' . $current_article->name : 'پارس کلیک - ' . $newest_article->name;
 ?>
 <?php include_layout_template('header.php'); ?>
 <?php include_layout_template('nav.php'); ?>
