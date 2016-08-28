@@ -3,10 +3,8 @@ $session->confirm_logged_in();
 $member = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_course(TRUE);
-$errors      = '';
-$body        = '';
-$title       = 'پارس کلیک - انجمن ' . $current_course->name;
-$description = 'پارس کلیک - انجمن ' . $current_course->name;
+$errors = '';
+$body   = '';
 ?>
 <?php include_layout_template('header.php'); ?>
 <?php include_layout_template('member_nav.php'); ?>
@@ -15,7 +13,11 @@ $description = 'پارس کلیک - انجمن ' . $current_course->name;
 		<article id="comments">
 			<?php if ( ! $current_course && ! $current_category): ?>
 				<?php include_layout_template('member-forum-info.php'); ?>
+				<?php $title = 'انجمن پارس کلیک';
+				$description = 'انجمن پارس کلیک'; ?>
 			<?php else: ?>
+				<?php $title = 'پارس کلیک - انجمن ' . $current_course->name;
+				$description = 'پارس کلیک - انجمن ' . $current_course->name; ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h3 class="panel-title">

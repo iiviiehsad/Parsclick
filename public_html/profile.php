@@ -1,12 +1,14 @@
 <?php require_once('../includes/initialize.php');
-$title        = 'پارس کلیک - حساب کاربری';
-$errors       = '';
-$search_query = trim($_GET['q']);
-if ( ! isset($search_query) && empty($search_query)) {
-	$session->message('شما چیزی جستجو نکردید!');
-	redirect_to($_SERVER['HTTP_REFERER']);
+$title  = 'پارس کلیک - حساب کاربری';
+$errors = '';
+if ( ! isset($_GET, $_GET['q'])) {
+	redirect_to('/');
 }
-$member                 = Member::find_by_username($search_query);
+$search_query = trim($_GET['q']);
+$member       = Member::find_by_username($search_query);
+if ( ! $member) {
+	redirect_to('/');
+}
 $count_article_comments = ArticleComment::count_comments_for_member($member->id);
 $count_course_comments  = Comment::count_comments_for_member($member->id);
 $count_playlist         = Playlist::count_playlist_for_member($member->id);
