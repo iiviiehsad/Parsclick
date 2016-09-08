@@ -59,7 +59,7 @@
 </section>
 </section>
 <script src="<?php echo is_local() ? '' : '/'; ?>_/js/all.js"></script>
-<?php // include_layout_template('google_analytic.php'); ?>
+<?php  include_layout_template('google_analytic.php'); ?>
 </body>
 </html>
 <?php if (isset($database)) $database->close_connection(); ?>

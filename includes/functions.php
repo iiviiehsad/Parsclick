@@ -448,28 +448,22 @@ function warning($output1, $output2)
 		<!DOCTYPE html>
 		<html>
 		<head>
-			<title>پارس کلیک - Parsclick</title>
+			<title>Parsclick - Error</title>
 			<meta charset="UTF-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 			<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
 			<link rel="stylesheet" href="/_/css/all.css" media="screen"/>
 			<style>
-				body { background-color : beige; }
-				.error-template { padding : 40px 15px; text-align : center; }
+				html, body { height: 100%; }
+				body { background-color : beige; display: flex; align-items: center; justify-content: center; }
 			</style>
 		</head>
 		<body>
-			<div class="container">
-				<div class="row">
-					<section class="col col-md-12">
-						<div class="error-template">
-							<h1>!Error</h1>
-							<h2>{$output1}</h2>
-							<h3>{$output2}</h3>
-						</div>
-					</section>
-				</div>
-			</div>
+			<section class="container">
+				<h1>!Error</h1>
+				<h2>{$output1}</h2>
+				<h3>{$output2}</h3>
+			</section>
 		</body>
 		</html>
 HTML;
