@@ -455,14 +455,15 @@ function warning($output1, $output2)
 			<link rel="stylesheet" href="/_/css/all.css" media="screen"/>
 			<style>
 				html, body { height: 100%; }
-				body { background-color : beige; display: flex; align-items: center; justify-content: center; }
+				body { background-color : #415B76; display: flex; align-items: center; justify-content: center; text-align: center; }
 			</style>
 		</head>
 		<body>
-			<section class="container">
-				<h1>!Error</h1>
-				<h2>{$output1}</h2>
-				<h3>{$output2}</h3>
+			<section>
+				<h1 class="bright">!Error</h1>
+				<h2 class="bright">{$output1}</h2>
+				<h3 class="bright">{$output2}</h3>
+				<a href="/" class="btn btn-large btn-warning">برگرد به خانه</a>
 			</section>
 		</body>
 		</html>
