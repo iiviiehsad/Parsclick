@@ -1,5 +1,4 @@
 <?php require_once('../includes/initialize.php');
-if ($session->is_logged_in()) redirect_to('member.php');
 
 $bbc_rss        = parse_rss_feed('http://feeds.bbci.co.uk/persian/indepth/cluster_ptv_click/rss.xml');
 $radiofarda_rss = parse_rss_feed('http://www.radiofarda.com/api/z_oqmergq_');
