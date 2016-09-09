@@ -6,7 +6,7 @@ $dw_rss         = parse_rss_feed('http://partner.dw.com/syndication/feeds/rss-pe
 $voa_rss        = parse_rss_feed('http://ir.voanews.com/api/zyupoeqpmi');
 ?>
 <?php include_layout_template('header.php'); ?>
-<?php include_layout_template('nav.php'); ?>
+<?php $session->is_logged_in() ? include_layout_template('member_nav.php') : include_layout_template('nav.php'); ?>
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside>
 		<h2 class="bbcnassim">
