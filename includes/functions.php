@@ -248,6 +248,19 @@ function ip_info($ip = NULL, $purpose = 'location', $deep_detect = TRUE)
 	return $output;
 }
 
+/**
+ * Parses XML feeds
+ *
+ * @param $xml
+ * @return \SimpleXMLElement
+ */
+function parse_rss_feed($xml)
+{
+	$feed = file_get_contents($xml);
+
+	return simplexml_load_string($feed, NULL, LIBXML_NOCDATA);
+}
+
 /******************************************************************************************************/
 /*                                    SECURITY FUNCTIONS                                              */
 /******************************************************************************************************/

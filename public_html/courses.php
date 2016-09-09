@@ -13,5 +13,6 @@ $title = 'پارس کلیک - درس ها و ویدئو ها'; ?>
 	<?php include_layout_template('aside-share.php'); ?>
 	<?php include_layout_template('aside-watch.php'); ?>
 	<?php include_layout_template('aside-courses.php'); ?>
+	<?php include_layout_template('weblog.php'); ?>
 </section>
 <?php include_layout_template('footer.php'); ?>
