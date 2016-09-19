@@ -1,4 +1,3 @@
-<aside>
 	<!-- ads by google -->
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<ins class="adsbygoogle center"
@@ -8,4 +7,3 @@
 	     data-ad-format="auto"></ins>
 	<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 	<!-- end of ads by google -->
-</aside>
