@@ -71,6 +71,7 @@ $voa_rss        = parse_rss_feed('http://ir.voanews.com/api/zyupoeqpmi');
 			<?php endforeach; ?>
 		</div>
 	</aside>
+	<?php include_layout_template('aside-ad.php'); ?>
 </section>
 <script>
 	(function() {

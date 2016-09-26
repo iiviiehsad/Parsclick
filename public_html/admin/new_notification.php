@@ -38,7 +38,7 @@ echo output_message($message, $errors); ?>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="content">محتوا</label>
 						<div class="controls">
-							<textarea dir="auto" class="col-xs-12 col-sm-8 col-md-8 col-lg-8" name="content" id="content" rows="10"
+							<textarea dir="auto" class="col-xs-12 col-sm-8 col-md-8 col-lg-8" name="content" id="content"
 							          required placeholder="محتوای اعلان را اینجا تایپ کنید"></textarea>
 						</div>
 					</section>

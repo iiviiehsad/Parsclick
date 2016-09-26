@@ -34,6 +34,7 @@ elixir(function(mix) {
 			'modal.js',
 			'tab.js',
 			'prism.js',
+			'autosize.js',
 			'wow.min.js',
 			'youtubeplayer.js',
 			'sweetalert.js',

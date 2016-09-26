@@ -128,7 +128,7 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="desc">توضیحات</label>
 						<div class="controls">
-							<textarea class="col-xs-12 col-sm-8 col-md-8 col-lg-8" name="content" id="desc" cols="30" rows="10"
+							<textarea class="col-xs-12 col-sm-8 col-md-8 col-lg-8" name="content" id="desc"
 							          placeholder="توضیحات" required><?php echo htmlentities($current_course->content); ?></textarea>
 						</div>
 					</section>

@@ -1,5 +1,8 @@
 $(function() {
 
+	// auto size text area
+	autosize(document.querySelectorAll('textarea'));
+
 	// SLIDE UO MESSAGES AFTER 5 SECONDS
 	$('.alert-dismissible').fadeIn(500).delay(7000).fadeOut(500).addClass('animated tada');
 

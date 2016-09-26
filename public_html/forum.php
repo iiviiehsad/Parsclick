@@ -43,7 +43,7 @@ $body   = '';
 								</label>
 								<input type="hidden" name="course" value="<?php echo urlencode($current_course->id); ?>">
 								<div class="controls">
-									<textarea dir="auto" class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body" rows="3"
+									<textarea dir="auto" class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body"
 									          required
 									          placeholder="سوال یا نظرتان را اینجا وارد کنید"></textarea>
 								</div>

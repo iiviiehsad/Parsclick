@@ -37,11 +37,11 @@ if (isset($_POST['submit'])) {
 					</div>
 					<div class="form-group">
 						<label for="message">پیغام</label>
-						<textarea class="form-control" name="message" id="message" rows="9" placeholder="پیغام" required></textarea>
+						<textarea class="form-control" name="message" id="message" placeholder="پیغام" required></textarea>
 					</div>
 					<div class="form-group">
 						<label for="name">مطلب مهم</label>
-						<textarea class="form-control" name="important" id="important" rows="2"
+						<textarea class="form-control" name="important" id="important"
 						          placeholder="مطلب کوتاه و مهم: این مطلب هایلایت میشود پس باید کوتاه باشد"></textarea>
 					</div>
 					<br/>
@@ -60,7 +60,7 @@ if (isset($_POST['submit'])) {
 			<h2><i class="fa fa-info-circle"></i> اطلاعات</h2>
 			<div class="form-group">
 				<label for="emails">ایمیل ها</label>
-				<textarea class="form-control edit" name="emails" id="emails" rows="15" placeholder="ایمیل ها"
+				<textarea class="form-control edit" name="emails" id="emails" placeholder="ایمیل ها"
 				          disabled><?php foreach (Author::find_all() as $authors) echo $authors->email, ", \n"; ?></textarea>
 			</div>
 		</aside>

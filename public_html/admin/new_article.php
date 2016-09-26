@@ -74,8 +74,7 @@ echo output_message($message, $errors); ?>
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="content">مطالب</label>
 						<div class="controls">
-							<textarea class="col-xs-12 col-sm-8 col-md-8 col-lg-8" name="content" id="content" rows="30"
-							          required></textarea>
+							<textarea class="col-xs-12 col-sm-8 col-md-8 col-lg-8" name="content" id="content" required></textarea>
 						</div>
 					</section>
 					<!--buttons-->
