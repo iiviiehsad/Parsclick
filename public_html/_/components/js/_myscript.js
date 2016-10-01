@@ -28,6 +28,7 @@ $(function() {
 
 	// SHOW TOOLTIPS
 	$("[data-toggle='tooltip']").tooltip({animation : true});
+	$("[data-toggle='popover']").popover({animation : true});
 
 	// SHOW MODALS
 	$('.modalphotos img').on('click', function() {

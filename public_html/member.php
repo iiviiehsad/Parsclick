@@ -64,10 +64,9 @@ $newest_article = Article::find_newest_article();
 		<h2 class="bbcnassim">اخبار تکنولوژی - رادیو فردا </h2>
 		<?php
 		foreach ($radiofarda_rss->channel->item as $item) : ?>
-			<a target="_blank" class="bbcnassim" href="<?php echo $item->link; ?>"
-			   title="<?php echo $item->description; ?>"
-			   data-toggle="tooltip">
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+			<a target="_blank" href="<?php echo $item->link; ?>">
+				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" title="<?php echo $item->description; ?>"
+				     data-toggle="tooltip" data-placement="top">
 					<?php echo $item->title; ?>
 				</div>
 				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">

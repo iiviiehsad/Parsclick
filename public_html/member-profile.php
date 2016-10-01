@@ -11,7 +11,7 @@ $errors = '';
 <section class="main col-sm-12 col-md-9 col-lg-9">
 	<article>
 		<h2>
-			پروفایل <?php echo ucwords(strtolower($member->full_name())); ?>
+			پروفایل <?php echo $member->full_name(); ?>
 		</h2>
 		<dl class="dl-horizontal">
 			<dt>اسم کاربری:</dt>

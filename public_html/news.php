@@ -9,8 +9,7 @@ $voa_rss        = parse_rss_feed('http://ir.voanews.com/api/zyupoeqpmi');
 <?php $session->is_logged_in() ? include_layout_template('member_nav.php') : include_layout_template('nav.php'); ?>
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside>
-		<h2 class="bbcnassim">
-			<img class="pull-left" src="<?php echo $bbc_rss->channel->image->url; ?>" alt="BBC Persian"> Persian Click</h2>
+		<h2 class="bbcnassim">پرشین کلیک</h2>
 		<div class="list-group">
 			<?php
 			foreach ($bbc_rss->channel->item as $item) : ?>
