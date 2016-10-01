@@ -23,9 +23,7 @@ $voa_rss        = parse_rss_feed('http://ir.voanews.com/api/zyupoeqpmi');
 </section>
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside>
-		<h2 class="bbcnassim">
-			<img class="pull-left" src="<?php echo $radiofarda_rss->channel->image->url; ?>"
-			     alt="رادیو فردا" width="30"> رادیو فردا </h2>
+		<h2 class="bbcnassim">رادیو فردا </h2>
 		<div class="list-group">
 			<?php
 			foreach ($radiofarda_rss->channel->item as $item) : ?>
@@ -41,9 +39,7 @@ $voa_rss        = parse_rss_feed('http://ir.voanews.com/api/zyupoeqpmi');
 </section>
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside>
-		<h2 class="bbcnassim">
-			<img class="pull-left" src="<?php echo $dw_rss->channel->image->url; ?>"
-			     alt="صدای آلمان" width="40"> صدای آلمان </h2>
+		<h2 class="bbcnassim">صدای آلمان </h2>
 		<div class="list-group">
 			<?php
 			foreach ($dw_rss->channel->item as $item) : ?>
@@ -56,9 +52,7 @@ $voa_rss        = parse_rss_feed('http://ir.voanews.com/api/zyupoeqpmi');
 </section>
 <section class="sidebar col-sm-12 col-md-3 col-lg-3">
 	<aside>
-		<h2 class="bbcnassim">
-			<img class="pull-left" src="http://ir.voanews.com/Content/responsive/VOA/fa-IR/img/logo.png"
-			     alt="صدای آمریکا" width="40"> صدای آمریکا </h2>
+		<h2 class="bbcnassim">صدای آمریکا </h2>
 		<div class="list-group">
 			<?php
 			foreach ($voa_rss->channel->item as $item) : ?>
