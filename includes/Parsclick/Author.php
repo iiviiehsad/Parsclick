@@ -63,6 +63,7 @@ class Author extends DatabaseObject
 	/**
 	 * @param $username
 	 * @return bool
+	 * @throws \phpmailerException
 	 */
 	public function email_confirmation_details($username)
 	{

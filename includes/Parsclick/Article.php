@@ -40,7 +40,7 @@ class Article extends DatabaseObject
 		if ($public) {
 			$sql .= 'AND articles.visible = 1';
 		}
-		$result_set = self::find_by_sql($sql);
+		$result_set = self::find_by_sql($database->escape_value($sql));
 
 		return ! empty($result_set) ? $result_set : NULL;
 	}
@@ -54,7 +54,7 @@ class Article extends DatabaseObject
 	{
 		global $database;
 		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
-		$sql .= ' WHERE subject_id = ' . $subject_id;
+		$sql .= ' WHERE subject_id = ' . $database->escape_value($subject_id);
 		if ($public) {
 			$sql .= ' AND visible = 1 ';
 		}
@@ -73,7 +73,7 @@ class Article extends DatabaseObject
 	{
 		global $database;
 		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
-		$sql .= ' WHERE author_id = ' . $author_id;
+		$sql .= ' WHERE author_id = ' . $database->escape_value($author_id);
 		if ($public) {
 			$sql .= ' AND visible = 1 ';
 		}
@@ -91,7 +91,7 @@ class Article extends DatabaseObject
 	{
 		global $database;
 		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
-		$sql .= ' WHERE subject_id = ' . $subject_id;
+		$sql .= ' WHERE subject_id = ' . $database->escape_value($subject_id);
 		$sql .= ' AND visible = 0 ';
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
@@ -146,7 +146,7 @@ class Article extends DatabaseObject
 		}
 		$sql .= ' ORDER BY position DESC';
 
-		return self::find_by_sql($sql);
+		return self::find_by_sql($database->escape_value($sql));
 	}
 
 	/**
@@ -155,12 +155,13 @@ class Article extends DatabaseObject
 	 */
 	public static function find_newest_article($public = TRUE)
 	{
+		global $database;
 		$sql = 'SELECT * FROM ' . self::$table_name;
 		if ($public) {
 			$sql .= ' WHERE visible = 1 ';
 		}
 		$sql .= ' ORDER BY id DESC LIMIT 1';
-		$course_set = self::find_by_sql($sql);
+		$course_set = self::find_by_sql($database->escape_value($sql));
 
 		return ! empty($course_set) ? array_shift($course_set) : FALSE;
 	}
@@ -174,7 +175,7 @@ class Article extends DatabaseObject
 	{
 		global $database;
 		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
-		$sql .= ' WHERE subject_id = ' . $subject_id;
+		$sql .= ' WHERE subject_id = ' . $database->escape_value($subject_id);
 		$sql .= ' AND created_at > NOW() - INTERVAL 2 WEEK ';
 		if ($public) {
 			$sql .= ' AND visible = 1 ';
@@ -204,7 +205,7 @@ class Article extends DatabaseObject
 		}
 		$sql .= ' ORDER BY position DESC';
 
-		return self::find_by_sql($sql);
+		return self::find_by_sql($database->escape_value($sql));
 	}
 
 	/**

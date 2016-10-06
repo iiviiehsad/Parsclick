@@ -48,11 +48,12 @@ class ArticleComment extends DatabaseObject
 	 */
 	public static function make($member_id, $article_id, $body = '')
 	{
+		global $database;
 		if ( ! empty($member_id) && ! empty($article_id) && ! empty($body)) {
 			$comment             = new ArticleComment();
-			$comment->id         = (int) '';
-			$comment->member_id  = (int) $member_id;
-			$comment->article_id = (int) $article_id;
+			$comment->id         = $database->escape_value((int) '');
+			$comment->member_id  = $database->escape_value((int) $member_id);
+			$comment->article_id = $database->escape_value((int) $article_id);
 			$comment->created    = strftime('%Y-%m-%d %H:%M:%S', time());
 			$comment->body       = preg_replace([
 				'/`(.*?)`/',
@@ -106,8 +107,9 @@ class ArticleComment extends DatabaseObject
 	 */
 	public static function find_comments($article_id = 0, $limit = 0, $offset = 0)
 	{
+		global $database;
 		$sql = 'SELECT * FROM ' . self::$table_name .
-			" WHERE article_id = {$article_id} ORDER BY created DESC LIMIT {$limit} OFFSET {$offset}";
+			" WHERE article_id = {$database->escape_value($article_id)} ORDER BY created DESC LIMIT {$database->escape_value($limit)} OFFSET {$database->escape_value($offset)}";
 
 		return self::find_by_sql($sql);
 	}

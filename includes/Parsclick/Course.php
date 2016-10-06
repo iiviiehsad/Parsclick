@@ -12,7 +12,7 @@ class Course extends DatabaseObject
 		'position',
 		'visible',
 		'content',
-		'created_at'
+		'created_at',
 	];
 	public           $id;
 	public           $category_id;
@@ -35,7 +35,7 @@ class Course extends DatabaseObject
 		global $database;
 		$sql = 'SELECT * FROM ' . self::$table_name . ' WHERE ';
 		$sql .= "name LIKE '%{$database->escape_value($search)}%'";
-		if($public) {
+		if ($public) {
 			$sql .= ' AND visible = 1';
 		}
 		$result_set = self::find_by_sql($sql);
@@ -52,8 +52,8 @@ class Course extends DatabaseObject
 	{
 		global $database;
 		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
-		$sql .= ' WHERE category_id = ' . $category_id;
-		if($public) {
+		$sql .= ' WHERE category_id = ' . $database->escape_value($category_id);
+		if ($public) {
 			$sql .= ' AND visible = 1 ';
 		}
 		$result_set = $database->query($sql);
@@ -84,7 +84,8 @@ class Course extends DatabaseObject
 	 */
 	public static function find_default_course_for_category($category_id = 0)
 	{
-		$article_set = self::find_courses_for_category($category_id);
+		global $database;
+		$article_set = self::find_courses_for_category($database->escape_value($category_id));
 
 		return ! empty($article_set) ? array_shift($article_set) : FALSE;
 	}
@@ -100,7 +101,7 @@ class Course extends DatabaseObject
 		$sql = 'SELECT * ';
 		$sql .= ' FROM ' . self::$table_name;
 		$sql .= ' WHERE category_id = ' . $database->escape_value($category_id);
-		if($public) {
+		if ($public) {
 			$sql .= ' AND visible = 1 ';
 		}
 		$sql .= ' ORDER BY position DESC';
@@ -115,7 +116,7 @@ class Course extends DatabaseObject
 	public static function find_newest_course($public = TRUE)
 	{
 		$sql = 'SELECT * FROM ' . self::$table_name;
-		if($public) {
+		if ($public) {
 			$sql .= ' WHERE visible = 1 ';
 		}
 		$sql .= ' ORDER BY id DESC LIMIT 1';
@@ -133,9 +134,9 @@ class Course extends DatabaseObject
 	{
 		global $database;
 		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
-		$sql .= ' WHERE category_id = ' . $category_id;
+		$sql .= ' WHERE category_id = ' . $database->escape_value($category_id);
 		$sql .= ' AND created_at > NOW() - INTERVAL 8 WEEK ';
-		if($public) {
+		if ($public) {
 			$sql .= ' AND visible = 1 ';
 		}
 		$result_set = $database->query($sql);
@@ -152,7 +153,7 @@ class Course extends DatabaseObject
 	{
 		global $database;
 		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
-		$sql .= ' WHERE category_id = ' . $category_id;
+		$sql .= ' WHERE category_id = ' . $database->escape_value($category_id);
 		$sql .= ' AND visible = 0 ';
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
@@ -171,10 +172,10 @@ class Course extends DatabaseObject
 		$sql = 'SELECT * ';
 		$sql .= ' FROM ' . self::$table_name;
 		$sql .= ' WHERE author_id = ' . $database->escape_value($author_id);
-		if($public) {
+		if ($public) {
 			$sql .= ' AND visible = 1 ';
 		}
-		if( ! $public) {
+		if ( ! $public) {
 			$sql .= ' AND visible = 0 ';
 		}
 		$sql .= ' ORDER BY position DESC';
@@ -215,5 +216,4 @@ class Course extends DatabaseObject
 	{
 		return Comment::find_comments_for_course($this->id);
 	}
-
 } // END of CLASS
