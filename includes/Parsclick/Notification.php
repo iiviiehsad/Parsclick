@@ -20,10 +20,11 @@ class Notification extends DatabaseObject
 	 */
 	public static function make($admin_id, $content = '', $button_text = '', $button_url = '')
 	{
+		global $database;
 		if ( ! empty($content) && ! empty($admin_id)) {
 			$notification              = new Notification();
-			$notification->id          = (int) '';
-			$notification->admin_id    = $admin_id;
+			$notification->id          = $database->escape_value((int) '');
+			$notification->admin_id    = $database->escape_value($admin_id);
 			$notification->content     = preg_replace([
 				'/`(.*?)`/',
 				'/\*(.*?)\*/'
@@ -31,8 +32,8 @@ class Notification extends DatabaseObject
 				'<code>$1</code>',
 				'<strong>$1</strong>'
 			], $content);
-			$notification->button_text = $button_text;
-			$notification->button_url  = $button_url;
+			$notification->button_text = $database->escape_value($button_text);
+			$notification->button_url  = $database->escape_value($button_url);
 			$notification->created     = strftime('%Y-%m-%d %H:%M:%S', time());
 
 			return $notification;

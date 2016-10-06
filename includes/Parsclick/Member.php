@@ -56,7 +56,8 @@ class Member extends DatabaseObject
 	 */
 	public static function find_members($limit = 0, $offset = 0)
 	{
-		$sql = 'SELECT * FROM ' . self::$table_name . " ORDER BY id DESC LIMIT {$limit} OFFSET {$offset}";
+		global $database;
+		$sql = 'SELECT * FROM ' . self::$table_name . " ORDER BY id DESC LIMIT {$database->escape_value($limit)} OFFSET {$database->escape_value($offset)}";
 
 		return self::find_by_sql($sql);
 	}
@@ -76,10 +77,12 @@ class Member extends DatabaseObject
 	/**
 	 * @param $username
 	 * @return bool
+	 * @throws \phpmailerException
 	 */
 	public function email_reset_token($username)
 	{
-		$user = self::find_by_username($username);
+		global $database;
+		$user = self::find_by_username($database->escape_value($username));
 		if ($user && isset($user->token)) {
 			$mail    = new Mail();
 			$data    = 'http://www.parsclick.net/reset-password?token=' . $user->token;

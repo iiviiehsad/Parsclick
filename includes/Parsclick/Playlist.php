@@ -47,7 +47,7 @@ class Playlist extends DatabaseObject
 	public static function count_playlist_for_member($member_id)
 	{
 		global $database;
-		$sql        = 'SELECT COUNT(*) FROM ' . self::$table_name . ' WHERE member_id = ' . $member_id;
+		$sql        = 'SELECT COUNT(*) FROM ' . self::$table_name . ' WHERE member_id = ' . $database->escape_value($member_id);
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
 
