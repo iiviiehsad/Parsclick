@@ -1,4 +1,4 @@
-<?php require_once('../includes/initialize.php');
+<?php require_once '../includes/initialize.php';
 
 $bbc_rss        = parse_rss_feed('http://feeds.bbci.co.uk/persian/indepth/cluster_ptv_click/rss.xml');
 $radiofarda_rss = parse_rss_feed('http://www.radiofarda.com/api/z_oqmergq_');

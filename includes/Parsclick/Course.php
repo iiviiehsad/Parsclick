@@ -197,19 +197,6 @@ class Course extends DatabaseObject
 	}
 
 	/**
-	 * @param null $date
-	 * @return bool
-	 */
-	public function updated($date = NULL)
-	{
-		// $date     = $date ?: $this->updated_at;
-		$future   = (new DateTime('+2 days'))->getTimestamp();
-		$interval = $future - time();
-
-		return strtotime($date) + $interval > time();
-	}
-
-	/**
 	 * @return array
 	 */
 	public function comments()

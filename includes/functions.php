@@ -111,6 +111,45 @@ function datetime_to_shamsi($datetime = '', $format = '*%d *%B، %Y ساعت *%H
 }
 
 /**
+ * Calculate time left for creating new content
+ *
+ * @param null $date
+ * @return bool
+ */
+function time_left($date)
+{
+	$future   = (new DateTime('+3 months'))->getTimestamp();
+
+	return $future - time() + $date;
+}
+
+/**
+ * Finds newest date given dates as integer arrays
+ *
+ * @param array $dates
+ * @return mixed
+ */
+function find_newest_date(array $dates)
+{
+	$dates = array_map(function($date) {
+		return strtotime($date);
+	}, $dates);
+
+	return max($dates);
+}
+
+/**
+ * @param $date
+ * @return bool
+ * @internal param $dates
+ * @internal param $date
+ */
+function idle($date)
+{
+    return time() > time_left($date);
+}
+
+/**
  * @param $string
  * @return mixed
  */

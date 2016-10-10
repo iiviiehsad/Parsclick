@@ -6,6 +6,10 @@ $articles_under_edit = Article::find_articles_for_author($author->id, FALSE);
 $articles_for_author = Article::find_articles_for_author($author->id, TRUE);
 $courses_under_edit  = Course::find_courses_for_author($author->id, FALSE);
 $courses_for_author  = Course::find_courses_for_author($author->id, TRUE);
+$newest_content_date = find_newest_date([
+		Article::find_newest_article()->created_at,
+		Course::find_newest_course()->created_at,
+]);
 include_layout_template('admin_header.php');
 include_layout_template('author_nav.php');
 echo output_message($message);
@@ -20,14 +24,14 @@ echo output_message($message);
 	<?php endif; ?>
 	<h1> نویسنده: <?php echo $author->full_name(); ?></h1>
 	<p class="bright">به عنوان نویسنده شما قادر به درست کردن مقاله و درس هستید. شما همینطور قادر به تغییر مقالات و دروس
-	                  خود هستید.</p>
+		خود هستید.</p>
 	<p class="bright">برای تماس مستقیم با مدیر از این آدرس استفاده کنید (روی آن کلیک کنید):
 		<a class="lead" href="mailto:info@parsclick.net" data-toggle="tooltip" data-placement="left" title="ایمیل به ما"
 		   target="_blank">
 			<kbd>info@parsclick.net</kbd>
 		</a>
 	</p>
-	<p class="bright">همه نویسندگان ملزم به عضویت گروه فیسبوکی نویسندگان پارس کلیک هستند.
+	<p class="bright"> گروه فیسبوکی نویسندگان پارس کلیک
 		<a class="lead" href="https://www.facebook.com/groups/175905176126750/" data-toggle="tooltip" data-placement="left"
 		   title="گروه نویسندگان پارس کلیک" target="_blank">
 			<kbd>کلیک کنید</kbd>
@@ -35,7 +39,7 @@ echo output_message($message);
 	</p>
 	<p class="edit"> GMT امروز <?php echo datetime_to_shamsi(time()); ?></p>
 	<div class="clearfix"></div>
-	<p class="edit">Today is <?php echo datetime_to_text(date("Y-m-d H:i:s")); ?></p>
+	<p class="edit">Today is <?php echo datetime_to_text(date('Y-m-d H:i:s')); ?></p>
 </div>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
@@ -105,29 +109,42 @@ echo output_message($message);
 		<?php endif; ?>
 		<?php if ( ! $articles_under_edit && ! $articles_for_author): ?>
 			<p>تشکر ویژه ما رو پذیرا باشید چون ما رو انتخاب کردید برای منتشر کردن مقالات خودتون. امیدوارم که بتونید به راحتی
-			   با کاربرای خودتوی در ارتباط باشید، و اگر قابلیتی از این سیستم می خواهید با ما در میون بگذارید. اما ...</p>
+				با کاربرای خودتوی در ارتباط باشید، و اگر قابلیتی از این سیستم می خواهید با ما در میون بگذارید. اما ...</p>
 			<p class="lead text-danger">توجه!</p>
-			<p>شما در حال حاضر مقاله ای ندارید. بهتر هست تا چند وقت دیگه یک فکری به حال مقاله سازی کنید قبل از اینکه مدیر
-			   سایت به خاطر غیر فعال بودن به مدت طولانی حساب شما رو مسدود کنه.</p>
+			<p>شما در حال حاضر مقاله ای ندارید. بهتر هست تا چند وقت دیگه ماکسیمم ۱ ماه یک فکری به حال مقاله سازی کنید قبل از
+				اینکه مدیر
+				سایت به خاطر غیر فعال بودن به مدت طولانی حساب شما رو مسدود کنه.</p>
 			<p>مدیر عضویت نویسندگی نویسنده ای رو بی دلیل مسدود نمی کند و به نویسندگان خیلی احترام قایل هست. اما به عنوان
-			   نویسنده ای
-			   که تازه شروع به کار کردید بهتر هست که مقاله ای آماده کنید و اون رو بفرستید چون دلیلی برای نگه داشتن نویسنده ی
-			   غیر فعال اینجا پیدا نمی کنیم.</p>
+				نویسنده ای
+				که تازه شروع به کار کردید بهتر هست که مقاله ای آماده کنید و اون رو بفرستید چون دلیلی برای نگه داشتن نویسنده ی
+				غیر فعال اینجا پیدا نمی کنیم.</p>
 			<p>لطفا قبل از فرستادن مقاله به ویدئوهای آموزش نویسندگی نگاه کنید. انتظار می رود نکاتی که در این ویدئوها مطرح می
-			   شوند را رعایت کنید.</p>
+				شوند را رعایت کنید.</p>
 			<p class="lead pull-left">با تشکر از شمـا</p>
 		<?php endif; ?>
 	</article>
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<aside>
-		<h2><i class="fa fa-newspaper-o"></i> مقالات</h2>
-		<p>برای ساختن مقاله روی دگمه ی زیر کلیک کنید:</p>
-		<a class="btn btn-danger btn-small" href="author_articles.php">مقالات</a>
-		<h2><i class="fa fa-film"></i> دروس</h2>
-		<p>برای ساختن درس روی دگمه ی زیر کلیک کنید:</p>
-		<a class="btn btn-danger btn-small" href="author_courses.php">دروس</a>
-		<h2>آموزش نویسندگی</h2>
+		<p class="alert alert-info">
+			<b class="lead">نکته:‌</b>
+			عضویت نویسندگان ۳ ماه بدون محتوا مسدود خواهد شد.
+			شما تا
+			<b class="text-warning">
+				<?php
+				echo datetime_to_shamsi(time_left($newest_content_date), '*%d *%B، %Y');
+				?>
+			</b>
+			وقت برای ساخت مطلب جدید دارید.
+		</p>
+
+		<?php if (idle($newest_content_date)): ?>
+			<p class="alert alert-danger">
+				<b class="lead">تذکر:‌</b>
+				عضویت شما ممکن است توسط سیستم مسدود شود چون محتوای جدیدی ندارید!
+			</p>
+		<?php endif; ?>
+
 		<div class="center">
 			<h4>ویدیو اول: نویسندگی</h4>
 			<iframe src="https://www.youtube.com/embed/G0TY36VCODc?modestbranding=1&rel=0&showinfo=0&hl=fa-ir" width="320"
