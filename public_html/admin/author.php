@@ -130,11 +130,7 @@ echo output_message($message);
 			<b class="lead">نکته:‌</b>
 			عضویت نویسندگان ۶ ماه بدون محتوای جدید مسدود خواهد شد.
 			شما تا
-			<b class="text-warning">
-				<?php
-				echo datetime_to_shamsi(time_left($newest_content_date), '*%d *%B، %Y');
-				?>
-			</b>
+			<b class="text-warning"><?php echo datetime_to_shamsi(time_left($newest_content_date), '*%d *%B، %Y'); ?></b>
 			وقت برای ساخت مطلب جدید دارید.
 		</p>
 
