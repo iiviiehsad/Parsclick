@@ -167,6 +167,20 @@ class Article extends DatabaseObject
 	}
 
 	/**
+	 * @param int $author_id
+	 * @return bool|mixed
+	 */
+	public static function find_newest_article_for_author($author_id = 0)
+	{
+		global $database;
+		$sql = 'SELECT * FROM ' . self::$table_name . ' WHERE ' . ' author_id = ' . $database->escape_value($author_id);
+		$sql .= ' ORDER BY id DESC LIMIT 1';
+		$course_set = self::find_by_sql($database->escape_value($sql));
+
+		return ! empty($course_set) ? array_shift($course_set) : FALSE;
+	}
+
+	/**
 	 * @param int $subject_id
 	 * @param bool $public
 	 * @return mixed

@@ -118,7 +118,7 @@ function datetime_to_shamsi($datetime = '', $format = '*%d *%B، %Y ساعت *%H
  */
 function time_left($date)
 {
-	$future   = (new DateTime('+3 months'))->getTimestamp();
+	$future   = (new DateTime('+6 months'))->getTimestamp();
 
 	return $future - time() + $date;
 }

@@ -7,8 +7,8 @@ $articles_for_author = Article::find_articles_for_author($author->id, TRUE);
 $courses_under_edit  = Course::find_courses_for_author($author->id, FALSE);
 $courses_for_author  = Course::find_courses_for_author($author->id, TRUE);
 $newest_content_date = find_newest_date([
-		Article::find_newest_article()->created_at,
-		Course::find_newest_course()->created_at,
+		Article::find_newest_article_for_author($author->id)->created_at,
+		Course::find_newest_course_for_author($author->id)->created_at,
 ]);
 include_layout_template('admin_header.php');
 include_layout_template('author_nav.php');
@@ -128,7 +128,7 @@ echo output_message($message);
 	<aside>
 		<p class="alert alert-info">
 			<b class="lead">نکته:‌</b>
-			عضویت نویسندگان ۳ ماه بدون محتوا مسدود خواهد شد.
+			عضویت نویسندگان ۶ ماه بدون محتوای جدید مسدود خواهد شد.
 			شما تا
 			<b class="text-warning">
 				<?php
