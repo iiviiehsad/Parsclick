@@ -40,8 +40,7 @@ $voa_rss        = parse_rss_feed('http://ir.voanews.com/api/zyupoeqpmi');
 	<aside>
 		<h2 class="bbcnassim">صدای آلمان </h2>
 		<div class="list-group">
-			<?php
-			foreach ($dw_rss->channel->item as $item) : ?>
+			<?php foreach ($dw_rss->channel->item as $item) : ?>
 				<a target="_blank" class="bbcnassim list-group-item" href="<?php echo $item->link; ?>">
 					<?php echo $item->title; ?>
 				</a>

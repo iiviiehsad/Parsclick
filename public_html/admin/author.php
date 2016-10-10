@@ -54,6 +54,7 @@ echo output_message($message);
 						<i class='fa fa-refresh fa-spin text-danger'></i>&nbsp;
 						<a href="author_articles.php?subject=<?php echo urlencode($aue->subject_id); ?>&article=<?php echo urlencode($aue->id); ?>">
 							<?php echo $aue->name; ?>
+							<span class="label label-as-badge label-danger pull-left"><?php echo datetime_to_shamsi($aue->created_at, '*%d *%B، %Y'); ?></span>
 						</a>
 					</li>
 				<?php endforeach; ?>
@@ -70,6 +71,7 @@ echo output_message($message);
 						<i class='fa fa-refresh fa-spin text-danger'></i>&nbsp;
 						<a href="author_courses.php?category=<?php echo urlencode($cue->category_id); ?>&course=<?php echo urlencode($cue->id); ?>">
 							<?php echo $cue->name; ?>
+							<span class="label label-as-badge label-danger pull-left"><?php echo datetime_to_shamsi($cue->created_at, '*%d *%B، %Y'); ?></span>
 						</a>
 					</li>
 				<?php endforeach; ?>
@@ -86,6 +88,7 @@ echo output_message($message);
 						<i class="fa fa-check-square text-success"></i>
 						<a href="author_articles.php?subject=<?php echo urlencode($afa->subject_id); ?>&article=<?php echo urlencode($afa->id); ?>">
 							<?php echo $afa->name; ?>
+							<span class="label label-as-badge label-success pull-left"><?php echo datetime_to_shamsi($afa->created_at, '*%d *%B، %Y'); ?></span>
 						</a>
 					</li>
 				<?php endforeach; ?>
@@ -102,6 +105,7 @@ echo output_message($message);
 						<i class="fa fa-check-square text-success"></i>
 						<a href="author_courses.php?category=<?php echo urlencode($cfa->category_id); ?>&course=<?php echo urlencode($cfa->id); ?>">
 							<?php echo $cfa->name; ?>
+							<span class="label label-as-badge label-success pull-left"><?php echo datetime_to_shamsi($cfa->created_at, '*%d *%B، %Y'); ?></span>
 						</a>
 					</li>
 				<?php endforeach; ?>
@@ -126,19 +130,21 @@ echo output_message($message);
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<aside>
-		<p class="alert alert-info">
-			<b class="lead">نکته:‌</b>
-			عضویت نویسندگان ۶ ماه بدون محتوای جدید مسدود خواهد شد.
-			شما تا
-			<b class="text-warning"><?php echo datetime_to_shamsi(time_left($newest_content_date), '*%d *%B، %Y'); ?></b>
-			وقت برای ساخت مطلب جدید دارید.
-		</p>
 
 		<?php if (idle($newest_content_date)): ?>
 			<p class="alert alert-danger">
 				<b class="lead">تذکر:‌</b>
-				عضویت شما ممکن است توسط سیستم مسدود شود چون مدتی است که شما محتوای جدیدی ندارید!
+				عضویت شما به زودی توسط سیستم مسدود خواهد شد چون مدتی است که شما محتوای جدیدی ندارید! شما تا
+				<b class="text-warning"><?php echo datetime_to_shamsi(time_left($newest_content_date), '*%d *%B، %Y'); ?></b>
+				 برای ساخت مطلب جدید وقت داشتید.
 			</p>
+		<?php else: ?>
+		<p class="alert alert-info">
+			<b class="lead">نکته:‌</b>
+			عضویت نویسندگان ۶ ماه بدون محتوای جدید مسدود خواهد شد. شما تا
+			<b class="text-warning"><?php echo datetime_to_shamsi(time_left($newest_content_date), '*%d *%B، %Y'); ?></b>
+			 برای ساخت مطلب جدید وقت دارید.
+		</p>
 		<?php endif; ?>
 
 		<div class="center">

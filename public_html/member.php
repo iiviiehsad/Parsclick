@@ -49,8 +49,7 @@ $newest_article = Article::find_newest_article();
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
 		<h3>
-			<span
-					class="label label-info visible-sm"><?php echo 'خوش آمدید  ' .
+			<span class="label label-info visible-sm"><?php echo 'خوش آمدید  ' .
 						ucwords(strtolower($member->full_name())); ?></span>
 		</h3>
 	</article>
@@ -60,10 +59,13 @@ $newest_article = Article::find_newest_article();
 	<aside>
 		<?php include_layout_template('weblog.php'); ?>
 		<p><?php include_layout_template('aside-ad.php'); ?></p>
-		<?php $radiofarda_rss = parse_rss_feed('http://www.radiofarda.com/api/z_oqmergq_'); ?>
-		<h2 class="bbcnassim">اخبار تکنولوژی - رادیو فردا </h2>
-		<?php
-		foreach ($radiofarda_rss->channel->item as $item) : ?>
+
+		<?php $radiofarda_rss = parse_rss_feed('http://www.radiofarda.com/api/z_oqmergq_');
+		$voa_rss              = parse_rss_feed('http://ir.voanews.com/api/zyupoeqpmi'); ?>
+
+		<h2 class="bbcnassim">اخبار تکنولوژی</h2>
+
+		<?php foreach ($radiofarda_rss->channel->item as $item) : ?>
 			<a target="_blank" href="<?php echo $item->link; ?>">
 				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" title="<?php echo $item->description; ?>"
 				     data-toggle="tooltip" data-placement="top">
@@ -74,6 +76,19 @@ $newest_article = Article::find_newest_article();
 				</div>
 			</a>
 		<?php endforeach; ?>
+
+		<?php foreach ($voa_rss->channel->item as $item) : ?>
+			<a target="_blank" href="<?php echo $item->link; ?>">
+				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" title="<?php echo $item->description; ?>"
+				     data-toggle="tooltip" data-placement="top">
+					<?php echo $item->title; ?>
+				</div>
+				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+					<img src="<?php echo $item->enclosure['url']; ?>" width="100%" class=" img-rounded screenshot">
+				</div>
+			</a>
+		<?php endforeach; ?>
+
 	</aside>
 </section>
 
