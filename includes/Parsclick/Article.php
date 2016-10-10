@@ -113,7 +113,7 @@ class Article extends DatabaseObject
 		if ($public) {
 			$sql .= ' AND visible = 1 ';
 		}
-		$sql .= ' ORDER BY position ASC';
+		$sql .= ' ORDER BY created_at ASC';
 		$article_set = $database->query($sql);
 
 		return $database->num_rows($article_set);
@@ -160,7 +160,7 @@ class Article extends DatabaseObject
 		if ($public) {
 			$sql .= ' WHERE visible = 1 ';
 		}
-		$sql .= ' ORDER BY id DESC LIMIT 1';
+		$sql .= ' ORDER BY created_at DESC LIMIT 1';
 		$course_set = self::find_by_sql($database->escape_value($sql));
 
 		return ! empty($course_set) ? array_shift($course_set) : FALSE;
@@ -174,7 +174,7 @@ class Article extends DatabaseObject
 	{
 		global $database;
 		$sql = 'SELECT * FROM ' . self::$table_name . ' WHERE ' . ' author_id = ' . $database->escape_value($author_id);
-		$sql .= ' ORDER BY id DESC LIMIT 1';
+		$sql .= ' ORDER BY created_at DESC LIMIT 1';
 		$course_set = self::find_by_sql($database->escape_value($sql));
 
 		return ! empty($course_set) ? array_shift($course_set) : FALSE;
@@ -217,7 +217,7 @@ class Article extends DatabaseObject
 		if ( ! $public) {
 			$sql .= ' AND visible = 0 ';
 		}
-		$sql .= ' ORDER BY position DESC';
+		$sql .= ' ORDER BY created_at DESC';
 
 		return self::find_by_sql($database->escape_value($sql));
 	}

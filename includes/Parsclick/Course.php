@@ -133,7 +133,7 @@ class Course extends DatabaseObject
 	{
 		global $database;
 		$sql = 'SELECT * FROM ' . self::$table_name . ' WHERE ' . ' author_id = ' . $database->escape_value($author_id);
-		$sql .= ' ORDER BY id DESC LIMIT 1';
+		$sql .= ' ORDER BY created_at DESC LIMIT 1';
 		$course_set = self::find_by_sql($database->escape_value($sql));
 
 		return ! empty($course_set) ? array_shift($course_set) : FALSE;
@@ -192,7 +192,7 @@ class Course extends DatabaseObject
 		if ( ! $public) {
 			$sql .= ' AND visible = 0 ';
 		}
-		$sql .= ' ORDER BY position DESC';
+		$sql .= ' ORDER BY created_at DESC';
 
 		return self::find_by_sql($sql);
 	}

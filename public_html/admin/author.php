@@ -25,7 +25,7 @@ echo output_message($message);
 	<h1> نویسنده: <?php echo $author->full_name(); ?></h1>
 	<p class="bright">به عنوان نویسنده شما قادر به درست کردن مقاله و درس هستید. شما همینطور قادر به تغییر مقالات و دروس
 		خود هستید.</p>
-	<p class="bright">برای تماس مستقیم با مدیر از این آدرس استفاده کنید (روی آن کلیک کنید):
+	<p class="bright">برای تماس مستقیم با مدیر از این آدرس استفاده کنید:
 		<a class="lead" href="mailto:info@parsclick.net" data-toggle="tooltip" data-placement="left" title="ایمیل به ما"
 		   target="_blank">
 			<kbd>info@parsclick.net</kbd>
@@ -141,7 +141,7 @@ echo output_message($message);
 		<?php if (idle($newest_content_date)): ?>
 			<p class="alert alert-danger">
 				<b class="lead">تذکر:‌</b>
-				عضویت شما ممکن است توسط سیستم مسدود شود چون محتوای جدیدی ندارید!
+				عضویت شما ممکن است توسط سیستم مسدود شود چون مدتی است که شما محتوای جدیدی ندارید!
 			</p>
 		<?php endif; ?>
 
