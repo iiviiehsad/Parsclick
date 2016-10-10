@@ -1,4 +1,4 @@
-<?php require_once('../../includes/initialize.php');
+<?php require_once '../../includes/initialize.php';
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
@@ -7,8 +7,8 @@ $articles_for_author = Article::find_articles_for_author($author->id, TRUE);
 $courses_under_edit  = Course::find_courses_for_author($author->id, FALSE);
 $courses_for_author  = Course::find_courses_for_author($author->id, TRUE);
 $newest_content_date = find_newest_date([
-		Article::find_newest_article_for_author($author->id)->created_at,
-		Course::find_newest_course_for_author($author->id)->created_at,
+		Article::find_newest_article_for_author($author->id) ? Article::find_newest_article_for_author($author->id)->created_at : time(),
+		Course::find_newest_course_for_author($author->id) ? Course::find_newest_course_for_author($author->id)->created_at : time(),
 ]);
 include_layout_template('admin_header.php');
 include_layout_template('author_nav.php');

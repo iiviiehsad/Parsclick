@@ -19,14 +19,14 @@ echo output_message($message);
 							<th>نام</th>
 							<th>نام خانوادگی</th>
 							<th>ایمیل</th>
-							<th colspan="2">عملیات</th>
+							<th colspan="3">عملیات</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php
 						foreach ($author_set as $author): ?>
 							<tr class="<?php echo status($author); ?>">
-								<td class="arial">
+								<td>
 									<?php if ( ! empty($author->photo)): ?>
 										<img class="img-circle pull-right" width="30" alt="Profile Picture"
 										     src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>"/>
@@ -37,18 +37,29 @@ echo output_message($message);
 									&nbsp;
 									<?php echo htmlentities($author->username); ?>
 								</td>
-								<td><?php echo htmlentities(ucfirst(strtolower($author->first_name))); ?></td>
-								<td><?php echo htmlentities(ucfirst(strtolower($author->last_name))); ?></td>
-								<td class="arial">
-									<small><?php echo htmlentities(strtolower($author->email)); ?></small>
+								<td><?php echo htmlentities($author->first_name); ?></td>
+								<td><?php echo htmlentities($author->last_name); ?></td>
+								<td>
+									<small><?php echo htmlentities($author->email); ?></small>
 								</td>
 								<td>
-									<a class="btn btn-small btn-primary arial"
-									   href="edit_author.php?id=<?php echo urlencode($author->id); ?>" title="Edit"><span
-												class="glyphicon glyphicon-pencil"></span></a>
-									<a class="btn btn-small btn-danger arial confirmation"
-									   href="delete_author.php?id=<?php echo urlencode($author->id); ?>" title="Delete"><span
-												class="glyphicon glyphicon-trash"></span></a>
+									<a class="btn btn-small btn-primary"
+									   href="edit_author.php?id=<?php echo urlencode($author->id); ?>" title="Edit">
+										<span class="glyphicon glyphicon-pencil"></span>
+									</a>
+									<a class="btn btn-small btn-danger confirmation"
+									   href="delete_author.php?id=<?php echo urlencode($author->id); ?>" title="Delete">
+										<span class="glyphicon glyphicon-trash"></span>
+									</a>
+									<?php
+									if (idle(find_newest_date([
+											Article::find_newest_article_for_author($author->id) ? Article::find_newest_article_for_author($author->id)->created_at : time(),
+											Course::find_newest_course_for_author($author->id) ? Course::find_newest_course_for_author($author->id)->created_at : time(),
+									]))): ?>
+										<span class="btn btn-small btn-warning" disabled>
+											<i class="fa fa-exclamation-triangle"></i>
+										</span>
+									<?php endif; ?>
 								</td>
 							</tr>
 						<?php endforeach; ?>
@@ -69,7 +80,7 @@ echo output_message($message);
 				<a class="btn btn-success" href="new_author.php"><i class="fa fa-plus"></i> نویسنده اضافه کن</a>
 			</h2>
 			<p>برای اضافه کردن نویسنده لطفا روی دگمه <i class="fa fa-plus"></i> کلیک کنید و اطلاعات را پر کنید.
-			   لطفا تا آنجاییکه ممکن هست سعی کنید تمام جزئیات را پر کنید.</p>
+				لطفا تا آنجاییکه ممکن هست سعی کنید تمام جزئیات را پر کنید.</p>
 		</aside>
 	</section>
 <?php include_layout_template('admin_footer.php'); ?>

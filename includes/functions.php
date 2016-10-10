@@ -129,7 +129,7 @@ function time_left($date)
  * @param array $dates
  * @return mixed
  */
-function find_newest_date(array $dates)
+function find_newest_date($dates = [])
 {
 	$dates = array_map(function($date) {
 		return strtotime($date);
