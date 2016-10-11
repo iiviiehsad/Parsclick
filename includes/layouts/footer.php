@@ -12,7 +12,7 @@
 				<li><a href="<?php echo is_local() ? '' : '/'; ?>help">کمک به سایت</a></li>
 				<li><a href="<?php echo is_local() ? '' : '/'; ?>login">ورود</a></li>
 				<li><a href="<?php echo is_local() ? '' : '/'; ?>register">ثبت نام</a></li>
-				<li class="pull-left arial">Copyright &copy; <?php echo strftime('%Y', time()); ?> Parsclick</li>
+				<li class="pull-left arial">Copyright &copy; <?php echo date('Y'); ?> Parsclick</li>
 			</ul>
 			<ul class="breadcrumb">
 				<li>
