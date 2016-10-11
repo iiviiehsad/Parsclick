@@ -80,7 +80,7 @@ if (isset($search_query) && ! empty($search_query)) {
 		<aside>
 			<form class="form-inline" action="member-forum-search" method="GET">
 				<div class="input-group">
-					<span class="input-group-addon"><span class="arial glyphicon glyphicon-search"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
 					<input type="text" name="q" class="form-control" size="30" maxlength="50" data-toggle="tooltip"
 					       data-placement="top" title="جستجو کنید و اینتر بزنید" placeholder="جستجوی موضوع در انجمن"/>
 				</div>

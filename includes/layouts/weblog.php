@@ -1,7 +1,4 @@
 <aside>
-	<h2>وبلاگ پارس کلیک</h2>
-	<p>برای اخبار، کوپن های یودمی، خبر از درس های آینده، پادکست، صحبت از نویسندگان، صحبت از مقالات خوب، لینک دانلود
-		ویدیو و خیلی چیزهای دیگه به وبلاگ پارس کلیک سر بزنید.</p>
 	<div class="list-group">
 		<a class="list-group-item" href="http://blog.parsclick.net/" target="_blank">وبلاگ پارس کلیک <span
 					class="label label-as-badge label-info pull-left">اخبار</span></a>

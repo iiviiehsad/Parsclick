@@ -1,4 +1,5 @@
-	<!-- ads by google -->
+<!-- ads by google -->
+<div>
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<ins class="adsbygoogle center"
 	     style="display:block;margin:10px auto;"
@@ -6,4 +7,5 @@
 	     data-ad-slot="2885391751"
 	     data-ad-format="auto"></ins>
 	<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-	<!-- end of ads by google -->
+</div>
+<!-- end of ads by google -->

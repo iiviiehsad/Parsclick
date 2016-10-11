@@ -44,7 +44,7 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="username">اسم کاربری &nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 arial" type="text" name="username" id="username"
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="username" id="username"
 							       placeholder="Username in English" required/>
 						</div>
 					</section>
@@ -102,7 +102,7 @@ echo output_message($message, $errors);
 					<section class="row">
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="email">ایمیل &nbsp;</label>
 						<div class="controls">
-							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 arial" type="text" name="email" id="post_code"
+							<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8" type="text" name="email" id="post_code"
 							       placeholder="Email" required/>
 						</div>
 					</section>

@@ -31,7 +31,7 @@ echo output_message($message);
 						<tbody>
 							<?php foreach ($member_set as $member): ?>
 								<tr>
-									<td class="arial"><?php echo htmlentities($member->username); ?></td>
+									<td><?php echo htmlentities($member->username); ?></td>
 									<td><?php echo htmlentities(ucfirst(strtolower($member->first_name))); ?></td>
 									<td><?php echo htmlentities(ucfirst(strtolower($member->last_name))); ?></td>
 									<td><?php echo htmlentities($member->gender); ?></td>
@@ -39,12 +39,12 @@ echo output_message($message);
 										<?php echo htmlentities(ucwords(strtolower($member->address))); ?> <br/>
 										<?php echo htmlentities(ucwords(strtolower($member->city))); ?> <br/>
 									</td>
-									<td class="arial"><?php echo htmlentities(strtolower($member->email)); ?></td>
+									<td><?php echo htmlentities(strtolower($member->email)); ?></td>
 									<td>
-										<a class="btn btn-small btn-primary arial"
+										<a class="btn btn-small btn-primary"
 										   href="edit_member.php?id=<?php echo urlencode($member->id); ?>" title="Edit"><span
 													class="glyphicon glyphicon-edit"></span></a>
-										<a class="btn btn-small btn-danger arial confirmation"
+										<a class="btn btn-small btn-danger confirmation"
 										   href="delete_member.php?id=<?php echo urlencode($member->id); ?>" title="Delete"><span
 													class="glyphicon glyphicon-trash"></span></a>
 									</td>

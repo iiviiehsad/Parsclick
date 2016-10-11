@@ -41,7 +41,4 @@ if (isset($_POST['submit'])) {
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<?php include_layout_template('article-login.php'); ?>
 	</section>
-	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
-		<?php include_layout_template('aside-register.php'); ?>
-	</section>
 <?php include_layout_template('footer.php'); ?>

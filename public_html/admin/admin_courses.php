@@ -69,7 +69,7 @@ echo output_message($message);
 	</section>
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 		<aside>
-			<a class="btn btn-success pull-left arial" href="new_category.php" data-toggle="tooltip"
+			<a class="btn btn-success pull-left" href="new_category.php" data-toggle="tooltip"
 			   title="موضوع جدید اضافه کنید"><span class="glyphicon glyphicon-plus"></span></a>
 			<h2>موضوعات و دروس</h2>
 			<?php echo courses($current_category, $current_course); ?>

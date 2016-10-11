@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
 				<section class="row">
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="username"> اسم کاربری &nbsp;</label>
 					<div class="controls">
-						<input onblur="checkUser();" onkeyup="checkUser();" class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8 edit"
+						<input onblur="checkUser();" onkeyup="checkUser();" class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit"
 						       type="text" name="username" id="username" placeholder="Username" disabled required
 						       value="<?php echo htmlentities($member->username); ?>"/>
 					</div>
@@ -60,7 +60,7 @@ if (isset($_POST['submit'])) {
 				<section class="row">
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="password"> پسورد جدید&nbsp;</label>
 					<div class="controls">
-						<input onblur="checkPass();" onkeyup="checkPass();" class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8 edit"
+						<input onblur="checkPass();" onkeyup="checkPass();" class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit"
 						       type="password" name="password" id="password" placeholder="New password" value=""
 						       pattern="(?=^.{6,}$)((?=.*\W+))(?![.\n]).*$"/>
 					</div>
@@ -116,7 +116,7 @@ if (isset($_POST['submit'])) {
 					<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="email"> ایمیل &nbsp;</label>
 					<div class="controls">
 						<input onblur="checkEmail();" onkeyup="checkEmail();"
-						       class="arial col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="email" name="email" id="email"
+						       class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="email" name="email" id="email"
 						       placeholder="Email" required value="<?php echo htmlentities($member->email); ?>"
 						       pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$"/>
 					</div>

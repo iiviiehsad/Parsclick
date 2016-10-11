@@ -15,7 +15,7 @@ $errors = '';
 		</h2>
 		<dl class="dl-horizontal">
 			<dt>اسم کاربری:</dt>
-			<dd class="arial"><?php echo htmlentities($member->username); ?></dd>
+			<dd><?php echo htmlentities($member->username); ?></dd>
 			<dt>نام:</dt>
 			<dd><?php echo htmlentities(ucfirst($member->first_name)); ?></dd>
 			<dt>نام خانوادگی:</dt>
@@ -27,7 +27,7 @@ $errors = '';
 			<dt>شهر:</dt>
 			<dd><?php echo ! empty($member->city) ? htmlentities(ucfirst($member->city)) : '-'; ?></dd>
 			<dt>ایمیل:</dt>
-			<dd class="arial"><?php echo ! empty($member->email) ? htmlentities(strtolower($member->email)) : '-'; ?></dd>
+			<dd><?php echo ! empty($member->email) ? htmlentities(strtolower($member->email)) : '-'; ?></dd>
 			<dt>&nbsp;</dt>
 			<dd><a href="member-edit-profile" class="btn btn-primary">ویرایش</a></dd>
 			<dt>&nbsp;</dt>

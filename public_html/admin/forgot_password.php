@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="username">اسم کاربری</label>
 						<div class="controls">
 							<div class="input-group">
-								<span class="input-group-addon arial"><span class="glyphicon glyphicon-user"></span></span>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 								<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="text" name="username" id="username"
 								       autofocus placeholder="Username" value="<?php echo htmlentities($username); ?>" maxlength="30"
 								       required/>

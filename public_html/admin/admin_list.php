@@ -25,18 +25,18 @@ echo output_message($message);
 					<tbody>
 						<?php foreach ($admin_set as $admin): ?>
 							<tr>
-								<td class="arial">
+								<td>
 									<img class="img-circle" src="http://gravatar.com/avatar/<?php echo md5($admin->email); ?>?s=30"
 									     alt="<?php echo $admin->email; ?>">
 									<?php echo htmlentities($admin->username); ?>
 								</td>
 								<td><?php echo htmlentities(ucfirst(strtolower($admin->first_name))); ?></td>
 								<td><?php echo htmlentities(ucfirst(strtolower($admin->last_name))); ?></td>
-								<td class="arial">
+								<td>
 									<small><?php echo htmlentities(strtolower($admin->email)); ?></small>
 								</td>
 								<td>
-									<a class="btn btn-small btn-primary arial"
+									<a class="btn btn-small btn-primary"
 									   href="edit_admin.php?id=<?php echo urlencode($admin->id); ?>" title="Edit"><span
 												class="glyphicon glyphicon-pencil"></span></a>
 									<?php /*if($admin->id != $session->id): */?><!--

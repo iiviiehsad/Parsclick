@@ -80,7 +80,7 @@ echo output_message($message, $errors);
 					<?php foreach ($member_set as $member): ?>
 						<tr class="<?php echo status($member); ?>">
 							<td><img class="img-circle" src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=30"></td>
-							<td class="arial">
+							<td>
 								<small><?php echo htmlentities($member->username); ?></small>
 							</td>
 							<td>
@@ -98,14 +98,14 @@ echo output_message($message, $errors);
 									<?php echo htmlentities(ucwords(strtolower($member->city))); ?> <br/>
 								</small>
 							</td>
-							<td class="arial">
+							<td>
 								<small><?php echo htmlentities($member->email); ?></small>
 							</td>
 							<td>
-								<a class="btn btn-small btn-primary arial"
+								<a class="btn btn-small btn-primary"
 								   href="edit_member.php?id=<?php echo urlencode($member->id); ?>" title="Edit"><span
 											class="glyphicon glyphicon-edit"></span></a>
-								<a class="btn btn-small btn-danger arial confirmation"
+								<a class="btn btn-small btn-danger confirmation"
 								   href="delete_member.php?id=<?php echo urlencode($member->id); ?>" title="Delete"><span
 											class="glyphicon glyphicon-trash"></span></a>
 							</td>

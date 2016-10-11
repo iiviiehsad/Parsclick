@@ -1,11 +1,9 @@
 <article>
 	<h2>فرم ورود</h2>
-	<p>از فرم زیر استفاده کنید تا وارد سیستم شوید. اگر اسم کاربری به همراه پسورد ندارید، لطفا روی لینک ثبت نام کلیک
-	   کنید. بعد از ثبت نام ایمیلی به شما فرستاده خواهد شد که تایید کنید.</p>
 
 	<form class="login form-horizontal" action="login" method="post" data-remote>
 		<fieldset id="login">
-			<legend><i class="fa fa-unlock-alt fa-lg"></i> ورود به سیستم</legend>
+			<legend><i class="fa fa-unlock-alt fa-lg"></i> از فرم زیر استفاده کنید تا وارد سیستم شوید.</legend>
 			<section class="row">
 				<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="username">اسم کاربری&nbsp;</label>
 				<div class="controls">

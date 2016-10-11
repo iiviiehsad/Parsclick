@@ -32,7 +32,7 @@ $experience             = ($count_article_comments + $count_course_comments + $c
 </section>
 <section class="main col-sm-12 col-md-6 col-lg-6">
 	<article class="center center-block" style="min-height:300px;">
-		<h1 class="arial"><?php echo $member->username; ?></h1>
+		<h1><?php echo $member->username; ?></h1>
 		<h3 class="text-success"><?php echo ucwords(strtolower($member->full_name())); ?></h3>
 		<p class="lead">تعداد نظرات در مورد مقالات:
 			<b><?php echo $count_article_comments ? convert($count_article_comments) : 'هیچی'; ?></b>

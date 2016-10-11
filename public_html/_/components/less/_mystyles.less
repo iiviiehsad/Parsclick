@@ -32,13 +32,18 @@
 	font-style  : normal;
 }
 
-@headlineFontFamily : "yekan", "bbcnassim", Tahoma, Verdana, Arial, sans-serif;
-@copyFontFamily : "yekan", "bbcnassim", "Helvetica Neue", Helvetica, Tahoma, Verdana, Arial, sans-serif;
-@englishFontFamily : "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
-@editFontFamily : "bbcnassim", "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+@yekan : "yekan", "bbcnassim", Tahoma, Verdana, Arial, sans-serif;
+@bbcNassim : "bbcnassim", "Helvetica Neue", Helvetica, Tahoma, Verdana, Arial, sans-serif;
 @code : "Fira Code", menlo, "Source Code Pro", Consolas, monospace;
 
 ::selection { color : @beige; background : @darkblack; }
+
+body {
+	background  : @purple;
+	margin-top  : 30px;
+	font-family : @bbcNassim;
+	font-size   : 18px;
+}
 
 .bright { color : @bright !important; }
 
@@ -50,14 +55,8 @@
 
 .text-white { color : white; }
 
-.arial { font-family : @englishFontFamily; }
-
-.yekan { font-family : @copyFontFamily; }
-
-.bbcnassim { font-family : @editFontFamily }
-
 .edit {
-	font-family : @editFontFamily;
+	font-family : @bbcNassim;
 	direction   : ltr;
 	text-align  : left;
 	float       : left;
@@ -65,14 +64,8 @@
 
 .large-text { font-size : 90px; font-weight : 900; margin : 0; }
 
-body {
-	background  : @purple;
-	margin-top  : 30px;
-	font-family : @copyFontFamily;
-}
-
 h1, h2, h3, h4, h5, h6 {
-	font-family : @headlineFontFamily;
+	font-family : @yekan;
 	color       : @purple;
 	text-shadow : 1px 1px 10px @shadow;
 }
@@ -109,8 +102,7 @@ blockquote {
 }
 
 p {
-	font-family : @copyFontFamily;
-	font-size   : 15px;
+	font-family : @bbcNassim;
 	line-height : 1.5em;
 	color       : @darkblack;
 	padding     : 0 2%;
@@ -138,7 +130,7 @@ textarea {
 
 option { direction : ltr; }
 
-legend { font-family : @copyFontFamily; }
+legend { font-family : @bbcNassim; }
 
 hr {
 	margin : 22px 0;
@@ -320,7 +312,7 @@ kbd {
 	border-radius      : 10px;
 	-webkit-box-shadow : inset 0 -1px 0 rgba(0, 0, 0, .25);
 	box-shadow         : inset 0 -1px 0 rgba(0, 0, 0, .25);
-	font-family        : @editFontFamily;
+	font-family        : @bbcNassim;
 }
 
 .nav-tabs li.active {
@@ -357,7 +349,7 @@ footer {
 		-moz-border-radius    : 0;
 		border-radius         : 0;
 		color                 : white;
-		font-size             : 13px;
+		font-size             : 80%;
 		a > i:hover {
 			color               : @yellow;
 			transition-duration : 1s;
@@ -470,7 +462,7 @@ footer {
 	border-radius    : 0;
 	color            : inherit;
 	background-color : @darkblack;
-	p { color : @beige; font-size : 75%; }
+	p { color : @beige; font-size : 80%; }
 }
 
 .table-responsive {

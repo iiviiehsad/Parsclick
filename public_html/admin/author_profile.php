@@ -11,7 +11,7 @@ echo output_message($message);
 		<h2>اطلاعات نویسنده <?php echo ucwords(strtolower($author->full_name())); ?></h2>
 		<dl class="dl-horizontal">
 			<dt>اسم کاربری:</dt>
-			<dd class="arial"><?php echo htmlentities($author->username); ?></dd>
+			<dd><?php echo htmlentities($author->username); ?></dd>
 			<dt>پسورد:</dt>
 			<dd>&#x25cf;&#x25cf;&#x25cf;&#x25cf;&#x25cf;&#x25cf;</dd>
 			<dt>نام:</dt>
@@ -19,9 +19,9 @@ echo output_message($message);
 			<dt>نام خانوادگی:</dt>
 			<dd><?php echo ! empty($author->last_name) ? htmlentities(ucfirst($author->last_name)) : '-'; ?></dd>
 			<dt>ایمیل:</dt>
-			<dd class="arial"><?php echo ! empty($author->email) ? htmlentities(strtolower($author->email)) : '-'; ?></dd>
+			<dd><?php echo ! empty($author->email) ? htmlentities(strtolower($author->email)) : '-'; ?></dd>
 			<dt>ایمیل اختصاصی</dt>
-			<dd class="arial"><?php echo ! empty($author->parsclickmail) ? htmlentities(strtolower($author->parsclickmail)) : "-"; ?></dd>
+			<dd><?php echo ! empty($author->parsclickmail) ? htmlentities(strtolower($author->parsclickmail)) : "-"; ?></dd>
 			<dt>وضعیت:</dt>
 			<dd><?php echo htmlentities($author->status == 1) ? 'فعال' : 'معوق'; ?></dd>
 			<dt>&nbsp;</dt>

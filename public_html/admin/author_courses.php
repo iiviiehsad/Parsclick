@@ -107,7 +107,7 @@ echo output_message($message, $errors);
 				<div class="panel panel-danger">
 					<div class="panel-heading">
 						<h3 class="panel-title">
-							<a class="arial btn btn-danger btn-small"
+							<a class="btn btn-danger btn-small"
 							   href="new_course.php?category=<?php echo urlencode($current_category->id); ?>" data-toggle="tooltip"
 							   title="درس جدید">
 								<i class="fa fa-plus fa-lg"></i>

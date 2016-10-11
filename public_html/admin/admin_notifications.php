@@ -53,7 +53,7 @@ echo output_message($message);
 								</td>
 								<td>
 									<?php if ($admin->id == $session->id): ?>
-										<a class="btn btn-small btn-danger arial confirmation"
+										<a class="btn btn-small btn-danger confirmation"
 										   href="delete_notification.php?id=<?php echo urlencode($notification->id); ?>"
 										   title="Delete"><span
 													class="glyphicon glyphicon-trash"></span></a>

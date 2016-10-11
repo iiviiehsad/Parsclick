@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
 						<label class="col-xs-12 col-sm-4 col-md-4 col-lg-4 control-label" for="email"> ایمیل &nbsp;</label>
 						<div class="controls">
 							<div class="input-group">
-								<span class="input-group-addon arial"><span class="glyphicon glyphicon-user"></span></span>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 								<input class="col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" type="email" name="email" id="email" autofocus
 								       placeholder="Email" maxlength="50" required value="<?php echo htmlentities($email); ?>"/>
 							</div>
@@ -56,7 +56,4 @@ if (isset($_POST['submit'])) {
 			</form>
 		</article>
 	</section><!-- main -->
-	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
-		<?php include_layout_template('aside-register.php'); ?>
-	</section><!-- sidebar -->
 <?php include_layout_template('footer.php'); ?>
