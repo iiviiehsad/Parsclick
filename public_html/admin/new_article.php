@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
 	$author              = Author::find_by_id($session->id);
 	$article             = new Article();
 	$article->id         = (int) '';
-	$article->subject_id = $current_subject->id; // $_GET['subject'];
+	$article->subject_id = $current_subject->id;
 	$article->author_id  = $author->id;
 	$article->name       = $_POST['article_name'];
 	$article->position   = (int) $_POST['position'];
@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
 	$article->content    = $_POST['content'];
 	$article->created_at = strftime('%Y-%m-%d %H:%M:%S', time());
 	if ($article->create()) {
-		Mail::send_email('hazz.azimi@gmail.com', 'New Article!', 'New Article Added');
+		Mail::send_email('hazz.azimi@gmail.com', 'New Article!', "New Article {$article->name} Added By {$author->full_name()}");
 		$session->message('مقاله ساخته شد.');
 		redirect_to('author_articles.php');
 	} else {

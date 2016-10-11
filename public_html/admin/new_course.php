@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
 	$author                  = Author::find_by_id($session->id);
 	$course                  = new Course();
 	$course->id              = (int) '';
-	$course->category_id     = $current_category->id; // $_GET['category'];
+	$course->category_id     = $current_category->id;
 	$course->author_id       = $author->id;
 	$course->name            = $_POST['course_name'];
 	$course->youtubePlaylist = $_POST['youtubePlaylist'];
@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
 	$course->content         = $_POST['description'];
 	$course->created_at      = strftime('%Y-%m-%d %H:%M:%S', time());
 	if ($course->create()) {
-		Mail::send_email('hazz.azimi@gmail.com', 'New Course!', 'New Course Added');
+		Mail::send_email('hazz.azimi@gmail.com', 'New Course', "New Article {$course->name} Added By {$author->full_name()}");
 		$session->message('درس ساخته شد. درس قبل از نشر باید توسط مدیران بازبینی شود.');
 		redirect_to('author_courses.php');
 	} else {
