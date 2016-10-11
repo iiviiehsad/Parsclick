@@ -5,6 +5,8 @@ $member = Member::find_by_id($session->id);
 $member->check_status();
 $newest_course  = Course::find_newest_course();
 $newest_article = Article::find_newest_article();
+$radiofarda_rss = parse_rss_feed('http://www.radiofarda.com/api/z_oqmergq_');
+$voa_rss        = parse_rss_feed('http://ir.voanews.com/api/zyupoeqpmi');
 ?>
 <?php include_layout_template('header.php'); ?>
 <?php include_layout_template('member_nav.php'); ?>
@@ -60,33 +62,26 @@ $newest_article = Article::find_newest_article();
 		<?php include_layout_template('weblog.php'); ?>
 		<p><?php include_layout_template('aside-ad.php'); ?></p>
 
-		<?php $radiofarda_rss = parse_rss_feed('http://www.radiofarda.com/api/z_oqmergq_');
-		$voa_rss              = parse_rss_feed('http://ir.voanews.com/api/zyupoeqpmi'); ?>
-
-		<h2 class="bbcnassim">اخبار تکنولوژی</h2>
+		<h2 class="bbcnassim">سرخط اخبار فناوری</h2>
 
 		<?php foreach ($radiofarda_rss->channel->item as $item) : ?>
-			<a target="_blank" href="<?php echo $item->link; ?>">
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" title="<?php echo $item->description; ?>"
-				     data-toggle="tooltip" data-placement="top">
-					<?php echo $item->title; ?>
-				</div>
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-					<img src="<?php echo $item->enclosure['url']; ?>" width="100%" class=" img-rounded screenshot">
-				</div>
-			</a>
+			<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" title="<?php echo $item->description; ?>"
+			     data-toggle="tooltip" data-placement="top" style="cursor:help;">
+				<?php echo $item->title; ?>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+				<img src="<?php echo $item->enclosure['url']; ?>" width="100%" class=" img-rounded screenshot">
+			</div>
 		<?php endforeach; ?>
 
 		<?php foreach ($voa_rss->channel->item as $item) : ?>
-			<a target="_blank" href="<?php echo $item->link; ?>">
-				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" title="<?php echo $item->description; ?>"
-				     data-toggle="tooltip" data-placement="top">
-					<?php echo $item->title; ?>
-				</div>
-				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-					<img src="<?php echo $item->enclosure['url']; ?>" width="100%" class=" img-rounded screenshot">
-				</div>
-			</a>
+			<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" title="<?php echo $item->description; ?>"
+			     data-toggle="tooltip" data-placement="top" style="cursor:help;">
+				<?php echo $item->title; ?>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+				<img src="<?php echo $item->enclosure['url']; ?>" width="100%" class=" img-rounded screenshot">
+			</div>
 		<?php endforeach; ?>
 
 	</aside>

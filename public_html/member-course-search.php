@@ -1,11 +1,11 @@
 <?php require_once('../includes/initialize.php'); ?>
-<?php $session->confirm_logged_in(); ?>
-$title          = 'پارس کلیک - جستجوی دروس';
-$member         = Member::find_by_id($session->id);
+<?php $session->confirm_logged_in();
+$title  = 'پارس کلیک - جستجوی دروس';
+$member = Member::find_by_id($session->id);
 $member->check_status();
 find_selected_course(TRUE);
 $search_query = trim($_GET['q']);
-if(isset($search_query) && ! empty($search_query)) {
+if (isset($search_query) && ! empty($search_query)) {
 	$course_set = Course::search($search_query);
 } else { // this is a $_GET request
 	$session->message('شما چیزی جستجو نکردید.');
@@ -17,8 +17,8 @@ if(isset($search_query) && ! empty($search_query)) {
 <?php echo output_message($message); ?>
 	<section class="main col-sm-12 col-md-8 col-lg-8">
 		<article>
-			<?php if( ! empty($course_set)): ?>
-				<h2>نتیجه جستجو</h2>
+			<?php if ( ! empty($course_set)): ?>
+				<h2>نتیجه جستجو برای <?php echo $search_query; ?></h2>
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
@@ -27,15 +27,14 @@ if(isset($search_query) && ! empty($search_query)) {
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach($course_set as $course): ?>
+							<?php foreach ($course_set as $course): ?>
 								<tr>
 									<td>
 										<strong>
 											<i>
 												<a href="member-courses?category=<?php echo urlencode($course->category_id); ?>&course=<?php echo urlencode($course->id); ?>">
-													<mark><?php echo htmlentities($course->name); ?></mark>
-													<small>&nbsp;توسط <?php echo htmlentities(Author::find_by_id($course->author_id)
-													                                                ->full_name()); ?></small>
+													<?php echo htmlentities($course->name); ?>
+													<small class="badge">&nbsp;توسط <?php echo htmlentities(Author::find_by_id($course->author_id)->full_name()); ?></small>
 												</a>
 											</i>
 										</strong>

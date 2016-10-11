@@ -9,26 +9,11 @@
 				<a href="<?php echo is_local() ? '' : ADMIN_DIR; ?>admin.php"><i class="fa fa-home fa-lg"></i> خانه</a>
 			</li>
 
-			<li class="dropdown
-			<?php echo active([
-					'member_list',
-					'new_member',
-					'edit_member',
-					'email_to_members',
-			]); ?>
-			">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			<li class=" <?php echo active(['member_list', 'new_member', 'edit_member']); ?>">
+				<a href="<?php echo is_local() ? '' : ADMIN_DIR; ?>member_list.php">
 					<i class="fa fa-users fa-lg"></i>
-					اعضا<span class="caret"></span>
+					لیست عضوها
 				</a>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-					<li class="<?php echo active(['member_list', 'new_member', 'edit_member']); ?>">
-						<a href="<?php echo is_local() ? '' : ADMIN_DIR; ?>member_list.php"> لیست عضوها</a>
-					</li>
-					<li class="<?php echo active(['email_to_members']); ?>">
-						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>email_to_members.php"> ایمیل به عضوها</a>
-					</li>
-				</ul>
 			</li>
 
 			<li class="dropdown
@@ -52,7 +37,8 @@
 						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>author_list.php"> لیست نویسندگان</a>
 					</li>
 					<li class="<?php echo active(['email_to_authors']); ?>">
-						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>email_to_authors.php"> ایمیل به نویسندگان</a>
+						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>email_to_authors.php"> ایمیل به
+							نویسندگان</a>
 					</li>
 				</ul>
 			</li>
@@ -87,7 +73,8 @@
 				</ul>
 			</li>
 			<li class="<?php echo active(['admin_notifications', 'new_notification']); ?>">
-				<a href="<?php echo is_local() ? '' : ADMIN_DIR; ?>admin_notifications.php"><i class="fa fa-bell fa-lg"></i> اعلانات</a>
+				<a href="<?php echo is_local() ? '' : ADMIN_DIR; ?>admin_notifications.php"><i class="fa fa-bell fa-lg"></i>
+					اعلانات</a>
 			</li>
 			<li>
 				<a href="<?php echo is_local() ? '' : ADMIN_DIR; ?>logout.php">

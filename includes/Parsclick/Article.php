@@ -40,7 +40,7 @@ class Article extends DatabaseObject
 		if ($public) {
 			$sql .= 'AND articles.visible = 1';
 		}
-		$result_set = self::find_by_sql($database->escape_value($sql));
+		$result_set = self::find_by_sql($sql);
 
 		return ! empty($result_set) ? $result_set : NULL;
 	}
