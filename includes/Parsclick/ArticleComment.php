@@ -62,7 +62,7 @@ class ArticleComment extends DatabaseObject
 			], [
 				'<code>$1</code>',
 				'<strong>$1</strong>',
-				'$1<a href="/profile?$2">@$2</a>',
+				'$1<a href="/profile?q=$2">@$2</a>',
 			], $body);
 
 			return $comment;
