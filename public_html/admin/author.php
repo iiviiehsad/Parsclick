@@ -141,7 +141,7 @@ echo output_message($message);
 		<?php else: ?>
 		<p class="alert alert-info">
 			<b class="lead">نکته:‌</b>
-			عضویت نویسندگان ۶ ماه بدون محتوای جدید مسدود خواهد شد. شما تا
+			عضویت نویسندگانی که ۶ ماه محتوای جدیدی ندارند مسدود خواهد شد. شما تا
 			<b class="text-warning"><?php echo datetime_to_shamsi(time_left($newest_content_date), '*%d *%B، %Y'); ?></b>
 			 برای ساخت مطلب جدید وقت دارید.
 		</p>
