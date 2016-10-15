@@ -3,8 +3,8 @@ $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 $articles_under_edit = Article::find_articles_for_author($author->id, FALSE);
-$articles_for_author = Article::find_articles_for_author($author->id, TRUE);
 $courses_under_edit  = Course::find_courses_for_author($author->id, FALSE);
+$articles_for_author = Article::find_articles_for_author($author->id, TRUE);
 $courses_for_author  = Course::find_courses_for_author($author->id, TRUE);
 $newest_content_date = find_newest_date([
 		Article::find_newest_article_for_author($author->id) ? Article::find_newest_article_for_author($author->id)->created_at : $author->created_at,

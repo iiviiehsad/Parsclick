@@ -52,9 +52,19 @@ echo output_message($message);
 										<span class="glyphicon glyphicon-trash"></span>
 									</a>
 									<?php
-									if (idle(find_newest_date([
-											Article::find_newest_article_for_author($author->id) ? Article::find_newest_article_for_author($author->id)->created_at : time(),
-											Course::find_newest_course_for_author($author->id) ? Course::find_newest_course_for_author($author->id)->created_at : time(),
+									if ( ! Article::find_articles_for_author($author->id, FALSE) &&
+											! Course::find_courses_for_author($author->id, FALSE)
+									):
+										if (time() > time_left($author->created_at)) : ?>
+											<span class="btn btn-small btn-danger" disabled>
+												<i class="fa fa-exclamation-triangle"></i>
+											</span>
+										<?php endif;
+									elseif (idle(find_newest_date([
+											Article::find_newest_article_for_author($author->id) ?
+													Article::find_newest_article_for_author($author->id)->created_at : $author->created_at,
+											Course::find_newest_course_for_author($author->id) ?
+													Course::find_newest_course_for_author($author->id)->created_at : $author->created_at,
 									]))): ?>
 										<span class="btn btn-small btn-warning" disabled>
 											<i class="fa fa-exclamation-triangle"></i>
