@@ -143,7 +143,7 @@ echo output_message($message);
 				<b class="text-warning"><?php echo datetime_to_shamsi(time_left($newest_content_date), '*%d *%B، %Y'); ?></b>
 				برای ساخت مطلب جدید وقت داشتید.
 			</p>
-		<?php elseif ( ! $articles_under_edit && ! $articles_for_author): ?>
+		<?php elseif ( ! $articles_under_edit && ! $courses_under_edit): ?>
 			<p class="alert alert-info">
 				<b class="lead">تذکر:‌</b>
 				شما به عنوان نویسنده ی جدید فقط تا
