@@ -10,6 +10,7 @@ if (isset($_POST['submit'])) {
 	$author->email      = trim(strtolower($_POST['email']));
 	$author->status     = (int) $_POST['status'];
 	$author->token      = md5(uniqid(mt_rand(), TRUE));
+	$author->created_at = strftime('%Y-%m-%d %H:%M:%S', time());
 	if ($author->create() && $author->email_confirmation_details($author->username)) {
 		$session->message('نویسنده با اسم کاربری ' . $author->username . ' ساخته شد.');
 		redirect_to('author_list.php');

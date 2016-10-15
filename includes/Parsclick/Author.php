@@ -13,7 +13,8 @@ class Author extends DatabaseObject
 		'parsclickmail',
 		'status',
 		'photo',
-		'token'
+		'token',
+		'created_at'
 	];
 	public           $id;
 	public           $username;
@@ -25,6 +26,7 @@ class Author extends DatabaseObject
 	public           $status;
 	public           $photo;
 	public           $token;
+	public           $created_at;
 
 	/**
 	 * @return array
