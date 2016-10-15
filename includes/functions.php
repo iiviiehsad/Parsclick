@@ -114,13 +114,19 @@ function datetime_to_shamsi($datetime = '', $format = '*%d *%B، %Y ساعت *%H
  * Calculate time left for creating new content
  *
  * @param null $date
+ * @param string $interval
  * @return bool
  */
-function time_left($date)
+function time_left($date, $interval = '+6 months')
 {
-	$future   = (new DateTime('+6 months'))->getTimestamp();
+	if (is_numeric($date)) {
+		$future   = (new DateTime($interval))->getTimestamp();
 
-	return $future - time() + $date;
+		return $future - time() + $date;
+	}
+	$future   = (new DateTime($interval))->getTimestamp();
+
+	return $future - time() + strtotime($date);
 }
 
 /**
