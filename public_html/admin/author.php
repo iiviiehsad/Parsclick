@@ -8,7 +8,7 @@ $courses_under_edit  = Course::find_courses_for_author($author->id, FALSE);
 $courses_for_author  = Course::find_courses_for_author($author->id, TRUE);
 $newest_content_date = find_newest_date([
 		Article::find_newest_article_for_author($author->id) ? Article::find_newest_article_for_author($author->id)->created_at : $author->created_at,
-		Course::find_newest_course_for_author($author->id) ? Course::find_newest_course_for_author($author->id)->created_at : $author->created_at
+		Course::find_newest_course_for_author($author->id) ? Course::find_newest_course_for_author($author->id)->created_at : $author->created_at,
 ]);
 include_layout_template('admin_header.php');
 include_layout_template('author_nav.php');
@@ -119,13 +119,11 @@ echo output_message($message);
 			<p>تشکر ویژه ما رو پذیرا باشید چون ما رو انتخاب کردید برای منتشر کردن مقالات خودتون. امیدوارم که بتونید به راحتی
 				با کاربرای خودتوی در ارتباط باشید، و اگر قابلیتی از این سیستم می خواهید با ما در میون بگذارید. اما ...</p>
 			<p class="lead text-danger">توجه!</p>
-			<p>شما در حال حاضر مقاله ای ندارید. بهتر هست تا چند وقت دیگه ماکسیمم ۱ ماه یک فکری به حال مقاله سازی کنید قبل از
-				اینکه مدیر
-				سایت به خاطر غیر فعال بودن به مدت طولانی حساب شما رو مسدود کنه.</p>
+			<p>شما در حال حاضر مقاله ای ندارید. بهتر هست تا چند وقت دیگه <span class="underline">ماکسیمم ۱ ماه</span> یک فکری
+				به حال مقاله سازی کنید قبل از اینکه مدیر سایت به خاطر غیر فعال بودن به مدت طولانی حساب شما رو مسدود کنه.</p>
 			<p>مدیر عضویت نویسندگی نویسنده ای رو بی دلیل مسدود نمی کند و به نویسندگان خیلی احترام قایل هست. اما به عنوان
-				نویسنده ای
-				که تازه شروع به کار کردید بهتر هست که مقاله ای آماده کنید و اون رو بفرستید چون دلیلی برای نگه داشتن نویسنده ی
-				غیر فعال اینجا پیدا نمی کنیم.</p>
+				نویسنده ای که تازه شروع به کار کردید بهتر هست که مقاله ای آماده کنید و اون رو بفرستید چون دلیلی برای نگه داشتن
+				نویسنده ی غیر فعال اینجا پیدا نمی کنیم.</p>
 			<p>لطفا قبل از فرستادن مقاله به ویدئوهای آموزش نویسندگی نگاه کنید. انتظار می رود نکاتی که در این ویدئوها مطرح می
 				شوند را رعایت کنید.</p>
 			<p class="lead pull-left">با تشکر از شمـا</p>
