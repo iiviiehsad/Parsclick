@@ -1,4 +1,4 @@
-<?php require_once('../includes/initialize.php');
+<?php require_once '../includes/initialize.php';
 if ($session->is_logged_in()) redirect_to('member-courses');
 $title = 'پارس کلیک - درس ها و ویدئو ها'; ?>
 <?php $description = 'پارس کلیک - درس ها و ویدئو ها' ?>
@@ -10,9 +10,9 @@ $title = 'پارس کلیک - درس ها و ویدئو ها'; ?>
 	</article>
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
-	<?php include_layout_template('aside-share.php'); ?>
-	<?php include_layout_template('aside-watch.php'); ?>
 	<?php include_layout_template('aside-courses.php'); ?>
 	<?php include_layout_template('weblog.php'); ?>
+	<?php include_layout_template('aside-share.php'); ?>
+	<?php include_layout_template('aside-watch.php'); ?>
 </section>
 <?php include_layout_template('footer.php'); ?>
