@@ -9,6 +9,8 @@ global $current_subject; ?>
 				   href="author_edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
 					ویرایش
 				</a>
+				<?php else: ?>
+				<a class="btn btn-primary" disabled>ویرایش</a>
 			<?php endif; ?>
 		<?php endif; ?>
 		<?php if ($session->is_admin_logged_in()): ?>
