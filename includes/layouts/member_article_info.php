@@ -1,4 +1,4 @@
-<article>
+<article class="clearfix">
 	<?php $authors = Author::find_active_authors(); ?>
 	<p class="lead">تعداد نویسندگان:
 		<span class="label label-as-badge"><?php echo convert(count($authors)); ?></span></p>

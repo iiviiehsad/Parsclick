@@ -54,11 +54,11 @@ $newest_article = Article::find_newest_article();
 		</h3>
 	</article>
 	<?php include_layout_template('recent-article.php'); ?>
+	<?php include_layout_template('aside-ad.php'); ?>
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<aside>
 		<?php include_layout_template('weblog.php'); ?>
-		<?php include_layout_template('aside-ad.php'); ?>
 		<?php include_layout_template('aside-rss.php'); ?>
 	</aside>
 </section>

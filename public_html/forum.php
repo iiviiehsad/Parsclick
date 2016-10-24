@@ -76,6 +76,7 @@ $body   = '';
 			</form>
 			<h2>انجمن ها</h2>
 			<?php echo courses($current_category, $current_course, TRUE); ?>
+			<?php include_layout_template('aside-ad.php'); ?>
 		</aside>
 	</section>
 <?php include_layout_template('footer.php'); ?>

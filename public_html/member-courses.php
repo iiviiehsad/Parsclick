@@ -64,6 +64,7 @@ find_selected_course(TRUE);
 				<!-- ------------------------------------------------------------------------------------------------- -->
 			<?php else: ?>
 				<div class="hidden-sm"><?php include_layout_template('member_course_info.php'); ?></div>
+				<?php include_layout_template('aside-ad.php'); ?>
 			<?php endif; ?>
 		</article>
 	</section>

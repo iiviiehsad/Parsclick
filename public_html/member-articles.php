@@ -17,6 +17,7 @@ $body   = '';
 			<?php else: ?>
 				<h2>به قسمت مقالات خوش آمدید.</h2>
 				<div class="visible-lg"><?php include_layout_template('member_article_info.php'); ?></div>
+				<?php include_layout_template('aside-ad.php'); ?>
 			<?php endif; ?>
 		</article>
 	</section>

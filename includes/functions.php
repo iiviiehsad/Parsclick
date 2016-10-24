@@ -301,9 +301,7 @@ function ip_info($ip = NULL, $purpose = 'location', $deep_detect = TRUE)
  */
 function parse_rss_feed($xml)
 {
-	$feed = file_get_contents($xml);
-
-	return simplexml_load_string($feed, NULL, LIBXML_NOCDATA);
+	return simplexml_load_file($xml, NULL, LIBXML_NOCDATA);
 }
 
 /******************************************************************************************************/
