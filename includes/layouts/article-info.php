@@ -1,11 +1,15 @@
-<?php global $session; global $current_article; global $current_subject; ?>
+<?php global $session;
+global $current_article;
+global $current_subject; ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<?php if ($session->is_author_logged_in() && check_ownership($current_article->author_id, $session->id)): ?>&nbsp;
-			<a class="btn btn-primary"
-			   href="author_edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
-				ویرایش
-			</a>
+			<?php if ( ! idle($current_article->created_at)): ?>
+				<a class="btn btn-primary"
+				   href="author_edit_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
+					ویرایش
+				</a>
+			<?php endif; ?>
 		<?php endif; ?>
 		<?php if ($session->is_admin_logged_in()): ?>
 			<a class="btn btn-primary"
@@ -41,7 +45,8 @@
 		</h5>
 		<?php if ($session->is_admin_logged_in() || $session->is_author_logged_in()): ?>
 			<h5><i class="fa fa-eye fa-lg"></i>&nbsp;
-				<?php echo $current_article->visible == 1 ? '<span class="text-success">بله</span>' : '<span class="text-danger">خیر</span>'; ?>
+				<?php echo $current_article->visible ==
+				1 ? '<span class="text-success">بله</span>' : '<span class="text-danger">خیر</span>'; ?>
 			</h5>
 			<h5><i class="fa fa-list-ol fa-lg"></i>&nbsp;
 				<?php echo convert($current_article->position); ?>
@@ -58,7 +63,8 @@
 				<form class="form-horizontal submit-comment" action="add-article-comment.php" method="POST" role="form">
 					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
 						<img class="img-circle pull-left hidden-sm" width="100" style="padding-right:0;"
-						     src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>"
+						     src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' . DOMAIN .
+								     '/images/misc/default-gravatar-pic.png'; ?>"
 						     alt="<?php echo $member->username; ?>">
 					</label>
 					<div class="controls">

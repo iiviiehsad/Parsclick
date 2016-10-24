@@ -12,7 +12,6 @@ echo output_message($message);
 			<?php if ($current_subject && $current_article): ?>
 				<?php include_layout_template('article-info.php'); ?>
 			<?php elseif ($current_subject): ?>
-				<?php if ( ! $current_subject->visible) redirect_to('author_articles.php'); ?>
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h2 class="panel-title">
@@ -39,8 +38,8 @@ echo output_message($message);
 			<?php echo articles($current_subject, $current_article); ?>
 			<h2>موضوع جدید</h2>
 			<p>نویسندگان عزیز اگر موضوع خاصی مد نظرتان هست که در موضوعات نیست، بدون هیچ تعارفی یک ایمیل کوتاه به نویسنده
-			   بزنید، (از ایمیل نویسندگی تون) و اشاره کنید چه موضوعی می خواهید. مطالب شما حتما نباید زیر یکی از موضوعات بالا
-			   قرار بگیرند.</p>
+				بزنید، (از ایمیل نویسندگی تون) و اشاره کنید چه موضوعی می خواهید. مطالب شما حتما نباید زیر یکی از موضوعات بالا
+				قرار بگیرند.</p>
 		</aside>
 	</section>
 <?php include_layout_template('admin_footer.php'); ?>

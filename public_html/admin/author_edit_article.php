@@ -1,4 +1,4 @@
-<?php require_once('../../includes/initialize.php');
+<?php require_once '../../includes/initialize.php';
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
@@ -8,6 +8,9 @@ if ( ! $current_article || ! $current_subject) {
 	redirect_to('author_articles.php');
 } elseif ( ! check_ownership($current_article->author_id, $session->id)) {
 	$session->message('شما اجازه تغییر این مقاله را ندارید!');
+	redirect_to('author_articles.php');
+} elseif (idle($current_article->created_at)) {
+	$session->message('شما اجازه ویرایش این مقاله را ندارید!');
 	redirect_to('author_articles.php');
 }
 if (isset($_POST['submit'])) {
@@ -52,7 +55,8 @@ echo output_message($message, $errors);
 						<div class="controls">
 							<select class="form-control col-xs-12 col-sm-8 col-md-8 col-lg-8 edit" name="position" id="position"
 							        disabled>
-								<?php echo '<option value="' . $current_article->position . '" selected>' . $current_article->position . '</option>'; ?>
+								<?php echo '<option value="' . $current_article->position . '" selected>' . $current_article->position .
+										'</option>'; ?>
 							</select>
 						</div>
 					</section>
@@ -85,12 +89,10 @@ echo output_message($message, $errors);
 						<div class="controls col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
 							<a class="btn btn-danger"
 							   href="author_articles.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">لغو</a>
-							<?php if ($current_article->recent()): ?>
-								<a class="btn btn-default confirmation"
-								   href="author_delete_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
-									حذف
-								</a>
-							<?php endif; ?>
+							<a class="btn btn-default confirmation"
+							   href="author_delete_article.php?subject=<?php echo urlencode($current_subject->id); ?>&article=<?php echo urlencode($current_article->id); ?>">
+								حذف
+							</a>
 							<button class="btn btn-success" name="submit" id="submit" type="submit"
 							        data-loading-text="یک لحظه صبر کنید <i class='fa fa-spinner fa-pulse'></i>">
 								ویرایش
