@@ -25,6 +25,24 @@
 }
 
 @font-face {
+	font-family : 'iransans';
+	src         : url(../fonts/iransans/IRANSansWeb.eot);
+	src         : url(../fonts/iransans/IRANSansWeb.eot?#iefix) format("eot"),
+	url(../fonts/iransans/IRANSansWeb.woff) format("woff"),
+	url(../fonts/iransans/IRANSansWeb.ttf) format("ttf");
+	font-weight : 400;
+}
+
+@font-face {
+	font-family : 'iransans';
+	src         : url(../fonts/iransans/IRANSansWeb_Light.eot);
+	src         : url(../fonts/iransans/IRANSansWeb_Light.eot?#iefix) format("eot"),
+	url(../fonts/iransans/IRANSansWeb_Light.woff) format("woff"),
+	url(../fonts/iransans/IRANSansWeb_Light.ttf) format("ttf");
+	font-weight : 300;
+}
+
+@font-face {
 	font-family : "bbcnassim";
 	src         : url(../fonts/BBCFont/BBCNassim.ttf) format("truetype"),
 	url(../fonts/BBCFont/BBCNassim.otf) format("opentype");
@@ -32,17 +50,18 @@
 	font-style  : normal;
 }
 
-@yekan : "yekan", "bbcnassim", Tahoma, Verdana, Arial, sans-serif;
 @bbcNassim : "bbcnassim", "Helvetica Neue", Helvetica, Tahoma, Verdana, Arial, sans-serif;
 @code : "Fira Code", menlo, "Source Code Pro", Consolas, monospace;
+@yekan : "yekan", "bbcnassim", Tahoma, Verdana, Arial, sans-serif;
+@iransans : "iransans", "bbcnassim", Tahoma, Verdana, Arial, sans-serif;
 
 ::selection { color : @beige; background : @darkblack; }
 
 body {
 	background  : @purple;
 	margin-top  : 30px;
-	font-family : @yekan;
-	font-size   : 16px;
+	font-family : @iransans;
+	font-size   : 15px;
 }
 
 .bright { color : @bright !important; }
@@ -65,9 +84,9 @@ body {
 .large-text { font-size : 90px; font-weight : 900; margin : 0; }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family : @yekan;
+	font-family : @iransans;
 	color       : @purple;
-	text-shadow : 1px 1px 10px @shadow;
+	text-shadow : .5px .5px 10px @shadow;
 }
 
 code {
@@ -103,7 +122,7 @@ blockquote {
 }
 
 p {
-	font-family : @yekan;
+	font-family : @iransans;
 	line-height : 1.5em;
 	color       : @darkblack;
 	padding     : 0 2%;
