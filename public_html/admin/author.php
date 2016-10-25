@@ -143,7 +143,7 @@ echo output_message($message);
 				<b class="text-warning"><?php echo datetime_to_shamsi(time_left($newest_content_date), '*%d *%B، %Y'); ?></b>
 				برای ساخت مطلب جدید وقت داشتید.
 			</p>
-		<?php elseif ( ! $articles_under_edit && ! $courses_under_edit): ?>
+		<?php elseif ( ! $articles_under_edit && ! $courses_under_edit && time() < time_left($author->created_at, '+1 month')) : ?>
 			<p class="alert alert-info">
 				<b class="lead">تذکر:‌</b>
 				شما به عنوان نویسنده ی جدید فقط تا
@@ -158,6 +158,12 @@ echo output_message($message);
 				برای ساخت مطلب جدید وقت دارید.
 			</p>
 		<?php endif; ?>
+
+		<p class="alert alert-success">
+			<b class="lead">راهنمایی:‌</b>
+			دوستان نویسنده، چون عکس خیلی مهم هست می تونید از لینک زیر برای عکس داخل مقالاتتون استفاده کنید:
+			<a href="https://www.pexels.com/search/computer/" class="btn btn-success btn-block" target="_blank">لینک عکس</a>
+		</p>
 
 		<div class="center">
 			<h4>ویدیو اول: نویسندگی</h4>
