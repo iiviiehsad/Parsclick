@@ -1,4 +1,4 @@
-<?php require_once('../../includes/initialize.php');
+<?php require_once '../../includes/initialize.php';
 $session->confirm_admin_logged_in();
 $errors = '';
 if (isset($_POST['delete_inactive'])) {
@@ -26,41 +26,43 @@ include_layout_template('admin_header.php');
 include_layout_template('admin_nav.php');
 echo output_message($message, $errors);
 ?>
-	<section class="sidebar col col-lg-4 pull-right">
-		<aside>
-			<form class="form-inline" action="member_search.php" method="GET">
-				<div class="input-group">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-					<input type="text" name="q" class="form-control" size="40" maxlength="50" placeholder="جستجوی اعضا"/>
-				</div>
-			</form>
-			<h2 class="pull-right"><i class="fa fa-users"></i> لیست اعضا
-				<span class="label label-as-badge label-info"><?php echo convert(Member::count_all()); ?> عضو</span></h2>
-		</aside>
-	</section>
-	<section class="sidebar col col-lg-4 pull-left">
-		<aside>
-			<div class="btn-group pull-left">
-				<form action="member_list.php" method="POST">
-					<div class="btn-group">
-						<a class="btn btn-success" href="new_member.php"><i class="fa fa-plus"></i></a>
-						<button type="submit" name="delete_inactive" class="btn btn-danger">
-							حذف معوق ها
-						</button>
-						<button type="submit" name="clear_tokens" class="btn btn-warning">
-							تمیز کاری رموز
-						</button>
+	<div class="row">
+		<section class="sidebar col-lg-4 pull-right">
+			<aside>
+				<form class="form-inline" action="member_search.php" method="GET">
+					<div class="input-group">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+						<input type="text" name="q" class="form-control" size="40" maxlength="50" placeholder="جستجوی اعضا"/>
 					</div>
 				</form>
-			</div>
-			<div class="clearfix"></div>
-			<?php if (isset($_GET['page'])): ?>
-				<h2 class="pull-left">
-					<span class="label label-as-badge label-info">صفحه <?php echo convert($_GET['page']); ?></span>
-				</h2>
-			<?php endif ?>
-		</aside>
-	</section>
+				<h2 class="pull-right"><i class="fa fa-users"></i> لیست اعضا
+					<span class="label label-as-badge label-info"><?php echo convert(Member::count_all()); ?> عضو</span></h2>
+			</aside>
+		</section>
+		<section class="sidebar col-lg-4 pull-left">
+			<aside>
+				<div class="btn-group pull-left">
+					<form action="member_list.php" method="POST">
+						<div class="btn-group">
+							<a class="btn btn-success" href="new_member.php"><i class="fa fa-plus"></i></a>
+							<button type="submit" name="delete_inactive" class="btn btn-danger">
+								حذف معوق ها
+							</button>
+							<button type="submit" name="clear_tokens" class="btn btn-warning">
+								تمیز کاری رموز
+							</button>
+						</div>
+					</form>
+				</div>
+				<div class="clearfix"></div>
+				<?php if (isset($_GET['page'])): ?>
+					<h2 class="pull-left">
+						<span class="label label-as-badge label-info">صفحه <?php echo convert($_GET['page']); ?></span>
+					</h2>
+				<?php endif ?>
+			</aside>
+		</section>
+	</div>
 	<section class="main col col-lg-12">
 		<div class="table-responsive">
 			<table class="table table-hover table-condensed">

@@ -5,12 +5,28 @@ include_layout_template('admin_header.php');
 include_layout_template('admin_nav.php');
 echo output_message($message);
 ?>
-	<section class="main col-sm-12 col-md-8 col-lg-8">
+	<div class="row">
+		<section class="sidebar col-lg-4 pull-right">
+			<aside>
+				<h2><i class="fa fa-users"></i> لیست نویسندگان<span
+							class="badge"><?php echo convert(count($author_set)); ?></span>
+				</h2>
+			</aside>
+		</section>
+		<section class="sidebar col-lg-4 pull-left">
+			<aside>
+				<form class="form-inline" action="author_search.php" method="get">
+					<div class="input-group">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+						<input type="text" name="q" class="form-control" size="40" maxlength="50" placeholder="جستجوی نویسنده"/>
+					</div>
+				</form>
+				<a class="btn btn-success" href="new_author.php"><i class="fa fa-plus"></i> نویسنده اضافه کن</a>
+			</aside>
+		</section>
+	</div>
+	<section class="main col-sm-12 col-md-12 col-lg-12">
 		<article>
-			<h2><i class="fa fa-users"></i> لیست نویسندگان<span
-						class="badge"><?php echo convert(count($author_set)); ?></span>
-			</h2>
-			<br/>
 			<div class="table-responsive">
 				<table class="table table-hover table-responsive table-condensed">
 					<thead>
@@ -53,9 +69,11 @@ echo output_message($message);
 									</a>
 									<?php if (idle(find_newest_date([
 											Article::find_newest_article_for_author($author->id) ?
-													Article::find_newest_article_for_author($author->id)->created_at : time() > time_left($author->created_at, '+1 month'),
+													Article::find_newest_article_for_author($author->id)->created_at : time() >
+													time_left($author->created_at, '+1 month'),
 											Course::find_newest_course_for_author($author->id) ?
-													Course::find_newest_course_for_author($author->id)->created_at : time() > time_left($author->created_at, '+1 month')
+													Course::find_newest_course_for_author($author->id)->created_at : time() >
+													time_left($author->created_at, '+1 month'),
 									]))) : ?>
 										<span class="btn btn-small btn-warning" disabled>
 											<i class="fa fa-exclamation-triangle"></i>
@@ -68,20 +86,5 @@ echo output_message($message);
 				</table>
 			</div>
 		</article>
-	</section>
-	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
-		<aside>
-			<form class="form-inline" action="author_search.php" method="get">
-				<div class="input-group">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-					<input type="text" name="q" class="form-control" size="40" maxlength="50" placeholder="جستجوی نویسنده"/>
-				</div>
-			</form>
-			<h2>
-				<a class="btn btn-success" href="new_author.php"><i class="fa fa-plus"></i> نویسنده اضافه کن</a>
-			</h2>
-			<p>برای اضافه کردن نویسنده لطفا روی دگمه <i class="fa fa-plus"></i> کلیک کنید و اطلاعات را پر کنید.
-				لطفا تا آنجاییکه ممکن هست سعی کنید تمام جزئیات را پر کنید.</p>
-		</aside>
 	</section>
 <?php include_layout_template('admin_footer.php'); ?>
