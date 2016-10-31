@@ -4,9 +4,9 @@ if ($session->is_logged_in()) redirect_to('member.php'); ?>
 <?php include_layout_template('nav.php'); ?>
 <?php include_layout_template('snippet-carousel.php'); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
-	<?php include_layout_template('article-courses.php'); ?>
 	<?php include_layout_template('member_article_info.php'); ?>
 	<?php include_layout_template('article-intro.php'); ?>
+	<?php include_layout_template('article-courses.php'); ?>
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<aside>

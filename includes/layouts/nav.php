@@ -5,14 +5,6 @@
 			<img src="<?php echo is_local() ? '' : '/'; ?>images/misc/logo.png"
 			     alt="Logo for Parsclick" title="www.parsclick.net">
 		</a>
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle visible-lg pull-left"
-		     style="display:inline-block;width:728px;height:90px;"
-		     data-ad-client="ca-pub-7301263638062324"
-		     data-ad-slot="3506283751"></ins>
-		<script>
-			(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
 	</section>
 
 	<section class="navbar">
