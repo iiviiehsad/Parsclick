@@ -72,17 +72,17 @@ echo output_message($message);
 									<?php if (idle(find_newest_date([
 											$newest_article ? $newest_article->created_at : $author->created_at,
 											$newest_course ? $newest_course->created_at : $author->created_at,
-									]))) { ?>
+									]))) : ?>
 										<span class="btn btn-small btn-warning" disabled>
 											<i class="fa fa-exclamation-triangle"></i>
 										</span>
-									<?php } elseif ( ! $newest_article && ! $newest_course &&
+									<?php elseif ( ! $newest_article && ! $newest_course &&
 											time() > time_left($author->created_at, '+1 month')
-									) { ?>
+									) : ?>
 										<span class="btn btn-small btn-danger" disabled>
 											<i class="fa fa-exclamation-triangle"></i>
 										</span>
-									<?php } ?>
+									<?php endif; ?>
 								</td>
 							</tr>
 						<?php endforeach; ?>
