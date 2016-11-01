@@ -1,4 +1,4 @@
-<?php require_once('../../includes/initialize.php');
+<?php require_once '../../includes/initialize.php';
 $session->confirm_admin_logged_in();
 $author_set = Author::find_all();
 include_layout_template('admin_header.php');
@@ -67,18 +67,22 @@ echo output_message($message);
 									   href="delete_author.php?id=<?php echo urlencode($author->id); ?>" title="Delete">
 										<span class="glyphicon glyphicon-trash"></span>
 									</a>
+									<?php $newest_article = Article::find_newest_article_for_author($author->id);
+									$newest_course        = Course::find_newest_course_for_author($author->id); ?>
 									<?php if (idle(find_newest_date([
-											Article::find_newest_article_for_author($author->id) ?
-													Article::find_newest_article_for_author($author->id)->created_at : time() >
-													time_left($author->created_at, '+1 month'),
-											Course::find_newest_course_for_author($author->id) ?
-													Course::find_newest_course_for_author($author->id)->created_at : time() >
-													time_left($author->created_at, '+1 month'),
-									]))) : ?>
+											$newest_article ? $newest_article->created_at : $author->created_at,
+											$newest_course ? $newest_course->created_at : $author->created_at,
+									]))) { ?>
 										<span class="btn btn-small btn-warning" disabled>
 											<i class="fa fa-exclamation-triangle"></i>
 										</span>
-									<?php endif; ?>
+									<?php } elseif ( ! $newest_article && ! $newest_course &&
+											time() > time_left($author->created_at, '+1 month')
+									) { ?>
+										<span class="btn btn-small btn-danger" disabled>
+											<i class="fa fa-exclamation-triangle"></i>
+										</span>
+									<?php } ?>
 								</td>
 							</tr>
 						<?php endforeach; ?>
