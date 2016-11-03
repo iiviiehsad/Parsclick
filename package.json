@@ -1,23 +1,25 @@
 {
-	"name"           : "parsclick",
-	"version"        : "5.0.0",
-	"description"    : "Parsclick Persian Online Tutorial Libray",
-	"main"           : "gulpfile.js",
-	"dependencies"   : {
-		"laravel-elixir": "^6.0.0-11"
-	},
-	"devDependencies": {},
-	"scripts"        : {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"repository"     : {
-		"type": "git",
-		"url" : "git+https://github.com/hassanazimi/Parsclick.git"
-	},
-	"author"         : "Amir Hassan Azimi",
-	"license"        : "ISC",
-	"bugs"           : {
-		"url": "https://github.com/hassanazimi/Parsclick/issues"
-	},
-	"homepage"       : "https://github.com/hassanazimi/Parsclick#readme"
+  "name": "parsclick",
+  "version": "5.0.0",
+  "description": "Parsclick Persian Online Tutorial Libray",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "laravel-elixir": "^6.0.0-11"
+  },
+  "devDependencies": {
+    "laravel-elixir-rollup-official": "^1.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hassanazimi/Parsclick.git"
+  },
+  "author": "Amir Hassan Azimi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hassanazimi/Parsclick/issues"
+  },
+  "homepage": "https://github.com/hassanazimi/Parsclick#readme"
 }

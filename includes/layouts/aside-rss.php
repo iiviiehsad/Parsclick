@@ -12,7 +12,7 @@ $voa_rss          = parse_rss_feed('http://ir.voanews.com/api/zyupoeqpmi');
 	<?php foreach ($digiato_rss->channel->item as $item) : ?>
 		<li class="list-group-item">
 			<img src="<?php echo $item->image->url; ?>" width="25%" height="100%" class="img-rounded screenshot pull-left">
-			<a href="<?php echo $item->shortlink; ?>" target="_blank"><?php echo $item->title; ?></a>
+			<a href="javascript:popup('<?php echo $item->shortlink; ?>')" target="_blank"><?php echo $item->title; ?></a>
 		</li>
 	<?php endforeach; ?>
 
@@ -39,7 +39,7 @@ $voa_rss          = parse_rss_feed('http://ir.voanews.com/api/zyupoeqpmi');
 	<?php endforeach; ?>
 
 	<?php foreach ($khabaronline_rss->channel->item as $item) : ?>
-		<a href="<?php echo $item->link; ?>" target="_blank" class="list-group-item">
+		<a href="javascript:popup('<?php echo $item->link; ?>')" target="_blank" class="list-group-item">
 			<?php echo $item->title; ?>
 		</a>
 	<?php endforeach; ?>

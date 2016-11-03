@@ -37,9 +37,9 @@ echo output_message($message);
 			<kbd>کلیک کنید</kbd>
 		</a>
 	</p>
-	<p class="edit"> GMT امروز <?php echo datetime_to_shamsi(time()); ?></p>
+	<p class="edit bright"> امروز <?php echo datetime_to_shamsi(time(), '*%d *%B، %Y'); ?> ساعت <span id="persian-timer"></span></p>
 	<div class="clearfix"></div>
-	<p class="edit">Today is <?php echo datetime_to_text(date('Y-m-d H:i:s')); ?></p>
+	<p class="edit bright">Today is <?php echo datetime_to_text(date('Y-m-d'), '*%B *%d, %Y'); ?> <span id="english-timer"></span></p>
 </div>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>

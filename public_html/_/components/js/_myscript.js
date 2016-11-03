@@ -1,3 +1,17 @@
+persian = {
+	'0'  : '&#1776;',
+	'1'  : '&#1777;',
+	'2'  : '&#1778;',
+	'3'  : '&#1779;',
+	'4'  : '&#1780;',
+	'5'  : '&#1781;',
+	'6'  : '&#1782;',
+	'7'  : '&#1783;',
+	'8'  : '&#1784;',
+	'9'  : '&#1785;',
+	':'  : ':',
+};
+
 $(function() {
 
 	// auto size text area
@@ -167,7 +181,48 @@ $(function() {
 		});
 	}
 
+	setInterval(function() {
+		var currentTime    = new Date();
+		var currentHours   = currentTime.getHours();
+		var currentMinutes = currentTime.getMinutes();
+		var currentSeconds = currentTime.getSeconds();
+		currentMinutes     = ( currentMinutes < 10 ? '0' : '' ) + currentMinutes;
+		currentSeconds     = ( currentSeconds < 10 ? '0' : '' ) + currentSeconds;
+		// var timeOfDay      = ( currentHours < 12 ) ? 'AM' : 'PM';
+		// currentHours       = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+		currentHours = ( currentHours < 10 ? '0' : '' ) + currentHours;
+		// currentHours       = ( currentHours == 0 ) ? 12 : currentHours;
+		var output = currentHours + ':' + currentMinutes + ':' + currentSeconds;
+		var str = '';
+		var arr = output.split('');
+
+		for (var i = 0; i < arr.length; i++) {
+			str += persian[arr[i]];
+		}
+		$('#persian-timer').html(str);
+		$('#english-timer').html(output);
+	}, 1000);
+
 }); // jQuery IS LOADED -----------------------------------------------------------------------------------------------
+
+popup = function(url, title, w, h) {
+	var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+	var dualScreenTop  = window.screenTop != undefined ? window.screenTop : screen.top;
+	title == undefined ? title = 'Parsclick' : title;
+	w == undefined ? w = 1150 : w;
+	h == undefined ? h = 650 : w;
+	var width  = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+	var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+	var left      = ((width / 2) - (w / 2)) + dualScreenLeft;
+	var top       = ((height / 2) - (h / 2)) + dualScreenTop;
+	var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+	// Puts focus on the newWindow
+	if (window.focus) {
+		newWindow.focus();
+	}
+};
 
 /**
  * Variables to get the registration fields
