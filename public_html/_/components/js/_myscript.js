@@ -1,15 +1,15 @@
 persian = {
-	'0'  : '&#1776;',
-	'1'  : '&#1777;',
-	'2'  : '&#1778;',
-	'3'  : '&#1779;',
-	'4'  : '&#1780;',
-	'5'  : '&#1781;',
-	'6'  : '&#1782;',
-	'7'  : '&#1783;',
-	'8'  : '&#1784;',
-	'9'  : '&#1785;',
-	':'  : ':',
+	'0' : '&#1776;',
+	'1' : '&#1777;',
+	'2' : '&#1778;',
+	'3' : '&#1779;',
+	'4' : '&#1780;',
+	'5' : '&#1781;',
+	'6' : '&#1782;',
+	'7' : '&#1783;',
+	'8' : '&#1784;',
+	'9' : '&#1785;',
+	':' : ':',
 };
 
 $(function() {
@@ -191,10 +191,10 @@ $(function() {
 		// var timeOfDay      = ( currentHours < 12 ) ? 'AM' : 'PM';
 		// currentHours       = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
 		currentHours = ( currentHours < 10 ? '0' : '' ) + currentHours;
-		// currentHours       = ( currentHours == 0 ) ? 12 : currentHours;
-		var output = currentHours + ':' + currentMinutes + ':' + currentSeconds;
-		var str = '';
-		var arr = output.split('');
+		currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+		var output   = currentHours + ':' + currentMinutes + ':' + currentSeconds;
+		var str      = '';
+		var arr      = output.split('');
 
 		for (var i = 0; i < arr.length; i++) {
 			str += persian[arr[i]];

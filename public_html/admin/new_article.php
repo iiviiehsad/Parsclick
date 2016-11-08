@@ -1,4 +1,4 @@
-<?php require_once('../../includes/initialize.php');
+<?php require_once '../../includes/initialize.php';
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();

@@ -120,11 +120,11 @@ function datetime_to_shamsi($datetime = '', $format = '*%d *%B، %Y ساعت *%H
 function time_left($date, $interval = '+6 months')
 {
 	if (is_numeric($date)) {
-		$future   = (new DateTime($interval))->getTimestamp();
+		$future = (new DateTime($interval))->getTimestamp();
 
 		return $future - time() + $date;
 	}
-	$future   = (new DateTime($interval))->getTimestamp();
+	$future = (new DateTime($interval))->getTimestamp();
 
 	return $future - time() + strtotime($date);
 }
