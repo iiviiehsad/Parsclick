@@ -37,6 +37,14 @@ class Author extends DatabaseObject
 	}
 
 	/**
+	 * @return array
+	 */
+	public static function find_deactive_authors()
+	{
+		return self::find_by_sql('SELECT * FROM ' . static::$table_name . ' WHERE status = 2');
+	}
+
+	/**
 	 *
 	 */
 	public function check_status()

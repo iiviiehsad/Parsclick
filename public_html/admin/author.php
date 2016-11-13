@@ -2,6 +2,7 @@
 $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
+$deactive_authors    = Author::find_deactive_authors();
 $articles_under_edit = Article::find_articles_for_author($author->id, FALSE);
 $courses_under_edit  = Course::find_courses_for_author($author->id, FALSE);
 $articles_for_author = Article::find_articles_for_author($author->id, TRUE);
@@ -37,9 +38,11 @@ echo output_message($message);
 			<kbd>کلیک کنید</kbd>
 		</a>
 	</p>
-	<p class="edit bright"> امروز <?php echo datetime_to_shamsi(time(), '*%d *%B، %Y'); ?> ساعت <span id="persian-timer"></span></p>
+	<p class="edit bright"> امروز <?php echo datetime_to_shamsi(time(), '*%d *%B، %Y'); ?> ساعت <span
+				id="persian-timer"></span></p>
 	<div class="clearfix"></div>
-	<p class="edit bright">Today is <?php echo datetime_to_text(date('Y-m-d'), '*%B *%d, %Y'); ?> <span id="english-timer"></span></p>
+	<p class="edit bright">Today is <?php echo datetime_to_text(date('Y-m-d'), '*%B *%d, %Y'); ?> <span
+				id="english-timer"></span></p>
 </div>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
@@ -143,7 +146,9 @@ echo output_message($message);
 				<b class="text-warning"><?php echo datetime_to_shamsi(time_left($newest_content_date), '*%d *%B، %Y'); ?></b>
 				برای ساخت مطلب جدید وقت داشتید.
 			</p>
-		<?php elseif ( ! $articles_under_edit && ! $courses_under_edit && time() < time_left($author->created_at, '+1 month')) : ?>
+		<?php elseif ( ! $articles_under_edit && ! $courses_under_edit &&
+				time() < time_left($author->created_at, '+1 month')
+		) : ?>
 			<p class="alert alert-info">
 				<b class="lead">تذکر:‌</b>
 				شما به عنوان نویسنده ی جدید فقط تا
@@ -164,6 +169,18 @@ echo output_message($message);
 			دوستان نویسنده، چون عکس خیلی مهم هست می تونید از لینک زیر برای عکس داخل مقالاتتون استفاده کنید:
 			<a href="https://www.pexels.com/search/computer/" class="btn btn-success btn-block" target="_blank">لینک عکس</a>
 		</p>
+
+		<?php if ($deactive_authors): ?>
+			<div class="alert alert-danger">
+				<b class="lead">نویسندگان غیر فعال:‌</b>
+				<h5>حساب کاربری این دوستان نویسنده غیر فعال هست و بزودی حذف خواهند شد:</h5>
+				<ul>
+					<?php foreach ($deactive_authors as $deactive_author): ?>
+							<li><?php echo $deactive_author->full_name(); ?></li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+		<?php endif; ?>
 
 		<div class="center">
 			<h4>ویدیو اول: نویسندگی</h4>
