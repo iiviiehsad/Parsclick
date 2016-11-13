@@ -4,6 +4,20 @@
 	<div class="row">
 		<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
 			<div class="center">
+				<img class="img-rounded" src="images/courses/ES6-tn.jpg" alt="اکمااسکریپت ۶"/>
+				<h5>اکمااسکریپت ۶</h5>
+			</div>
+		</div>
+		<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+			<div class="center">
+				<img class="img-rounded" src="images/courses/Vue-tn.jpg" alt="ویو جی اس ۲"/>
+				<h5>ویو جی اس ۲</h5>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+			<div class="center">
 				<img class="img-rounded" src="images/courses/React-tn.jpg" alt="ری اکت جی اس">
 				<h5>ری اکت جی اس</h5>
 			</div>
