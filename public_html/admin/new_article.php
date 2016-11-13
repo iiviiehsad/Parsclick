@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
 	$article->content    = $_POST['content'];
 	$article->created_at = strftime('%Y-%m-%d %H:%M:%S', time());
 	if ($article->create()) {
-		Mail::send_email('hazz.azimi@gmail.com', 'New Article!', "New Article {$article->name} Added By {$author->full_name()}");
+		Mail::send_email('hazz.azimi@gmail.com', 'New Article!', "مقاله جدید به اسم {$article->name} توسط {$author->full_name()} اضافه شد.");
 		$session->message('مقاله ساخته شد.');
 		redirect_to('author_articles.php');
 	} else {

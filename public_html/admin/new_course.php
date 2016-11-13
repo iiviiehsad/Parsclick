@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
 	$course->content         = $_POST['description'];
 	$course->created_at      = strftime('%Y-%m-%d %H:%M:%S', time());
 	if ($course->create()) {
-		Mail::send_email('hazz.azimi@gmail.com', 'New Course', "New Article {$course->name} Added By {$author->full_name()}");
+		Mail::send_email('hazz.azimi@gmail.com', 'New Course', "درس جدید به اسم {$course->name} توسط {$author->full_name()} اضافه شد.");
 		$session->message('درس ساخته شد. درس قبل از نشر باید توسط مدیران بازبینی شود.');
 		redirect_to('author_courses.php');
 	} else {
