@@ -1,4 +1,4 @@
-<style>img { cursor: pointer; }</style>
+<style>img{cursor:pointer;}</style>
 <aside>
 	<h2>برخی از آموزش های ویدیویی</h2>
 	<div class="modalphotos clearfix center">

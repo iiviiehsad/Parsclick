@@ -148,7 +148,7 @@ echo output_message($message);
 			</p>
 		<?php elseif ( ! $articles_under_edit && ! $courses_under_edit &&
 				time() < time_left($author->created_at, '+1 month')
-		) : ?>
+		): ?>
 			<p class="alert alert-info">
 				<b class="lead">تذکر:‌</b>
 				شما به عنوان نویسنده ی جدید فقط تا
@@ -172,11 +172,11 @@ echo output_message($message);
 
 		<?php if ($deactive_authors): ?>
 			<div class="alert alert-danger">
-				<b class="lead">نویسندگان غیر فعال:‌</b>
-				<h5>حساب کاربری این دوستان نویسنده غیر فعال هست و بزودی حذف خواهند شد:</h5>
+				<b class="lead">نویسندگان مسدود شده:‌</b>
+				<h5>حساب کاربری این دوستان نویسنده مسدود هست و بزودی حذف خواهند شد:</h5>
 				<ul>
 					<?php foreach ($deactive_authors as $deactive_author): ?>
-							<li><?php echo $deactive_author->full_name(); ?></li>
+						<li><?php echo $deactive_author->full_name(); ?></li>
 					<?php endforeach; ?>
 				</ul>
 			</div>
