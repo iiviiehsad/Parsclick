@@ -26,7 +26,7 @@ echo output_message($message);
 						<?php foreach ($admin_set as $admin): ?>
 							<tr>
 								<td>
-									<img class="img-circle" src="http://gravatar.com/avatar/<?php echo md5($admin->email); ?>?s=30"
+									<img class="img-circle" src="//gravatar.com/avatar/<?php echo md5($admin->email); ?>?s=30"
 									     alt="<?php echo $admin->email; ?>">
 									<?php echo htmlentities($admin->username); ?>
 								</td>

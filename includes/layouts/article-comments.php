@@ -24,7 +24,7 @@ $comments    = ArticleComment::find_comments($current_article->id, $per_page, $p
 	<section class="media">
 		<?php $_member = Member::find_by_id($comment->member_id); ?>
 		<img class="img-circle pull-right" width="70" style="padding-right:0;"
-		     src="//www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=70&d=<?php echo '//' . DOMAIN .
+		     src="https://www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=70&d=<?php echo 'https://' . DOMAIN .
 				     '/images/misc/default-gravatar-pic.png'; ?>"
 		     alt="<?php echo $_member->username; ?>">
 		<div class="media-body">

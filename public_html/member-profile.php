@@ -46,7 +46,7 @@ $errors = '';
 	<aside>
 		<h2>آواتار</h2>
 		<img class="img-thumbnail center"
-		     src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=200&d=<?php echo DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>"
+		     src="//gravatar.com/avatar/<?php echo md5($member->email); ?>?s=200&d=<?php echo DOMAIN . DS . 'images/misc/default-gravatar-pic.png'; ?>"
 		     alt="<?php echo $member->email; ?>"/>
 		<h2>حذف عضویت</h2>
 		<p>با کلیلک روی این دگمه حساب کاربری شما به کلی حذف خواهد شد. بنابراین مواظب باشید اگر می خواهید روی این دگمه کلیک

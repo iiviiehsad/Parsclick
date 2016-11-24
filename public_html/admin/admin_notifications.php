@@ -33,7 +33,7 @@ echo output_message($message);
 							<tr>
 								<td class="center">
 									<div>
-										<img class="img-circle" src="http://gravatar.com/avatar/<?php echo md5($admin->email); ?>?s=100"
+										<img class="img-circle" src="//gravatar.com/avatar/<?php echo md5($admin->email); ?>?s=100"
 										     alt="<?php echo $admin->email; ?>">
 									</div>
 									<div class="label label-as-badge label-warning">

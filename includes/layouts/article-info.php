@@ -65,7 +65,7 @@ global $current_subject; ?>
 				<form class="form-horizontal submit-comment" action="add-article-comment.php" method="POST" role="form">
 					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
 						<img class="img-circle pull-left hidden-sm" width="100" style="padding-right:0;"
-						     src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' . DOMAIN .
+						     src="https://www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo 'https://' . DOMAIN .
 								     '/images/misc/default-gravatar-pic.png'; ?>"
 						     alt="<?php echo $member->username; ?>">
 					</label>

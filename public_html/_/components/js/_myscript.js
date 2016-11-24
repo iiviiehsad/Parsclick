@@ -147,20 +147,19 @@ $(function() {
 		var href = $(this).attr('href');
 
 		swal({
-				title              : "آیا مطمئن هستید؟",
-				type               : "warning",
-				showCancelButton   : true,
-				confirmButtonColor : "#E74C3C",
-				confirmButtonText  : "بله",
-				cancelButtonText   : "خیر",
-				closeOnConfirm     : true,
-				closeOnCancel      : true
-			},
-			function(isConfirm) {
-				if (isConfirm) {
-					window.location.href = href;
-				}
-			});
+			title              : "آیا مطمئن هستید؟",
+			type               : "warning",
+			showCancelButton   : true,
+			confirmButtonColor : "#E74C3C",
+			confirmButtonText  : "بله",
+			cancelButtonText   : "خیر",
+			closeOnConfirm     : true,
+			closeOnCancel      : true
+		}, function(isConfirm) {
+			if (isConfirm) {
+				window.location.href = href;
+			}
+		});
 
 		return false;
 	});
@@ -235,9 +234,9 @@ var firstname     = document.getElementById('first_name');
 var lastname      = document.getElementById('last_name');
 var email         = document.getElementById('email');
 var message       = document.getElementById('confirmMessage');
-var goodColor     = "#C8FAC8";
-var badColor      = "#FAC8C8";
-var mBadColor     = "#B94A48";
+var goodColor     = '#C8FAC8';
+var badColor      = '#FAC8C8';
+var mBadColor     = '#B94A48';
 var usernameregex = /[^a-zA-Z0-9_.]/;
 var passregex     = /[^A-Za-z0-9]/;
 
@@ -249,25 +248,26 @@ function checkUser() {
 	if (usernameregex.test(username.value)) {
 		username.style.backgroundColor = badColor;
 		message.style.color            = mBadColor;
-		message.innerHTML              = "اسم کاربری نباید دارای حروف مخصوص باشد";
+		message.innerHTML              = 'اسم کاربری نباید دارای حروف مخصوص باشد';
 		return false;
 	} else if (username.value.indexOf(' ') >= 0) {
 		username.style.backgroundColor = badColor;
 		message.style.color            = mBadColor;
-		message.innerHTML              = "در اسم کاربری نباید فاصله بکار رود";
+		message.innerHTML              = 'در اسم کاربری نباید فاصله بکار رود';
 		return false;
 	} else if (username.value == '' || username.value == null) {
 		username.style.backgroundColor = badColor;
 		message.style.color            = mBadColor;
-		message.innerHTML              = "اسم کاربری نباید خالی بماند";
+		message.innerHTML              = 'اسم کاربری نباید خالی بماند';
 		return false;
 	} else {
 		username.style.backgroundColor = goodColor;
 		message.style.color            = goodColor;
-		message.innerHTML              = "";
+		message.innerHTML              = '';
 		return true;
 	}
 }
+
 /**
  * Function to check the first name
  * @returns {boolean} TRUE if validation passes and FALSE otherwise
@@ -276,15 +276,16 @@ function checkfirstname() {
 	if (firstname.value == '' || firstname.value == null || firstname.value == ' ') {
 		firstname.style.backgroundColor = badColor;
 		message.style.color             = mBadColor;
-		message.innerHTML               = "نام نباید خالی بماند";
+		message.innerHTML               = 'نام نباید خالی بماند';
 		return false;
 	} else {
 		firstname.style.backgroundColor = goodColor;
 		message.style.color             = goodColor;
-		message.innerHTML               = "";
+		message.innerHTML               = '';
 		return true;
 	}
 }
+
 /**
  * Function to check the last name
  * @returns {boolean} TRUE if validation passes and FALSE otherwise
@@ -298,10 +299,11 @@ function checklastname() {
 	} else {
 		lastname.style.backgroundColor = goodColor;
 		message.style.color            = goodColor;
-		message.innerHTML              = "";
+		message.innerHTML              = '';
 		return true;
 	}
 }
+
 /**
  * Function to check the password
  * @returns {boolean} TRUE if validation passes and FALSE otherwise
@@ -310,20 +312,21 @@ function checkPass() {
 	if (pass1.value.length < 6) {
 		pass1.style.backgroundColor = badColor;
 		message.style.color         = mBadColor;
-		message.innerHTML           = "پسورد کمتر از ۶ کاراکتر است";
+		message.innerHTML           = 'پسورد کمتر از ۶ کاراکتر است';
 		return false;
 	} else if (!passregex.test(pass1.value)) {
 		pass1.style.backgroundColor = badColor;
 		message.style.color         = mBadColor;
-		message.innerHTML           = "پسورد دارای حروف مخصوص نیست";
+		message.innerHTML           = 'پسورد دارای حروف مخصوص نیست';
 		return false;
 	} else {
 		pass1.style.backgroundColor = goodColor;
 		message.style.color         = goodColor;
-		message.innerHTML           = "";
+		message.innerHTML           = '';
 		return true;
 	}
 }
+
 /**
  * Function to check the password confirmation
  * @returns {boolean} TRUE if validation passes and FALSE otherwise
@@ -332,25 +335,26 @@ function checkConfirmPass() {
 	if (pass2.value.length < 6) {
 		pass2.style.backgroundColor = badColor;
 		message.style.color         = mBadColor;
-		message.innerHTML           = "پسورد کمتر از ۶ کاراکتر است";
+		message.innerHTML           = 'پسورد کمتر از ۶ کاراکتر است';
 		return false;
 	} else if (!passregex.test(pass2.value)) {
 		pass2.style.backgroundColor = badColor;
 		message.style.color         = mBadColor;
-		message.innerHTML           = "پسوردها دارای حروف مخصوص نیستند";
+		message.innerHTML           = 'پسوردها دارای حروف مخصوص نیستند';
 		return false;
 	} else if (pass1.value !== pass2.value) {
 		pass2.style.backgroundColor = badColor;
 		message.style.color         = mBadColor;
-		message.innerHTML           = "پسوردها مطابقت ندارند";
+		message.innerHTML           = 'پسوردها مطابقت ندارند';
 		return false;
 	} else {
 		pass2.style.backgroundColor = goodColor;
 		message.style.color         = goodColor;
-		message.innerHTML           = "";
+		message.innerHTML           = '';
 		return true;
 	}
 }
+
 /**
  * Function to check the email
  * @returns {boolean} TRUE if validation passes and FALSE otherwise
@@ -360,12 +364,12 @@ function checkEmail() {
 	if (regExp.test(email.value) == false) {
 		email.style.backgroundColor = badColor;
 		message.style.color         = mBadColor;
-		message.innerHTML           = "ایمیل معتبر نیست";
+		message.innerHTML           = 'ایمیل معتبر نیست';
 		return false;
 	} else {
 		email.style.backgroundColor = goodColor;
 		message.style.color         = goodColor;
-		message.innerHTML           = "";
+		message.innerHTML           = '';
 		return true;
 	}
 }

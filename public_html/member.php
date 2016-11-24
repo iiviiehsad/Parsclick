@@ -12,7 +12,7 @@ $newest_article = Article::find_newest_article();
 
 <div class="jumbotron hidden-sm wow fadeIn member-jumbotron">
 	<img class="pull-left img-circle" width="150" height="150"
-	     src="http://gravatar.com/avatar/<?php echo md5($member->email); ?>?s=150&d=<?php echo '//' . DOMAIN .
+	     src="//gravatar.com/avatar/<?php echo md5($member->email); ?>?s=150&d=<?php echo '//' . DOMAIN .
 			     '/images/misc/default-gravatar-pic.png'; ?>">
 	<a class="bright pull-left" href="#" id="notification" title="اعلانات" data-toggle="tooltip">
 		<i class="fa fa-bell fa-lg"></i>

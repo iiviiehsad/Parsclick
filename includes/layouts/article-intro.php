@@ -4,7 +4,7 @@
 	   علاقمند به نویسندگی هستید اصلا اقدام به ثبت نام نکنید.</p>
 	<p>برای اینکه یک مقدار بیشتر از نویسندگی بدانید و در موردش بخوانید شما را دعوت می کنم روی دگمه ی زیر کلیک کنید و به
 	   وبلاگ پارس کلیک روید.</p>
-	<a class="btn btn-primary" href="http://parsclick.blogspot.co.uk/2015/11/Authorship-in-Parsclick.html" target="_blank">
+	<a class="btn btn-primary" href="//parsclick.blogspot.co.uk/2015/11/Authorship-in-Parsclick.html" target="_blank">
 		درباره نویسندگی
 	</a>
 	<h2>فرم نویسندگی</h2>
