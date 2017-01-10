@@ -1,4 +1,4 @@
-<?php require_once('../../includes/initialize.php');
+<?php require_once '../../includes/initialize.php';
 $errors   = '';
 $username = '';
 if (isset($_POST['submit'])) {

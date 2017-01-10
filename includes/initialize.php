@@ -77,7 +77,7 @@ defined('UDEMY') ? NULL : define('UDEMY', 'https://www.udemy.com/u/amirhassanazi
 | Requires path to the autoload.php file
 |----------------------------------------------------------------
 */
-require_once(LIB_PATH . DS . 'vendor' . DS . 'autoload.php');
+require_once LIB_PATH . DS . 'vendor' . DS . 'autoload.php';
 /*
 |----------------------------------------------------------------
 | Initializing $session and $message to use everywhere

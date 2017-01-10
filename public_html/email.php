@@ -33,36 +33,38 @@ $body = '
 <p>Content-Type: multipart/alternative; boundary="20cf385fc2b644bb8314b59ggbc0"</p>
 <p>------------------------------------------------------------------------------</p>
 ';
-
 $originalBody = '
 Javan Restaurant
 291-293 King Street
 Hammersmith
 London
 W6 9NH
-Email address: info@javan-restaurant.co.uk
-Date:08/11/2016
-REMINDER RIGHTS INFRINGEMENT CASE:  390679108
-ORIGINAL LETTER DATE: 24/10/2016
-AMOUNT DUE: £1550.00
-IMAGE(S) NUMBER(S): 00851212
-DEADLINE FOR CLEARED FUNDS: 22/11/2016
+Email: info@javan-restaurant.co.uk                                Date:09 January 2017                                                                                                     
+PRE COURT ACTION                                     RIGHTS INFRINGEMENT CASE:  29817
+ PREVIOUS LETTER DATES: 24/10/2016
+ AMOUNT DUE:£1550.00
+ IMAGE(S) NUMBER(S):00851212
+ DEADLINE FOR CLEARED FUNDS:23/01/2017
 Dear Javan Restaurant,
-StockFood Ltd. has previously written to you offering an out of court settlement for the unauthorised use of rights-managed imagery represented exclusively by StockFood. Unfortunately, to date this matter remains unresolved.
-Please be advised the unauthorised use of copyright protected material entitles the copyright holder to both fees and damages. StockFood Ltd is authorised by the authors (photographers) to pursue copyright infringement on their behalf, in the small claims court of the Intellectual Property Enterprise Court if no amicable solution can be found.
-Unfortunately, cessation of your use of the copyrighted image is not sufficient. This type of image must always be licensed (paid for).  As you have used the image without license, you are now liable for all relevant fees associated with the use of the unauthorised use of the Rights Managed image.
-StockFood Ltd is a member in good standing of the British Association of Picture Libraries and Agencies BAPLA and can also be checked for authenticity at Company’s House.  All company information and contact details can be found on our website.
-You have been provided with all the relevant information to verify the justification of our claim as well as an extended period of time for reflection and investigation on your part. This issue must now be resolved without further delay.  Failure to settle within the above timeframe will result in this settlement offers becoming null and void.  Full payment, along with the removal of the imagery will be considered a full and final settlement of the case. An invoice marked paid and including confirmation that the issue has been resolved will be provided on receipt of full payment.
-StockFood Ltd is committed to investigating licensing infractions not only to protect our interests, but also to protect the interests of the professional photographers whom we represent.
-We are committed to protecting the intellectual property rights and livelihood of the artists whose work we license. We must enforce our licensing conditions rigorously and feel that your cooperation regarding this matter should be promptly forthcoming. This letter is without prejudice and does not affect StockFood’s rights and remedies, all of which are expressly reserved.
-Please remit payment to quoting your case number using one of the following methods.
-· Bank Transfer:
+StockFood Ltd has previously written to you offering an out of court settlement for the unauthorised use of Rights-Managed imagery represented exclusively by StockFood. While we have tried to communicate with you several times, you have failed to settle this case and unfortunately to date this matter remains unresolved.
+StockFood Ltd have provided extensive information regarding the matter as well as significant deadline extensions in order to allow you to familiarise yourself with copyright liability or seek appropriate legal advice.
+We are offering you a final opportunity to accept our settlement offer as outlined above. Full payment, along with the removal of the imagery will be considered full and final settlement of the case. An invoice marked paid and including confirmation that the issue has been resolved will be provided on receipt of full payment.
+Please remit payment and quote your case number using one of the following methods:
+Bank Transfer:
 National Westminster Bank, StockFood Ltd
 Bank Account: 39276848 - Sort Code: 600001
-Swift Code: NWBKGB2L - IBAN: GB70NWBK60000 139276848
-· Debit or Credit card:
+Swift Code: NWBKGB2L - IBAN:GB70NWBK60000 139276848
+Debit or Credit card:
 Please phone 020 7438 1220 in order to make a payment
-· Cheques may be sent to StockFood Ltd, Signet House, 49-51 Farringdon Road, London, EC1M 3JP. Please allow extra time for cheque payment to clear.
+Cheques may be sent to StockFood Ltd at:
+Signet House, 49-51 Farringdon Road, London, EC1M 3JP.
+Please allow extra time for a cheque payment to clear.
+If no settlement is reached, we will be left no other option to file a claim in the small claims court of the Intellectual Property Enterprise Court in London. This will result in further significant charges.
+StockFood Ltd is committed to investigating licensing infractions not only to protect our interests, but also to protect the interests of the professional photographers whom we represent. We must enforce our licensing conditions rigorously and feel that your cooperation regarding this matter should be promptly forthcoming. This letter is without prejudice to StockFood’s rights and remedies, all of which are expressly reserved.
+Yours sincerely,
+Z. Khan
+Rights Control Associate
+Telephone: 020 7438 1228 / 62
 Best Wishes
 Zahra Khan
 Rights Control
@@ -80,7 +82,7 @@ VAT No.: 898874134
 $mailer = new PHPMailer();
 
 $mailer->isSMTP();
-$mailer->isHTML(TRUE);
+$mailer->isHTML(FALSE);
 $mailer->addBCC('hazz.azimi@gmail.com', 'MAILER DAEMON');
 $mailer->CharSet    = 'UTF-8';
 $mailer->Host       = SMTP;
@@ -89,9 +91,9 @@ $mailer->Port       = PORT;
 $mailer->SMTPAuth   = TRUE;
 $mailer->Username   = EMAILUSER;
 $mailer->Password   = EMAILPASS;
-$mailer->FromName   = 'MAILER DAEMON';
-$mailer->From       = 'MAILER-DAEMON@YAHOO.COM';
-$mailer->Subject    = 'DELIVERY FAILURE: info@javan-restaurant.co.uk';
+$mailer->FromName   = 'Mail Delivery Subsystem';
+$mailer->From       = 'mailer-daemon@googlemail.com';
+$mailer->Subject    = 'Delivery Status Notification (Failure)';
 $mailer->Body       = $body . $originalBody;
 
 if ($mailer->send()) echo 'OK';

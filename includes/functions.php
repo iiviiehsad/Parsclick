@@ -638,10 +638,10 @@ function articles($subject_array, $article_array, $public = FALSE)
 			]);
 			$output .= '<a href="' . article_url() . '?' . $query . '"';
 			if ($article_array && $article->id == $article_array->id) {
-				$output .= ' class="selected"';
+				$output .= ' class="selected" ';
 			}
 			if ($article->comments()) {
-				$output .= 'data-toggle="tooltip" data-placement="left" title="';
+				$output .= ' data-toggle="tooltip" data-placement="left" title="';
 				$output .= convert(count($article->comments())) . ' دیدگاه';
 				$output .= '"';
 			}
@@ -714,10 +714,10 @@ function courses($category_array, $course_array, $public = FALSE)
 			]);
 			$output .= '<a href="' . course_url() . '?' . $query . '"';
 			if ($course_array && $course->id == $course_array->id) {
-				$output .= ' class="selected"';
+				$output .= ' class="selected" ';
 			}
 			if ($course->comments()) {
-				$output .= 'data-toggle="tooltip" data-placement="left" title="';
+				$output .= ' data-toggle="tooltip" data-placement="left" title="';
 				$output .= convert(count($course->comments())) . ' دیدگاه';
 				$output .= '"';
 			}

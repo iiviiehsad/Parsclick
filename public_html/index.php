@@ -11,6 +11,7 @@ if ($session->is_logged_in()) redirect_to('member.php'); ?>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<aside>
 		<?php include_layout_template('google-search.php'); ?>
+		<img src="images/misc/xmas.png" alt="Christmas">
 		<?php include_layout_template('aside-rss.php'); ?>
 		<?php include_layout_template('aside-share.php'); ?>
 	</aside>
