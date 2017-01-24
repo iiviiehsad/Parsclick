@@ -2,6 +2,7 @@
 <aside>
 	<h2>برخی از آموزش های ویدیویی</h2>
 	<div class="modalphotos clearfix center">
+		<img class="img-thumbnail" src="images/courses/Unix-tn.png" alt="یونیکس"/>
 		<img class="img-thumbnail" src="images/courses/Vue-tn.jpg" alt="ویو جی اس ۲"/>
 		<img class="img-thumbnail" src="images/courses/ES6-tn.jpg" alt="اکمااسکریپت ۶"/>
 		<img class="img-thumbnail" src="images/courses/React-tn.jpg" alt="ری اکت جی اس"/>
