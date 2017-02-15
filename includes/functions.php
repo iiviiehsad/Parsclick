@@ -758,7 +758,7 @@ function public_courses()
 		$course_set = Course::find_courses_for_category($category->id, TRUE);
 		$output .= '<div class="list-group">';
 		foreach ($course_set as $course) {
-			$output .= "<a class='list-group-item' target='_blank' title='برو به یوتیوب' href='https://www.youtube.com/playlist?list={$course->youtubePlaylist}'>";
+			$output .= "<a class='list-group-item' target='_blank' title='برو به یوتیوب' href='//www.youtube.com/playlist?list={$course->youtubePlaylist}'>";
 			$output = ! empty($course->name) ? $output . $course->name : $output . '-';
 			if ($course->recent()) {
 				$output .= '&nbsp;&nbsp;&nbsp;<kbd>تازه</kbd>';

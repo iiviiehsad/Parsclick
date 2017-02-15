@@ -6,6 +6,7 @@ $title = 'پارس کلیک - درس ها و ویدئو ها'; ?>
 <?php include_layout_template('nav.php'); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>
+	  <?php include_layout_template('aside-ad.php'); ?>
 		<?php echo public_courses(); ?>
 	</article>
 </section>

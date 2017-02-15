@@ -19,6 +19,7 @@ $description = 'پارس کلیک - انجمن ' . $current_course->name;
 					</span>
 				</h3>
 				<h4 class="label label-as-badge label-danger">برای شرکت در انجمن لطفا عضو شوید</h4>
+		    <?php include_layout_template('aside-ad.php'); ?>
 			</div>
 			<div id="forum">
 				<div id="ajax-comments">
@@ -31,6 +32,7 @@ $description = 'پارس کلیک - انجمن ' . $current_course->name;
 		<aside class="members_menu">
 			<h2>انجمن ها</h2>
 			<?php echo courses($current_category, $current_course, TRUE); ?>
+			<?php include_layout_template('aside-ad.php'); ?>
 		</aside>
 	</section>
 <?php include_layout_template('footer.php'); ?>

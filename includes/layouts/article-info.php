@@ -56,7 +56,9 @@ global $current_subject; ?>
 		<?php endif ?>
 	</div>
 	<div class="panel-body">
+	  <?php include_layout_template('aside-ad.php'); ?>
 		<?php echo nl2br(strip_tags($current_article->content, ARTICLE_ALLOWABLE_TAGS)); ?>
+		<?php include_layout_template('aside-ad.php'); ?>
 	</div>
 	<div class="panel-footer">
 		<article id="comments">
@@ -87,6 +89,5 @@ global $current_subject; ?>
 				</div>
 			</div>
 		</article>
-		<?php // include_layout_template('disqus-comment.php'); ?>
 	</div>
 </div>

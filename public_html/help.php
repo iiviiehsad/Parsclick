@@ -50,5 +50,6 @@ if (isset($_POST['stripeToken'])) {
 	</section><!-- main -->
 	<section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	  <?php include_layout_template('aside-help.php'); ?>
+    <?php include_layout_template('aside-ad.php'); ?>
 	</section><!-- sidebar -->
 <?php include_layout_template('footer.php'); ?>
