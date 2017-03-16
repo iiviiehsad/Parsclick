@@ -19,7 +19,6 @@ $description = 'پارس کلیک - انجمن ' . $current_course->name;
 					</span>
 				</h3>
 				<h4 class="label label-as-badge label-danger">برای شرکت در انجمن لطفا عضو شوید</h4>
-		    <?php include_layout_template('aside-ad.php'); ?>
 			</div>
 			<div id="forum">
 				<div id="ajax-comments">

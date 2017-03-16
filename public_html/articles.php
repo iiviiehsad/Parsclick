@@ -1,4 +1,4 @@
-<?php require_once('../includes/initialize.php');
+<?php require_once '../includes/initialize.php';
 if ($session->is_logged_in()) redirect_to('member-articles?' . $_SERVER['QUERY_STRING']);
 find_selected_article(TRUE);
 $newest_article = Article::find_newest_article();
