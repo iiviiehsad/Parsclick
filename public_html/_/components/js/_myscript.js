@@ -255,7 +255,7 @@ function checkUser() {
 		message.style.color            = mBadColor;
 		message.innerHTML              = 'در اسم کاربری نباید فاصله بکار رود';
 		return false;
-	} else if (username.value == '' || username.value == null) {
+	} else if (username.value === '' || username.value === null) {
 		username.style.backgroundColor = badColor;
 		message.style.color            = mBadColor;
 		message.innerHTML              = 'اسم کاربری نباید خالی بماند';
@@ -273,7 +273,7 @@ function checkUser() {
  * @returns {boolean} TRUE if validation passes and FALSE otherwise
  */
 function checkfirstname() {
-	if (firstname.value == '' || firstname.value == null || firstname.value == ' ') {
+	if (firstname.value === '' || firstname.value === null || firstname.value === ' ') {
 		firstname.style.backgroundColor = badColor;
 		message.style.color             = mBadColor;
 		message.innerHTML               = 'نام نباید خالی بماند';
@@ -291,7 +291,7 @@ function checkfirstname() {
  * @returns {boolean} TRUE if validation passes and FALSE otherwise
  */
 function checklastname() {
-	if (lastname.value == '' || lastname.value == null || lastname.value == ' ') {
+	if (lastname.value === '' || lastname.value === null || lastname.value === ' ') {
 		lastname.style.backgroundColor = badColor;
 		message.style.color            = mBadColor;
 		message.innerHTML              = "نام خانوادگی نباید خالی بماند";
@@ -361,7 +361,7 @@ function checkConfirmPass() {
  */
 function checkEmail() {
 	var regExp = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i;
-	if (regExp.test(email.value) == false) {
+	if (regExp.test(email.value) === false) {
 		email.style.backgroundColor = badColor;
 		message.style.color         = mBadColor;
 		message.innerHTML           = 'ایمیل معتبر نیست';
