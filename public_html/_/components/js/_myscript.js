@@ -26,7 +26,7 @@ $(function() {
 	$('.collapse').css({'transition' : 'height .5s', 'overflow' : 'hidden'});
 
 	// ACTIVATE COURSE TABS
-	var hash = window.location.hash;
+	let hash = window.location.hash;
 	hash && $('ul.nav a[href="' + hash + '"]').tab('show');
 
 	/**
@@ -47,8 +47,8 @@ $(function() {
 	// SHOW MODALS
 	$('.modalphotos img').on('click', function() {
 		$('#modal').modal({show : true});
-		var mysrc      = this.src.substr(0, this.src.length - 7) + '.jpg';
-		var modalimage = $('#modalimage');
+		let mysrc      = this.src.substr(0, this.src.length - 7) + '.jpg';
+		let modalimage = $('#modalimage');
 		modalimage.css('width', "80%");
 		modalimage.css('display', "block");
 		modalimage.css('margin', "auto");
@@ -62,18 +62,18 @@ $(function() {
 	$('#notification').on('click', function() { $('#notifyModal').modal('show'); });
 
 	// INPUT FILE STYLE
-	var wrapper = $('<label/>').css({height : 0, width : 0, 'overflow' : 'hidden'});
+	let wrapper = $('<label/>').css({height : 0, width : 0, 'overflow' : 'hidden'});
 	$(':file').wrap(wrapper);
 
 	$('form.addtoplaylist').on('submit', function() {
-		var that = $(this),
+		let that = $(this),
 		    url  = that.attr('action'),
 		    type = that.attr('method'),
 		    data = {},
 		    btn  = $("#btn");
 		btn.prop('disabled', true);
 		that.find('[name]').each(function() {
-			var that   = $(this),
+			let that   = $(this),
 			    name   = that.attr('name');
 			data[name] = that.val();
 		});
@@ -90,14 +90,14 @@ $(function() {
 	});
 
 	$('form.removefromplaylist').on('submit', function() {
-		var that = $(this),
+		let that = $(this),
 		    url  = that.attr('action'),
 		    type = that.attr('method'),
 		    data = {},
 		    btn  = $("#btn");
 		btn.prop('disabled', true);
 		that.find('[name]').each(function() {
-			var that   = $(this),
+			let that   = $(this),
 			    name   = that.attr('name');
 			data[name] = that.val();
 		});
@@ -114,12 +114,12 @@ $(function() {
 	});
 
 	$('form.submit-comment').on('submit', function() {
-		var that = $(this),
+		let that = $(this),
 		    url  = that.attr('action'),
 		    type = that.attr('method'),
 		    data = {};
 		that.find('[name]').each(function() {
-			var that   = $(this),
+			let that   = $(this),
 			    name   = that.attr('name');
 			data[name] = that.val();
 		});
@@ -137,14 +137,14 @@ $(function() {
 	});
 
 	$('form[data-remote]').on('submit', function(e) {
-		var $btn = $(this).find('button').button('loading');
+		let $btn = $(this).find('button').button('loading');
 		setTimeout(function() {
 			$btn.button('reset');
 		}, 3600000); // 1000*60*60 (1 hour)
 	});
 
 	$('.confirmation').click(function(e) {
-		var href = $(this).attr('href');
+		let href = $(this).attr('href');
 
 		swal({
 			title              : "آیا مطمئن هستید؟",
@@ -164,13 +164,13 @@ $(function() {
 		return false;
 	});
 
-	var href     = document.location.href;
-	var basename = href.substr(href.lastIndexOf('/') + 1);
+	let href     = document.location.href;
+	let basename = href.substr(href.lastIndexOf('/') + 1);
 
 	if (basename == 'faq') {
 		$('a[href*=#]:not([href=#])').click(function() {
 			if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-				var target = $(this.hash);
+				let target = $(this.hash);
 				target     = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
 				if (target.length) {
 					$('html,body').animate({scrollTop : target.offset().top}, 1000);
@@ -181,21 +181,21 @@ $(function() {
 	}
 
 	setInterval(function() {
-		var currentTime    = new Date();
-		var currentHours   = currentTime.getHours();
-		var currentMinutes = currentTime.getMinutes();
-		var currentSeconds = currentTime.getSeconds();
+		let currentTime    = new Date();
+		let currentHours   = currentTime.getHours();
+		let currentMinutes = currentTime.getMinutes();
+		let currentSeconds = currentTime.getSeconds();
 		currentMinutes     = ( currentMinutes < 10 ? '0' : '' ) + currentMinutes;
 		currentSeconds     = ( currentSeconds < 10 ? '0' : '' ) + currentSeconds;
-		// var timeOfDay      = ( currentHours < 12 ) ? 'AM' : 'PM';
+		// let timeOfDay      = ( currentHours < 12 ) ? 'AM' : 'PM';
 		// currentHours       = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
 		currentHours = ( currentHours < 10 ? '0' : '' ) + currentHours;
 		currentHours = ( currentHours == 0 ) ? 12 : currentHours;
-		var output   = currentHours + ':' + currentMinutes + ':' + currentSeconds;
-		var str      = '';
-		var arr      = output.split('');
+		let output   = currentHours + ':' + currentMinutes + ':' + currentSeconds;
+		let str      = '';
+		let arr      = output.split('');
 
-		for (var i = 0; i < arr.length; i++) {
+		for (let i = 0; i < arr.length; i++) {
 			str += persian[arr[i]];
 		}
 		$('#persian-timer').html(str);
@@ -205,17 +205,17 @@ $(function() {
 }); // jQuery IS LOADED -----------------------------------------------------------------------------------------------
 
 popup = function(url, title, w, h) {
-	var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
-	var dualScreenTop  = window.screenTop != undefined ? window.screenTop : screen.top;
+	let dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+	let dualScreenTop  = window.screenTop != undefined ? window.screenTop : screen.top;
 	title == undefined ? title = 'Parsclick' : title;
 	w == undefined ? w = 1150 : w;
 	h == undefined ? h = 650 : w;
-	var width  = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-	var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+	let width  = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+	let height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
 
-	var left      = ((width / 2) - (w / 2)) + dualScreenLeft;
-	var top       = ((height / 2) - (h / 2)) + dualScreenTop;
-	var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+	let left      = ((width / 2) - (w / 2)) + dualScreenLeft;
+	let top       = ((height / 2) - (h / 2)) + dualScreenTop;
+	let newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 
 	// Puts focus on the newWindow
 	if (window.focus) {
@@ -227,18 +227,18 @@ popup = function(url, title, w, h) {
  * Variables to get the registration fields
  * @type {Element}
  */
-var username      = document.getElementById('username');
-var pass1         = document.getElementById('password');
-var pass2         = document.getElementById('confirm_pass');
-var firstname     = document.getElementById('first_name');
-var lastname      = document.getElementById('last_name');
-var email         = document.getElementById('email');
-var message       = document.getElementById('confirmMessage');
-var goodColor     = '#C8FAC8';
-var badColor      = '#FAC8C8';
-var mBadColor     = '#B94A48';
-var usernameregex = /[^a-zA-Z0-9_.]/;
-var passregex     = /[^A-Za-z0-9]/;
+let username      = document.getElementById('username');
+let pass1         = document.getElementById('password');
+let pass2         = document.getElementById('confirm_pass');
+let firstname     = document.getElementById('first_name');
+let lastname      = document.getElementById('last_name');
+let email         = document.getElementById('email');
+let message       = document.getElementById('confirmMessage');
+let goodColor     = '#C8FAC8';
+let badColor      = '#FAC8C8';
+let mBadColor     = '#B94A48';
+let usernameregex = /[^a-zA-Z0-9_.]/;
+let passregex     = /[^A-Za-z0-9]/;
 
 /**
  * Function to check the username
@@ -360,7 +360,7 @@ function checkConfirmPass() {
  * @returns {boolean} TRUE if validation passes and FALSE otherwise
  */
 function checkEmail() {
-	var regExp = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i;
+	let regExp = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i;
 	if (regExp.test(email.value) === false) {
 		email.style.backgroundColor = badColor;
 		message.style.color         = mBadColor;

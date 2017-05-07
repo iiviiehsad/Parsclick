@@ -1,12 +1,11 @@
 //my colours
 @parsclick : #FF8000;
-@darkblack : #303030;
-@purple : #373737; //415B76
+@red : #BA83D4;
+@dark : #373737; //415B76
 @yellow : #F0C832;
-@beige : #FAFAFA; //F5F5DC
+@smoke : #FAFAFA; //F5F5DC
 @green : #00CDA0;
 @pink : #E74C3C;
-@red : #BA83D4;
 @shadow : #9B9B9B;
 @bright : #C8FF00;
 
@@ -55,10 +54,10 @@
 @yekan : 'yekan', 'bbcnassim', Tahoma, Verdana, Arial, sans-serif;
 @iransans : 'iransans', 'bbcnassim', Tahoma, Verdana, Arial, sans-serif;
 
-::selection { color : white; background : #0F9DFF; }
+::selection { color : @smoke; background : #0F9DFF; }
 
 body {
-	background  : @purple;
+	background  : @dark;
 	margin-top  : 30px;
 	font-family : @iransans;
 	font-size   : 15px;
@@ -67,13 +66,13 @@ body {
 
 .bright { color : @bright !important; }
 
-.text-beige { color : @beige !important; }
+.text-beige { color : @smoke !important; }
 
 .text-purple { color : @red !important; }
 
 .text-parsclick { color : @parsclick !important; }
 
-.text-white { color : white; }
+.text-white { color : @smoke; }
 
 .edit {
 	font-family : @bbcNassim;
@@ -86,7 +85,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
 	font-family : @iransans;
-	color       : @purple;
+	color       : @dark;
 	text-shadow : .5px .5px 10px @shadow;
 	line-height : 1.5;
 }
@@ -109,7 +108,7 @@ pre {
 	text-align             : left;
 	width                  : 100%;
 	border                 : none;
-	background-color       : #272822;
+	background-color       : @dark;
 	color                  : @yellow;
 	font-family            : @code !important;
 	text-rendering         : optimizeLegibility;
@@ -118,7 +117,7 @@ pre {
 }
 
 blockquote {
-	border-right : 5px solid darken(@beige, 10%);
+	border-right : 5px solid darken(@smoke, 10%);
 	border-left  : 0;
 	padding      : 11px 50px;
 }
@@ -126,7 +125,7 @@ blockquote {
 p {
 	font-family : @iransans;
 	line-height : 1.5em;
-	color       : @darkblack;
+	color       : @dark;
 	padding     : 0 2%;
 	text-align  : justify;
 }
@@ -141,7 +140,7 @@ aside {
 	h2, h3 {
 		font-size     : 1.8em;
 		color         : @pink;
-		border-bottom : 1px dotted @purple;
+		border-bottom : 1px dotted @dark;
 	}
 }
 
@@ -156,7 +155,7 @@ legend { font-family : @iransans; }
 
 hr {
 	margin : 22px 0;
-	border : 1px solid #E5E5E5;
+	border : 1px solid @shadow;
 }
 
 dd {
@@ -173,7 +172,7 @@ dd {
 
 .lead { margin-top : 15px; margin-bottom : 5px; }
 
-.underline { border-bottom : 1px solid @purple; }
+.underline { border-bottom : 1px solid @dark; }
 
 .list-group-item-text { margin-right : 20px; }
 
@@ -186,7 +185,7 @@ a:hover, a:focus {
 }
 
 .container {
-	background            : @beige;
+	background            : @smoke;
 	-webkit-border-radius : 0 60px 0 0;
 	-moz-border-radius    : 0 60px 0 0;
 	border-radius         : 0 60px 0 0;
@@ -199,7 +198,7 @@ a:hover, a:focus {
 }
 
 .main {
-	background        : @beige;
+	background        : @smoke;
 	-webkit-animation : fadeIn 2s;
 	-moz-animation    : fadeIn 2s;
 	-o-animation      : fadeIn 2s;
@@ -213,16 +212,16 @@ a:hover, a:focus {
 	top              : 2px;
 	right            : 2px;
 	padding          : 5px 10px;
-	background-color : @purple;
+	background-color : @dark;
 	border           : 1px solid #DDD;
 	border-radius    : 4px;
 }
 
-.navbar-toggle:hover, .navbar-toggle:focus { background-color : @beige; }
+.navbar-toggle:hover, .navbar-toggle:focus { background-color : @smoke; }
 
 .carousel { margin-bottom : 0; }
 
-.carousel-caption > * { color : @beige; }
+.carousel-caption > * { color : @smoke; }
 
 .carousel-caption {
 	text-align                : right;
@@ -300,15 +299,15 @@ a:hover, a:focus {
 }
 
 .accordion-heading {
-	background    : @purple;
+	background    : @dark;
 	border-radius : 5px;
-	a { color : white; }
+	a { color : @smoke; }
 }
 
 .about {
 	article { margin : 0; padding : 0; }
 
-	h2 { padding : 0; border-bottom : 1px dotted @purple; }
+	h2 { padding : 0; border-bottom : 1px dotted @dark; }
 
 	h3 {
 		color     : @pink;
@@ -319,17 +318,17 @@ a:hover, a:focus {
 }
 
 .nav-tabs {
-	li a { color : @purple; }
+	li a { color : @dark; }
 
-	li.active a { background : @beige; }
+	li.active a { background : @smoke; }
 
-	li a:hover { background : @pink; color : white; }
+	li a:hover { background : @pink; color : @smoke; }
 }
 
 kbd {
 	padding            : 0 2px;
 	font-size          : 80%;
-	color              : white;
+	color              : @smoke;
 	background-color   : #333;
 	border-radius      : 10px;
 	-webkit-box-shadow : inset 0 -1px 0 rgba(0, 0, 0, .25);
@@ -351,24 +350,24 @@ kbd {
 
 ul.breadcrumb a:hover { color : @pink; }
 
-.container-footer { background : @purple; }
+.container-footer { background : @dark; }
 
 footer {
 	ul.breadcrumb {
-		background            : @purple;
+		background            : @dark;
 		margin                : 0 auto;
 		-webkit-border-radius : 0;
 		-moz-border-radius    : 0;
 		border-radius         : 0;
-		color                 : white;
+		color                 : @smoke;
 		font-size             : 80%;
 		a > i:hover {
 			color               : @yellow;
 			transition-duration : 1s;
 		}
-		i { color : white; }
+		i { color : @smoke; }
 		li { text-shadow : none;
-			a { color : white; }
+			a { color : @smoke; }
 		}
 	}
 }
@@ -400,7 +399,7 @@ footer {
 }
 
 .scrollspy .nav {
-	background : @purple;
+	background : @dark;
 	margin-top : 20px;
 
 	@media (max-width : 979px) {
@@ -422,18 +421,18 @@ footer {
 	li {
 		padding       : 0;
 		margin        : 0;
-		border-bottom : 1px solid darken(@purple, 10%);
-		border-top    : 1px solid lighten(@purple, 10%);
+		border-bottom : 1px solid darken(@dark, 10%);
+		border-top    : 1px solid lighten(@dark, 10%);
 
 		a {
-			color        : white;
+			color        : @smoke;
 			text-indent  : -20px;
 			padding-left : 30px;
 		}
 
 		a:hover {
 			background : @yellow;
-			color      : black;
+			color      : @dark;
 			transition : background, color 0.5s ease;
 		}
 	}
@@ -462,7 +461,7 @@ footer {
 }
 
 // change the jumbotron font size
-.jumbotron h1 { font-size : 50px; color : @beige; }
+.jumbotron h1 { font-size : 50px; color : @smoke; }
 
 // Jumbotron Style
 .jumbotron {
@@ -473,8 +472,8 @@ footer {
 	line-height      : 2.14285714;
 	border-radius    : 0;
 	color            : inherit;
-	background-color : @darkblack;
-	p { color : @beige; font-size : 80%; }
+	background-color : @dark;
+	p { color : @smoke; font-size : 80%; }
 }
 
 .table-responsive {
@@ -525,7 +524,7 @@ footer {
 	width         : 100px;
 	height        : 100px;
 	margin-bottom : 30px;
-	box-shadow    : 1px 1px 10px #737373;
+	box-shadow    : 1px 1px 10px @shadow;
 }
 
 .btn { margin : 1% 0; }
@@ -543,10 +542,7 @@ form.addtoplaylist, form.removefromplaylist { display : inline; }
 .input-group input:last-child, .input-group-addon:last-child,
 .input-group-btn:first-child > .btn:not(:first-child),
 .input-group-btn:last-child > .btn, .input-group-btn:last-child > .dropdown-toggle {
-	border-bottom-right-radius : 0;
-	border-top-right-radius    : 0;
-	border-bottom-left-radius  : 4px;
-	border-top-left-radius     : 4px;
+	border-radius : 4px 0 0 4px;
 }
 
 .dl-horizontal dt { float : right; }
@@ -577,7 +573,7 @@ form.addtoplaylist, form.removefromplaylist { display : inline; }
 	-o-background-size      : 100% 100%;
 	background-size         : 100% 100%;
 	background-size         : cover;
-	text-shadow             : black 0.3em 0.3em 0.3em;
+	text-shadow             : @dark 0.3em 0.3em 0.3em;
 }
 
 .author-jumbotron {
@@ -587,7 +583,7 @@ form.addtoplaylist, form.removefromplaylist { display : inline; }
 	-o-background-size      : 100% 100%;
 	background-size         : 100% 100%;
 	background-size         : cover;
-	text-shadow             : black 0.3em 0.3em 0.3em;
+	text-shadow             : @dark 0.3em 0.3em 0.3em;
 }
 
 .member-jumbotron {
@@ -601,7 +597,7 @@ form.addtoplaylist, form.removefromplaylist { display : inline; }
 	-o-background-size      : 100% 100%;
 	background-size         : 100% 100%;
 	background-size         : cover;
-	text-shadow             : black 0.3em 0.3em 0.3em;
+	text-shadow             : @dark 0.3em 0.3em 0.3em;
 }
 
 // TWITTER EMBED
