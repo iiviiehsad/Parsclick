@@ -78,7 +78,8 @@
 	<div class="row">
 		<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
 			<div class="center">
-				<img class="img-rounded" src="images/courses/PHP-DateTime-tn.jpg" alt="کار با تاریخ و زمان در پی اچ پی"/>
+				<img class="img-rounded" src="images/courses/PHP-DateTime-tn.jpg"
+				     alt="کار با تاریخ و زمان در پی اچ پی"/>
 				<h5>تاریخ و زمان در PHP</h5>
 			</div>
 		</div>

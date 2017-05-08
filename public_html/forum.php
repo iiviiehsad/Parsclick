@@ -21,11 +21,12 @@ $body   = '';
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h3 class="panel-title">
-							<a class="bright" href="forum" data-toggle="tooltip" data-placement="bottom"
+							<a class="text-green" href="forum" data-toggle="tooltip" data-placement="bottom"
 							   title="اطلاعات انجمن">انجمن</a>
-							<a class="bright"
+							<a class="text-green"
 							   href="member-courses?category=<?php echo urlencode($current_course->category_id); ?>&course=<?php echo urlencode($current_course->id); ?>"
-							   data-toggle="tooltip" title="برگردید به درس"><?php echo htmlentities($current_course->name); ?></a>
+							   data-toggle="tooltip"
+							   title="برگردید به درس"><?php echo htmlentities($current_course->name); ?></a>
 							<span class="badge">
 								<?php echo convert(count($current_course->comments())); ?> دیدگاه
 							</span>
@@ -33,15 +34,17 @@ $body   = '';
 					</div>
 					<div class="panel-body">
 						<fieldset>
-							<form class="form-horizontal submit-comment" action="add-comment.php" method="POST" role="form">
+							<form class="form-horizontal submit-comment" action="add-comment.php" method="POST"
+							      role="form">
 								<!--content-->
 								<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label" for="content">
 									<img class="img-circle pull-right hidden-sm" width="100"
 									     src="//www.gravatar.com/avatar/<?php echo md5($member->email); ?>?s=100&d=<?php echo '//' .
-											     DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>"
+										     DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>"
 									     alt="<?php echo $member->username; ?>">
 								</label>
-								<input type="hidden" name="course" value="<?php echo urlencode($current_course->id); ?>">
+								<input type="hidden" name="course"
+								       value="<?php echo urlencode($current_course->id); ?>">
 								<div class="controls">
 									<textarea class="col-xs-12 col-sm-10 col-md-10 col-lg-10" name="body" id="body"
 									          required
@@ -49,7 +52,7 @@ $body   = '';
 								</div>
 								<!--buttons-->
 								<div class="controls col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-									<button class="btn btn-primary" name="submit" id="submit" type="submit">
+									<button class="btn btn-success" name="submit" id="submit" type="submit">
 										بفرست
 									</button>
 								</div>

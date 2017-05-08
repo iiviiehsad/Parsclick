@@ -24,8 +24,9 @@ $comments    = ArticleComment::find_comments($current_article->id, $per_page, $p
 	<section class="media">
 		<?php $_member = Member::find_by_id($comment->member_id); ?>
 		<img class="img-circle pull-right" width="70" style="padding-right:0;"
-		     src="https://www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=70&d=<?php echo 'https://' . DOMAIN .
-				     '/images/misc/default-gravatar-pic.png'; ?>"
+		     src="https://www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=70&d=<?php echo 'https://' .
+			     DOMAIN .
+			     '/images/misc/default-gravatar-pic.png'; ?>"
 		     alt="<?php echo $_member->username; ?>">
 		<div class="media-body">
 			<a class="label label-as-badge label-success"
@@ -33,7 +34,7 @@ $comments    = ArticleComment::find_comments($current_article->id, $per_page, $p
 				<?php echo htmlentities($_member->username); ?>
 			</a>
 			<span
-					class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
+				class="label label-as-badge label-info"><?php echo htmlentities(datetime_to_shamsi($comment->created)); ?></span>
 			<?php if (isset($session->id)): ?>
 				<?php if ($comment->member_id === $session->id): ?>
 					<a href="member-delete-article-comment?id=<?php echo urlencode($comment->id); ?>"
@@ -54,6 +55,6 @@ $comments    = ArticleComment::find_comments($current_article->id, $per_page, $p
 	</section>
 <?php endforeach; ?>
 <?php echo paginate($pagination, $page, [
-		'subject' => $current_article->subject_id,
-		'article' => $current_article->id . '#comments',
+	'subject' => $current_article->subject_id,
+	'article' => $current_article->id . '#comments',
 ]); ?>

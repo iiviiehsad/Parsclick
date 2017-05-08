@@ -21,8 +21,9 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 					<section class="media">
 						<?php $_member = Member::find_by_id($comment->member_id); ?>
 						<img class="img-circle pull-right" width="70"
-						     src="https://www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=70&d=<?php echo 'https://' . DOMAIN .
-								     '/images/misc/default-gravatar-pic.png'; ?>"
+						     src="https://www.gravatar.com/avatar/<?php echo md5($_member->email); ?>?s=70&d=<?php echo 'https://' .
+							     DOMAIN .
+							     '/images/misc/default-gravatar-pic.png'; ?>"
 						     alt="<?php echo $_member->username; ?>">
 						<div class="media-body">
 							<a class="arial label label-as-badge label-success"
@@ -55,8 +56,8 @@ $comments    = Comment::find_comments($current_course->id, $per_page, $paginatio
 		</div>
 		<div class="panel-footer">
 			<?php echo paginate($pagination, $page, array_merge([
-					'category' => $current_course->category_id,
-					'course'   => $current_course->id,
+				'category' => $current_course->category_id,
+				'course'   => $current_course->id,
 			], get_prev_next_token())); ?>
 		</div>
 	</div>

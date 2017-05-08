@@ -30,7 +30,7 @@
 			<section class="row">
 				<label class="col-sm-4 col-md-4 col-lg-4 control-label" for="submit"></label>
 				<div class="controls">
-					<button class="btn btn-primary" name="submit" id="submit" type="submit"
+					<button class="btn btn-success" name="submit" id="submit" type="submit"
 					        data-loading-text="یک لحظه <i class='fa fa-spinner fa-pulse'></i>">
 						ورود
 					</button>

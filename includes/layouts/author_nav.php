@@ -19,12 +19,12 @@
 			</li>
 			<li class="dropdown
 			<?php echo active([
-					'author_courses',
-					'author_articles',
-					'new_course',
-					'new_article',
-					'author_edit_course',
-					'author_edit_article'
+				'author_courses',
+				'author_articles',
+				'new_course',
+				'new_article',
+				'author_edit_course',
+				'author_edit_article'
 			]); ?>
 			">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">

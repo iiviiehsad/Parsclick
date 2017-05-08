@@ -2,9 +2,9 @@
 global $current_article;
 global $current_course;
 $identifier = '';
-if($current_article) {
+if ($current_article) {
 	$identifier = 'sub' . $current_article->subject_id . 'art' . $current_article->id;
-} elseif($current_course) {
+} elseif ($current_course) {
 	$identifier = 'cat' . $current_course->category_id . 'cou' . $current_course->id;
 }
 ?>

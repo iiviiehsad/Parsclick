@@ -16,25 +16,25 @@
 				</a>
 			</li>
 
-			<li class="dropdown
-			<?php echo active([
-					'admin_list',
-					'author_list',
-					'new_admin',
-					'new_author',
-					'edit_admin',
-					'edit_author',
-					'email_to_authors',
-			]); ?>
-			">
+			<li class="dropdown <?php echo active([
+				'admin_list',
+				'author_list',
+				'new_admin',
+				'new_author',
+				'edit_admin',
+				'edit_author',
+				'email_to_authors',
+			]); ?>">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users fa-lg"></i>
 					کارکنان<span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 					<li class="<?php echo active(['admin_list', 'new_admin', 'edit_admin']); ?>">
-						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>admin_list.php"> لیست مدیران</a>
+						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>admin_list.php"> لیست
+							مدیران</a>
 					</li>
 					<li class="<?php echo active(['author_list', 'new_author', 'edit_author']); ?>">
-						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>author_list.php"> لیست نویسندگان</a>
+						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>author_list.php"> لیست
+							نویسندگان</a>
 					</li>
 					<li class="<?php echo active(['email_to_authors']); ?>">
 						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>email_to_authors.php"> ایمیل به
@@ -42,30 +42,38 @@
 					</li>
 				</ul>
 			</li>
-			<li class="dropdown
-			<?php echo active([
-					'admin_courses',
-					'admin_articles',
-					'new_category',
-					'new_subject',
-					'edit_category',
-					'edit_subject',
-					'new_article',
-					'new_course',
-					'edit_article',
-					'edit_course',
-			]); ?>
-			">
+			<li class="dropdown <?php echo active([
+				'admin_courses',
+				'admin_articles',
+				'new_category',
+				'new_subject',
+				'edit_category',
+				'edit_subject',
+				'new_article',
+				'new_course',
+				'edit_article',
+				'edit_course',
+			]); ?>">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<i class="fa fa-th-list fa-lg"></i> محتوی <span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-					<li class="<?php echo active(['admin_courses', 'new_category', 'edit_category', 'edit_course']); ?>">
+					<li class="<?php echo active([
+						'admin_courses',
+						'new_category',
+						'edit_category',
+						'edit_course'
+					]); ?>">
 						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>admin_courses.php">
 							<i class="fa fa-film fa-lg fa-lg"></i> دروس
 						</a>
 					</li>
-					<li class="<?php echo active(['admin_articles', 'new_subject', 'edit_subject', 'edit_article']); ?>">
+					<li class="<?php echo active([
+						'admin_articles',
+						'new_subject',
+						'edit_subject',
+						'edit_article'
+					]); ?>">
 						<a tabindex="-1" href="<?php echo is_local() ? '' : ADMIN_DIR; ?>admin_articles.php">
 							<i class="fa fa-newspaper-o fa-lg"></i> مقالات
 						</a>
@@ -73,7 +81,8 @@
 				</ul>
 			</li>
 			<li class="<?php echo active(['admin_notifications', 'new_notification']); ?>">
-				<a href="<?php echo is_local() ? '' : ADMIN_DIR; ?>admin_notifications.php"><i class="fa fa-bell fa-lg"></i>
+				<a href="<?php echo is_local() ? '' : ADMIN_DIR; ?>admin_notifications.php"><i
+						class="fa fa-bell fa-lg"></i>
 					اعلانات</a>
 			</li>
 			<li>

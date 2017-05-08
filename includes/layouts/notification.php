@@ -19,7 +19,8 @@ $notifications = Notification::find_all();
 						<?php $admin = Admin::find_by_id($notification->admin_id); ?>
 						<section class="media">
 							<img class="img-circle pull-right" width="60"
-							     src="//www.gravatar.com/avatar/<?php echo md5($admin->email); ?>?s=100&d=<?php echo '//' . DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>"
+							     src="//www.gravatar.com/avatar/<?php echo md5($admin->email); ?>?s=100&d=<?php echo '//' .
+								     DOMAIN . '/images/misc/default-gravatar-pic.png'; ?>"
 							     alt="عکس ادمین">
 							<h5 class="text-muted">
 								<span>
@@ -32,7 +33,8 @@ $notifications = Notification::find_all();
 							<div class="media-body">
 								<p><?php echo nl2br(strip_tags($notification->content, ARTICLE_ALLOWABLE_TAGS)); ?></p>
 								<?php if ($notification->button_text && $notification->button_url): ?>
-									<a class="btn btn-small btn-info pull-left" href="<?php echo $notification->button_url; ?>"
+									<a class="btn btn-small btn-info pull-left"
+									   href="<?php echo $notification->button_url; ?>"
 									   target="_blank" title="<?php echo $notification->button_text; ?>">
 										<?php echo $notification->button_text; ?>
 									</a>

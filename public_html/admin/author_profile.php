@@ -25,7 +25,7 @@ echo output_message($message);
 			<dt>وضعیت:</dt>
 			<dd><?php echo htmlentities($author->status == 1) ? 'فعال' : 'معوق'; ?></dd>
 			<dt>&nbsp;</dt>
-			<dd><a href="author_edit_profile.php" class="btn btn-primary"> ویرایش</a></dd>
+			<dd><a href="author_edit_profile.php" class="btn btn-success"> ویرایش</a></dd>
 		</dl>
 	</article>
 </section>

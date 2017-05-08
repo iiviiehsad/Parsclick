@@ -14,7 +14,7 @@ $newest_article = Article::find_newest_article();
 	<img class="pull-left img-circle" width="150" height="150"
 	     src="//gravatar.com/avatar/<?php echo md5($member->email); ?>?s=150&d=<?php echo '//' . DOMAIN .
 			     '/images/misc/default-gravatar-pic.png'; ?>">
-	<a class="bright pull-left" href="#" id="notification" title="اعلانات" data-toggle="tooltip">
+	<a class="text-green pull-left" href="#" id="notification" title="اعلانات" data-toggle="tooltip">
 		<i class="fa fa-bell fa-lg"></i>
 	</a>
 
@@ -22,19 +22,19 @@ $newest_article = Article::find_newest_article();
 	<div class="clearfix"></div>
 	<?php if ($newest_course): ?>
 		<p>جدیدترین درس:&nbsp;
-			<a class="bright" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
+			<a class="text-green" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
 			   href="member-courses?category=<?php echo $newest_course->category_id; ?>&course=<?php echo $newest_course->id; ?>">
 				<?php echo $newest_course->name; ?> </a>&nbsp;</p>
 	<?php endif; ?>
 	<?php if ($newest_article): ?>
 		<p>جدیدترین مقاله:&nbsp;
-			<a class="bright" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
+			<a class="text-green" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
 			   href="member-articles?subject=<?php echo $newest_article->subject_id; ?>&article=<?php echo $newest_article->id; ?>">
 				<?php echo $newest_article->name; ?> </a>&nbsp;</p>
 	<?php endif; ?>
 	<p>درس های داخل لیست پخش:&nbsp;
 		<?php if (Playlist::find_playlist_for_member($member->id)): ?>
-			<a class="bright" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
+			<a class="text-green" title='کلیک کنید' data-toggle="tooltip" data-placement="left"
 			   href="member-playlist">
 				<?php echo convert(Playlist::count_playlist_for_member($member->id)); ?> درس
 			</a>
@@ -42,9 +42,9 @@ $newest_article = Article::find_newest_article();
 			هیچی !
 		<?php endif; ?>
 	</p>
-	<p class="edit bright"> امروز <?php echo datetime_to_shamsi(time(), '*%d *%B، %Y'); ?> ساعت <span id="persian-timer"></span></p>
+	<p class="edit text-green"> امروز <?php echo datetime_to_shamsi(time(), '*%d *%B، %Y'); ?> ساعت <span id="persian-timer"></span></p>
 	<div class="clearfix"></div>
-	<p class="edit bright">Today is <?php echo datetime_to_text(date('Y-m-d'), '*%B *%d, %Y'); ?> <span id="english-timer"></span></p>
+	<p class="edit text-green">Today is <?php echo datetime_to_text(date('Y-m-d'), '*%B *%d, %Y'); ?> <span id="english-timer"></span></p>
 </div><!--.jumbotron-->
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article>

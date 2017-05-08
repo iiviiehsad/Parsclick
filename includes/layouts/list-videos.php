@@ -2,14 +2,15 @@
 global $current_category;
 global $current_course;
 global $json;
-if($json && $json['pageInfo']['totalResults'] > 0): ?>
+if ($json && $json['pageInfo']['totalResults'] > 0): ?>
 	<article class="videos">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">
-							<span class="label label-as-badge label-success">
-								<i class="fa fa-video-camera"></i> <?php echo convert($json['pageInfo']['totalResults']); ?> ویدیو
-							</span>
+					<span class="label label-as-badge label-success">
+						<i class="fa fa-video-camera"></i> <?php echo convert($json['pageInfo']['totalResults']); ?>
+						ویدیو
+					</span>
 				</h3>
 			</div>
 			<div class="panel-body">
@@ -21,7 +22,7 @@ if($json && $json['pageInfo']['totalResults'] > 0): ?>
 								        src="https://www.youtube.com/embed/?list=<?php echo $current_course->youtubePlaylist; ?>&hl=fa-ir"
 								        frameborder="0" allowfullscreen></iframe>
 							</div>
-							<?php foreach($json['items'] as $item): ?>
+							<?php foreach ($json['items'] as $item): ?>
 								<tr>
 									<td>
 										<a class="youtube"
@@ -39,14 +40,14 @@ if($json && $json['pageInfo']['totalResults'] > 0): ?>
 			<div class="panel-footer">
 				<nav>
 					<ul class="pager">
-						<?php if(isset($json['prevPageToken'])): ?>
+						<?php if (isset($json['prevPageToken'])): ?>
 							<li>
 								<a href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&prevPageToken=<?php echo $json['prevPageToken']; ?>">
 									<span aria-hidden="true">&rarr;</span>&nbsp;صفحه قبلی&nbsp;
 								</a>
 							</li>
 						<?php endif; ?>
-						<?php if(isset($json['nextPageToken'])): ?>
+						<?php if (isset($json['nextPageToken'])): ?>
 							<li>
 								<a href="?category=<?php echo $current_category->id; ?>&course=<?php echo $current_course->id; ?>&nextPageToken=<?php echo $json['nextPageToken']; ?>">
 									&nbsp;صفحه بعدی&nbsp;<span aria-hidden="true">&larr;</span>

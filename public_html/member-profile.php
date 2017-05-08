@@ -29,7 +29,7 @@ $errors = '';
 			<dt>ایمیل:</dt>
 			<dd><?php echo ! empty($member->email) ? htmlentities(strtolower($member->email)) : '-'; ?></dd>
 			<dt>&nbsp;</dt>
-			<dd><a href="member-edit-profile" class="btn btn-primary">ویرایش</a></dd>
+			<dd><a href="member-edit-profile" class="btn btn-success">ویرایش</a></dd>
 			<dt>&nbsp;</dt>
 			<dd>
 				<div class="alert alert-info">
