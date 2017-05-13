@@ -15,21 +15,21 @@ $description = isset($current_article) ? 'پارس کلیک - ' . $current_artic
 <?php echo output_message($message, $errors); ?>
 <section class="main col-sm-12 col-md-8 col-lg-8">
 	<article id="member_article">
-	  <?php if ($current_subject && $current_article): ?>
-		  <?php include_layout_template('article-info.php'); ?>
-	  <?php else: ?>
-		  <?php include_layout_template('recent-article.php'); ?>
-	  <?php endif; ?>
+		<?php if ($current_subject && $current_article): ?>
+			<?php include_layout_template('article-info.php'); ?>
+		<?php else: ?>
+			<?php include_layout_template('recent-article.php'); ?>
+		<?php endif; ?>
 	</article>
 </section>
 <section class="sidebar col-sm-12 col-md-4 col-lg-4">
 	<aside class="members_menu">
-	  <?php include_layout_template('aside-share.php'); ?>
+		<?php include_layout_template('aside-share.php'); ?>
 		<h2>موضوعات و مقالات</h2>
-	  <?php echo articles($current_subject, $current_article, TRUE); ?>
-	  <?php include_layout_template('weblog.php'); ?>
-	  <?php include_layout_template('aside-read.php'); ?>
-	  <?php include_layout_template('aside-ad.php'); ?>
+		<?php echo articles($current_subject, $current_article, TRUE); ?>
+		<?php include_layout_template('weblog.php'); ?>
+		<?php include_layout_template('aside-read.php'); ?>
+		<?php include_layout_template('aside-ad.php'); ?>
 	</aside>
 </section>
 <?php include_layout_template('footer.php'); ?>
