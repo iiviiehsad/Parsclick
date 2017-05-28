@@ -167,9 +167,9 @@ $(function() {
 	let href     = document.location.href;
 	let basename = href.substr(href.lastIndexOf('/') + 1);
 
-	if (basename == 'faq') {
+	if (basename === 'faq') {
 		$('a[href*=#]:not([href=#])').click(function() {
-			if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+			if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
 				let target = $(this.hash);
 				target     = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
 				if (target.length) {
@@ -190,7 +190,7 @@ $(function() {
 		// let timeOfDay      = ( currentHours < 12 ) ? 'AM' : 'PM';
 		// currentHours       = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
 		currentHours = ( currentHours < 10 ? '0' : '' ) + currentHours;
-		currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+		currentHours = ( currentHours === 0 ) ? 12 : currentHours;
 		let output   = currentHours + ':' + currentMinutes + ':' + currentSeconds;
 		let str      = '';
 		let arr      = output.split('');
@@ -205,11 +205,11 @@ $(function() {
 }); // jQuery IS LOADED -----------------------------------------------------------------------------------------------
 
 popup = function(url, title, w, h) {
-	let dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
-	let dualScreenTop  = window.screenTop != undefined ? window.screenTop : screen.top;
-	title == undefined ? title = 'Parsclick' : title;
-	w == undefined ? w = 1150 : w;
-	h == undefined ? h = 650 : w;
+	let dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
+	let dualScreenTop  = window.screenTop !== undefined ? window.screenTop : screen.top;
+	title === undefined ? title = 'Parsclick' : title;
+	w === undefined ? w = 1150 : w;
+	h === undefined ? h = 650 : w;
 	let width  = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
 	let height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
 
