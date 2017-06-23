@@ -45,10 +45,6 @@
 						<i title="GitHub" class="fa fa-github-square fa-3x"></i>
 					</a>
 				</li>
-				<i title="American Express" class="pull-left visible-lg fa fa-cc-amex fa-3x"></i>
-				<i title="Visa" class="pull-left visible-lg fa fa-cc-visa fa-3x"></i>
-				<i title="Master Card" class="pull-left visible-lg fa fa-cc-mastercard fa-3x"></i>
-				<i title="Stripe" class="pull-left visible-lg fa fa-cc-stripe fa-3x"></i>
 			</ul>
 			<div class="col-lg-4 col-lg-offset-8 col-md-4 col-md-offset-8 col-sm-4 col-sm-offset-8 col-xs-12">
 				<?php include_layout_template('aside-news.php'); ?>
