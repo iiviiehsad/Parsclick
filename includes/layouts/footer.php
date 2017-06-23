@@ -2,7 +2,7 @@
 <section class="container container-footer">
 	<footer class="row">
 		<nav class="col-lg-12">
-			<ul class="breadcrumb">
+			<ul class="breadcrumb col-lg-6">
 				<li><a href="<?php echo is_local() ? '' : 'index'; ?>">خانه</a></li>
 				<li><a href="<?php echo is_local() ? '' : '/'; ?>about">درباره ما</a></li>
 				<li><a href="<?php echo is_local() ? '' : '/'; ?>privacypolicy">شرایط و ضوابط</a></li>
@@ -12,9 +12,12 @@
 				<li><a href="<?php echo is_local() ? '' : '/'; ?>help">کمک به سایت</a></li>
 				<li><a href="<?php echo is_local() ? '' : '/'; ?>login">ورود</a></li>
 				<li><a href="<?php echo is_local() ? '' : '/'; ?>register">ثبت نام</a></li>
-				<li class="pull-left arial">Copyright &copy; <?php echo date('Y'); ?> Parsclick</li>
 			</ul>
-			<ul class="breadcrumb">
+			<div class="text-left text-white col-lg-6">Copyright &copy; <?php echo date('Y'); ?> Parsclick</div>
+			<div class="col-lg-4 pull-left">
+				<?php include_layout_template('aside-news.php'); ?>
+			</div>
+			<ul class="breadcrumb col-lg-6 pull-right">
 				<li>
 					<a target="_blank" href="https://www.facebook.com/persiantc">
 						<i title="Facebook" class="fa fa-facebook-square fa-3x"></i>
@@ -46,15 +49,12 @@
 					</a>
 				</li>
 			</ul>
-			<div class="col-lg-4 col-lg-offset-8 col-md-4 col-md-offset-8 col-sm-4 col-sm-offset-8 col-xs-12">
-				<?php include_layout_template('aside-news.php'); ?>
-			</div>
 		</nav>
 	</footer>
 </section>
 </section>
 <script src="<?php echo is_local() ? '' : '/'; ?>_/js/all.js"></script>
-<?php  include_layout_template('google_analytic.php'); ?>
+<?php include_layout_template('google_analytic.php'); ?>
 </body>
 </html>
 <?php if (isset($database)) $database->close_connection(); ?>
