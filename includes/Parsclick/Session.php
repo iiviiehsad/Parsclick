@@ -1,11 +1,5 @@
-<?php // namespace Parsclick;
-/**
- * Class Session to help work with Sessions
- * In our case, primarily to manage logging members in and out
- * Keep in mind when working with sessions that it is generally
- * inadvisable to store DB-related objects in sessions but instead
- * we can store for instance members_id in sessions or database columns
- */
+<?php
+
 class Session
 {
 	public  $id;
@@ -397,4 +391,4 @@ class Session
 
 		return TRUE;
 	}
-} # END of CLASS
+}

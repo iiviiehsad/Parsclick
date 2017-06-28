@@ -1,4 +1,4 @@
-<?php //namespace Parsclick;
+<?php
 class Article extends DatabaseObject
 {
 	protected static $table_name = 'articles';
@@ -242,4 +242,4 @@ class Article extends DatabaseObject
 	{
 		return ArticleComment::find_comments_for_article($this->id);
 	}
-} // END of CLASS
+}

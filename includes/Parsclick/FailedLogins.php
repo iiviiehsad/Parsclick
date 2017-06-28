@@ -1,8 +1,7 @@
-<?php //namespace Parsclick;
+<?php
 
 class FailedLogins extends DatabaseObject
 {
-
 	protected static $table_name = 'failed_logins';
 	protected static $db_fields  = ['id', 'username', 'count', 'last_time'];
 	public           $id;
@@ -71,5 +70,4 @@ class FailedLogins extends DatabaseObject
 
 		return TRUE;
 	}
-
-} // END of CLASS
+}

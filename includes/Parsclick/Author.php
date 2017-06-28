@@ -1,4 +1,4 @@
-<?php //namespace Parsclick;
+<?php
 
 class Author extends DatabaseObject
 {
@@ -101,5 +101,4 @@ class Author extends DatabaseObject
 			return FALSE;
 		}
 	}
-
-} // END of CLASS
+}

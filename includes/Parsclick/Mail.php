@@ -2,12 +2,12 @@
 
 class Mail
 {
-	protected $mailer;
 	public    $data;
 	public    $content;
 	public    $to       = [];
 	public    $subject  = 'پارس کلیک';
 	public    $fullName = 'کاربر گرامی';
+	protected $mailer;
 	protected $charset  = 'UTF-8';
 	protected $from     = EMAILUSER;
 	protected $host     = SMTP;
@@ -27,7 +27,24 @@ class Mail
 	}
 
 	/**
-	 * @param array  $emails
+	 * @param $email
+	 * @param $subject
+	 * @param $message
+	 * @return bool
+	 */
+	public static function send_email($email, $subject, $message)
+	{
+		$headers = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+		$headers .= 'From: Parsclick <do-not-reply@parsclick.net>' . "\r\n";
+		// $headers .= 'To: Amir <infoe@parsclick.net>, Hassan <infoe@parsclick.net>' . "\r\n";
+		// $headers .= 'Cc: info@parsclick.net' . "\r\n";
+		// $headers .= 'Bcc: info@parsclick.net' . "\r\n";
+		return mail($email, $subject, $message, $headers);
+	}
+
+	/**
+	 * @param array $emails
 	 * @param string $data
 	 * @param string $content
 	 * @param string $subject
@@ -71,23 +88,6 @@ class Mail
 
 		// return self::send_email($this->to, $this->subject, $this->template());
 		return $this->mailer->send();
-	}
-
-	/**
-	 * @param $email
-	 * @param $subject
-	 * @param $message
-	 * @return bool
-	 */
-	public static function send_email($email, $subject, $message)
-	{
-		$headers = 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-		$headers .= 'From: Parsclick <do-not-reply@parsclick.net>' . "\r\n";
-		// $headers .= 'To: Amir <infoe@parsclick.net>, Hassan <infoe@parsclick.net>' . "\r\n";
-		// $headers .= 'Cc: info@parsclick.net' . "\r\n";
-		// $headers .= 'Bcc: info@parsclick.net' . "\r\n";
-		return mail($email, $subject, $message, $headers);
 	}
 
 	/**

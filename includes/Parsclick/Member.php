@@ -1,4 +1,4 @@
-<?php //namespace Parsclick;
+<?php
 
 class Member extends DatabaseObject
 {

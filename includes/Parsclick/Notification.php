@@ -10,7 +10,7 @@ class Notification extends DatabaseObject
 	public           $button_text;
 	public           $button_url;
 	public           $created;
-	
+
 	/**
 	 * @param        $admin_id
 	 * @param string $content
@@ -27,10 +27,10 @@ class Notification extends DatabaseObject
 			$notification->admin_id    = $database->escape_value($admin_id);
 			$notification->content     = preg_replace([
 				'/`(.*?)`/',
-				'/\*(.*?)\*/'
+				'/\*(.*?)\*/',
 			], [
 				'<code>$1</code>',
-				'<strong>$1</strong>'
+				'<strong>$1</strong>',
 			], $content);
 			$notification->button_text = $database->escape_value($button_text);
 			$notification->button_url  = $database->escape_value($button_url);

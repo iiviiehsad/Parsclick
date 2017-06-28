@@ -1,4 +1,4 @@
-<?php //namespace Parsclick;
+<?php
 /**
  * File: php.ini -------------
  * file_upload          = on, true, 1
@@ -229,5 +229,4 @@ class File extends DatabaseObject
 			return "{$size_mb} MB";
 		}
 	}
-
-} // END of CLASS
+}

@@ -1,5 +1,5 @@
-<?php //namespace Parsclick;
-require_once(LIB_PATH . DS . "config.php");
+<?php
+require_once LIB_PATH . DS . 'config.php';
 
 /**
  * Class PostgresSQLDatabase is created to use
@@ -27,7 +27,8 @@ class PostgresSQLDatabase implements Database
 	 */
 	public function open_connection()
 	{
-		$this->connection = pg_connect('host=' . PG_SERVER . ' port=' . PG_PORT . ' dbname=' . PG_NAME . ' user=' . PG_USER . ' password=' . PG_PASS);
+		$this->connection = pg_connect('host=' . PG_SERVER . ' port=' . PG_PORT . ' dbname=' . PG_NAME . ' user=' . PG_USER .
+			' password=' . PG_PASS);
 		pg_set_client_encoding($this->connection, 'LATIN1');
 		if ( ! $this->connection) {
 			die('Database connection failed!');
@@ -56,27 +57,6 @@ class PostgresSQLDatabase implements Database
 		$this->confirm_query($result);
 
 		return $result;
-	}
-
-	/**
-	 * @param $result
-	 */
-	private function confirm_query($result)
-	{
-		if ( ! $result) {
-			$ip1 = '127.0.0.1';
-			$ip2 = '::1';
-			if ($_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2) {
-				$output1 = 'Database query failed! ' . '<br/><br/>';
-				$output2 = 'Last SQL Query: ' . $this->last_query;
-				$output  = warning($output1, $output2);
-			} else {
-				$output1 = 'اوخ!';
-				$output2 = 'درخواست شما ناقص یا ناهنجار است.';
-				$output  = warning($output1, $output2);
-			}
-			die($output);
-		}
 	}
 
 	/**
@@ -135,4 +115,24 @@ class PostgresSQLDatabase implements Database
 		return pg_affected_rows($this->connection);
 	}
 
-} // END of CLASS
+	/**
+	 * @param $result
+	 */
+	private function confirm_query($result)
+	{
+		if ( ! $result) {
+			$ip1 = '127.0.0.1';
+			$ip2 = '::1';
+			if ($_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2) {
+				$output1 = 'Database query failed! ' . '<br/><br/>';
+				$output2 = 'Last SQL Query: ' . $this->last_query;
+				$output  = warning($output1, $output2);
+			} else {
+				$output1 = 'اوخ!';
+				$output2 = 'درخواست شما ناقص یا ناهنجار است.';
+				$output  = warning($output1, $output2);
+			}
+			die($output);
+		}
+	}
+}

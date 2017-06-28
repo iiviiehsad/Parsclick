@@ -1,4 +1,4 @@
-<?php //namespace Parsclick;
+<?php
 
 class ArticleComment extends DatabaseObject
 {
@@ -113,4 +113,4 @@ class ArticleComment extends DatabaseObject
 
 		return self::find_by_sql($sql);
 	}
-} // END of CLASS
+}

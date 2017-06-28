@@ -1,4 +1,4 @@
-<?php //namespace Parsclick;
+<?php
 
 class MySQLDatabase implements Database
 {
@@ -63,27 +63,6 @@ class MySQLDatabase implements Database
 	}
 
 	/**
-	 * @param $result
-	 */
-	private function confirm_query($result)
-	{
-		if ( ! $result) {
-			$ip1 = '127.0.0.1';
-			$ip2 = '::1';
-			if ($_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2) {
-				$output1 = 'Database query failed! ' . mysqli_error($this->connection) . '<br/><br/>';
-				$output2 = 'Last SQL Query: ' . $this->last_query;
-				$output  = warning($output1, $output2);
-			} else {
-				$output1 = 'اوخ!';
-				$output2 = 'درخواست شما ناقص یا ناهنجار است.';
-				$output  = warning($output1, $output2);
-			}
-			die($output);
-		}
-	}
-
-	/**
 	 * @param $value
 	 * @return string
 	 */
@@ -139,5 +118,25 @@ class MySQLDatabase implements Database
 		return mysqli_affected_rows($this->connection);
 	}
 
-} // END of CLASS
+	/**
+	 * @param $result
+	 */
+	private function confirm_query($result)
+	{
+		if ( ! $result) {
+			$ip1 = '127.0.0.1';
+			$ip2 = '::1';
+			if ($_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2) {
+				$output1 = 'Database query failed! ' . mysqli_error($this->connection) . '<br/><br/>';
+				$output2 = 'Last SQL Query: ' . $this->last_query;
+				$output  = warning($output1, $output2);
+			} else {
+				$output1 = 'اوخ!';
+				$output2 = 'درخواست شما ناقص یا ناهنجار است.';
+				$output  = warning($output1, $output2);
+			}
+			die($output);
+		}
+	}
+}
 

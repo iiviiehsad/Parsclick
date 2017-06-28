@@ -1,4 +1,4 @@
-<?php //namespace Parsclick;
+<?php
 
 class Category extends DatabaseObject
 {
@@ -8,5 +8,4 @@ class Category extends DatabaseObject
 	public           $name;
 	public           $position;
 	public           $visible;
-	
-} // END of CLASS
+}

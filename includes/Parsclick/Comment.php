@@ -1,4 +1,4 @@
-<?php //namespace Parsclick;
+<?php
 class Comment extends DatabaseObject
 {
 	protected static $table_name = 'comments';
@@ -126,4 +126,4 @@ class Comment extends DatabaseObject
 
 		return ! empty($result_set) ? $result_set : NULL;
 	}
-} // END of CLASS
+}

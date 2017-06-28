@@ -1,4 +1,5 @@
-<?php //namespace Parsclick;
+<?php
+
 class pagination
 {
 	public $current_page;
@@ -67,5 +68,4 @@ class pagination
 	{
 		return ceil($this->total_count / $this->per_page);
 	}
-
-} // END of CLASS
+}

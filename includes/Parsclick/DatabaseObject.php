@@ -1,4 +1,4 @@
-<?php // namespace Parsclick;
+<?php
 
 abstract class DatabaseObject
 {
@@ -404,5 +404,4 @@ abstract class DatabaseObject
 	{
 		return md5(uniqid(mt_rand(), TRUE));
 	}
-
-} // END of CLASS
+}

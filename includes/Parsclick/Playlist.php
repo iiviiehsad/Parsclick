@@ -1,4 +1,4 @@
-<?php //namespace Parsclick;
+<?php
 
 class Playlist extends DatabaseObject
 {
@@ -16,10 +16,10 @@ class Playlist extends DatabaseObject
 	public static function courses_playlist_for_member($course_id, $member_id)
 	{
 		global $database;
-		$sql = 'SELECT * ';
-		$sql .= ' FROM ' . self::$table_name;
-		$sql .= ' WHERE course_id = ' . $database->escape_value($course_id);
-		$sql .= ' AND member_id = ' . $database->escape_value($member_id);
+		$sql          = 'SELECT * ';
+		$sql          .= ' FROM ' . self::$table_name;
+		$sql          .= ' WHERE course_id = ' . $database->escape_value($course_id);
+		$sql          .= ' AND member_id = ' . $database->escape_value($member_id);
 		$result_array = self::find_by_sql($sql);
 
 		return ! empty($result_array) ? array_shift($result_array) : FALSE;
@@ -53,5 +53,4 @@ class Playlist extends DatabaseObject
 
 		return array_shift($row);
 	}
-
-} // END of CLASS
+}

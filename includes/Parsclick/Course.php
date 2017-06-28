@@ -1,4 +1,5 @@
-<?php //namespace Parsclick;
+<?php
+
 class Course extends DatabaseObject
 {
 	protected static $table_name = 'courses';
@@ -69,10 +70,10 @@ class Course extends DatabaseObject
 	public static function num_courses_for_category($category_id = 0)
 	{
 		global $database;
-		$sql = 'SELECT * ';
-		$sql .= ' FROM ' . self::$table_name;
-		$sql .= ' WHERE category_id = ' . $database->escape_value($category_id);
-		$sql .= ' ORDER BY position ASC';
+		$sql         = 'SELECT * ';
+		$sql         .= ' FROM ' . self::$table_name;
+		$sql         .= ' WHERE category_id = ' . $database->escape_value($category_id);
+		$sql         .= ' ORDER BY position ASC';
 		$article_set = $database->query($sql);
 
 		return $database->num_rows($article_set);
@@ -119,7 +120,7 @@ class Course extends DatabaseObject
 		if ($public) {
 			$sql .= ' WHERE visible = 1 ';
 		}
-		$sql .= ' ORDER BY id DESC LIMIT 1';
+		$sql        .= ' ORDER BY id DESC LIMIT 1';
 		$course_set = self::find_by_sql($sql);
 
 		return ! empty($course_set) ? array_shift($course_set) : FALSE;
@@ -132,8 +133,8 @@ class Course extends DatabaseObject
 	public static function find_newest_course_for_author($author_id = 0)
 	{
 		global $database;
-		$sql = 'SELECT * FROM ' . self::$table_name . ' WHERE ' . ' author_id = ' . $database->escape_value($author_id);
-		$sql .= ' ORDER BY created_at DESC LIMIT 1';
+		$sql        = 'SELECT * FROM ' . self::$table_name . ' WHERE ' . ' author_id = ' . $database->escape_value($author_id);
+		$sql        .= ' ORDER BY created_at DESC LIMIT 1';
 		$course_set = self::find_by_sql($database->escape_value($sql));
 
 		return ! empty($course_set) ? array_shift($course_set) : FALSE;
@@ -166,9 +167,9 @@ class Course extends DatabaseObject
 	public static function count_invisible_courses_for_category($category_id = 0)
 	{
 		global $database;
-		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
-		$sql .= ' WHERE category_id = ' . $database->escape_value($category_id);
-		$sql .= ' AND visible = 0 ';
+		$sql        = 'SELECT COUNT(*) FROM ' . self::$table_name;
+		$sql        .= ' WHERE category_id = ' . $database->escape_value($category_id);
+		$sql        .= ' AND visible = 0 ';
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
 
