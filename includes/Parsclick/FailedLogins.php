@@ -23,7 +23,7 @@ class FailedLogins extends DatabaseObject
 			$failed_login->update();
 		}
 
-		return TRUE;
+		return true;
 	}
 
 	/**
@@ -43,9 +43,9 @@ class FailedLogins extends DatabaseObject
 			$remaining_delay = ($failed_login->last_time + $delay) - time();
 
 			return ceil($remaining_delay / 60);
-		} else {
-			return 0;
 		}
+
+		return 0;
 	}
 
 	/**
@@ -68,6 +68,6 @@ class FailedLogins extends DatabaseObject
 			$failed_login->update();
 		}
 
-		return TRUE;
+		return true;
 	}
 }

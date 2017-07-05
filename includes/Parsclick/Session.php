@@ -187,11 +187,11 @@ class Session
 			$stored_time = $_SESSION['csrf_token_time'];
 
 			return ($stored_time + $max_elapsed) >= time();
-		} else {
-			$this->destroy_csrf_token();
-
-			return FALSE;
 		}
+
+		$this->destroy_csrf_token();
+
+		return false;
 	}
 
 	/**
@@ -206,9 +206,9 @@ class Session
 			$stored_token = $_SESSION['csrf_token'];
 
 			return $user_token === $stored_token;
-		} else {
-			return FALSE;
 		}
+
+		return false;
 	}
 
 	/**
@@ -349,9 +349,9 @@ class Session
 		}
 		if (($_SESSION['last_login'] + $max_elapsed) >= time()) {
 			return TRUE;
-		} else {
-			return FALSE;
 		}
+
+		return FALSE;
 	}
 
 	/**

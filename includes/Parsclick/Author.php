@@ -45,7 +45,7 @@ class Author extends DatabaseObject
 	}
 
 	/**
-	 *
+	 * Check the status
 	 */
 	public function check_status()
 	{
