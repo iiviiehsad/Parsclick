@@ -65,9 +65,9 @@ class Comment extends DatabaseObject
 			], $body);
 
 			return $comment;
-		} else {
-			return FALSE;
 		}
+
+		return FALSE;
 	}
 
 	/**
