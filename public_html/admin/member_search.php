@@ -1,4 +1,4 @@
-<?php require_once('../../includes/initialize.php');
+<?php require_once '../../includes/initialize.php';
 $session->confirm_admin_logged_in();
 $search_query = trim($_GET['q']);
 if (isset($search_query) && ! empty($search_query)) {

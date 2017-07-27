@@ -157,4 +157,4 @@ class Member extends DatabaseObject
 		return $database->affected_rows() ? TRUE : FALSE;
 	}
 
-} // END of CLASS
+}
