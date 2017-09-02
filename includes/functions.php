@@ -32,7 +32,7 @@ function redirect_to($location = NULL)
  */
 function output_message($message = '', $errors = '')
 {
-	if ( ! empty($message)) return bootstrap_alert($message, 'info');
+	if ( ! empty($message)) return bootstrap_alert($message);
 	if ( ! empty($errors)) return bootstrap_alert($errors, 'danger');
 
 	return '';
@@ -47,7 +47,7 @@ function bootstrap_alert($message = '', $kind = 'info')
 {
 	$output = "<div class=\"alert alert-{$kind} alert-dismissible\" role=\"alert\">";
 	$output .= '<button type="button" class="close" data-dismiss="alert">';
-	$output .= '<span aria-hidden="true">&times;</span>';
+	$output .= '<span>&times;</span>';
 	$output .= '<span class="sr-only"></span>';
 	$output .= '</button>';
 	$output .= '<i class="fa fa-info-circle fa-fw fa-lg"></i>';
@@ -137,7 +137,7 @@ function time_left($date, $interval = '+6 months')
  */
 function find_newest_date($dates = [])
 {
-	$dates = array_map(function($date) {
+	$dates = array_map(function ($date) {
 		return strtotime($date);
 	}, $dates);
 
@@ -152,7 +152,7 @@ function find_newest_date($dates = [])
  */
 function idle($date)
 {
-    return time() > time_left($date);
+	return time() > time_left($date);
 }
 
 /**
@@ -217,15 +217,15 @@ function is_local()
  * echo ip_info("Visitor", "City");
  * echo ip_info("Visitor", "Address");
  *
- * @param null   $ip          gets the IP address
- * @param string $purpose     gets Country, Country Code, State, City or Address
- * @param bool   $deep_detect TRUE is user is using proxy and FALSE otherwise
+ * @param null $ip gets the IP address
+ * @param string $purpose gets Country, Country Code, State, City or Address
+ * @param bool $deep_detect true is user is using proxy and false otherwise
  * @return array|null|string of location details
  */
-function ip_info($ip = NULL, $purpose = 'location', $deep_detect = TRUE)
+function ip_info($ip = NULL, $purpose = 'location', $deep_detect = true)
 {
 	$output = NULL;
-	if (filter_var($ip, FILTER_VALIDATE_IP) === FALSE) {
+	if (filter_var($ip, FILTER_VALIDATE_IP) === false) {
 		$ip = $_SERVER['REMOTE_ADDR'];
 		if ($deep_detect) {
 			if (filter_var(@$_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP)) {
@@ -236,33 +236,33 @@ function ip_info($ip = NULL, $purpose = 'location', $deep_detect = TRUE)
 			}
 		}
 	}
-	$purpose    = str_replace(array('name', "\n", "\t", ' ', '-', '_'), NULL, strtolower(trim($purpose)));
-	$support    = array('country', 'countrycode', 'state', 'region', 'city', 'location', 'address');
-	$continents = array(
+	$purpose    = str_replace(['name', "\n", "\t", ' ', '-', '_'], NULL, strtolower(trim($purpose)));
+	$support    = ['country', 'countrycode', 'state', 'region', 'city', 'location', 'address'];
+	$continents = [
 		'AF' => 'Africa',
 		'AN' => 'Antarctica',
 		'AS' => 'Asia',
 		'EU' => 'Europe',
 		'OC' => 'Australia (Oceania)',
 		'NA' => 'North America',
-		'SA' => 'South America'
-	);
-	if (filter_var($ip, FILTER_VALIDATE_IP) && in_array($purpose, $support, FALSE)) {
+		'SA' => 'South America',
+	];
+	if (filter_var($ip, FILTER_VALIDATE_IP) && in_array($purpose, $support, false)) {
 		$ipdat = @json_decode(file_get_contents('http://www.geoplugin.net/json.gp?ip=' . $ip));
 		if (@strlen(trim($ipdat->geoplugin_countryCode)) == 2) {
 			switch ($purpose) {
 				case 'location':
-					$output = array(
+					$output = [
 						'city'           => @$ipdat->geoplugin_city,
 						'state'          => @$ipdat->geoplugin_regionName,
 						'country'        => @$ipdat->geoplugin_countryName,
 						'country_code'   => @$ipdat->geoplugin_countryCode,
 						'continent'      => @$continents[strtoupper($ipdat->geoplugin_continentCode)],
-						'continent_code' => @$ipdat->geoplugin_continentCode
-					);
+						'continent_code' => @$ipdat->geoplugin_continentCode,
+					];
 					break;
 				case 'address':
-					$address = array($ipdat->geoplugin_countryName);
+					$address = [$ipdat->geoplugin_countryName];
 					if (@strlen($ipdat->geoplugin_regionName) >= 1) {
 						$address[] = $ipdat->geoplugin_regionName;
 					}
@@ -301,7 +301,7 @@ function ip_info($ip = NULL, $purpose = 'location', $deep_detect = TRUE)
  */
 function parse_rss_feed($xml)
 {
-	return simplexml_load_file($xml, NULL, LIBXML_NOCDATA);
+	return simplexml_load_string(file_get_contents($xml, NULL, LIBXML_NOCDATA));
 }
 
 /******************************************************************************************************/
@@ -362,11 +362,11 @@ function has_presence($value)
  */
 function has_length($value, $options = [])
 {
-	if (isset($options['max']) && (strlen($value) > (int) $options['max'])) return FALSE;
-	if (isset($options['min']) && (strlen($value) < (int) $options['min'])) return FALSE;
-	if (isset($options['exact']) && (strlen($value) != (int) $options['exact'])) return FALSE;
+	if (isset($options['max']) && (strlen($value) > (int) $options['max'])) return false;
+	if (isset($options['min']) && (strlen($value) < (int) $options['min'])) return false;
+	if (isset($options['exact']) && (strlen($value) != (int) $options['exact'])) return false;
 
-	return TRUE;
+	return true;
 }
 
 /**
@@ -391,11 +391,11 @@ function has_format_matching($value, $regex = '//')
  */
 function has_number($value, $options = [])
 {
-	if ( ! is_numeric($value)) return FALSE;
-	if (isset($options['max']) && ($value > (int) $options['max'])) return FALSE;
-	if (isset($options['min']) && ($value < (int) $options['min'])) return FALSE;
+	if ( ! is_numeric($value)) return false;
+	if (isset($options['max']) && ($value > (int) $options['max'])) return false;
+	if (isset($options['min']) && ($value < (int) $options['min'])) return false;
 
-	return TRUE;
+	return true;
 }
 
 /**
@@ -407,7 +407,7 @@ function has_number($value, $options = [])
  */
 function has_inclusion_in($value, $set = [])
 {
-	return in_array($value, $set, FALSE);
+	return in_array($value, $set, false);
 }
 
 /**
@@ -419,7 +419,7 @@ function has_inclusion_in($value, $set = [])
  */
 function has_exclusion_from($value, $set = [])
 {
-	return ! in_array($value, $set, FALSE);
+	return ! in_array($value, $set, false);
 }
 
 /**
@@ -452,7 +452,7 @@ function file_contains_php($file)
 	$contents = file_get_contents($file);
 	$position = strpos($contents, '<?php');
 
-	return $position !== FALSE;
+	return $position !== false;
 }
 
 /**
@@ -470,7 +470,7 @@ function file_upload_error($error_integer)
 		UPLOAD_ERR_NO_FILE    => 'هیچ فایلی انتخاب نشد!',
 		UPLOAD_ERR_NO_TMP_DIR => 'پوشه موقت موجود نیست!',
 		UPLOAD_ERR_CANT_WRITE => 'نمیشه روی دیسک نوشت!',
-		UPLOAD_ERR_EXTENSION  => 'آپلود فایل بخاطر نوع آن متوقف شد!'
+		UPLOAD_ERR_EXTENSION  => 'آپلود فایل بخاطر نوع آن متوقف شد!',
 	];
 
 	return $upload_errors[$error_integer];
@@ -480,7 +480,7 @@ function file_upload_error($error_integer)
  * Check if it's disposable email address
  *
  * @param $mail string gets user email
- * @return bool TRUE if it is disposable and FALSE if not
+ * @return bool true if it is disposable and false if not
  */
 function is_temp_mail($mail)
 {
@@ -537,7 +537,7 @@ HTML;
 function log_action($action, $message = '')
 {
 	$logfile = SITE_ROOT . DS . 'logs' . DS . 'log.txt';
-	$new     = file_exists($logfile) ? FALSE : TRUE;
+	$new     = file_exists($logfile) ? false : true;
 	if ($handle = fopen($logfile, 'a')) { //appends
 		$timestamp = datetime_to_text(strftime('%Y-%m-%d %H:%M:%S', time()));
 		// $country   = ip_info("Visitor", "Country");
@@ -595,16 +595,17 @@ function course_url()
  * @param bool $public
  * @return string
  */
-function articles($subject_array, $article_array, $public = FALSE)
+function articles($subject_array, $article_array, $public = false)
 {
-	$output = '<div id="accordion">';
-	$output .= '<ul class="list-group">';
+	$output      = '<div id="accordion">';
+	$output      .= '<ul class="list-group">';
 	$subject_set = Subject::find_all($public);
 	foreach ($subject_set as $subject) {
 		$output .= '<li class="list-group-item">';
 		$output .= '<span class="badge">' . convert(Article::count_articles_for_subject($subject->id, $public)) . '</span>';
 		if ( ! $public) {
-			$output .= '<small><a class="label label-as-badge label-info glyphicon glyphicon-pencil" href="' . article_url() . '?subject=' . urlencode($subject->id) . '"></a></small>&nbsp;';
+			$output .= '<small><a class="label label-as-badge label-info glyphicon glyphicon-pencil" href="' . article_url() .
+				'?subject=' . urlencode($subject->id) . '"></a></small>&nbsp;';
 		}
 		$output .= '<a class="accordion-toggle ';
 		if ($subject_array && $subject->id == $subject_array->id) {
@@ -617,14 +618,16 @@ function articles($subject_array, $article_array, $public = FALSE)
 		$output .= '</strong>';
 		$output .= '</a>';
 		if (Article::count_recent_articles_for_subject($subject->id, $public) > 0) {
-			$output .= '<small>&nbsp;<kbd>' . convert(Article::count_recent_articles_for_subject($subject->id, $public)) . ' مقاله جدید</kbd></small>';
+			$output .= '<small>&nbsp;<kbd>' . convert(Article::count_recent_articles_for_subject($subject->id, $public)) .
+				' مقاله جدید</kbd></small>';
 		}
 		if ( ! $public && Article::count_invisible_articles_for_subject($subject->id) > 0) {
-			$output .= '<small>&nbsp;<kbd>' . convert(Article::count_invisible_articles_for_subject($subject->id)) . ' مقاله مخفی</kbd></small>';
+			$output .= '<small>&nbsp;<kbd>' . convert(Article::count_invisible_articles_for_subject($subject->id)) .
+				' مقاله مخفی</kbd></small>';
 		}
 		$article_set = Article::find_articles_for_subject($subject->id, $public);
-		$output .= '<div id="' . urlencode($subject->id) . '"';
-		$output .= ' class="collapse';
+		$output      .= '<div id="' . urlencode($subject->id) . '"';
+		$output      .= ' class="collapse';
 		if ($subject_array && $subject->id == $subject_array->id) {
 			$output .= ' in';
 		}
@@ -632,9 +635,9 @@ function articles($subject_array, $article_array, $public = FALSE)
 		$output .= '<div style="margin-top: 1em;">';
 		foreach ($article_set as $article) {
 			$output .= '<p>';
-			$query = http_build_query([
+			$query  = http_build_query([
 				'subject' => urlencode($subject->id),
-				'article' => urlencode($article->id)
+				'article' => urlencode($article->id),
 			]);
 			$output .= '<a href="' . article_url() . '?' . $query . '"';
 			if ($article_array && $article->id == $article_array->id) {
@@ -671,16 +674,17 @@ function articles($subject_array, $article_array, $public = FALSE)
  * @param bool $public
  * @return string
  */
-function courses($category_array, $course_array, $public = FALSE)
+function courses($category_array, $course_array, $public = false)
 {
-	$output = '<div id="accordion">';
-	$output .= '<ul class="list-group">';
+	$output       = '<div id="accordion">';
+	$output       .= '<ul class="list-group">';
 	$category_set = Category::find_all($public);
 	foreach ($category_set as $category) {
 		$output .= '<li class="list-group-item">';
 		$output .= '<span class="badge">' . convert(Course::count_courses_for_category($category->id, $public)) . '</span>';
 		if ( ! $public) {
-			$output .= '<small><a class="label label-as-badge label-danger glyphicon glyphicon-pencil" href="' . course_url() . '?category=' . urlencode($category->id) . '"></a></small>&nbsp;';
+			$output .= '<small><a class="label label-as-badge label-danger glyphicon glyphicon-pencil" href="' . course_url() .
+				'?category=' . urlencode($category->id) . '"></a></small>&nbsp;';
 		}
 		$output .= '<a class="accordion-toggle ';
 		if ($category_array && $category->id == $category_array->id) {
@@ -693,14 +697,16 @@ function courses($category_array, $course_array, $public = FALSE)
 		$output .= '</strong>';
 		$output .= '</a>';
 		if (Course::count_recent_course_for_category($category->id, $public) > 0) {
-			$output .= '<small>&nbsp;<kbd>' . convert(Course::count_recent_course_for_category($category->id, $public)) . 'درس جدید</kbd></small>';
+			$output .= '<small>&nbsp;<kbd>' . convert(Course::count_recent_course_for_category($category->id, $public)) .
+				'درس جدید</kbd></small>';
 		}
 		if ( ! $public && Course::count_invisible_courses_for_category($category->id) > 0) {
-			$output .= '<small>&nbsp;<kbd>' . convert(Course::count_invisible_courses_for_category($category->id)) . 'درس مخفی</kbd></small>';
+			$output .= '<small>&nbsp;<kbd>' . convert(Course::count_invisible_courses_for_category($category->id)) .
+				'درس مخفی</kbd></small>';
 		}
 		$course_set = Course::find_courses_for_category($category->id, $public);
-		$output .= '<div id="' . urlencode($category->id) . '"';
-		$output .= ' class="collapse';
+		$output     .= '<div id="' . urlencode($category->id) . '"';
+		$output     .= ' class="collapse';
 		if ($category_array && $category->id == $category_array->id) {
 			$output .= ' in';
 		}
@@ -708,9 +714,9 @@ function courses($category_array, $course_array, $public = FALSE)
 		$output .= '<div style="margin-top: 1em;">';
 		foreach ($course_set as $course) {
 			$output .= '<p>';
-			$query = http_build_query([
+			$query  = http_build_query([
 				'category' => urlencode($category->id),
-				'course'   => urlencode($course->id)
+				'course'   => urlencode($course->id),
 			]);
 			$output .= '<a href="' . course_url() . '?' . $query . '"';
 			if ($course_array && $course->id == $course_array->id) {
@@ -749,14 +755,14 @@ function courses($category_array, $course_array, $public = FALSE)
 function public_courses()
 {
 	$output       = '<ol class="list-unstyled">';
-	$category_set = Category::find_all(TRUE);
+	$category_set = Category::find_all(true);
 	foreach ($category_set as $category) {
-		$output .= '<li>';
-		$output .= '<h2>';
-		$output = ! empty($category->name) ? $output . $category->name : $output . '-';
-		$output .= '</h2>';
-		$course_set = Course::find_courses_for_category($category->id, TRUE);
-		$output .= '<div class="list-group">';
+		$output     .= '<li>';
+		$output     .= '<h2>';
+		$output     = ! empty($category->name) ? $output . $category->name : $output . '-';
+		$output     .= '</h2>';
+		$course_set = Course::find_courses_for_category($category->id, true);
+		$output     .= '<div class="list-group">';
 		foreach ($course_set as $course) {
 			$output .= "<a class='list-group-item' target='_blank' title='برو به یوتیوب' href='//www.youtube.com/playlist?list={$course->youtubePlaylist}'>";
 			$output = ! empty($course->name) ? $output . $course->name : $output . '-';
@@ -778,7 +784,7 @@ function public_courses()
  *
  * @param bool $public
  */
-function find_selected_article($public = FALSE)
+function find_selected_article($public = false)
 {
 	global $current_subject;
 	global $current_article;
@@ -807,7 +813,7 @@ function find_selected_article($public = FALSE)
  *
  * @param bool $public
  */
-function find_selected_course($public = FALSE)
+function find_selected_course($public = false)
 {
 	global $current_category;
 	global $current_course;
@@ -834,7 +840,7 @@ function find_selected_course($public = FALSE)
 /**
  * Checks if request already have prev or next page token
  *
- * @return null|string
+ * @return array
  */
 function get_prev_next_token()
 {
@@ -842,13 +848,17 @@ function get_prev_next_token()
 
 	if (isset($get['prevPageToken'])) {
 		return ['prevPageToken' => $get['prevPageToken'] . '#comments'];
-	} elseif (isset($get['nextPageToken'])) {
-		return ['nextPageToken' => $get['nextPageToken'] . '#comments'];
-	} elseif (isset($get['prevPageToken'], $get['nextPageToken'])) {
-		return ['prevPageToken=' . $get['prevPageToken'] . 'nextPageToken=' . $get['nextPageToken'] . '#comments'];
-	} else {
-		return [];
 	}
+
+	if (isset($get['nextPageToken'])) {
+		return ['nextPageToken' => $get['nextPageToken'] . '#comments'];
+	}
+
+	if (isset($get['prevPageToken'], $get['nextPageToken'])) {
+		return ['prevPageToken=' . $get['prevPageToken'] . 'nextPageToken=' . $get['nextPageToken'] . '#comments'];
+	}
+
+	return [];
 }
 
 /**
@@ -863,7 +873,7 @@ function set_prev_next_page($playlist_id)
 		'hl'         => 'fa',
 		'maxResults' => MAXRESULTS,
 		'playlistId' => $playlist_id,
-		'key'        => YOUTUBEAPI
+		'key'        => YOUTUBEAPI,
 	]);
 
 	if ( ! isset($get['nextPageToken'], $get['prevPageToken'])) {
@@ -890,11 +900,11 @@ function get_playlist_content($playlist_id = 0)
 		# TODO: $content = @file_get_contents($url);
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$content = curl_exec($ch);
 		curl_close($ch);
 
-		return json_decode($content, TRUE);
+		return json_decode($content, true);
 	}
 
 	return NULL;
@@ -923,7 +933,7 @@ function paginate($pagination, $page, $urls = [])
 				$output .= urldecode(http_build_query($urls));
 			}
 			$output .= '" aria-label="Previous">';
-			$output .= '<span aria-hidden="true"> &lt;&lt; </span>';
+			$output .= '<span> &lt;&lt; </span>';
 			$output .= '</a></li>';
 		}
 		for ($i = 1; $i < $pagination->total_page() + 1; $i++) {
@@ -948,7 +958,7 @@ function paginate($pagination, $page, $urls = [])
 				$output .= urldecode(http_build_query($urls));
 			}
 			$output .= '" aria-label="Next">';
-			$output .= '<span aria-hidden="true">&gt;&gt;</span>';
+			$output .= '<span>&gt;&gt;</span>';
 			$output .= '</a></li>';
 		}
 		$output .= '</ul></nav>';
@@ -958,7 +968,7 @@ function paginate($pagination, $page, $urls = [])
 }
 
 /**
- * @param array  $files
+ * @param array $files
  * @param string $active
  * @return string
  */
@@ -1080,7 +1090,7 @@ function signed_string_is_valid($signed_string)
 	$array = explode('--', $signed_string);
 	if (count($array) != 2) {
 		# string is malformed or not signed
-		return FALSE;
+		return false;
 	}
 	# Sign the string portion again. Should create same
 	# checksum and therefore the same signed string.
