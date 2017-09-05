@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-	<title><?php global $title; echo isset($title) ? $title : 'پارس کلیک - سینمای برنامه نویسان'; ?></title>
+	<title><?php global $title; echo $title ?? 'پارس کلیک - سینمای برنامه نویسان'; ?></title>
 	<meta charset="UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<meta name="description" content="<?php global $description;
-	echo isset($description) ? $description : 'سینمای برنامه نویسان آموزش رایگان ویدیویی توسعه وب' ?>"/>
+	echo $description ?? 'سینمای برنامه نویسان آموزش رایگان ویدیویی توسعه وب' ?>"/>
 	<meta name="keywords"
 	      content="برنامه نویسی, وب, جاوا, روبی, پایتون, پی اچ پی, سی اس اس, اچ تی ام ال, جاوااسکریپت, گیت"/>
 	<meta name="copyright" content="parsclick.net">
@@ -18,18 +18,18 @@
 	<meta name="image" content="<?php echo is_local() ? '' : '/'; ?>images/misc/logo.png"/>
 	<!--Facebook Tags-->
 	<meta property="og:url" content="<?php echo 'https://' . DOMAIN . $_SERVER['REQUEST_URI']; ?>"/>
-	<meta property="og:title" content="<?php echo isset($title) ? $title : 'پارس کلیک - سینمای برنامه نویسان'; ?>"/>
+	<meta property="og:title" content="<?php echo $title ?? 'پارس کلیک - سینمای برنامه نویسان'; ?>"/>
 	<meta property="og:type" content="article"/>
 	<meta property="og:image" content="<?php echo 'https://' . DOMAIN . '/images/misc/parsclick-logo.png'; ?>"/>
 	<meta property="article:author" content="https://www.facebook.com/persiantc"/>
 	<meta property="og:locale" content="fa_IR"/>
 	<meta property="og:description"
-	      content="<?php echo isset($description) ? $description : 'سینمای برنامه نویسان آموزش رایگان ویدیویی توسعه وب' ?>"/>
+	      content="<?php echo $description ?? 'سینمای برنامه نویسان آموزش رایگان ویدیویی توسعه وب' ?>"/>
 	<!--Twitter Tags-->
 	<meta name="twitter:card" content="summary"/>
-	<meta name="twitter:title" content="<?php echo isset($title) ? $title : 'پارس کلیک - سینمای برنامه نویسان'; ?>"/>
+	<meta name="twitter:title" content="<?php echo $title ?? 'پارس کلیک - سینمای برنامه نویسان'; ?>"/>
 	<meta name="twitter:description"
-	      content="<?php echo isset($description) ? $description : 'سینمای برنامه نویسان آموزش رایگان ویدیویی توسعه وب' ?>"/>
+	      content="<?php echo $description ?? 'سینمای برنامه نویسان آموزش رایگان ویدیویی توسعه وب' ?>"/>
 	<meta name="twitter:image" content="<?php echo 'https://' . DOMAIN . '/images/misc/parsclick-logo.png'; ?>"/>
 	<!--Apple Icons-->
 	<meta name="apple-mobile-web-app-capable" content="yes">
