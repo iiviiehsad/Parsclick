@@ -3,6 +3,7 @@ Database
 logs
 public_html/.htaccess
 htpasswd
+initialize.php
 
 # package.json
 # gulpfile.js
