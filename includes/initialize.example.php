@@ -1,4 +1,8 @@
 <?php
+
+# TODO: Rename this file to initialize.php
+# TODO: Replace the credentials below to your own
+
 /*
 |----------------------------------------------------------------
 | This file is required in every single
@@ -92,11 +96,3 @@ $message = $session->message();
 */
 $database = new MySQLDatabase();
 $db       =& $database;
-/*
-|----------------------------------------------------------------
-| Cron Jobs
-|----------------------------------------------------------------
-| mysql -uamirhassan -p1365@1986Ha -DParsclick -e"DELETE FROM failed_logins"
-| mysql -uamirhassan -p1365@1986Ha -DParsclick -e"UPDATE members SET token = NULL"
-| mysql -uamirhassan -p1365@1986Ha -DParsclick -e"DELETE FROM members WHERE status = 0"
-*/
