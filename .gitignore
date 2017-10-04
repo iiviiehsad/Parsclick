@@ -1,3 +1,4 @@
+Parsclick.sql
 /index.php
 logs
 public_html/.htaccess
@@ -26,7 +27,7 @@ initialize.php
 ### Node ###
 node_modules
 # Logs
-logs
+/logs/
 *.log
 npm-debug.log*
 
