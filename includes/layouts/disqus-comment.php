@@ -12,7 +12,7 @@ if ($current_article) {
 	<div id="disqus_thread"></div>
 	<script>
 		var disqus_config = function() {
-			//this.page.url        = "<?php //echo DOMAIN . $_SERVER['REQUEST_URI']; ?>";
+			this.page.url        = "<?php echo "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>";
 			this.page.identifier = "<?php echo $identifier; ?>";
 		};
 		(function() { // DON'T EDIT BELOW THIS LINE

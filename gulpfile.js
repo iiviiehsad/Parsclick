@@ -42,7 +42,7 @@ elixir(function(mix) {
 			// 'jquery.countdown.min.js',
 			'_myscript.js'
 		])
-	// TDD: type `gulp tdd` in command line to track your test
+	// TODD: type `gulp tdd` in command line to track your test
 	// .phpSpec()
 	// .phpUnit()
 	;

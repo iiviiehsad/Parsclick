@@ -1,26 +1,26 @@
 {
-	"name": "parsclick",
-	"version": "5.0.0",
-	"description": "Parsclick Persian Online Tutorial Libray",
-	"main": "gulpfile.js",
-	"dependencies": {
-		"babel": "^6.23.0",
-		"gulp": "^3.9.1",
-		"gulp-uglify": "^3.0.0",
-		"laravel-elixir": "^6.0.0-11",
-		"uglify-js": "^3.0.15"
+	"name"         : "parsclick",
+	"version"      : "5.0.0",
+	"description"  : "Parsclick Persian Online Tutorial Libray",
+	"main"         : "gulpfile.js",
+	"dependencies" : {
+		"babel"          : "^6.23.0",
+		"gulp"           : "^3.9.1",
+		"gulp-uglify"    : "^3.0.0",
+		"laravel-elixir" : "^6.0.0-11",
+		"uglify-js"      : "^3.0.15"
 	},
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+	"scripts"      : {
+		"test" : "echo \"Error: no test specified\" && exit 1"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/hassanazimi/Parsclick.git"
+	"repository"   : {
+		"type" : "git",
+		"url"  : "git+https://github.com/hassanazimi/Parsclick.git"
 	},
-	"author": "Amir Hassan Azimi",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/hassanazimi/Parsclick/issues"
+	"author"       : "Amir Hassan Azimi",
+	"license"      : "ISC",
+	"bugs"         : {
+		"url" : "https://github.com/hassanazimi/Parsclick/issues"
 	},
-	"homepage": "https://github.com/hassanazimi/Parsclick#readme"
+	"homepage"     : "https://github.com/hassanazimi/Parsclick#readme"
 }
