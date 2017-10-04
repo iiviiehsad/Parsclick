@@ -1,4 +1,4 @@
-Database/Parsclick.sql
+Parsclick.sql
 /index.php
 logs
 public_html/.htaccess
@@ -65,7 +65,6 @@ config.codekit
 .htpasswds
 .lastlogin
 .md5sum
-.mysql_backup
 .pearrc
 .rnd
 .ssh
