@@ -22,7 +22,7 @@ class Notification extends DatabaseObject
 	{
 		global $database;
 		if ( ! empty($content) && ! empty($admin_id)) {
-			$notification              = new Notification();
+			$notification              = new self();
 			$notification->id          = $database->escape_value((int) '');
 			$notification->admin_id    = $database->escape_value($admin_id);
 			$notification->content     = preg_replace([
@@ -37,8 +37,8 @@ class Notification extends DatabaseObject
 			$notification->created     = strftime('%Y-%m-%d %H:%M:%S', time());
 
 			return $notification;
-		} else {
-			return FALSE;
 		}
+
+		return FALSE;
 	}
 }

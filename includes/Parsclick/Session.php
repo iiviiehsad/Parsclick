@@ -16,15 +16,6 @@ class Session
 		session_start();
 		$this->check_message();
 		$this->check_login();
-		if ($this->logged_in) {
-			# actions to take right away if member is logged in
-		} elseif ($this->admin_logged_in) {
-			# actions to take right away if admin is logged in
-		} elseif ($this->author_logged_in) {
-			# actions to take right away if author is logged in
-		} else {
-			# actions to take right away if any user is not logged in
-		}
 	}
 
 	/**
@@ -291,12 +282,15 @@ class Session
 		$check_ip         = FALSE; # FALSE because everybody uses proxy
 		$check_user_agent = TRUE;
 		$check_last_login = TRUE;
+
 		if ($check_ip && ! $this->request_ip_matches_session()) {
 			return FALSE;
 		}
+
 		if ($check_user_agent && ! $this->request_user_agent_matches_session()) {
 			return FALSE;
 		}
+
 		if ($check_last_login && ! $this->last_login_is_recent()) {
 			return FALSE;
 		}

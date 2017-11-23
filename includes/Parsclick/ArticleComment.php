@@ -17,8 +17,8 @@ class ArticleComment extends DatabaseObject
 	public static function count_comments_for_article($article_id = 0)
 	{
 		global $database;
-		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
-		$sql .= ' WHERE article_id = ' . $database->escape_value($article_id);
+		$sql        = 'SELECT COUNT(*) FROM ' . self::$table_name;
+		$sql        .= ' WHERE article_id = ' . $database->escape_value($article_id);
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
 
@@ -32,8 +32,8 @@ class ArticleComment extends DatabaseObject
 	public static function count_comments_for_member($member_id = 0)
 	{
 		global $database;
-		$sql = 'SELECT COUNT(*) FROM ' . self::$table_name;
-		$sql .= ' WHERE member_id = ' . $database->escape_value($member_id);
+		$sql        = 'SELECT COUNT(*) FROM ' . self::$table_name;
+		$sql        .= ' WHERE member_id = ' . $database->escape_value($member_id);
 		$result_set = $database->query($sql);
 		$row        = $database->fetch_assoc($result_set);
 
@@ -66,9 +66,9 @@ class ArticleComment extends DatabaseObject
 			], $body);
 
 			return $comment;
-		} else {
-			return FALSE;
 		}
+
+		return FALSE;
 	}
 
 	/**

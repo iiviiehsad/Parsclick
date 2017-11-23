@@ -42,7 +42,7 @@ class pagination
 	 */
 	public function previous_page()
 	{
-		return $this->current_page - 1;
+		return $this->current_page--;
 	}
 
 	/**
@@ -58,7 +58,7 @@ class pagination
 	 */
 	public function next_page()
 	{
-		return $this->current_page + 1;
+		return $this->current_page++;
 	}
 
 	/**

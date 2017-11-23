@@ -1,4 +1,5 @@
 <?php
+
 /**
  * File: php.ini -------------
  * file_upload          = on, true, 1
@@ -34,7 +35,7 @@ class File extends DatabaseObject
 		UPLOAD_ERR_NO_FILE    => 'فایلی نیست.',
 		UPLOAD_ERR_NO_TMP_DIR => 'پوشه موقت نیست.',
 		UPLOAD_ERR_CANT_WRITE => 'قادر به نوشتن روی دیسک نیست.',
-		UPLOAD_ERR_EXTENSION  => 'آپلود فایل بخاطر فرمت فایل جلوگیری شد.'
+		UPLOAD_ERR_EXTENSION  => 'آپلود فایل بخاطر فرمت فایل جلوگیری شد.',
 	];
 	private          $temp_path;
 
@@ -45,9 +46,9 @@ class File extends DatabaseObject
 	public static function num_files_for_course($course_id)
 	{
 		global $database;
-		$sql = 'SELECT * ';
-		$sql .= ' FROM ' . self::$table_name;
-		$sql .= ' WHERE course_id = ' . $database->escape_value($course_id);
+		$sql       = 'SELECT * ';
+		$sql       .= ' FROM ' . self::$table_name;
+		$sql       .= ' WHERE course_id = ' . $database->escape_value($course_id);
 		$video_set = $database->query($sql);
 
 		return $database->num_rows($video_set);
@@ -73,39 +74,28 @@ class File extends DatabaseObject
 	 */
 	public function attach_file($file)
 	{
-		if( ! $file || empty($file) || ! is_array($file)) {
+		if ( ! $file || empty($file) || ! is_array($file)) {
 			$this->errors[] = 'هیچ فایلی آپلود نشد!';
 
 			return FALSE;
-		} elseif($file['error'] != 0) {
+		}
+
+		if ($file['error'] != 0) {
 			$this->errors[] = $this->upload_errors[$file['error']];
 
 			return FALSE;
-		} elseif( ! $this->checkType($file)) {
-			return FALSE;
-		} else {
-			$this->temp_path = $file['tmp_name'];
-			$this->name      = $this->sanitize_file_name($file['name']);
-			$this->type      = $file['type'];
-			$this->size      = $file['size'];
-
-			return TRUE;
 		}
-	}
 
-	/**
-	 * @param $file
-	 * @return bool
-	 */
-	protected function checkType($file)
-	{
-		if(in_array($file['type'], $this->permittedTypes, FALSE)) {
-			return TRUE;
-		} else {
-			$this->errors[] = $file['name'] . ' نوعی نیست که باید آپلود شود!';
-
+		if ( ! $this->checkType($file)) {
 			return FALSE;
 		}
+
+		$this->temp_path = $file['tmp_name'];
+		$this->name      = $this->sanitize_file_name($file['name']);
+		$this->type      = $file['type'];
+		$this->size      = $file['size'];
+
+		return TRUE;
 	}
 
 	/**
@@ -129,40 +119,40 @@ class File extends DatabaseObject
 	 */
 	public function save()
 	{
-		if( ! empty($this->errors)) {
+		if ( ! empty($this->errors)) {
 			$this->errors[] = 'مشکلی پیش آمد!';
 
 			return FALSE;
 		}
-		if(strlen($this->description) > 255) {
+		if (strlen($this->description) > 255) {
 			$this->errors[] = 'خطا! توضیحات بیشتر ار ۲۵۵ حروف نباید باشد.';
 
 			return FALSE;
 		}
-		if(empty($this->name) || empty($this->temp_path)) {
+		if (empty($this->name) || empty($this->temp_path)) {
 			$this->errors[] = 'خطا! محل قرار دادن فایل موجود نیست.';
 
 			return FALSE;
 		}
-		if($this->size > self::$max_file_size) {
+		if ($this->size > self::$max_file_size) {
 			$this->errors[] = 'خطا! اندازه فایل بیش از حد بزرگ است.';
 
 			return FALSE;
 		}
 		$target_path = PUB_PATH . DS . $this->upload_dir . DS . $this->name;
-		if( ! is_uploaded_file($this->temp_path)) {
+		if ( ! is_uploaded_file($this->temp_path)) {
 			$this->errors[] = "خطا! فایل {$this->name} همان فایلی نیست که از قبل آپلود شده.";
 
 			return FALSE;
 		}
-		if(file_exists($target_path)) {
+		if (file_exists($target_path)) {
 			$this->errors[] = "خطا! فایل {$this->name} در سیستم با همان اسم موجود است.";
 
 			return FALSE;
 		}
-		if(move_uploaded_file($this->temp_path, $target_path)) {
-			if($this->create()) {
-				if(chmod($target_path, 0644)) {
+		if (move_uploaded_file($this->temp_path, $target_path)) {
+			if ($this->create()) {
+				if (chmod($target_path, 0644)) {
 					$this->file_permissions($target_path);
 				}
 				unset($this->temp_path);
@@ -195,13 +185,13 @@ class File extends DatabaseObject
 	 */
 	public function destroy()
 	{
-		if($this->delete()) {
+		if ($this->delete()) {
 			$target_path = PUB_PATH . DS . $this->file_path();
 
 			return unlink($target_path) ? TRUE : FALSE;
-		} else {
-			return FALSE;
 		}
+
+		return FALSE;
 	}
 
 	/**
@@ -217,16 +207,33 @@ class File extends DatabaseObject
 	 */
 	public function size_as_text()
 	{
-		if($this->size < 1024) {
+		if ($this->size < 1024) {
 			return "{$this->size} bytes";
-		} elseif($this->size < 1048576) {
+		}
+
+		if ($this->size < 1048576) {
 			$size_kb = round($this->size / 1024);
 
 			return "{$size_kb} KB";
-		} else {
-			$size_mb = round($this->size / 1048576, 1);
-
-			return "{$size_mb} MB";
 		}
+
+		$size_mb = round($this->size / 1048576, 1);
+
+		return "{$size_mb} MB";
+	}
+
+	/**
+	 * @param $file
+	 * @return bool
+	 */
+	protected function checkType($file)
+	{
+		if (in_array($file['type'], $this->permittedTypes, FALSE)) {
+			return TRUE;
+		}
+
+		$this->errors[] = $file['name'] . ' نوعی نیست که باید آپلود شود!';
+
+		return FALSE;
 	}
 }

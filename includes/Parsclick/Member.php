@@ -95,9 +95,9 @@ class Member extends DatabaseObject
 
 			return $mail->sendEmailTo([$user->email], $data, $content, $subject, $user->full_name());
 			// return send_email($this->email, 'Reset Password Request', email($this->full_name(), DOMAIN, $data, $content));
-		} else {
-			return FALSE;
 		}
+
+		return FALSE;
 	}
 
 	/**
