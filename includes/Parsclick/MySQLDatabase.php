@@ -27,11 +27,11 @@ class MySQLDatabase implements Database
 		$this->connection->set_charset('latin1');
 		if ( ! $this->connection) {
 			die('Database connection failed: ' . mysqli_connect_error() . ' (' . mysqli_connect_errno() . ' )');
-		} else {
-			$db_select = mysqli_select_db($this->connection, DB_NAME);
-			if ( ! $db_select) {
-				die('Database selection failed: ' . mysqli_connect_error() . ' (' . mysqli_connect_errno() . ' )');
-			}
+		}
+
+		$db_select = mysqli_select_db($this->connection, DB_NAME);
+		if ( ! $db_select) {
+			die('Database selection failed: ' . mysqli_connect_error() . ' (' . mysqli_connect_errno() . ' )');
 		}
 	}
 

@@ -3,20 +3,20 @@ $session->confirm_author_logged_in();
 $author = Author::find_by_id($session->id);
 $author->check_status();
 $deactive_authors    = Author::find_deactive_authors();
-$articles_under_edit = Article::find_articles_for_author($author->id, FALSE);
-$courses_under_edit  = Course::find_courses_for_author($author->id, FALSE);
-$articles_for_author = Article::find_articles_for_author($author->id, TRUE);
-$courses_for_author  = Course::find_courses_for_author($author->id, TRUE);
+$articles_under_edit = Article::find_articles_for_author($author->id, false);
+$courses_under_edit  = Course::find_courses_for_author($author->id, false);
+$articles_for_author = Article::find_articles_for_author($author->id, true);
+$courses_for_author  = Course::find_courses_for_author($author->id, true);
 $newest_content_date = find_newest_date([
-		Article::find_newest_article_for_author($author->id) ? Article::find_newest_article_for_author($author->id)->created_at : $author->created_at,
-		Course::find_newest_course_for_author($author->id) ? Course::find_newest_course_for_author($author->id)->created_at : $author->created_at,
+        Article::find_newest_article_for_author($author->id) ? Article::find_newest_article_for_author($author->id)->created_at : $author->created_at,
+        Course::find_newest_course_for_author($author->id) ? Course::find_newest_course_for_author($author->id)->created_at : $author->created_at,
 ]);
 include_layout_template('admin_header.php');
 include_layout_template('author_nav.php');
 echo output_message($message);
 ?>
 <div class="jumbotron hidden-sm wow fadeIn author-jumbotron">
-	<?php if ( ! empty($author->photo)): ?>
+	<?php if (! empty($author->photo)): ?>
 		<img class="img-circle pull-left" height="150" width="150" alt="<?php echo $author->full_name(); ?>"
 		     src="data:image/jpeg;base64,<?php echo base64_encode($author->photo); ?>">
 	<?php else: ?>
@@ -75,8 +75,7 @@ echo output_message($message);
 						<i class='fa fa-refresh fa-spin text-danger'></i>&nbsp;
 						<a href="author_courses.php?category=<?php echo urlencode($cue->category_id); ?>&course=<?php echo urlencode($cue->id); ?>">
 							<?php echo $cue->name; ?>
-							<span
-									class="label label-as-badge label-danger pull-left"><?php echo datetime_to_shamsi($cue->created_at, '*%d *%B، %Y'); ?></span>
+							<span class="label label-as-badge label-danger pull-left"><?php echo datetime_to_shamsi($cue->created_at, '*%d *%B، %Y'); ?></span>
 						</a>
 					</li>
 				<?php endforeach; ?>
@@ -118,7 +117,7 @@ echo output_message($message);
 				<?php endforeach; ?>
 			</ul>
 		<?php endif; ?>
-		<?php if ( ! $articles_under_edit && ! $articles_for_author): ?>
+		<?php if (! $articles_under_edit && ! $articles_for_author): ?>
 			<p>تشکر ویژه ما رو پذیرا باشید چون ما رو انتخاب کردید برای منتشر کردن مقالات خودتون. امیدوارم که بتونید به راحتی
 				با کاربرای خودتوی در ارتباط باشید، و اگر قابلیتی از این سیستم می خواهید با ما در میون بگذارید. اما ...</p>
 			<p class="lead text-danger">توجه!</p>
@@ -146,9 +145,9 @@ echo output_message($message);
 				<b class="text-warning"><?php echo datetime_to_shamsi(time_left($newest_content_date), '*%d *%B، %Y'); ?></b>
 				برای ساخت مطلب جدید وقت داشتید.
 			</p>
-		<?php elseif ( ! $articles_under_edit && ! $courses_under_edit &&
-				time() < time_left($author->created_at, '+1 month')
-		): ?>
+		<?php elseif (! $articles_under_edit && ! $courses_under_edit &&
+                time() < time_left($author->created_at, '+1 month')
+        ): ?>
 			<p class="alert alert-info">
 				<b class="lead">تذکر:‌</b>
 				شما به عنوان نویسنده ی جدید فقط تا
