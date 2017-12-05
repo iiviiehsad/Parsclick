@@ -8,7 +8,7 @@
 function __autoload($class_name)
 {
     $path = LIB_PATH . DS . $class_name . '.php';
-    if (! file_exists($path)) {
+    if (!file_exists($path)) {
         die("The file {$class_name}.php could not be found!");
     }
     require_once $path;
@@ -32,7 +32,7 @@ function redirect_to($location = null)
  */
 function output_message($message = '', $errors = '')
 {
-    if (! empty($message)) {
+    if (!empty($message)) {
         return bootstrap_alert($message);
     }
     if (! empty($errors)) {
@@ -205,8 +205,8 @@ function truncate($string, $length, $dots = '... ... ...')
  */
 function is_local()
 {
-    $ip1  = '::1';
-    $ip2  = '127.0.0.1';
+    $ip1 = '::1';
+    $ip2 = '127.0.0.1';
     $host = 'localhost';
 
     return $_SERVER['REMOTE_ADDR'] == $ip1 || $_SERVER['REMOTE_ADDR'] == $ip2 || $_SERVER['HTTP_HOST'] == $host;
@@ -244,8 +244,8 @@ function ip_info($ip = null, $purpose = 'location', $deep_detect = true)
             }
         }
     }
-    $purpose    = str_replace(['name', "\n", "\t", ' ', '-', '_'], null, strtolower(trim($purpose)));
-    $support    = ['country', 'countrycode', 'state', 'region', 'city', 'location', 'address'];
+    $purpose = str_replace(['name', "\n", "\t", ' ', '-', '_'], null, strtolower(trim($purpose)));
+    $support = ['country', 'countrycode', 'state', 'region', 'city', 'location', 'address'];
     $continents = [
         'AF' => 'Africa',
         'AN' => 'Antarctica',
@@ -261,11 +261,11 @@ function ip_info($ip = null, $purpose = 'location', $deep_detect = true)
             switch ($purpose) {
                 case 'location':
                     $output = [
-                        'city'           => @$ipdat->geoplugin_city,
-                        'state'          => @$ipdat->geoplugin_regionName,
-                        'country'        => @$ipdat->geoplugin_countryName,
-                        'country_code'   => @$ipdat->geoplugin_countryCode,
-                        'continent'      => @$continents[strtoupper($ipdat->geoplugin_continentCode)],
+                        'city' => @$ipdat->geoplugin_city,
+                        'state' => @$ipdat->geoplugin_regionName,
+                        'country' => @$ipdat->geoplugin_countryName,
+                        'country_code' => @$ipdat->geoplugin_countryCode,
+                        'continent' => @$continents[strtoupper($ipdat->geoplugin_continentCode)],
                         'continent_code' => @$ipdat->geoplugin_continentCode,
                     ];
                     break;
@@ -370,13 +370,13 @@ function has_presence($value)
  */
 function has_length($value, $options = [])
 {
-    if (isset($options['max']) && (strlen($value) > (int) $options['max'])) {
+    if (isset($options['max']) && (strlen($value) > (int)$options['max'])) {
         return false;
     }
-    if (isset($options['min']) && (strlen($value) < (int) $options['min'])) {
+    if (isset($options['min']) && (strlen($value) < (int)$options['min'])) {
         return false;
     }
-    if (isset($options['exact']) && (strlen($value) != (int) $options['exact'])) {
+    if (isset($options['exact']) && (strlen($value) != (int)$options['exact'])) {
         return false;
     }
 
@@ -405,13 +405,13 @@ function has_format_matching($value, $regex = '//')
  */
 function has_number($value, $options = [])
 {
-    if (! is_numeric($value)) {
+    if (!is_numeric($value)) {
         return false;
     }
-    if (isset($options['max']) && ($value > (int) $options['max'])) {
+    if (isset($options['max']) && ($value > (int)$options['max'])) {
         return false;
     }
-    if (isset($options['min']) && ($value < (int) $options['min'])) {
+    if (isset($options['min']) && ($value < (int)$options['min'])) {
         return false;
     }
 
@@ -439,7 +439,7 @@ function has_inclusion_in($value, $set = [])
  */
 function has_exclusion_from($value, $set = [])
 {
-    return ! in_array($value, $set, false);
+    return !in_array($value, $set, false);
 }
 
 /**
@@ -483,14 +483,14 @@ function file_upload_error($error_integer)
 {
     $upload_errors = [
         # http://php.net/manual/en/features.file-upload.errors.php
-        UPLOAD_ERR_OK         => 'خطایی نیست.',
-        UPLOAD_ERR_INI_SIZE   => 'فایل بزرگتر از تنظیمات پی اچ پی است!',
-        UPLOAD_ERR_FORM_SIZE  => 'اندازه فایل بزرگ است!',
-        UPLOAD_ERR_PARTIAL    => 'فایل نصفه آپلود شد!',
-        UPLOAD_ERR_NO_FILE    => 'هیچ فایلی انتخاب نشد!',
+        UPLOAD_ERR_OK => 'خطایی نیست.',
+        UPLOAD_ERR_INI_SIZE => 'فایل بزرگتر از تنظیمات پی اچ پی است!',
+        UPLOAD_ERR_FORM_SIZE => 'اندازه فایل بزرگ است!',
+        UPLOAD_ERR_PARTIAL => 'فایل نصفه آپلود شد!',
+        UPLOAD_ERR_NO_FILE => 'هیچ فایلی انتخاب نشد!',
         UPLOAD_ERR_NO_TMP_DIR => 'پوشه موقت موجود نیست!',
         UPLOAD_ERR_CANT_WRITE => 'نمیشه روی دیسک نوشت!',
-        UPLOAD_ERR_EXTENSION  => 'آپلود فایل بخاطر نوع آن متوقف شد!',
+        UPLOAD_ERR_EXTENSION => 'آپلود فایل بخاطر نوع آن متوقف شد!',
     ];
 
     return $upload_errors[$error_integer];
@@ -559,7 +559,7 @@ HTML;
 function log_action($action, $message = '')
 {
     $logfile = SITE_ROOT . DS . 'logs' . DS . 'log.txt';
-    $new     = file_exists($logfile) ? false : true;
+    $new = file_exists($logfile) ? false : true;
     if ($handle = fopen($logfile, 'a')) { //appends
         $timestamp = datetime_to_text(strftime('%Y-%m-%d %H:%M:%S', time()));
         // $country   = ip_info("Visitor", "Country");
@@ -618,7 +618,7 @@ function course_url()
     if ($session->is_admin_logged_in()) {
         return 'admin_courses.php';
     }
-    if (! isset($session->id)) {
+    if (!isset($session->id)) {
         return 'anjoman';
     }
 
@@ -633,13 +633,13 @@ function course_url()
  */
 function articles($subject_array, $article_array, $public = false)
 {
-    $output      = '<div id="accordion">';
-    $output      .= '<ul class="list-group">';
+    $output = '<div id="accordion">';
+    $output .= '<ul class="list-group">';
     $subject_set = Subject::find_all($public);
     foreach ($subject_set as $subject) {
         $output .= '<li class="list-group-item">';
         $output .= '<span class="badge">' . convert(Article::count_articles_for_subject($subject->id, $public)) . '</span>';
-        if (! $public) {
+        if (!$public) {
             $output .= '<small><a class="label label-as-badge label-info glyphicon glyphicon-pencil" href="' . article_url() .
                 '?subject=' . urlencode($subject->id) . '"></a></small>&nbsp;';
         }
@@ -650,20 +650,20 @@ function articles($subject_array, $article_array, $public = false)
         $output .= '" data-toggle="collapse" data-parent="#accordion"';
         $output .= ' href="#' . urlencode($subject->id) . '">';
         $output .= '<strong>';
-        $output = ! empty($subject->name) ? $output . $subject->name : $output . '-';
+        $output = !empty($subject->name) ? $output . $subject->name : $output . '-';
         $output .= '</strong>';
         $output .= '</a>';
         if (Article::count_recent_articles_for_subject($subject->id, $public) > 0) {
             $output .= '<small>&nbsp;<kbd>' . convert(Article::count_recent_articles_for_subject($subject->id, $public)) .
                 ' مقاله جدید</kbd></small>';
         }
-        if (! $public && Article::count_invisible_articles_for_subject($subject->id) > 0) {
+        if (!$public && Article::count_invisible_articles_for_subject($subject->id) > 0) {
             $output .= '<small>&nbsp;<kbd>' . convert(Article::count_invisible_articles_for_subject($subject->id)) .
                 ' مقاله مخفی</kbd></small>';
         }
         $article_set = Article::find_articles_for_subject($subject->id, $public);
-        $output      .= '<div id="' . urlencode($subject->id) . '"';
-        $output      .= ' class="collapse';
+        $output .= '<div id="' . urlencode($subject->id) . '"';
+        $output .= ' class="collapse';
         if ($subject_array && $subject->id == $subject_array->id) {
             $output .= ' in';
         }
@@ -671,7 +671,7 @@ function articles($subject_array, $article_array, $public = false)
         $output .= '<div style="margin-top: 1em;">';
         foreach ($article_set as $article) {
             $output .= '<p>';
-            $query  = http_build_query([
+            $query = http_build_query([
                 'subject' => urlencode($subject->id),
                 'article' => urlencode($article->id),
             ]);
@@ -685,11 +685,11 @@ function articles($subject_array, $article_array, $public = false)
                 $output .= '"';
             }
             $output .= '>';
-            $output = ! empty($article->name) ? $output . $article->name : $output . '-';
+            $output = !empty($article->name) ? $output . $article->name : $output . '-';
             if ($article->recent()) {
                 $output .= '&nbsp;<kbd>تازه</kbd>';
             }
-            if (! $article->visible) {
+            if (!$article->visible) {
                 $output .= '&nbsp;<kbd>مخفی</kbd>';
             }
             $output .= '</a></p>';
@@ -712,13 +712,13 @@ function articles($subject_array, $article_array, $public = false)
  */
 function courses($category_array, $course_array, $public = false)
 {
-    $output       = '<div id="accordion">';
-    $output       .= '<ul class="list-group">';
+    $output = '<div id="accordion">';
+    $output .= '<ul class="list-group">';
     $category_set = Category::find_all($public);
     foreach ($category_set as $category) {
         $output .= '<li class="list-group-item">';
         $output .= '<span class="badge">' . convert(Course::count_courses_for_category($category->id, $public)) . '</span>';
-        if (! $public) {
+        if (!$public) {
             $output .= '<small><a class="label label-as-badge label-danger glyphicon glyphicon-pencil" href="' . course_url() .
                 '?category=' . urlencode($category->id) . '"></a></small>&nbsp;';
         }
@@ -729,20 +729,20 @@ function courses($category_array, $course_array, $public = false)
         $output .= '" data-toggle="collapse" data-parent="#accordion"';
         $output .= ' href="#' . urlencode($category->id) . '">';
         $output .= '<strong>';
-        $output = ! empty($category->name) ? $output . $category->name : $output . '-';
+        $output = !empty($category->name) ? $output . $category->name : $output . '-';
         $output .= '</strong>';
         $output .= '</a>';
         if (Course::count_recent_course_for_category($category->id, $public) > 0) {
             $output .= '<small>&nbsp;<kbd>' . convert(Course::count_recent_course_for_category($category->id, $public)) .
                 'درس جدید</kbd></small>';
         }
-        if (! $public && Course::count_invisible_courses_for_category($category->id) > 0) {
+        if (!$public && Course::count_invisible_courses_for_category($category->id) > 0) {
             $output .= '<small>&nbsp;<kbd>' . convert(Course::count_invisible_courses_for_category($category->id)) .
                 'درس مخفی</kbd></small>';
         }
         $course_set = Course::find_courses_for_category($category->id, $public);
-        $output     .= '<div id="' . urlencode($category->id) . '"';
-        $output     .= ' class="collapse';
+        $output .= '<div id="' . urlencode($category->id) . '"';
+        $output .= ' class="collapse';
         if ($category_array && $category->id == $category_array->id) {
             $output .= ' in';
         }
@@ -750,9 +750,9 @@ function courses($category_array, $course_array, $public = false)
         $output .= '<div style="margin-top: 1em;">';
         foreach ($course_set as $course) {
             $output .= '<p>';
-            $query  = http_build_query([
+            $query = http_build_query([
                 'category' => urlencode($category->id),
-                'course'   => urlencode($course->id),
+                'course' => urlencode($course->id),
             ]);
             $output .= '<a href="' . course_url() . '?' . $query . '"';
             if ($course_array && $course->id == $course_array->id) {
@@ -764,11 +764,11 @@ function courses($category_array, $course_array, $public = false)
                 $output .= '"';
             }
             $output .= '>';
-            $output = ! empty($course->name) ? $output . $course->name : $output . '-';
+            $output = !empty($course->name) ? $output . $course->name : $output . '-';
             if ($course->recent()) {
                 $output .= '&nbsp;<kbd>تازه</kbd>';
             }
-            if (! $course->visible) {
+            if (!$course->visible) {
                 $output .= '&nbsp;<kbd>مخفی</kbd>';
             }
             $output .= '</a></p>';
@@ -790,18 +790,18 @@ function courses($category_array, $course_array, $public = false)
  */
 function public_courses()
 {
-    $output       = '<ol class="list-unstyled">';
+    $output = '<ol class="list-unstyled">';
     $category_set = Category::find_all(true);
     foreach ($category_set as $category) {
-        $output     .= '<li>';
-        $output     .= '<h2>';
-        $output     = ! empty($category->name) ? $output . $category->name : $output . '-';
-        $output     .= '</h2>';
+        $output .= '<li>';
+        $output .= '<h2>';
+        $output = !empty($category->name) ? $output . $category->name : $output . '-';
+        $output .= '</h2>';
         $course_set = Course::find_courses_for_category($category->id, true);
-        $output     .= '<div class="list-group">';
+        $output .= '<div class="list-group">';
         foreach ($course_set as $course) {
             $output .= "<a class='list-group-item' target='_blank' title='برو به یوتیوب' href='//www.youtube.com/playlist?list={$course->youtubePlaylist}'>";
-            $output = ! empty($course->name) ? $output . $course->name : $output . '-';
+            $output = !empty($course->name) ? $output . $course->name : $output . '-';
             if ($course->recent()) {
                 $output .= '&nbsp;&nbsp;&nbsp;<kbd>تازه</kbd>';
             }
@@ -857,19 +857,19 @@ function find_selected_course($public = false)
 
     if (isset($get['category'], $get['course'])) {
         $current_category = Category::find_by_id($get['category'], $public);
-        $current_course   = Course::find_by_id($get['course'], $public);
+        $current_course = Course::find_by_id($get['course'], $public);
     } elseif (isset($get['category'])) {
-        $current_course   = null;
+        $current_course = null;
         $current_category = Category::find_by_id($get['category'], $public);
         if ($current_category && $public) {
             $current_course = Course::find_default_course_for_category($current_category->id);
         }
     } elseif (isset($get['course'])) {
-        $current_course   = Course::find_by_id($get['course'], $public);
+        $current_course = Course::find_by_id($get['course'], $public);
         $current_category = null;
     } else {
         $current_category = null;
-        $current_course   = null;
+        $current_course = null;
     }
 }
 
@@ -903,16 +903,16 @@ function get_prev_next_token()
  */
 function set_prev_next_page($playlist_id)
 {
-    $get   = allowed_get_params(['prevPageToken', 'nextPageToken']);
+    $get = allowed_get_params(['prevPageToken', 'nextPageToken']);
     $query = http_build_query([
-        'part'       => 'snippet',
-        'hl'         => 'fa',
+        'part' => 'snippet',
+        'hl' => 'fa',
         'maxResults' => MAXRESULTS,
         'playlistId' => $playlist_id,
-        'key'        => YOUTUBEAPI,
+        'key' => YOUTUBEAPI,
     ]);
 
-    if (! isset($get['nextPageToken'], $get['prevPageToken'])) {
+    if (!isset($get['nextPageToken'], $get['prevPageToken'])) {
         $url = GOOGLEAPI . '?' . $query;
     }
     if (isset($get['nextPageToken'])) {
@@ -922,7 +922,7 @@ function set_prev_next_page($playlist_id)
         $url = GOOGLEAPI . '?' . $query . '&pageToken=' . $get['prevPageToken'];
     }
 
-    return ! empty($url) ? $url : null;
+    return !empty($url) ? $url : null;
 }
 
 /**
@@ -956,7 +956,7 @@ function get_playlist_content($playlist_id = 0)
  */
 function paginate($pagination, $page, $urls = [])
 {
-    $output   = '';
+    $output = '';
     $main_url = parse_url($_SERVER['REQUEST_URI'])['path'];
     if ($pagination->total_page() > 1) {
         $output .= '<nav class="clearfix center">';
@@ -964,7 +964,7 @@ function paginate($pagination, $page, $urls = [])
         if ($pagination->has_previous_page()) {
             $output .= '<li>';
             $output .= '<a href="' . $main_url . '?page=' . urlencode($pagination->previous_page());
-            if (! empty($urls)) {
+            if (!empty($urls)) {
                 $output .= '&';
                 $output .= urldecode(http_build_query($urls));
             }
@@ -978,7 +978,7 @@ function paginate($pagination, $page, $urls = [])
             } else {
                 $output .= '<li>';
                 $output .= '<a href="' . $main_url . '?page=' . urlencode($i);
-                if (! empty($urls)) {
+                if (!empty($urls)) {
                     $output .= '&';
                     $output .= urldecode(http_build_query($urls));
                 }
@@ -989,7 +989,7 @@ function paginate($pagination, $page, $urls = [])
         if ($pagination->has_next_page()) {
             $output .= '<li>';
             $output .= '<a href="' . $main_url . '?page=' . urlencode($pagination->next_page());
-            if (! empty($urls)) {
+            if (!empty($urls)) {
                 $output .= '&';
                 $output .= urldecode(http_build_query($urls));
             }
@@ -1055,8 +1055,8 @@ function encrypt_string($salt, $string)
     $cipher_type = MCRYPT_RIJNDAEL_256;
     $cipher_mode = MCRYPT_MODE_CBC;
     # Using initialization vector adds more security
-    $iv_size          = mcrypt_get_iv_size($cipher_type, $cipher_mode);
-    $iv               = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+    $iv_size = mcrypt_get_iv_size($cipher_type, $cipher_mode);
+    $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
     $encrypted_string = mcrypt_encrypt($cipher_type, $salt, $string, $cipher_mode, $iv);
     # Return initialization vector + encrypted string
     # We'll need the $iv when decoding.
@@ -1075,10 +1075,10 @@ function decrypt_string($salt, $iv_with_string)
     $cipher_mode = MCRYPT_MODE_CBC;
     # Extract the initialization vector from the encrypted string.
     # The $iv comes before encrypted string and has fixed size.
-    $iv_size          = mcrypt_get_iv_size($cipher_type, $cipher_mode);
-    $iv               = substr($iv_with_string, 0, $iv_size);
+    $iv_size = mcrypt_get_iv_size($cipher_type, $cipher_mode);
+    $iv = substr($iv_with_string, 0, $iv_size);
     $encrypted_string = substr($iv_with_string, $iv_size);
-    $string           = mcrypt_decrypt($cipher_type, $salt, $encrypted_string, $cipher_mode, $iv);
+    $string = mcrypt_decrypt($cipher_type, $salt, $encrypted_string, $cipher_mode, $iv);
 
     return $string;
 }
@@ -1111,7 +1111,7 @@ function sign_string($string)
 {
     # Using $salt makes it hard to guess how $checksum is generated
     # Caution: changing salt will invalidate all signed strings
-    $salt     = 'Simple salt';
+    $salt = 'Simple salt';
     $checksum = sha1($string . $salt); # Any hash algorithm would work
     # return the string with the checksum at the end
     return $string . '--' . $checksum;
