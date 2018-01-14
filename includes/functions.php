@@ -1,20 +1,6 @@
 <?php
 
 /**
- * Custom __autoload for finding php classes
- *
- * @param $class_name
- */
-function __autoload($class_name)
-{
-    $path = LIB_PATH . DS . $class_name . '.php';
-    if (!file_exists($path)) {
-        die("The file {$class_name}.php could not be found!");
-    }
-    require_once $path;
-}
-
-/**
  * @param null $location
  */
 function redirect_to($location = null)
@@ -32,10 +18,10 @@ function redirect_to($location = null)
  */
 function output_message($message = '', $errors = '')
 {
-    if (!empty($message)) {
+    if ( ! empty($message)) {
         return bootstrap_alert($message);
     }
-    if (! empty($errors)) {
+    if ( ! empty($errors)) {
         return bootstrap_alert($errors, 'danger');
     }
 
@@ -193,7 +179,7 @@ function check_size($size = 0)
  * @param string $dots
  * @return string
  */
-function truncate($string, $length, $dots = '... ... ...')
+function truncate($string, $length, $dots = '…')
 {
     return (strlen($string) > $length) ? substr($string, 0, $length - strlen($dots)) . $dots : $string;
 }
@@ -482,7 +468,7 @@ function file_contains_php($file)
 function file_upload_error($error_integer)
 {
     $upload_errors = [
-        # http://php.net/manual/en/features.file-upload.errors.php
+        // http://php.net/manual/en/features.file-upload.errors.php
         UPLOAD_ERR_OK => 'خطایی نیست.',
         UPLOAD_ERR_INI_SIZE => 'فایل بزرگتر از تنظیمات پی اچ پی است!',
         UPLOAD_ERR_FORM_SIZE => 'اندازه فایل بزرگ است!',
@@ -675,7 +661,7 @@ function articles($subject_array, $article_array, $public = false)
                 'subject' => urlencode($subject->id),
                 'article' => urlencode($article->id),
             ]);
-            $output .= '<a href="' . article_url() . '?' . $query . '"';
+            $output .= '<a href="' . article_url() . '.php?' . $query . '"';
             if ($article_array && $article->id == $article_array->id) {
                 $output .= ' class="selected" ';
             }
@@ -1051,15 +1037,15 @@ function status($user)
  */
 function encrypt_string($salt, $string)
 {
-    # Configuration (must match decryption)
+    // Configuration (must match decryption)
     $cipher_type = MCRYPT_RIJNDAEL_256;
     $cipher_mode = MCRYPT_MODE_CBC;
-    # Using initialization vector adds more security
+    // Using initialization vector adds more security
     $iv_size = mcrypt_get_iv_size($cipher_type, $cipher_mode);
     $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
     $encrypted_string = mcrypt_encrypt($cipher_type, $salt, $string, $cipher_mode, $iv);
-    # Return initialization vector + encrypted string
-    # We'll need the $iv when decoding.
+    // Return initialization vector + encrypted string
+    // We'll need the $iv when decoding.
     return $iv . $encrypted_string;
 }
 
@@ -1070,11 +1056,11 @@ function encrypt_string($salt, $string)
  */
 function decrypt_string($salt, $iv_with_string)
 {
-    # Configuration (must match encryption)
+    // Configuration (must match encryption)
     $cipher_type = MCRYPT_RIJNDAEL_256;
     $cipher_mode = MCRYPT_MODE_CBC;
-    # Extract the initialization vector from the encrypted string.
-    # The $iv comes before encrypted string and has fixed size.
+    // Extract the initialization vector from the encrypted string.
+    // The $iv comes before encrypted string and has fixed size.
     $iv_size = mcrypt_get_iv_size($cipher_type, $cipher_mode);
     $iv = substr($iv_with_string, 0, $iv_size);
     $encrypted_string = substr($iv_with_string, $iv_size);
@@ -1109,11 +1095,11 @@ function decrypt_string_and_decode($salt, $string)
  */
 function sign_string($string)
 {
-    # Using $salt makes it hard to guess how $checksum is generated
-    # Caution: changing salt will invalidate all signed strings
+    // Using $salt makes it hard to guess how $checksum is generated
+    // Caution: changing salt will invalidate all signed strings
     $salt = 'Simple salt';
-    $checksum = sha1($string . $salt); # Any hash algorithm would work
-    # return the string with the checksum at the end
+    $checksum = sha1($string . $salt); // Any hash algorithm would work
+    // return the string with the checksum at the end
     return $string . '--' . $checksum;
 }
 
@@ -1125,11 +1111,11 @@ function signed_string_is_valid($signed_string)
 {
     $array = explode('--', $signed_string);
     if (count($array) != 2) {
-        # string is malformed or not signed
+        // string is malformed or not signed
         return false;
     }
-    # Sign the string portion again. Should create same
-    # checksum and therefore the same signed string.
+    // Sign the string portion again. Should create same
+    // checksum and therefore the same signed string.
     $new_signed_string = sign_string($array[0]);
 
     return $new_signed_string == $signed_string;

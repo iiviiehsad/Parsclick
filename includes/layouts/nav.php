@@ -10,25 +10,25 @@
 	<section class="navbar">
 		<ul class="nav navbar-nav">
 			<li class="<?php echo active(['index']); ?>">
-				<a href="<?php echo is_local() ? 'index' : '/'; ?>"> خانه</a>
+				<a href="<?php echo is_local() ? 'index.php' : '/'; ?>"> خانه</a>
 			</li>
 			<li class="<?php echo active(['articles']); ?>">
-				<a href="<?php echo is_local() ? '' : '/'; ?>articles">مقالات</a>
+				<a href="<?php echo is_local() ? '' : '/'; ?>articles.php">مقالات</a>
 			</li>
 			<li class="<?php echo active(['courses']); ?>">
-				<a href="<?php echo is_local() ? '' : '/'; ?>courses">دروس</a>
+				<a href="<?php echo is_local() ? '' : '/'; ?>courses.php">دروس</a>
 			</li>
 			<li class="<?php echo active(['anjoman']); ?>">
-				<a href="<?php echo is_local() ? '' : '/'; ?>anjoman">انجمن</a>
+				<a href="<?php echo is_local() ? '' : '/'; ?>anjoman.php">انجمن</a>
 			</li>
 			<li class="<?php echo active(['faq']); ?>">
-				<a href="<?php echo is_local() ? '' : '/'; ?>faq"> سوالات شما</a>
+				<a href="<?php echo is_local() ? '' : '/'; ?>faq.php"> سوالات شما</a>
 			</li>
 			<li class="<?php echo active(['help']); ?>">
-				<a href="<?php echo is_local() ? '' : '/'; ?>help"> کمک به ما</a>
+				<a href="<?php echo is_local() ? '' : '/'; ?>help.php"> کمک به ما</a>
 			</li>
 			<li class="<?php echo active(['login']); ?>">
-				<a href="<?php echo is_local() ? '' : '/'; ?>login"> ورود</a></li>
+				<a href="<?php echo is_local() ? '' : '/'; ?>login.php"> ورود</a></li>
 		</ul>
 	</section>
 	<section id="modal" class="modal fade">
